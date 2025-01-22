@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>tangxtang</title>
+  
+  <subtitle>‘’</subtitle>
+  <link href="https://tangxtang1119.github.io/atom.xml" rel="self"/>
+  
+  <link href="https://tangxtang1119.github.io/"/>
+  <updated>2025-01-20T13:43:23.402Z</updated>
+  <id>https://tangxtang1119.github.io/</id>
+  
+  <author>
+    <name>唐小唐</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>测试</title>
+    <link href="https://tangxtang1119.github.io/2025/01/20/%E6%B5%8B%E8%AF%95/"/>
+    <id>https://tangxtang1119.github.io/2025/01/20/%E6%B5%8B%E8%AF%95/</id>
+    <published>2025-01-20T13:30:10.000Z</published>
+    <updated>2025-01-20T13:43:23.402Z</updated>
+    
+    <content type="html"><![CDATA[<p>你好再见，我就知道</p><span id="more"></span>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;你好再见，我就知道&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="web前端" scheme="https://tangxtang1119.github.io/categories/web%E5%89%8D%E7%AB%AF/"/>
+    
+    
+    <category term="日记" scheme="https://tangxtang1119.github.io/tags/%E6%97%A5%E8%AE%B0/"/>
+    
+    <category term="hexo" scheme="https://tangxtang1119.github.io/tags/hexo/"/>
+    
+  </entry>
+  
+</feed>
