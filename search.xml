@@ -1,15 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>测试</title>
-    <url>/2025/01/20/%E6%B5%8B%E8%AF%95/</url>
-    <content><![CDATA[<p>你好再见，我就知道</p>
-<span id="more"></span>]]></content>
+    <title>1月22日</title>
+    <url>/2025/01/22/1%E6%9C%8822%E6%97%A5/</url>
+    <content><![CDATA[<h2 id="创建页面（导航栏列表项）列表项名：分类hexo-new-page-categories然后将以下代码粘贴到文件中：-source-categories-index-md"><a href="#创建页面（导航栏列表项）列表项名：分类hexo-new-page-categories然后将以下代码粘贴到文件中：-source-categories-index-md" class="headerlink" title="创建页面（导航栏列表项）列表项名：分类hexo new page categories然后将以下代码粘贴到文件中：&#x2F;source&#x2F;categories&#x2F;index.md "></a>创建页面（导航栏列表项）<br>列表项名：分类<br>hexo new page categories<br>然后将以下代码粘贴到文件中：<br>&#x2F;source&#x2F;categories&#x2F;index.md </h2><h2 id="title-categoriestype-categorieslayout-“categories”"><a href="#title-categoriestype-categorieslayout-“categories”" class="headerlink" title="title: categoriestype: categorieslayout: “categories” "></a>title: categories<br>type: categories<br>layout: “categories” </h2>]]></content>
       <categories>
-        <category>web前端</category>
+        <category>页面部署</category>
       </categories>
       <tags>
-        <tag>日记</tag>
+        <tag>进程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>测试</title>
+    <url>/2025/01/20/%E6%B5%8B%E8%AF%95/</url>
+    <content><![CDATA[<p>测试测试测试测试测试<br>测试测试<br>测试测试<br>测试测试<br>测试测试</p>
+<span id="more"></span>]]></content>
+      <categories>
+        <category>随记</category>
+      </categories>
+      <tags>
         <tag>hexo</tag>
       </tags>
   </entry>
