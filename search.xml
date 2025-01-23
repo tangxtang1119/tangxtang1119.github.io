@@ -13,6 +13,66 @@
       </tags>
   </entry>
   <entry>
+    <title>Typora的使用</title>
+    <url>/2025/01/23/Typora%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h2 id="Typora是什么？"><a href="#Typora是什么？" class="headerlink" title="Typora是什么？"></a>Typora是什么？</h2><p>​		Typora是一款由Abner Lee开发的轻量级Markdown编辑器，适用于OS X、Windows和Linux三种操作系统，是一款免费软件。与其他Markdown编辑器不同的是，Typora没有采用源代码和预览双栏显示的方式，而是采用所见即所得的编辑方式，实现了即时预览的功能，但也可切换至源代码编辑模式</p>
+<span id="more"></span>
+
+
+<h2 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h2><h5 id="1-标题"><a href="#1-标题" class="headerlink" title="1.标题"></a>1.标题</h5><p>快捷键，Ctrl+数字（1、2、3、4、5、6），一共六个数字由大到小六个标题等级。</p>
+<h5 id="2-文本"><a href="#2-文本" class="headerlink" title="2.文本"></a>2.文本</h5><p>2.1 分割线</p>
+<p>三个+++、***、或—，如下：</p>
+<hr>
+<p>2.2 下划线</p>
+<p>Ctrl+U或&lt; u &gt;标签包住文本，如：<u>kedai</u></p>
+<p>2.3 删除线</p>
+<p>Alt+Shift+5或使用一对 “ ~ “符号包括文本，如：<del>kedai</del></p>
+<p>2.4 斜体</p>
+<p>Ctrl+l、或使用一对 “ _ “符号包括文本，如：<em>kedai</em></p>
+<p>2.5 粗体</p>
+<p>Ctrl+B、使用一对 “ ** “符号包括文本、或使用一对 “ __ “符号包括文本，如：<strong>kedai</strong></p>
+<p>2.6 粗体倾斜</p>
+<p>使用一对三个“ * ” 符号包括文本，如：<em><strong>kedai</strong></em></p>
+<p>2.7 设置字体颜色及大小</p>
+<p>&lt; font size&#x3D;2 color&#x3D;”yellow” &gt;设置字体大小为2，颜色为蓝色&lt; &#x2F;font  &gt; ，如：<font size=2 color="yellow">kedai</font> </p>
+<p>2.8 设置字体高亮</p>
+<p>使用一对“ &#x3D;&#x3D; ”符号包括文本，如：&#x3D;&#x3D;kedai&#x3D;&#x3D;</p>
+<p>2.9 文本对齐</p>
+<p>&lt; p align&#x3D;”lift” &gt;左对齐&lt; &#x2F;p &gt;</p>
+<p align="lift">左对齐</p>
+
+<p>&lt; p align&#x3D;”center” &gt;居中对齐&lt; &#x2F;p &gt;</p>
+<p align="center" >居中对齐</p >
+
+<p>&lt; p align&#x3D;”right” &gt;左对齐&lt; &#x2F;p &gt;</p>
+<p align="right" >右对齐</p >
+
+<h5 id="3-插入"><a href="#3-插入" class="headerlink" title="3.插入"></a>3.插入</h5><p>3.1链接</p>
+<p>3.1.1链接文字</p>
+<p>① 当链接地址为外部地址时，格式：[ 链接文字 ] (src“描述链接”) ，其中的描述可以写也可以不写。快捷键为Ctrl+K，用Ctrl+鼠标左键点击进入链接。如：<a href="https://taobao.com/">这是一个淘宝链接</a></p>
+<p>② 当链接地址为本地地址时，其中本地地址可以是相对地址和绝对地址</p>
+<p>​	·绝对地址 格式：[ 绝对地址 ] (src “本地地址链接”)，用Ctrl+鼠标左键点击进入链接，上传远程后是没有效果的。</p>
+<p>​	·相对地址 格式：[ 相对地址\ ] ( src “&#x2F;标题.png”)，其中.&#x2F;代表.md文件所在的地址…&#x2F;表示的是.md文件的上级地址。</p>
+<p>3.2图片</p>
+<p>一共有四种方式</p>
+<p>3.2.1 快捷键：Ctrl+Shift，格式：！[ 图片演示 ] (图片演示.png)，和链接文件、文档差不多，指示在前面加了一个！，如下：</p>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hexo+github 部署博客</title>
+    <url>/2025/01/23/hexo-github-%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2/</url>
+    <content><![CDATA[]]></content>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>测试</title>
     <url>/2025/01/20/%E6%B5%8B%E8%AF%95/</url>
     <content><![CDATA[<p>测试测试测试测试测试<br>测试测试<br>测试测试<br>测试测试<br>测试测试</p>
