@@ -1,18 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>1月22日</title>
-    <url>/2025/01/22/1%E6%9C%8822%E6%97%A5/</url>
-    <content><![CDATA[<p>创建页面（导航栏列表项）<br>列表项名：分类<br>hexo new page categories<br>然后将以下代码粘贴到文件中：<br>&#x2F;source&#x2F;categories&#x2F;index.md<br>    —<br>    title: categories<br>    type: categories<br>    layout: “categories”<br>    —</p>
-]]></content>
-      <categories>
-        <category>页面部署</category>
-      </categories>
-      <tags>
-        <tag>进程</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Typora的使用</title>
     <url>/2025/01/23/Typora%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<h2 id="Typora是什么？"><a href="#Typora是什么？" class="headerlink" title="Typora是什么？"></a>Typora是什么？</h2><p>​		Typora是一款由Abner Lee开发的轻量级Markdown编辑器，适用于OS X、Windows和Linux三种操作系统，是一款免费软件。与其他Markdown编辑器不同的是，Typora没有采用源代码和预览双栏显示的方式，而是采用所见即所得的编辑方式，实现了即时预览的功能，但也可切换至源代码编辑模式</p>
@@ -110,6 +98,18 @@
     <content><![CDATA[]]></content>
       <tags>
         <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>1月22日</title>
+    <url>/2025/01/22/1%E6%9C%8822%E6%97%A5/</url>
+    <content><![CDATA[<p>创建页面（导航栏列表项）<br>列表项名：分类<br>hexo new page categories<br>然后将以下代码粘贴到文件中：<br>&#x2F;source&#x2F;categories&#x2F;index.md<br>    —<br>    title: categories<br>    type: categories<br>    layout: “categories”<br>    —</p>
+]]></content>
+      <categories>
+        <category>页面部署</category>
+      </categories>
+      <tags>
+        <tag>进程</tag>
       </tags>
   </entry>
   <entry>
