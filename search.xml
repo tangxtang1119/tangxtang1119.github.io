@@ -1,6 +1,288 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>VMware虚拟机</title>
+    <url>/2025/02/05/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA/</url>
+    <content><![CDATA[<h1 id="专业术语"><a href="#专业术语" class="headerlink" title="专业术语"></a>专业术语</h1><p>.iso：是电脑上光盘镜像（CD Mirror）的存储格式之一，因为其是i根据ISO-9660有关CD-ROM文件系统标准存储的文件，许哦一通常在电脑中以后缀,iso命名，俗称iso镜像文件。</p>
+<p>镜像文件：镜像文件可以类比为图书馆的一本书的副本。一本珍贵的书，想要确保即使在原书损坏或丢失的情况下，书的内容仍然可以得到保留和使用。为此，制作了这本书的精确复制品，这个复制品包含了原书的所有页面和文字，但它可能是以特殊的格式存储的，比如扫描后的PDF文件或者一系列图片。</p>
+<h1 id="创建新的虚拟机"><a href="#创建新的虚拟机" class="headerlink" title="创建新的虚拟机"></a>创建新的虚拟机</h1><h2 id="Window系统"><a href="#Window系统" class="headerlink" title="Window系统"></a>Window系统</h2><p>点击软件首页的创建新的虚拟机，进入新建导向</p>
+<p>选择自定义（高级）然后点击下一步</p>
+<p><img src="/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA.assets/image-20250205174555074-1738749419756-14.png" alt="image-20250205174555074"></p>
+<p>硬件兼容性选择软件版本，然后点击下一步</p>
+<p><img src="/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA.assets/image-20250205174758059-1738748880563-5.png" alt="image-20250205174758059"></p>
+<p>选择安装程序光盘映像文件（iso），选择安装好的光盘映像文件，可以去微软官网上去下载，然后点击下一步</p>
+<p><img src="/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA.assets/image-20250205174905923.png" alt="image-20250205174905923"></p>
+<p>完成windows简易安装信息，然后点击下一步</p>
+<p><img src="/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA.assets/image-20250205175851491.png" alt="image-20250205175851491"></p>
+<p>对新建的虚拟机进行命名，名字注意区分其他并易懂，还有保存位置，然后点击下一步</p>
+<p><img src="/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA.assets/image-20250205180134307.png" alt="image-20250205180134307"></p>
+<p>选择虚拟机的固件类型，即引导设备，然后点击下一步</p>
+<p><img src="/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA.assets/image-20250205180405240.png" alt="image-20250205180405240"></p>
+<p>选择虚拟机处理器配置，处理器数量、每个处理器的内核数量，然后点击下一步</p>
+<p><img src="/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA.assets/image-20250205180543101.png" alt="image-20250205180543101"></p>
+<p>设置虚拟机的内存，不要太大也不要太小，然后点击下一步</p>
+<p><img src="/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA.assets/image-20250205180722315.png" alt="image-20250205180722315"></p>
+<p>选择网络模式，使用网络地址转换（NAT），然后点击下一步</p>
+<p><img src="/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA.assets/image-20250205180807755.png" alt="image-20250205180807755"></p>
+<p>选择I&#x2F;O控制器类型，按照新建向导的推荐选择，然后点击下一步</p>
+<p><img src="/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA.assets/image-20250205180942689.png" alt="image-20250205180942689"></p>
+<p>选择磁盘类型，按照新建向导的推荐选择，然后点击下一步</p>
+<p><img src="/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA.assets/image-20250205181012163.png" alt="image-20250205181012163"></p>
+<p>选择磁盘，按照新建向导的推荐选择，然后点击下一步</p>
+<p><img src="/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA.assets/image-20250205181248537.png" alt="image-20250205181248537"></p>
+<p>选择磁盘容量，然后点击下一步</p>
+<p><img src="/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA.assets/image-20250205181821140.png" alt="image-20250205181821140"></p>
+<p><img src="/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA.assets/image-20250205183025655.png" alt="image-20250205183025655"></p>
+<p>确定号新建的虚拟机的设置信息，然后点击下一步</p>
+<p><img src="/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA.assets/image-20250205183044871.png" alt="image-20250205183044871"></p>
+<p>至此，Windows10虚拟机创建成功，等待启动然后设置，激活系统。</p>
+<p>Linux</p>
+]]></content>
+      <tags>
+        <tag>软件</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>my plan</title>
+    <url>/2025/02/05/my-plan/</url>
+    <content><![CDATA[<p>以下是半年学习计划，分为基础构建、专业提升、实战应用三个阶段。计划兼顾零基础起点和恶意软件分析的专业需求，注重高效学习和实践结合：</p>
+<hr>
+<h3 id="📅-第一阶段：计算机基础与编程入门（第1-2个月）"><a href="#📅-第一阶段：计算机基础与编程入门（第1-2个月）" class="headerlink" title="📅 第一阶段：计算机基础与编程入门（第1-2个月）"></a><strong>📅 第一阶段：计算机基础与编程入门（第1-2个月）</strong></h3><p><strong>目标</strong>：掌握计算机基础操作、网络基础、Python和C语言基础。</p>
+<ol>
+<li><p><strong>计算机基础（1周）</strong></p>
+<ul>
+<li><strong>操作系统</strong>：学习Windows&#x2F;Linux基础命令（文件管理、进程管理）、虚拟机安装（VMware&#x2F;VirtualBox）。</li>
+<li><strong>网络基础</strong>：理解IP地址、端口、TCP&#x2F;UDP协议，用Wireshark抓包分析HTTP流量。</li>
+</ul>
+</li>
+<li><p><strong>编程入门（3周）</strong></p>
+<ul>
+<li><strong>Python</strong>：学习语法、文件操作、正则表达式、网络请求（<code>requests</code>库），完成简单爬虫或日志分析脚本。</li>
+<li><strong>C语言</strong>：掌握指针、内存管理、结构体，编写简单的内存操作程序（如模拟缓冲区溢出）。</li>
+</ul>
+</li>
+<li><p><strong>工具准备（1周）</strong></p>
+<ul>
+<li>搭建虚拟机实验环境（Windows + Linux双系统）。</li>
+<li>安装基础工具：IDA Pro Free版、Ghidra、Wireshark、Process Monitor。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="📚-第二阶段：信息安全与恶意软件分析基础（第3-4个月）"><a href="#📚-第二阶段：信息安全与恶意软件分析基础（第3-4个月）" class="headerlink" title="📚 第二阶段：信息安全与恶意软件分析基础（第3-4个月）"></a><strong>📚 第二阶段：信息安全与恶意软件分析基础（第3-4个月）</strong></h3><p><strong>目标</strong>：掌握安全核心概念，学习静态&#x2F;动态分析基础。</p>
+<ol>
+<li><p><strong>信息安全基础（2周）</strong></p>
+<ul>
+<li><strong>密码学</strong>：AES&#x2F;RSA算法原理，使用Python实现加密解密。</li>
+<li><strong>漏洞类型</strong>：缓冲区溢出、Shellcode注入原理，用C编写漏洞示例程序。</li>
+<li><strong>网络攻防</strong>：分析ARP欺骗案例，用Scapy模拟数据包伪造。</li>
+</ul>
+</li>
+<li><p><strong>恶意软件分析入门（4周）</strong></p>
+<ul>
+<li><strong>静态分析</strong>：<ul>
+<li>使用PEiD分析样本的编译器和加壳情况。</li>
+<li>用Ghidra反编译样本，识别关键函数（如<code>CreateProcess</code>、注册表操作）。</li>
+</ul>
+</li>
+<li><strong>动态分析</strong>：<ul>
+<li>在虚拟机中运行样本，用Process Monitor监控文件&#x2F;注册表行为。</li>
+<li>使用x64dbg调试样本，跟踪API调用链（如<code>LoadLibrary</code>、<code>GetProcAddress</code>）。</li>
+</ul>
+</li>
+<li><strong>工具进阶</strong>：<ul>
+<li>编写Python脚本自动化提取样本字符串特征。</li>
+<li>配置Cuckoo沙箱分析样本的恶意行为报告。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="🔍-第三阶段：逆向工程与实战进阶（第5-6个月）"><a href="#🔍-第三阶段：逆向工程与实战进阶（第5-6个月）" class="headerlink" title="🔍 第三阶段：逆向工程与实战进阶（第5-6个月）"></a><strong>🔍 第三阶段：逆向工程与实战进阶（第5-6个月）</strong></h3><p><strong>目标</strong>：掌握逆向工程核心技能，完成真实样本分析。</p>
+<ol>
+<li><p><strong>逆向工程深化（3周）</strong></p>
+<ul>
+<li><strong>汇编语言</strong>：学习x86&#x2F;x64指令集，用IDA Pro分析样本的反汇编代码。</li>
+<li><strong>反混淆技术</strong>：<ul>
+<li>手动脱UPX壳（使用OllyDbg的单步跟踪法）。</li>
+<li>分析字符串加密逻辑，编写Python解密脚本。</li>
+</ul>
+</li>
+<li><strong>高级调试</strong>：<ul>
+<li>使用IDA Pro的远程调试功能分析Linux恶意软件。</li>
+<li>通过修改寄存器值绕过反调试检测。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>实战项目（3周）</strong></p>
+<ul>
+<li><strong>样本分析</strong>：<ol>
+<li>分析勒索软件（如HelloKitty）的加密流程和密钥生成逻辑。</li>
+<li>逆向远控木马（如Poison Ivy）的C2通信协议。</li>
+</ol>
+</li>
+<li><strong>报告撰写</strong>：<ul>
+<li>按照MITRE ATT&amp;CK框架标注样本的攻击技术（如T1055进程注入）。</li>
+<li>使用YARA编写规则检测同类样本。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>知识整合（1周）</strong></p>
+<ul>
+<li>复现CTF逆向题目（如<a href="https://flare-on.com/">flare-on</a>历年赛题）。</li>
+<li>参与漏洞平台众测（如HackerOne的简单任务）。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="📦-资源推荐"><a href="#📦-资源推荐" class="headerlink" title="📦 资源推荐"></a><strong>📦 资源推荐</strong></h3><ul>
+<li><strong>书籍</strong>：《逆向工程核心原理》《加密与解密》</li>
+<li><strong>靶场</strong>：<a href="https://any.run/">Any.Run</a>（交互式沙箱）、<a href="https://malwaretrafficanalysis.net/">MalwareTrafficAnalysis</a>（带流量分析的样本）</li>
+<li><strong>样本来源</strong>：VirusTotal（需谨慎）、<a href="https://github.com/ytisf/theZoo">Zoo</a>（GitHub合法样本库）</li>
+</ul>
+<hr>
+<h3 id="⚠️-关键注意事项"><a href="#⚠️-关键注意事项" class="headerlink" title="⚠️ 关键注意事项"></a><strong>⚠️ 关键注意事项</strong></h3><ol>
+<li><strong>实验安全</strong>：所有分析必须在隔离的虚拟机中进行，禁用共享文件夹和剪贴板。</li>
+<li><strong>法律合规</strong>：仅分析开源样本或明确授权的数据，避免触碰灰色地带。</li>
+<li><strong>效率技巧</strong>：使用Jupyter Notebook记录分析过程，搭配截图和代码片段提升复盘效率。</li>
+</ol>
+<hr>
+<p><strong>调整建议</strong>：如果遇到瓶颈（如逆向工程难以突破），可暂时跳过深入理论，通过分析简单样本（如VBS脚本病毒）建立信心。坚持每天记录学习日志，重点标注未理解的概念，每周集中解决。遇到工具使用问题，优先查阅官方文档和GitHub Issue。</p>
+<p>针对<strong>第一阶段（计算机基础与编程入门）</strong>的详细学习平台和资源推荐，兼顾零基础学习者的理解能力和实践需求：</p>
+<hr>
+<h3 id="💻-计算机基础学习平台"><a href="#💻-计算机基础学习平台" class="headerlink" title="💻 计算机基础学习平台"></a><strong>💻 计算机基础学习平台</strong></h3><h4 id="1-操作系统与Linux入门"><a href="#1-操作系统与Linux入门" class="headerlink" title="1. 操作系统与Linux入门"></a><strong>1. 操作系统与Linux入门</strong></h4><table>
+<thead>
+<tr>
+<th>平台&#x2F;资源</th>
+<th>特点</th>
+<th>推荐内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong><a href="https://learn.microsoft.com/zh-cn/windows/">微软官方文档</a></strong></td>
+<td>权威的Windows操作指南</td>
+<td>Windows文件管理、进程管理、CMD&#x2F;PowerShell基础命令</td>
+</tr>
+<tr>
+<td><strong><a href="https://www.runoob.com/linux/linux-tutorial.html">菜鸟教程 - Linux</a></strong></td>
+<td>中文零基础教程</td>
+<td>Linux常用命令（<code>ls</code>&#x2F;<code>cd</code>&#x2F;<code>grep</code>&#x2F;<code>chmod</code>）</td>
+</tr>
+<tr>
+<td><strong><a href="https://www.youtube.com/c/NetworkChuck">YouTube: NetworkChuck</a></strong></td>
+<td>趣味实操演示</td>
+<td>“Linux for Hackers”系列（搭配虚拟机操作）</td>
+</tr>
+</tbody></table>
+<h4 id="2-网络基础"><a href="#2-网络基础" class="headerlink" title="2. 网络基础"></a><strong>2. 网络基础</strong></h4><table>
+<thead>
+<tr>
+<th>平台&#x2F;资源</th>
+<th>特点</th>
+<th>推荐内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong><a href="https://www.coursera.org/">Coursera - 计算机网络基础</a></strong></td>
+<td>体系化理论教学</td>
+<td>密歇根大学《计算机网络导论》（中文字幕）</td>
+</tr>
+<tr>
+<td><strong><a href="https://www.wireshark.org/docs/">Wireshark官方教程</a></strong></td>
+<td>实战导向</td>
+<td>抓包分析HTTP&#x2F;TCP协议（配合<a href="https://wiki.wireshark.org/SampleCaptures">SampleCaptures</a>）</td>
+</tr>
+<tr>
+<td><strong><a href="https://www.bilibili.com/">B站：湖科大王道计算机网络</a></strong></td>
+<td>中文系统讲解</td>
+<td>考研向课程，但适合打基础</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="👨💻-编程入门平台"><a href="#👨💻-编程入门平台" class="headerlink" title="👨💻 编程入门平台"></a><strong>👨💻 编程入门平台</strong></h3><h4 id="1-Python学习"><a href="#1-Python学习" class="headerlink" title="1. Python学习"></a><strong>1. Python学习</strong></h4><table>
+<thead>
+<tr>
+<th>平台&#x2F;资源</th>
+<th>特点</th>
+<th>推荐内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong><a href="https://www.codecademy.com/learn/learn-python-3">Codecademy</a></strong></td>
+<td>交互式编程</td>
+<td>免费版Python 3语法和文件操作</td>
+</tr>
+<tr>
+<td><strong><a href="https://docs.python.org/zh-cn/3/tutorial/">Python官网教程</a></strong></td>
+<td>权威文档</td>
+<td>正则表达式（<code>re</code>模块）、网络请求（<code>requests</code>库）</td>
+</tr>
+<tr>
+<td><strong><a href="https://www.bilibili.com/">B站：小甲鱼零基础学Python</a></strong></td>
+<td>中文趣味教学</td>
+<td>配套《零基础入门学习Python》书籍</td>
+</tr>
+</tbody></table>
+<h4 id="2-C语言学习"><a href="#2-C语言学习" class="headerlink" title="2. C语言学习"></a><strong>2. C语言学习</strong></h4><table>
+<thead>
+<tr>
+<th>平台&#x2F;资源</th>
+<th>特点</th>
+<th>推荐内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong><a href="https://www.runoob.com/cprogramming/c-tutorial.html">菜鸟教程 - C语言</a></strong></td>
+<td>简洁中文教程</td>
+<td>指针、结构体、内存管理专题</td>
+</tr>
+<tr>
+<td><strong><a href="https://www.learn-c.org/">Learn-C.org</a></strong></td>
+<td>在线编译器</td>
+<td>实时练习指针和内存操作代码</td>
+</tr>
+<tr>
+<td><strong><a href="https://www.bilibili.com/">B站：浙江大学翁恺C语言</a></strong></td>
+<td>高校精品课</td>
+<td>深入理解指针与内存模型</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="🔧-工具准备资源"><a href="#🔧-工具准备资源" class="headerlink" title="🔧 工具准备资源"></a><strong>🔧 工具准备资源</strong></h3><table>
+<thead>
+<tr>
+<th>工具</th>
+<th>学习资源</th>
+<th>重点内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>虚拟机（VMware&#x2F;VirtualBox）</strong></td>
+<td><a href="https://docs.vmware.com/cn/VMware-Workstation-Pro/index.html">VMware官方指南</a></td>
+<td>创建隔离的Windows&#x2F;Linux实验环境</td>
+</tr>
+<tr>
+<td><strong>IDA Pro Free</strong></td>
+<td><a href="https://hex-rays.com/ida-free/">官方快速入门</a></td>
+<td>基本反汇编操作（函数识别、交叉引用）</td>
+</tr>
+<tr>
+<td><strong>Process Monitor</strong></td>
+<td><a href="https://search.bilibili.com/all?keyword=Process%20Monitor">B站实操演示</a></td>
+<td>监控恶意软件的文件&#x2F;注册表行为</td>
+</tr>
+</tbody></table>
+<hr>
+]]></content>
+      <tags>
+        <tag>信息安全</tag>
+        <tag>恶意软件分析</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Typora的使用</title>
     <url>/2025/01/24/Typora%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<h2 id="Typora是什么？"><a href="#Typora是什么？" class="headerlink" title="Typora是什么？"></a>Typora是什么？</h2><p>​		Typora是一款由Abner Lee开发的轻量级Markdown编辑器，适用于OS X、Windows和Linux三种操作系统，是一款免费软件。与其他Markdown编辑器不同的是，Typora没有采用源代码和预览双栏显示的方式，而是采用所见即所得的编辑方式，实现了即时预览的功能，但也可切换至源代码编辑模式</p>
