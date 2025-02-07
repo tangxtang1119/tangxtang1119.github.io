@@ -1,42 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Ghidra的安装</title>
+    <url>/2025/02/06/Ghidra%E7%9A%84%E5%AE%89%E8%A3%85/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
     <title>VMware虚拟机</title>
     <url>/2025/02/05/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA/</url>
     <content><![CDATA[<h1 id="专业术语"><a href="#专业术语" class="headerlink" title="专业术语"></a>专业术语</h1><p>.iso：是电脑上光盘镜像（CD Mirror）的存储格式之一，因为其是i根据ISO-9660有关CD-ROM文件系统标准存储的文件，许哦一通常在电脑中以后缀,iso命名，俗称iso镜像文件。</p>
 <p>镜像文件：镜像文件可以类比为图书馆的一本书的副本。一本珍贵的书，想要确保即使在原书损坏或丢失的情况下，书的内容仍然可以得到保留和使用。为此，制作了这本书的精确复制品，这个复制品包含了原书的所有页面和文字，但它可能是以特殊的格式存储的，比如扫描后的PDF文件或者一系列图片。</p>
 <h1 id="创建新的虚拟机"><a href="#创建新的虚拟机" class="headerlink" title="创建新的虚拟机"></a>创建新的虚拟机</h1><h2 id="Window系统"><a href="#Window系统" class="headerlink" title="Window系统"></a>Window系统</h2><p>点击软件首页的创建新的虚拟机，进入新建导向</p>
 <p>选择自定义（高级）然后点击下一步</p>
-<p><img src="/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA.assets/image-20250205174555074-1738749419756-14.png" alt="image-20250205174555074"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206165405761.png" alt="image-20250206165405761"></p>
 <p>硬件兼容性选择软件版本，然后点击下一步</p>
-<p><img src="/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA.assets/image-20250205174758059-1738748880563-5.png" alt="image-20250205174758059"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206182831247.png" alt="image-20250206182831247"></p>
 <p>选择安装程序光盘映像文件（iso），选择安装好的光盘映像文件，可以去微软官网上去下载，然后点击下一步</p>
-<p><img src="/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA.assets/image-20250205174905923.png" alt="image-20250205174905923"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206182926495.png" alt="image-20250206182926495"></p>
 <p>完成windows简易安装信息，然后点击下一步</p>
-<p><img src="/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA.assets/image-20250205175851491.png" alt="image-20250205175851491"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206182950623.png" alt="image-20250206182950623"></p>
 <p>对新建的虚拟机进行命名，名字注意区分其他并易懂，还有保存位置，然后点击下一步</p>
-<p><img src="/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA.assets/image-20250205180134307.png" alt="image-20250205180134307"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206183009197.png" alt="image-20250206183009197"></p>
 <p>选择虚拟机的固件类型，即引导设备，然后点击下一步</p>
-<p><img src="/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA.assets/image-20250205180405240.png" alt="image-20250205180405240"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206183034037.png" alt="image-20250206183034037"></p>
 <p>选择虚拟机处理器配置，处理器数量、每个处理器的内核数量，然后点击下一步</p>
-<p><img src="/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA.assets/image-20250205180543101.png" alt="image-20250205180543101"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206183051953.png" alt="image-20250206183051953"></p>
 <p>设置虚拟机的内存，不要太大也不要太小，然后点击下一步</p>
-<p><img src="/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA.assets/image-20250205180722315.png" alt="image-20250205180722315"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206183110891.png" alt="image-20250206183110891"></p>
 <p>选择网络模式，使用网络地址转换（NAT），然后点击下一步</p>
-<p><img src="/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA.assets/image-20250205180807755.png" alt="image-20250205180807755"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206183132574.png" alt="image-20250206183132574"></p>
 <p>选择I&#x2F;O控制器类型，按照新建向导的推荐选择，然后点击下一步</p>
-<p><img src="/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA.assets/image-20250205180942689.png" alt="image-20250205180942689"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206183147255.png" alt="image-20250206183147255"></p>
 <p>选择磁盘类型，按照新建向导的推荐选择，然后点击下一步</p>
-<p><img src="/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA.assets/image-20250205181012163.png" alt="image-20250205181012163"></p>
-<p>选择磁盘，按照新建向导的推荐选择，然后点击下一步</p>
-<p><img src="/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA.assets/image-20250205181248537.png" alt="image-20250205181248537"></p>
+<p><img src="/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA.assets/image-20250206183352325.png" alt="image-20250206183352325"></p>
 <p>选择磁盘容量，然后点击下一步</p>
-<p><img src="/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA.assets/image-20250205181821140.png" alt="image-20250205181821140"></p>
-<p><img src="/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA.assets/image-20250205183025655.png" alt="image-20250205183025655"></p>
+<p><img src="/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA.assets/%E5%AE%89%E8%A3%85%E6%AD%A5%E9%AA%A4%20(14).png" alt="安装步骤 (14)"></p>
 <p>确定号新建的虚拟机的设置信息，然后点击下一步</p>
-<p><img src="/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA.assets/image-20250205183044871.png" alt="image-20250205183044871"></p>
+<p><img src="/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA.assets/%E5%AE%89%E8%A3%85%E6%AD%A5%E9%AA%A4%20(16).png" alt="安装步骤 (16)"></p>
 <p>至此，Windows10虚拟机创建成功，等待启动然后设置，激活系统。</p>
-<p>Linux</p>
+<h2 id="Linux系统"><a href="#Linux系统" class="headerlink" title="Linux系统"></a>Linux系统</h2><p>点击软件首页的创建新的虚拟机，进入新建导向</p>
+<p>选择自定义（高级）然后点击下一步</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206163543615.png" alt="image-20250206163543615"></p>
+<p>保持默认不变，然后点击下一步</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206163649773.png" alt="image-20250206163649773"></p>
+<p>选择稍后安装操作系统，然后点击下一步</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206164001987.png"></p>
+<p>在选择客户机i操作系统时选择Linux系统，版本选择自己准备的ISO文件的版本，一定要匹配，然后单击下一步</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206164041840.png" alt="image-20250206164041840"></p>
+<p>给本虚拟机命名，然后点击下一步</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206164349880.png" alt="image-20250206164349880"></p>
+<p>处理器配置，为虚拟机指定处理器数量，设置为2，然后点击下一步</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206164527143.png" alt="image-20250206164527143"></p>
+<p>设置内存，一般两个G，然后点击下一步</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206164616967.png" alt="image-20250206164616967"></p>
+<p>后续一直保持默认推荐，然后点击下一步</p>
+<p>确认新建虚拟机的基本信息，然后点击下一步</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206165452662.png" alt="image-20250206165452662"></p>
+<p>至此虚拟机的创建已完成，然后检查一下网络配置</p>
+<p>点击编辑&gt;虚拟网络编辑器，查看VMnet8，子网的ip地址是否和NAT设置中的ip地址前三位一致。正常来说是默认配置好的。只是检查以下，不是乱去设置。</p>
+<p>接下来去给<strong>虚拟机配置镜像</strong>。</p>
+<p>点击编辑虚拟机设置&gt;CD&#x2F;DVD&gt;选择使用镜像文件，点击浏览找到提前下载好的镜像文件，然后点确定，完成后点击开启虚拟机。</p>
+<p>然后点击install CentOS，选项变白就是选中了</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206170409114.png" alt="image-20250206170409114"></p>
+<p>然后选中想要的语言，选择简体中文就行,点击继续</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206170558494.png" alt="image-20250206170558494"></p>
+<p>进入安装信息摘要基本不用改，完成以下安装位置确认，然后点击安装。设置Root密码。创建用户根据个人需要，就是权限比较低的用户。</p>
+<p>至此安装成功，点击重启就行。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206171032438.png" alt="image-20250206171032438"></p>
+<p>注意进入后输入用户和密码，密码是不会显示的，输完后回车就行，出现root@localhost就是成功了。</p>
+<p>输入cd &#x2F;，再输入ll，查看所有文件。(注意cd 后面要有一个空格)</p>
+<p>接下来配置虚拟机的网络。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-02-06%20171537.jpg" alt="屏幕截图 2025-02-06 171537"></p>
+<p>手动输入，以下路径，虚拟机内无法复制粘贴</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206171841943.png" alt="image-20250206171841943"></p>
+<p>然后找到ifcfg-ens33，打开它编辑</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206171953000.png" alt="image-20250206171953000"></p>
+<p>使用vi ifcfg-ens33，进入修改。按i，进入修改模式，将BOOTPROTO&#x3D;dhcp（默认），ONBOOT修改为yes。然后按esc退出修改模式。输入:wq，回车强制保存。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206172438904.png" alt="image-20250206172438904"></p>
+<p>接下来就是去重启网络，service network restart，然后测试是否能访问外网，ping一下百度，出现连接网速表示成功，ctrl+c结束。</p>
+<p>后续参考视频【【2024最新】Vmware虚拟机安装Linux系统及配置网络超详细教学安装Centos使用Vmare安装附带安装包及镜像】<a href="https://www.bilibili.com/video/BV1MriFeaEci?vd_source=cbd0e7aa3299fa0fcc330c5ee16869bc">https://www.bilibili.com/video/BV1MriFeaEci?vd_source=cbd0e7aa3299fa0fcc330c5ee16869bc</a></p>
 ]]></content>
       <tags>
         <tag>软件</tag>
