@@ -8,9 +8,9 @@
   <entry>
     <title>VMware虚拟机</title>
     <url>/2025/02/05/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA/</url>
-    <content><![CDATA[<h1 id="专业术语"><a href="#专业术语" class="headerlink" title="专业术语"></a>专业术语</h1><p>.iso：是电脑上光盘镜像（CD Mirror）的存储格式之一，因为其是i根据ISO-9660有关CD-ROM文件系统标准存储的文件，许哦一通常在电脑中以后缀,iso命名，俗称iso镜像文件。</p>
+    <content><![CDATA[<h3 id="专业术语"><a href="#专业术语" class="headerlink" title="专业术语"></a><strong>专业术语</strong></h3><p>.iso：是电脑上光盘镜像（CD Mirror）的存储格式之一，因为其是i根据ISO-9660有关CD-ROM文件系统标准存储的文件，许哦一通常在电脑中以后缀,iso命名，俗称iso镜像文件。</p>
 <p>镜像文件：镜像文件可以类比为图书馆的一本书的副本。一本珍贵的书，想要确保即使在原书损坏或丢失的情况下，书的内容仍然可以得到保留和使用。为此，制作了这本书的精确复制品，这个复制品包含了原书的所有页面和文字，但它可能是以特殊的格式存储的，比如扫描后的PDF文件或者一系列图片。</p>
-<h1 id="创建新的虚拟机"><a href="#创建新的虚拟机" class="headerlink" title="创建新的虚拟机"></a>创建新的虚拟机</h1><h2 id="Window系统"><a href="#Window系统" class="headerlink" title="Window系统"></a>Window系统</h2><p>点击软件首页的创建新的虚拟机，进入新建导向</p>
+<h3 id="创建新的虚拟机"><a href="#创建新的虚拟机" class="headerlink" title="创建新的虚拟机"></a><strong>创建新的虚拟机</strong></h3><h4 id="1-Window系统"><a href="#1-Window系统" class="headerlink" title="1.Window系统"></a>1.<strong>Window系统</strong></h4><p>点击软件首页的创建新的虚拟机，进入新建导向</p>
 <p>选择自定义（高级）然后点击下一步</p>
 <p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206165405761.png" alt="image-20250206165405761"></p>
 <p>硬件兼容性选择软件版本，然后点击下一步</p>
@@ -38,7 +38,7 @@
 <p>确定号新建的虚拟机的设置信息，然后点击下一步</p>
 <p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250207122514411.png" alt="image-20250207122514411"></p>
 <p>至此，Windows10虚拟机创建成功，等待启动然后设置，激活系统。</p>
-<h2 id="Linux系统"><a href="#Linux系统" class="headerlink" title="Linux系统"></a>Linux系统</h2><p>点击软件首页的创建新的虚拟机，进入新建导向</p>
+<h4 id="2-Linux系统"><a href="#2-Linux系统" class="headerlink" title="2.Linux系统"></a>2.<strong>Linux系统</strong></h4><p>点击软件首页的创建新的虚拟机，进入新建导向</p>
 <p>选择自定义（高级）然后点击下一步</p>
 <p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206163543615.png" alt="image-20250206163543615"></p>
 <p>保持默认不变，然后点击下一步</p>
@@ -79,6 +79,17 @@
 <p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206172438904.png" alt="image-20250206172438904"></p>
 <p>接下来就是去重启网络，service network restart，然后测试是否能访问外网，ping一下百度，出现连接网速表示成功，ctrl+c结束。</p>
 <p>后续参考视频【【2024最新】Vmware虚拟机安装Linux系统及配置网络超详细教学安装Centos使用Vmare安装附带安装包及镜像】<a href="https://www.bilibili.com/video/BV1MriFeaEci?vd_source=cbd0e7aa3299fa0fcc330c5ee16869bc">https://www.bilibili.com/video/BV1MriFeaEci?vd_source=cbd0e7aa3299fa0fcc330c5ee16869bc</a></p>
+<h3 id="网络连接的三种模式"><a href="#网络连接的三种模式" class="headerlink" title="网络连接的三种模式"></a><strong>网络连接的三种模式</strong></h3><h4 id="1-桥接模式：直接连接物理网络"><a href="#1-桥接模式：直接连接物理网络" class="headerlink" title="1.桥接模式：直接连接物理网络"></a>1.桥接模式：直接连接物理网络</h4><p>使用主机中的物理网卡VMnet0，有线网卡或者无线网卡，可以连接主机，并且可以访问局域内的计算机，如果主机可以连接外网，虚拟机也可以连接外网，此时物理主机相当于一个交换机，把所有桥接模式的虚拟机都连接在同一个交换机上，自己在这个局域网中。注意：容易造成IP冲突。</p>
+<h4 id="2-NAT模式：用于共享主机的IP地址"><a href="#2-NAT模式：用于共享主机的IP地址" class="headerlink" title="2.NAT模式：用于共享主机的IP地址"></a>2.NAT模式：用于共享主机的IP地址</h4><p>使用的是虚拟机的网卡VMnet8，可以连接主机，也可以来连接外网，虚拟机IP地址经过NAT转换，与物理机IP地址不在同一网段，所以不能访问局域网内的计算机。</p>
+<h4 id="3-仅主机模式：与主机共享的专用网络"><a href="#3-仅主机模式：与主机共享的专用网络" class="headerlink" title="3.仅主机模式：与主机共享的专用网络"></a>3.仅主机模式：与主机共享的专用网络</h4><p>使用的是虚拟机中的VMnet1，可以连接到主机，不能访问局域网内的计算机，也不能连接外网，当我们要组成一个与物理网络相隔离的虚拟网络时可以选择仅主机模式。</p>
+<h3 id="虚拟机克隆"><a href="#虚拟机克隆" class="headerlink" title="虚拟机克隆"></a><strong>虚拟机克隆</strong></h3><p>如果已经安装了一台linux操作系统，还想再更多的，没必要再重新安装，只需要克隆就行。</p>
+<h4 id="1-直接拷贝一份安装好的虚拟机文件"><a href="#1-直接拷贝一份安装好的虚拟机文件" class="headerlink" title="1.直接拷贝一份安装好的虚拟机文件"></a>1.直接拷贝一份安装好的虚拟机文件</h4><p>将虚拟机文件拷贝到另一个盘的文件夹下，文件名可以重命名，也可以保留原名。通过VMware的打开文件，打开拷贝虚拟机文件。</p>
+<h4 id="2-使用VMware的克隆操作"><a href="#2-使用VMware的克隆操作" class="headerlink" title="2.使用VMware的克隆操作"></a>2.使用VMware的克隆操作</h4><p>注意：克隆时，需要先关闭正在运行的linux系统。</p>
+<p>虚拟机&gt;右键至管理&gt;克隆</p>
+<p>克隆类型有两种：创建链接克隆、创建完整克隆。</p>
+<p>创建链接克隆，是对原虚拟机的引用，所需要的存储磁盘空间较少，访问的是原虚拟机，是同一个系统。</p>
+<p>创建完整克隆：是原虚拟机当前状态的完整副本，此选项使得虚拟机完全独立，需要较多的存储磁盘空间。</p>
+<h3 id="虚拟机快照"><a href="#虚拟机快照" class="headerlink" title="虚拟机快照"></a><strong>虚拟机快照</strong></h3><p>如果在使用虚拟机系统的时候，想回到原先的某一个状态，也就是说担心有些操作造成系统异常，需要回到原先某个正常运行的状态，VMware提供了一个这样的功能，就叫做快照管理。</p>
 ]]></content>
       <tags>
         <tag>软件</tag>
