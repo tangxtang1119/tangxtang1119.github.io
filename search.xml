@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Ghidra的安装</title>
-    <url>/2025/02/06/Ghidra%E7%9A%84%E5%AE%89%E8%A3%85/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
     <title>VMware虚拟机</title>
-    <url>/2025/02/05/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA/</url>
+    <url>/2025/02/10/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA/</url>
     <content><![CDATA[<h2 id="📚专业术语"><a href="#📚专业术语" class="headerlink" title="📚专业术语"></a>📚专业术语</h2><p>.iso：是电脑上光盘镜像（CD Mirror）的存储格式之一，因为其是i根据ISO-9660有关CD-ROM文件系统标准存储的文件，许哦一通常在电脑中以后缀,iso命名，俗称iso镜像文件。</p>
 <p>镜像文件：镜像文件可以类比为图书馆的一本书的副本。一本珍贵的书，想要确保即使在原书损坏或丢失的情况下，书的内容仍然可以得到保留和使用。为此，制作了这本书的精确复制品，这个复制品包含了原书的所有页面和文字，但它可能是以特殊的格式存储的，比如扫描后的PDF文件或者一系列图片。</p>
 <h2 id="🖥创建新的虚拟机"><a href="#🖥创建新的虚拟机" class="headerlink" title="🖥创建新的虚拟机"></a>🖥创建新的虚拟机</h2><h3 id="1-Window系统"><a href="#1-Window系统" class="headerlink" title="1.Window系统"></a>1.Window系统</h3><p>点击软件首页的创建新的虚拟机，进入新建导向</p>
@@ -155,6 +150,11 @@
       <tags>
         <tag>软件</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Ghidra的安装</title>
+    <url>/2025/02/06/Ghidra%E7%9A%84%E5%AE%89%E8%A3%85/</url>
+    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>my plan</title>
