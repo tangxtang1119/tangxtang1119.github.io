@@ -74,15 +74,15 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2025/02/10/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA/" class="article-date">
-  <time datetime="2025-02-10T09:38:34.000Z" itemprop="datePublished">2025-02-10</time>
+      <a href="/2025/02/18/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA/" class="article-date">
+  <time datetime="2025-02-18T09:38:34.000Z" itemprop="datePublished">2025-02-18</time>
 </a>   
 <div class="word_count">
     <span class="post-time">
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">2.7k</span>
+            <span class="post-count">3.6k</span>
         </span>
     </span>
 
@@ -91,7 +91,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">9 分钟</span>
+            <span class="post-count">12 分钟</span>
         </span>
     </span>
 </div>
@@ -247,9 +247,86 @@
 <li>-a -l -h是可选的选项</li>
 <li>Linux路径是此命令可选参数</li>
 </ul>
-<p>当不使用选项和参数，直接使用ls命令本体，表示：以平铺形式，列出当前工作目录下的内容</p>
+<p>当不使用选项和参数，直接使用ls命令本体，表示：以平铺形式，，如果不给定参数，列出当前工作目录下的内容</p>
 <p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250210173128911.png"></p>
-<h3 id="3-目录切换（cd-pwd）"><a href="#3-目录切换（cd-pwd）" class="headerlink" title="3.目录切换（cd&#x2F;pwd）"></a>3.目录切换（cd&#x2F;pwd）</h3><h3 id="4-路径命令"><a href="#4-路径命令" class="headerlink" title="4.路径命令"></a>4.路径命令</h3><h3 id="5-创建目录（mkdir）"><a href="#5-创建目录（mkdir）" class="headerlink" title="5.创建目录（mkdir）"></a>5.创建目录（mkdir）</h3><h3 id="6-文件操作（touch、cat、more、cp、mv）"><a href="#6-文件操作（touch、cat、more、cp、mv）" class="headerlink" title="6.文件操作（touch、cat、more、cp、mv）"></a>6.文件操作（touch、cat、more、cp、mv）</h3><h3 id="7-查找命令（which、find）"><a href="#7-查找命令（which、find）" class="headerlink" title="7.查找命令（which、find）"></a>7.查找命令（which、find）</h3><h3 id="8-grep、wc和管道符"><a href="#8-grep、wc和管道符" class="headerlink" title="8.grep、wc和管道符"></a>8.grep、wc和管道符</h3> 
+<p>显示根目录下所有内容</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250215100642348.png"></p>
+<h5 id="1）-a选项"><a href="#1）-a选项" class="headerlink" title="1）-a选项"></a>1）-a选项</h5><ul>
+<li>-a选项，表示：all的意思，即出全部文件（包含隐藏的文件&#x2F;文件夹）</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250215100911897.png"></p>
+<ul>
+<li>图中以.开头的，表示的是Linux系统的隐藏文件&#x2F;文件夹（只要以.开头，就能自动隐藏）</li>
+<li>只有通过-a选项，才能看到这些隐藏文件&#x2F;文件夹</li>
+</ul>
+<h5 id="2）-l选项"><a href="#2）-l选项" class="headerlink" title="2）-l选项"></a>2）-l选项</h5><ul>
+<li>-l选项，表示：以列表（竖向排列）的形式展示内容，并展示更多信息</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250215101446505.png"></p>
+<p>语法中的选项是可以组合使用的，比如学习的-a和-l可以组合应用。</p>
+<p>写法：</p>
+<ul>
+<li>ls -l -a</li>
+<li>ls -la</li>
+<li>ls -al</li>
+</ul>
+<p>上述三种写法，都是一样的，表示同时应用-l和-a的功能</p>
+<h5 id="3）-h选项"><a href="#3）-h选项" class="headerlink" title="3）-h选项"></a>3）-h选项</h5><ul>
+<li>-h表示以易于阅读的形式，列出文件大小，如K、M、G</li>
+<li>-h选项必须搭配-l一起使用</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250215104710720.png"></p>
+<h3 id="3-目录切换（cd-pwd）"><a href="#3-目录切换（cd-pwd）" class="headerlink" title="3.目录切换（cd&#x2F;pwd）"></a>3.目录切换（cd&#x2F;pwd）</h3><h4 id="（1）cd切换工作目录"><a href="#（1）cd切换工作目录" class="headerlink" title="（1）cd切换工作目录"></a>（1）cd切换工作目录</h4><p>当Linux终端打开时，会默认以用户的HOME目录作为当前的工作目录</p>
+<p>我们可以通过cd命令，更改当前所在的工作目录。</p>
+<p>cd命令来自英文：Change Directory</p>
+<p>语法： cd [Linux路径]</p>
+<ul>
+<li>cd命令无需选项，只有参数，表示要切换到哪个目录下</li>
+<li>cd命令直接执行，不写参数，表示回到用户的HOME目录</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250215111724874.png"></p>
+<h4 id="（2）pwd查看当前工作目录"><a href="#（2）pwd查看当前工作目录" class="headerlink" title="（2）pwd查看当前工作目录"></a>（2）pwd查看当前工作目录</h4><p>通过ls验证当前的工作目录，其实是不恰当的。</p>
+<p>可以通过pwd命令，来查看当前所在的工作目录</p>
+<p>pwd命令来自：Print WOrkDirectory</p>
+<p>语法：pwd</p>
+<ul>
+<li>pwd命令，无选项，无参数，直接输入pwd即可</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250215112014237.png"></p>
+<h3 id="4-路径命令"><a href="#4-路径命令" class="headerlink" title="4.路径命令"></a>4.路径命令</h3><h4 id="（1）相对路径和绝对路径"><a href="#（1）相对路径和绝对路径" class="headerlink" title="（1）相对路径和绝对路径"></a>（1）相对路径和绝对路径</h4><ul>
+<li>cd&#x2F;home&#x2F;itheima&#x2F;Desltop	绝对路径写法</li>
+<li>cd Desktop      相对路径写法</li>
+</ul>
+<p>绝对路径：以<font color="red">根目录</font>为起点，描述路径的一种写法，路径描述以&#x2F;开头</p>
+<p>相对路径：以<font color="red">当前工作目录</font>为起点，描述路径的一种写法，路径描述无需以&#x2F;开头</p>
+<h4 id="（2）特殊路径符"><a href="#（2）特殊路径符" class="headerlink" title="（2）特殊路径符"></a>（2）特殊路径符</h4><ul>
+<li>.          表示当前目录，比如：cd.&#x2F;Desktop表示切换到当前目录下的Desktop目录内，和cd Desktop效果一致</li>
+<li>..         表示上一级目录，比如：cd.. 即可切换到上一级目录，cd..&#x2F;..切换到上两级的目录</li>
+<li>~         表示HOME目录，比如：cd~ 即可切换到HOME目录或cd ~&#x2F;Desktop，切换到HOME内的Desktop目录</li>
+</ul>
+<h3 id="5-创建目录（mkdir）"><a href="#5-创建目录（mkdir）" class="headerlink" title="5.创建目录（mkdir）"></a>5.创建目录（mkdir）</h3><p>通过mkdir命令创建新的目录（文件夹）</p>
+<p>mkdir来自英文：Make Directory</p>
+<p>语法：mkdir [-p] Linux路径</p>
+<ul>
+<li>参数必填，表示Linux路径，即要创建文件夹的路径，相对路径或绝对路径均可</li>
+<li>-p选项可选，表示自动创建不存在的父目录，是用于创建连续多层级的目录</li>
+</ul>
+<p>创建test文件尝试，特殊路径符。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250218200654870.png"></p>
+<p>如果想一次性创建多个层级的目录，如下图</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250218201240142.png"></p>
+<p>会报错，因为上级目录one并不存在，所以无法创建two目录</p>
+<p>此时可以通过-p选项，将一整个链条都创建完成</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250218201723944.png"></p>
+<p>注意：创建文件夹需要修改权限，请确保操作均在HOME文件目录内，不要再HOME外操作涉及到权限问题，HOME外无法完成</p>
+<h3 id="6-文件操作（touch、cat、more、cp、mv）"><a href="#6-文件操作（touch、cat、more、cp、mv）" class="headerlink" title="6.文件操作（touch、cat、more、cp、mv）"></a>6.文件操作（touch、cat、more、cp、mv）</h3><h4 id="（1）touch创建文件"><a href="#（1）touch创建文件" class="headerlink" title="（1）touch创建文件"></a>（1）touch创建文件</h4><p>语法：touch Linux路径</p>
+<ul>
+<li>touch命令无选项，参数必填，表示要创建的文件路径，相对、绝对、特殊路径符均可以使用</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250218203720157.png"></p>
+<p>通过观察可以知道文件夹的颜色为深色，文件为白色。但是仅通过颜色判断不严谨，建议使用ls -l，查看文件和文件夹。</p>
+<p>基于vi编辑器编辑文件内容。</p>
+<h3 id="7-查找命令（which、find）"><a href="#7-查找命令（which、find）" class="headerlink" title="7.查找命令（which、find）"></a>7.查找命令（which、find）</h3><h3 id="8-grep、wc和管道符"><a href="#8-grep、wc和管道符" class="headerlink" title="8.grep、wc和管道符"></a>8.grep、wc和管道符</h3><h3 id="9-echo、tail和重定向符"><a href="#9-echo、tail和重定向符" class="headerlink" title="9.echo、tail和重定向符"></a>9.echo、tail和重定向符</h3><h3 id="10-vi编辑器"><a href="#10-vi编辑器" class="headerlink" title="10.vi编辑器"></a>10.vi编辑器</h3> 
       <!-- reward -->
       
     </div>
@@ -313,7 +390,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://tangxtang1119.github.io/2025/02/10/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://tangxtang1119.github.io/2025/02/18/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA/" alt="微信分享二维码">
     </div>
 </div>
 
