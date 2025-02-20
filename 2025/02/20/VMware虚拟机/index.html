@@ -74,15 +74,15 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2025/02/18/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA/" class="article-date">
-  <time datetime="2025-02-18T09:38:34.000Z" itemprop="datePublished">2025-02-18</time>
+      <a href="/2025/02/20/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA/" class="article-date">
+  <time datetime="2025-02-20T09:38:34.000Z" itemprop="datePublished">2025-02-20</time>
 </a>   
 <div class="word_count">
     <span class="post-time">
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">3.6k</span>
+            <span class="post-count">4.7k</span>
         </span>
     </span>
 
@@ -91,7 +91,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">12 分钟</span>
+            <span class="post-count">16 分钟</span>
         </span>
     </span>
 </div>
@@ -170,7 +170,7 @@
 <p>接下来配置虚拟机的网络。</p>
 <p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-02-06%20171537.jpg"></p>
 <p>手动输入，以下路径，虚拟机内无法复制粘贴</p>
-<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206171841943.png" alt="image-20250206171841943"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206171841943.png"></p>
 <p>然后找到ifcfg-ens33，打开它编辑</p>
 <p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206171953000.png" alt="image-20250206171953000"></p>
 <p>使用vi ifcfg-ens33，进入修改。按i，进入修改模式，将BOOTPROTO&#x3D;dhcp（默认），ONBOOT修改为yes。然后按esc退出修改模式。输入:wq，回车强制保存。</p>
@@ -326,7 +326,213 @@
 <p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250218203720157.png"></p>
 <p>通过观察可以知道文件夹的颜色为深色，文件为白色。但是仅通过颜色判断不严谨，建议使用ls -l，查看文件和文件夹。</p>
 <p>基于vi编辑器编辑文件内容。</p>
-<h3 id="7-查找命令（which、find）"><a href="#7-查找命令（which、find）" class="headerlink" title="7.查找命令（which、find）"></a>7.查找命令（which、find）</h3><h3 id="8-grep、wc和管道符"><a href="#8-grep、wc和管道符" class="headerlink" title="8.grep、wc和管道符"></a>8.grep、wc和管道符</h3><h3 id="9-echo、tail和重定向符"><a href="#9-echo、tail和重定向符" class="headerlink" title="9.echo、tail和重定向符"></a>9.echo、tail和重定向符</h3><h3 id="10-vi编辑器"><a href="#10-vi编辑器" class="headerlink" title="10.vi编辑器"></a>10.vi编辑器</h3> 
+<h3 id="7-查找命令（which、find）"><a href="#7-查找命令（which、find）" class="headerlink" title="7.查找命令（which、find）"></a>7.查找命令（which、find）</h3><h3 id="8-grep、wc和管道符"><a href="#8-grep、wc和管道符" class="headerlink" title="8.grep、wc和管道符"></a>8.grep、wc和管道符</h3><h3 id="9-echo、tail和重定向符"><a href="#9-echo、tail和重定向符" class="headerlink" title="9.echo、tail和重定向符"></a>9.echo、tail和重定向符</h3><h3 id="10-vi编辑器"><a href="#10-vi编辑器" class="headerlink" title="10.vi编辑器"></a>10.vi编辑器</h3><h4 id="（1）基本了解"><a href="#（1）基本了解" class="headerlink" title="（1）基本了解"></a>（1）基本了解</h4><p>vi\vim是visual interface的简称，是Linux中最经典的文本编辑器</p>
+<p>同图形化界面中的文本编辑器一样，vi是命令行下对文本文件编辑器的绝佳选择。</p>
+<p><font color="red">vim是vi的加强版本，兼容vi的所有指令，不仅能编辑文本，而且还具有shell程序编辑的功能，可以不同颜色的字体来辨别语语法的正确性，极大的方便了程序的设计和编辑性。</font></p>
+<h4 id="（2）三种工作模式"><a href="#（2）三种工作模式" class="headerlink" title="（2）三种工作模式"></a>（2）三种工作模式</h4><h5 id="1）命令模式（Command-mode）"><a href="#1）命令模式（Command-mode）" class="headerlink" title="1）命令模式（Command mode）"></a>1）命令模式（Command mode）</h5><p>​	命令模式下，锁敲的按键编辑器都理解为命令，以命令驱动执行不同的功能。此模式下，不能自由进行文本编辑。</p>
+<h5 id="2）输入模式（Insert-mode）"><a href="#2）输入模式（Insert-mode）" class="headerlink" title="2）输入模式（Insert mode）"></a>2）输入模式（Insert mode）</h5><p>​	也就是所有的编辑模式、插入模式。此模式下，可以对文件内容进行自由编辑。</p>
+<h5 id="3）底线命令模式（Last-line-mode）"><a href="#3）底线命令模式（Last-line-mode）" class="headerlink" title="3）底线命令模式（Last line mode）"></a>3）底线命令模式（Last line mode）</h5><p>​	以：开始，通常用于文件的保存、退出。</p>
+<p>语法：（推荐使用vim，它兼容全部的vi功能）</p>
+<p>vi 文件路径</p>
+<p>vim 文件路径</p>
+<ul>
+<li>如果文件路径表示的文件不存在，那么此命令会用于编辑新文件</li>
+<li>如果文件路径表示的文件存在，那么此命令用于编辑已有文件</li>
+</ul>
+<p><img src="/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA.assets/image-20250220173127758-1740043953051-1.png" alt="工作模式"></p>
+<p>快速体验：</p>
+<p>通过vi&#x2F;vim命令编辑文件，会打开一个新窗口，此时这个窗口就是：命令模式窗口</p>
+<p>命令模式窗口时vi编辑器的入口和出口，如上图</p>
+<ul>
+<li>进入vi编辑器会进入命令模式</li>
+<li>进入命令模式输入键盘指令，可以进入输入模式</li>
+<li>输入模式需要退回到命令模式，然后通过命令可以进入底线命令模式</li>
+</ul>
+<p>快速体验操作：</p>
+<p>1.使用 vi hello.txt，新建一个新文件，执行后进入的是命令模式</p>
+<p>2.在命令模式内，按键盘i，进入输入模式</p>
+<p>3.再输入模式内输入：tang x tang</p>
+<p>4.输入完成后，按esc回退到命令模式</p>
+<p>5.在命令模式内，按键盘：，进入底线命令模式</p>
+<p>6.在底线命令输入：wq，保存文件并退出vi编辑器</p>
+<p>通过ls查看是否存在、创建是否成功，通过cat命令查看文件内容。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250220174659079.png"></p>
+<p>在命令模式下的常见快捷键</p>
+<table>
+<thead>
+<tr>
+<th align="left">模式</th>
+<th align="left">命令</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">命令模式</td>
+<td align="left">i</td>
+<td align="left">在当前光标位置进入输入模式</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">a</td>
+<td align="left">在当前光标位置 之后 进入输入模式</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">I</td>
+<td align="left">在当前行的 开头 进入输入模式</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">A</td>
+<td align="left">在当前行的 结尾 进入输入模式</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">o</td>
+<td align="left">在当前光标 下一行 进入输入模式</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">O</td>
+<td align="left">在当前光标 上一行 进入输入模式</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">esc</td>
+<td align="left">在任何情况下输入esc都能回到命令模式</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">0</td>
+<td align="left">移动光标到当前行的开头</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">$</td>
+<td align="left">移动光标到当前行的结尾</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">&#x2F;</td>
+<td align="left">进入搜索模式</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">n</td>
+<td align="left">向下继续搜索</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">N</td>
+<td align="left">向上继续搜索</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">dd</td>
+<td align="left">删除光标所在行的内容</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">ndd</td>
+<td align="left">n是数字，表示删除当前光标向下n行</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">yy</td>
+<td align="left">复制当前行</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">nyy</td>
+<td align="left">n是数字，表示复制当前行和下面的n行</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">p</td>
+<td align="left">粘贴复制的内容</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">u</td>
+<td align="left">撤销修改</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">ctrl+r</td>
+<td align="left">反向撤销修改</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">gg</td>
+<td align="left">跳到首行</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">G</td>
+<td align="left">跳到行尾</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">dG</td>
+<td align="left">从当前行开始，向下全部删除</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">dgg</td>
+<td align="left">从当前行开始，向上全部删除</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">d$</td>
+<td align="left">从当前光标开始，删除到本行的结尾</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">d0</td>
+<td align="left">从当前光标开始，删除到本行的开头</td>
+</tr>
+</tbody></table>
+<p>底线命令模式，支持如下命令：</p>
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th>命令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>底线命令模式</td>
+<td>:wq</td>
+<td>保存并退出</td>
+</tr>
+<tr>
+<td>底线命令模式</td>
+<td>:q</td>
+<td>仅退出</td>
+</tr>
+<tr>
+<td>底线命令模式</td>
+<td>:q!</td>
+<td>强制退出</td>
+</tr>
+<tr>
+<td>底线命令模式</td>
+<td>:w</td>
+<td>仅保存</td>
+</tr>
+<tr>
+<td>底线命令模式</td>
+<td>:set nu</td>
+<td>显示行号</td>
+</tr>
+<tr>
+<td>底线命令模式</td>
+<td>:set paste</td>
+<td>设置粘贴模式</td>
+</tr>
+</tbody></table>
+ 
       <!-- reward -->
       
     </div>
@@ -390,7 +596,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://tangxtang1119.github.io/2025/02/18/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://tangxtang1119.github.io/2025/02/20/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA/" alt="微信分享二维码">
     </div>
 </div>
 

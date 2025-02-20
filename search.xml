@@ -1,25 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Ghidra的安装</title>
-    <url>/2025/02/06/Ghidra%E7%9A%84%E5%AE%89%E8%A3%85/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
-    <title>1月22日</title>
-    <url>/2025/01/22/1%E6%9C%8822%E6%97%A5/</url>
-    <content><![CDATA[<p>创建页面（导航栏列表项）<br>列表项名：分类<br>hexo new page categories<br>然后将以下代码粘贴到文件中：<br>&#x2F;source&#x2F;categories&#x2F;index.md<br>    —<br>    title: categories<br>    type: categories<br>    layout: “categories”<br>    —</p>
-]]></content>
-      <categories>
-        <category>页面部署</category>
-      </categories>
-      <tags>
-        <tag>进程</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>VMware虚拟机</title>
-    <url>/2025/02/18/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA/</url>
+    <url>/2025/02/20/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA/</url>
     <content><![CDATA[<h2 id="📚专业术语"><a href="#📚专业术语" class="headerlink" title="📚专业术语"></a>📚专业术语</h2><p>.iso：是电脑上光盘镜像（CD Mirror）的存储格式之一，因为其是i根据ISO-9660有关CD-ROM文件系统标准存储的文件，许哦一通常在电脑中以后缀,iso命名，俗称iso镜像文件。</p>
 <p>镜像文件：镜像文件可以类比为图书馆的一本书的副本。一本珍贵的书，想要确保即使在原书损坏或丢失的情况下，书的内容仍然可以得到保留和使用。为此，制作了这本书的精确复制品，这个复制品包含了原书的所有页面和文字，但它可能是以特殊的格式存储的，比如扫描后的PDF文件或者一系列图片。</p>
 <h2 id="🖥创建新的虚拟机"><a href="#🖥创建新的虚拟机" class="headerlink" title="🖥创建新的虚拟机"></a>🖥创建新的虚拟机</h2><h3 id="1-Window系统"><a href="#1-Window系统" class="headerlink" title="1.Window系统"></a>1.Window系统</h3><p>点击软件首页的创建新的虚拟机，进入新建导向</p>
@@ -84,7 +67,7 @@
 <p>接下来配置虚拟机的网络。</p>
 <p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-02-06%20171537.jpg"></p>
 <p>手动输入，以下路径，虚拟机内无法复制粘贴</p>
-<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206171841943.png" alt="image-20250206171841943"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206171841943.png"></p>
 <p>然后找到ifcfg-ens33，打开它编辑</p>
 <p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206171953000.png" alt="image-20250206171953000"></p>
 <p>使用vi ifcfg-ens33，进入修改。按i，进入修改模式，将BOOTPROTO&#x3D;dhcp（默认），ONBOOT修改为yes。然后按esc退出修改模式。输入:wq，回车强制保存。</p>
@@ -240,9 +223,460 @@
 <p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250218203720157.png"></p>
 <p>通过观察可以知道文件夹的颜色为深色，文件为白色。但是仅通过颜色判断不严谨，建议使用ls -l，查看文件和文件夹。</p>
 <p>基于vi编辑器编辑文件内容。</p>
-<h3 id="7-查找命令（which、find）"><a href="#7-查找命令（which、find）" class="headerlink" title="7.查找命令（which、find）"></a>7.查找命令（which、find）</h3><h3 id="8-grep、wc和管道符"><a href="#8-grep、wc和管道符" class="headerlink" title="8.grep、wc和管道符"></a>8.grep、wc和管道符</h3><h3 id="9-echo、tail和重定向符"><a href="#9-echo、tail和重定向符" class="headerlink" title="9.echo、tail和重定向符"></a>9.echo、tail和重定向符</h3><h3 id="10-vi编辑器"><a href="#10-vi编辑器" class="headerlink" title="10.vi编辑器"></a>10.vi编辑器</h3>]]></content>
+<h3 id="7-查找命令（which、find）"><a href="#7-查找命令（which、find）" class="headerlink" title="7.查找命令（which、find）"></a>7.查找命令（which、find）</h3><h3 id="8-grep、wc和管道符"><a href="#8-grep、wc和管道符" class="headerlink" title="8.grep、wc和管道符"></a>8.grep、wc和管道符</h3><h3 id="9-echo、tail和重定向符"><a href="#9-echo、tail和重定向符" class="headerlink" title="9.echo、tail和重定向符"></a>9.echo、tail和重定向符</h3><h3 id="10-vi编辑器"><a href="#10-vi编辑器" class="headerlink" title="10.vi编辑器"></a>10.vi编辑器</h3><h4 id="（1）基本了解"><a href="#（1）基本了解" class="headerlink" title="（1）基本了解"></a>（1）基本了解</h4><p>vi\vim是visual interface的简称，是Linux中最经典的文本编辑器</p>
+<p>同图形化界面中的文本编辑器一样，vi是命令行下对文本文件编辑器的绝佳选择。</p>
+<p><font color="red">vim是vi的加强版本，兼容vi的所有指令，不仅能编辑文本，而且还具有shell程序编辑的功能，可以不同颜色的字体来辨别语语法的正确性，极大的方便了程序的设计和编辑性。</font></p>
+<h4 id="（2）三种工作模式"><a href="#（2）三种工作模式" class="headerlink" title="（2）三种工作模式"></a>（2）三种工作模式</h4><h5 id="1）命令模式（Command-mode）"><a href="#1）命令模式（Command-mode）" class="headerlink" title="1）命令模式（Command mode）"></a>1）命令模式（Command mode）</h5><p>​	命令模式下，锁敲的按键编辑器都理解为命令，以命令驱动执行不同的功能。此模式下，不能自由进行文本编辑。</p>
+<h5 id="2）输入模式（Insert-mode）"><a href="#2）输入模式（Insert-mode）" class="headerlink" title="2）输入模式（Insert mode）"></a>2）输入模式（Insert mode）</h5><p>​	也就是所有的编辑模式、插入模式。此模式下，可以对文件内容进行自由编辑。</p>
+<h5 id="3）底线命令模式（Last-line-mode）"><a href="#3）底线命令模式（Last-line-mode）" class="headerlink" title="3）底线命令模式（Last line mode）"></a>3）底线命令模式（Last line mode）</h5><p>​	以：开始，通常用于文件的保存、退出。</p>
+<p>语法：（推荐使用vim，它兼容全部的vi功能）</p>
+<p>vi 文件路径</p>
+<p>vim 文件路径</p>
+<ul>
+<li>如果文件路径表示的文件不存在，那么此命令会用于编辑新文件</li>
+<li>如果文件路径表示的文件存在，那么此命令用于编辑已有文件</li>
+</ul>
+<p><img src="/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA.assets/image-20250220173127758-1740043953051-1.png" alt="工作模式"></p>
+<p>快速体验：</p>
+<p>通过vi&#x2F;vim命令编辑文件，会打开一个新窗口，此时这个窗口就是：命令模式窗口</p>
+<p>命令模式窗口时vi编辑器的入口和出口，如上图</p>
+<ul>
+<li>进入vi编辑器会进入命令模式</li>
+<li>进入命令模式输入键盘指令，可以进入输入模式</li>
+<li>输入模式需要退回到命令模式，然后通过命令可以进入底线命令模式</li>
+</ul>
+<p>快速体验操作：</p>
+<p>1.使用 vi hello.txt，新建一个新文件，执行后进入的是命令模式</p>
+<p>2.在命令模式内，按键盘i，进入输入模式</p>
+<p>3.再输入模式内输入：tang x tang</p>
+<p>4.输入完成后，按esc回退到命令模式</p>
+<p>5.在命令模式内，按键盘：，进入底线命令模式</p>
+<p>6.在底线命令输入：wq，保存文件并退出vi编辑器</p>
+<p>通过ls查看是否存在、创建是否成功，通过cat命令查看文件内容。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250220174659079.png"></p>
+<p>在命令模式下的常见快捷键</p>
+<table>
+<thead>
+<tr>
+<th align="left">模式</th>
+<th align="left">命令</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">命令模式</td>
+<td align="left">i</td>
+<td align="left">在当前光标位置进入输入模式</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">a</td>
+<td align="left">在当前光标位置 之后 进入输入模式</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">I</td>
+<td align="left">在当前行的 开头 进入输入模式</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">A</td>
+<td align="left">在当前行的 结尾 进入输入模式</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">o</td>
+<td align="left">在当前光标 下一行 进入输入模式</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">O</td>
+<td align="left">在当前光标 上一行 进入输入模式</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">esc</td>
+<td align="left">在任何情况下输入esc都能回到命令模式</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">0</td>
+<td align="left">移动光标到当前行的开头</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">$</td>
+<td align="left">移动光标到当前行的结尾</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">&#x2F;</td>
+<td align="left">进入搜索模式</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">n</td>
+<td align="left">向下继续搜索</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">N</td>
+<td align="left">向上继续搜索</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">dd</td>
+<td align="left">删除光标所在行的内容</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">ndd</td>
+<td align="left">n是数字，表示删除当前光标向下n行</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">yy</td>
+<td align="left">复制当前行</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">nyy</td>
+<td align="left">n是数字，表示复制当前行和下面的n行</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">p</td>
+<td align="left">粘贴复制的内容</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">u</td>
+<td align="left">撤销修改</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">ctrl+r</td>
+<td align="left">反向撤销修改</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">gg</td>
+<td align="left">跳到首行</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">G</td>
+<td align="left">跳到行尾</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">dG</td>
+<td align="left">从当前行开始，向下全部删除</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">dgg</td>
+<td align="left">从当前行开始，向上全部删除</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">d$</td>
+<td align="left">从当前光标开始，删除到本行的结尾</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">d0</td>
+<td align="left">从当前光标开始，删除到本行的开头</td>
+</tr>
+</tbody></table>
+<p>底线命令模式，支持如下命令：</p>
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th>命令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>底线命令模式</td>
+<td>:wq</td>
+<td>保存并退出</td>
+</tr>
+<tr>
+<td>底线命令模式</td>
+<td>:q</td>
+<td>仅退出</td>
+</tr>
+<tr>
+<td>底线命令模式</td>
+<td>:q!</td>
+<td>强制退出</td>
+</tr>
+<tr>
+<td>底线命令模式</td>
+<td>:w</td>
+<td>仅保存</td>
+</tr>
+<tr>
+<td>底线命令模式</td>
+<td>:set nu</td>
+<td>显示行号</td>
+</tr>
+<tr>
+<td>底线命令模式</td>
+<td>:set paste</td>
+<td>设置粘贴模式</td>
+</tr>
+</tbody></table>
+]]></content>
       <tags>
         <tag>软件</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ghidra的安装</title>
+    <url>/2025/02/06/Ghidra%E7%9A%84%E5%AE%89%E8%A3%85/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>my plan</title>
+    <url>/2025/02/05/my-plan/</url>
+    <content><![CDATA[<p>以下是半年学习计划，分为基础构建、专业提升、实战应用三个阶段。计划兼顾零基础起点和恶意软件分析的专业需求，注重高效学习和实践结合：</p>
+<hr>
+<h3 id="📅-第一阶段：计算机基础与编程入门（第1-2个月）"><a href="#📅-第一阶段：计算机基础与编程入门（第1-2个月）" class="headerlink" title="📅 第一阶段：计算机基础与编程入门（第1-2个月）"></a><strong>📅 第一阶段：计算机基础与编程入门（第1-2个月）</strong></h3><p><strong>目标</strong>：掌握计算机基础操作、网络基础、Python和C语言基础。</p>
+<ol>
+<li><p><strong>计算机基础（1周）</strong></p>
+<ul>
+<li><strong>操作系统</strong>：学习Windows&#x2F;Linux基础命令（文件管理、进程管理）、虚拟机安装（VMware&#x2F;VirtualBox）。</li>
+<li><strong>网络基础</strong>：理解IP地址、端口、TCP&#x2F;UDP协议，用Wireshark抓包分析HTTP流量。</li>
+</ul>
+</li>
+<li><p><strong>编程入门（3周）</strong></p>
+<ul>
+<li><strong>Python</strong>：学习语法、文件操作、正则表达式、网络请求（<code>requests</code>库），完成简单爬虫或日志分析脚本。</li>
+<li><strong>C语言</strong>：掌握指针、内存管理、结构体，编写简单的内存操作程序（如模拟缓冲区溢出）。</li>
+</ul>
+</li>
+<li><p><strong>工具准备（1周）</strong></p>
+<ul>
+<li>搭建虚拟机实验环境（Windows + Linux双系统）。</li>
+<li>安装基础工具：IDA Pro Free版、Ghidra、Wireshark、Process Monitor。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="📚-第二阶段：信息安全与恶意软件分析基础（第3-4个月）"><a href="#📚-第二阶段：信息安全与恶意软件分析基础（第3-4个月）" class="headerlink" title="📚 第二阶段：信息安全与恶意软件分析基础（第3-4个月）"></a><strong>📚 第二阶段：信息安全与恶意软件分析基础（第3-4个月）</strong></h3><p><strong>目标</strong>：掌握安全核心概念，学习静态&#x2F;动态分析基础。</p>
+<ol>
+<li><p><strong>信息安全基础（2周）</strong></p>
+<ul>
+<li><strong>密码学</strong>：AES&#x2F;RSA算法原理，使用Python实现加密解密。</li>
+<li><strong>漏洞类型</strong>：缓冲区溢出、Shellcode注入原理，用C编写漏洞示例程序。</li>
+<li><strong>网络攻防</strong>：分析ARP欺骗案例，用Scapy模拟数据包伪造。</li>
+</ul>
+</li>
+<li><p><strong>恶意软件分析入门（4周）</strong></p>
+<ul>
+<li><strong>静态分析</strong>：<ul>
+<li>使用PEiD分析样本的编译器和加壳情况。</li>
+<li>用Ghidra反编译样本，识别关键函数（如<code>CreateProcess</code>、注册表操作）。</li>
+</ul>
+</li>
+<li><strong>动态分析</strong>：<ul>
+<li>在虚拟机中运行样本，用Process Monitor监控文件&#x2F;注册表行为。</li>
+<li>使用x64dbg调试样本，跟踪API调用链（如<code>LoadLibrary</code>、<code>GetProcAddress</code>）。</li>
+</ul>
+</li>
+<li><strong>工具进阶</strong>：<ul>
+<li>编写Python脚本自动化提取样本字符串特征。</li>
+<li>配置Cuckoo沙箱分析样本的恶意行为报告。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="🔍-第三阶段：逆向工程与实战进阶（第5-6个月）"><a href="#🔍-第三阶段：逆向工程与实战进阶（第5-6个月）" class="headerlink" title="🔍 第三阶段：逆向工程与实战进阶（第5-6个月）"></a><strong>🔍 第三阶段：逆向工程与实战进阶（第5-6个月）</strong></h3><p><strong>目标</strong>：掌握逆向工程核心技能，完成真实样本分析。</p>
+<ol>
+<li><p><strong>逆向工程深化（3周）</strong></p>
+<ul>
+<li><strong>汇编语言</strong>：学习x86&#x2F;x64指令集，用IDA Pro分析样本的反汇编代码。</li>
+<li><strong>反混淆技术</strong>：<ul>
+<li>手动脱UPX壳（使用OllyDbg的单步跟踪法）。</li>
+<li>分析字符串加密逻辑，编写Python解密脚本。</li>
+</ul>
+</li>
+<li><strong>高级调试</strong>：<ul>
+<li>使用IDA Pro的远程调试功能分析Linux恶意软件。</li>
+<li>通过修改寄存器值绕过反调试检测。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>实战项目（3周）</strong></p>
+<ul>
+<li><strong>样本分析</strong>：<ol>
+<li>分析勒索软件（如HelloKitty）的加密流程和密钥生成逻辑。</li>
+<li>逆向远控木马（如Poison Ivy）的C2通信协议。</li>
+</ol>
+</li>
+<li><strong>报告撰写</strong>：<ul>
+<li>按照MITRE ATT&amp;CK框架标注样本的攻击技术（如T1055进程注入）。</li>
+<li>使用YARA编写规则检测同类样本。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>知识整合（1周）</strong></p>
+<ul>
+<li>复现CTF逆向题目（如<a href="https://flare-on.com/">flare-on</a>历年赛题）。</li>
+<li>参与漏洞平台众测（如HackerOne的简单任务）。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="📦-资源推荐"><a href="#📦-资源推荐" class="headerlink" title="📦 资源推荐"></a><strong>📦 资源推荐</strong></h3><ul>
+<li><strong>书籍</strong>：《逆向工程核心原理》《加密与解密》</li>
+<li><strong>靶场</strong>：<a href="https://any.run/">Any.Run</a>（交互式沙箱）、<a href="https://malwaretrafficanalysis.net/">MalwareTrafficAnalysis</a>（带流量分析的样本）</li>
+<li><strong>样本来源</strong>：VirusTotal（需谨慎）、<a href="https://github.com/ytisf/theZoo">Zoo</a>（GitHub合法样本库）</li>
+</ul>
+<hr>
+<h3 id="⚠️-关键注意事项"><a href="#⚠️-关键注意事项" class="headerlink" title="⚠️ 关键注意事项"></a><strong>⚠️ 关键注意事项</strong></h3><ol>
+<li><strong>实验安全</strong>：所有分析必须在隔离的虚拟机中进行，禁用共享文件夹和剪贴板。</li>
+<li><strong>法律合规</strong>：仅分析开源样本或明确授权的数据，避免触碰灰色地带。</li>
+<li><strong>效率技巧</strong>：使用Jupyter Notebook记录分析过程，搭配截图和代码片段提升复盘效率。</li>
+</ol>
+<hr>
+<p><strong>调整建议</strong>：如果遇到瓶颈（如逆向工程难以突破），可暂时跳过深入理论，通过分析简单样本（如VBS脚本病毒）建立信心。坚持每天记录学习日志，重点标注未理解的概念，每周集中解决。遇到工具使用问题，优先查阅官方文档和GitHub Issue。</p>
+<p>针对<strong>第一阶段（计算机基础与编程入门）</strong>的详细学习平台和资源推荐，兼顾零基础学习者的理解能力和实践需求：</p>
+<hr>
+<h3 id="💻-计算机基础学习平台"><a href="#💻-计算机基础学习平台" class="headerlink" title="💻 计算机基础学习平台"></a><strong>💻 计算机基础学习平台</strong></h3><h4 id="1-操作系统与Linux入门"><a href="#1-操作系统与Linux入门" class="headerlink" title="1. 操作系统与Linux入门"></a><strong>1. 操作系统与Linux入门</strong></h4><table>
+<thead>
+<tr>
+<th>平台&#x2F;资源</th>
+<th>特点</th>
+<th>推荐内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong><a href="https://learn.microsoft.com/zh-cn/windows/">微软官方文档</a></strong></td>
+<td>权威的Windows操作指南</td>
+<td>Windows文件管理、进程管理、CMD&#x2F;PowerShell基础命令</td>
+</tr>
+<tr>
+<td><strong><a href="https://www.runoob.com/linux/linux-tutorial.html">菜鸟教程 - Linux</a></strong></td>
+<td>中文零基础教程</td>
+<td>Linux常用命令（<code>ls</code>&#x2F;<code>cd</code>&#x2F;<code>grep</code>&#x2F;<code>chmod</code>）</td>
+</tr>
+<tr>
+<td><strong><a href="https://www.youtube.com/c/NetworkChuck">YouTube: NetworkChuck</a></strong></td>
+<td>趣味实操演示</td>
+<td>“Linux for Hackers”系列（搭配虚拟机操作）</td>
+</tr>
+</tbody></table>
+<h4 id="2-网络基础"><a href="#2-网络基础" class="headerlink" title="2. 网络基础"></a><strong>2. 网络基础</strong></h4><table>
+<thead>
+<tr>
+<th>平台&#x2F;资源</th>
+<th>特点</th>
+<th>推荐内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong><a href="https://www.coursera.org/">Coursera - 计算机网络基础</a></strong></td>
+<td>体系化理论教学</td>
+<td>密歇根大学《计算机网络导论》（中文字幕）</td>
+</tr>
+<tr>
+<td><strong><a href="https://www.wireshark.org/docs/">Wireshark官方教程</a></strong></td>
+<td>实战导向</td>
+<td>抓包分析HTTP&#x2F;TCP协议（配合<a href="https://wiki.wireshark.org/SampleCaptures">SampleCaptures</a>）</td>
+</tr>
+<tr>
+<td><strong><a href="https://www.bilibili.com/">B站：湖科大王道计算机网络</a></strong></td>
+<td>中文系统讲解</td>
+<td>考研向课程，但适合打基础</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="👨💻-编程入门平台"><a href="#👨💻-编程入门平台" class="headerlink" title="👨💻 编程入门平台"></a><strong>👨💻 编程入门平台</strong></h3><h4 id="1-Python学习"><a href="#1-Python学习" class="headerlink" title="1. Python学习"></a><strong>1. Python学习</strong></h4><table>
+<thead>
+<tr>
+<th>平台&#x2F;资源</th>
+<th>特点</th>
+<th>推荐内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong><a href="https://www.codecademy.com/learn/learn-python-3">Codecademy</a></strong></td>
+<td>交互式编程</td>
+<td>免费版Python 3语法和文件操作</td>
+</tr>
+<tr>
+<td><strong><a href="https://docs.python.org/zh-cn/3/tutorial/">Python官网教程</a></strong></td>
+<td>权威文档</td>
+<td>正则表达式（<code>re</code>模块）、网络请求（<code>requests</code>库）</td>
+</tr>
+<tr>
+<td><strong><a href="https://www.bilibili.com/">B站：小甲鱼零基础学Python</a></strong></td>
+<td>中文趣味教学</td>
+<td>配套《零基础入门学习Python》书籍</td>
+</tr>
+</tbody></table>
+<h4 id="2-C语言学习"><a href="#2-C语言学习" class="headerlink" title="2. C语言学习"></a><strong>2. C语言学习</strong></h4><table>
+<thead>
+<tr>
+<th>平台&#x2F;资源</th>
+<th>特点</th>
+<th>推荐内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong><a href="https://www.runoob.com/cprogramming/c-tutorial.html">菜鸟教程 - C语言</a></strong></td>
+<td>简洁中文教程</td>
+<td>指针、结构体、内存管理专题</td>
+</tr>
+<tr>
+<td><strong><a href="https://www.learn-c.org/">Learn-C.org</a></strong></td>
+<td>在线编译器</td>
+<td>实时练习指针和内存操作代码</td>
+</tr>
+<tr>
+<td><strong><a href="https://www.bilibili.com/">B站：浙江大学翁恺C语言</a></strong></td>
+<td>高校精品课</td>
+<td>深入理解指针与内存模型</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="🔧-工具准备资源"><a href="#🔧-工具准备资源" class="headerlink" title="🔧 工具准备资源"></a><strong>🔧 工具准备资源</strong></h3><table>
+<thead>
+<tr>
+<th>工具</th>
+<th>学习资源</th>
+<th>重点内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>虚拟机（VMware&#x2F;VirtualBox）</strong></td>
+<td><a href="https://docs.vmware.com/cn/VMware-Workstation-Pro/index.html">VMware官方指南</a></td>
+<td>创建隔离的Windows&#x2F;Linux实验环境</td>
+</tr>
+<tr>
+<td><strong>IDA Pro Free</strong></td>
+<td><a href="https://hex-rays.com/ida-free/">官方快速入门</a></td>
+<td>基本反汇编操作（函数识别、交叉引用）</td>
+</tr>
+<tr>
+<td><strong>Process Monitor</strong></td>
+<td><a href="https://search.bilibili.com/all?keyword=Process%20Monitor">B站实操演示</a></td>
+<td>监控恶意软件的文件&#x2F;注册表行为</td>
+</tr>
+</tbody></table>
+<hr>
+]]></content>
+      <tags>
+        <tag>信息安全</tag>
+        <tag>恶意软件分析</tag>
       </tags>
   </entry>
   <entry>
@@ -589,243 +1023,15 @@
       </tags>
   </entry>
   <entry>
-    <title>my plan</title>
-    <url>/2025/02/05/my-plan/</url>
-    <content><![CDATA[<p>以下是半年学习计划，分为基础构建、专业提升、实战应用三个阶段。计划兼顾零基础起点和恶意软件分析的专业需求，注重高效学习和实践结合：</p>
-<hr>
-<h3 id="📅-第一阶段：计算机基础与编程入门（第1-2个月）"><a href="#📅-第一阶段：计算机基础与编程入门（第1-2个月）" class="headerlink" title="📅 第一阶段：计算机基础与编程入门（第1-2个月）"></a><strong>📅 第一阶段：计算机基础与编程入门（第1-2个月）</strong></h3><p><strong>目标</strong>：掌握计算机基础操作、网络基础、Python和C语言基础。</p>
-<ol>
-<li><p><strong>计算机基础（1周）</strong></p>
-<ul>
-<li><strong>操作系统</strong>：学习Windows&#x2F;Linux基础命令（文件管理、进程管理）、虚拟机安装（VMware&#x2F;VirtualBox）。</li>
-<li><strong>网络基础</strong>：理解IP地址、端口、TCP&#x2F;UDP协议，用Wireshark抓包分析HTTP流量。</li>
-</ul>
-</li>
-<li><p><strong>编程入门（3周）</strong></p>
-<ul>
-<li><strong>Python</strong>：学习语法、文件操作、正则表达式、网络请求（<code>requests</code>库），完成简单爬虫或日志分析脚本。</li>
-<li><strong>C语言</strong>：掌握指针、内存管理、结构体，编写简单的内存操作程序（如模拟缓冲区溢出）。</li>
-</ul>
-</li>
-<li><p><strong>工具准备（1周）</strong></p>
-<ul>
-<li>搭建虚拟机实验环境（Windows + Linux双系统）。</li>
-<li>安装基础工具：IDA Pro Free版、Ghidra、Wireshark、Process Monitor。</li>
-</ul>
-</li>
-</ol>
-<hr>
-<h3 id="📚-第二阶段：信息安全与恶意软件分析基础（第3-4个月）"><a href="#📚-第二阶段：信息安全与恶意软件分析基础（第3-4个月）" class="headerlink" title="📚 第二阶段：信息安全与恶意软件分析基础（第3-4个月）"></a><strong>📚 第二阶段：信息安全与恶意软件分析基础（第3-4个月）</strong></h3><p><strong>目标</strong>：掌握安全核心概念，学习静态&#x2F;动态分析基础。</p>
-<ol>
-<li><p><strong>信息安全基础（2周）</strong></p>
-<ul>
-<li><strong>密码学</strong>：AES&#x2F;RSA算法原理，使用Python实现加密解密。</li>
-<li><strong>漏洞类型</strong>：缓冲区溢出、Shellcode注入原理，用C编写漏洞示例程序。</li>
-<li><strong>网络攻防</strong>：分析ARP欺骗案例，用Scapy模拟数据包伪造。</li>
-</ul>
-</li>
-<li><p><strong>恶意软件分析入门（4周）</strong></p>
-<ul>
-<li><strong>静态分析</strong>：<ul>
-<li>使用PEiD分析样本的编译器和加壳情况。</li>
-<li>用Ghidra反编译样本，识别关键函数（如<code>CreateProcess</code>、注册表操作）。</li>
-</ul>
-</li>
-<li><strong>动态分析</strong>：<ul>
-<li>在虚拟机中运行样本，用Process Monitor监控文件&#x2F;注册表行为。</li>
-<li>使用x64dbg调试样本，跟踪API调用链（如<code>LoadLibrary</code>、<code>GetProcAddress</code>）。</li>
-</ul>
-</li>
-<li><strong>工具进阶</strong>：<ul>
-<li>编写Python脚本自动化提取样本字符串特征。</li>
-<li>配置Cuckoo沙箱分析样本的恶意行为报告。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<hr>
-<h3 id="🔍-第三阶段：逆向工程与实战进阶（第5-6个月）"><a href="#🔍-第三阶段：逆向工程与实战进阶（第5-6个月）" class="headerlink" title="🔍 第三阶段：逆向工程与实战进阶（第5-6个月）"></a><strong>🔍 第三阶段：逆向工程与实战进阶（第5-6个月）</strong></h3><p><strong>目标</strong>：掌握逆向工程核心技能，完成真实样本分析。</p>
-<ol>
-<li><p><strong>逆向工程深化（3周）</strong></p>
-<ul>
-<li><strong>汇编语言</strong>：学习x86&#x2F;x64指令集，用IDA Pro分析样本的反汇编代码。</li>
-<li><strong>反混淆技术</strong>：<ul>
-<li>手动脱UPX壳（使用OllyDbg的单步跟踪法）。</li>
-<li>分析字符串加密逻辑，编写Python解密脚本。</li>
-</ul>
-</li>
-<li><strong>高级调试</strong>：<ul>
-<li>使用IDA Pro的远程调试功能分析Linux恶意软件。</li>
-<li>通过修改寄存器值绕过反调试检测。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p><strong>实战项目（3周）</strong></p>
-<ul>
-<li><strong>样本分析</strong>：<ol>
-<li>分析勒索软件（如HelloKitty）的加密流程和密钥生成逻辑。</li>
-<li>逆向远控木马（如Poison Ivy）的C2通信协议。</li>
-</ol>
-</li>
-<li><strong>报告撰写</strong>：<ul>
-<li>按照MITRE ATT&amp;CK框架标注样本的攻击技术（如T1055进程注入）。</li>
-<li>使用YARA编写规则检测同类样本。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p><strong>知识整合（1周）</strong></p>
-<ul>
-<li>复现CTF逆向题目（如<a href="https://flare-on.com/">flare-on</a>历年赛题）。</li>
-<li>参与漏洞平台众测（如HackerOne的简单任务）。</li>
-</ul>
-</li>
-</ol>
-<hr>
-<h3 id="📦-资源推荐"><a href="#📦-资源推荐" class="headerlink" title="📦 资源推荐"></a><strong>📦 资源推荐</strong></h3><ul>
-<li><strong>书籍</strong>：《逆向工程核心原理》《加密与解密》</li>
-<li><strong>靶场</strong>：<a href="https://any.run/">Any.Run</a>（交互式沙箱）、<a href="https://malwaretrafficanalysis.net/">MalwareTrafficAnalysis</a>（带流量分析的样本）</li>
-<li><strong>样本来源</strong>：VirusTotal（需谨慎）、<a href="https://github.com/ytisf/theZoo">Zoo</a>（GitHub合法样本库）</li>
-</ul>
-<hr>
-<h3 id="⚠️-关键注意事项"><a href="#⚠️-关键注意事项" class="headerlink" title="⚠️ 关键注意事项"></a><strong>⚠️ 关键注意事项</strong></h3><ol>
-<li><strong>实验安全</strong>：所有分析必须在隔离的虚拟机中进行，禁用共享文件夹和剪贴板。</li>
-<li><strong>法律合规</strong>：仅分析开源样本或明确授权的数据，避免触碰灰色地带。</li>
-<li><strong>效率技巧</strong>：使用Jupyter Notebook记录分析过程，搭配截图和代码片段提升复盘效率。</li>
-</ol>
-<hr>
-<p><strong>调整建议</strong>：如果遇到瓶颈（如逆向工程难以突破），可暂时跳过深入理论，通过分析简单样本（如VBS脚本病毒）建立信心。坚持每天记录学习日志，重点标注未理解的概念，每周集中解决。遇到工具使用问题，优先查阅官方文档和GitHub Issue。</p>
-<p>针对<strong>第一阶段（计算机基础与编程入门）</strong>的详细学习平台和资源推荐，兼顾零基础学习者的理解能力和实践需求：</p>
-<hr>
-<h3 id="💻-计算机基础学习平台"><a href="#💻-计算机基础学习平台" class="headerlink" title="💻 计算机基础学习平台"></a><strong>💻 计算机基础学习平台</strong></h3><h4 id="1-操作系统与Linux入门"><a href="#1-操作系统与Linux入门" class="headerlink" title="1. 操作系统与Linux入门"></a><strong>1. 操作系统与Linux入门</strong></h4><table>
-<thead>
-<tr>
-<th>平台&#x2F;资源</th>
-<th>特点</th>
-<th>推荐内容</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong><a href="https://learn.microsoft.com/zh-cn/windows/">微软官方文档</a></strong></td>
-<td>权威的Windows操作指南</td>
-<td>Windows文件管理、进程管理、CMD&#x2F;PowerShell基础命令</td>
-</tr>
-<tr>
-<td><strong><a href="https://www.runoob.com/linux/linux-tutorial.html">菜鸟教程 - Linux</a></strong></td>
-<td>中文零基础教程</td>
-<td>Linux常用命令（<code>ls</code>&#x2F;<code>cd</code>&#x2F;<code>grep</code>&#x2F;<code>chmod</code>）</td>
-</tr>
-<tr>
-<td><strong><a href="https://www.youtube.com/c/NetworkChuck">YouTube: NetworkChuck</a></strong></td>
-<td>趣味实操演示</td>
-<td>“Linux for Hackers”系列（搭配虚拟机操作）</td>
-</tr>
-</tbody></table>
-<h4 id="2-网络基础"><a href="#2-网络基础" class="headerlink" title="2. 网络基础"></a><strong>2. 网络基础</strong></h4><table>
-<thead>
-<tr>
-<th>平台&#x2F;资源</th>
-<th>特点</th>
-<th>推荐内容</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong><a href="https://www.coursera.org/">Coursera - 计算机网络基础</a></strong></td>
-<td>体系化理论教学</td>
-<td>密歇根大学《计算机网络导论》（中文字幕）</td>
-</tr>
-<tr>
-<td><strong><a href="https://www.wireshark.org/docs/">Wireshark官方教程</a></strong></td>
-<td>实战导向</td>
-<td>抓包分析HTTP&#x2F;TCP协议（配合<a href="https://wiki.wireshark.org/SampleCaptures">SampleCaptures</a>）</td>
-</tr>
-<tr>
-<td><strong><a href="https://www.bilibili.com/">B站：湖科大王道计算机网络</a></strong></td>
-<td>中文系统讲解</td>
-<td>考研向课程，但适合打基础</td>
-</tr>
-</tbody></table>
-<hr>
-<h3 id="👨💻-编程入门平台"><a href="#👨💻-编程入门平台" class="headerlink" title="👨💻 编程入门平台"></a><strong>👨💻 编程入门平台</strong></h3><h4 id="1-Python学习"><a href="#1-Python学习" class="headerlink" title="1. Python学习"></a><strong>1. Python学习</strong></h4><table>
-<thead>
-<tr>
-<th>平台&#x2F;资源</th>
-<th>特点</th>
-<th>推荐内容</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong><a href="https://www.codecademy.com/learn/learn-python-3">Codecademy</a></strong></td>
-<td>交互式编程</td>
-<td>免费版Python 3语法和文件操作</td>
-</tr>
-<tr>
-<td><strong><a href="https://docs.python.org/zh-cn/3/tutorial/">Python官网教程</a></strong></td>
-<td>权威文档</td>
-<td>正则表达式（<code>re</code>模块）、网络请求（<code>requests</code>库）</td>
-</tr>
-<tr>
-<td><strong><a href="https://www.bilibili.com/">B站：小甲鱼零基础学Python</a></strong></td>
-<td>中文趣味教学</td>
-<td>配套《零基础入门学习Python》书籍</td>
-</tr>
-</tbody></table>
-<h4 id="2-C语言学习"><a href="#2-C语言学习" class="headerlink" title="2. C语言学习"></a><strong>2. C语言学习</strong></h4><table>
-<thead>
-<tr>
-<th>平台&#x2F;资源</th>
-<th>特点</th>
-<th>推荐内容</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong><a href="https://www.runoob.com/cprogramming/c-tutorial.html">菜鸟教程 - C语言</a></strong></td>
-<td>简洁中文教程</td>
-<td>指针、结构体、内存管理专题</td>
-</tr>
-<tr>
-<td><strong><a href="https://www.learn-c.org/">Learn-C.org</a></strong></td>
-<td>在线编译器</td>
-<td>实时练习指针和内存操作代码</td>
-</tr>
-<tr>
-<td><strong><a href="https://www.bilibili.com/">B站：浙江大学翁恺C语言</a></strong></td>
-<td>高校精品课</td>
-<td>深入理解指针与内存模型</td>
-</tr>
-</tbody></table>
-<hr>
-<h3 id="🔧-工具准备资源"><a href="#🔧-工具准备资源" class="headerlink" title="🔧 工具准备资源"></a><strong>🔧 工具准备资源</strong></h3><table>
-<thead>
-<tr>
-<th>工具</th>
-<th>学习资源</th>
-<th>重点内容</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>虚拟机（VMware&#x2F;VirtualBox）</strong></td>
-<td><a href="https://docs.vmware.com/cn/VMware-Workstation-Pro/index.html">VMware官方指南</a></td>
-<td>创建隔离的Windows&#x2F;Linux实验环境</td>
-</tr>
-<tr>
-<td><strong>IDA Pro Free</strong></td>
-<td><a href="https://hex-rays.com/ida-free/">官方快速入门</a></td>
-<td>基本反汇编操作（函数识别、交叉引用）</td>
-</tr>
-<tr>
-<td><strong>Process Monitor</strong></td>
-<td><a href="https://search.bilibili.com/all?keyword=Process%20Monitor">B站实操演示</a></td>
-<td>监控恶意软件的文件&#x2F;注册表行为</td>
-</tr>
-</tbody></table>
-<hr>
+    <title>1月22日</title>
+    <url>/2025/01/22/1%E6%9C%8822%E6%97%A5/</url>
+    <content><![CDATA[<p>创建页面（导航栏列表项）<br>列表项名：分类<br>hexo new page categories<br>然后将以下代码粘贴到文件中：<br>&#x2F;source&#x2F;categories&#x2F;index.md<br>    —<br>    title: categories<br>    type: categories<br>    layout: “categories”<br>    —</p>
 ]]></content>
+      <categories>
+        <category>页面部署</category>
+      </categories>
       <tags>
-        <tag>信息安全</tag>
-        <tag>恶意软件分析</tag>
+        <tag>进程</tag>
       </tags>
   </entry>
 </search>
