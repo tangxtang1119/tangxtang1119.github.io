@@ -221,9 +221,160 @@
 <li>touch命令无选项，参数必填，表示要创建的文件路径，相对、绝对、特殊路径符均可以使用</li>
 </ul>
 <p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250218203720157.png"></p>
-<p>通过观察可以知道文件夹的颜色为深色，文件为白色。但是仅通过颜色判断不严谨，建议使用ls -l，查看文件和文件夹。</p>
-<p>基于vi编辑器编辑文件内容。</p>
-<h3 id="7-查找命令（which、find）"><a href="#7-查找命令（which、find）" class="headerlink" title="7.查找命令（which、find）"></a>7.查找命令（which、find）</h3><h3 id="8-grep、wc和管道符"><a href="#8-grep、wc和管道符" class="headerlink" title="8.grep、wc和管道符"></a>8.grep、wc和管道符</h3><h3 id="9-echo、tail和重定向符"><a href="#9-echo、tail和重定向符" class="headerlink" title="9.echo、tail和重定向符"></a>9.echo、tail和重定向符</h3><h3 id="10-vi编辑器"><a href="#10-vi编辑器" class="headerlink" title="10.vi编辑器"></a>10.vi编辑器</h3><h4 id="（1）基本了解"><a href="#（1）基本了解" class="headerlink" title="（1）基本了解"></a>（1）基本了解</h4><p>vi\vim是visual interface的简称，是Linux中最经典的文本编辑器</p>
+<p>通过观察可以知道文件夹的颜色为深色，文件为白色。但是仅通过颜色判断不够准确，建议使用ls -l，查看文件和文件夹。</p>
+<h4 id="（2）cat命令查看文件内容"><a href="#（2）cat命令查看文件内容" class="headerlink" title="（2）cat命令查看文件内容"></a>（2）cat命令查看文件内容</h4><p>在有了文件后，可以通过cat命令查看文件的内容</p>
+<p>语法：cat Linux路径</p>
+<ul>
+<li>cat同样没有选项，只有必填参数，参数表示：被查看的文件路径，相对、绝对、特殊路径符都可以使用</li>
+</ul>
+<p>基于vi编辑器先在txt文件中编辑好内容，使用cat命令查看</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250221163319900.png"></p>
+<h4 id="（3）more命令查看文件内容"><a href="#（3）more命令查看文件内容" class="headerlink" title="（3）more命令查看文件内容"></a>（3）more命令查看文件内容</h4><p>和cat的不同之处：</p>
+<ul>
+<li>cat是直接将内容全部显示出来</li>
+<li>more支持翻页，如果文件内容过多，可以一页一页的展示</li>
+</ul>
+<p>语法：more Linux路径</p>
+<ul>
+<li>同样没有选项，只有必填参数，参数表示：被查看的文件路径，相对、绝对、特殊路径符都可以使用</li>
+<li>在查看过程中，通过空格翻页</li>
+<li>通过q退出查看</li>
+</ul>
+<p>（4）cp命令复制文件文件夹</p>
+<p>cp命令可以用于复制文件\文件夹，cp命令来自英文单词：copy</p>
+<p>语法：cp [-r] 参数1 参数2</p>
+<ul>
+<li>-r选项，可选，用于复制文件夹使用，表示递归</li>
+<li>参数1，Linux路径，表示被复制的文件或文件夹</li>
+<li>参数2，Linux路径，表示要复制去的地方</li>
+</ul>
+<p>在test1文件夹中新建一个test2文件夹，并将test1文件夹内的hello.txt复制到test2文件夹中</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250221164410505-1740127505166-1.png"></p>
+<h4 id="（5）mv命令移动文件或文件夹"><a href="#（5）mv命令移动文件或文件夹" class="headerlink" title="（5）mv命令移动文件或文件夹"></a>（5）mv命令移动文件或文件夹</h4><p>mv命令可以用于移动文件或文件夹，mv命令来自英文单词：move</p>
+<p>语法：mv 参数1 参数2</p>
+<ul>
+<li>参数1，Linux路径，表示被移动的文件或文件夹</li>
+<li>参数2，Linux路径，表示要移动去的地方，如果目标不存在，则进行改名，确保目标存在</li>
+</ul>
+<p>在test1文件夹中新建test3文件夹，并将test1文件夹中的hello.txt移动到test3文件夹中。（相同效果对文件夹也有效，只需要在cp 后面加上 -r）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250221164928437.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250221171025784.png"></p>
+<p>在test3文件夹中新建文件hello1.txt，并编写文件输入“ zai xue xi bu yao da rao”，使用mv命令 mv hello.txt hello1.txt ，后会出现提示确认否，输入yes确认后，会发现hello.txt不见了，只剩下了hello1.txt，查看hello1.txt中的内容，显示的是”tang x tang”，可以发现hello1.txt中的内容被hello.txt的内容覆盖，换言之，hello.txt文件的文件名，<font color="red">改名</font>为了hello1.txt。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250221165832517.png"></p>
+<p>（6）rm命令删除文件夹、文件</p>
+<p>rm命令来自英文单词：remove</p>
+<p>语法：rm [-r -f] 参数1 参数2……参数n</p>
+<ul>
+<li>同cp命令一样，-r选项用于删除文件夹</li>
+<li>-f表示force，强制删除（不糊i弹出提示确认信息）<ul>
+<li>普通用户删除内容不会弹出提示，只有root管理用用户删除内容会有提示</li>
+<li>所以一般普通用户用不到-f选项</li>
+</ul>
+</li>
+<li>参数1、参数2……、参数n表示要删除的文件或文件夹路径，按照空格隔开</li>
+</ul>
+<p>将test1文件夹中的test4文件夹删除</p>
+<p><img src="/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA.assets/image-20250221171254034-1740129226994-4.png"></p>
+<h5 id="删除文件、文件夹-通配符"><a href="#删除文件、文件夹-通配符" class="headerlink" title="删除文件、文件夹 - 通配符"></a>删除文件、文件夹 - 通配符</h5><p>rm命令支持通配符*，用来做模糊匹配</p>
+<ul>
+<li>符号*表示通配符，即匹配任意内容（包含空），示例：</li>
+<li>test*，表示匹配任何以test开头的内容</li>
+<li>*test，表示匹配任何以test结尾的内容</li>
+<li>*test *，表示匹配任何包含test的内容</li>
+<li>删除文件夹，必须使用-r选项才可以</li>
+<li>强制删除，-f选项</li>
+<li>普通用户可以输入su - root，并输入密码临时切换到root用户体验</li>
+<li>通过输入exit命令，退回普通用户。（临时用root，用完记得退出）</li>
+</ul>
+<p>将test1文件夹中以test开头的文件夹全部删除，在提示是否删除test2文件夹时没有输入yes所以test2文件夹被保留，但test2文件夹中的内容都被删除了</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250221171930804.png"></p>
+<p><font color="red">注意：rm是一个危险的命令，特别是在处于root（超级管理员）用户的时候，请谨慎使用。如下命令，千万不要再root管理员用户下执行（效果等同于在Windows上执行C盘格式化）：</font></p>
+<p><font color="red">rm -rf &#x2F;</font></p>
+<p><font color="red">rm -rf &#x2F;*</font></p>
+<h3 id="7-查找命令（which、find）"><a href="#7-查找命令（which、find）" class="headerlink" title="7.查找命令（which、find）"></a>7.查找命令（which、find）</h3><h4 id="（1）which查看命令的程序文件位置"><a href="#（1）which查看命令的程序文件位置" class="headerlink" title="（1）which查看命令的程序文件位置"></a>（1）which查看命令的程序文件位置</h4><p>前面学习的Linux命令，其实它们的本体就是一个个的二进制可执行程序，和Windows系统中的.exe文件，是一个意思。</p>
+<p>可以通过which命令，查看所使用的一系列命令的程序文件存放在哪儿</p>
+<p>语法：which 要查找的命令</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250221191206787.png"></p>
+<h4 id="（2）find命令按文件名查找文件"><a href="#（2）find命令按文件名查找文件" class="headerlink" title="（2）find命令按文件名查找文件"></a>（2）find命令按文件名查找文件</h4><p>类似图形化系统提供的搜索功能，搜索指定文件</p>
+<p>在Linux系统中，可以通过find命令去搜索指定的文件。</p>
+<p>语法：find 起始路径 -name “被查找文件名”</p>
+<p>查找hello.txt文件和查找test文件夹</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250221191939509.png"></p>
+<h5 id="find命令-通配符"><a href="#find命令-通配符" class="headerlink" title="find命令 通配符"></a>find命令 通配符</h5><p>语法：find 起始路径 -name “被查找文件名”</p>
+<p>被查找文件名，支持使用通配符*来做模糊查询</p>
+<ul>
+<li>符号*表示通配符，即匹配人愿意内容（包含空），示例：</li>
+<li>test*，表示匹配任何以test开头的内容</li>
+<li>*test，表示匹配任何以test结尾的内容</li>
+<li>*test *，表示匹配任何包含test的内容</li>
+</ul>
+<h5 id="find命令-按文件大小查找文件"><a href="#find命令-按文件大小查找文件" class="headerlink" title="find命令 按文件大小查找文件"></a>find命令 按文件大小查找文件</h5><p>语法：find 起始路径 -size +或者-n[KMG]</p>
+<ul>
+<li>+、-表示大于和小于</li>
+<li>n表示大小数字</li>
+<li>kMG表示大小单位，k（小写字母）表示kb，M表示MB，G表示GB</li>
+</ul>
+<p>示例：</p>
+<ul>
+<li>查找小于10KB的文件：find &#x2F; -size -10k</li>
+<li>查找大于100MB的文件：find &#x2F; -size +100M</li>
+<li>查找大于1GB的文件：find &#x2F; -size +1G</li>
+</ul>
+<h3 id="8-grep、wc和管道符"><a href="#8-grep、wc和管道符" class="headerlink" title="8.grep、wc和管道符"></a>8.grep、wc和管道符</h3><h4 id="（1）grep命令-通过关键字过滤文件行"><a href="#（1）grep命令-通过关键字过滤文件行" class="headerlink" title="（1）grep命令 通过关键字过滤文件行"></a>（1）grep命令 通过关键字过滤文件行</h4><p>通过grep命令，从文件中通过关键字过滤文件行</p>
+<p>语法：grep [-n] 关键字 文件路径</p>
+<ul>
+<li>选项-n，可选，表示在结果中显示匹配的行的行号</li>
+<li>参数，关键字，必填，表示过滤的关键字，带有空格或其他特殊符号，建议使用“ ”将关键字包围起来</li>
+<li>参数，文件路径，必填，表示要过滤内容的文件路径，可作为内容输入端口</li>
+</ul>
+<p>下图为操作示例</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250221194017857.png"></p>
+<h4 id="（2）wc命令-数量统计"><a href="#（2）wc命令-数量统计" class="headerlink" title="（2）wc命令 数量统计"></a>（2）wc命令 数量统计</h4><p>通过wc命令统计文件的行数、单词数量等</p>
+<p>语法：wc [-c -m -l -w] 文件路径</p>
+<ul>
+<li>选项，-c，统计bytes数量</li>
+<li>选项，-m，统计字符数量</li>
+<li>选项，-l，统计行数</li>
+<li>选项，-w，统计单词数量</li>
+<li>参数，文件路径，被统计的文件，可作为内容输入端口</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250221200417678.png"></p>
+<h4 id="（2）管道符"><a href="#（2）管道符" class="headerlink" title="（2）管道符"></a>（2）管道符</h4><p>新的特殊符号：|</p>
+<p>含义：将管道符左边命令的结果，作为右边命令的输入</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250221200641715.png"></p>
+<p>如上图：</p>
+<ul>
+<li>cat hello.txt的输出结果（文件内容）</li>
+<li>作为右边grep命令的输入（被过滤文件）</li>
+</ul>
+<h3 id="9-echo、tail和重定向符"><a href="#9-echo、tail和重定向符" class="headerlink" title="9.echo、tail和重定向符"></a>9.echo、tail和重定向符</h3><h4 id="（1）echo命令-在命令行内输出指定内容"><a href="#（1）echo命令-在命令行内输出指定内容" class="headerlink" title="（1）echo命令 在命令行内输出指定内容"></a>（1）echo命令 在命令行内输出指定内容</h4><p>语法：echo 输出内容</p>
+<ul>
+<li>无需选项，只有一个参数，表示要输出的内容，复杂内容可以用“ ”包围</li>
+<li>带有空格或\等特殊符号，建议使用双引号包围<ul>
+<li>如果不包围的化，空格后很容易被识别为参数2，尽管echo不受影响，但是要养成习惯</li>
+</ul>
+</li>
+</ul>
+<p>在终端上显示：Holle Linux</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250221201543727.png"></p>
+<h5 id="反引号"><a href="#反引号" class="headerlink" title="反引号&#96;"></a>反引号&#96;</h5><p>将命令用反引号（通常也称之为飘号）&#96; 将其包围，被包围的内容，蒋辉作为命令执行，而非普通字符</p>
+<p>如下图，本意是想将当前工作目录路径输出，但是pwd被当作普通字符被输出了，通过使用&#96;将其包围，就会被作为命令执行</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250221202100907.png"></p>
+<h4 id="（2）重定向符-和"><a href="#（2）重定向符-和" class="headerlink" title="（2）重定向符 &gt;和&gt;&gt;"></a>（2）重定向符 &gt;和&gt;&gt;</h4><p>特殊符号，重定向符：&gt;和&gt;&gt;</p>
+<ul>
+<li>&gt;，将左侧命令的结果，覆盖写入到符号右侧指定的文件中</li>
+<li>&gt;&gt;，将左侧命令的结果，追加写入到符号右侧指定的文件中</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250221203410477.png"></p>
+<h4 id="（3）tail命令-查看尾部内容-跟踪最新更改"><a href="#（3）tail命令-查看尾部内容-跟踪最新更改" class="headerlink" title="（3）tail命令 查看尾部内容 跟踪最新更改"></a>（3）tail命令 查看尾部内容 跟踪最新更改</h4><p>语法：tail [-f -num] Linux路径</p>
+<ul>
+<li>参数，Linux路径，表示被跟踪的文件路径</li>
+<li>选项，-f，表示持续跟踪，结束使用ctrl+c</li>
+<li>选项，-num，表示查看尾部多少行，不填默认10行，将num替换成数字</li>
+</ul>
+<p>持续跟踪的操作流程</p>
+<p>输入命令后，复制标签建立新窗口，在新窗口对被跟踪文件的操作，会在原窗口显示，比如在hello.txt文件中添加新的字符等。</p>
+<h3 id="10-vi编辑器"><a href="#10-vi编辑器" class="headerlink" title="10.vi编辑器"></a>10.vi编辑器</h3><h4 id="（1）基本了解"><a href="#（1）基本了解" class="headerlink" title="（1）基本了解"></a>（1）基本了解</h4><p>vi\vim是visual interface的简称，是Linux中最经典的文本编辑器</p>
 <p>同图形化界面中的文本编辑器一样，vi是命令行下对文本文件编辑器的绝佳选择。</p>
 <p><font color="red">vim是vi的加强版本，兼容vi的所有指令，不仅能编辑文本，而且还具有shell程序编辑的功能，可以不同颜色的字体来辨别语语法的正确性，极大的方便了程序的设计和编辑性。</font></p>
 <h4 id="（2）三种工作模式"><a href="#（2）三种工作模式" class="headerlink" title="（2）三种工作模式"></a>（2）三种工作模式</h4><h5 id="1）命令模式（Command-mode）"><a href="#1）命令模式（Command-mode）" class="headerlink" title="1）命令模式（Command mode）"></a>1）命令模式（Command mode）</h5><p>​	命令模式下，锁敲的按键编辑器都理解为命令，以命令驱动执行不同的功能。此模式下，不能自由进行文本编辑。</p>
@@ -432,6 +583,7 @@
 ]]></content>
       <tags>
         <tag>软件</tag>
+        <tag>Linux系统</tag>
       </tags>
   </entry>
   <entry>
@@ -682,7 +834,9 @@
   <entry>
     <title>Typora的使用</title>
     <url>/2025/01/24/Typora%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<h2 id="Typora是什么？"><a href="#Typora是什么？" class="headerlink" title="Typora是什么？"></a>Typora是什么？</h2><p>​		Typora是一款由Abner Lee开发的轻量级Markdown编辑器，适用于OS X、Windows和Linux三种操作系统，是一款免费软件。与其他Markdown编辑器不同的是，Typora没有采用源代码和预览双栏显示的方式，而是采用所见即所得的编辑方式，实现了即时预览的功能，但也可切换至源代码编辑模式</p>
+    <content><![CDATA[<p>[史上最全Typora教程—-程序员必学软件之一-CSDN博客](<a href="https://blog.csdn.net/m0_62648611/article/details/133713273#:~:text=%E5%8F%B2%E4%B8%8A%E6%9C%80%E5%85%A8Typora%E6%95%99%E7%A8%8B----%E7%A8%8B%E5%BA%8F%E5%91%98%E5%BF%85%E5%AD%A6%E8%BD%AF%E4%BB%B6%E4%B9%8B%E4%B8%80">https://blog.csdn.net/m0_62648611/article/details/133713273#:~:text=史上最全Typora教程----程序员必学软件之一</a> 1 1. 标题 一级标题：Ctrl%2B1 或%23 二级标题：Ctrl%2B2 或%23%23,代码 插入不确定编程语言代码，快捷键：CTRL%2Bshift%2Bk 插入确定语言代码， &#96;&#96;&#96; 语言名称 如： … 更多项目)</p>
+<p>存在待补充</p>
+<h2 id="Typora是什么？"><a href="#Typora是什么？" class="headerlink" title="Typora是什么？"></a>Typora是什么？</h2><p>​		Typora是一款由Abner Lee开发的轻量级Markdown编辑器，适用于OS X、Windows和Linux三种操作系统，是一款免费软件。与其他Markdown编辑器不同的是，Typora没有采用源代码和预览双栏显示的方式，而是采用所见即所得的编辑方式，实现了即时预览的功能，但也可切换至源代码编辑模式</p>
 <span id="more"></span>
 
 
