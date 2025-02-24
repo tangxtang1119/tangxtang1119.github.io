@@ -82,7 +82,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">472</span>
+            <span class="post-count">2.1k</span>
         </span>
     </span>
 
@@ -91,7 +91,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">1 分钟</span>
+            <span class="post-count">8 分钟</span>
         </span>
     </span>
 </div>
@@ -127,7 +127,121 @@
 <p>很重要，因为每一个都会使用这些信息，它们会写入道每一次提交中，不可更改。</p>
 <p>签名的作用是区分操作者的身份，用户的签名信息在每一个版本的提交信息能够看到，以此确认本次提交的是谁做的。Git首次安装必须设置一下用户签名，否则无法提交代码。这里设置用户签名和将来登录GitLab（或者其他代码托管中心）的账号没有任何关系。</p>
 <p>在桌面任意位置右键，点击Git bash here，在弹出界面中输入</p>
-<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250224192819242.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-02-24%20200214.jpg"></p>
+<p>输入git config –global –list 命令，检查配置好没有</p>
+<p>安装完成后，确保将 git 的可执行文件所在的目录添加到系统的环境变量中。</p>
+<p>安装路径</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250224200256455.png"></p>
+<p>设置环境变量</p>
+<p>系统变量中Path，编辑E:\git\Git\cmd</p>
+<h1 id="二、搭建仓库"><a href="#二、搭建仓库" class="headerlink" title="二、搭建仓库"></a><strong>二、搭建仓库</strong></h1><h2 id="github"><a href="#github" class="headerlink" title="github"></a><strong>github</strong></h2><h3 id="1-搭建仓库"><a href="#1-搭建仓库" class="headerlink" title="1.搭建仓库"></a><strong>1.搭建仓库</strong></h3><p>在<a target="_blank" rel="noopener" href="https://github.com/%E7%BD%91%E5%9D%80%E5%87%86%E5%A4%87%E4%B8%80%E4%B8%AA%E8%B4%A6%E5%8F%B7">https://github.com/网址准备一个账号</a></p>
+<p>新建一个仓库</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250224200319395.png"></p>
+<p>仓库名（Repository name）是要和github的名字一样，例如github名字叫aaa，仓库名字就必须是aaa.github.io，不能是bbb.github.io之类的。</p>
+<p>Repository name ： tangxtang1119.github.io</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250224200335806.png"></p>
+<p>勾选Public和Add a README file</p>
+<p>然后点击创建Create repository</p>
+<h1 id="三、配置ssh-key"><a href="#三、配置ssh-key" class="headerlink" title="三、配置ssh key"></a><strong>三、配置ssh key</strong></h1><h2 id="github-1"><a href="#github-1" class="headerlink" title="github"></a><strong>github</strong></h2><h4 id="1-生成SSH-Keys"><a href="#1-生成SSH-Keys" class="headerlink" title="1.生成SSH Keys"></a><strong>1.生成SSH Keys</strong></h4><p>进入任意文件夹，右键空白处然后点Git bash here,输入</p>
+<p>ssh-keygen -t rsa -C “邮件地址”（注意是大写C）</p>
+<p>生成SSH Keys</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/wps3.jpg"> </p>
+<p>连续敲4次Enter</p>
+<p>然后进入C:\Users\tangxtang.ssh，用记事本打开id_rsa.pub，全选复制这串代码</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/wps4.jpg"> </p>
+<p>id_rsa ：私钥文件</p>
+<p>id_rsa.pub：公钥文件</p>
+<p>打开github</p>
+<p>进入用户设置，找到SSH and GPG keys</p>
+<p>选择New SSH Key新建SSH keys，名称随意，在下面粘贴代码</p>
+<p>然后创建</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/wps5.jpg"> </p>
+<h4 id="2-测试SSH-Key配置"><a href="#2-测试SSH-Key配置" class="headerlink" title="2.测试SSH Key配置"></a><strong>2.测试SSH Key配置</strong></h4><p>在git bash 输入</p>
+<p>ssh -T <a href="mailto:git@github.com">git@github.com</a></p>
+<p>最后提示ssh: connect to host github.com port 22: Connection refused这个错误提示的是连接github.com，访问<a target="_blank" rel="noopener" href="https://zhida.zhihu.com/search?content_id=203985854&content_type=Article&match_order=1&q=22%E7%AB%AF%E5%8F%A3&zhida_source=entity">22端口</a>被拒绝了。</p>
+<p>尝试连接github的443端口，在C:\Users\tangxtang.ssh\config文件里新建记事本，添加以下内容：</p>
+<p>Host github.com</p>
+<pre><code> Hostname ssh.github.com
+</code></pre>
+<p> Port 443</p>
+<p>如果没有config文件就新建一个即可。</p>
+<p>如果执行命令ssh -T <a href="mailto:&#103;&#105;&#x74;&#64;&#x67;&#x69;&#116;&#x68;&#117;&#98;&#46;&#x63;&#x6f;&#109;">&#103;&#105;&#x74;&#64;&#x67;&#x69;&#116;&#x68;&#117;&#98;&#46;&#x63;&#x6f;&#109;</a>，还是报错，就执行命令</p>
+<p>ssh -T -p 443 <a href="mailto:git@ssh.github.com，">git@ssh.github.com</a></p>
+<p>如果提示Hi xxxxx! You’ve successfully authenticated, but GitHub does not provide <a target="_blank" rel="noopener" href="https://zhida.zhihu.com/search?content_id=203985854&content_type=Article&match_order=2&q=shell+access&zhida_source=entity">shell access</a>. 就表示一切正常了。</p>
+<h1 id="四、本地部署"><a href="#四、本地部署" class="headerlink" title="四、本地部署"></a><strong>四、本地部署</strong></h1><h4 id="1-创建目录"><a href="#1-创建目录" class="headerlink" title="1.创建目录"></a><strong>1.创建目录</strong></h4><p>由于Hexo的所有文章都是以文件的形式存储在目录下的，</p>
+<p>新建一个目录，文件名设置为first-blog，再次目录下继续操作。路径：</p>
+<p>E:\myself\self-blog\first-blog</p>
+<h4 id="2-初始化博客"><a href="#2-初始化博客" class="headerlink" title="2.初始化博客"></a><strong>2.初始化博客</strong></h4><p>hexo init</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/wps6.jpg"> </p>
+<h4 id="3-新建文章"><a href="#3-新建文章" class="headerlink" title="3.新建文章"></a><strong>3.新建文章</strong></h4><p>hexo new  “BlogName”（BlogName是你的文章名称）</p>
+<p>会在source&#x2F;_posts目录下生成BlogName.md文件，可以vim或其他的Markdown编辑器进行修改。</p>
+<h4 id="4-生成博客静态文件"><a href="#4-生成博客静态文件" class="headerlink" title="4.生成博客静态文件"></a><strong>4.生成博客静态文件</strong></h4><p>hexo g（g表示generate），生成博客静态文件</p>
+<p>每次修改文章后。都需要通过hexo clean清理一下</p>
+<p>然后通过hexo g重新生成</p>
+<p>最后也不要忘了通过hexo s重新启动Hexo</p>
+<h4 id="5-启动博客"><a href="#5-启动博客" class="headerlink" title="5.启动博客"></a><strong>5.启动博客</strong></h4><p>hexo s（s代表server，默认端口号是4000）</p>
+<h1 id="四、如何让把个人博客部署到远端"><a href="#四、如何让把个人博客部署到远端" class="headerlink" title="四、如何让把个人博客部署到远端"></a><strong>四、如何让把个人博客部署到远端</strong></h1><p>进入博客文件夹，用记事本打开——config.yml</p>
+<p>拉到最后将deploy后面的全删掉，复制粘贴以下这段：</p>
+<p> type: git</p>
+<p> repository:</p>
+<p> branch: main</p>
+<p>注意缩进格式：每行前面都有两个空格不要删了，每个冒号后面都有个空格也不要删</p>
+<p>去GitHub之前生成的仓库页面，点击code，复制https链接</p>
+<p>将其粘贴到记事本中的repository：后面</p>
+<p>然后保存退出</p>
+<p>回到博客文件夹，git bash</p>
+<p>安装自动部署发布工具</p>
+<p>npm install hexo-deployer-git –save</p>
+<p>执行命令时报错</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/wps7.jpg"> </p>
+<p>尝试方法：</p>
+<p>cnpm install hexo-deployer-git –save</p>
+<p>（cnpm会创建文件夹的引用，而npm不会，具体原因不明白）</p>
+<p>更改后，上传出现报错</p>
+<h4 id="解决报错的地方就是22端口问题，就是连接超时。"><a href="#解决报错的地方就是22端口问题，就是连接超时。" class="headerlink" title="解决报错的地方就是22端口问题，就是连接超时。"></a><strong>解决报错的地方就是22端口问题，就是连接超时。</strong></h4><p>解决办法：</p>
+<p>手动修改hosts文件修改访问github.com的IP地址</p>
+<h5 id="修改hosts文件"><a href="#修改hosts文件" class="headerlink" title="修改hosts文件"></a><strong>修改hosts文件</strong></h5><p>文件位置C:\Windows\System32\drivers\etc\hosts，修改用户权限，开放修改和写入的权限，再编辑hosts文件。添加github.com的IP地址和域名。如下：</p>
+<p>140.82.112.3    github.com</p>
+<p>151.101.1.194    github.global.ssl.fastly.net</p>
+<p>151.101.65.194   github.global.ssl.fastly.net</p>
+<p>151.101.129.194   github.global.ssl.fastly.net</p>
+<p>151.101.193.194   github.global.ssl.fastly.net</p>
+<p>185.199.108.153   assets-cdn.github.com</p>
+<p>185.199.109.153   assets-cdn.github.com</p>
+<p>185.199.110.153   assets-cdn.github.com</p>
+<p>185.199.111.153   assets-cdn.github.com</p>
+<h5 id="刷新DNS解析缓存并验证"><a href="#刷新DNS解析缓存并验证" class="headerlink" title="刷新DNS解析缓存并验证"></a><strong>刷新DNS解析缓存并验证</strong></h5><p>在我们访问一个域名（网址）时，系统首先会从本地DNS缓存中读取该域名所对应的IP地址。如果系统无法在DNS缓存中找到对应的IP地址，则去查询DNS服务器，获取该域名的解析结果，并将解析结果缓存到本地DNS缓存中，以便下次访问该域名时可以快速地获取IP地址。</p>
+<p>1.刷新DNS解析缓存</p>
+<p>ipconfig &#x2F;flushdns命令可以清除所有的DNS缓存，让系统重新去查询DNS服务器，获取最新的解析结果。</p>
+<ol start="2">
+<li>验证</li>
+</ol>
+<p>在浏览器中输入网址：github.com，成功访问</p>
+<h1 id="五、如何给个人博客更换主题"><a href="#五、如何给个人博客更换主题" class="headerlink" title="五、如何给个人博客更换主题"></a><strong>五、如何给个人博客更换主题</strong></h1><h4 id="GitHub-克隆仓库"><a href="#GitHub-克隆仓库" class="headerlink" title="GitHub 克隆仓库"></a><a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=GitHub&spm=1001.2101.3001.7020"><strong>GitHub</strong></a> <strong>克隆仓库</strong></h4><p>国内直接从 <a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=GitHub&spm=1001.2101.3001.7020">GitHub</a> 克隆仓库的速度可能非常慢容易失败，影响开发效率。本文将分享几种加速 git clone 的方法，显著提升克隆速度。</p>
+<p>方法：使用 ghproxy 代理服务(推荐)</p>
+<p>ghproxy 是一个 GitHub 镜像代理服务，它会将你的请求先发送到代理服务器，然后由代理服务器快速地从 GitHub 获取数据，并返回给你。这种方式能够显著提升 git clone 的速度。</p>
+<p>在<a target="_blank" rel="noopener" href="https://hexo.io/themes/%E5%AE%98%E7%BD%91%E9%80%89%E6%8B%A9%E8%87%AA%E5%B7%B1%E5%96%9C%E6%AC%A2%E7%9A%84%E4%B8%BB%E9%A2%98%E6%9B%B4%E6%8D%A2">https://hexo.io/themes/官网选择自己喜欢的主题更换</a></p>
+<p>使用 ghproxy 代理进行 git clone</p>
+<p>通过以下命令使用 ghproxy 代理来加速克隆操作：</p>
+<p>git clone <a target="_blank" rel="noopener" href="https://mirror.ghproxy.com/https://github.com/USERNAME/REPOSITORY">https://mirror.ghproxy.com/https://github.com/USERNAME/REPOSITORY</a></p>
+<p>例如，克隆一个名为 dockerfiles 的仓库，可以使用如下命令：</p>
+<p>git clone <a target="_blank" rel="noopener" href="https://mirror.ghproxy.com/https:/github.com/stilleshan/dockerfiles">https://mirror.ghproxy.com/https://github.com/stilleshan/dockerfiles</a></p>
+<p>下载后把文件移动到themes文件夹中。</p>
+<p>解决部署到 Github Page 后无 CSS 样式的问题</p>
+<p>方法很简单，在 hexo 根目录下 _config.yml配置文件中，找到对 URL 部分的配置，其他配置选项不动，仅修改 url 选项，如下：</p>
+<p># URL</p>
+<p>##Set your site url here. For example, if you use GitHub Page, set url as ‘<a target="_blank" rel="noopener" href="https://username.github.io/project">https://username.github.io/project</a>‘</p>
+<p>url: <a target="_blank" rel="noopener" href="https://eternaldeath.github.io/%E4%BD%A0%E7%9A%84%E4%BB%93%E5%BA%93%E5%90%8D/">https://eternaldeath.github.io/你的仓库名/</a></p>
+<p>url 放置完整的路径，如果你是在 Github Page 上部署自己的博客，那么则无需添加“你的仓库名”部分，如果你是对某个仓库创建的 Github Page，则需要加上你的仓库名</p>
+<h4 id="创建页面（导航栏列表项）"><a href="#创建页面（导航栏列表项）" class="headerlink" title="创建页面（导航栏列表项）"></a><strong>创建页面（导航栏列表项）</strong></h4><p>列表项名：类别 </p>
+<p>hexo new page categories </p>
+<p>然后将以下代码粘贴到文件中：</p>
+<p>&#x2F;source&#x2F;categories&#x2F;index.md </p>
+<p>-–</p>
+<p>title: categories </p>
+<p>type: categories </p>
+<p>layout: “categories” </p>
+<p>-–</p>
  
       <!-- reward -->
       
