@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+  
+
+    <head>
+      <meta charset="utf-8" />
+        
+      <meta name="description" content="‘有志少女 先读书’" />
+      
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>Linux系统 |  tangxtang</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      
+<link rel="stylesheet" href="/css/fonts/remixicon.css">
+
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.staticfile.org/pace/1.2.4/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    </head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-Linux系统"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  Linux系统
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2025/02/24/Linux%E7%B3%BB%E7%BB%9F/" class="article-date">
+  <time datetime="2025-02-24T11:09:37.000Z" itemprop="datePublished">2025-02-24</time>
+</a>   
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">4.6k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">16 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="📃基础命令"><a href="#📃基础命令" class="headerlink" title="📃基础命令"></a>📃基础命令</h2><h3 id="1-目录结构"><a href="#1-目录结构" class="headerlink" title="1.目录结构"></a>1.目录结构</h3><p>Linux的目录结构是一个树形结构，Windows系统可以拥有多个盘符，即顶级目录，如C盘、D盘、E盘等。</p>
+<p>Linux没有盘符这个概念，只有一个顶级目录  &#x2F;  ，所有文件都在它下面。</p>
+<p>路径描述：</p>
+<ul>
+<li>Linux系统中，路径之间的层级关系，使用：&#x2F; 表示</li>
+<li>Windows系统中，路径之间的层级关系，使用：\ 表示</li>
+</ul>
+<h3 id="2-Linux命令入门"><a href="#2-Linux命令入门" class="headerlink" title="2.Linux命令入门"></a>2.Linux命令入门</h3><h4 id="（1）基础介绍"><a href="#（1）基础介绍" class="headerlink" title="（1）基础介绍"></a>（1）基础介绍</h4><p>学习Linux，本质是学习在命令行下熟练使用Linux的各类命令。</p>
+<ul>
+<li>命令行：即Linux终端（Terminal），是一种命令提示符页面。以纯“字符”的形式操作系统，可以使用各种字符化命令对系统发出操作指令。</li>
+<li>命令：即Linux程序。一个命令就是一个Linux的程序。命令没有图形化页面，可以在命令行（终端中）提供字符化的反馈。</li>
+</ul>
+<p>无论是什么命令，用于什么用途，在Linux中，命令有其通用的格式：</p>
+<p>command  [-options]  [parameter]</p>
+<ul>
+<li>command：命令本身</li>
+<li>-options：[可选，非必填]命令的一些选项，可以通过选项控制命令的行为细节</li>
+<li>parameter：[可选，非必填]命令的参数，多数用于命令的指向目标等</li>
+</ul>
+<p><font size=3 color="red">语法中的[]，表示可选的意思</font></p>
+<p>示例：</p>
+<ul>
+<li>ls -l&#x2F;home&#x2F;itheima，ls是命令本身，-l是选项，&#x2F;home&#x2F;itheima是参数<ul>
+<li>意思是以列表的形式，显示&#x2F;home&#x2F;itheima目录内的内容</li>
+</ul>
+</li>
+<li>cp -r test1 test2，cp是命令本身，-r是选项，test1和test2是参数<ul>
+<li>意思是复制文件夹test1成为test2</li>
+</ul>
+</li>
+</ul>
+<h4 id="（2）ls命令"><a href="#（2）ls命令" class="headerlink" title="（2）ls命令"></a>（2）ls命令</h4><p>ls命令的作用是列出目录下的内容，语法细节如下：</p>
+<p>ls  [-a -l -h]  [Linux路径]</p>
+<ul>
+<li>-a -l -h是可选的选项</li>
+<li>Linux路径是此命令可选参数</li>
+</ul>
+<p>当不使用选项和参数，直接使用ls命令本体，表示：以平铺形式，，如果不给定参数，列出当前工作目录下的内容</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250210173128911.png"></p>
+<p>显示根目录下所有内容</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250215100642348.png"></p>
+<h5 id="1）-a选项"><a href="#1）-a选项" class="headerlink" title="1）-a选项"></a>1）-a选项</h5><ul>
+<li>-a选项，表示：all的意思，即出全部文件（包含隐藏的文件&#x2F;文件夹）</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250215100911897.png"></p>
+<ul>
+<li>图中以.开头的，表示的是Linux系统的隐藏文件&#x2F;文件夹（只要以.开头，就能自动隐藏）</li>
+<li>只有通过-a选项，才能看到这些隐藏文件&#x2F;文件夹</li>
+</ul>
+<h5 id="2）-l选项"><a href="#2）-l选项" class="headerlink" title="2）-l选项"></a>2）-l选项</h5><ul>
+<li>-l选项，表示：以列表（竖向排列）的形式展示内容，并展示更多信息</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250215101446505.png"></p>
+<p>语法中的选项是可以组合使用的，比如学习的-a和-l可以组合应用。</p>
+<p>写法：</p>
+<ul>
+<li>ls -l -a</li>
+<li>ls -la</li>
+<li>ls -al</li>
+</ul>
+<p>上述三种写法，都是一样的，表示同时应用-l和-a的功能</p>
+<h5 id="3）-h选项"><a href="#3）-h选项" class="headerlink" title="3）-h选项"></a>3）-h选项</h5><ul>
+<li>-h表示以易于阅读的形式，列出文件大小，如K、M、G</li>
+<li>-h选项必须搭配-l一起使用</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250215104710720.png"></p>
+<h3 id="3-目录切换（cd-pwd）"><a href="#3-目录切换（cd-pwd）" class="headerlink" title="3.目录切换（cd&#x2F;pwd）"></a>3.目录切换（cd&#x2F;pwd）</h3><h4 id="（1）cd切换工作目录"><a href="#（1）cd切换工作目录" class="headerlink" title="（1）cd切换工作目录"></a>（1）cd切换工作目录</h4><p>当Linux终端打开时，会默认以用户的HOME目录作为当前的工作目录</p>
+<p>我们可以通过cd命令，更改当前所在的工作目录。</p>
+<p>cd命令来自英文：Change Directory</p>
+<p>语法： cd [Linux路径]</p>
+<ul>
+<li>cd命令无需选项，只有参数，表示要切换到哪个目录下</li>
+<li>cd命令直接执行，不写参数，表示回到用户的HOME目录</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250215111724874.png"></p>
+<h4 id="（2）pwd查看当前工作目录"><a href="#（2）pwd查看当前工作目录" class="headerlink" title="（2）pwd查看当前工作目录"></a>（2）pwd查看当前工作目录</h4><p>通过ls验证当前的工作目录，其实是不恰当的。</p>
+<p>可以通过pwd命令，来查看当前所在的工作目录</p>
+<p>pwd命令来自：Print WOrkDirectory</p>
+<p>语法：pwd</p>
+<ul>
+<li>pwd命令，无选项，无参数，直接输入pwd即可</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250215112014237.png"></p>
+<h3 id="4-路径命令"><a href="#4-路径命令" class="headerlink" title="4.路径命令"></a>4.路径命令</h3><h4 id="（1）相对路径和绝对路径"><a href="#（1）相对路径和绝对路径" class="headerlink" title="（1）相对路径和绝对路径"></a>（1）相对路径和绝对路径</h4><ul>
+<li>cd&#x2F;home&#x2F;itheima&#x2F;Desltop	绝对路径写法</li>
+<li>cd Desktop      相对路径写法</li>
+</ul>
+<p>绝对路径：以<font color="red">根目录</font>为起点，描述路径的一种写法，路径描述以&#x2F;开头</p>
+<p>相对路径：以<font color="red">当前工作目录</font>为起点，描述路径的一种写法，路径描述无需以&#x2F;开头</p>
+<h4 id="（2）特殊路径符"><a href="#（2）特殊路径符" class="headerlink" title="（2）特殊路径符"></a>（2）特殊路径符</h4><ul>
+<li>.          表示当前目录，比如：cd.&#x2F;Desktop表示切换到当前目录下的Desktop目录内，和cd Desktop效果一致</li>
+<li>..         表示上一级目录，比如：cd.. 即可切换到上一级目录，cd..&#x2F;..切换到上两级的目录</li>
+<li>~         表示HOME目录，比如：cd~ 即可切换到HOME目录或cd ~&#x2F;Desktop，切换到HOME内的Desktop目录</li>
+</ul>
+<h3 id="5-创建目录（mkdir）"><a href="#5-创建目录（mkdir）" class="headerlink" title="5.创建目录（mkdir）"></a>5.创建目录（mkdir）</h3><p>通过mkdir命令创建新的目录（文件夹）</p>
+<p>mkdir来自英文：Make Directory</p>
+<p>语法：mkdir [-p] Linux路径</p>
+<ul>
+<li>参数必填，表示Linux路径，即要创建文件夹的路径，相对路径或绝对路径均可</li>
+<li>-p选项可选，表示自动创建不存在的父目录，是用于创建连续多层级的目录</li>
+</ul>
+<p>创建test文件尝试，特殊路径符。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250218200654870.png"></p>
+<p>如果想一次性创建多个层级的目录，如下图</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250218201240142.png"></p>
+<p>会报错，因为上级目录one并不存在，所以无法创建two目录</p>
+<p>此时可以通过-p选项，将一整个链条都创建完成</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250218201723944.png"></p>
+<p>注意：创建文件夹需要修改权限，请确保操作均在HOME文件目录内，不要再HOME外操作涉及到权限问题，HOME外无法完成</p>
+<h3 id="6-文件操作（touch、cat、more、cp、mv）"><a href="#6-文件操作（touch、cat、more、cp、mv）" class="headerlink" title="6.文件操作（touch、cat、more、cp、mv）"></a>6.文件操作（touch、cat、more、cp、mv）</h3><h4 id="（1）touch创建文件"><a href="#（1）touch创建文件" class="headerlink" title="（1）touch创建文件"></a>（1）touch创建文件</h4><p>语法：touch Linux路径</p>
+<ul>
+<li>touch命令无选项，参数必填，表示要创建的文件路径，相对、绝对、特殊路径符均可以使用</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250218203720157.png"></p>
+<p>通过观察可以知道文件夹的颜色为深色，文件为白色。但是仅通过颜色判断不够准确，建议使用ls -l，查看文件和文件夹。</p>
+<h4 id="（2）cat命令查看文件内容"><a href="#（2）cat命令查看文件内容" class="headerlink" title="（2）cat命令查看文件内容"></a>（2）cat命令查看文件内容</h4><p>在有了文件后，可以通过cat命令查看文件的内容</p>
+<p>语法：cat Linux路径</p>
+<ul>
+<li>cat同样没有选项，只有必填参数，参数表示：被查看的文件路径，相对、绝对、特殊路径符都可以使用</li>
+</ul>
+<p>基于vi编辑器先在txt文件中编辑好内容，使用cat命令查看</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250221163319900.png"></p>
+<h4 id="（3）more命令查看文件内容"><a href="#（3）more命令查看文件内容" class="headerlink" title="（3）more命令查看文件内容"></a>（3）more命令查看文件内容</h4><p>和cat的不同之处：</p>
+<ul>
+<li>cat是直接将内容全部显示出来</li>
+<li>more支持翻页，如果文件内容过多，可以一页一页的展示</li>
+</ul>
+<p>语法：more Linux路径</p>
+<ul>
+<li>同样没有选项，只有必填参数，参数表示：被查看的文件路径，相对、绝对、特殊路径符都可以使用</li>
+<li>在查看过程中，通过空格翻页</li>
+<li>通过q退出查看</li>
+</ul>
+<p>（4）cp命令复制文件文件夹</p>
+<p>cp命令可以用于复制文件\文件夹，cp命令来自英文单词：copy</p>
+<p>语法：cp [-r] 参数1 参数2</p>
+<ul>
+<li>-r选项，可选，用于复制文件夹使用，表示递归</li>
+<li>参数1，Linux路径，表示被复制的文件或文件夹</li>
+<li>参数2，Linux路径，表示要复制去的地方</li>
+</ul>
+<p>在test1文件夹中新建一个test2文件夹，并将test1文件夹内的hello.txt复制到test2文件夹中</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250221164410505-1740127505166-1.png"></p>
+<h4 id="（5）mv命令移动文件或文件夹"><a href="#（5）mv命令移动文件或文件夹" class="headerlink" title="（5）mv命令移动文件或文件夹"></a>（5）mv命令移动文件或文件夹</h4><p>mv命令可以用于移动文件或文件夹，mv命令来自英文单词：move</p>
+<p>语法：mv 参数1 参数2</p>
+<ul>
+<li>参数1，Linux路径，表示被移动的文件或文件夹</li>
+<li>参数2，Linux路径，表示要移动去的地方，如果目标不存在，则进行改名，确保目标存在</li>
+</ul>
+<p>在test1文件夹中新建test3文件夹，并将test1文件夹中的hello.txt移动到test3文件夹中。（相同效果对文件夹也有效，只需要在cp 后面加上 -r）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250221164928437.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250221171025784.png"></p>
+<p>在test3文件夹中新建文件hello1.txt，并编写文件输入“ zai xue xi bu yao da rao”，使用mv命令 mv hello.txt hello1.txt ，后会出现提示确认否，输入yes确认后，会发现hello.txt不见了，只剩下了hello1.txt，查看hello1.txt中的内容，显示的是”tang x tang”，可以发现hello1.txt中的内容被hello.txt的内容覆盖，换言之，hello.txt文件的文件名，<font color="red">改名</font>为了hello1.txt。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250221165832517.png"></p>
+<p>（6）rm命令删除文件夹、文件</p>
+<p>rm命令来自英文单词：remove</p>
+<p>语法：rm [-r -f] 参数1 参数2……参数n</p>
+<ul>
+<li>同cp命令一样，-r选项用于删除文件夹</li>
+<li>-f表示force，强制删除（不糊i弹出提示确认信息）<ul>
+<li>普通用户删除内容不会弹出提示，只有root管理用用户删除内容会有提示</li>
+<li>所以一般普通用户用不到-f选项</li>
+</ul>
+</li>
+<li>参数1、参数2……、参数n表示要删除的文件或文件夹路径，按照空格隔开</li>
+</ul>
+<p>将test1文件夹中的test4文件夹删除</p>
+<p><img src="/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA.assets/image-20250221171254034-1740129226994-4.png"></p>
+<h5 id="删除文件、文件夹-通配符"><a href="#删除文件、文件夹-通配符" class="headerlink" title="删除文件、文件夹 - 通配符"></a>删除文件、文件夹 - 通配符</h5><p>rm命令支持通配符*，用来做模糊匹配</p>
+<ul>
+<li>符号*表示通配符，即匹配任意内容（包含空），示例：</li>
+<li>test*，表示匹配任何以test开头的内容</li>
+<li>*test，表示匹配任何以test结尾的内容</li>
+<li>*test *，表示匹配任何包含test的内容</li>
+<li>删除文件夹，必须使用-r选项才可以</li>
+<li>强制删除，-f选项</li>
+<li>普通用户可以输入su - root，并输入密码临时切换到root用户体验</li>
+<li>通过输入exit命令，退回普通用户。（临时用root，用完记得退出）</li>
+</ul>
+<p>将test1文件夹中以test开头的文件夹全部删除，在提示是否删除test2文件夹时没有输入yes所以test2文件夹被保留，但test2文件夹中的内容都被删除了</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250221171930804.png"></p>
+<p><font color="red">注意：rm是一个危险的命令，特别是在处于root（超级管理员）用户的时候，请谨慎使用。如下命令，千万不要再root管理员用户下执行（效果等同于在Windows上执行C盘格式化）：</font></p>
+<p><font color="red">rm -rf &#x2F;</font></p>
+<p><font color="red">rm -rf &#x2F;*</font></p>
+<h3 id="7-查找命令（which、find）"><a href="#7-查找命令（which、find）" class="headerlink" title="7.查找命令（which、find）"></a>7.查找命令（which、find）</h3><h4 id="（1）which查看命令的程序文件位置"><a href="#（1）which查看命令的程序文件位置" class="headerlink" title="（1）which查看命令的程序文件位置"></a>（1）which查看命令的程序文件位置</h4><p>前面学习的Linux命令，其实它们的本体就是一个个的二进制可执行程序，和Windows系统中的.exe文件，是一个意思。</p>
+<p>可以通过which命令，查看所使用的一系列命令的程序文件存放在哪儿</p>
+<p>语法：which 要查找的命令</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250221191206787.png"></p>
+<h4 id="（2）find命令按文件名查找文件"><a href="#（2）find命令按文件名查找文件" class="headerlink" title="（2）find命令按文件名查找文件"></a>（2）find命令按文件名查找文件</h4><p>类似图形化系统提供的搜索功能，搜索指定文件</p>
+<p>在Linux系统中，可以通过find命令去搜索指定的文件。</p>
+<p>语法：find 起始路径 -name “被查找文件名”</p>
+<p>查找hello.txt文件和查找test文件夹</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250221191939509.png"></p>
+<h5 id="find命令-通配符"><a href="#find命令-通配符" class="headerlink" title="find命令 通配符"></a>find命令 通配符</h5><p>语法：find 起始路径 -name “被查找文件名”</p>
+<p>被查找文件名，支持使用通配符*来做模糊查询</p>
+<ul>
+<li>符号*表示通配符，即匹配人愿意内容（包含空），示例：</li>
+<li>test*，表示匹配任何以test开头的内容</li>
+<li>*test，表示匹配任何以test结尾的内容</li>
+<li>*test *，表示匹配任何包含test的内容</li>
+</ul>
+<h5 id="find命令-按文件大小查找文件"><a href="#find命令-按文件大小查找文件" class="headerlink" title="find命令 按文件大小查找文件"></a>find命令 按文件大小查找文件</h5><p>语法：find 起始路径 -size +或者-n[KMG]</p>
+<ul>
+<li>+、-表示大于和小于</li>
+<li>n表示大小数字</li>
+<li>kMG表示大小单位，k（小写字母）表示kb，M表示MB，G表示GB</li>
+</ul>
+<p>示例：</p>
+<ul>
+<li>查找小于10KB的文件：find &#x2F; -size -10k</li>
+<li>查找大于100MB的文件：find &#x2F; -size +100M</li>
+<li>查找大于1GB的文件：find &#x2F; -size +1G</li>
+</ul>
+<h3 id="8-grep、wc和管道符"><a href="#8-grep、wc和管道符" class="headerlink" title="8.grep、wc和管道符"></a>8.grep、wc和管道符</h3><h4 id="（1）grep命令-通过关键字过滤文件行"><a href="#（1）grep命令-通过关键字过滤文件行" class="headerlink" title="（1）grep命令 通过关键字过滤文件行"></a>（1）grep命令 通过关键字过滤文件行</h4><p>通过grep命令，从文件中通过关键字过滤文件行</p>
+<p>语法：grep [-n] 关键字 文件路径</p>
+<ul>
+<li>选项-n，可选，表示在结果中显示匹配的行的行号</li>
+<li>参数，关键字，必填，表示过滤的关键字，带有空格或其他特殊符号，建议使用“ ”将关键字包围起来</li>
+<li>参数，文件路径，必填，表示要过滤内容的文件路径，可作为内容输入端口</li>
+</ul>
+<p>下图为操作示例</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250221194017857.png"></p>
+<h4 id="（2）wc命令-数量统计"><a href="#（2）wc命令-数量统计" class="headerlink" title="（2）wc命令 数量统计"></a>（2）wc命令 数量统计</h4><p>通过wc命令统计文件的行数、单词数量等</p>
+<p>语法：wc [-c -m -l -w] 文件路径</p>
+<ul>
+<li>选项，-c，统计bytes数量</li>
+<li>选项，-m，统计字符数量</li>
+<li>选项，-l，统计行数</li>
+<li>选项，-w，统计单词数量</li>
+<li>参数，文件路径，被统计的文件，可作为内容输入端口</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250221200417678.png"></p>
+<h4 id="（2）管道符"><a href="#（2）管道符" class="headerlink" title="（2）管道符"></a>（2）管道符</h4><p>新的特殊符号：|</p>
+<p>含义：将管道符左边命令的结果，作为右边命令的输入</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250221200641715.png"></p>
+<p>如上图：</p>
+<ul>
+<li>cat hello.txt的输出结果（文件内容）</li>
+<li>作为右边grep命令的输入（被过滤文件）</li>
+</ul>
+<h3 id="9-echo、tail和重定向符"><a href="#9-echo、tail和重定向符" class="headerlink" title="9.echo、tail和重定向符"></a>9.echo、tail和重定向符</h3><h4 id="（1）echo命令-在命令行内输出指定内容"><a href="#（1）echo命令-在命令行内输出指定内容" class="headerlink" title="（1）echo命令 在命令行内输出指定内容"></a>（1）echo命令 在命令行内输出指定内容</h4><p>语法：echo 输出内容</p>
+<ul>
+<li>无需选项，只有一个参数，表示要输出的内容，复杂内容可以用“ ”包围</li>
+<li>带有空格或\等特殊符号，建议使用双引号包围<ul>
+<li>如果不包围的化，空格后很容易被识别为参数2，尽管echo不受影响，但是要养成习惯</li>
+</ul>
+</li>
+</ul>
+<p>在终端上显示：Holle Linux</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250221201543727.png"></p>
+<h5 id="反引号"><a href="#反引号" class="headerlink" title="反引号&#96;"></a>反引号&#96;</h5><p>将命令用反引号（通常也称之为飘号）&#96; 将其包围，被包围的内容，蒋辉作为命令执行，而非普通字符</p>
+<p>如下图，本意是想将当前工作目录路径输出，但是pwd被当作普通字符被输出了，通过使用&#96;将其包围，就会被作为命令执行</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250221202100907.png"></p>
+<h4 id="（2）重定向符-和"><a href="#（2）重定向符-和" class="headerlink" title="（2）重定向符 &gt;和&gt;&gt;"></a>（2）重定向符 &gt;和&gt;&gt;</h4><p>特殊符号，重定向符：&gt;和&gt;&gt;</p>
+<ul>
+<li>&gt;，将左侧命令的结果，覆盖写入到符号右侧指定的文件中</li>
+<li>&gt;&gt;，将左侧命令的结果，追加写入到符号右侧指定的文件中</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250221203410477.png"></p>
+<h4 id="（3）tail命令-查看尾部内容-跟踪最新更改"><a href="#（3）tail命令-查看尾部内容-跟踪最新更改" class="headerlink" title="（3）tail命令 查看尾部内容 跟踪最新更改"></a>（3）tail命令 查看尾部内容 跟踪最新更改</h4><p>语法：tail [-f -num] Linux路径</p>
+<ul>
+<li>参数，Linux路径，表示被跟踪的文件路径</li>
+<li>选项，-f，表示持续跟踪，结束使用ctrl+c</li>
+<li>选项，-num，表示查看尾部多少行，不填默认10行，将num替换成数字</li>
+</ul>
+<p>持续跟踪的操作流程</p>
+<p>输入命令后，复制标签建立新窗口，在新窗口对被跟踪文件的操作，会在原窗口显示，比如在hello.txt文件中添加新的字符等。</p>
+<h3 id="10-vi编辑器"><a href="#10-vi编辑器" class="headerlink" title="10.vi编辑器"></a>10.vi编辑器</h3><h4 id="（1）基本了解"><a href="#（1）基本了解" class="headerlink" title="（1）基本了解"></a>（1）基本了解</h4><p>vi\vim是visual interface的简称，是Linux中最经典的文本编辑器</p>
+<p>同图形化界面中的文本编辑器一样，vi是命令行下对文本文件编辑器的绝佳选择。</p>
+<p><font color="red">vim是vi的加强版本，兼容vi的所有指令，不仅能编辑文本，而且还具有shell程序编辑的功能，可以不同颜色的字体来辨别语语法的正确性，极大的方便了程序的设计和编辑性。</font></p>
+<h4 id="（2）三种工作模式"><a href="#（2）三种工作模式" class="headerlink" title="（2）三种工作模式"></a>（2）三种工作模式</h4><h5 id="1）命令模式（Command-mode）"><a href="#1）命令模式（Command-mode）" class="headerlink" title="1）命令模式（Command mode）"></a>1）命令模式（Command mode）</h5><p>​	命令模式下，锁敲的按键编辑器都理解为命令，以命令驱动执行不同的功能。此模式下，不能自由进行文本编辑。</p>
+<h5 id="2）输入模式（Insert-mode）"><a href="#2）输入模式（Insert-mode）" class="headerlink" title="2）输入模式（Insert mode）"></a>2）输入模式（Insert mode）</h5><p>​	也就是所有的编辑模式、插入模式。此模式下，可以对文件内容进行自由编辑。</p>
+<h5 id="3）底线命令模式（Last-line-mode）"><a href="#3）底线命令模式（Last-line-mode）" class="headerlink" title="3）底线命令模式（Last line mode）"></a>3）底线命令模式（Last line mode）</h5><p>​	以：开始，通常用于文件的保存、退出。</p>
+<p>语法：（推荐使用vim，它兼容全部的vi功能）</p>
+<p>vi 文件路径</p>
+<p>vim 文件路径</p>
+<ul>
+<li>如果文件路径表示的文件不存在，那么此命令会用于编辑新文件</li>
+<li>如果文件路径表示的文件存在，那么此命令用于编辑已有文件</li>
+</ul>
+<p><img src="/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA.assets/image-20250220173127758-1740043953051-1.png" alt="工作模式"></p>
+<p>快速体验：</p>
+<p>通过vi&#x2F;vim命令编辑文件，会打开一个新窗口，此时这个窗口就是：命令模式窗口</p>
+<p>命令模式窗口时vi编辑器的入口和出口，如上图</p>
+<ul>
+<li>进入vi编辑器会进入命令模式</li>
+<li>进入命令模式输入键盘指令，可以进入输入模式</li>
+<li>输入模式需要退回到命令模式，然后通过命令可以进入底线命令模式</li>
+</ul>
+<p>快速体验操作：</p>
+<p>1.使用 vi hello.txt，新建一个新文件，执行后进入的是命令模式</p>
+<p>2.在命令模式内，按键盘i，进入输入模式</p>
+<p>3.再输入模式内输入：tang x tang</p>
+<p>4.输入完成后，按esc回退到命令模式</p>
+<p>5.在命令模式内，按键盘：，进入底线命令模式</p>
+<p>6.在底线命令输入：wq，保存文件并退出vi编辑器</p>
+<p>通过ls查看是否存在、创建是否成功，通过cat命令查看文件内容。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250220174659079.png"></p>
+<p>在命令模式下的常见快捷键</p>
+<table>
+<thead>
+<tr>
+<th align="left">模式</th>
+<th align="left">命令</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">命令模式</td>
+<td align="left">i</td>
+<td align="left">在当前光标位置进入输入模式</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">a</td>
+<td align="left">在当前光标位置 之后 进入输入模式</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">I</td>
+<td align="left">在当前行的 开头 进入输入模式</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">A</td>
+<td align="left">在当前行的 结尾 进入输入模式</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">o</td>
+<td align="left">在当前光标 下一行 进入输入模式</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">O</td>
+<td align="left">在当前光标 上一行 进入输入模式</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">esc</td>
+<td align="left">在任何情况下输入esc都能回到命令模式</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">0</td>
+<td align="left">移动光标到当前行的开头</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">$</td>
+<td align="left">移动光标到当前行的结尾</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">&#x2F;</td>
+<td align="left">进入搜索模式</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">n</td>
+<td align="left">向下继续搜索</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">N</td>
+<td align="left">向上继续搜索</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">dd</td>
+<td align="left">删除光标所在行的内容</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">ndd</td>
+<td align="left">n是数字，表示删除当前光标向下n行</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">yy</td>
+<td align="left">复制当前行</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">nyy</td>
+<td align="left">n是数字，表示复制当前行和下面的n行</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">p</td>
+<td align="left">粘贴复制的内容</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">u</td>
+<td align="left">撤销修改</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">ctrl+r</td>
+<td align="left">反向撤销修改</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">gg</td>
+<td align="left">跳到首行</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">G</td>
+<td align="left">跳到行尾</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">dG</td>
+<td align="left">从当前行开始，向下全部删除</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">dgg</td>
+<td align="left">从当前行开始，向上全部删除</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">d$</td>
+<td align="left">从当前光标开始，删除到本行的结尾</td>
+</tr>
+<tr>
+<td align="left">命令模式</td>
+<td align="left">d0</td>
+<td align="left">从当前光标开始，删除到本行的开头</td>
+</tr>
+</tbody></table>
+<p>底线命令模式，支持如下命令：</p>
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th>命令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>底线命令模式</td>
+<td>:wq</td>
+<td>保存并退出</td>
+</tr>
+<tr>
+<td>底线命令模式</td>
+<td>:q</td>
+<td>仅退出</td>
+</tr>
+<tr>
+<td>底线命令模式</td>
+<td>:q!</td>
+<td>强制退出</td>
+</tr>
+<tr>
+<td>底线命令模式</td>
+<td>:w</td>
+<td>仅保存</td>
+</tr>
+<tr>
+<td>底线命令模式</td>
+<td>:set nu</td>
+<td>显示行号</td>
+</tr>
+<tr>
+<td>底线命令模式</td>
+<td>:set paste</td>
+<td>设置粘贴模式</td>
+</tr>
+</tbody></table>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://tangxtang1119.github.io/2025/02/24/Linux%E7%B3%BB%E7%BB%9F/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VMware/" rel="tag">VMware</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+    
+      <a href="/2025/02/24/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B%E8%AE%A1%E5%88%92/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">安卓逆向工程计划</div>
+      </a>
+    
+  </nav>
+
+   
+ 
+   
+  
+   
+    <script src="https://cdn.staticfile.org/twikoo/1.4.18/twikoo.all.min.js"></script>
+    <div id="twikoo" class="twikoo"></div>
+    <script>
+        twikoo.init({
+            envId: ""
+        })
+    </script>
+ 
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2025
+        <i class="ri-heart-fill heart_icon"></i> 唐小唐
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/yuhangyuan.ico" alt="tangxtang"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i></p>
+  <div class="reward-box">
+    
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.staticfile.org/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.staticfile.org/clipboard.js/2.0.10/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    <div id="music">
+    
+    
+    
+    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="200" height="52"
+        src="//music.163.com/outchain/player?type=2&id=2658106011&auto=1&height=32"></iframe>
+</div>
+
+<style>
+    #music {
+        position: fixed;
+        right: 15px;
+        bottom: 0;
+        z-index: 998;
+    }
+</style>
+    
+    
+
+  </div>
+</body>
+
+</html>

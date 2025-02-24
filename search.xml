@@ -1,113 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>VMware虚拟机</title>
-    <url>/2025/02/20/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA/</url>
-    <content><![CDATA[<h2 id="📚专业术语"><a href="#📚专业术语" class="headerlink" title="📚专业术语"></a>📚专业术语</h2><p>.iso：是电脑上光盘镜像（CD Mirror）的存储格式之一，因为其是i根据ISO-9660有关CD-ROM文件系统标准存储的文件，许哦一通常在电脑中以后缀,iso命名，俗称iso镜像文件。</p>
-<p>镜像文件：镜像文件可以类比为图书馆的一本书的副本。一本珍贵的书，想要确保即使在原书损坏或丢失的情况下，书的内容仍然可以得到保留和使用。为此，制作了这本书的精确复制品，这个复制品包含了原书的所有页面和文字，但它可能是以特殊的格式存储的，比如扫描后的PDF文件或者一系列图片。</p>
-<h2 id="🖥创建新的虚拟机"><a href="#🖥创建新的虚拟机" class="headerlink" title="🖥创建新的虚拟机"></a>🖥创建新的虚拟机</h2><h3 id="1-Window系统"><a href="#1-Window系统" class="headerlink" title="1.Window系统"></a>1.Window系统</h3><p>点击软件首页的创建新的虚拟机，进入新建导向</p>
-<p>选择自定义（高级）然后点击下一步</p>
-<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206165405761.png"></p>
-<p>硬件兼容性选择软件版本，然后点击下一步</p>
-<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206182831247.png"></p>
-<p>选择安装程序光盘映像文件（iso），选择安装好的光盘映像文件，可以去微软官网上去下载，然后点击下一步</p>
-<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206182926495.png"></p>
-<p>完成windows简易安装信息，然后点击下一步</p>
-<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206182950623.png"></p>
-<p>对新建的虚拟机进行命名，名字注意区分其他并易懂，还有保存位置，然后点击下一步</p>
-<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206183009197.png"></p>
-<p>选择虚拟机的固件类型，即引导设备，然后点击下一步</p>
-<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206183034037.png"></p>
-<p>选择虚拟机处理器配置，处理器数量、每个处理器的内核数量，然后点击下一步</p>
-<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206183051953.png"></p>
-<p>设置虚拟机的内存，不要太大也不要太小，然后点击下一步</p>
-<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206183110891.png"></p>
-<p>选择网络模式，使用网络地址转换（NAT），然后点击下一步</p>
-<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206183132574.png"></p>
-<p>选择I&#x2F;O控制器类型，按照新建向导的推荐选择，然后点击下一步</p>
-<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206183147255.png"></p>
-<p>选择磁盘类型，按照新建向导的推荐选择，然后点击下一步</p>
-<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250207122431324.png"></p>
-<p>选择磁盘容量，然后点击下一步</p>
-<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250207122452975.png"></p>
-<p>确定号新建的虚拟机的设置信息，然后点击下一步</p>
-<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250207122514411.png"></p>
-<p>至此，Windows10虚拟机创建成功，等待启动然后设置，激活系统。</p>
-<h3 id="2-Linux系统"><a href="#2-Linux系统" class="headerlink" title="2.Linux系统"></a><strong>2.Linux系统</strong></h3><p>点击软件首页的创建新的虚拟机，进入新建导向</p>
-<p>选择自定义（高级）然后点击下一步</p>
-<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206163543615.png"></p>
-<p>保持默认不变，然后点击下一步</p>
-<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206163649773.png"></p>
-<p>选择稍后安装操作系统，然后点击下一步</p>
-<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206164001987.png"></p>
-<p>在选择客户机i操作系统时选择Linux系统，版本选择自己准备的ISO文件的版本，一定要匹配，然后单击下一步</p>
-<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206164041840.png"></p>
-<p>给本虚拟机命名，然后点击下一步</p>
-<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206164349880.png"></p>
-<p>处理器配置，为虚拟机指定处理器数量，设置为2，然后点击下一步</p>
-<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206164527143.png"></p>
-<p>设置内存，一般两个G，然后点击下一步</p>
-<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206164616967.png"></p>
-<p>后续一直保持默认推荐，然后点击下一步</p>
-<p>确认新建虚拟机的基本信息，然后点击下一步</p>
-<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206165452662.png"></p>
-<p>至此虚拟机的创建已完成，然后检查一下网络配置</p>
-<p>点击编辑&gt;虚拟网络编辑器，查看VMnet8，子网的ip地址是否和NAT设置中的ip地址前三位一致。正常来说是默认配置好的。只是检查以下，不是乱去设置。</p>
-<p>接下来去给<strong>虚拟机配置镜像</strong>。</p>
-<p>点击编辑虚拟机设置&gt;CD&#x2F;DVD&gt;选择使用镜像文件，点击浏览找到提前下载好的镜像文件，然后点确定，完成后点击开启虚拟机。</p>
-<p>然后点击install CentOS，选项变白就是选中了</p>
-<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206170409114.png"></p>
-<p>然后选中想要的语言，选择简体中文就行,点击继续</p>
-<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206170558494.png"></p>
-<p>进入安装信息摘要基本不用改，完成以下安装位置确认，然后点击安装。设置Root密码。创建用户根据个人需要，就是权限比较低的用户。</p>
-<p>至此安装成功，点击重启就行。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206171032438.png"></p>
-<p>注意进入后输入用户和密码，密码是不会显示的，输完后回车就行，出现root@localhost就是成功了。</p>
-<p>输入cd &#x2F;，再输入ll，查看所有文件。(注意cd 后面要有一个空格)</p>
-<p>接下来配置虚拟机的网络。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-02-06%20171537.jpg"></p>
-<p>手动输入，以下路径，虚拟机内无法复制粘贴</p>
-<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206171841943.png"></p>
-<p>然后找到ifcfg-ens33，打开它编辑</p>
-<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206171953000.png" alt="image-20250206171953000"></p>
-<p>使用vi ifcfg-ens33，进入修改。按i，进入修改模式，将BOOTPROTO&#x3D;dhcp（默认），ONBOOT修改为yes。然后按esc退出修改模式。输入:wq，回车强制保存。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206172438904.png"></p>
-<p>接下来就是去重启网络，service network restart，然后测试是否能访问外网，ping一下百度，出现连接网速表示成功，ctrl+c结束。</p>
-<p>后续参考视频【【2024最新】Vmware虚拟机安装Linux系统及配置网络超详细教学安装Centos使用Vmare安装附带安装包及镜像】<a href="https://www.bilibili.com/video/BV1MriFeaEci?vd_source=cbd0e7aa3299fa0fcc330c5ee16869bc">https://www.bilibili.com/video/BV1MriFeaEci?vd_source=cbd0e7aa3299fa0fcc330c5ee16869bc</a></p>
-<h2 id="📺操作系统的操作模式"><a href="#📺操作系统的操作模式" class="headerlink" title="📺操作系统的操作模式"></a>📺操作系统的操作模式</h2><p>对操作系统的使用，有2种使用形式：</p>
-<ul>
-<li><p>图形化页面使用操作系统</p>
-</li>
-<li><p>以命令的形式使用操作系统</p>
-</li>
-</ul>
-<p>不论是Windows系统还是Linux系统或是MacOS系统，以获得图形化反馈的形式去使用操作系统。</p>
-<ul>
-<li><p>图形化：使用操作系统提供的图形化页面，以获得图形化反馈形式去使用操作系统。</p>
-</li>
-<li><p>命令行：使用操作系统提供的各类命令，以获得字符反馈的形式去使用操作系统。</p>
-</li>
-</ul>
-<p>无论是企业开发亦或是个人开发，使用Linux擦欧总系统，多数都是使用的：命令行。</p>
-<p>这是因为：</p>
-<ul>
-<li>Linux从诞生至今，在图形化页面的优化上，并未重点发力。所以LInux操作系统的图形化页面：不好用、不稳定。</li>
-<li>在开发中，使用命令行形式，效率更高，更加直观，并且资源占用低、程序运行更稳定。</li>
-</ul>
-<h2 id="💻网络连接的三种模式"><a href="#💻网络连接的三种模式" class="headerlink" title="💻网络连接的三种模式"></a>💻网络连接的三种模式</h2><h3 id="1-桥接模式：直接连接物理网络"><a href="#1-桥接模式：直接连接物理网络" class="headerlink" title="1.桥接模式：直接连接物理网络"></a>1.桥接模式：直接连接物理网络</h3><p>使用主机中的物理网卡VMnet0，有线网卡或者无线网卡，可以连接主机，并且可以访问局域内的计算机，如果主机可以连接外网，虚拟机也可以连接外网，此时物理主机相当于一个交换机，把所有桥接模式的虚拟机都连接在同一个交换机上，自己在这个局域网中。注意：容易造成IP冲突。</p>
-<h3 id="2-NAT模式：用于共享主机的IP地址"><a href="#2-NAT模式：用于共享主机的IP地址" class="headerlink" title="2.NAT模式：用于共享主机的IP地址"></a>2.NAT模式：用于共享主机的IP地址</h3><p>使用的是虚拟机的网卡VMnet8，可以连接主机，也可以来连接外网，虚拟机IP地址经过NAT转换，与物理机IP地址不在同一网段，所以不能访问局域网内的计算机。</p>
-<h3 id="3-仅主机模式：与主机共享的专用网络"><a href="#3-仅主机模式：与主机共享的专用网络" class="headerlink" title="3.仅主机模式：与主机共享的专用网络"></a>3.仅主机模式：与主机共享的专用网络</h3><p>使用的是虚拟机中的VMnet1，可以连接到主机，不能访问局域网内的计算机，也不能连接外网，当我们要组成一个与物理网络相隔离的虚拟网络时可以选择仅主机模式。</p>
-<h2 id="📼虚拟机克隆"><a href="#📼虚拟机克隆" class="headerlink" title="📼虚拟机克隆"></a>📼虚拟机克隆</h2><p>如果已经安装了一台linux操作系统，还想再更多的，没必要再重新安装，只需要克隆就行。</p>
-<h3 id="1-直接拷贝一份安装好的虚拟机文件"><a href="#1-直接拷贝一份安装好的虚拟机文件" class="headerlink" title="1.直接拷贝一份安装好的虚拟机文件"></a>1.直接拷贝一份安装好的虚拟机文件</h3><p>将虚拟机文件拷贝到另一个盘的文件夹下，文件名可以重命名，也可以保留原名。通过VMware的打开文件，打开拷贝虚拟机文件。</p>
-<h3 id="2-使用VMware的克隆操作"><a href="#2-使用VMware的克隆操作" class="headerlink" title="2.使用VMware的克隆操作"></a>2.使用VMware的克隆操作</h3><p>注意：克隆时，需要先关闭正在运行的linux系统。</p>
-<p>虚拟机&gt;右键至管理&gt;克隆</p>
-<p>克隆类型有两种：创建链接克隆、创建完整克隆。</p>
-<p>创建链接克隆，是对原虚拟机的引用，所需要的存储磁盘空间较少，访问的是原虚拟机，是同一个系统。</p>
-<p>创建完整克隆：是原虚拟机当前状态的完整副本，此选项使得虚拟机完全独立，需要较多的存储磁盘空间。</p>
-<h2 id="📷虚拟机快照"><a href="#📷虚拟机快照" class="headerlink" title="📷虚拟机快照"></a>📷虚拟机快照</h2><p>如果在使用虚拟机系统的时候，想回到原先的某一个状态，也就是说担心有些操作造成系统异常，需要回到原先某个正常运行的状态，VMware提供了一个这样的功能，就叫做快照管理。</p>
-<p>推荐关机操作，没关机也可以就是会时间久一点。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250210163939993.png"></p>
-<h2 id="📃基础命令"><a href="#📃基础命令" class="headerlink" title="📃基础命令"></a>📃基础命令</h2><h3 id="1-目录结构"><a href="#1-目录结构" class="headerlink" title="1.目录结构"></a>1.目录结构</h3><p>Linux的目录结构是一个树形结构，Windows系统可以拥有多个盘符，即顶级目录，如C盘、D盘、E盘等。</p>
+    <title>Linux系统</title>
+    <url>/2025/02/24/Linux%E7%B3%BB%E7%BB%9F/</url>
+    <content><![CDATA[<h2 id="📃基础命令"><a href="#📃基础命令" class="headerlink" title="📃基础命令"></a>📃基础命令</h2><h3 id="1-目录结构"><a href="#1-目录结构" class="headerlink" title="1.目录结构"></a>1.目录结构</h3><p>Linux的目录结构是一个树形结构，Windows系统可以拥有多个盘符，即顶级目录，如C盘、D盘、E盘等。</p>
 <p>Linux没有盘符这个概念，只有一个顶级目录  &#x2F;  ，所有文件都在它下面。</p>
 <p>路径描述：</p>
 <ul>
@@ -582,19 +478,180 @@
 </tbody></table>
 ]]></content>
       <tags>
-        <tag>软件</tag>
-        <tag>Linux系统</tag>
+        <tag>VMware</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
-    <title>Ghidra的安装</title>
-    <url>/2025/02/06/Ghidra%E7%9A%84%E5%AE%89%E8%A3%85/</url>
-    <content><![CDATA[]]></content>
+    <title>安卓逆向工程计划</title>
+    <url>/2025/02/24/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B%E8%AE%A1%E5%88%92/</url>
+    <content><![CDATA[<p>以下是针对 自学安卓逆向工程 的半年学习路线规划，结合 理论+实战，逐步掌握核心技能。</p>
+<hr>
+<h3 id="第一阶段：基础准备（1个月）"><a href="#第一阶段：基础准备（1个月）" class="headerlink" title="第一阶段：基础准备（1个月）"></a><strong>第一阶段：基础准备（1个月）</strong></h3><p><strong>目标</strong>：掌握编程基础、安卓开发原理、逆向工程基础工具。</p>
+<h4 id="1-编程基础（Java-Kotlin）"><a href="#1-编程基础（Java-Kotlin）" class="headerlink" title="1. 编程基础（Java&#x2F;Kotlin）"></a><strong>1. 编程基础（Java&#x2F;Kotlin）</strong></h4><ul>
+<li><strong>学习内容</strong>：<ul>
+<li>Java语法（重点：类、对象、继承、多线程、反射）。</li>
+<li>Kotlin基础（推荐：Android官方推荐语言）。</li>
+<li>推荐资源：<ul>
+<li>书籍：《Java核心技术 卷Ⅰ》（第11版）。</li>
+<li>视频：<a href="https://www.bilibili.com/video/BV1fh411y7R8">B站-韩顺平Java零基础</a>。</li>
+<li>Kotlin官方文档：<a href="https://kotlinlang.org/docs/home.html">Kotlin 官方教程</a>。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-安卓开发入门"><a href="#2-安卓开发入门" class="headerlink" title="2. 安卓开发入门"></a><strong>2. 安卓开发入门</strong></h4><ul>
+<li><strong>学习内容</strong>：<ul>
+<li>Android Studio使用、APK打包流程。</li>
+<li>四大组件（Activity、Service、BroadcastReceiver、ContentProvider）。</li>
+<li>简单App开发（如计算器、天气预报App）。</li>
+<li>推荐资源：<ul>
+<li>官方文档：<a href="https://developer.android.com/">Android开发者官网</a>。</li>
+<li>视频：<a href="https://www.bilibili.com/video/BV1Rt411e76H">B站-《第一行代码》第三版配套视频</a>。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-逆向工具初探"><a href="#3-逆向工具初探" class="headerlink" title="3. 逆向工具初探"></a><strong>3. 逆向工具初探</strong></h4><ul>
+<li><strong>工具安装</strong>：<ul>
+<li>APKTool（反编译APK）。</li>
+<li>Jadx&#x2F;Ghidra（查看Java&#x2F;Smali代码）。</li>
+<li>Android Killer&#x2F;JEB（逆向分析工具）。</li>
+</ul>
+</li>
+<li><strong>实践任务</strong>：<ul>
+<li>反编译一个简单APK，修改资源文件（如文字&#x2F;图标）并重新打包。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="第二阶段：逆向核心技能（2个月）"><a href="#第二阶段：逆向核心技能（2个月）" class="headerlink" title="第二阶段：逆向核心技能（2个月）"></a><strong>第二阶段：逆向核心技能（2个月）</strong></h3><p><strong>目标</strong>：掌握Smali语法、ARM汇编、动态调试、Hook技术。</p>
+<h4 id="1-Smali语法与静态分析"><a href="#1-Smali语法与静态分析" class="headerlink" title="1. Smali语法与静态分析"></a><strong>1. Smali语法与静态分析</strong></h4><ul>
+<li><strong>学习内容</strong>：<ul>
+<li>Smali语言基础（寄存器、指令、方法调用）。</li>
+<li>修改Smali代码实现简单逻辑（如破解注册验证）。</li>
+<li>推荐工具：Jadx、Android Killer。</li>
+<li>实战案例：破解一个“付费解锁”功能的APK。</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-ARM汇编基础"><a href="#2-ARM汇编基础" class="headerlink" title="2. ARM汇编基础"></a><strong>2. ARM汇编基础</strong></h4><ul>
+<li><strong>学习内容</strong>：<ul>
+<li>ARM指令集（MOV、LDR、ADD、BL等）。</li>
+<li>反编译Native层代码（IDA Pro基础使用）。</li>
+<li>推荐资源：<ul>
+<li>书籍：《IDA Pro权威指南》。</li>
+<li>视频：<a href="https://www.bilibili.com/video/BV1gK411H7Uq">B站-ARM汇编入门</a>。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-动态调试与Hook"><a href="#3-动态调试与Hook" class="headerlink" title="3. 动态调试与Hook"></a><strong>3. 动态调试与Hook</strong></h4><ul>
+<li><strong>学习内容</strong>：<ul>
+<li>Frida框架（Hook Java&#x2F;Native函数）。</li>
+<li>Xposed框架（修改系统级行为）。</li>
+<li>实战案例：通过Frida绕过App的Root检测。</li>
+<li>推荐工具：<ul>
+<li>Frida官方文档：<a href="https://frida.re/docs/home/">Frida Docs</a>。</li>
+<li>Xposed模块开发教程：<a href="https://www.bilibili.com/video/BV1pK4y1j7dK">B站-Xposed入门</a>。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="第三阶段：实战进阶（2个月）"><a href="#第三阶段：实战进阶（2个月）" class="headerlink" title="第三阶段：实战进阶（2个月）"></a><strong>第三阶段：实战进阶（2个月）</strong></h3><p><strong>目标</strong>：掌握脱壳、反混淆、协议分析、漏洞挖掘。</p>
+<h4 id="1-脱壳与反混淆"><a href="#1-脱壳与反混淆" class="headerlink" title="1. 脱壳与反混淆"></a><strong>1. 脱壳与反混淆</strong></h4><ul>
+<li><strong>学习内容</strong>：<ul>
+<li>常见加固技术（如梆梆安全、腾讯御安全）。</li>
+<li>脱壳工具使用（Frida-Dump、DrizzleDumper）。</li>
+<li>实战案例：脱掉某加固APK并分析代码逻辑。</li>
+<li>推荐工具：Frida、Xposed插件（如FDex2）。</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-协议分析与抓包"><a href="#2-协议分析与抓包" class="headerlink" title="2. 协议分析与抓包"></a><strong>2. 协议分析与抓包</strong></h4><ul>
+<li><strong>学习内容</strong>：<ul>
+<li>抓包工具（Charles、Fiddler、Wireshark）。</li>
+<li>HTTPS证书绕过（JustTrustMe插件）。</li>
+<li>实战案例：逆向某App的登录协议并模拟请求。</li>
+<li>推荐工具：MitmProxy + Frida脚本。</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-漏洞挖掘与CTF实战"><a href="#3-漏洞挖掘与CTF实战" class="headerlink" title="3. 漏洞挖掘与CTF实战"></a><strong>3. 漏洞挖掘与CTF实战</strong></h4><ul>
+<li><strong>学习内容</strong>：<ul>
+<li>常见漏洞类型（组件暴露、WebView漏洞、逻辑漏洞）。</li>
+<li>CTF逆向题练习（如攻防世界、CTFHub）。</li>
+<li>推荐资源：<ul>
+<li>书籍：《Android安全攻防权威指南》。</li>
+<li>平台：<a href="https://ctf.pediy.com/">看雪CTF题库</a>。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="第四阶段：综合项目与求职准备（1个月）"><a href="#第四阶段：综合项目与求职准备（1个月）" class="headerlink" title="第四阶段：综合项目与求职准备（1个月）"></a><strong>第四阶段：综合项目与求职准备（1个月）</strong></h3><p><strong>目标</strong>：完成实战项目、完善简历、准备面试。</p>
+<h4 id="1-实战项目"><a href="#1-实战项目" class="headerlink" title="1. 实战项目"></a><strong>1. 实战项目</strong></h4><ul>
+<li><strong>可选方向</strong>：<ul>
+<li>逆向分析某金融App的加密算法。</li>
+<li>开发一个Xposed模块（如自动抢红包）。</li>
+<li>分析恶意软件（如银行木马）的通信协议。</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-简历与面试"><a href="#2-简历与面试" class="headerlink" title="2. 简历与面试"></a><strong>2. 简历与面试</strong></h4><ul>
+<li><strong>简历重点</strong>：<ul>
+<li>突出实战项目（技术细节、成果）。</li>
+<li>技能关键词：Smali、Frida、IDA Pro、ARM汇编。</li>
+</ul>
+</li>
+<li><strong>面试准备</strong>：<ul>
+<li>高频问题：APK打包流程、Hook原理、脱壳方法。</li>
+<li>推荐刷题：<a href="https://bbs.pediy.com/">看雪论坛面试经验帖</a>。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="学习资源汇总"><a href="#学习资源汇总" class="headerlink" title="学习资源汇总"></a><strong>学习资源汇总</strong></h3><table>
+<thead>
+<tr>
+<th align="left"><strong>类型</strong></th>
+<th><strong>资源</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>书籍</strong></td>
+<td>《Android软件安全与逆向分析》《Frida Android SO逆向深入实践》</td>
+</tr>
+<tr>
+<td align="left"><strong>视频教程</strong></td>
+<td>B站搜索“安卓逆向”关键词（推荐：非虫、咸鱼等UP主系列课程）</td>
+</tr>
+<tr>
+<td align="left"><strong>工具导航</strong></td>
+<td><a href="https://github.com/rednaga/APKiD">安卓逆向工具包</a></td>
+</tr>
+<tr>
+<td align="left"><strong>社区论坛</strong></td>
+<td>看雪安全论坛、吾爱破解、FreeBuf</td>
+</tr>
+</tbody></table>
+]]></content>
+      <tags>
+        <tag>信息安全</tag>
+        <tag>学习计划</tag>
+        <tag>安卓逆向</tag>
+      </tags>
   </entry>
   <entry>
-    <title>my plan</title>
-    <url>/2025/02/05/my-plan/</url>
-    <content><![CDATA[<p>以下是半年学习计划，分为基础构建、专业提升、实战应用三个阶段。计划兼顾零基础起点和恶意软件分析的专业需求，注重高效学习和实践结合：</p>
+    <title>恶意软件分析计划</title>
+    <url>/2025/02/22/%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E8%AE%A1%E5%88%92/</url>
+    <content><![CDATA[<p>以下是半年恶意软件分析学习计划，分为基础构建、专业提升、实战应用三个阶段。计划兼顾零基础起点和恶意软件分析的专业需求，注重高效学习和实践结合：</p>
 <hr>
 <h3 id="📅-第一阶段：计算机基础与编程入门（第1-2个月）"><a href="#📅-第一阶段：计算机基础与编程入门（第1-2个月）" class="headerlink" title="📅 第一阶段：计算机基础与编程入门（第1-2个月）"></a><strong>📅 第一阶段：计算机基础与编程入门（第1-2个月）</strong></h3><p><strong>目标</strong>：掌握计算机基础操作、网络基础、Python和C语言基础。</p>
 <ol>
@@ -829,7 +886,126 @@
       <tags>
         <tag>信息安全</tag>
         <tag>恶意软件分析</tag>
+        <tag>学习计划</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>VMware虚拟机</title>
+    <url>/2025/02/20/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA/</url>
+    <content><![CDATA[<h2 id="📚专业术语"><a href="#📚专业术语" class="headerlink" title="📚专业术语"></a>📚专业术语</h2><p>.iso：是电脑上光盘镜像（CD Mirror）的存储格式之一，因为其是i根据ISO-9660有关CD-ROM文件系统标准存储的文件，许哦一通常在电脑中以后缀,iso命名，俗称iso镜像文件。</p>
+<p>镜像文件：镜像文件可以类比为图书馆的一本书的副本。一本珍贵的书，想要确保即使在原书损坏或丢失的情况下，书的内容仍然可以得到保留和使用。为此，制作了这本书的精确复制品，这个复制品包含了原书的所有页面和文字，但它可能是以特殊的格式存储的，比如扫描后的PDF文件或者一系列图片。</p>
+<h2 id="🖥创建新的虚拟机"><a href="#🖥创建新的虚拟机" class="headerlink" title="🖥创建新的虚拟机"></a>🖥创建新的虚拟机</h2><h3 id="1-Window系统"><a href="#1-Window系统" class="headerlink" title="1.Window系统"></a>1.Window系统</h3><p>点击软件首页的创建新的虚拟机，进入新建导向</p>
+<p>选择自定义（高级）然后点击下一步</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206165405761.png"></p>
+<p>硬件兼容性选择软件版本，然后点击下一步</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206182831247.png"></p>
+<p>选择安装程序光盘映像文件（iso），选择安装好的光盘映像文件，可以去微软官网上去下载，然后点击下一步</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206182926495.png"></p>
+<p>完成windows简易安装信息，然后点击下一步</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206182950623.png"></p>
+<p>对新建的虚拟机进行命名，名字注意区分其他并易懂，还有保存位置，然后点击下一步</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206183009197.png"></p>
+<p>选择虚拟机的固件类型，即引导设备，然后点击下一步</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206183034037.png"></p>
+<p>选择虚拟机处理器配置，处理器数量、每个处理器的内核数量，然后点击下一步</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206183051953.png"></p>
+<p>设置虚拟机的内存，不要太大也不要太小，然后点击下一步</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206183110891.png"></p>
+<p>选择网络模式，使用网络地址转换（NAT），然后点击下一步</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206183132574.png"></p>
+<p>选择I&#x2F;O控制器类型，按照新建向导的推荐选择，然后点击下一步</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206183147255.png"></p>
+<p>选择磁盘类型，按照新建向导的推荐选择，然后点击下一步</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250207122431324.png"></p>
+<p>选择磁盘容量，然后点击下一步</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250207122452975.png"></p>
+<p>确定号新建的虚拟机的设置信息，然后点击下一步</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250207122514411.png"></p>
+<p>至此，Windows10虚拟机创建成功，等待启动然后设置，激活系统。</p>
+<h3 id="2-Linux系统"><a href="#2-Linux系统" class="headerlink" title="2.Linux系统"></a><strong>2.Linux系统</strong></h3><p>点击软件首页的创建新的虚拟机，进入新建导向</p>
+<p>选择自定义（高级）然后点击下一步</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206163543615.png"></p>
+<p>保持默认不变，然后点击下一步</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206163649773.png"></p>
+<p>选择稍后安装操作系统，然后点击下一步</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206164001987.png"></p>
+<p>在选择客户机i操作系统时选择Linux系统，版本选择自己准备的ISO文件的版本，一定要匹配，然后单击下一步</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206164041840.png"></p>
+<p>给本虚拟机命名，然后点击下一步</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206164349880.png"></p>
+<p>处理器配置，为虚拟机指定处理器数量，设置为2，然后点击下一步</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206164527143.png"></p>
+<p>设置内存，一般两个G，然后点击下一步</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206164616967.png"></p>
+<p>后续一直保持默认推荐，然后点击下一步</p>
+<p>确认新建虚拟机的基本信息，然后点击下一步</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206165452662.png"></p>
+<p>至此虚拟机的创建已完成，然后检查一下网络配置</p>
+<p>点击编辑&gt;虚拟网络编辑器，查看VMnet8，子网的ip地址是否和NAT设置中的ip地址前三位一致。正常来说是默认配置好的。只是检查以下，不是乱去设置。</p>
+<p>接下来去给<strong>虚拟机配置镜像</strong>。</p>
+<p>点击编辑虚拟机设置&gt;CD&#x2F;DVD&gt;选择使用镜像文件，点击浏览找到提前下载好的镜像文件，然后点确定，完成后点击开启虚拟机。</p>
+<p>然后点击install CentOS，选项变白就是选中了</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206170409114.png"></p>
+<p>然后选中想要的语言，选择简体中文就行,点击继续</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206170558494.png"></p>
+<p>进入安装信息摘要基本不用改，完成以下安装位置确认，然后点击安装。设置Root密码。创建用户根据个人需要，就是权限比较低的用户。</p>
+<p>至此安装成功，点击重启就行。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206171032438.png"></p>
+<p>注意进入后输入用户和密码，密码是不会显示的，输完后回车就行，出现root@localhost就是成功了。</p>
+<p>输入cd &#x2F;，再输入ll，查看所有文件。(注意cd 后面要有一个空格)</p>
+<p>接下来配置虚拟机的网络。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-02-06%20171537.jpg"></p>
+<p>手动输入，以下路径，虚拟机内无法复制粘贴</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206171841943.png"></p>
+<p>然后找到ifcfg-ens33，打开它编辑</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206171953000.png" alt="image-20250206171953000"></p>
+<p>使用vi ifcfg-ens33，进入修改。按i，进入修改模式，将BOOTPROTO&#x3D;dhcp（默认），ONBOOT修改为yes。然后按esc退出修改模式。输入:wq，回车强制保存。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206172438904.png"></p>
+<p>接下来就是去重启网络，service network restart，然后测试是否能访问外网，ping一下百度，出现连接网速表示成功，ctrl+c结束。</p>
+<p>后续参考视频【【2024最新】Vmware虚拟机安装Linux系统及配置网络超详细教学安装Centos使用Vmare安装附带安装包及镜像】<a href="https://www.bilibili.com/video/BV1MriFeaEci?vd_source=cbd0e7aa3299fa0fcc330c5ee16869bc">https://www.bilibili.com/video/BV1MriFeaEci?vd_source=cbd0e7aa3299fa0fcc330c5ee16869bc</a></p>
+<h2 id="📺操作系统的操作模式"><a href="#📺操作系统的操作模式" class="headerlink" title="📺操作系统的操作模式"></a>📺操作系统的操作模式</h2><p>对操作系统的使用，有2种使用形式：</p>
+<ul>
+<li><p>图形化页面使用操作系统</p>
+</li>
+<li><p>以命令的形式使用操作系统</p>
+</li>
+</ul>
+<p>不论是Windows系统还是Linux系统或是MacOS系统，以获得图形化反馈的形式去使用操作系统。</p>
+<ul>
+<li><p>图形化：使用操作系统提供的图形化页面，以获得图形化反馈形式去使用操作系统。</p>
+</li>
+<li><p>命令行：使用操作系统提供的各类命令，以获得字符反馈的形式去使用操作系统。</p>
+</li>
+</ul>
+<p>无论是企业开发亦或是个人开发，使用Linux擦欧总系统，多数都是使用的：命令行。</p>
+<p>这是因为：</p>
+<ul>
+<li>Linux从诞生至今，在图形化页面的优化上，并未重点发力。所以LInux操作系统的图形化页面：不好用、不稳定。</li>
+<li>在开发中，使用命令行形式，效率更高，更加直观，并且资源占用低、程序运行更稳定。</li>
+</ul>
+<h2 id="💻网络连接的三种模式"><a href="#💻网络连接的三种模式" class="headerlink" title="💻网络连接的三种模式"></a>💻网络连接的三种模式</h2><h3 id="1-桥接模式：直接连接物理网络"><a href="#1-桥接模式：直接连接物理网络" class="headerlink" title="1.桥接模式：直接连接物理网络"></a>1.桥接模式：直接连接物理网络</h3><p>使用主机中的物理网卡VMnet0，有线网卡或者无线网卡，可以连接主机，并且可以访问局域内的计算机，如果主机可以连接外网，虚拟机也可以连接外网，此时物理主机相当于一个交换机，把所有桥接模式的虚拟机都连接在同一个交换机上，自己在这个局域网中。注意：容易造成IP冲突。</p>
+<h3 id="2-NAT模式：用于共享主机的IP地址"><a href="#2-NAT模式：用于共享主机的IP地址" class="headerlink" title="2.NAT模式：用于共享主机的IP地址"></a>2.NAT模式：用于共享主机的IP地址</h3><p>使用的是虚拟机的网卡VMnet8，可以连接主机，也可以来连接外网，虚拟机IP地址经过NAT转换，与物理机IP地址不在同一网段，所以不能访问局域网内的计算机。</p>
+<h3 id="3-仅主机模式：与主机共享的专用网络"><a href="#3-仅主机模式：与主机共享的专用网络" class="headerlink" title="3.仅主机模式：与主机共享的专用网络"></a>3.仅主机模式：与主机共享的专用网络</h3><p>使用的是虚拟机中的VMnet1，可以连接到主机，不能访问局域网内的计算机，也不能连接外网，当我们要组成一个与物理网络相隔离的虚拟网络时可以选择仅主机模式。</p>
+<h2 id="📼虚拟机克隆"><a href="#📼虚拟机克隆" class="headerlink" title="📼虚拟机克隆"></a>📼虚拟机克隆</h2><p>如果已经安装了一台linux操作系统，还想再更多的，没必要再重新安装，只需要克隆就行。</p>
+<h3 id="1-直接拷贝一份安装好的虚拟机文件"><a href="#1-直接拷贝一份安装好的虚拟机文件" class="headerlink" title="1.直接拷贝一份安装好的虚拟机文件"></a>1.直接拷贝一份安装好的虚拟机文件</h3><p>将虚拟机文件拷贝到另一个盘的文件夹下，文件名可以重命名，也可以保留原名。通过VMware的打开文件，打开拷贝虚拟机文件。</p>
+<h3 id="2-使用VMware的克隆操作"><a href="#2-使用VMware的克隆操作" class="headerlink" title="2.使用VMware的克隆操作"></a>2.使用VMware的克隆操作</h3><p>注意：克隆时，需要先关闭正在运行的linux系统。</p>
+<p>虚拟机&gt;右键至管理&gt;克隆</p>
+<p>克隆类型有两种：创建链接克隆、创建完整克隆。</p>
+<p>创建链接克隆，是对原虚拟机的引用，所需要的存储磁盘空间较少，访问的是原虚拟机，是同一个系统。</p>
+<p>创建完整克隆：是原虚拟机当前状态的完整副本，此选项使得虚拟机完全独立，需要较多的存储磁盘空间。</p>
+<h2 id="📷虚拟机快照"><a href="#📷虚拟机快照" class="headerlink" title="📷虚拟机快照"></a>📷虚拟机快照</h2><p>如果在使用虚拟机系统的时候，想回到原先的某一个状态，也就是说担心有些操作造成系统异常，需要回到原先某个正常运行的状态，VMware提供了一个这样的功能，就叫做快照管理。</p>
+<p>推荐关机操作，没关机也可以就是会时间久一点。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250210163939993.png"></p>
+]]></content>
+      <tags>
+        <tag>VMware</tag>
+        <tag>Linux系统</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ghidra的安装</title>
+    <url>/2025/02/06/Ghidra%E7%9A%84%E5%AE%89%E8%A3%85/</url>
+    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>Typora的使用</title>
@@ -1174,18 +1350,6 @@
     <content><![CDATA[]]></content>
       <tags>
         <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>1月22日</title>
-    <url>/2025/01/22/1%E6%9C%8822%E6%97%A5/</url>
-    <content><![CDATA[<p>创建页面（导航栏列表项）<br>列表项名：分类<br>hexo new page categories<br>然后将以下代码粘贴到文件中：<br>&#x2F;source&#x2F;categories&#x2F;index.md<br>    —<br>    title: categories<br>    type: categories<br>    layout: “categories”<br>    —</p>
-]]></content>
-      <categories>
-        <category>页面部署</category>
-      </categories>
-      <tags>
-        <tag>进程</tag>
       </tags>
   </entry>
 </search>
