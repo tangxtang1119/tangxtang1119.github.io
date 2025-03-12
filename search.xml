@@ -476,7 +476,7 @@
 <td>设置粘贴模式</td>
 </tr>
 </tbody></table>
-]]></content>
+<h3 id="11-权限"><a href="#11-权限" class="headerlink" title="11.权限"></a>11.权限</h3>]]></content>
       <categories>
         <category>笔记</category>
       </categories>
@@ -2794,7 +2794,7 @@
 <h3 id="6-1-7-java内存结构分析"><a href="#6-1-7-java内存结构分析" class="headerlink" title="6.1.7 java内存结构分析"></a>6.1.7 java内存结构分析</h3><ul>
 <li><p>栈：一般存放基本数据类型（局部变量）</p>
 </li>
-<li><p>堆：存放对象（Cat cat、数组等）</p>
+<li><p>堆：存放对象（Cat cat、数组（引用类型）等）</p>
 </li>
 <li><p>方法区：常量池（常量、比如：字符串），类加载信息</p>
 </li>
@@ -2829,7 +2829,7 @@
 <p>1.提高代码的复用性</p>
 <p>2.可以将实现的细节封装起来，然后供其他用户调用即可</p>
 <h3 id="6-2-2-快速入门"><a href="#6-2-2-快速入门" class="headerlink" title="6.2.2 快速入门"></a>6.2.2 快速入门</h3><p>1.添加speak成员方法输出我是一个好人</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">t1</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span> <span class="params">(String[] args)</span>&#123;</span><br><span class="line">	<span class="comment">//方法使用</span></span><br><span class="line">    <span class="comment">//1.方法写好后，如果不去调用，就不会输出</span></span><br><span class="line">    <span class="comment">//2.先创建对象，然后调用方法即可</span></span><br><span class="line">    <span class="type">Person</span> <span class="variable">p1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Person</span>();</span><br><span class="line">    p1.speak();</span><br><span class="line">		&#125;		</span><br><span class="line">	&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Person</span>&#123;</span><br><span class="line">	String name;</span><br><span class="line">	<span class="type">int</span> age;</span><br><span class="line">    <span class="comment">//方法（成员方法）</span></span><br><span class="line">    <span class="comment">//添加speak成员方法，输出“我是一个好人”</span></span><br><span class="line">	<span class="comment">//解读：</span></span><br><span class="line">    <span class="comment">//1.public 表示方法是公开</span></span><br><span class="line">    <span class="comment">//2.void 表示方法没有返回值</span></span><br><span class="line">    <span class="comment">//3.speak() speak是方法名，()形参列表</span></span><br><span class="line">    <span class="comment">//4.&#123;&#125;方法体，可以写我们要执行的代码</span></span><br><span class="line">    <span class="comment">//5.System.out.println(&quot;i am a good man&quot;);表示方输出一句话</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">speak</span><span class="params">()</span>&#123;</span><br><span class="line">		System.out.println(<span class="string">&quot;i am a good man&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">t1</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span> <span class="params">(String[] args)</span>&#123;</span><br><span class="line">	<span class="comment">//方法使用</span></span><br><span class="line">    <span class="comment">//1.方法写好后，如果不去调用，就不会输出</span></span><br><span class="line">    <span class="comment">//2.先创建对象，然后调用方法即可</span></span><br><span class="line">    <span class="type">Person</span> <span class="variable">p1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Person</span>();</span><br><span class="line">    p1.speak();</span><br><span class="line">		&#125;		</span><br><span class="line">	&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Person</span>&#123;</span><br><span class="line">	String name;</span><br><span class="line">	<span class="type">int</span> age;</span><br><span class="line">    <span class="comment">//方法（成员方法）</span></span><br><span class="line">    <span class="comment">//添加speak成员方法，输出“我是一个好人”</span></span><br><span class="line">	<span class="comment">//解读：</span></span><br><span class="line">    <span class="comment">//1.public 表示方法是公开</span></span><br><span class="line">    <span class="comment">//2.void 表示方法没有返回值</span></span><br><span class="line">    <span class="comment">//3.speak() speak是方法名，()形参列表</span></span><br><span class="line">    <span class="comment">//4.&#123;&#125;方法体，可以写我们要执行的代码</span></span><br><span class="line">    <span class="comment">//5.System.out.println(&quot;i am a good man&quot;);表示方输出一句话</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">speak</span><span class="params">()</span>&#123;</span><br><span class="line">		System.out.println(<span class="string">&quot;i am a good man&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>输出结果：</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">i am a good man</span><br></pre></td></tr></table></figure>
@@ -2888,7 +2888,55 @@
 <p>​	2.参数类型可以为任意类型，包含基本类型或引用类型</p>
 <p>​	3.调用带参数的方法时，一定对应着参数列表传入形同类型或兼容类型 的参数</p>
 <p>​	4.方法定义时的参数称为形式参数，简称形参；方法调用时的参数称为实际参数，称为实参，实参和形参的类型要一致或兼容、个数、顺序必须一致</p>
-<h2 id="6-3-成员方法传参机制"><a href="#6-3-成员方法传参机制" class="headerlink" title="6.3 成员方法传参机制"></a>6.3 成员方法传参机制</h2><h2 id="6-4-重载（overload）"><a href="#6-4-重载（overload）" class="headerlink" title="6.4 重载（overload）"></a>6.4 重载（overload）</h2><h2 id="6-5-可变参数"><a href="#6-5-可变参数" class="headerlink" title="6.5 可变参数"></a>6.5 可变参数</h2><h2 id="6-6-作用域"><a href="#6-6-作用域" class="headerlink" title="6.6 作用域"></a>6.6 作用域</h2><h2 id="6-7-构造器"><a href="#6-7-构造器" class="headerlink" title="6.7 构造器"></a>6.7 构造器</h2><h2 id="6-8-this"><a href="#6-8-this" class="headerlink" title="6.8 this"></a>6.8 this</h2>]]></content>
+<ul>
+<li>方法调用</li>
+</ul>
+<p>​	1.在同一个类中的方法调用：直接调用即可。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">t1</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span> <span class="params">(String[] args)</span>&#123;</span><br><span class="line">		<span class="type">A</span> <span class="variable">a</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">A</span>();</span><br><span class="line">		a.sayOK();</span><br><span class="line">		&#125;		</span><br><span class="line">	&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">A</span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">speak</span><span class="params">()</span>&#123;</span><br><span class="line">		System.out.println(<span class="string">&quot;OK&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">sayOK</span><span class="params">()</span>&#123;</span><br><span class="line">		speak();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>​	2.跨类中的方法A类调用B类方法：需要通过对象名调用。比如： 对象名.方法名（参数）;</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">t1</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span> <span class="params">(String[] args)</span>&#123;</span><br><span class="line">		<span class="type">A</span> <span class="variable">a</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">A</span>();</span><br><span class="line">		a.sayOK();</span><br><span class="line">		a.hi1();</span><br><span class="line">		&#125;		</span><br><span class="line">	&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">A</span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">speak</span><span class="params">()</span>&#123;</span><br><span class="line">		System.out.println(<span class="string">&quot;OK&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">sayOK</span><span class="params">()</span>&#123;</span><br><span class="line">		speak();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">hi1</span><span class="params">()</span>&#123;</span><br><span class="line">		<span class="type">B</span> <span class="variable">b</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">B</span>();</span><br><span class="line">		b.hi();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">B</span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">hi</span><span class="params">()</span>&#123;</span><br><span class="line">		System.out.println(<span class="string">&quot;Hi&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​	3.特别说明：跨类的方法调用和方法的访问修饰符相关</p>
+<h2 id="6-3-成员方法传参机制"><a href="#6-3-成员方法传参机制" class="headerlink" title="6.3 成员方法传参机制"></a>6.3 成员方法传参机制</h2><h3 id="6-3-1-基本数据类型"><a href="#6-3-1-基本数据类型" class="headerlink" title="6.3.1 基本数据类型*"></a>6.3.1 基本数据类型*</h3><ul>
+<li>传递的是值（值拷贝），形参的任何改变不影响实参。</li>
+</ul>
+<p>案例分析</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">t1</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span> <span class="params">(String[] args)</span>&#123;</span><br><span class="line"></span><br><span class="line">		<span class="type">int</span> <span class="variable">a</span> <span class="operator">=</span> <span class="number">10</span>;</span><br><span class="line">		<span class="type">int</span> <span class="variable">b</span> <span class="operator">=</span> <span class="number">20</span>;</span><br><span class="line"></span><br><span class="line">		<span class="type">AA</span> <span class="variable">obj</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">AA</span>();</span><br><span class="line">		obj.swap(a,b);</span><br><span class="line">		<span class="comment">//找的是main中的a和b</span></span><br><span class="line">		System.out.println(<span class="string">&quot;a = &quot;</span>+a+<span class="string">&quot;  b = &quot;</span>+b);</span><br><span class="line"></span><br><span class="line">		&#125;		</span><br><span class="line">	&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">AA</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">swap</span> <span class="params">(<span class="type">int</span> a,<span class="type">int</span> b)</span>&#123;</span><br><span class="line">		System.out.println(<span class="string">&quot;a和b交换前的值：a = &quot;</span>+a+<span class="string">&quot;  b = &quot;</span>+b);</span><br><span class="line">		<span class="type">int</span> <span class="variable">temp</span> <span class="operator">=</span> a;</span><br><span class="line">		a = b;</span><br><span class="line">		b = temp;</span><br><span class="line">		System.out.println(<span class="string">&quot;a和b交换前的值：a = &quot;</span>+a+<span class="string">&quot;  b = &quot;</span>+b);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出结果：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">a和b交换前的值：a = <span class="number">10</span>  b = <span class="number">20</span></span><br><span class="line">a和b交换前的值：a = <span class="number">20</span>  b = <span class="number">10</span></span><br><span class="line">a = <span class="number">10</span>  b = <span class="number">20</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="6-3-2-引用数据类型"><a href="#6-3-2-引用数据类型" class="headerlink" title="6.3.2 引用数据类型"></a>6.3.2 引用数据类型</h3><ul>
+<li>传递的是地址（传递也是值，但是值是地址），可以通过形参影响实参</li>
+</ul>
+<p>案例分析</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">t1</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span> <span class="params">(String[] args)</span>&#123;</span><br><span class="line">		<span class="type">B</span> <span class="variable">b</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">B</span>();</span><br><span class="line">		<span class="type">int</span>[] arr=&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br><span class="line">		b.test100(arr);</span><br><span class="line">		System.out.println(<span class="string">&quot;main中的arr数组&quot;</span>);</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; arr.length ; i++)&#123;</span><br><span class="line">			System.out.print(arr[i]+<span class="string">&quot;  &quot;</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println();</span><br><span class="line">		&#125;		</span><br><span class="line">	&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">B</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test100</span> <span class="params">(<span class="type">int</span>[] arr)</span>&#123;</span><br><span class="line">		arr[<span class="number">0</span>] = <span class="number">200</span>;</span><br><span class="line">		System.out.println(<span class="string">&quot;b类中的arr数组&quot;</span>);</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; arr.length ; i++)&#123;</span><br><span class="line">			System.out.print(arr[i]+<span class="string">&quot;  &quot;</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出结果：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">b类中的arr数组</span><br><span class="line"><span class="number">200</span>  <span class="number">2</span>  <span class="number">3</span>  </span><br><span class="line">main中的arr数组</span><br><span class="line"><span class="number">200</span>  <span class="number">2</span>  <span class="number">3</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="6-3-3-练习题"><a href="#6-3-3-练习题" class="headerlink" title="6.3.3 练习题"></a>6.3.3 练习题</h3><p>编写一个方法copyPerson，可以复制一个Person对啊ing，返回复制的对象。克隆对象，注意要求得到新对象和原来的对象是两个独立的对象，只是它们的属性相同。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">t1</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span> <span class="params">(String[] args)</span>&#123;</span><br><span class="line">		<span class="type">Person</span> <span class="variable">p</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Person</span>();</span><br><span class="line">		p.name = <span class="string">&quot;ling&quot;</span>;</span><br><span class="line">		p.age = <span class="number">21</span>;</span><br><span class="line">        <span class="comment">//创建tools</span></span><br><span class="line">		<span class="type">MyTools</span> <span class="variable">tools</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MyTools</span>();</span><br><span class="line">		<span class="type">Person</span> <span class="variable">p2</span> <span class="operator">=</span> tools.copyPerson(p);</span><br><span class="line">		<span class="comment">//至此p和p2是Person对象，但是是两个独立的对象，属性相同</span></span><br><span class="line">		System.out.println(<span class="string">&quot;p的属性 age = &quot;</span>+ p.age+<span class="string">&quot; name = &quot;</span>+ p.name);</span><br><span class="line">		System.out.println(<span class="string">&quot;p2的属性 age = &quot;</span>+ p2.age+<span class="string">&quot; name = &quot;</span>+ p2.name);</span><br><span class="line">        <span class="comment">//可以验证是否为同一个对象</span></span><br><span class="line">		System.out.println(p == p2);</span><br><span class="line">		&#125;		</span><br><span class="line">	&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Person</span>&#123;	</span><br><span class="line">		<span class="type">int</span> age;</span><br><span class="line">		String name;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyTools</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> Person <span class="title function_">copyPerson</span><span class="params">(Person p)</span>&#123;	</span><br><span class="line">		<span class="type">Person</span> <span class="variable">p2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Person</span>();</span><br><span class="line">		p2.age = p.age;</span><br><span class="line">		p2.name = p.name;</span><br><span class="line">		<span class="keyword">return</span> p2;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出结果</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">````</span><br><span class="line"></span><br><span class="line">### <span class="number">6.3</span><span class="number">.4</span> 方法递归调用</span><br><span class="line"></span><br><span class="line">**递归Recursion**</span><br><span class="line"></span><br><span class="line">方法自己调用自己，每次调用时传入不同的变量。有助于编程者解决复杂问题，同时可以让代码变得简洁。</span><br><span class="line"></span><br><span class="line">能解决的问题：</span><br><span class="line"></span><br><span class="line"><span class="number">1.</span>各种数学问题：八皇后问题，汉诺塔，阶乘问题，迷宫问题，球和篮球的问题</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span>各种算法中也会使用到递归，比如快排，归并排序二分查找，分治算法等</span><br><span class="line"></span><br><span class="line"><span class="number">3.</span>将用栈解决的问题–&gt;递归代码比较简洁</span><br><span class="line"></span><br><span class="line">案例分析</span><br><span class="line"></span><br><span class="line">理解调用机制</span><br><span class="line"></span><br><span class="line"><span class="number">1.</span>打印问题</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span>阶乘问题</span><br><span class="line"></span><br><span class="line">````java</span><br><span class="line"><span class="comment">//输出什么？</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">(<span class="type">int</span> n)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n&gt;<span class="number">2</span>)&#123;</span><br><span class="line">        test(n-<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println(<span class="string">&quot;n =&quot;</span> + n);</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+<p>输出结果</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">n =<span class="number">2</span></span><br><span class="line">n =<span class="number">3</span></span><br><span class="line">n =<span class="number">4</span></span><br></pre></td></tr></table></figure>
+
+<p>内存分析图</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250305230339787.png"></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//阶乘</span></span><br><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">test</span><span class="params">(<span class="type">int</span> n)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n ==<span class="number">1</span> )&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">   &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> test(n-<span class="number">1</span>)*n;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-3-5-重要规则"><a href="#6-3-5-重要规则" class="headerlink" title="6.3.5 重要规则"></a>6.3.5 重要规则</h3><p>1.执行一个方法，就创建一个新的受保护的独立空间（栈空间）</p>
+<p>2.方法的局部变量是独立的，不会相互影响，比如n变量</p>
+<p>3.如果方法中使用的时引用类型变量（比如数组、对象），就会共享该引用类型的数据</p>
+<p>4.递归必须向退出的条件逼近，否则就是无线递归，出现StackOverflowError</p>
+<p>5.当一个方法执行完毕，或者遇到return，就会返回，遵守谁调用，就将结果返回给谁，同时当方法执行完毕或者返回时，该方法也就执行完毕</p>
+<h2 id="6-4-重载（overload）"><a href="#6-4-重载（overload）" class="headerlink" title="6.4 重载（overload）"></a>6.4 重载（overload）</h2><h2 id="6-5-可变参数"><a href="#6-5-可变参数" class="headerlink" title="6.5 可变参数"></a>6.5 可变参数</h2><h2 id="6-6-作用域"><a href="#6-6-作用域" class="headerlink" title="6.6 作用域"></a>6.6 作用域</h2><h2 id="6-7-构造器"><a href="#6-7-构造器" class="headerlink" title="6.7 构造器"></a>6.7 构造器</h2><h2 id="6-8-this"><a href="#6-8-this" class="headerlink" title="6.8 this"></a>6.8 this</h2>]]></content>
       <categories>
         <category>笔记</category>
       </categories>
@@ -2907,6 +2955,335 @@
       <tags>
         <tag>编程语言</tag>
         <tag>安卓逆向工程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>安卓逆向这档子事</title>
+    <url>/2025/03/12/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E8%BF%99%E6%A1%A3%E5%AD%90%E4%BA%8B/</url>
+    <content><![CDATA[<h1 id="一、初识APK"><a href="#一、初识APK" class="headerlink" title="一、初识APK"></a>一、初识APK</h1><h2 id="1-Apk文件结构"><a href="#1-Apk文件结构" class="headerlink" title="1.Apk文件结构"></a>1.Apk文件结构</h2><p>apk 全称 Android Package，它相当于一个压缩文件，只要在电脑上将apk后缀改为zip即可解压。</p>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>注释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>assets目录</td>
+<td>存放APK的静态资源文件，比如视频，音频，图片等（不一定有但常见）</td>
+</tr>
+<tr>
+<td>lib目录</td>
+<td>armeabi-v7a基本通用所有Android设备，arm64-v8a只是用与64为的Android设备，x86常用于Android模拟器，其目录下的.so文件时c或者c++编译的动态链接库文件（不一定有但常见）</td>
+</tr>
+<tr>
+<td>META-INF目录</td>
+<td>保存应用的签名信息，签名信息可以验证APK文件的额完整性，相当于APK的身份验证（验证文件是否又被修改）</td>
+</tr>
+<tr>
+<td>res目录</td>
+<td>res目录存放资源文件，包括图片，字符串等，APK的 脸蛋由它的layout文件设计</td>
+</tr>
+<tr>
+<td>AndroidManifest.xml文件</td>
+<td>APK的应用清单信息，他描述了应用的名字，版本，权限，引用的库文件等信息</td>
+</tr>
+<tr>
+<td>classes.dex文件</td>
+<td>classes.dex是java原码编译后生成的java字节码文件，APK运行的主要逻辑</td>
+</tr>
+<tr>
+<td>reaources.arsc文件</td>
+<td>resources.arsc是编译后的二进制资源文件，它是一个映射表，映射着资源和id，通过R文件中的id就可以找到对应的资源</td>
+</tr>
+</tbody></table>
+<h2 id="2-双开及其原理"><a href="#2-双开及其原理" class="headerlink" title="2.双开及其原理"></a>2.双开及其原理</h2><p><strong>双开：简单来说，就是手机同时运行两个或多个相同的应用，例如同时运行两个微信</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">原理</th>
+<th align="left">解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">修改包名</td>
+<td align="left">让手机系统认为这是2个APP，这样的话就能生成2个数据存储路径，此时的多开就等于你打开了两个互不干扰的APP</td>
+</tr>
+<tr>
+<td align="left">修改Framework</td>
+<td align="left">对于有系统修改权限的厂商，可以修改Framework来实现双开的目的，例如：小米自带多开</td>
+</tr>
+<tr>
+<td align="left">通过虚拟化技术实现</td>
+<td align="left">虚拟Framework层、虚拟文件系统、模拟Android对组件的管理、虚拟应用进程管理 等一整套虚拟技术，将APK复制一份到虚拟空间中运行，例如：平行空间</td>
+</tr>
+<tr>
+<td align="left">以插件机制运行</td>
+<td align="left">利用反射替换，动态代{过}{滤}理，hook了系统的大部分与system—server进程通讯的函数，以此作为“欺上瞒下”的目的，欺骗系统“以为”只有一个apk在运行，瞒过插件让其“认为”自己已经安装。例如：VirtualApp</td>
+</tr>
+</tbody></table>
+<h3 id="2-1-修改包名"><a href="#2-1-修改包名" class="headerlink" title="2.1 修改包名"></a>2.1 修改包名</h3><h4 id="2-1-1-使用工具"><a href="#2-1-1-使用工具" class="headerlink" title="2.1.1 使用工具"></a>2.1.1 使用工具</h4><p>MT管理器和NP管理器，都是Android设备上用于文件管理和系统操作的工具，但它们在功能特点、用户界面以及使用场景上有一些区别。</p>
+<p><strong>MT管理器</strong></p>
+<p>MT管理器（MT Manager）是一款功能强大的文件管理器，主要用于对APK文件、dex&#x2F;oat&#x2F;smali文件进行编辑，还可以进行文件对比、文本翻译等。它的主要特点包括：</p>
+<ul>
+<li>支持直接编辑APK文件中的资源文件、smali代码。</li>
+<li>提供了丰富的文件操作功能，如复制、粘贴、重命名等。</li>
+<li>可以用来汉化应用、修改游戏数据等高级操作。</li>
+<li>用户界面相对复杂，更适合有一定技术背景的用户使用。</li>
+</ul>
+<p><strong>NP管理器</strong></p>
+<p>NP管理器（NP Manager）也是一个文件管理器，虽然它也提供了对APK文件的基本编辑能力，但是其主要侧重点在于提供更直观的文件浏览体验和基本的文件管理功能。相比于MT管理器，NP管理器的特点有：</p>
+<ul>
+<li>界面设计更加简洁直观，适合普通用户进行基础的文件管理任务。</li>
+<li>提供了对多种文件格式的支持，如压缩文件(zip, rar)的解压与创建。</li>
+<li>功能性上相对于MT管理器来说较为简单，适用于不需要深入编辑apk或系统文件的用户。</li>
+</ul>
+<p><strong>区别</strong></p>
+<ul>
+<li><strong>功能深度</strong>：MT管理器在处理复杂的文件编辑和系统级操作方面更为强大；而NP管理器则侧重于提供一个易于使用的文件管理解决方案。</li>
+<li><strong>用户界面</strong>：MT管理器的UI更加复杂，包含更多专业化的选项；NP管理器设计得更加友好，适合所有级别的用户。</li>
+<li><strong>使用场景</strong>：如果需要对应用程序进行深层次的修改，比如反编译apk文件，则MT管理器是更好的选择。而对于那些仅需要基本文件管理功能的用户来说，NP管理器可能更加合适。</li>
+</ul>
+<p>根据实际需求应用，有的功能需要VIP……</p>
+<h4 id="2-1-2-操作"><a href="#2-1-2-操作" class="headerlink" title="2.1.2 操作"></a>2.1.2 操作</h4><p>将MT管理器、NP管理器以及练手demo安装至安卓模拟器</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/%E5%8F%8C%E5%BC%80%E5%B7%A5%E5%85%B7%E5%AE%89%E8%A3%85.png"></p>
+<p>由于MT管理器双开需要会员，所以选择NP管理器。进入NP管理器软件，点击左上角的三根杠，选择安装包提取。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/NP%E7%AE%A1%E7%90%86%E5%99%A8%E7%AC%AC%E4%B8%80%E7%95%8C%E9%9D%A2.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/%E5%AE%89%E8%A3%85%E5%8C%85%E6%8F%90%E5%8F%96.png"></p>
+<p>然后选择需要提取的软件</p>
+<p> —&gt; 提取安装包—&gt; 定位 —&gt;点击软件 —&gt;功能—&gt;APK共存</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/demo%E5%8A%9F%E8%83%BD%E9%80%89%E6%8B%A9.png"></p>
+<p>最后确认，此时便有了该软件的安装包，通过带点击下方提取出来的安装包，进行安装，桌面上便有了新的一个demo软件</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/%E6%88%90%E5%8A%9F%E6%8F%90%E5%8F%96%E5%AE%89%E8%A3%85%E5%8C%85.png"></p>
+<p>注意这个地方，提取出来后，两个包的包名不一样</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/%E6%8F%90%E5%8F%96%E5%AE%89%E8%A3%85.png"></p>
+<p>由于该方法是通过修改包名实现的，所以懂了应用的签名信息，如果开发者做了一个签名校验，那就很有可能安装后软件出现闪退奔溃的情况。</p>
+<h2 id="3-汉化"><a href="#3-汉化" class="headerlink" title="3.汉化"></a>3.汉化</h2><p><strong>汉化：使用专门的工具对外文版的软件资源进行读取、翻译、修改、回写等一系列处理，使软件的菜单、对话框、提示等用户界面显示为中文，而程序的内核和功能保持不变，这个过程即为软件汉化</strong></p>
+<p>基本上字符串都是在arsc里，建议一键汉化，然后再润色。<br>少量没汉化到的字符串参考视频中的方法定位去逐个汉化。</p>
+<p>流程图</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/%E8%BD%AF%E4%BB%B6%E6%B1%89%E5%8C%96%E6%B5%81%E7%A8%8B%E5%9B%BE.png"></p>
+<p>可以使用MT管理器，进入demo的apk文件中，进行搜索需要修改句子对应的文件所在位置，使用搜索，点击高级搜索可以进入全局搜索。查找到文件位置后进入文件，手动修改句子，翻译为中文。真的累。</p>
+<p>修改后会出现一个签名改动的问题，可以直接卸载了再安装，或者核心破解。</p>
+<h2 id="4-初识AndroidManifest-xml"><a href="#4-初识AndroidManifest-xml" class="headerlink" title="4.初识AndroidManifest.xml"></a>4.初识AndroidManifest.xml</h2><p>AndroidManifest.xml文件是整个应用程序的信息描述文件，定义了应用程序中包含的Activity,Service,Content provider和BroadcastReceiver组件信息。每个应用程序在根目录下必须包含一个AndroidManifest.xml文件，且文件名不能修改。它描述了package中暴露的组件，他们各自的实现类，各种能被处理的数据和启动位置。</p>
+<table>
+<thead>
+<tr>
+<th align="left">属性</th>
+<th align="left">定义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">versionCode</td>
+<td align="left">版本号，主要用来更新，例如:12</td>
+</tr>
+<tr>
+<td align="left">versionName</td>
+<td align="left">版本名，给用户看的，例如:1.2</td>
+</tr>
+<tr>
+<td align="left">package</td>
+<td align="left">包名，例如：com.zj.52pj.demo</td>
+</tr>
+<tr>
+<td align="left">uses-permission android:name&#x3D;””</td>
+<td align="left">应用权限，例如：android.permission.INTERNET 代表网络权限</td>
+</tr>
+<tr>
+<td align="left">android:label&#x3D;”@string&#x2F;app_name”</td>
+<td align="left">应用名称</td>
+</tr>
+<tr>
+<td align="left">android:icon&#x3D;”@mipmap&#x2F;ic_launcher”</td>
+<td align="left">应用图标路径</td>
+</tr>
+<tr>
+<td align="left">android:debuggable&#x3D;”true”</td>
+<td align="left">应用是否开启debug权限</td>
+</tr>
+</tbody></table>
+<h1 id="二、初识smail"><a href="#二、初识smail" class="headerlink" title="二、初识smail"></a>二、初识smail</h1>]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>信息安全</tag>
+        <tag>安卓逆向工程</tag>
+        <tag>吾爱破解</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>安卓逆行工程</title>
+    <url>/2025/03/12/%E9%80%86%E8%A1%8C%E5%B7%A5%E7%A8%8B/</url>
+    <content><![CDATA[<h1 id="一、前期准备"><a href="#一、前期准备" class="headerlink" title="一、前期准备"></a>一、前期准备</h1><h2 id="1-Windows环境配置"><a href="#1-Windows环境配置" class="headerlink" title="1. Windows环境配置"></a>1. Windows环境配置</h2><h3 id="1-1-概述"><a href="#1-1-概述" class="headerlink" title="1.1 概述"></a>1.1 概述</h3><p>1.WINDOWS环境配置的难易程度因人而异，很多学员在此步骤上遇到困难。 </p>
+<p>2.LINUX系统问题较少，原因是使用者较少且版本统一，而WINDOWS系统版本繁多，导致问题多样。 </p>
+<p>3.WINDOWS系统使用ANSI编码，与常用的UTF-8编码不同，可能导致兼容性问题。</p>
+<h3 id="1-2-系统版本选择"><a href="#1-2-系统版本选择" class="headerlink" title="1.2 系统版本选择"></a>1.2 系统版本选择</h3><p>1.推荐使用原版WINDOWS 10系统，避免使用精简版，以防出现未知问题。</p>
+<p> 2.查看系统版本的方法包括使用win ver命令或系统设置中的关于选项。 </p>
+<p>3.启用超级用户（类似于安卓系统的root用户）可以解决权限问题，避免某些操作失败。</p>
+<h2 id="2-cmd和环境变量"><a href="#2-cmd和环境变量" class="headerlink" title="2. cmd和环境变量"></a>2. cmd和环境变量</h2><h3 id="2-1-cmd的打开方式"><a href="#2-1-cmd的打开方式" class="headerlink" title="2.1 cmd的打开方式"></a>2.1 cmd的打开方式</h3><p>1.cmd是一个常用的终端工具，在逆向工程中经常使用。 </p>
+<p>2.打开cmd的方式有多种，推荐使用快捷键win键+r键打开。 </p>
+<p>3.另一种打开方式是在指定路径下直接点击cmd，无需切换路径。</p>
+<h3 id="2-2-cmd的基本操作"><a href="#2-2-cmd的基本操作" class="headerlink" title="2.2 cmd的基本操作"></a>2.2 cmd的基本操作</h3><p>1.显示当前路径下的所有文件，使用dir命令。 </p>
+<p>2.清屏操作，使用cls命令。 </p>
+<p>3.切换目录，使用cd命令。 </p>
+<p>4.Tab键自动补全路径。 </p>
+<p>5.复制和粘贴操作，通过右键菜单完成。 </p>
+<p>6.回到上一级目录，使用cd..命令。 </p>
+<p>7.上下键选择之前输入过的命令。 </p>
+<p>8.在cmd中运行文件，包括没有扩展名的文件。</p>
+<h3 id="2-4-相对路径和绝对路径"><a href="#2-4-相对路径和绝对路径" class="headerlink" title="2.4 相对路径和绝对路径"></a>2.4 相对路径和绝对路径</h3><p>1.绝对路径从盘符开始，如E:\soft\test。 </p>
+<p>2.相对路径基于当前目录，如..\c或b。 </p>
+<p>3.CD -d命令用于在不同盘符之间切换。</p>
+<h3 id="2-5-环境变量的作用"><a href="#2-5-环境变量的作用" class="headerlink" title="2.5 环境变量的作用"></a>2.5 环境变量的作用</h3><p>1.环境变量Path用于指定程序搜索路径。 </p>
+<p>2.通过将路径添加到Path变量，程序可以在任意目录下运行。 </p>
+<p>3.环境变量的加载在启动时完成，新开的cmd窗口才能识别新的环境变量。</p>
+<h2 id="3-jdk的安装"><a href="#3-jdk的安装" class="headerlink" title="3.jdk的安装"></a>3.jdk的安装</h2><h3 id="3-1-jdk的介绍"><a href="#3-1-jdk的介绍" class="headerlink" title="3.1 jdk的介绍"></a>3.1 jdk的介绍</h3><p>1.jdk是JAVA开发工具集，包含JAVA虚拟机和一些基本的类库。 </p>
+<p>2.jdk是jre的基础上增加了开发工具，用于JAVA开发。 </p>
+<p>3.jdk的版本主要有8和17，其中8和11是长期支持版本。</p>
+<h3 id="3-2-jdk的下载和安装"><a href="#3-2-jdk的下载和安装" class="headerlink" title="3.2 jdk的下载和安装"></a>3.2 jdk的下载和安装</h3><p>1.jdk可以从Oracle官网或OpenJDK网站下载。 </p>
+<p>2.下载时需要注册账号并登录。 </p>
+<p>3.安装时选择合适的操作系统和版本，可以是ese或exe。</p>
+<h3 id="3-3-jdk的安装检测"><a href="#3-3-jdk的安装检测" class="headerlink" title="3.3 jdk的安装检测"></a>3.3 jdk的安装检测</h3><p>1.安装完成后，通过cmd输入JAVA或JAVA_HOME来检测安装是否成功。 </p>
+<p>2.如果输入JAVA或JAVA_HOME能显示版本信息，则表示环境配置正确。</p>
+<h2 id="4-dex反编译工具"><a href="#4-dex反编译工具" class="headerlink" title="4. dex反编译工具"></a>4. dex反编译工具</h2><h3 id="4-1-工具安装和使用"><a href="#4-1-工具安装和使用" class="headerlink" title="4.1 工具安装和使用"></a>4.1 工具安装和使用</h3><h4 id="4-1-1-jadx"><a href="#4-1-1-jadx" class="headerlink" title="4.1.1 jadx"></a>4.1.1 jadx</h4><p>下载地址：<a href="https://github.com/skylot/jadx/releases/tag/v1.3.2">Release 1.3.2 · skylot&#x2F;jadx</a></p>
+<p>1.jadx是一个常用的反编译工具，更新到1.3版本，功能强大。 </p>
+<p>2.jadx安装在GitHub上，提供源代码和编译好的版本。 3.安装简单，不需要安装jadx本身，只需安装7-Zip用于解压。</p>
+<p> 4.安装完成后，通过修改注册表并勾选选项，自动识别jadx。 </p>
+<p>5.jadx界面默认中文版，可用于反编译APP，生成字面文件和代码。</p>
+<p> 6.新版本jadx可以直接导出源代码，支持中文显示内存使用栏。</p>
+<p>7.通过bat文件可以修改内存使用量，默认4GB，可改为8GB。 </p>
+<p>8.jadx支持搜索类名和源代码，具有调试功能，需配置ADB。 </p>
+<p>9.反混淆功能建议关闭，以免更改类名导致问题。</p>
+<h4 id="4-1-2-gda"><a href="#4-1-2-gda" class="headerlink" title="4.1.2 gda"></a>4.1.2 gda</h4><p>下载地址：<a href="http://www.gda.wiki:9090/">http://www.gda.wiki:9090/</a></p>
+<p>使用free版本</p>
+<h4 id="4-1-3-jeb"><a href="#4-1-3-jeb" class="headerlink" title="4.1.3 jeb"></a>4.1.3 jeb</h4><h5 id="JAD与JEB的比较"><a href="#JAD与JEB的比较" class="headerlink" title="JAD与JEB的比较"></a>JAD与JEB的比较</h5><p>1.JAD可能反编译出的代码绿色注释部分不完整，反编译能力较弱。 </p>
+<p>2.JEB反编译能力更强，适用于JAD反编译失败的APP。 </p>
+<p>3.在JAD或JEB无法反编译的情况下，可以尝试使用定制ART虚拟机直接输出运行过程中的SMILE代码和寄存器参数进行分析。</p>
+<h5 id="JEB的安装与使用"><a href="#JEB的安装与使用" class="headerlink" title="JEB的安装与使用"></a>JEB的安装与使用</h5><p>1.下载JEB 4.2版本，解压后将jab.exe替换到bin目录下。 </p>
+<p>2.双击jab.exe打开软件，接受协议并生成key。 </p>
+<p>3.确保替换掉原jb.exe文件后，生成的东西才有用。 </p>
+<p>4.软件界面延迟到2033年，可以通过拖入文件进行反编译。 </p>
+<p>5.在Edit菜单下选择Language，可以切换到中文界面。 </p>
+<p>6.反编译出的JAVA代码可以在Smart Code区域查看，搜索和跳转功能也十分便捷。 </p>
+<p>7.JEB需要使用到JDK，并且JDK的大小目前最大为4GB，可以通过配置文件进行修改。</p>
+<h2 id="5-Windows注意事项"><a href="#5-Windows注意事项" class="headerlink" title="5.Windows注意事项"></a>5.Windows注意事项</h2><h3 id="5-1-Windows路径命名规范"><a href="#5-1-Windows路径命名规范" class="headerlink" title="5.1 Windows路径命名规范"></a>5.1 Windows路径命名规范</h3><p>1.Windows系统中路径命名应避免使用中文、空格和特殊符号，以防止出现错误。 </p>
+<p>2.计算机名也应避免使用中文，以确保软件的正常运行。 </p>
+<p>3.国外软件在Windows系统中对中文路径的兼容性较差。</p>
+<h3 id="5-2-环境变量配置"><a href="#5-2-环境变量配置" class="headerlink" title="5.2 环境变量配置"></a>5.2 环境变量配置</h3><p>1.安装Python时，建议将Python的安装路径和脚本路径添加到系统环境变量中。 </p>
+<p>2.通过配置环境变量，可以方便地运行Python解释器和脚本。 </p>
+<p>3.在Windows系统中，可以使用path变量来添加Python的安装路径和脚本路径。</p>
+<h3 id="5-3-计算机名对软件运行的影响"><a href="#5-3-计算机名对软件运行的影响" class="headerlink" title="5.3 计算机名对软件运行的影响"></a>5.3 计算机名对软件运行的影响</h3><p>1.计算机名使用中文可能导致某些软件无法正常运行，尤其是国外软件。 </p>
+<p>2.修改计算机名为英文或数字可以解决某些软件运行问题。 </p>
+<p>3.在虚拟机中可以方便地修改计算机名以进行测试。</p>
+<h2 id="6-Android-Studio"><a href="#6-Android-Studio" class="headerlink" title="6.Android Studio"></a>6.Android Studio</h2><h3 id="6-1-安装与配置"><a href="#6-1-安装与配置" class="headerlink" title="6.1 安装与配置"></a>6.1 安装与配置</h3><p>1.Android Studio是一个强大的IDE工具，用于安卓开发和逆向工程。 </p>
+<p>2.安装过程包括下载安装包和选择安装路径，建议不要将Android Studio安装在系统盘。</p>
+<h3 id="6-2-启动与配置"><a href="#6-2-启动与配置" class="headerlink" title="6.2 启动与配置"></a>6.2 启动与配置</h3><p>1.启动Android Studio时选择不导入任何配置文件。 </p>
+<p>2.选择自定义设置，并配置SDK的安装路径。 </p>
+<p>3.配置模拟器的内存和主题选择。</p>
+<h3 id="6-3-SDK的配置与管理"><a href="#6-3-SDK的配置与管理" class="headerlink" title="6.3 SDK的配置与管理"></a>6.3 SDK的配置与管理</h3><p>1.通过SDK Manager配置SDK，包括安装不同版本的SDK和工具。 </p>
+<p>2.选择安装安卓10（API 29）和必要的build tools、NDK和CMake。</p>
+<p>3.安装Google USB Driver以连接谷歌手机。</p>
+<h3 id="6-4-创建安卓项目"><a href="#6-4-创建安卓项目" class="headerlink" title="6.4 创建安卓项目"></a>6.4 创建安卓项目</h3><p>1.选择创建Native C++项目以测试NDK支持。 </p>
+<p>2.输入项目名称和包名，选择保存路径和语言（Java或Kotlin）。 </p>
+<p>3.选择最小支持的SDK版本和C++标准。</p>
+<h3 id="6-5-工程目录结构"><a href="#6-5-工程目录结构" class="headerlink" title="6.5 工程目录结构"></a>6.5 工程目录结构</h3><p>1.项目目录包括工程级别的配置文件和模块级别的代码文件。 </p>
+<p>2.模块目录结构包括src、main、java和gradle文件。 </p>
+<p>3.gradle文件中配置SDK版本、build tools版本和编译目标API版本。</p>
+<h3 id="6-6-SDK目录结构"><a href="#6-6-SDK目录结构" class="headerlink" title="6.6 SDK目录结构"></a>6.6 SDK目录结构</h3><p>1.SDK目录包括build tools、platform tools、USB driver和其他编译和打包工具。 </p>
+<p>2.build tools用于编译APP，platform tools用于刷机和操控手机。</p>
+<h3 id="6-7-配置文件位置"><a href="#6-7-配置文件位置" class="headerlink" title="6.7 配置文件位置"></a>6.7 配置文件位置</h3><p>1.Android Studio的配置文件包括gradle和android配置文件。 </p>
+<p>2.配置文件位于C盘用户目录下，需要手动删除以重置配置。</p>
+<h2 id="7-ADB（Android-Debug-Bridge）"><a href="#7-ADB（Android-Debug-Bridge）" class="headerlink" title="7.ADB（Android Debug Bridge）"></a>7.ADB（Android Debug Bridge）</h2><h3 id="7-1-作用与原理"><a href="#7-1-作用与原理" class="headerlink" title="7.1 作用与原理"></a>7.1 作用与原理</h3><p>1.adb可以在电脑端操控手机，主要用于安卓应用安装和调试。 </p>
+<p>2.adb的原理是通过电脑端的客户端和服务器与手机端的adbd进程进行交互，发送指令并操控手机。</p>
+<p>3.adb客户端和服务器在电脑端，而adbd进程在手机端。</p>
+<h3 id="7-2-概念与命令"><a href="#7-2-概念与命令" class="headerlink" title="7.2 概念与命令"></a>7.2 概念与命令</h3><p>1.超级adbd具有root权限，不需要通过SEO申请，可以通过修改adbd源码实现。 </p>
+<p>2.超级adbd可以使用两个命令：adb root和adb remount。 </p>
+<p>3.adb root使adb在root权限下运行，adb remount将system分区挂载为可读写。</p>
+<h3 id="7-3-超级adbd配置与环境变量"><a href="#7-3-超级adbd配置与环境变量" class="headerlink" title="7.3 超级adbd配置与环境变量"></a>7.3 超级adbd配置与环境变量</h3><p>1.adb在SDK的platform tools目录下，使用前需将该目录添加到环境变量中。 </p>
+<p>2.通过修改环境变量，可以在任意目录下访问adb命令。 </p>
+<p>3.添加环境变量后，需重启计算机使其生效。</p>
+<h3 id="7-4-adb常用命令"><a href="#7-4-adb常用命令" class="headerlink" title="7.4 adb常用命令"></a>7.4 adb常用命令</h3><p>略</p>
+<h2 id="8-安卓模拟环境"><a href="#8-安卓模拟环境" class="headerlink" title="8. 安卓模拟环境"></a>8. 安卓模拟环境</h2><h3 id="8-1-安装软件"><a href="#8-1-安装软件" class="headerlink" title="8.1 安装软件"></a>8.1 安装软件</h3><p>1.到官网下载9.0模拟器，并安装<br><a href="https://www.ldmnq.com/">https://www.ldmnq.com/</a></p>
+<p>[更新!]适用于几乎所有安卓模拟器(7+)安装magisk的教程-简单无脑向<br><a href="https://www.52pojie.cn/thread-1583586-1-1.html">https://www.52pojie.cn/thread-1583586-1-1.html</a><br>(出处: 吾爱破解论坛)</p>
+<p>2.下载配置文件</p>
+<p>3.安装面具</p>
+<h3 id="8-2-Magisk介绍"><a href="#8-2-Magisk介绍" class="headerlink" title="8.2 Magisk介绍"></a>8.2 Magisk介绍</h3><p>Magisk 是一套用于定制 Android 的开源软件，支持高于 Android 5.0 的设备。</p>
+<p>以下是一些功能亮点：</p>
+<ul>
+<li><strong>MagiskSU</strong>：为应用程序提供 root 访问权限</li>
+<li><strong>Magisk 模块</strong>：通过安装模块修改只读分区</li>
+<li><strong>MagiskHide</strong>：从根检测 &#x2F; 系统完整性检查中隐藏 Magisk(Shamiko)</li>
+<li><strong>MagiskBoot</strong> : 最完整的安卓启动镜像解包和重新打包工具</li>
+</ul>
+<p>#二、Android基础介绍 </p>
+<h2 id="1-Android历史版本"><a href="#1-Android历史版本" class="headerlink" title="1.Android历史版本"></a>1.Android历史版本</h2><p>​	Android 4.4以前，采用dalvik &#x2F;dvm虚拟机 libdvm.so</p>
+<p>​	Android 4.4，里面有dvm和art虚拟机，可以切换 libdvm.so libart.so</p>
+<p>​	Android 5.0及以后，使用art虚拟机，Android系统也开始分32位和64位    </p>
+<p>​	nexus5 32 6.0 -&gt; 32位    </p>
+<p>​	nexus6p 64 6.0 -&gt; 64位</p>
+<h2 id="2-Apk文件结构"><a href="#2-Apk文件结构" class="headerlink" title="2.Apk文件结构"></a>2.Apk文件结构</h2><p>apk 全称 Android Package，它相当于一个压缩文件，只要在电脑上将apk后缀改为zip即可解压。</p>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>注释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>assets目录</td>
+<td>存放APK的静态资源文件，比如视频，音频，图片等（不一定有但常见）</td>
+</tr>
+<tr>
+<td>lib目录</td>
+<td>armeabi-v7a基本通用所有Android设备，arm64-v8a只是用与64为的Android设备，x86常用于Android模拟器，其目录下的.so文件时c或者c++编译的动态链接库文件（不一定有但常见）</td>
+</tr>
+<tr>
+<td>META-INF目录</td>
+<td>保存应用的签名信息，签名信息可以验证APK文件的额完整性，相当于APK的身份验证（验证文件是否又被修改）</td>
+</tr>
+<tr>
+<td>res目录</td>
+<td>res目录存放资源文件，包括图片，字符串等，APK的 脸蛋由它的layout文件设计</td>
+</tr>
+<tr>
+<td>AndroidManifest.xml文件</td>
+<td>APK的应用清单信息，他描述了应用的名字，版本，权限，引用的库文件等信息</td>
+</tr>
+<tr>
+<td>classes.dex文件</td>
+<td>classes.dex是java原码编译后生成的java字节码文件，APK运行的主要逻辑</td>
+</tr>
+<tr>
+<td>reaources.arsc文件</td>
+<td>resources.arsc是编译后的二进制资源文件，它是一个映射表，映射着资源和id，通过R文件中的id就可以找到对应的资源</td>
+</tr>
+</tbody></table>
+<h2 id="3-Android目录"><a href="#3-Android目录" class="headerlink" title="3.Android目录"></a>3.Android目录</h2><p>1.data&#x2F;data目录  </p>
+<p>存放用户apk数据的目录，每个apk都有自己的目录，以包名命名  就是在data&#x2F;data&#x2F;目录下，会产生一个跟Package一样的目录  这是一个私有目录，app只能访问各自的目录，除非root权限</p>
+<p>2.data&#x2F;app</p>
+<p>目录用户安装的app存放在这个目录下</p>
+<p>3.data&#x2F;local&#x2F;tmp</p>
+<p>临时目录，权限比较大</p>
+<p>4.system&#x2F;app目录</p>
+<p>存放系统自带的app</p>
+<p>5.system&#x2F;lib目录、system&#x2F;lib64</p>
+<p>存放app用到so文件</p>
+<p>6.system&#x2F;bin目录</p>
+<p>存放shell命令</p>
+<p>7.system&#x2F;framework目录</p>
+<p>Android系统所用到框架，如一些jar文件，XposedBridge.jar</p>
+<p>8.sd卡目录 不管手机有没有存储卡都会有这个目录，app操作sd卡目录需要申请权限</p>
+<p>&#x2F;sdcard -&gt; &#x2F;storage&#x2F;self&#x2F;primary</p>
+<p>&#x2F;mnt&#x2F;sdcard</p>
+<p>&#x2F;storage&#x2F;emulated&#x2F;0</p>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>信息安全</tag>
+        <tag>安卓逆向工程</tag>
+        <tag>小肩膀</tag>
       </tags>
   </entry>
 </search>
