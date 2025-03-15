@@ -74,8 +74,8 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2025/03/01/Java%E7%BC%96%E7%A8%8B/" class="article-date">
-  <time datetime="2025-02-28T16:00:00.000Z" itemprop="datePublished">2025-03-01</time>
+      <a href="/2025/03/15/Java%E7%BC%96%E7%A8%8B/" class="article-date">
+  <time datetime="2025-03-14T16:00:00.000Z" itemprop="datePublished">2025-03-15</time>
 </a> 
   <div class="article-category">
     <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
@@ -86,7 +86,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">17.2k</span>
+            <span class="post-count">19.9k</span>
         </span>
     </span>
 
@@ -95,7 +95,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">74 分钟</span>
+            <span class="post-count">85 分钟</span>
         </span>
     </span>
 </div>
@@ -1552,7 +1552,167 @@
 <p>3.如果方法中使用的时引用类型变量（比如数组、对象），就会共享该引用类型的数据</p>
 <p>4.递归必须向退出的条件逼近，否则就是无线递归，出现StackOverflowError</p>
 <p>5.当一个方法执行完毕，或者遇到return，就会返回，遵守谁调用，就将结果返回给谁，同时当方法执行完毕或者返回时，该方法也就执行完毕</p>
-<h2 id="6-4-重载（overload）"><a href="#6-4-重载（overload）" class="headerlink" title="6.4 重载（overload）"></a>6.4 重载（overload）</h2><h2 id="6-5-可变参数"><a href="#6-5-可变参数" class="headerlink" title="6.5 可变参数"></a>6.5 可变参数</h2><h2 id="6-6-作用域"><a href="#6-6-作用域" class="headerlink" title="6.6 作用域"></a>6.6 作用域</h2><h2 id="6-7-构造器"><a href="#6-7-构造器" class="headerlink" title="6.7 构造器"></a>6.7 构造器</h2><h2 id="6-8-this"><a href="#6-8-this" class="headerlink" title="6.8 this"></a>6.8 this</h2> 
+<h2 id="6-4-重载（overload）"><a href="#6-4-重载（overload）" class="headerlink" title="6.4 重载（overload）"></a>6.4 重载（overload）</h2><h3 id="6-4-1-基本介绍"><a href="#6-4-1-基本介绍" class="headerlink" title="6.4.1 基本介绍"></a>6.4.1 基本介绍</h3><p>java中允许同一类中，多个同名方法的存在，但要求 新参列表不一致！</p>
+<p>比如：System.outprintln(); out是PrintStream类型</p>
+<ul>
+<li>重载的好处</li>
+</ul>
+<p>减轻了起名的麻烦</p>
+<p>减轻了记名的麻烦</p>
+<ul>
+<li>快速入门</li>
+</ul>
+<p>案例：类：MyCalculate 方法：calculate</p>
+<p>calculate(int n1,int n2)&#x2F;&#x2F;两个整数的和</p>
+<p>calculate(int n1,double n2)&#x2F;&#x2F;一个整数，一个double的和</p>
+<p>calculate(double n2,int n1)&#x2F;&#x2F;一个double，一个int的和</p>
+<p>calculate(int n1,int n2,int n3)&#x2F;&#x2F;三个int的和</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">t1</span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span> <span class="params">(String[] args)</span>&#123;</span><br><span class="line">        <span class="type">MyCalculate</span> <span class="variable">mc</span> <span class="operator">=</span><span class="keyword">new</span> <span class="title class_">MyCalculate</span>();</span><br><span class="line">        System.out.println(mc.calculate(<span class="number">1.2</span>, <span class="number">3</span>));</span><br><span class="line">        System.out.println(mc.calculate(<span class="number">4</span>, <span class="number">2</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyCalculate</span>&#123;</span><br><span class="line">    <span class="comment">//两个整数的和</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">calculate</span><span class="params">(<span class="type">int</span> n1,<span class="type">int</span> n2)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> n1+n2;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//一个整数，一个double的和</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">double</span> <span class="title function_">calculate</span><span class="params">(<span class="type">int</span> n1,<span class="type">double</span> n2)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> n1+n2;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//一个double，一个int的和</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">double</span> <span class="title function_">calculate</span><span class="params">(<span class="type">double</span> n1,<span class="type">int</span> n2)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> n1+n2;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//三个int的 和</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">calculate</span><span class="params">(<span class="type">int</span> n1,<span class="type">int</span> n2,<span class="type">int</span> n3)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> n1+n2+n3;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>输出结果</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">4.2</span></span><br><span class="line"><span class="number">6</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="6-4-2-注意事项和细节"><a href="#6-4-2-注意事项和细节" class="headerlink" title="6.4.2 注意事项和细节"></a>6.4.2 注意事项和细节</h3><p>1.方法名：必须相同</p>
+<p>2.形参列表：必须不同，形参类型或个数或顺序，至少有一样不同，参数名无所谓，主要看类型</p>
+<p>3.返回类型：无要求，不是构成重载的条件</p>
+<h2 id="6-5-可变参数-Variable-parameters"><a href="#6-5-可变参数-Variable-parameters" class="headerlink" title="6.5 可变参数(Variable parameters)"></a>6.5 可变参数(Variable parameters)</h2><h3 id="6-5-1-快速入门"><a href="#6-5-1-快速入门" class="headerlink" title="6.5.1 快速入门"></a>6.5.1 快速入门</h3><p>java允许将同一个类 多个同名功能但参数个数不同的方法，封装成一个方法。</p>
+<ul>
+<li>基本语法</li>
+</ul>
+<p>访问修饰符 返回类型 方法名(数据类型… 形参名){</p>
+<p>}</p>
+<ul>
+<li>案例</li>
+</ul>
+<p>类 HspMethod ，方法 sum【可以计算2个数的和，3个数的和，4……】</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">t1</span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span> <span class="params">(String[] args)</span>&#123;</span><br><span class="line">        <span class="type">HspMethod</span> <span class="variable">hpm</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">HspMethod</span>();</span><br><span class="line">        System.out.println(hpm.m(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>));</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">HspMethod</span>&#123;</span><br><span class="line">    <span class="comment">//int... 表示的就是可变参数，类型是int，即可以接收多个int（0-多）</span></span><br><span class="line">    <span class="comment">//使用可变参数时，可以当作数组来使用 即nums 可以当作数组</span></span><br><span class="line">    <span class="comment">//遍历nums 求和即可</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">m</span><span class="params">(<span class="type">int</span>...  nums)</span>&#123;</span><br><span class="line">        <span class="comment">//System.out.println(&quot;接收到的参数个数是：&quot;+nums.length);</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">res</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span><span class="number">0</span>;i&lt;nums.length;i++)&#123;</span><br><span class="line">            res+=nums[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-5-2-注意事项和使用细节"><a href="#6-5-2-注意事项和使用细节" class="headerlink" title="6.5.2 注意事项和使用细节"></a>6.5.2 注意事项和使用细节</h3><p>1.可变参数的实参可以为0格或者任意多个</p>
+<p>2.可变参数的实质就是数组，所以实参可以为数组</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">t1</span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span> <span class="params">(String[] args)</span>&#123;</span><br><span class="line">        <span class="type">HspMethod</span> <span class="variable">hpm</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">HspMethod</span>();</span><br><span class="line">        <span class="type">int</span>[] arr=&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;;</span><br><span class="line">        hpm.m(arr);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">HspMethod</span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">m</span><span class="params">(<span class="type">int</span>...  nums)</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;接收到的参数个数是：&quot;</span>+nums.length);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出结果</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">接收到的参数个数是：<span class="number">3</span></span><br></pre></td></tr></table></figure>
+
+<p>3.可变参数可以和普通类型的参数一起放在形参列表中，但必须保证可变参数在最后</p>
+<p>4.一个形参列表只能出现一个可变参数</p>
+<p>有三个方法，分别实现返回姓名和两门成绩（总分），返回姓名和三门可成绩（总分），返回姓名和五门可的成绩（总分）。封装成一个可变参数的方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">t1</span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span> <span class="params">(String[] args)</span>&#123;</span><br><span class="line">        <span class="type">HspMethod</span> <span class="variable">hpm</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">HspMethod</span>();</span><br><span class="line">        System.out.println(hpm.showScore(<span class="string">&quot;xiaoming&quot;</span>, <span class="number">45.1</span>,<span class="number">65.21</span>));</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">HspMethod</span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">showScore</span><span class="params">(String name,<span class="type">double</span>...  score)</span>&#123;</span><br><span class="line">        <span class="type">double</span> totalScore=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;score.length;i++)&#123;</span><br><span class="line">            totalScore += score[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> name+<span class="string">&quot;有&quot;</span>+score.length+<span class="string">&quot;门课的总成绩是&quot;</span>+totalScore;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>输出结果</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xiaoming有<span class="number">2</span>门课的总成绩是<span class="number">110.31</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="6-6-作用域-Scope"><a href="#6-6-作用域-Scope" class="headerlink" title="6.6 作用域(Scope)"></a>6.6 作用域(Scope)</h2><p>1.在java编程中，主要的变量就是属性（成员变量）和局部变量</p>
+<p>2.局部变量一般是指在成员方法中定义的变量</p>
+<p>3.全局变量：也就是属性，作用域为整个类体</p>
+<p>   局部变量：也就是除了属性之外的其他变量，作用域定义它的代码块中</p>
+<p>4.全局变量可以不赋值，直接使用，因为有默认值。但是局部变量必须赋值后才能使用，因为没有默认值。</p>
+<p>总的来说就是根据大括号划分作用域。</p>
+<ul>
+<li>注意事项和细节使用</li>
+</ul>
+<p>1.属性和局部变量可以重名，访问时遵循就近原则</p>
+<p>2.在同一作用域中，比如在同意成员方法中，两个局部变量，不能重名。</p>
+<p>3.属性生命周期较长，伴随着对象的创建而创建，伴随着对象的销毁而销毁。局部变量，声明周期较短，伴随者它的代码块的执行而创建，伴随者代码块的结束而销毁。即在一次方法调用过程中。</p>
+<p>4.作用于范围不一样</p>
+<p>全部变量&#x2F;属性：可以被本类使用，或其他类使用（通过对象调用）</p>
+<p>局部变量：只能在本类中对应的方法调用</p>
+<p>5.修饰符不同</p>
+<p>全局变量&#x2F;属性可以加修饰符</p>
+<p>局部变量不可以加修饰符</p>
+<h2 id="6-7-构造器-constructor"><a href="#6-7-构造器-constructor" class="headerlink" title="6.7 构造器(constructor)"></a>6.7 构造器(constructor)</h2><h3 id="6-7-1-基础介绍"><a href="#6-7-1-基础介绍" class="headerlink" title="6.7.1 基础介绍"></a>6.7.1 基础介绍</h3><ul>
+<li>基本介绍</li>
+</ul>
+<p>​	构造方法又叫构造器(constructor)，是类的一种特殊的方法，它的主要作用是完成对  <strong>新对象  的初始化</strong>。</p>
+<ul>
+<li>特点</li>
+</ul>
+<ol>
+<li>方法名和类名相同</li>
+<li>没有返回值</li>
+<li>在创建对象时，系统会自动的调用该类的构造器完成对对象的初始化</li>
+</ol>
+<ul>
+<li>基本语法</li>
+</ul>
+<p>[修饰符] 方法名(形参列表){</p>
+<p>​	方法体；</p>
+<p>}</p>
+<ul>
+<li>说明</li>
+</ul>
+<ol>
+<li>构造器的修饰符可以是默认，也可以是public protected private</li>
+<li>构造器没有返回值</li>
+<li>方法名和类名一定要一样</li>
+<li>参数列表 和 成员方法一样的规则</li>
+<li>构造器的调用由系统完成</li>
+</ol>
+<h3 id="6-7-2-快速入门"><a href="#6-7-2-快速入门" class="headerlink" title="6.7.2 快速入门"></a>6.7.2 快速入门</h3><p>用构造方法来完成创建人类的对象时，直接指定这个对象的年龄和性别</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">t1</span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span> <span class="params">(String[] args)</span>&#123;</span><br><span class="line">        <span class="type">Person</span> <span class="variable">p1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Person</span>(<span class="string">&quot;小明&quot;</span>,<span class="number">21</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;构造方法已被调用&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;p1的name=&quot;</span>+p1.name);</span><br><span class="line">        System.out.println(<span class="string">&quot;p2的age=&quot;</span>+p1.age);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Person</span>&#123;</span><br><span class="line">    String name;</span><br><span class="line">    <span class="type">int</span> age;</span><br><span class="line">    <span class="comment">//没有返回值所以也不能写void</span></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Person</span><span class="params">(String pname,<span class="type">int</span> page)</span>&#123;</span><br><span class="line">        name = pname;</span><br><span class="line">        age = page;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出结果</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">构造方法已被调用</span><br><span class="line">p1的name=小明</span><br><span class="line">p1的age=<span class="number">21</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="6-7-3-注意事项和使用细节"><a href="#6-7-3-注意事项和使用细节" class="headerlink" title="6.7.3 注意事项和使用细节"></a>6.7.3 注意事项和使用细节</h3><ol>
+<li><p>一个类可以定义多个不同的构造器，即构造器重载</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">t1</span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span> <span class="params">(String[] args)</span>&#123;</span><br><span class="line">        <span class="type">Person</span> <span class="variable">p1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Person</span>(<span class="string">&quot;小明&quot;</span>,<span class="number">21</span>);</span><br><span class="line">        <span class="type">Person</span> <span class="variable">p2</span> <span class="operator">=</span><span class="keyword">new</span> <span class="title class_">Person</span>(<span class="string">&quot;小溪&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;构造方法已被调用&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;p1的name=&quot;</span>+p1.name);</span><br><span class="line">        System.out.println(<span class="string">&quot;p1的age=&quot;</span>+p1.age);</span><br><span class="line">        System.out.println(<span class="string">&quot;p2的age=&quot;</span>+p2.name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Person</span>&#123;</span><br><span class="line">    String name;</span><br><span class="line">    <span class="type">int</span> age;</span><br><span class="line">    <span class="comment">//第一个构造器</span></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Person</span><span class="params">(String pname,<span class="type">int</span> page)</span>&#123;</span><br><span class="line">        name = pname;</span><br><span class="line">        age = page;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//第二个构造器</span></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Person</span><span class="params">(String pname)</span>&#123;</span><br><span class="line">        name = pname;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出结果</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">构造方法已被调用</span><br><span class="line">p1的name=小明</span><br><span class="line">p1的age=<span class="number">21</span></span><br><span class="line">p2的age=小溪</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>构造器名和类名要相同</p>
+</li>
+<li><p>构造器没有返回值</p>
+</li>
+<li><p>构造器是完成对象的初始化，并不是创建对象</p>
+</li>
+<li><p>在创建对象时，系统自动的调用该类的构造方法</p>
+</li>
+<li><p>如果程序员没有定义构造器，系统会自动给类生成一个默认无参构造器（也叫做默认构造器）。可以使用javap命令反编译。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">t1</span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span> <span class="params">(String[] args)</span>&#123;</span><br><span class="line">        <span class="type">Person</span> <span class="variable">p1</span> <span class="operator">=</span><span class="keyword">new</span> <span class="title class_">Person</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Person</span>&#123;</span><br><span class="line">    <span class="comment">/*    </span></span><br><span class="line"><span class="comment">    默认构造器</span></span><br><span class="line"><span class="comment">    person()&#123;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>7.一旦定义了自己的构造器，默认的构造器就覆盖了，就不能再使用默认的无参构造器，除非显式的定义一下；即：Person(){}</p>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">t1</span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span> <span class="params">(String[] args)</span>&#123;</span><br><span class="line">        <span class="type">Person</span> <span class="variable">p1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Person</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Person</span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Person</span><span class="params">(String name)</span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>报错信息</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">t1.java:<span class="number">3</span>: 错误: 无法将类 Person中的构造器 Person应用到给定类型;</span><br><span class="line">        <span class="type">Person</span> <span class="variable">p1</span> <span class="operator">=</span><span class="keyword">new</span> <span class="title class_">Person</span>();</span><br><span class="line">                   ^</span><br><span class="line">  需要: String</span><br><span class="line">  找到:    没有参数</span><br><span class="line">  原因: 实际参数列表和形式参数列表长度不同</span><br><span class="line"><span class="number">1</span> 个错误</span><br></pre></td></tr></table></figure>
+
+<p>应该再定义一个默认的构造器</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">t1</span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span> <span class="params">(String[] args)</span>&#123;</span><br><span class="line">        <span class="type">Person</span> <span class="variable">p1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Person</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Person</span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Person</span><span class="params">(String name)</span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">    Person()&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>6.7.4 对象创建的流程分析</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Person</span>&#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">age</span> <span class="operator">=</span> <span class="number">90</span>;</span><br><span class="line">    String name;</span><br><span class="line">    Person(String n ,<span class="type">int</span> a)&#123;</span><br><span class="line">        name = n;</span><br><span class="line">        age = a;</span><br><span class="line">    &#125;&#125;</span><br><span class="line"><span class="type">Person</span> <span class="variable">p</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Person</span>(<span class="string">&quot;小明&quot;</span>,<span class="number">20</span>);</span><br></pre></td></tr></table></figure>
+
+<p>流程分析</p>
+<p>动作一：在方法区中加载Person类，new的时候在堆中开辟Person类的空间，空间地址例如是ox1122，</p>
+<p>动作二：默认初始化，一个存放age(默认值0)，一个存放name(默认值null)，然后读取赋给的值（显式初始化），age为90，name不变</p>
+<p>动作三：构造器初始化，传入n&#x3D;小明，常量池编号例如为0x1133，指向堆中的name代替null，a&#x3D;20放进age代替90。</p>
+<p>动作四：最后在栈中，p（指向）对象引用堆中的0x1122。可以理解为p是对象名，不是对象。对象在堆中。</p>
+<h2 id="6-8-this"><a href="#6-8-this" class="headerlink" title="6.8 this"></a>6.8 this</h2><h3 id="6-8-1-基本介绍"><a href="#6-8-1-基本介绍" class="headerlink" title="6.8.1 基本介绍"></a>6.8.1 基本介绍</h3><p>java虚拟机会给每个对象分配this，代表当前对象。</p>
+<ul>
+<li>使用this解决变量命名问题</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">t1</span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span> <span class="params">(String[] args)</span>&#123;</span><br><span class="line">        <span class="comment">//谁调用的就是谁的当前对象this</span></span><br><span class="line">        <span class="type">Person</span> <span class="variable">p1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Person</span>(<span class="string">&quot;小明&quot;</span>,<span class="number">12</span>);</span><br><span class="line">        p1.info();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Person</span>&#123;</span><br><span class="line">    String name;</span><br><span class="line">    <span class="type">int</span> age;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Person</span><span class="params">(String name,<span class="type">int</span> age)</span>&#123;</span><br><span class="line">        <span class="comment">//this.name就是当前对象的属性name</span></span><br><span class="line">        <span class="built_in">this</span>.name=name;</span><br><span class="line">        <span class="comment">//this.age就是当前对象的age</span></span><br><span class="line">        <span class="built_in">this</span>.age=age;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">info</span><span class="params">()</span>&#123;</span><br><span class="line">        System.out.println(name+<span class="string">&quot;\t&quot;</span>+age+<span class="string">&quot;\t&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="6-8-2-注意事项和使用细节"><a href="#6-8-2-注意事项和使用细节" class="headerlink" title="6.8.2 注意事项和使用细节"></a>6.8.2 注意事项和使用细节</h3><ol>
+<li>this关键字可以用来访问本类的属性、方法、构造器</li>
+<li>this用于区分当前类的属性和局部变量</li>
+<li>访问成员方法大语法：this.方法名(参数列表);</li>
+<li>访问构造器语法：this(参数列表);  注意只能在构造器中使用（即只能在构造器中访问另外一个构造器）必须放在第一句</li>
+<li>this不能再类定义的外部使用，只能在类定义的方法中使用</li>
+</ol>
+<p>案例</p>
+<p>定义Person类，里面有name、age属性，并提供compareTo比较方法，用于判断是否和另一个人相等，提供测试类TestPerson用于测试，名字和年龄完全一致，就返回true，否则就返回false</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">t1</span>&#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span> <span class="params">(String[] args)</span>&#123;</span><br><span class="line">			<span class="type">Person</span> <span class="variable">p1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Person</span>(<span class="string">&quot;小明&quot;</span>,<span class="number">21</span>);</span><br><span class="line">            <span class="type">Person</span> <span class="variable">p2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Person</span>(<span class="string">&quot;小明&quot;</span>,<span class="number">21</span>);</span><br><span class="line">            System.out.println(p1.compareTo(p2));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Person</span>&#123;</span><br><span class="line">    String name;</span><br><span class="line">    <span class="type">int</span> age;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Person</span><span class="params">(String name,<span class="type">int</span> age)</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.age=age;</span><br><span class="line">        <span class="built_in">this</span>.name=name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">compareTo</span><span class="params">(Person p)</span>&#123;</span><br><span class="line">        <span class="comment">//if(this.name.equals(p.name)&amp;&amp;this.age==p.age)&#123;</span></span><br><span class="line">        <span class="comment">//    return true;</span></span><br><span class="line">        <span class="comment">//&#125;else&#123;</span></span><br><span class="line">        <span class="comment">//    return false;</span></span><br><span class="line">        <span class="comment">//&#125;</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.name.equals(p.name) &amp;&amp; <span class="built_in">this</span>.age==p.age;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="第七章-面向对象编程（中级部分）"><a href="#第七章-面向对象编程（中级部分）" class="headerlink" title="第七章 面向对象编程（中级部分）"></a>第七章 面向对象编程（中级部分）</h1><h2 id="7-1-包"><a href="#7-1-包" class="headerlink" title="7.1 包"></a>7.1 包</h2><h2 id="7-2-访问修饰符"><a href="#7-2-访问修饰符" class="headerlink" title="7.2 访问修饰符"></a>7.2 访问修饰符</h2><h2 id="7-3-封装"><a href="#7-3-封装" class="headerlink" title="7.3 封装"></a>7.3 封装</h2><h2 id="7-4-继承"><a href="#7-4-继承" class="headerlink" title="7.4 继承"></a>7.4 继承</h2><h2 id="7-5-多态"><a href="#7-5-多态" class="headerlink" title="7.5 多态"></a>7.5 多态</h2><h2 id="7-6-Super"><a href="#7-6-Super" class="headerlink" title="7.6 Super"></a>7.6 Super</h2><h2 id="7-7-overwrite"><a href="#7-7-overwrite" class="headerlink" title="7.7 overwrite"></a>7.7 overwrite</h2><h2 id="7-8-Object类详解"><a href="#7-8-Object类详解" class="headerlink" title="7.8 Object类详解"></a>7.8 Object类详解</h2><h2 id="7-9-断点调试"><a href="#7-9-断点调试" class="headerlink" title="7.9 断点调试"></a>7.9 断点调试</h2> 
       <!-- reward -->
       
     </div>
@@ -1616,7 +1776,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://tangxtang1119.github.io/2025/03/01/Java%E7%BC%96%E7%A8%8B/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://tangxtang1119.github.io/2025/03/15/Java%E7%BC%96%E7%A8%8B/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -1629,19 +1789,19 @@
    
   <nav class="article-nav">
     
-      <a href="/2025/03/12/%E9%80%86%E8%A1%8C%E5%B7%A5%E7%A8%8B/" class="article-nav-link">
+      <a href="/2025/03/15/Python%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            安卓逆行工程
+            Python课程设计
           
         </div>
       </a>
     
     
-      <a href="/2025/02/24/Kotlin%E5%9F%BA%E7%A1%80/" class="article-nav-link">
+      <a href="/2025/03/12/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E8%BF%99%E6%A1%A3%E5%AD%90%E4%BA%8B/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">Kotlin基础</div>
+        <div class="article-nav-title">安卓逆向这档子事</div>
       </a>
     
   </nav>

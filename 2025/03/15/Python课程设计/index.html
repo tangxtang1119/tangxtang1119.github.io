@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+  
+
+    <head>
+      <meta charset="utf-8" />
+        
+      <meta name="description" content="‘有志少女 先读书’" />
+      
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>Python课程设计 |  tangxtang</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      
+<link rel="stylesheet" href="/css/fonts/remixicon.css">
+
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.staticfile.org/pace/1.2.4/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    </head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-Python课程设计"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  Python课程设计
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2025/03/15/Python%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1/" class="article-date">
+  <time datetime="2025-03-15T12:45:45.000Z" itemprop="datePublished">2025-03-15</time>
+</a>   
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">6.3k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">28 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="摘-要"><a href="#摘-要" class="headerlink" title="摘  要"></a>摘  要</h1><p>本文针对市场上现有的旅游管理工具存在操作复杂、用户门槛高、不适用于普通家庭的问题，设计并实现了一个基于Python编程语言开发，并结合Tkinter库构建图形用户界面（GUI）的旅游管理系统。使得操作直观便捷，简化景点、路线管理和费用结算等操作。</p>
+<p>系统的主要功能包括景点管理、路线规划、费用结算以及报告生成等模块。用户可以通过该系统轻松地添加、修改和删除景点信息；创建和查看由多个景点组成的旅行路线；计算特定路线所需的总费用；并将选定的路线详细信息保存到文本文件中。此外，系统还提供了数据保存和加载功能，确保用户的旅行数据持久化存储和安全备份。</p>
+<p>关键词：旅游管理 管理系统 用户体验 </p>
+<h1 id="1、序言"><a href="#1、序言" class="headerlink" title="1、序言"></a>1、序言</h1><p>本课题利用Python语言的三大控制结构（顺序、分支、循环）、文件读写操作、数据结构（如列表、字典）以及Tkinter库的图形化界面设计思想，编程实现了一个基于图形用户界面（GUI）的旅游管理系统。随着旅游行业的快速发展，市场上现有的旅游管理工具普遍存在操作复杂、用户门槛高的问题，难以满足普通家庭用户的便捷需求。为此，本系统旨在通过简洁直观的界面设计和高效的功能实现，为用户提供一种操作简便、功能全面的旅游管理解决方案。</p>
+<p>通过本系统的设计与实现，不仅能够提升用户的操作体验，还为普通家庭用户提供了一种高效、便捷的旅游管理工具，具有一定的实用价值和推广意义。</p>
+<h2 id="1-1设计目的及意义"><a href="#1-1设计目的及意义" class="headerlink" title="1.1设计目的及意义"></a>1.1设计目的及意义</h2><p>在随着旅游业的蓬勃发展，旅游活动在现代社会中逐渐成为人们生活的重要组成部分，无论是国内游还是境外游，都涉及到众多复杂的环节，如景点选择、路线规划、费用预算等。有效地管理这些旅游信息对于确保旅行的顺利进行至关重要。但目前市场上的旅游管理工具大多面向专业旅行社或资深旅行者设计，其功能繁杂、操作难度大，对于普通家庭用户而言使用门槛较高，难以满足他们对于便捷、简单旅游管理工具的需求。因此，开发一款具有针对性的旅游管理系统具有重要的现实意义。本文聚焦于设计并实现一款基于 Python 编程语言，并结合 Tkinter 库构建图形用户界面（GUI）的旅游管理系统，旨在简化旅游管理操作，提高用户体验，为广大普通家庭提供便捷、高效的旅游管理解决方案。</p>
+<h2 id="1-2知识点的基本介绍"><a href="#1-2知识点的基本介绍" class="headerlink" title="1.2知识点的基本介绍"></a>1.2知识点的基本介绍</h2><h3 id="1-2-1语法基础"><a href="#1-2-1语法基础" class="headerlink" title="1.2.1语法基础"></a>1.2.1语法基础</h3><p>变量与数据类型：了解如何声明变量、基本数据类型（整数、浮点数、字符串、布尔值等）以及它们的使用方法。控制结构：条件语句(if, elif, else)、循环语句(for, while)、函数(def)。</p>
+<h3 id="1-2-2数据结构"><a href="#1-2-2数据结构" class="headerlink" title="1.2.2数据结构"></a>1.2.2数据结构</h3><p>列表 (list)：有序的元素集合，支持索引和切片操作。</p>
+<p>字典 (dict)：键值对的集合，用于快速查找和存储数据。</p>
+<p>集合 (set)：无序且不重复的元素集合。</p>
+<p>元组 (tuple)：不可变的有序元素集合。</p>
+<h3 id="1-2-3文件读写"><a href="#1-2-3文件读写" class="headerlink" title="1.2.3文件读写"></a>1.2.3文件读写</h3><p>文件打开模式 (open())：r（只读）、w（写入，覆盖原有内容）、a（追加内容）、rb&#x2F;wb（二进制模式）。</p>
+<p>文件操作：读取 (read())、写入 (write())、关闭 (close())。</p>
+<h3 id="1-2-4-Tkinter-图形用户界面-GUI"><a href="#1-2-4-Tkinter-图形用户界面-GUI" class="headerlink" title="1.2.4 Tkinter 图形用户界面 (GUI)"></a>1.2.4 Tkinter 图形用户界面 (GUI)</h3><p>Tkinter 库：Python的标准GUI库，用于创建跨平台的桌面应用程序。</p>
+<p>窗口 (Tk()) 和框架 (Frame)</p>
+<p>常用控件：按钮 (Button)、标签 (Label)、输入框 (Entry)、文本框 (Text)、列表框 (Listbox)、复选框 (Checkbutton)、单选按钮 (Radiobutton) 等。</p>
+<p>布局管理器：pack()、grid()、place()</p>
+<h3 id="1-2-5-JSON-数据格式"><a href="#1-2-5-JSON-数据格式" class="headerlink" title="1.2.5 JSON 数据格式"></a>1.2.5 JSON 数据格式</h3><p>JSON 格式：轻量级的数据交换格式，易于人阅读和编写，同时也易于机器解析和生成。</p>
+<p>Python 中的 JSON 操作：使用 json 模块进行序列化和反序列化。</p>
+<h3 id="1-2-6-函数与模块化设计"><a href="#1-2-6-函数与模块化设计" class="headerlink" title="1.2.6 函数与模块化设计"></a>1.2.6 函数与模块化设计</h3><p>函数：定义可重用的代码块，提高代码的可维护性和可读性。</p>
+<p>模块：将功能相关的代码组织成独立的文件，便于管理和复用。</p>
+<h1 id="2、需求分析"><a href="#2、需求分析" class="headerlink" title="2、需求分析"></a>2、需求分析</h1><h2 id="2-1可行性分析"><a href="#2-1可行性分析" class="headerlink" title="2.1可行性分析"></a>2.1可行性分析</h2><h3 id="2-1-1-技术可行性"><a href="#2-1-1-技术可行性" class="headerlink" title="2.1.1 技术可行性"></a>2.1.1 技术可行性</h3><p>随着计算机技术的发展，特别是Python编程语言及其相关库的广泛应用，开发一个基于桌面的应用程序已成为可能。Python拥有强大的标准库和丰富的第三方库支持，特别是在图形用户界面（GUI）开发方面，Tkinter库提供了简单易用的解决方案。此外，Python的跨平台特性使得开发的应用程序可以在Windows、macOS和Linux等多个操作系统上运行，大大提升了系统的适用范围。</p>
+<h3 id="2-1-2-社会可行性"><a href="#2-1-2-社会可行性" class="headerlink" title="2.1.2  社会可行性"></a>2.1.2  社会可行性</h3><p>随着人们生活水平的提高和休闲旅游需求的增长，家庭对旅行管理的需求日益增加。现有的旅游管理工具虽然存在，但普遍存在操作复杂、用户门槛高等问题，难以满足普通家庭的使用需求。因此，开发一款易于使用、功能全面且适合普通家庭的旅游管理系统具有重要的社会意义。该系统不仅可以帮助家庭更好地规划和管理旅行活动，还能提升用户体验，促进旅游业的发展。</p>
+<p>旅游管理系统中的创建和查看旅行路线功能，为用户和管理人员提供了便捷的旅行规划和管理工具[1]。通过这些功能，无论是个人的旅行计划还是旅游景点的管理，都可以变得更加高效和灵活。随着技术的不断进步，未来的旅游管理系统将更加智能化，为用户提供更加个性化和便捷的服务。</p>
+<h2 id="2-2功能需求分析"><a href="#2-2功能需求分析" class="headerlink" title="2.2功能需求分析"></a>2.2功能需求分析</h2><h3 id="2-2-1-景点管理"><a href="#2-2-1-景点管理" class="headerlink" title="2.2.1 景点管理"></a>2.2.1 景点管理</h3><p>录入景点信息：输入景点的基本信息，包括名称、位置、描述、门票价格及游玩时间。</p>
+<p>查找景点信息：根据景点名称搜索特定的景点。</p>
+<p>删除景点信息：从系统中移除不再需要的景点信息。</p>
+<p>修改景点信息：编辑已有的景点信息，包括名称、位置、描述、门票价格及游玩时间。</p>
+<h3 id="2-2-2-路线管理"><a href="#2-2-2-路线管理" class="headerlink" title="2.2.2 路线管理"></a>2.2.2 路线管理</h3><p>创建旅行路线：选择多个景点，创建自定义的旅行路线。</p>
+<p>查看旅行路线：浏览所有已创建的旅行路线及其包含的景点列表。</p>
+<h3 id="2-2-3-费用结算"><a href="#2-2-3-费用结算" class="headerlink" title="2.2.3 费用结算"></a>2.2.3 费用结算</h3><p>计算费用：自动计算选定路线的总费用，帮助用户合理安排旅行预算。</p>
+<h3 id="2-2-4-报告生成"><a href="#2-2-4-报告生成" class="headerlink" title="2.2.4 报告生成"></a>2.2.4 报告生成</h3><p>生成报告：选择特定的路线并将详细信息保存到文本文件中，便于日后查阅或分享给他人。</p>
+<h3 id="2-2-5-数据保存与加载"><a href="#2-2-5-数据保存与加载" class="headerlink" title="2.2.5 数据保存与加载"></a>2.2.5 数据保存与加载</h3><p>保存数据：将用户的所有景点和路线信息持久化存储至本地磁盘。</p>
+<p>加载数据：从本地文件中加载之前保存的景点和路线信息。</p>
+<h3 id="2-2-6-用户界面"><a href="#2-2-6-用户界面" class="headerlink" title="2.2.6 用户界面"></a>2.2.6 用户界面</h3><p>主菜单界面：提供系统的入口界面，用户可以通过该界面选择不同的管理功能。</p>
+<p>景点管理界面：包含添加、修改、删除和查找景点的功能。</p>
+<p>路线管理界面：包含选择景点、添加路线和查看路线的功能。</p>
+<p>费用结算界面：包含选择路线和计算费用的功能。</p>
+<p>报告生成界面：包含选择路线和保存报告的功能。</p>
+<p>数据保存与加载界面：包含保存数据和加载数据的功能。</p>
+<h1 id="3、总体设计"><a href="#3、总体设计" class="headerlink" title="3、总体设计"></a>3、总体设计</h1><h2 id="3-1对现有系统的分析"><a href="#3-1对现有系统的分析" class="headerlink" title="3.1对现有系统的分析"></a>3.1对现有系统的分析</h2><h3 id="3-1-1-现有旅游管理工具对家庭用户不友好"><a href="#3-1-1-现有旅游管理工具对家庭用户不友好" class="headerlink" title="3.1.1 现有旅游管理工具对家庭用户不友好"></a>3.1.1 现有旅游管理工具对家庭用户不友好</h3><p>在现有市场中，许多家庭在规划旅行时缺乏有效的工具支持。市面上的旅游管理工具虽然种类繁多，但普遍存在操作复杂、用户门槛高、不适用于普通家庭的问题。这些问题不仅增加了用户的使用难度，也降低了系统的普及率和实用性。例如，一些专业化的旅游软件需要用户具备一定的计算机操作基础，复杂的界面和繁琐的操作步骤使得普通用户难以上手。此外，这些工具往往功能过于强大，对于普通家庭来说显得有些冗余，无法满足其简单的管理需求。</p>
+<h3 id="3-1-2-传统旅游管理系统的技术局限性与用户体验问题"><a href="#3-1-2-传统旅游管理系统的技术局限性与用户体验问题" class="headerlink" title="3.1.2 传统旅游管理系统的技术局限性与用户体验问题"></a>3.1.2 传统旅游管理系统的技术局限性与用户体验问题</h3><p>技术上，现有的旅游管理系统大多采用传统的桌面应用程序开发方式，依赖于特定的操作系统环境。这种模式限制了系统的跨平台性，并且更新和维护成本较高。此外，大多数系统缺乏良好的用户体验设计，界面不够直观，操作流程不够简化。这导致用户在使用过程中容易感到困惑和挫败感。另一方面，部分移动应用虽然解决了跨平台问题，但由于功能单一或广告过多，用户体验并不理想。因此，开发一款易于使用、功能全面且适合普通家庭的旅游管理系统显得尤为重要。</p>
+<h2 id="3-2系统结构"><a href="#3-2系统结构" class="headerlink" title="3.2系统结构"></a>3.2系统结构</h2><p>本文设计的旅游管理系统采用模块化的设计思路，将整个系统划分为多个功能模块，每个模块负责特定的功能。系统的主要架构如下：</p>
+<p>主菜单模块：提供系统的入口界面，用户可以通过该界面选择不同的管理功能。</p>
+<p>景点管理模块：允许用户添加、修改和删除景点信息，并支持根据景点名称进行搜索。</p>
+<p>路线管理模块：用户可以创建和查看由多个景点组成的旅行路线。</p>
+<p>费用结算模块：自动计算选定路线的总费用，并通过统计图表展示各项支出情况。</p>
+<p>报告生成模块：将选定的路线详细信息保存到文本文件中，便于日后查阅或分享。</p>
+<p>数据保存与加载模块：支持将用户的数据持久化存储至本地磁盘，并提供加载功能，确保数据的安全性和一致性。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84%E5%9B%BE.jpg"> </p>
+<h2 id="3-3用户界面设计"><a href="#3-3用户界面设计" class="headerlink" title="3.3用户界面设计"></a>3.3用户界面设计</h2><p>为了提升用户体验，系统采用了简洁明了的图形用户界面（GUI）。主菜单模块包含多个按钮，分别对应不同的管理功能。每个子模块都有独立的窗口，用于执行具体的操作。</p>
+<h3 id="3-3-1主菜单模块"><a href="#3-3-1主菜单模块" class="headerlink" title="3.3.1主菜单模块"></a>3.3.1主菜单模块</h3><p>主菜单界面包含以下按钮：</p>
+<p>景点管理打开景点管理模块。</p>
+<p>路线管理：打开路线管理模块。</p>
+<p>费用结算：打开费用结算模块。</p>
+<p>报告生成：打开报告生成模块。</p>
+<p>保存数据：保存当前的数据到本地文件。</p>
+<p>加载数据：从本地文件加载数据。</p>
+<p>退出程序：关闭应用程序。</p>
+<h3 id="3-3-2景点管理模块"><a href="#3-3-2景点管理模块" class="headerlink" title="3.3.2景点管理模块"></a>3.3.2景点管理模块</h3><p>景点管理界面包含以下功能：</p>
+<p>添加景点：输入景点的基本信息并添加到系统中。</p>
+<p>修改景点：编辑已有的景点信息。</p>
+<p>删除景点：从系统中移除某个景点。</p>
+<p>查找景点：根据景点名称搜索特定的景点。</p>
+<h3 id="3-3-3路线管理模块"><a href="#3-3-3路线管理模块" class="headerlink" title="3.3.3路线管理模块"></a>3.3.3路线管理模块</h3><p>路线管理界面包含以下功能：</p>
+<p>选择景点：勾选需要包含在路线中的景点。</p>
+<p>添加路线：根据选择的景点创建新的旅行路线。</p>
+<p>查看路线：浏览所有已创建的路线及其包含的景点。</p>
+<h3 id="3-3-4费用结算模块"><a href="#3-3-4费用结算模块" class="headerlink" title="3.3.4费用结算模块"></a>3.3.4费用结算模块</h3><p>选择路线：勾选需要计算费用的路线。</p>
+<p>计算费用：自动计算选定路线的总费用，并显示详细的费用明细。</p>
+<h3 id="3-3-5报告结算模块"><a href="#3-3-5报告结算模块" class="headerlink" title="3.3.5报告结算模块"></a>3.3.5报告结算模块</h3><p>报告生成界面包含以下功能：</p>
+<p>选择路线：勾选需要生成报告的路线。</p>
+<p>保存报告：将选定路线的信息保存到文本文件中。</p>
+<h3 id="3-3-6数据保存与加载模块"><a href="#3-3-6数据保存与加载模块" class="headerlink" title="3.3.6数据保存与加载模块"></a>3.3.6数据保存与加载模块</h3><p>数据保存与加载界面包含以下功能：</p>
+<p>保存数据：将当前的所有景点和路线信息保存到JSON文件中。</p>
+<p>加载数据：从JSON文件中加载景点和路线信息。</p>
+<h1 id="4、系统详细设计与实现"><a href="#4、系统详细设计与实现" class="headerlink" title="4、系统详细设计与实现"></a>4、系统详细设计与实现</h1><h2 id="4-1-源码分析"><a href="#4-1-源码分析" class="headerlink" title="4.1 源码分析"></a>4.1 源码分析</h2><p>略</p>
+<h2 id="4-2-运行界面"><a href="#4-2-运行界面" class="headerlink" title="4.2 运行界面"></a>4.2 运行界面</h2><h3 id="4-2-1主菜单"><a href="#4-2-1主菜单" class="headerlink" title="4.2.1主菜单"></a>4.2.1主菜单</h3><p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/%E4%B8%BB%E8%8F%9C%E5%8D%95%E7%95%8C%E9%9D%A2.jpg"> </p>
+<h3 id="4-2-2模块界面"><a href="#4-2-2模块界面" class="headerlink" title="4.2.2模块界面"></a>4.2.2模块界面</h3><p>系统的主界面包括景点管理、路线管理、费用结算、报告生成等功能按钮，用户可以通过点击按钮进入相应的功能模块。</p>
+<p>点进景点管理选项，添加景点“重庆”及其相关信息。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/%E6%99%AF%E7%82%B9%E7%AE%A1%E7%90%86%E7%95%8C%E9%9D%A2.jpg" alt="景点管理"></p>
+<p>点进路线管理选项，将“重庆”景点添加进路线中</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/%E7%BA%BF%E8%B7%AF%E7%AE%A1%E7%90%86.jpg" alt="线路管理"> </p>
+<p>点进费用结算选项，计算路线“重庆之旅”的总费用</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/%E7%BB%93%E7%AE%97%E8%B4%B9%E7%94%A8.jpg" alt="结算费用"> </p>
+<p>点进报告生成选项，生成路线“重庆之旅”的txt文件，自定义保存路径</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/%E7%94%9F%E6%88%90%E6%8A%A5%E5%91%8A.jpg" alt="生成报告"> </p>
+<p>输出txt文件详情如下：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/txt%E6%96%87%E4%BB%B6.jpg" alt="输出txt文件"> </p>
+<p>点进 保存数据 选项，将路线“重庆之旅”的信息以json文件类型保存，自定义保存路径，便于后续再次更改</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/%E4%BF%9D%E5%AD%98%E6%95%B0%E6%8D%AE.jpg" alt="保存数据"></p>
+<h1 id="完整代码："><a href="#完整代码：" class="headerlink" title="完整代码："></a>完整代码：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br><span class="line">380</span><br><span class="line">381</span><br><span class="line">382</span><br><span class="line">383</span><br><span class="line">384</span><br><span class="line">385</span><br><span class="line">386</span><br><span class="line">387</span><br><span class="line">388</span><br><span class="line">389</span><br><span class="line">390</span><br><span class="line">391</span><br><span class="line">392</span><br><span class="line">393</span><br><span class="line">394</span><br><span class="line">395</span><br><span class="line">396</span><br><span class="line">397</span><br><span class="line">398</span><br><span class="line">399</span><br><span class="line">400</span><br><span class="line">401</span><br><span class="line">402</span><br><span class="line">403</span><br><span class="line">404</span><br><span class="line">405</span><br><span class="line">406</span><br><span class="line">407</span><br><span class="line">408</span><br><span class="line">409</span><br><span class="line">410</span><br><span class="line">411</span><br><span class="line">412</span><br><span class="line">413</span><br><span class="line">414</span><br><span class="line">415</span><br><span class="line">416</span><br><span class="line">417</span><br><span class="line">418</span><br><span class="line">419</span><br><span class="line">420</span><br><span class="line">421</span><br><span class="line">422</span><br><span class="line">423</span><br><span class="line">424</span><br><span class="line">425</span><br><span class="line">426</span><br><span class="line">427</span><br><span class="line">428</span><br><span class="line">429</span><br><span class="line">430</span><br><span class="line">431</span><br><span class="line">432</span><br><span class="line">433</span><br><span class="line">434</span><br><span class="line">435</span><br><span class="line">436</span><br><span class="line">437</span><br><span class="line">438</span><br><span class="line">439</span><br><span class="line">440</span><br><span class="line">441</span><br><span class="line">442</span><br><span class="line">443</span><br><span class="line">444</span><br><span class="line">445</span><br><span class="line">446</span><br><span class="line">447</span><br><span class="line">448</span><br><span class="line">449</span><br><span class="line">450</span><br><span class="line">451</span><br><span class="line">452</span><br><span class="line">453</span><br><span class="line">454</span><br><span class="line">455</span><br><span class="line">456</span><br><span class="line">457</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tkinter <span class="keyword">as</span> tk</span><br><span class="line"><span class="keyword">from</span> tkinter <span class="keyword">import</span> messagebox, simpledialog, filedialog</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">TravelManagementSystem</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, root</span>):</span><br><span class="line">        <span class="variable language_">self</span>.root = root</span><br><span class="line">        <span class="variable language_">self</span>.root.title(<span class="string">&quot;旅游管理系统&quot;</span>)</span><br><span class="line">        <span class="variable language_">self</span>.root.geometry(<span class="string">&quot;400x300&quot;</span>)</span><br><span class="line">        <span class="variable language_">self</span>.attractions = []</span><br><span class="line">        <span class="variable language_">self</span>.routes = []</span><br><span class="line">        <span class="variable language_">self</span>.center_window(<span class="variable language_">self</span>.root)</span><br><span class="line">        <span class="variable language_">self</span>.create_main_menu()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">center_window</span>(<span class="params">self, window</span>):</span><br><span class="line">        window.update_idletasks()</span><br><span class="line">        width = window.winfo_width()</span><br><span class="line">        height = window.winfo_height()</span><br><span class="line">        x = (window.winfo_screenwidth() // <span class="number">2</span>) - (width // <span class="number">2</span>)</span><br><span class="line">        y = (window.winfo_screenheight() // <span class="number">2</span>) - (height // <span class="number">2</span>)</span><br><span class="line">        window.geometry(<span class="string">f&quot;<span class="subst">&#123;width&#125;</span>x<span class="subst">&#123;height&#125;</span>+<span class="subst">&#123;x&#125;</span>+<span class="subst">&#123;y&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">create_main_menu</span>(<span class="params">self</span>):</span><br><span class="line">        main_frame = tk.Frame(<span class="variable language_">self</span>.root)</span><br><span class="line">        main_frame.pack(expand=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">        options_first_row = [<span class="string">&quot;景点管理&quot;</span>, <span class="string">&quot;路线管理&quot;</span>, <span class="string">&quot;费用结算&quot;</span>]</span><br><span class="line">        options_second_row = [<span class="string">&quot;报告生成&quot;</span>, <span class="string">&quot;保存数据&quot;</span>, <span class="string">&quot;加载数据&quot;</span>]</span><br><span class="line">        options_third_row = [<span class="string">&quot;退出程序&quot;</span>]</span><br><span class="line">        row_frames = [tk.Frame(main_frame) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>)]</span><br><span class="line">        <span class="keyword">for</span> frame <span class="keyword">in</span> row_frames:</span><br><span class="line">            frame.pack(fill=tk.X, pady=<span class="number">5</span>)</span><br><span class="line">        <span class="keyword">for</span> i, option <span class="keyword">in</span> <span class="built_in">enumerate</span>(options_first_row):</span><br><span class="line">            button = tk.Button(row_frames[<span class="number">0</span>], text=option, command=<span class="keyword">lambda</span> opt=option: <span class="variable language_">self</span>.handle_option(opt), width=<span class="number">15</span>)</span><br><span class="line">            button.pack(side=tk.LEFT, expand=<span class="literal">True</span>, padx=<span class="number">5</span>)</span><br><span class="line">        <span class="keyword">for</span> i, option <span class="keyword">in</span> <span class="built_in">enumerate</span>(options_second_row):</span><br><span class="line">            button = tk.Button(row_frames[<span class="number">1</span>], text=option, command=<span class="keyword">lambda</span> opt=option: <span class="variable language_">self</span>.handle_option(opt), width=<span class="number">15</span>)</span><br><span class="line">            button.pack(side=tk.LEFT, expand=<span class="literal">True</span>, padx=<span class="number">5</span>)</span><br><span class="line">        <span class="keyword">for</span> i, option <span class="keyword">in</span> <span class="built_in">enumerate</span>(options_third_row):</span><br><span class="line">            button = tk.Button(row_frames[<span class="number">2</span>], text=option, command=<span class="keyword">lambda</span> opt=option: <span class="variable language_">self</span>.handle_option(opt), width=<span class="number">15</span>)</span><br><span class="line">            button.pack(side=tk.LEFT, expand=<span class="literal">True</span>, padx=<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">handle_option</span>(<span class="params">self, option</span>):</span><br><span class="line">        <span class="keyword">if</span> option == <span class="string">&quot;景点管理&quot;</span>:</span><br><span class="line">            <span class="variable language_">self</span>.manage_attractions()</span><br><span class="line">        <span class="keyword">elif</span> option == <span class="string">&quot;路线管理&quot;</span>:</span><br><span class="line">            <span class="variable language_">self</span>.manage_routes()</span><br><span class="line">        <span class="keyword">elif</span> option == <span class="string">&quot;费用结算&quot;</span>:</span><br><span class="line">            <span class="variable language_">self</span>.calculate_costs()</span><br><span class="line">        <span class="keyword">elif</span> option == <span class="string">&quot;报告生成&quot;</span>:</span><br><span class="line">            <span class="variable language_">self</span>.generate_report()</span><br><span class="line">        <span class="keyword">elif</span> option == <span class="string">&quot;保存数据&quot;</span>:</span><br><span class="line">            <span class="variable language_">self</span>.save_data()</span><br><span class="line">        <span class="keyword">elif</span> option == <span class="string">&quot;加载数据&quot;</span>:</span><br><span class="line">            <span class="variable language_">self</span>.load_data()</span><br><span class="line">        <span class="keyword">elif</span> option == <span class="string">&quot;退出程序&quot;</span>:</span><br><span class="line">            <span class="variable language_">self</span>.root.quit()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">manage_attractions</span>(<span class="params">self</span>):</span><br><span class="line">        attraction_window = tk.Toplevel(<span class="variable language_">self</span>.root)</span><br><span class="line">        attraction_window.title(<span class="string">&quot;景点管理&quot;</span>)</span><br><span class="line">        attraction_window.geometry(<span class="string">&quot;400x400&quot;</span>)</span><br><span class="line">        <span class="variable language_">self</span>.center_window(attraction_window)</span><br><span class="line">        attraction_window.grab_set()  </span><br><span class="line"></span><br><span class="line">        attractions_listbox = tk.Listbox(attraction_window, height=<span class="number">8</span>, width=<span class="number">40</span>)</span><br><span class="line">        attractions_listbox.pack(pady=<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> attraction <span class="keyword">in</span> <span class="variable language_">self</span>.attractions:</span><br><span class="line">            attractions_listbox.insert(tk.END, attraction[<span class="string">&#x27;name&#x27;</span>])</span><br><span class="line"></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">show_attraction_details</span>(<span class="params">event</span>):</span><br><span class="line">            selected_indices = attractions_listbox.curselection()</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> selected_indices:</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            selected_index = selected_indices[<span class="number">0</span>]</span><br><span class="line">            attraction = <span class="variable language_">self</span>.attractions[selected_index]</span><br><span class="line"></span><br><span class="line">            detail_window = tk.Toplevel(attraction_window)</span><br><span class="line">            detail_window.title(<span class="string">f&quot;景点详情 - <span class="subst">&#123;attraction[<span class="string">&#x27;name&#x27;</span>]&#125;</span>&quot;</span>)</span><br><span class="line">            detail_window.geometry(<span class="string">&quot;400x300&quot;</span>)</span><br><span class="line">            <span class="variable language_">self</span>.center_window(detail_window)</span><br><span class="line">            detail_window.grab_set()</span><br><span class="line"></span><br><span class="line">            details_text = (<span class="string">f&quot;名称: <span class="subst">&#123;attraction[<span class="string">&#x27;name&#x27;</span>]&#125;</span>\n位置: <span class="subst">&#123;attraction[<span class="string">&#x27;location&#x27;</span>]&#125;</span>\n描述: <span class="subst">&#123;attraction[<span class="string">&#x27;description&#x27;</span>]&#125;</span>\n&quot;</span></span><br><span class="line">                            <span class="string">f&quot;门票价格: <span class="subst">&#123;attraction[<span class="string">&#x27;ticket_price&#x27;</span>]&#125;</span>元\n开放时间: <span class="subst">&#123;attraction[<span class="string">&#x27;play_time&#x27;</span>]&#125;</span>小时&quot;</span>)</span><br><span class="line">            tk.Label(detail_window, text=details_text).pack(pady=<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">            modify_button = tk.Button(detail_window, text=<span class="string">&quot;修改景点&quot;</span>,</span><br><span class="line">                                      command=<span class="keyword">lambda</span> idx=selected_index: <span class="variable language_">self</span>.modify_attraction(idx, detail_window))</span><br><span class="line">            delete_button = tk.Button(detail_window, text=<span class="string">&quot;删除景点&quot;</span>,</span><br><span class="line">                                      command=<span class="keyword">lambda</span> idx=selected_index: <span class="variable language_">self</span>.delete_attraction(idx, detail_window))</span><br><span class="line"></span><br><span class="line">            modify_button.pack(side=tk.LEFT, padx=<span class="number">5</span>)</span><br><span class="line">            delete_button.pack(side=tk.RIGHT, padx=<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">        attractions_listbox.bind(<span class="string">&#x27;&lt;&lt;ListboxSelect&gt;&gt;&#x27;</span>, show_attraction_details)</span><br><span class="line"></span><br><span class="line">        add_button = tk.Button(attraction_window, text=<span class="string">&quot;添加景点&quot;</span>,</span><br><span class="line">                               command=<span class="keyword">lambda</span>: <span class="variable language_">self</span>.add_attraction(attraction_window))</span><br><span class="line">        search_button = tk.Button(attraction_window, text=<span class="string">&quot;查找景点&quot;</span>, command=<span class="variable language_">self</span>.search_attraction)</span><br><span class="line"></span><br><span class="line">        add_button.pack(side=tk.LEFT, padx=<span class="number">5</span>)</span><br><span class="line">        search_button.pack(side=tk.RIGHT, padx=<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">add_attraction</span>(<span class="params">self, parent_window</span>):</span><br><span class="line">        add_window = tk.Toplevel(parent_window)</span><br><span class="line">        add_window.title(<span class="string">&quot;添加景点&quot;</span>)</span><br><span class="line">        add_window.geometry(<span class="string">&quot;400x300&quot;</span>)</span><br><span class="line">        <span class="variable language_">self</span>.center_window(add_window)</span><br><span class="line">        add_window.grab_set()  </span><br><span class="line"></span><br><span class="line">        tk.Label(add_window, text=<span class="string">&quot;景点名称:&quot;</span>).grid(row=<span class="number">0</span>, column=<span class="number">0</span>, padx=<span class="number">5</span>, pady=<span class="number">5</span>)</span><br><span class="line">        name_entry = tk.Entry(add_window)</span><br><span class="line">        name_entry.grid(row=<span class="number">0</span>, column=<span class="number">1</span>, padx=<span class="number">5</span>, pady=<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">        tk.Label(add_window, text=<span class="string">&quot;位置:&quot;</span>).grid(row=<span class="number">1</span>, column=<span class="number">0</span>, padx=<span class="number">5</span>, pady=<span class="number">5</span>)</span><br><span class="line">        location_entry = tk.Entry(add_window)</span><br><span class="line">        location_entry.grid(row=<span class="number">1</span>, column=<span class="number">1</span>, padx=<span class="number">5</span>, pady=<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">        tk.Label(add_window, text=<span class="string">&quot;描述:&quot;</span>).grid(row=<span class="number">2</span>, column=<span class="number">0</span>, padx=<span class="number">5</span>, pady=<span class="number">5</span>)</span><br><span class="line">        description_entry = tk.Entry(add_window)</span><br><span class="line">        description_entry.grid(row=<span class="number">2</span>, column=<span class="number">1</span>, padx=<span class="number">5</span>, pady=<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">        tk.Label(add_window, text=<span class="string">&quot;门票价格(元):&quot;</span>).grid(row=<span class="number">3</span>, column=<span class="number">0</span>, padx=<span class="number">5</span>, pady=<span class="number">5</span>)</span><br><span class="line">        ticket_price_entry = tk.Entry(add_window)</span><br><span class="line">        ticket_price_entry.grid(row=<span class="number">3</span>, column=<span class="number">1</span>, padx=<span class="number">5</span>, pady=<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">        tk.Label(add_window, text=<span class="string">&quot;开放时间:&quot;</span>).grid(row=<span class="number">4</span>, column=<span class="number">0</span>, padx=<span class="number">5</span>, pady=<span class="number">5</span>)</span><br><span class="line">        play_time_entry = tk.Entry(add_window)</span><br><span class="line">        play_time_entry.grid(row=<span class="number">4</span>, column=<span class="number">1</span>, padx=<span class="number">5</span>, pady=<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">        confirm_button = tk.Button(add_window, text=<span class="string">&quot;确认&quot;</span>,</span><br><span class="line">                                   command=<span class="keyword">lambda</span>: <span class="variable language_">self</span>.confirm_add_attraction(name_entry.get(), location_entry.get(),</span><br><span class="line">                                                                               description_entry.get(),</span><br><span class="line">                                                                               ticket_price_entry.get(),</span><br><span class="line">                                                                               play_time_entry.get(), add_window,</span><br><span class="line">                                                                               parent_window))</span><br><span class="line">        confirm_button.grid(row=<span class="number">5</span>, column=<span class="number">0</span>, columnspan=<span class="number">2</span>, pady=<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">confirm_add_attraction</span>(<span class="params">self, name, location, description, ticket_price, play_time, add_window, parent_window</span>):</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            ticket_price = <span class="built_in">float</span>(ticket_price)</span><br><span class="line">        <span class="keyword">except</span> ValueError:</span><br><span class="line">            messagebox.showwarning(<span class="string">&quot;警告&quot;</span>, <span class="string">&quot;门票价格必须是数字！&quot;</span>, parent=add_window)</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">all</span>([name, location, description, ticket_price, play_time]):</span><br><span class="line">            new_attraction = &#123;</span><br><span class="line">                <span class="string">&#x27;name&#x27;</span>: name,</span><br><span class="line">                <span class="string">&#x27;location&#x27;</span>: location,</span><br><span class="line">                <span class="string">&#x27;description&#x27;</span>: description,</span><br><span class="line">                <span class="string">&#x27;ticket_price&#x27;</span>: ticket_price,</span><br><span class="line">                <span class="string">&#x27;play_time&#x27;</span>: play_time</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="variable language_">self</span>.attractions.append(new_attraction)</span><br><span class="line">            messagebox.showinfo(<span class="string">&quot;成功&quot;</span>, <span class="string">&quot;景点已添加&quot;</span>, parent=add_window)</span><br><span class="line">            add_window.destroy()</span><br><span class="line">            parent_window.destroy()</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            messagebox.showwarning(<span class="string">&quot;警告&quot;</span>, <span class="string">&quot;请填写所有字段！&quot;</span>, parent=add_window)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">search_attraction</span>(<span class="params">self</span>):</span><br><span class="line">        search_name = simpledialog.askstring(<span class="string">&quot;查找景点&quot;</span>, <span class="string">&quot;请输入景点名称:&quot;</span>, parent=<span class="variable language_">self</span>.root)</span><br><span class="line"></span><br><span class="line">        found_attractions = [a <span class="keyword">for</span> a <span class="keyword">in</span> <span class="variable language_">self</span>.attractions <span class="keyword">if</span> a[<span class="string">&#x27;name&#x27;</span>].lower() == search_name.lower()]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> found_attractions:</span><br><span class="line">            <span class="variable language_">self</span>.show_search_results(found_attractions)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            messagebox.showinfo(<span class="string">&quot;结果&quot;</span>, <span class="string">&quot;未找到该景点。&quot;</span>, parent=<span class="variable language_">self</span>.root)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">show_search_results</span>(<span class="params">self, attractions</span>):</span><br><span class="line">        result_window = tk.Toplevel(<span class="variable language_">self</span>.root)</span><br><span class="line">        result_window.title(<span class="string">&quot;搜索结果&quot;</span>)</span><br><span class="line">        result_window.geometry(<span class="string">&quot;400x300&quot;</span>)</span><br><span class="line">        <span class="variable language_">self</span>.center_window(result_window)</span><br><span class="line">        result_window.grab_set()</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> attraction <span class="keyword">in</span> attractions:</span><br><span class="line">            details_text = (<span class="string">f&quot;名称: <span class="subst">&#123;attraction[<span class="string">&#x27;name&#x27;</span>]&#125;</span>\n位置: <span class="subst">&#123;attraction[<span class="string">&#x27;location&#x27;</span>]&#125;</span>\n描述: <span class="subst">&#123;attraction[<span class="string">&#x27;description&#x27;</span>]&#125;</span>\n&quot;</span></span><br><span class="line">                            <span class="string">f&quot;门票价格: <span class="subst">&#123;attraction[<span class="string">&#x27;ticket_price&#x27;</span>]&#125;</span>元\n开放时间: <span class="subst">&#123;attraction[<span class="string">&#x27;play_time&#x27;</span>]&#125;</span>小时&quot;</span>)</span><br><span class="line">            tk.Label(result_window, text=details_text).pack(pady=<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">            modify_button = tk.Button(result_window, text=<span class="string">&quot;修改景点&quot;</span>,</span><br><span class="line">                                      command=<span class="keyword">lambda</span> attr=attraction: <span class="variable language_">self</span>.modify_attraction_by_name(attr,</span><br><span class="line">                                                                                                     result_window))</span><br><span class="line">            delete_button = tk.Button(result_window, text=<span class="string">&quot;删除景点&quot;</span>,</span><br><span class="line">                                      command=<span class="keyword">lambda</span> attr=attraction: <span class="variable language_">self</span>.delete_attraction_by_name(attr,</span><br><span class="line">                                                                                                     result_window))</span><br><span class="line"></span><br><span class="line">            modify_button.pack(side=tk.LEFT, padx=<span class="number">5</span>)</span><br><span class="line">            delete_button.pack(side=tk.RIGHT, padx=<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">modify_attraction</span>(<span class="params">self, index, parent_window</span>):</span><br><span class="line">        attraction = <span class="variable language_">self</span>.attractions[index]</span><br><span class="line"></span><br><span class="line">        modify_window = tk.Toplevel(parent_window)</span><br><span class="line">        modify_window.title(<span class="string">&quot;修改景点&quot;</span>)</span><br><span class="line">        modify_window.geometry(<span class="string">&quot;400x300&quot;</span>)</span><br><span class="line">        <span class="variable language_">self</span>.center_window(modify_window)</span><br><span class="line">        modify_window.grab_set()</span><br><span class="line"></span><br><span class="line">        tk.Label(modify_window, text=<span class="string">&quot;景点名称:&quot;</span>).grid(row=<span class="number">0</span>, column=<span class="number">0</span>, padx=<span class="number">5</span>, pady=<span class="number">5</span>)</span><br><span class="line">        name_entry = tk.Entry(modify_window)</span><br><span class="line">        name_entry.insert(<span class="number">0</span>, attraction[<span class="string">&#x27;name&#x27;</span>])</span><br><span class="line">        name_entry.grid(row=<span class="number">0</span>, column=<span class="number">1</span>, padx=<span class="number">5</span>, pady=<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">        tk.Label(modify_window, text=<span class="string">&quot;位置:&quot;</span>).grid(row=<span class="number">1</span>, column=<span class="number">0</span>, padx=<span class="number">5</span>, pady=<span class="number">5</span>)</span><br><span class="line">        location_entry = tk.Entry(modify_window)</span><br><span class="line">        location_entry.insert(<span class="number">0</span>, attraction[<span class="string">&#x27;location&#x27;</span>])</span><br><span class="line">        location_entry.grid(row=<span class="number">1</span>, column=<span class="number">1</span>, padx=<span class="number">5</span>, pady=<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">        tk.Label(modify_window, text=<span class="string">&quot;描述:&quot;</span>).grid(row=<span class="number">2</span>, column=<span class="number">0</span>, padx=<span class="number">5</span>, pady=<span class="number">5</span>)</span><br><span class="line">        description_entry = tk.Entry(modify_window)</span><br><span class="line">        description_entry.insert(<span class="number">0</span>, attraction[<span class="string">&#x27;description&#x27;</span>])</span><br><span class="line">        description_entry.grid(row=<span class="number">2</span>, column=<span class="number">1</span>, padx=<span class="number">5</span>, pady=<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">        tk.Label(modify_window, text=<span class="string">&quot;门票价格(元):&quot;</span>).grid(row=<span class="number">3</span>, column=<span class="number">0</span>, padx=<span class="number">5</span>, pady=<span class="number">5</span>)</span><br><span class="line">        ticket_price_entry = tk.Entry(modify_window)</span><br><span class="line">        ticket_price_entry.insert(<span class="number">0</span>, <span class="built_in">str</span>(attraction[<span class="string">&#x27;ticket_price&#x27;</span>]))</span><br><span class="line">        ticket_price_entry.grid(row=<span class="number">3</span>, column=<span class="number">1</span>, padx=<span class="number">5</span>, pady=<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">        tk.Label(modify_window, text=<span class="string">&quot;开放时间:&quot;</span>).grid(row=<span class="number">4</span>, column=<span class="number">0</span>, padx=<span class="number">5</span>, pady=<span class="number">5</span>)</span><br><span class="line">        play_time_entry = tk.Entry(modify_window)</span><br><span class="line">        play_time_entry.insert(<span class="number">0</span>, <span class="built_in">str</span>(attraction[<span class="string">&#x27;play_time&#x27;</span>]))</span><br><span class="line">        play_time_entry.grid(row=<span class="number">4</span>, column=<span class="number">1</span>, padx=<span class="number">5</span>, pady=<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">        confirm_button = tk.Button(modify_window, text=<span class="string">&quot;确认&quot;</span>,</span><br><span class="line">                                   command=<span class="keyword">lambda</span>: <span class="variable language_">self</span>.confirm_modify_attraction(index, name_entry.get(),</span><br><span class="line">                                                                                  location_entry.get(),</span><br><span class="line">                                                                                  description_entry.get(),</span><br><span class="line">                                                                                  ticket_price_entry.get(),</span><br><span class="line">                                                                                  play_time_entry.get(), modify_window))</span><br><span class="line">        confirm_button.grid(row=<span class="number">5</span>, column=<span class="number">0</span>, columnspan=<span class="number">2</span>, pady=<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">confirm_modify_attraction</span>(<span class="params">self, index, name, location, description, ticket_price, play_time, window</span>):</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            ticket_price = <span class="built_in">float</span>(ticket_price)</span><br><span class="line">        <span class="keyword">except</span> ValueError:</span><br><span class="line">            messagebox.showwarning(<span class="string">&quot;警告&quot;</span>, <span class="string">&quot;门票价格必须是数字！&quot;</span>, parent=window)</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">all</span>([name, location, description, ticket_price, play_time]):</span><br><span class="line">            <span class="variable language_">self</span>.attractions[index] = &#123;</span><br><span class="line">                <span class="string">&#x27;name&#x27;</span>: name,</span><br><span class="line">                <span class="string">&#x27;location&#x27;</span>: location,</span><br><span class="line">                <span class="string">&#x27;description&#x27;</span>: description,</span><br><span class="line">                <span class="string">&#x27;ticket_price&#x27;</span>: ticket_price,</span><br><span class="line">                <span class="string">&#x27;play_time&#x27;</span>: play_time</span><br><span class="line">            &#125;</span><br><span class="line">            messagebox.showinfo(<span class="string">&quot;成功&quot;</span>, <span class="string">&quot;景点已修改！&quot;</span>, parent=window)</span><br><span class="line">            window.destroy()</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            messagebox.showwarning(<span class="string">&quot;警告&quot;</span>, <span class="string">&quot;请填写所有字段！&quot;</span>, parent=window)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">delete_attraction</span>(<span class="params">self, index, parent_window</span>):</span><br><span class="line">        <span class="keyword">del</span> <span class="variable language_">self</span>.attractions[index]</span><br><span class="line">        messagebox.showinfo(<span class="string">&quot;成功&quot;</span>, <span class="string">&quot;景点已删除！&quot;</span>, parent=parent_window)</span><br><span class="line">        parent_window.destroy()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">modify_attraction_by_name</span>(<span class="params">self, attraction, parent_window</span>):</span><br><span class="line">        index = <span class="built_in">next</span>((i <span class="keyword">for</span> i, a <span class="keyword">in</span> <span class="built_in">enumerate</span>(<span class="variable language_">self</span>.attractions) <span class="keyword">if</span> a[<span class="string">&#x27;name&#x27;</span>] == attraction[<span class="string">&#x27;name&#x27;</span>]), <span class="literal">None</span>)</span><br><span class="line">        <span class="keyword">if</span> index <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            <span class="variable language_">self</span>.modify_attraction(index, parent_window)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">delete_attraction_by_name</span>(<span class="params">self, attraction, parent_window</span>):</span><br><span class="line">        index = <span class="built_in">next</span>((i <span class="keyword">for</span> i, a <span class="keyword">in</span> <span class="built_in">enumerate</span>(<span class="variable language_">self</span>.attractions) <span class="keyword">if</span> a[<span class="string">&#x27;name&#x27;</span>] == attraction[<span class="string">&#x27;name&#x27;</span>]), <span class="literal">None</span>)</span><br><span class="line">        <span class="keyword">if</span> index <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            <span class="variable language_">self</span>.delete_attraction(index, parent_window)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">manage_routes</span>(<span class="params">self</span>):</span><br><span class="line">        route_window = tk.Toplevel(<span class="variable language_">self</span>.root)</span><br><span class="line">        route_window.title(<span class="string">&quot;路线管理&quot;</span>)</span><br><span class="line">        route_window.geometry(<span class="string">&quot;400x400&quot;</span>)</span><br><span class="line">        <span class="variable language_">self</span>.center_window(route_window)</span><br><span class="line">        route_window.grab_set()</span><br><span class="line"></span><br><span class="line">        frame_top = tk.Frame(route_window)</span><br><span class="line">        frame_top.pack(pady=<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">        tk.Label(frame_top, text=<span class="string">&quot;选择景点:&quot;</span>).grid(row=<span class="number">0</span>, column=<span class="number">0</span>, padx=<span class="number">5</span>, pady=<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">        <span class="variable language_">self</span>.selected_attractions = []</span><br><span class="line">        <span class="keyword">for</span> i, attraction <span class="keyword">in</span> <span class="built_in">enumerate</span>(<span class="variable language_">self</span>.attractions):</span><br><span class="line">            var = tk.IntVar(value=<span class="number">0</span>)</span><br><span class="line">            cb = tk.Checkbutton(frame_top, text=attraction[<span class="string">&#x27;name&#x27;</span>], variable=var)</span><br><span class="line">            cb.grid(row=i + <span class="number">1</span>, column=<span class="number">0</span>, sticky=<span class="string">&#x27;w&#x27;</span>)</span><br><span class="line">            <span class="variable language_">self</span>.selected_attractions.append(var)</span><br><span class="line"></span><br><span class="line">        route_name_label = tk.Label(frame_top, text=<span class="string">&quot;路线名称:&quot;</span>)</span><br><span class="line">        route_name_entry = tk.Entry(frame_top)</span><br><span class="line">        route_name_label.grid(row=<span class="built_in">len</span>(<span class="variable language_">self</span>.attractions) + <span class="number">2</span>, column=<span class="number">0</span>, padx=<span class="number">5</span>, pady=<span class="number">5</span>)</span><br><span class="line">        route_name_entry.grid(row=<span class="built_in">len</span>(<span class="variable language_">self</span>.attractions) + <span class="number">2</span>, column=<span class="number">1</span>, padx=<span class="number">5</span>, pady=<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">        add_route_button = tk.Button(frame_top, text=<span class="string">&quot;添加路线&quot;</span>,</span><br><span class="line">                                     command=<span class="keyword">lambda</span> entry=route_name_entry: <span class="variable language_">self</span>.add_route(entry.get(), route_window))</span><br><span class="line">        add_route_button.grid(row=<span class="built_in">len</span>(<span class="variable language_">self</span>.attractions) + <span class="number">3</span>, column=<span class="number">0</span>, columnspan=<span class="number">2</span>, pady=<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">        view_routes_button = tk.Button(route_window, text=<span class="string">&quot;查看路线&quot;</span>, command=<span class="variable language_">self</span>.view_routes)</span><br><span class="line">        view_routes_button.pack(pady=<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">add_route</span>(<span class="params">self, route_name, parent_window</span>):</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> route_name.strip():</span><br><span class="line">            messagebox.showwarning(<span class="string">&quot;警告&quot;</span>, <span class="string">&quot;请输入路线名称！&quot;</span>, parent=parent_window)</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">        selected_indices = [i <span class="keyword">for</span> i, var <span class="keyword">in</span> <span class="built_in">enumerate</span>(<span class="variable language_">self</span>.selected_attractions) <span class="keyword">if</span> var.get()]</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> selected_indices:</span><br><span class="line">            messagebox.showwarning(<span class="string">&quot;警告&quot;</span>, <span class="string">&quot;请选择至少一个景点！&quot;</span>, parent=parent_window)</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">        selected_attractions = [<span class="variable language_">self</span>.attractions[i][<span class="string">&#x27;name&#x27;</span>] <span class="keyword">for</span> i <span class="keyword">in</span> selected_indices]</span><br><span class="line"></span><br><span class="line">        new_route = &#123;</span><br><span class="line">            <span class="string">&#x27;name&#x27;</span>: route_name,</span><br><span class="line">            <span class="string">&#x27;attractions&#x27;</span>: selected_attractions</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="variable language_">self</span>.routes.append(new_route)</span><br><span class="line">        messagebox.showinfo(<span class="string">&quot;成功&quot;</span>, <span class="string">&quot;路线已添加！&quot;</span>, parent=parent_window)</span><br><span class="line">        parent_window.destroy()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">view_routes</span>(<span class="params">self</span>):</span><br><span class="line">        view_window = tk.Toplevel(<span class="variable language_">self</span>.root)</span><br><span class="line">        view_window.title(<span class="string">&quot;查看路线&quot;</span>)</span><br><span class="line">        view_window.geometry(<span class="string">&quot;400x300&quot;</span>)</span><br><span class="line">        <span class="variable language_">self</span>.center_window(view_window)</span><br><span class="line">        view_window.grab_set()  </span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> route <span class="keyword">in</span> <span class="variable language_">self</span>.routes:</span><br><span class="line">            route_info = <span class="string">f&quot;路线名称: <span class="subst">&#123;route[<span class="string">&#x27;name&#x27;</span>]&#125;</span>\n景点: <span class="subst">&#123;<span class="string">&#x27;, &#x27;</span>.join(route[<span class="string">&#x27;attractions&#x27;</span>])&#125;</span>&quot;</span></span><br><span class="line">            tk.Label(view_window, text=route_info).pack(pady=<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">calculate_costs</span>(<span class="params">self</span>):</span><br><span class="line">        cost_window = tk.Toplevel(<span class="variable language_">self</span>.root)</span><br><span class="line">        cost_window.title(<span class="string">&quot;费用结算&quot;</span>)</span><br><span class="line">        cost_window.geometry(<span class="string">&quot;400x300&quot;</span>)</span><br><span class="line">        <span class="variable language_">self</span>.center_window(cost_window)</span><br><span class="line">        cost_window.grab_set()  </span><br><span class="line"></span><br><span class="line">        frame_top = tk.Frame(cost_window)</span><br><span class="line">        frame_top.pack(pady=<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">        tk.Label(frame_top, text=<span class="string">&quot;选择路线:&quot;</span>).grid(row=<span class="number">0</span>, column=<span class="number">0</span>, padx=<span class="number">5</span>, pady=<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">        <span class="variable language_">self</span>.selected_routes = []</span><br><span class="line">        <span class="keyword">for</span> i, route <span class="keyword">in</span> <span class="built_in">enumerate</span>(<span class="variable language_">self</span>.routes):</span><br><span class="line">            var = tk.IntVar(value=<span class="number">0</span>)</span><br><span class="line">            cb = tk.Checkbutton(frame_top, text=route[<span class="string">&#x27;name&#x27;</span>], variable=var)</span><br><span class="line">            cb.grid(row=i + <span class="number">1</span>, column=<span class="number">0</span>, sticky=<span class="string">&#x27;w&#x27;</span>)</span><br><span class="line">            <span class="variable language_">self</span>.selected_routes.append(var)</span><br><span class="line"></span><br><span class="line">        calculate_button = tk.Button(frame_top, text=<span class="string">&quot;计算费用&quot;</span>, command=<span class="keyword">lambda</span>: <span class="variable language_">self</span>.calculate_total_cost(cost_window))</span><br><span class="line">        calculate_button.grid(row=<span class="built_in">len</span>(<span class="variable language_">self</span>.routes) + <span class="number">2</span>, column=<span class="number">0</span>, columnspan=<span class="number">2</span>, pady=<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">calculate_total_cost</span>(<span class="params">self, window</span>):</span><br><span class="line">        selected_indices = [i <span class="keyword">for</span> i, var <span class="keyword">in</span> <span class="built_in">enumerate</span>(<span class="variable language_">self</span>.selected_routes) <span class="keyword">if</span> var.get()]</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> selected_indices:</span><br><span class="line">            messagebox.showwarning(<span class="string">&quot;警告&quot;</span>, <span class="string">&quot;请选择至少一条路线！&quot;</span>, parent=window)</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">        total_cost = <span class="number">0</span></span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> selected_indices:</span><br><span class="line">                route = <span class="variable language_">self</span>.routes[i]</span><br><span class="line">                <span class="keyword">for</span> attraction_name <span class="keyword">in</span> route[<span class="string">&#x27;attractions&#x27;</span>]:</span><br><span class="line">                    attraction = <span class="built_in">next</span>((a <span class="keyword">for</span> a <span class="keyword">in</span> <span class="variable language_">self</span>.attractions <span class="keyword">if</span> a[<span class="string">&#x27;name&#x27;</span>] == attraction_name), <span class="literal">None</span>)</span><br><span class="line">                    <span class="keyword">if</span> attraction:</span><br><span class="line">                        total_cost += <span class="built_in">float</span>(attraction[<span class="string">&#x27;ticket_price&#x27;</span>])</span><br><span class="line">                    <span class="keyword">else</span>:</span><br><span class="line">                        messagebox.showwarning(<span class="string">&quot;警告&quot;</span>, <span class="string">&quot;未找到该景点的门票价格！&quot;</span>, parent=window)</span><br><span class="line">                        <span class="keyword">return</span></span><br><span class="line">        <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">            messagebox.showerror(<span class="string">&quot;错误&quot;</span>, <span class="string">f&quot;计算费用时发生错误: <span class="subst">&#123;<span class="built_in">str</span>(e)&#125;</span>&quot;</span>, parent=window)</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">        messagebox.showinfo(<span class="string">&quot;总费用&quot;</span>, <span class="string">f&quot;所选路线的总费用为: <span class="subst">&#123;total_cost&#125;</span>元&quot;</span>, parent=window)</span><br><span class="line">        window.destroy()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">generate_report</span>(<span class="params">self</span>):</span><br><span class="line">        report_window = tk.Toplevel(<span class="variable language_">self</span>.root)</span><br><span class="line">        report_window.title(<span class="string">&quot;报告生成&quot;</span>)</span><br><span class="line">        report_window.geometry(<span class="string">&quot;400x300&quot;</span>)</span><br><span class="line">        <span class="variable language_">self</span>.center_window(report_window)</span><br><span class="line">        report_window.grab_set()</span><br><span class="line">        frame_top = tk.Frame(report_window)</span><br><span class="line">        frame_top.pack(pady=<span class="number">10</span>)</span><br><span class="line">        tk.Label(frame_top, text=<span class="string">&quot;选择路线:&quot;</span>).grid(row=<span class="number">0</span>, column=<span class="number">0</span>, padx=<span class="number">5</span>, pady=<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">        <span class="variable language_">self</span>.report_selected_routes = []</span><br><span class="line">        <span class="keyword">for</span> i, route <span class="keyword">in</span> <span class="built_in">enumerate</span>(<span class="variable language_">self</span>.routes):</span><br><span class="line">            var = tk.IntVar(value=<span class="number">0</span>)</span><br><span class="line">            cb = tk.Checkbutton(frame_top, text=route[<span class="string">&#x27;name&#x27;</span>], variable=var)</span><br><span class="line">            cb.grid(row=i + <span class="number">1</span>, column=<span class="number">0</span>, sticky=<span class="string">&#x27;w&#x27;</span>)</span><br><span class="line">            <span class="variable language_">self</span>.report_selected_routes.append(var)</span><br><span class="line"></span><br><span class="line">        save_button = tk.Button(frame_top, text=<span class="string">&quot;保存报告&quot;</span>, command=<span class="keyword">lambda</span>: <span class="variable language_">self</span>.save_report(report_window))</span><br><span class="line">        save_button.grid(row=<span class="built_in">len</span>(<span class="variable language_">self</span>.routes) + <span class="number">2</span>, column=<span class="number">0</span>, columnspan=<span class="number">2</span>, pady=<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">save_report</span>(<span class="params">self, window</span>):</span><br><span class="line">        selected_indices = [i <span class="keyword">for</span> i, var <span class="keyword">in</span> <span class="built_in">enumerate</span>(<span class="variable language_">self</span>.report_selected_routes) <span class="keyword">if</span> var.get()]</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> selected_indices:</span><br><span class="line">            messagebox.showwarning(<span class="string">&quot;警告&quot;</span>, <span class="string">&quot;请选择至少一条路线！&quot;</span>, parent=window)</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">        filename = filedialog.asksaveasfilename(defaultextension=<span class="string">&quot;.txt&quot;</span>,</span><br><span class="line">                                                filetypes=[(<span class="string">&quot;Text files&quot;</span>, <span class="string">&quot;*.txt&quot;</span>), (<span class="string">&quot;All files&quot;</span>, <span class="string">&quot;*.*&quot;</span>)],</span><br><span class="line">                                                parent=window)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> filename:</span><br><span class="line">            <span class="keyword">with</span> <span class="built_in">open</span>(filename, <span class="string">&#x27;w&#x27;</span>) <span class="keyword">as</span> file:</span><br><span class="line">                <span class="keyword">for</span> i <span class="keyword">in</span> selected_indices:</span><br><span class="line">                    route = <span class="variable language_">self</span>.routes[i]</span><br><span class="line">                    file.write(<span class="string">f&quot;路线名称: <span class="subst">&#123;route[<span class="string">&#x27;name&#x27;</span>]&#125;</span>\n景点:\n&quot;</span>)</span><br><span class="line">                    <span class="keyword">for</span> attraction_name <span class="keyword">in</span> route[<span class="string">&#x27;attractions&#x27;</span>]:</span><br><span class="line">                        attraction = <span class="built_in">next</span>(a <span class="keyword">for</span> a <span class="keyword">in</span> <span class="variable language_">self</span>.attractions <span class="keyword">if</span> a[<span class="string">&#x27;name&#x27;</span>] == attraction_name)</span><br><span class="line">                        file.write(</span><br><span class="line">                            <span class="string">f&quot;- 名称: <span class="subst">&#123;attraction[<span class="string">&#x27;name&#x27;</span>]&#125;</span>\n  位置: <span class="subst">&#123;attraction[<span class="string">&#x27;location&#x27;</span>]&#125;</span>\n  描述: <span class="subst">&#123;attraction[<span class="string">&#x27;description&#x27;</span>]&#125;</span>\n  &quot;</span></span><br><span class="line">                            <span class="string">f&quot;门票价格: <span class="subst">&#123;attraction[<span class="string">&#x27;ticket_price&#x27;</span>]&#125;</span>元\n  开放时间: <span class="subst">&#123;attraction[<span class="string">&#x27;play_time&#x27;</span>]&#125;</span>小时\n&quot;</span>)</span><br><span class="line">                    file.write(<span class="string">&quot;\n&quot;</span>)</span><br><span class="line"></span><br><span class="line">            messagebox.showinfo(<span class="string">&quot;成功&quot;</span>, <span class="string">&quot;报告已保存！&quot;</span>, parent=window)</span><br><span class="line">        window.destroy()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">save_data</span>(<span class="params">self</span>):</span><br><span class="line">        data = &#123;</span><br><span class="line">            <span class="string">&#x27;attractions&#x27;</span>: <span class="variable language_">self</span>.attractions,</span><br><span class="line">            <span class="string">&#x27;routes&#x27;</span>: <span class="variable language_">self</span>.routes</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        filename = filedialog.asksaveasfilename(defaultextension=<span class="string">&quot;.json&quot;</span>,</span><br><span class="line">                                                filetypes=[(<span class="string">&quot;JSON files&quot;</span>, <span class="string">&quot;*.json&quot;</span>), (<span class="string">&quot;All files&quot;</span>, <span class="string">&quot;*.*&quot;</span>)])</span><br><span class="line">        <span class="keyword">if</span> filename:</span><br><span class="line">            <span class="keyword">with</span> <span class="built_in">open</span>(filename, <span class="string">&#x27;w&#x27;</span>) <span class="keyword">as</span> file:</span><br><span class="line">                json.dump(data, file, ensure_ascii=<span class="literal">False</span>, indent=<span class="number">4</span>)</span><br><span class="line"></span><br><span class="line">            messagebox.showinfo(<span class="string">&quot;成功&quot;</span>, <span class="string">&quot;数据已保存！&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">load_data</span>(<span class="params">self</span>):</span><br><span class="line">        filename = filedialog.askopenfilename(filetypes=[(<span class="string">&quot;JSON files&quot;</span>, <span class="string">&quot;*.json&quot;</span>), (<span class="string">&quot;All files&quot;</span>, <span class="string">&quot;*.*&quot;</span>)])</span><br><span class="line">        <span class="keyword">if</span> filename:</span><br><span class="line">            choice = messagebox.askyesno(<span class="string">&quot;确认&quot;</span>, <span class="string">&quot;您希望覆盖现有数据还是添加到现有数据？\n点击&#x27;是&#x27;覆盖，点击&#x27;否&#x27;添加。&quot;</span>)</span><br><span class="line">            <span class="keyword">with</span> <span class="built_in">open</span>(filename, <span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> file:</span><br><span class="line">                data = json.load(file)</span><br><span class="line">            <span class="keyword">if</span> choice:</span><br><span class="line">                <span class="variable language_">self</span>.attractions = data.get(<span class="string">&#x27;attractions&#x27;</span>, [])</span><br><span class="line">                <span class="variable language_">self</span>.routes = data.get(<span class="string">&#x27;routes&#x27;</span>, [])</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="variable language_">self</span>.attractions.extend(data.get(<span class="string">&#x27;attractions&#x27;</span>, []))</span><br><span class="line">                <span class="variable language_">self</span>.routes.extend(data.get(<span class="string">&#x27;routes&#x27;</span>, []))</span><br><span class="line">            messagebox.showinfo(<span class="string">&quot;成功&quot;</span>, <span class="string">&quot;数据已加载！&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    root = tk.Tk()</span><br><span class="line">    app = TravelManagementSystem(root)</span><br><span class="line">    root.mainloop()</span><br></pre></td></tr></table></figure>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://tangxtang1119.github.io/2025/03/15/Python%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AF%BE%E7%A8%8B%E4%BD%9C%E4%B8%9A/" rel="tag">课程作业</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2025/03/15/IDEA/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            IDEA
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2025/03/15/Java%E7%BC%96%E7%A8%8B/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">Java编程</div>
+      </a>
+    
+  </nav>
+
+   
+ 
+   
+  
+   
+    <script src="https://cdn.staticfile.org/twikoo/1.4.18/twikoo.all.min.js"></script>
+    <div id="twikoo" class="twikoo"></div>
+    <script>
+        twikoo.init({
+            envId: ""
+        })
+    </script>
+ 
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2025
+        <i class="ri-heart-fill heart_icon"></i> 唐小唐
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/yuhangyuan.ico" alt="tangxtang"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i></p>
+  <div class="reward-box">
+    
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.staticfile.org/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.staticfile.org/clipboard.js/2.0.10/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    <div id="music">
+    
+    
+    
+    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="200" height="52"
+        src="//music.163.com/outchain/player?type=2&id=2658106011&auto=1&height=32"></iframe>
+</div>
+
+<style>
+    #music {
+        position: fixed;
+        right: 15px;
+        bottom: 0;
+        z-index: 998;
+    }
+</style>
+    
+    
+
+  </div>
+</body>
+
+</html>
