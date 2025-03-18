@@ -3,7 +3,35 @@
   <entry>
     <title>IDEA</title>
     <url>/2025/03/15/IDEA/</url>
-    <content><![CDATA[]]></content>
+    <content><![CDATA[<h1 id="一、介绍"><a href="#一、介绍" class="headerlink" title="一、介绍"></a>一、介绍</h1><p>IDE（集成开发环境）- IDEA</p>
+<ul>
+<li>IDEA介绍</li>
+</ul>
+<ol>
+<li><p>DEA全程InteliJ IDEA</p>
+</li>
+<li><p>在业界被公认为最好的Java开发工具</p>
+</li>
+<li><p>IDEA是JetBrains公司的产品，总部位于捷克的首部布拉格</p>
+</li>
+<li><p>除了支持Java开发，还支持HTML、CSS、PHP、MySQL、Python等</p>
+</li>
+</ol>
+<p>IDE（集成开发环境）- Eclipse</p>
+<ul>
+<li>Eclipse介绍</li>
+</ul>
+<ol>
+<li>Eclipse是开放源代码的、基于JAva的可拓展开发平台</li>
+<li>最初是由IBM公司耗资3000万美金开发的下一代IDE开发环境</li>
+<li>2001年11月贡献给开源社区</li>
+<li>Eclipse是目前最优秀的Java开发IDE之一</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>软件</tag>
+        <tag>IDEA</tag>
+      </tags>
   </entry>
   <entry>
     <title>Python课程设计</title>
@@ -1711,7 +1739,148 @@
 
 
 
-<h1 id="第七章-面向对象编程（中级部分）"><a href="#第七章-面向对象编程（中级部分）" class="headerlink" title="第七章 面向对象编程（中级部分）"></a>第七章 面向对象编程（中级部分）</h1><h2 id="7-1-包"><a href="#7-1-包" class="headerlink" title="7.1 包"></a>7.1 包</h2><h2 id="7-2-访问修饰符"><a href="#7-2-访问修饰符" class="headerlink" title="7.2 访问修饰符"></a>7.2 访问修饰符</h2><h2 id="7-3-封装"><a href="#7-3-封装" class="headerlink" title="7.3 封装"></a>7.3 封装</h2><h2 id="7-4-继承"><a href="#7-4-继承" class="headerlink" title="7.4 继承"></a>7.4 继承</h2><h2 id="7-5-多态"><a href="#7-5-多态" class="headerlink" title="7.5 多态"></a>7.5 多态</h2><h2 id="7-6-Super"><a href="#7-6-Super" class="headerlink" title="7.6 Super"></a>7.6 Super</h2><h2 id="7-7-overwrite"><a href="#7-7-overwrite" class="headerlink" title="7.7 overwrite"></a>7.7 overwrite</h2><h2 id="7-8-Object类详解"><a href="#7-8-Object类详解" class="headerlink" title="7.8 Object类详解"></a>7.8 Object类详解</h2><h2 id="7-9-断点调试"><a href="#7-9-断点调试" class="headerlink" title="7.9 断点调试"></a>7.9 断点调试</h2>]]></content>
+<h1 id="第七章-面向对象编程（中级部分）"><a href="#第七章-面向对象编程（中级部分）" class="headerlink" title="第七章 面向对象编程（中级部分）"></a>第七章 面向对象编程（中级部分）</h1><p>工具说明：</p>
+<p>IDE（集成开发环境）- IDEA</p>
+<ul>
+<li>IDEA介绍</li>
+</ul>
+<ol>
+<li><p>DEA全程InteliJ IDEA</p>
+</li>
+<li><p>在业界被公认为最好的Java开发工具</p>
+</li>
+<li><p>IDEA是JetBrains公司的产品，总部位于捷克的首部布拉格</p>
+</li>
+<li><p>除了支持Java开发，还支持HTML、CSS、PHP、MySQL、Python等</p>
+</li>
+</ol>
+<p>IDE（集成开发环境）- Eclipse</p>
+<ul>
+<li>Eclipse介绍</li>
+</ul>
+<ol>
+<li>Eclipse是开放源代码的、基于JAva的可拓展开发平台</li>
+<li>最初是由IBM公司耗资3000万美金开发的下一代IDE开发环境</li>
+<li>2001年11月贡献给开源社区</li>
+<li>Eclipse是目前最优秀的Java开发IDE之一</li>
+</ol>
+<h2 id="7-1-包"><a href="#7-1-包" class="headerlink" title="7.1 包"></a>7.1 包</h2><h3 id="7-1-1-基本介绍"><a href="#7-1-1-基本介绍" class="headerlink" title="7.1.1 基本介绍"></a>7.1.1 基本介绍</h3><ul>
+<li><p>包的三大作用</p>
+<ol>
+<li>区分相同名字的类</li>
+<li>当类很多的时候，可以很好的管理类</li>
+<li>控制访问范围</li>
+</ol>
+</li>
+<li><p>包的基本语法</p>
+<ul>
+<li><p>package com.hspedu;</p>
+<p>说明：</p>
+<ul>
+<li>package关键字，表示打包</li>
+<li>com.hspedu：表示包名</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>包的本质分析</p>
+<ul>
+<li>实际上就是创建不同的文件夹&#x2F;来保存类文件</li>
+</ul>
+</li>
+<li><p>包的命名</p>
+<ul>
+<li>规则：只能包含数字、字母、下划线、小圆点但不能使用数字开头，不能是关键字或者保留字</li>
+<li>规范：一般都是小写字母+小圆点：com.公司名.项目名.业务模块名比如：com.sina.user&#x2F;&#x2F;用户模块</li>
+</ul>
+<p>		    </p>
+</li>
+<li><p>常用的包</p>
+<ul>
+<li>java.lang.* &#x2F;&#x2F;lang包是基本包，默认引入，不需要再引入</li>
+<li>java.util.* &#x2F;&#x2F;util包，系统提供的工具包，工具类，使用Scanner</li>
+<li>java.net.* &#x2F;&#x2F;网络包，网络开发</li>
+<li>java.awt.* &#x2F;&#x2F;是做Java的界面开发，GUI</li>
+</ul>
+</li>
+</ul>
+<h3 id="7-1-2-注意事项和使用细节"><a href="#7-1-2-注意事项和使用细节" class="headerlink" title="7.1.2 注意事项和使用细节"></a>7.1.2 注意事项和使用细节</h3><p>1.如何引用包</p>
+<p>语法：import  包;</p>
+<p>引入一个包的主要目的是使用该包下的类，不建议使用*导入</p>
+<p>比如：</p>
+<p>import java.util.Scanner;	&#x2F;&#x2F;就只是引入了一个类Scanner</p>
+<p>import java.util.*;	&#x2F;&#x2F;表示将java.util包所有都引入</p>
+<p>2.package的作用声明当前类所在的包，需要放在类的最上面，一个类中最多只有一句package</p>
+<p>3.import指令 位置放在package的下面，再类定义前面，可以由多句，并且没有顺序的要求</p>
+<h2 id="7-2-访问修饰符"><a href="#7-2-访问修饰符" class="headerlink" title="7.2 访问修饰符"></a>7.2 访问修饰符</h2><h3 id="7-2-1-基本介绍"><a href="#7-2-1-基本介绍" class="headerlink" title="7.2.1 基本介绍"></a>7.2.1 基本介绍</h3><p>Java提供了四种访问控制修饰符，控制方法和属性（成员变量）的访问权限（范围）：</p>
+<ol>
+<li>公开级别：用public修饰，对外公开</li>
+<li>受保护级别：用protected修饰，对子类和同一包中的类公开</li>
+<li>默认级别：没有修饰符号，向同一个包的类公开</li>
+<li>私有级别：用private修饰，只有类本身可以访问，不对外公开</li>
+</ol>
+<ul>
+<li><strong>四种访问修饰符的访问范围</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>级别</th>
+<th>符</th>
+<th>同类</th>
+<th>同包</th>
+<th>子类</th>
+<th>不同包</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>公开</td>
+<td>public</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td>2</td>
+<td>受保护</td>
+<td>protected</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+<td>×</td>
+</tr>
+<tr>
+<td>3</td>
+<td>默认</td>
+<td>没有修饰符</td>
+<td>√</td>
+<td>√</td>
+<td>×</td>
+<td>×</td>
+</tr>
+<tr>
+<td>4</td>
+<td>私有</td>
+<td>private</td>
+<td>√</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+</tr>
+</tbody></table>
+<ul>
+<li>使用注意事项</li>
+</ul>
+<ol>
+<li>修饰符可以用来修饰类中的属性，成员方法以及类</li>
+<li>只有默认的和public才能修饰类！，并且遵循上述的范根权限的特点</li>
+<li>关于子类中的访问权限，后续再详解</li>
+<li>成员的方法的访问规则和属性完全一样</li>
+</ol>
+<h2 id="7-3-封装"><a href="#7-3-封装" class="headerlink" title="7.3 封装"></a>7.3 封装</h2><h2 id="7-4-继承"><a href="#7-4-继承" class="headerlink" title="7.4 继承"></a>7.4 继承</h2><h2 id="7-5-多态"><a href="#7-5-多态" class="headerlink" title="7.5 多态"></a>7.5 多态</h2><h2 id="7-6-Super"><a href="#7-6-Super" class="headerlink" title="7.6 Super"></a>7.6 Super</h2><h2 id="7-7-overwrite"><a href="#7-7-overwrite" class="headerlink" title="7.7 overwrite"></a>7.7 overwrite</h2><h2 id="7-8-Object类详解"><a href="#7-8-Object类详解" class="headerlink" title="7.8 Object类详解"></a>7.8 Object类详解</h2><h2 id="7-9-断点调试"><a href="#7-9-断点调试" class="headerlink" title="7.9 断点调试"></a>7.9 断点调试</h2>]]></content>
       <categories>
         <category>笔记</category>
       </categories>
@@ -2163,7 +2332,7 @@
 <p>语法：mkdir [-p] Linux路径</p>
 <ul>
 <li>参数必填，表示Linux路径，即要创建文件夹的路径，相对路径或绝对路径均可</li>
-<li>-p选项可选，表示自动创建不存在的父目录，是用于创建连续多层级的目录</li>
+<li>xxxxxxxxxx457 1import tkinter as tk2from tkinter import messagebox, simpledialog, filedialog3import json4​5class TravelManagementSystem:6    def <strong>init</strong>(self, root):7        self.root &#x3D; root8        self.root.title(“旅游管理系统”)9        self.root.geometry(“400x300”)10        self.attractions &#x3D; []11        self.routes &#x3D; []12        self.center_window(self.root)13        self.create_main_menu()14​15    def center_window(self, window):16        window.update_idletasks()17        width &#x3D; window.winfo_width()18        height &#x3D; window.winfo_height()19        x &#x3D; (window.winfo_screenwidth() &#x2F;&#x2F; 2) - (width &#x2F;&#x2F; 2)20        y &#x3D; (window.winfo_screenheight() &#x2F;&#x2F; 2) - (height &#x2F;&#x2F; 2)21        window.geometry(f”{width}x{height}+{x}+{y}”)22​23    def create_main_menu(self):24        main_frame &#x3D; tk.Frame(self.root)25        main_frame.pack(expand&#x3D;True)26​27        options_first_row &#x3D; [“景点管理”, “路线管理”, “费用结算”]28        options_second_row &#x3D; [“报告生成”, “保存数据”, “加载数据”]29        options_third_row &#x3D; [“退出程序”]30        row_frames &#x3D; [tk.Frame(main_frame) for _ in range(3)]31        for frame in row_frames:32            frame.pack(fill&#x3D;tk.X, pady&#x3D;5)33        for i, option in enumerate(options_first_row):34            button &#x3D; tk.Button(row_frames[0], text&#x3D;option, command&#x3D;lambda opt&#x3D;option: self.handle_option(opt), width&#x3D;15)35            button.pack(side&#x3D;tk.LEFT, expand&#x3D;True, padx&#x3D;5)36        for i, option in enumerate(options_second_row):37            button &#x3D; tk.Button(row_frames[1], text&#x3D;option, command&#x3D;lambda opt&#x3D;option: self.handle_option(opt), width&#x3D;15)38            button.pack(side&#x3D;tk.LEFT, expand&#x3D;True, padx&#x3D;5)39        for i, option in enumerate(options_third_row):40            button &#x3D; tk.Button(row_frames[2], text&#x3D;option, command&#x3D;lambda opt&#x3D;option: self.handle_option(opt), width&#x3D;15)41            button.pack(side&#x3D;tk.LEFT, expand&#x3D;True, padx&#x3D;5)42​43    def handle_option(self, option):44        if option &#x3D;&#x3D; “景点管理”:45            self.manage_attractions()46        elif option &#x3D;&#x3D; “路线管理”:47            self.manage_routes()48        elif option &#x3D;&#x3D; “费用结算”:49            self.calculate_costs()50        elif option &#x3D;&#x3D; “报告生成”:51            self.generate_report()52        elif option &#x3D;&#x3D; “保存数据”:53            self.save_data()54        elif option &#x3D;&#x3D; “加载数据”:55            self.load_data()56        elif option &#x3D;&#x3D; “退出程序”:57            self.root.quit()58​59    def manage_attractions(self):60        attraction_window &#x3D; tk.Toplevel(self.root)61        attraction_window.title(“景点管理”)62        attraction_window.geometry(“400x400”)63        self.center_window(attraction_window)64        attraction_window.grab_set()  65​66        attractions_listbox &#x3D; tk.Listbox(attraction_window, height&#x3D;8, width&#x3D;40)67        attractions_listbox.pack(pady&#x3D;10)68​69        for attraction in self.attractions:70            attractions_listbox.insert(tk.END, attraction[‘name’])71​72        def show_attraction_details(event):73            selected_indices &#x3D; attractions_listbox.curselection()74            if not selected_indices:75                return76            selected_index &#x3D; selected_indices[0]77            attraction &#x3D; self.attractions[selected_index]78​79            detail_window &#x3D; tk.Toplevel(attraction_window)80            detail_window.title(f”景点详情 - {attraction[‘name’]}”)81            detail_window.geometry(“400x300”)82            self.center_window(detail_window)83            detail_window.grab_set()84​85            details_text &#x3D; (f”名称: {attraction[‘name’]}\n位置: {attraction[‘location’]}\n描述: {attraction[‘description’]}\n”86                            f”门票价格: {attraction[‘ticket_price’]}元\n开放时间: {attraction[‘play_time’]}小时”)87            tk.Label(detail_window, text&#x3D;details_text).pack(pady&#x3D;10)88​89            modify_button &#x3D; tk.Button(detail_window, text&#x3D;”修改景点”,90                                      command&#x3D;lambda idx&#x3D;selected_index: self.modify_attraction(idx, detail_window))91            delete_button &#x3D; tk.Button(detail_window, text&#x3D;”删除景点”,92                                      command&#x3D;lambda idx&#x3D;selected_index: self.delete_attraction(idx, detail_window))93​94            modify_button.pack(side&#x3D;tk.LEFT, padx&#x3D;5)95            delete_button.pack(side&#x3D;tk.RIGHT, padx&#x3D;5)96​97        attractions_listbox.bind(‘&lt;<ListboxSelect>&gt;’, show_attraction_details)98​99        add_button &#x3D; tk.Button(attraction_window, text&#x3D;”添加景点”,100                               command&#x3D;lambda: self.add_attraction(attraction_window))101        search_button &#x3D; tk.Button(attraction_window, text&#x3D;”查找景点”, command&#x3D;self.search_attraction)102​103        add_button.pack(side&#x3D;tk.LEFT, padx&#x3D;5)104        search_button.pack(side&#x3D;tk.RIGHT, padx&#x3D;5)105​106    def add_attraction(self, parent_window):107        add_window &#x3D; tk.Toplevel(parent_window)108        add_window.title(“添加景点”)109        add_window.geometry(“400x300”)110        self.center_window(add_window)111        add_window.grab_set()  112​113        tk.Label(add_window, text&#x3D;”景点名称:”).grid(row&#x3D;0, column&#x3D;0, padx&#x3D;5, pady&#x3D;5)114        name_entry &#x3D; tk.Entry(add_window)115        name_entry.grid(row&#x3D;0, column&#x3D;1, padx&#x3D;5, pady&#x3D;5)116​117        tk.Label(add_window, text&#x3D;”位置:”).grid(row&#x3D;1, column&#x3D;0, padx&#x3D;5, pady&#x3D;5)118        location_entry &#x3D; tk.Entry(add_window)119        location_entry.grid(row&#x3D;1, column&#x3D;1, padx&#x3D;5, pady&#x3D;5)120​121        tk.Label(add_window, text&#x3D;”描述:”).grid(row&#x3D;2, column&#x3D;0, padx&#x3D;5, pady&#x3D;5)122        description_entry &#x3D; tk.Entry(add_window)123        description_entry.grid(row&#x3D;2, column&#x3D;1, padx&#x3D;5, pady&#x3D;5)124​125        tk.Label(add_window, text&#x3D;”门票价格(元):”).grid(row&#x3D;3, column&#x3D;0, padx&#x3D;5, pady&#x3D;5)126        ticket_price_entry &#x3D; tk.Entry(add_window)127        ticket_price_entry.grid(row&#x3D;3, column&#x3D;1, padx&#x3D;5, pady&#x3D;5)128​129        tk.Label(add_window, text&#x3D;”开放时间:”).grid(row&#x3D;4, column&#x3D;0, padx&#x3D;5, pady&#x3D;5)130        play_time_entry &#x3D; tk.Entry(add_window)131        play_time_entry.grid(row&#x3D;4, column&#x3D;1, padx&#x3D;5, pady&#x3D;5)132​133        confirm_button &#x3D; tk.Button(add_window, text&#x3D;”确认”,134                                   command&#x3D;lambda: self.confirm_add_attraction(name_entry.get(), location_entry.get(),135                                                                               description_entry.get(),136                                                                               ticket_price_entry.get(),137                                                                               play_time_entry.get(), add_window,138                                                                               parent_window))139        confirm_button.grid(row&#x3D;5, column&#x3D;0, columnspan&#x3D;2, pady&#x3D;10)140​141    def confirm_add_attraction(self, name, location, description, ticket_price, play_time, add_window, parent_window):142        try:143            ticket_price &#x3D; float(ticket_price)144        except ValueError:145            messagebox.showwarning(“警告”, “门票价格必须是数字！”, parent&#x3D;add_window)146            return147​148        if all([name, location, description, ticket_price, play_time]):149            new_attraction &#x3D; {150                ‘name’: name,151                ‘location’: location,152                ‘description’: description,153                ‘ticket_price’: ticket_price,154                ‘play_time’: play_time155            }156            self.attractions.append(new_attraction)157            messagebox.showinfo(“成功”, “景点已添加”, parent&#x3D;add_window)158            add_window.destroy()159            parent_window.destroy()160        else:161            messagebox.showwarning(“警告”, “请填写所有字段！”, parent&#x3D;add_window)162​163    def search_attraction(self):164        search_name &#x3D; simpledialog.askstring(“查找景点”, “请输入景点名称:”, parent&#x3D;self.root)165​166        found_attractions &#x3D; [a for a in self.attractions if a[‘name’].lower() &#x3D;&#x3D; search_name.lower()]167​168        if found_attractions:169            self.show_search_results(found_attractions)170        else:171            messagebox.showinfo(“结果”, “未找到该景点。”, parent&#x3D;self.root)172​173    def show_search_results(self, attractions):174        result_window &#x3D; tk.Toplevel(self.root)175        result_window.title(“搜索结果”)176        result_window.geometry(“400x300”)177        self.center_window(result_window)178        result_window.grab_set()179​180        for attraction in attractions:181            details_text &#x3D; (f”名称: {attraction[‘name’]}\n位置: {attraction[‘location’]}\n描述: {attraction[‘description’]}\n”182                            f”门票价格: {attraction[‘ticket_price’]}元\n开放时间: {attraction[‘play_time’]}小时”)183            tk.Label(result_window, text&#x3D;details_text).pack(pady&#x3D;5)184​185            modify_button &#x3D; tk.Button(result_window, text&#x3D;”修改景点”,186                                      command&#x3D;lambda attr&#x3D;attraction: self.modify_attraction_by_name(attr,187                                                                                                     result_window))188            delete_button &#x3D; tk.Button(result_window, text&#x3D;”删除景点”,189                                      command&#x3D;lambda attr&#x3D;attraction: self.delete_attraction_by_name(attr,190                                                                                                     result_window))191​192            modify_button.pack(side&#x3D;tk.LEFT, padx&#x3D;5)193            delete_button.pack(side&#x3D;tk.RIGHT, padx&#x3D;5)194​195    def modify_attraction(self, index, parent_window):196        attraction &#x3D; self.attractions[index]197​198        modify_window &#x3D; tk.Toplevel(parent_window)199        modify_window.title(“修改景点”)200        modify_window.geometry(“400x300”)201        self.center_window(modify_window)202        modify_window.grab_set()203​204        tk.Label(modify_window, text&#x3D;”景点名称:”).grid(row&#x3D;0, column&#x3D;0, padx&#x3D;5, pady&#x3D;5)205        name_entry &#x3D; tk.Entry(modify_window)206        name_entry.insert(0, attraction[‘name’])207        name_entry.grid(row&#x3D;0, column&#x3D;1, padx&#x3D;5, pady&#x3D;5)208​209        tk.Label(modify_window, text&#x3D;”位置:”).grid(row&#x3D;1, column&#x3D;0, padx&#x3D;5, pady&#x3D;5)210        location_entry &#x3D; tk.Entry(modify_window)211        location_entry.insert(0, attraction[‘location’])212        location_entry.grid(row&#x3D;1, column&#x3D;1, padx&#x3D;5, pady&#x3D;5)213​214        tk.Label(modify_window, text&#x3D;”描述:”).grid(row&#x3D;2, column&#x3D;0, padx&#x3D;5, pady&#x3D;5)215        description_entry &#x3D; tk.Entry(modify_window)216        description_entry.insert(0, attraction[‘description’])217        description_entry.grid(row&#x3D;2, column&#x3D;1, padx&#x3D;5, pady&#x3D;5)218​219        tk.Label(modify_window, text&#x3D;”门票价格(元):”).grid(row&#x3D;3, column&#x3D;0, padx&#x3D;5, pady&#x3D;5)220        ticket_price_entry &#x3D; tk.Entry(modify_window)221        ticket_price_entry.insert(0, str(attraction[‘ticket_price’]))222        ticket_price_entry.grid(row&#x3D;3, column&#x3D;1, padx&#x3D;5, pady&#x3D;5)223​224        tk.Label(modify_window, text&#x3D;”开放时间:”).grid(row&#x3D;4, column&#x3D;0, padx&#x3D;5, pady&#x3D;5)225        play_time_entry &#x3D; tk.Entry(modify_window)226        play_time_entry.insert(0, str(attraction[‘play_time’]))227        play_time_entry.grid(row&#x3D;4, column&#x3D;1, padx&#x3D;5, pady&#x3D;5)228​229        confirm_button &#x3D; tk.Button(modify_window, text&#x3D;”确认”,230                                   command&#x3D;lambda: self.confirm_modify_attraction(index, name_entry.get(),231                                                                                  location_entry.get(),232                                                                                  description_entry.get(),233                                                                                  ticket_price_entry.get(),234                                                                                  play_time_entry.get(), modify_window))235        confirm_button.grid(row&#x3D;5, column&#x3D;0, columnspan&#x3D;2, pady&#x3D;10)236​237    def confirm_modify_attraction(self, index, name, location, description, ticket_price, play_time, window):238        try:239            ticket_price &#x3D; float(ticket_price)240        except ValueError:241            messagebox.showwarning(“警告”, “门票价格必须是数字！”, parent&#x3D;window)242            return243​244        if all([name, location, description, ticket_price, play_time]):245            self.attractions[index] &#x3D; {246                ‘name’: name,247                ‘location’: location,248                ‘description’: description,249                ‘ticket_price’: ticket_price,250                ‘play_time’: play_time251            }252            messagebox.showinfo(“成功”, “景点已修改！”, parent&#x3D;window)253            window.destroy()254        else:255            messagebox.showwarning(“警告”, “请填写所有字段！”, parent&#x3D;window)256​257    def delete_attraction(self, index, parent_window):258        del self.attractions[index]259        messagebox.showinfo(“成功”, “景点已删除！”, parent&#x3D;parent_window)260        parent_window.destroy()261​262    def modify_attraction_by_name(self, attraction, parent_window):263        index &#x3D; next((i for i, a in enumerate(self.attractions) if a[‘name’] &#x3D;&#x3D; attraction[‘name’]), None)264        if index is not None:265            self.modify_attraction(index, parent_window)266​267    def delete_attraction_by_name(self, attraction, parent_window):268        index &#x3D; next((i for i, a in enumerate(self.attractions) if a[‘name’] &#x3D;&#x3D; attraction[‘name’]), None)269        if index is not None:270            self.delete_attraction(index, parent_window)271​272    def manage_routes(self):273        route_window &#x3D; tk.Toplevel(self.root)274        route_window.title(“路线管理”)275        route_window.geometry(“400x400”)276        self.center_window(route_window)277        route_window.grab_set()278​279        frame_top &#x3D; tk.Frame(route_window)280        frame_top.pack(pady&#x3D;10)281​282        tk.Label(frame_top, text&#x3D;”选择景点:”).grid(row&#x3D;0, column&#x3D;0, padx&#x3D;5, pady&#x3D;5)283​284        self.selected_attractions &#x3D; []285        for i, attraction in enumerate(self.attractions):286            var &#x3D; tk.IntVar(value&#x3D;0)287            cb &#x3D; tk.Checkbutton(frame_top, text&#x3D;attraction[‘name’], variable&#x3D;var)288            cb.grid(row&#x3D;i + 1, column&#x3D;0, sticky&#x3D;’w’)289            self.selected_attractions.append(var)290​291        route_name_label &#x3D; tk.Label(frame_top, text&#x3D;”路线名称:”)292        route_name_entry &#x3D; tk.Entry(frame_top)293        route_name_label.grid(row&#x3D;len(self.attractions) + 2, column&#x3D;0, padx&#x3D;5, pady&#x3D;5)294        route_name_entry.grid(row&#x3D;len(self.attractions) + 2, column&#x3D;1, padx&#x3D;5, pady&#x3D;5)295​296        add_route_button &#x3D; tk.Button(frame_top, text&#x3D;”添加路线”,297                                     command&#x3D;lambda entry&#x3D;route_name_entry: self.add_route(entry.get(), route_window))298        add_route_button.grid(row&#x3D;len(self.attractions) + 3, column&#x3D;0, columnspan&#x3D;2, pady&#x3D;10)299​300        view_routes_button &#x3D; tk.Button(route_window, text&#x3D;”查看路线”, command&#x3D;self.view_routes)301        view_routes_button.pack(pady&#x3D;10)302​303    def add_route(self, route_name, parent_window):304        if not route_name.strip():305            messagebox.showwarning(“警告”, “请输入路线名称！”, parent&#x3D;parent_window)306            return307​308        selected_indices &#x3D; [i for i, var in enumerate(self.selected_attractions) if var.get()]309        if not selected_indices:310            messagebox.showwarning(“警告”, “请选择至少一个景点！”, parent&#x3D;parent_window)311            return312​313        selected_attractions &#x3D; [self.attractions[i][‘name’] for i in selected_indices]314​315        new_route &#x3D; {316            ‘name’: route_name,317            ‘attractions’: selected_attractions318        }319​320        self.routes.append(new_route)321        messagebox.showinfo(“成功”, “路线已添加！”, parent&#x3D;parent_window)322        parent_window.destroy()323​324    def view_routes(self):325        view_window &#x3D; tk.Toplevel(self.root)326        view_window.title(“查看路线”)327        view_window.geometry(“400x300”)328        self.center_window(view_window)329        view_window.grab_set()  330​331        for route in self.routes:332            route_info &#x3D; f”路线名称: {route[‘name’]}\n景点: {‘, ‘.join(route[‘attractions’])}”333            tk.Label(view_window, text&#x3D;route_info).pack(pady&#x3D;5)334​335    def calculate_costs(self):336        cost_window &#x3D; tk.Toplevel(self.root)337        cost_window.title(“费用结算”)338        cost_window.geometry(“400x300”)339        self.center_window(cost_window)340        cost_window.grab_set()  341​342        frame_top &#x3D; tk.Frame(cost_window)343        frame_top.pack(pady&#x3D;10)344​345        tk.Label(frame_top, text&#x3D;”选择路线:”).grid(row&#x3D;0, column&#x3D;0, padx&#x3D;5, pady&#x3D;5)346​347        self.selected_routes &#x3D; []348        for i, route in enumerate(self.routes):349            var &#x3D; tk.IntVar(value&#x3D;0)350            cb &#x3D; tk.Checkbutton(frame_top, text&#x3D;route[‘name’], variable&#x3D;var)351            cb.grid(row&#x3D;i + 1, column&#x3D;0, sticky&#x3D;’w’)352            self.selected_routes.append(var)353​354        calculate_button &#x3D; tk.Button(frame_top, text&#x3D;”计算费用”, command&#x3D;lambda: self.calculate_total_cost(cost_window))355        calculate_button.grid(row&#x3D;len(self.routes) + 2, column&#x3D;0, columnspan&#x3D;2, pady&#x3D;10)356​357    def calculate_total_cost(self, window):358        selected_indices &#x3D; [i for i, var in enumerate(self.selected_routes) if var.get()]359        if not selected_indices:360            messagebox.showwarning(“警告”, “请选择至少一条路线！”, parent&#x3D;window)361            return362​363        total_cost &#x3D; 0364        try:365            for i in selected_indices:366                route &#x3D; self.routes[i]367                for attraction_name in route[‘attractions’]:368                    attraction &#x3D; next((a for a in self.attractions if a[‘name’] &#x3D;&#x3D; attraction_name), None)369                    if attraction:370                        total_cost +&#x3D; float(attraction[‘ticket_price’])371                    else:372                        messagebox.showwarning(“警告”, “未找到该景点的门票价格！”, parent&#x3D;window)373                        return374        except Exception as e:375            messagebox.showerror(“错误”, f”计算费用时发生错误: {str(e)}”, parent&#x3D;window)376            return377​378        messagebox.showinfo(“总费用”, f”所选路线的总费用为: {total_cost}元”, parent&#x3D;window)379        window.destroy()380​381    def generate_report(self):382        report_window &#x3D; tk.Toplevel(self.root)383        report_window.title(“报告生成”)384        report_window.geometry(“400x300”)385        self.center_window(report_window)386        report_window.grab_set()387        frame_top &#x3D; tk.Frame(report_window)388        frame_top.pack(pady&#x3D;10)389        tk.Label(frame_top, text&#x3D;”选择路线:”).grid(row&#x3D;0, column&#x3D;0, padx&#x3D;5, pady&#x3D;5)390​391        self.report_selected_routes &#x3D; []392        for i, route in enumerate(self.routes):393            var &#x3D; tk.IntVar(value&#x3D;0)394            cb &#x3D; tk.Checkbutton(frame_top, text&#x3D;route[‘name’], variable&#x3D;var)395            cb.grid(row&#x3D;i + 1, column&#x3D;0, sticky&#x3D;’w’)396            self.report_selected_routes.append(var)397​398        save_button &#x3D; tk.Button(frame_top, text&#x3D;”保存报告”, command&#x3D;lambda: self.save_report(report_window))399        save_button.grid(row&#x3D;len(self.routes) + 2, column&#x3D;0, columnspan&#x3D;2, pady&#x3D;10)400​401    def save_report(self, window):402        selected_indices &#x3D; [i for i, var in enumerate(self.report_selected_routes) if var.get()]403        if not selected_indices:404            messagebox.showwarning(“警告”, “请选择至少一条路线！”, parent&#x3D;window)405            return406​407        filename &#x3D; filedialog.asksaveasfilename(defaultextension&#x3D;”.txt”,408                                                filetypes&#x3D;[(“Text files”, “<em>.txt”), (“All files”, “</em>.<em>“)],409                                                parent&#x3D;window)410​411        if filename:412            with open(filename, ‘w’) as file:413                for i in selected_indices:414                    route &#x3D; self.routes[i]415                    file.write(f”路线名称: {route[‘name’]}\n景点:\n”)416                    for attraction_name in route[‘attractions’]:417                        attraction &#x3D; next(a for a in self.attractions if a[‘name’] &#x3D;&#x3D; attraction_name)418                        file.write(419                            f”- 名称: {attraction[‘name’]}\n  位置: {attraction[‘location’]}\n  描述: {attraction[‘description’]}\n  “420                            f”门票价格: {attraction[‘ticket_price’]}元\n  开放时间: {attraction[‘play_time’]}小时\n”)421                    file.write(“\n”)422​423            messagebox.showinfo(“成功”, “报告已保存！”, parent&#x3D;window)424        window.destroy()425​426    def save_data(self):427        data &#x3D; {428            ‘attractions’: self.attractions,429            ‘routes’: self.routes430        }431​432        filename &#x3D; filedialog.asksaveasfilename(defaultextension&#x3D;”.json”,433                                                filetypes&#x3D;[(“JSON files”, “</em>.json”), (“All files”, “<em>.</em>“)])434        if filename:435            with open(filename, ‘w’) as file:436                json.dump(data, file, ensure_ascii&#x3D;False, indent&#x3D;4)437​438            messagebox.showinfo(“成功”, “数据已保存！”)439​440    def load_data(self):441        filename &#x3D; filedialog.askopenfilename(filetypes&#x3D;[(“JSON files”, “<em>.json”), (“All files”, “</em>.*”)])442        if filename:443            choice &#x3D; messagebox.askyesno(“确认”, “您希望覆盖现有数据还是添加到现有数据？\n点击’是’覆盖，点击’否’添加。”)444            with open(filename, ‘r’) as file:445                data &#x3D; json.load(file)446            if choice:447                self.attractions &#x3D; data.get(‘attractions’, [])448                self.routes &#x3D; data.get(‘routes’, [])449            else:450                self.attractions.extend(data.get(‘attractions’, []))451                self.routes.extend(data.get(‘routes’, []))452            messagebox.showinfo(“成功”, “数据已加载！”)453​454if <strong>name</strong> &#x3D;&#x3D; “<strong>main</strong>“:455    root &#x3D; tk.Tk()456    app &#x3D; TravelManagementSystem(root)457    root.mainloop()python</li>
 </ul>
 <p>创建test文件尝试，特殊路径符。</p>
 <p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250218200654870.png"></p>
@@ -3064,12 +3233,16 @@
       <tags>
         <tag>VMware</tag>
         <tag>Linux系统</tag>
+        <tag>软件</tag>
       </tags>
   </entry>
   <entry>
     <title>Ghidra的安装</title>
     <url>/2025/02/06/Ghidra%E7%9A%84%E5%AE%89%E8%A3%85/</url>
     <content><![CDATA[]]></content>
+      <tags>
+        <tag>软件</tag>
+      </tags>
   </entry>
   <entry>
     <title>Typora的使用</title>
@@ -3470,7 +3643,7 @@
 </code></pre>
 <p> Port 443</p>
 <p>如果没有config文件就新建一个即可。</p>
-<p>如果执行命令ssh -T <a href="mailto:&#103;&#105;&#x74;&#64;&#x67;&#x69;&#116;&#x68;&#117;&#98;&#46;&#x63;&#x6f;&#109;">&#103;&#105;&#x74;&#64;&#x67;&#x69;&#116;&#x68;&#117;&#98;&#46;&#x63;&#x6f;&#109;</a>，还是报错，就执行命令</p>
+<p>如果执行命令ssh -T <a href="mailto:&#x67;&#105;&#x74;&#x40;&#x67;&#105;&#116;&#104;&#117;&#98;&#46;&#99;&#x6f;&#x6d;">&#x67;&#105;&#x74;&#x40;&#x67;&#105;&#116;&#104;&#117;&#98;&#46;&#99;&#x6f;&#x6d;</a>，还是报错，就执行命令</p>
 <p>ssh -T -p 443 <a href="mailto:git@ssh.github.com，">git@ssh.github.com</a></p>
 <p>如果提示Hi xxxxx! You’ve successfully authenticated, but GitHub does not provide <a href="https://zhida.zhihu.com/search?content_id=203985854&content_type=Article&match_order=2&q=shell+access&zhida_source=entity">shell access</a>. 就表示一切正常了。</p>
 <h1 id="四、本地部署"><a href="#四、本地部署" class="headerlink" title="四、本地部署"></a><strong>四、本地部署</strong></h1><h4 id="1-创建目录"><a href="#1-创建目录" class="headerlink" title="1.创建目录"></a><strong>1.创建目录</strong></h4><p>由于Hexo的所有文章都是以文件的形式存储在目录下的，</p>
@@ -3548,6 +3721,9 @@
 <p>layout: “categories” </p>
 <p>-–</p>
 ]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
       <tags>
         <tag>hexo</tag>
       </tags>

@@ -86,7 +86,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">19.9k</span>
+            <span class="post-count">20.6k</span>
         </span>
     </span>
 
@@ -95,7 +95,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">85 分钟</span>
+            <span class="post-count">88 分钟</span>
         </span>
     </span>
 </div>
@@ -1712,7 +1712,148 @@
 
 
 
-<h1 id="第七章-面向对象编程（中级部分）"><a href="#第七章-面向对象编程（中级部分）" class="headerlink" title="第七章 面向对象编程（中级部分）"></a>第七章 面向对象编程（中级部分）</h1><h2 id="7-1-包"><a href="#7-1-包" class="headerlink" title="7.1 包"></a>7.1 包</h2><h2 id="7-2-访问修饰符"><a href="#7-2-访问修饰符" class="headerlink" title="7.2 访问修饰符"></a>7.2 访问修饰符</h2><h2 id="7-3-封装"><a href="#7-3-封装" class="headerlink" title="7.3 封装"></a>7.3 封装</h2><h2 id="7-4-继承"><a href="#7-4-继承" class="headerlink" title="7.4 继承"></a>7.4 继承</h2><h2 id="7-5-多态"><a href="#7-5-多态" class="headerlink" title="7.5 多态"></a>7.5 多态</h2><h2 id="7-6-Super"><a href="#7-6-Super" class="headerlink" title="7.6 Super"></a>7.6 Super</h2><h2 id="7-7-overwrite"><a href="#7-7-overwrite" class="headerlink" title="7.7 overwrite"></a>7.7 overwrite</h2><h2 id="7-8-Object类详解"><a href="#7-8-Object类详解" class="headerlink" title="7.8 Object类详解"></a>7.8 Object类详解</h2><h2 id="7-9-断点调试"><a href="#7-9-断点调试" class="headerlink" title="7.9 断点调试"></a>7.9 断点调试</h2> 
+<h1 id="第七章-面向对象编程（中级部分）"><a href="#第七章-面向对象编程（中级部分）" class="headerlink" title="第七章 面向对象编程（中级部分）"></a>第七章 面向对象编程（中级部分）</h1><p>工具说明：</p>
+<p>IDE（集成开发环境）- IDEA</p>
+<ul>
+<li>IDEA介绍</li>
+</ul>
+<ol>
+<li><p>DEA全程InteliJ IDEA</p>
+</li>
+<li><p>在业界被公认为最好的Java开发工具</p>
+</li>
+<li><p>IDEA是JetBrains公司的产品，总部位于捷克的首部布拉格</p>
+</li>
+<li><p>除了支持Java开发，还支持HTML、CSS、PHP、MySQL、Python等</p>
+</li>
+</ol>
+<p>IDE（集成开发环境）- Eclipse</p>
+<ul>
+<li>Eclipse介绍</li>
+</ul>
+<ol>
+<li>Eclipse是开放源代码的、基于JAva的可拓展开发平台</li>
+<li>最初是由IBM公司耗资3000万美金开发的下一代IDE开发环境</li>
+<li>2001年11月贡献给开源社区</li>
+<li>Eclipse是目前最优秀的Java开发IDE之一</li>
+</ol>
+<h2 id="7-1-包"><a href="#7-1-包" class="headerlink" title="7.1 包"></a>7.1 包</h2><h3 id="7-1-1-基本介绍"><a href="#7-1-1-基本介绍" class="headerlink" title="7.1.1 基本介绍"></a>7.1.1 基本介绍</h3><ul>
+<li><p>包的三大作用</p>
+<ol>
+<li>区分相同名字的类</li>
+<li>当类很多的时候，可以很好的管理类</li>
+<li>控制访问范围</li>
+</ol>
+</li>
+<li><p>包的基本语法</p>
+<ul>
+<li><p>package com.hspedu;</p>
+<p>说明：</p>
+<ul>
+<li>package关键字，表示打包</li>
+<li>com.hspedu：表示包名</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>包的本质分析</p>
+<ul>
+<li>实际上就是创建不同的文件夹&#x2F;来保存类文件</li>
+</ul>
+</li>
+<li><p>包的命名</p>
+<ul>
+<li>规则：只能包含数字、字母、下划线、小圆点但不能使用数字开头，不能是关键字或者保留字</li>
+<li>规范：一般都是小写字母+小圆点：com.公司名.项目名.业务模块名比如：com.sina.user&#x2F;&#x2F;用户模块</li>
+</ul>
+<p>		    </p>
+</li>
+<li><p>常用的包</p>
+<ul>
+<li>java.lang.* &#x2F;&#x2F;lang包是基本包，默认引入，不需要再引入</li>
+<li>java.util.* &#x2F;&#x2F;util包，系统提供的工具包，工具类，使用Scanner</li>
+<li>java.net.* &#x2F;&#x2F;网络包，网络开发</li>
+<li>java.awt.* &#x2F;&#x2F;是做Java的界面开发，GUI</li>
+</ul>
+</li>
+</ul>
+<h3 id="7-1-2-注意事项和使用细节"><a href="#7-1-2-注意事项和使用细节" class="headerlink" title="7.1.2 注意事项和使用细节"></a>7.1.2 注意事项和使用细节</h3><p>1.如何引用包</p>
+<p>语法：import  包;</p>
+<p>引入一个包的主要目的是使用该包下的类，不建议使用*导入</p>
+<p>比如：</p>
+<p>import java.util.Scanner;	&#x2F;&#x2F;就只是引入了一个类Scanner</p>
+<p>import java.util.*;	&#x2F;&#x2F;表示将java.util包所有都引入</p>
+<p>2.package的作用声明当前类所在的包，需要放在类的最上面，一个类中最多只有一句package</p>
+<p>3.import指令 位置放在package的下面，再类定义前面，可以由多句，并且没有顺序的要求</p>
+<h2 id="7-2-访问修饰符"><a href="#7-2-访问修饰符" class="headerlink" title="7.2 访问修饰符"></a>7.2 访问修饰符</h2><h3 id="7-2-1-基本介绍"><a href="#7-2-1-基本介绍" class="headerlink" title="7.2.1 基本介绍"></a>7.2.1 基本介绍</h3><p>Java提供了四种访问控制修饰符，控制方法和属性（成员变量）的访问权限（范围）：</p>
+<ol>
+<li>公开级别：用public修饰，对外公开</li>
+<li>受保护级别：用protected修饰，对子类和同一包中的类公开</li>
+<li>默认级别：没有修饰符号，向同一个包的类公开</li>
+<li>私有级别：用private修饰，只有类本身可以访问，不对外公开</li>
+</ol>
+<ul>
+<li><strong>四种访问修饰符的访问范围</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>级别</th>
+<th>符</th>
+<th>同类</th>
+<th>同包</th>
+<th>子类</th>
+<th>不同包</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>公开</td>
+<td>public</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td>2</td>
+<td>受保护</td>
+<td>protected</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+<td>×</td>
+</tr>
+<tr>
+<td>3</td>
+<td>默认</td>
+<td>没有修饰符</td>
+<td>√</td>
+<td>√</td>
+<td>×</td>
+<td>×</td>
+</tr>
+<tr>
+<td>4</td>
+<td>私有</td>
+<td>private</td>
+<td>√</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+</tr>
+</tbody></table>
+<ul>
+<li>使用注意事项</li>
+</ul>
+<ol>
+<li>修饰符可以用来修饰类中的属性，成员方法以及类</li>
+<li>只有默认的和public才能修饰类！，并且遵循上述的范根权限的特点</li>
+<li>关于子类中的访问权限，后续再详解</li>
+<li>成员的方法的访问规则和属性完全一样</li>
+</ol>
+<h2 id="7-3-封装"><a href="#7-3-封装" class="headerlink" title="7.3 封装"></a>7.3 封装</h2><h2 id="7-4-继承"><a href="#7-4-继承" class="headerlink" title="7.4 继承"></a>7.4 继承</h2><h2 id="7-5-多态"><a href="#7-5-多态" class="headerlink" title="7.5 多态"></a>7.5 多态</h2><h2 id="7-6-Super"><a href="#7-6-Super" class="headerlink" title="7.6 Super"></a>7.6 Super</h2><h2 id="7-7-overwrite"><a href="#7-7-overwrite" class="headerlink" title="7.7 overwrite"></a>7.7 overwrite</h2><h2 id="7-8-Object类详解"><a href="#7-8-Object类详解" class="headerlink" title="7.8 Object类详解"></a>7.8 Object类详解</h2><h2 id="7-9-断点调试"><a href="#7-9-断点调试" class="headerlink" title="7.9 断点调试"></a>7.9 断点调试</h2> 
       <!-- reward -->
       
     </div>
