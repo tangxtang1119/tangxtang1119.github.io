@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+  
+
+    <head>
+      <meta charset="utf-8" />
+        
+      <meta name="description" content="‘有志少女 先读书’" />
+      
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>基础总结 |  tangxtang</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      
+<link rel="stylesheet" href="/css/fonts/remixicon.css">
+
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.staticfile.org/pace/1.2.4/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    </head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-基础总结"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  基础总结
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2025/03/21/%E5%9F%BA%E7%A1%80%E6%80%BB%E7%BB%93/" class="article-date">
+  <time datetime="2025-03-21T14:46:23.000Z" itemprop="datePublished">2025-03-21</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">2.4k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">10 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>J</p>
+<h1 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h1><h2 id="一、基础语法结构"><a href="#一、基础语法结构" class="headerlink" title="一、基础语法结构"></a>一、基础语法结构</h2><h3 id="1-变量与数据类型"><a href="#1-变量与数据类型" class="headerlink" title="1. 变量与数据类型"></a>1. 变量与数据类型</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 基本数据类型</span></span><br><span class="line"><span class="type">int</span> <span class="variable">age</span> <span class="operator">=</span> <span class="number">25</span>;                  <span class="comment">// 整数（4字节）</span></span><br><span class="line"><span class="type">double</span> <span class="variable">price</span> <span class="operator">=</span> <span class="number">9.99</span>;           <span class="comment">// 双精度浮点</span></span><br><span class="line"><span class="type">char</span> <span class="variable">grade</span> <span class="operator">=</span> <span class="string">&#x27;A&#x27;</span>;              <span class="comment">// 单个字符</span></span><br><span class="line"><span class="type">boolean</span> <span class="variable">isOpen</span> <span class="operator">=</span> <span class="literal">true</span>;         <span class="comment">// 布尔值</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 引用数据类型</span></span><br><span class="line"><span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> <span class="string">&quot;Android&quot;</span>;       <span class="comment">// 字符串</span></span><br><span class="line"><span class="type">int</span>[] numbers = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;       <span class="comment">// 数组</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-控制流程"><a href="#2-控制流程" class="headerlink" title="2. 控制流程"></a>2. 控制流程</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 条件语句</span></span><br><span class="line"><span class="keyword">if</span> (score &gt;= <span class="number">60</span>) &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;及格&quot;</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (score &gt; <span class="number">40</span>) &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;补考&quot;</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;挂科&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 循环结构</span></span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>; i&lt;<span class="number">5</span>; i++) &#123;</span><br><span class="line">    System.out.println(i);      <span class="comment">// 0,1,2,3,4</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span> (j &lt; <span class="number">3</span>) &#123;</span><br><span class="line">    System.out.println(j++);    <span class="comment">// 0,1,2</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="二、面向对象核心"><a href="#二、面向对象核心" class="headerlink" title="二、面向对象核心"></a>二、面向对象核心</h2><h3 id="1-类与对象"><a href="#1-类与对象" class="headerlink" title="1. 类与对象"></a>1. 类与对象</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 类定义</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Person</span> &#123;</span><br><span class="line">    <span class="comment">// 字段</span></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 构造方法</span></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Person</span><span class="params">(String name)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 方法</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">sayHello</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Hello, I&#x27;m &quot;</span> + name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 对象使用</span></span><br><span class="line"><span class="type">Person</span> <span class="variable">p</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Person</span>(<span class="string">&quot;Alice&quot;</span>);</span><br><span class="line">p.sayHello();  <span class="comment">// 输出: Hello, I&#x27;m Alice</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-继承与多态"><a href="#2-继承与多态" class="headerlink" title="2. 继承与多态"></a>2. 继承与多态</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 父类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Animal</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">sound</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;动物叫&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 子类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Dog</span> <span class="keyword">extends</span> <span class="title class_">Animal</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">sound</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;汪汪汪&quot;</span>);  <span class="comment">// 方法重写</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 多态示例</span></span><br><span class="line"><span class="type">Animal</span> <span class="variable">myDog</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Dog</span>();</span><br><span class="line">myDog.sound();  <span class="comment">// 输出: 汪汪汪</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="三、关键语法特性"><a href="#三、关键语法特性" class="headerlink" title="三、关键语法特性"></a>三、关键语法特性</h2><h3 id="1-访问修饰符"><a href="#1-访问修饰符" class="headerlink" title="1. 访问修饰符"></a>1. 访问修饰符</h3><table>
+<thead>
+<tr>
+<th>修饰符</th>
+<th>类内</th>
+<th>同包</th>
+<th>子类</th>
+<th>其他包</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>private</code></td>
+<td>✔️</td>
+<td>✖️</td>
+<td>✖️</td>
+<td>✖️</td>
+</tr>
+<tr>
+<td><code>protected</code></td>
+<td>✔️</td>
+<td>✔️</td>
+<td>✔️</td>
+<td>✖️</td>
+</tr>
+<tr>
+<td><code>public</code></td>
+<td>✔️</td>
+<td>✔️</td>
+<td>✔️</td>
+<td>✔️</td>
+</tr>
+<tr>
+<td>默认</td>
+<td>✔️</td>
+<td>✔️</td>
+<td>✖️</td>
+<td>✖️</td>
+</tr>
+</tbody></table>
+<h3 id="2-接口与抽象类"><a href="#2-接口与抽象类" class="headerlink" title="2. 接口与抽象类"></a>2. 接口与抽象类</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 接口（100%抽象）</span></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">USB</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">connect</span><span class="params">()</span>;  <span class="comment">// 隐式 public abstract</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 抽象类（可包含实现）</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title class_">Shape</span> &#123;</span><br><span class="line">    <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title function_">draw</span><span class="params">()</span>;  <span class="comment">// 抽象方法</span></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">move</span><span class="params">()</span> &#123; <span class="comment">/* 具体实现 */</span> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="四、异常处理"><a href="#四、异常处理" class="headerlink" title="四、异常处理"></a>四、异常处理</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">result</span> <span class="operator">=</span> <span class="number">10</span> / <span class="number">0</span>;</span><br><span class="line">&#125; <span class="keyword">catch</span> (ArithmeticException e) &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;除数不能为零&quot;</span>);</span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;总会执行&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 自定义异常</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyException</span> <span class="keyword">extends</span> <span class="title class_">Exception</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">MyException</span><span class="params">(String message)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>(message);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="五、集合框架"><a href="#五、集合框架" class="headerlink" title="五、集合框架"></a>五、集合框架</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 常用集合类</span></span><br><span class="line">List&lt;String&gt; list = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();  <span class="comment">// 有序可重复</span></span><br><span class="line">Set&lt;Integer&gt; set = <span class="keyword">new</span> <span class="title class_">HashSet</span>&lt;&gt;();     <span class="comment">// 无序唯一</span></span><br><span class="line">Map&lt;String, Integer&gt; map = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;(); <span class="comment">// 键值对</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 集合操作</span></span><br><span class="line">list.add(<span class="string">&quot;Java&quot;</span>);</span><br><span class="line">map.put(<span class="string">&quot;age&quot;</span>, <span class="number">20</span>);</span><br><span class="line"><span class="type">int</span> <span class="variable">value</span> <span class="operator">=</span> map.get(<span class="string">&quot;age&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="六、其他逆向重点"><a href="#六、其他逆向重点" class="headerlink" title="六、其他逆向重点"></a>六、其他逆向重点</h2><h3 id="1-反射机制（逆向关键）"><a href="#1-反射机制（逆向关键）" class="headerlink" title="1. 反射机制（逆向关键）"></a>1. 反射机制（逆向关键）</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Class&lt;?&gt; clazz = Class.forName(<span class="string">&quot;com.example.MyClass&quot;</span>);</span><br><span class="line"><span class="type">Method</span> <span class="variable">method</span> <span class="operator">=</span> clazz.getMethod(<span class="string">&quot;secretMethod&quot;</span>);</span><br><span class="line">method.invoke(clazz.newInstance());</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-泛型（反编译常见）"><a href="#2-泛型（反编译常见）" class="headerlink" title="2. 泛型（反编译常见）"></a>2. 泛型（反编译常见）</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Map&lt;String, Integer&gt;&gt; complexList = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-多线程"><a href="#3-多线程" class="headerlink" title="3. 多线程"></a>3. 多线程</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="title class_">Thread</span>(() -&gt; &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;异步执行&quot;</span>);</span><br><span class="line">&#125;).start();</span><br></pre></td></tr></table></figure>
+
+<h2 id="七、内存管理基础"><a href="#七、内存管理基础" class="headerlink" title="七、内存管理基础"></a><strong>七、内存管理基础</strong></h2><ol>
+<li><strong>栈内存</strong>：存储基本类型变量和方法调用</li>
+<li><strong>堆内存</strong>：存储对象实例</li>
+<li><strong>方法区</strong>：存储类信息、常量池</li>
+<li><strong>垃圾回收</strong>：自动回收无引用对象（<code>System.gc()</code>建议回收）</li>
+</ol>
+<h2 id="学习建议"><a href="#学习建议" class="headerlink" title="学习建议"></a><strong>学习建议</strong></h2><ol>
+<li><strong>重点掌握</strong>：类与对象、继承多态、集合框架</li>
+<li><strong>逆向关联</strong>：反射机制、异常处理、接口特性</li>
+<li><strong>实践方法</strong>：通过修改开源项目的代码观察运行结果</li>
+</ol>
+<p><strong>附：逆向工程中常见的Java代码特征</strong></p>
+<ul>
+<li><code>private static final</code> 修饰的密钥字段</li>
+<li><code>try-catch</code> 包裹的核心逻辑</li>
+<li><code>native</code> 声明的JNI方法</li>
+<li><code>synchronized</code> 同步代码块</li>
+</ul>
+<p>结合APK反编译后的实际代码进行对照学习，理解语法到字节码的转换逻辑。</p>
+<hr>
+<h1 id="Kotlin"><a href="#Kotlin" class="headerlink" title="Kotlin"></a>Kotlin</h1><h2 id="一、基础语法差异（对比Java）"><a href="#一、基础语法差异（对比Java）" class="headerlink" title="一、基础语法差异（对比Java）"></a>一、基础语法差异（对比Java）</h2><h3 id="1-变量声明"><a href="#1-变量声明" class="headerlink" title="1. 变量声明"></a>1. 变量声明</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">val</span> <span class="variable">name</span> <span class="operator">=</span> <span class="string">&quot;Kotlin&quot;</span>       <span class="comment">// 不可变变量（类似Java final）</span></span><br><span class="line"><span class="type">var</span> <span class="variable">count</span> <span class="operator">=</span> <span class="number">10</span>            <span class="comment">// 可变变量</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 显式类型声明</span></span><br><span class="line">val price: Double = <span class="number">9.99</span></span><br></pre></td></tr></table></figure>
+
+<p><em>逆向提示：反编译后<code>val</code>会变成final字段</em></p>
+<h3 id="2-函数定义"><a href="#2-函数定义" class="headerlink" title="2. 函数定义"></a>2. 函数定义</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 基本函数</span></span><br><span class="line">fun <span class="title function_">sum</span><span class="params">(a: Int, b: Int)</span>: Int &#123;</span><br><span class="line">    <span class="keyword">return</span> a + b</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 表达式函数（自动推导返回类型）</span></span><br><span class="line">fun <span class="title function_">quickSum</span><span class="params">(a: Int, b: Int)</span> = a + b</span><br></pre></td></tr></table></figure>
+
+<p><em>逆向特征：函数名保留但参数类型可能被擦除</em></p>
+<h3 id="3-空安全特性"><a href="#3-空安全特性" class="headerlink" title="3. 空安全特性"></a>3. 空安全特性</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> safeString: String? = <span class="literal">null</span>  <span class="comment">// 可空类型</span></span><br><span class="line"><span class="type">val</span> <span class="variable">length</span> <span class="operator">=</span> safeString?.length ?: <span class="number">0</span>  <span class="comment">// Elvis操作符</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 非空断言（逆向常见崩溃点）</span></span><br><span class="line"><span class="type">val</span> <span class="variable">risk</span> <span class="operator">=</span> safeString!!.length </span><br></pre></td></tr></table></figure>
+
+<p><em>逆向注意：<code>!!</code>会生成显式空指针检查代码</em></p>
+<h2 id="二、面向对象差异"><a href="#二、面向对象差异" class="headerlink" title="二、面向对象差异"></a>二、面向对象差异</h2><h3 id="1-类与继承"><a href="#1-类与继承" class="headerlink" title="1. 类与继承"></a>1. 类与继承</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">open <span class="keyword">class</span> <span class="title class_">Animal</span> &#123;          <span class="comment">// 默认final，需open才能继承</span></span><br><span class="line">    open fun <span class="title function_">sound</span><span class="params">()</span> = <span class="string">&quot;...&quot;</span> </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Dog</span> : Animal() &#123;       <span class="comment">// 使用冒号继承</span></span><br><span class="line">    override fun <span class="title function_">sound</span><span class="params">()</span> = <span class="string">&quot;汪汪汪&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><em>逆向特征：<code>@JvmOverloads</code>注解常见于构造函数</em></p>
+<h3 id="2-数据类（逆向重点）"><a href="#2-数据类（逆向重点）" class="headerlink" title="2. 数据类（逆向重点）"></a>2. 数据类（逆向重点）</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data <span class="keyword">class</span> <span class="title class_">User</span>(val id: Int, val name: String)</span><br></pre></td></tr></table></figure>
+
+<p>*反编译后特征：</p>
+<ul>
+<li>自动生成<code>equals()/hashCode()/toString()</code></li>
+<li><code>componentN()</code>方法对应属性</li>
+<li><code>copy()</code>方法*</li>
+</ul>
+<h3 id="3-伴生对象（替代Java静态）"><a href="#3-伴生对象（替代Java静态）" class="headerlink" title="3. 伴生对象（替代Java静态）"></a>3. 伴生对象（替代Java静态）</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyClass</span> &#123;</span><br><span class="line">    companion object &#123;</span><br><span class="line">        const <span class="type">val</span> <span class="variable">TAG</span> <span class="operator">=</span> <span class="string">&quot;MyApp&quot;</span></span><br><span class="line">        fun <span class="title function_">create</span><span class="params">()</span> = MyClass()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><em>逆向表现：生成<code>Companion</code>内部类和<code>INSTANCE</code>字段</em></p>
+<h2 id="三、函数式特性"><a href="#三、函数式特性" class="headerlink" title="三、函数式特性"></a>三、函数式特性</h2><h3 id="1-Lambda表达式"><a href="#1-Lambda表达式" class="headerlink" title="1. Lambda表达式"></a>1. Lambda表达式</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">val</span> <span class="variable">sum</span> <span class="operator">=</span> &#123; x: Int, y: Int -&gt; x + y &#125;</span><br><span class="line">list.filter &#123; it &gt; <span class="number">5</span> &#125;.map &#123; it * <span class="number">2</span> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>*逆向特征：</p>
+<ul>
+<li>生成<code>FunctionN</code>接口匿名类</li>
+<li>SAM转换优化为单个抽象方法*</li>
+</ul>
+<h3 id="2-扩展函数"><a href="#2-扩展函数" class="headerlink" title="2. 扩展函数"></a>2. 扩展函数</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fun String.addExclamation() = <span class="string">&quot;$this!&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>*反编译后表现：</p>
+<ul>
+<li>生成静态工具类</li>
+<li>首参数为接收者对象*</li>
+</ul>
+<h2 id="四、特殊语法结构"><a href="#四、特殊语法结构" class="headerlink" title="四、特殊语法结构"></a>四、特殊语法结构</h2><h3 id="1-字符串模板"><a href="#1-字符串模板" class="headerlink" title="1. 字符串模板"></a>1. 字符串模板</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">val</span> <span class="variable">info</span> <span class="operator">=</span> <span class="string">&quot;ID:$id, Name:$&#123;user.name&#125;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><em>逆向特征：编译为<code>StringBuilder</code>拼接操作</em></p>
+<h3 id="2-区间表达式"><a href="#2-区间表达式" class="headerlink" title="2. 区间表达式"></a>2. 区间表达式</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (i in <span class="number">1.</span><span class="number">.10</span> step <span class="number">2</span>) &#123; ... &#125;  <span class="comment">// 1,3,5,7,9</span></span><br><span class="line"><span class="keyword">if</span> (index in <span class="number">0</span> until size) &#123; ... &#125;</span><br></pre></td></tr></table></figure>
+
+<p><em>逆向表现：转换为<code>IntRange</code>对象和迭代器</em></p>
+<h2 id="五、协程基础（逆向难点）"><a href="#五、协程基础（逆向难点）" class="headerlink" title="五、协程基础（逆向难点）"></a>五、协程基础（逆向难点）</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">GlobalScope.launch &#123;           <span class="comment">// 协程启动</span></span><br><span class="line">    <span class="type">val</span> <span class="variable">data</span> <span class="operator">=</span> async &#123; fetchData() &#125;.await()</span><br><span class="line">    withContext(Dispatchers.Main) &#123;</span><br><span class="line">        updateUI(data)         <span class="comment">// 线程切换</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>*逆向特征：</p>
+<ul>
+<li>生成<code>Continuation</code>状态机</li>
+<li>大量<code>label</code>跳转标记</li>
+<li>使用<code>CoroutineImpl</code>子类*</li>
+</ul>
+<h2 id="六、与Java互操作"><a href="#六、与Java互操作" class="headerlink" title="六、与Java互操作"></a>六、与Java互操作</h2><h3 id="1-Jvm注解"><a href="#1-Jvm注解" class="headerlink" title="1. Jvm注解"></a>1. Jvm注解</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@JvmField</span>                  <span class="comment">// 暴露字段</span></span><br><span class="line"><span class="meta">@JvmStatic</span>                 <span class="comment">// 生成静态方法</span></span><br><span class="line"><span class="meta">@Throws(IOException::class)</span><span class="comment">// 声明受检异常</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-平台类型"><a href="#2-平台类型" class="headerlink" title="2. 平台类型"></a>2. 平台类型</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">val</span> <span class="variable">javaObj</span> <span class="operator">=</span> JavaClass()</span><br><span class="line"><span class="type">val</span> <span class="variable">risk</span> <span class="operator">=</span> javaObj.name.length  <span class="comment">// 可能NPE</span></span><br></pre></td></tr></table></figure>
+
+<p><em>逆向注意：<code>String!</code>类型在反编译代码中可见</em></p>
+<h2 id="逆向工程重点关注"><a href="#逆向工程重点关注" class="headerlink" title="逆向工程重点关注"></a>逆向工程重点关注</h2><h3 id="1-内联函数（inline）："><a href="#1-内联函数（inline）：" class="headerlink" title="1.内联函数（inline）："></a>1.<strong>内联函数</strong>（<code>inline</code>）：</h3><ul>
+<li>反编译后代码直接展开</li>
+<li>常见于集合操作和高性能场景</li>
+</ul>
+<h3 id="2-委托属性："><a href="#2-委托属性：" class="headerlink" title="2.委托属性："></a>2.<strong>委托属性</strong>：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">val text by lazy &#123; loadFromFile() &#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>生成<code>Lazy</code>实现类</li>
+<li><code>provideDelegate</code>方法调用链</li>
+</ul>
+<h3 id="3-密封类（反编译特征）："><a href="#3-密封类（反编译特征）：" class="headerlink" title="3.密封类（反编译特征）："></a>3.<strong>密封类</strong>（反编译特征）：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">sealed</span> <span class="keyword">class</span> <span class="title class_">Result</span> &#123;</span><br><span class="line">    data <span class="keyword">class</span> <span class="title class_">Success</span>(val data: String) : Result()</span><br><span class="line">    data <span class="keyword">class</span> <span class="title class_">Error</span>(val msg: String) : Result()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>生成抽象基类</li>
+<li>子类为final且包含特定标识</li>
+</ul>
+<h2 id="逆向对照表（Kotlin-→-Java）"><a href="#逆向对照表（Kotlin-→-Java）" class="headerlink" title="逆向对照表（Kotlin → Java）"></a>逆向对照表（Kotlin → Java）</h2><table>
+<thead>
+<tr>
+<th>Kotlin特性</th>
+<th>Java等效表现</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>object</code>单例</td>
+<td>静态INSTANCE字段 + 私有构造</td>
+</tr>
+<tr>
+<td><code>when</code>表达式</td>
+<td>switch或if-else链</td>
+</tr>
+<tr>
+<td>属性访问器</td>
+<td>getter&#x2F;setter方法</td>
+</tr>
+<tr>
+<td>高阶函数</td>
+<td>FunctionN接口匿名实现</td>
+</tr>
+<tr>
+<td>默认参数</td>
+<td>@JvmOverloads生成重载方法</td>
+</tr>
+</tbody></table>
+<hr>
+<h1 id="Android四大组件的核心概念"><a href="#Android四大组件的核心概念" class="headerlink" title="Android四大组件的核心概念"></a>Android四大组件的核心概念</h1><h2 id="一、Activity（活动）"><a href="#一、Activity（活动）" class="headerlink" title="一、Activity（活动）"></a>一、Activity（活动）</h2><h3 id="核心定义"><a href="#核心定义" class="headerlink" title="核心定义"></a>核心定义</h3><ul>
+<li><strong>用户交互界面单元</strong>，每个屏幕对应一个Activity</li>
+<li>通过<strong>Intent</strong>实现页面跳转（正向&#x2F;逆向均需重点监控）</li>
+</ul>
+<h3 id="关键特性"><a href="#关键特性" class="headerlink" title="关键特性"></a>关键特性</h3><ul>
+<li><strong>生命周期</strong>：<code>onCreate()</code> → <code>onStart()</code> → <code>onResume()</code> → <code>onPause()</code> → <code>onStop()</code> → <code>onDestroy()</code></li>
+<li><strong>启动模式</strong>：standard&#x2F;singleTop&#x2F;singleTask&#x2F;singleInstance（逆向时关注任务栈管理）</li>
+<li><strong>布局绑定</strong>：通过<code>setContentView()</code>关联XML布局</li>
+</ul>
+<h3 id="逆向关注点"><a href="#逆向关注点" class="headerlink" title="逆向关注点"></a>逆向关注点</h3><ul>
+<li>查找<strong>Launcher Activity</strong>（应用入口）：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;intent-filter&gt;</span><br><span class="line">    &lt;action android:name=<span class="string">&quot;android.intent.action.MAIN&quot;</span> /&gt;</span><br><span class="line">    &lt;category android:name=<span class="string">&quot;android.intent.category.LAUNCHER&quot;</span> /&gt;</span><br><span class="line">&lt;/intent-filter&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>分析<code>startActivityForResult()</code>跨组件通信</li>
+<li>Hook <code>onActivityResult()</code>获取数据回传逻辑</li>
+</ul>
+<h2 id="二、Service（服务）"><a href="#二、Service（服务）" class="headerlink" title="二、Service（服务）"></a>二、Service（服务）</h2><h3 id="核心定义-1"><a href="#核心定义-1" class="headerlink" title="核心定义"></a>核心定义</h3><ul>
+<li><strong>后台运行组件</strong>，无界面（常驻&#x2F;耗时操作）</li>
+<li>两种启动方式：<ul>
+<li>**startService()**（长期运行，如音乐播放）</li>
+<li>**bindService()**（IPC跨进程通信）</li>
+</ul>
+</li>
+</ul>
+<h3 id="生命周期差异"><a href="#生命周期差异" class="headerlink" title="生命周期差异"></a>生命周期差异</h3><ul>
+<li><strong>启动式</strong>：<code>onCreate()</code> → <code>onStartCommand()</code> → <code>onDestroy()</code></li>
+<li><strong>绑定式</strong>：<code>onCreate()</code> → <code>onBind()</code> → <code>onUnbind()</code> → <code>onDestroy()</code></li>
+</ul>
+<h3 id="逆向关注点-1"><a href="#逆向关注点-1" class="headerlink" title="逆向关注点"></a>逆向关注点</h3><ul>
+<li>识别<strong>Foreground Service</strong>（通知栏常驻，需反编译检查通知配置）</li>
+<li>分析<code>IntentService</code>的消息处理机制</li>
+<li>检测<code>startForeground()</code>防杀保活手段</li>
+<li>定位跨进程通信的<strong>AIDL接口</strong></li>
+</ul>
+<hr>
+<h2 id="三、BroadcastReceiver（广播接收器）"><a href="#三、BroadcastReceiver（广播接收器）" class="headerlink" title="三、BroadcastReceiver（广播接收器）"></a>三、BroadcastReceiver（广播接收器）</h2><h3 id="核心定义-2"><a href="#核心定义-2" class="headerlink" title="核心定义"></a>核心定义</h3><ul>
+<li><strong>系统&#x2F;应用事件监听器</strong>（如网络变化、短信接收）</li>
+<li>两种注册方式：<ul>
+<li><strong>静态注册</strong>：AndroidManifest.xml声明（系统广播）</li>
+<li><strong>动态注册</strong>：代码中<code>registerReceiver()</code>（应用内广播）</li>
+</ul>
+</li>
+</ul>
+<h3 id="事件响应流程"><a href="#事件响应流程" class="headerlink" title="事件响应流程"></a>事件响应流程</h3><ol>
+<li>发送广播：<code>sendBroadcast(intent)</code></li>
+<li>匹配接收器：通过<code>IntentFilter</code>筛选</li>
+<li>执行<code>onReceive()</code>逻辑</li>
+</ol>
+<h3 id="逆向关注点-2"><a href="#逆向关注点-2" class="headerlink" title="逆向关注点"></a>逆向关注点</h3><ul>
+<li>监控<strong>敏感广播</strong>（如<code>BOOT_COMPLETED</code>开机自启）</li>
+<li>分析有序广播的优先级滥用：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;intent-filter android:priority=<span class="string">&quot;1000&quot;</span>&gt;</span><br><span class="line">    &lt;action android:name=<span class="string">&quot;android.provider.Telephony.SMS_RECEIVED&quot;</span> /&gt;</span><br><span class="line">&lt;/intent-filter&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Hook <code>abortBroadcast()</code>拦截广播传递链</li>
+</ul>
+<hr>
+<h2 id="四、ContentProvider（内容提供者）"><a href="#四、ContentProvider（内容提供者）" class="headerlink" title="四、ContentProvider（内容提供者）"></a>四、ContentProvider（内容提供者）</h2><h3 id="核心定义-3"><a href="#核心定义-3" class="headerlink" title="核心定义"></a>核心定义</h3><ul>
+<li><strong>跨应用数据共享</strong>的标准化接口（数据库&#x2F;文件）</li>
+<li>通过<strong>URI</strong>标识数据源：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">content:<span class="comment">//com.example.provider/user/1</span></span><br><span class="line">↑          ↑                ↑     ↑</span><br><span class="line">协议       包名             表名  记录ID</span><br></pre></td></tr></table></figure>
+
+<h3 id="核心方法"><a href="#核心方法" class="headerlink" title="核心方法"></a>核心方法</h3><ul>
+<li><code>query()</code>：查询数据</li>
+<li><code>insert()</code>：插入数据</li>
+<li><code>update()</code>：更新数据</li>
+<li><code>delete()</code>：删除数据</li>
+<li><code>getType()</code>：返回MIME类型</li>
+</ul>
+<h3 id="逆向关注点-3"><a href="#逆向关注点-3" class="headerlink" title="逆向关注点"></a>逆向关注点</h3><ul>
+<li>解析<code>&lt;provider&gt;</code>声明中的<strong>权限控制</strong>：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;provider </span><br><span class="line">    android:authorities=<span class="string">&quot;com.example.provider&quot;</span></span><br><span class="line">    android:readPermission=<span class="string">&quot;READ_DATA&quot;</span></span><br><span class="line">    android:writePermission=<span class="string">&quot;WRITE_DATA&quot;</span>/&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>追踪<code>ContentResolver</code>的CRUD操作路径</li>
+<li>检测<strong>URI注入漏洞</strong>（未校验外部输入）</li>
+</ul>
+<h2 id="五、四大组件共性特征"><a href="#五、四大组件共性特征" class="headerlink" title="五、四大组件共性特征"></a>五、四大组件共性特征</h2><h3 id="1-清单文件声明"><a href="#1-清单文件声明" class="headerlink" title="1. 清单文件声明"></a>1. 清单文件声明</h3><p>所有组件必须在<code>AndroidManifest.xml</code>注册：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;activity android:name=<span class="string">&quot;.MainActivity&quot;</span>/&gt;</span><br><span class="line">&lt;service android:name=<span class="string">&quot;.MyService&quot;</span>/&gt;</span><br><span class="line">&lt;receiver android:name=<span class="string">&quot;.MyReceiver&quot;</span>/&gt;</span><br><span class="line">&lt;provider android:name=<span class="string">&quot;.MyProvider&quot;</span>/&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-Intent通信机制"><a href="#2-Intent通信机制" class="headerlink" title="2. Intent通信机制"></a>2. Intent通信机制</h3><ul>
+<li><strong>显式Intent</strong>：明确指定组件类名（逆向易追踪）</li>
+<li><strong>隐式Intent</strong>：通过Action&#x2F;Category匹配（需反编译查看过滤条件）</li>
+</ul>
+<h3 id="3-逆向工程切入点"><a href="#3-逆向工程切入点" class="headerlink" title="3. 逆向工程切入点"></a>3. 逆向工程切入点</h3><ul>
+<li><strong>入口分析</strong>：定位Launcher Activity和开机广播接收器</li>
+<li><strong>协议破解</strong>：监控ContentProvider的数据读写格式</li>
+<li><strong>Hook位置</strong>：选择组件生命周期方法注入代码（如Activity的<code>onCreate()</code>）</li>
+</ul>
+<h2 id="逆向实战技巧"><a href="#逆向实战技巧" class="headerlink" title="逆向实战技巧"></a>逆向实战技巧</h2><ol>
+<li><p><strong>快速定位组件</strong>：</p>
+<ul>
+<li>使用<code>apktool</code>反编译后，在<code>AndroidManifest.xml</code>搜索组件声明</li>
+<li>通过<code>jadx-gui</code>查看组件的Java&#x2F;Kotlin实现类</li>
+</ul>
+</li>
+<li><p><strong>动态行为监控</strong>：</p>
+<ul>
+<li><p>使用<code>logcat</code>过滤组件生命周期日志：</p>
+</li>
+<li><pre><code class="java">adb logcat | grep -E &quot;ActivityManager|BroadcastRecord&quot;
+</code></pre>
+</li>
+<li><p>Frida Hook <code>android.app.Activity</code>的<code>onCreate()</code>方法</p>
+</li>
+</ul>
+</li>
+</ol>
+<p>3.<strong>安全漏洞挖掘</strong>：</p>
+<ul>
+<li>检测<code>exported=true</code>的暴露组件（未授权访问风险）</li>
+<li>分析Intent传递的Bundle数据是否缺少校验</li>
+</ul>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://tangxtang1119.github.io/2025/03/21/%E5%9F%BA%E7%A1%80%E6%80%BB%E7%BB%93/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Kotlin/" rel="tag">Kotlin</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+    
+      <a href="/2025/03/15/IDEA/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">IDEA</div>
+      </a>
+    
+  </nav>
+
+   
+ 
+   
+  
+   
+    <script src="https://cdn.staticfile.org/twikoo/1.4.18/twikoo.all.min.js"></script>
+    <div id="twikoo" class="twikoo"></div>
+    <script>
+        twikoo.init({
+            envId: ""
+        })
+    </script>
+ 
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2025
+        <i class="ri-heart-fill heart_icon"></i> 唐小唐
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/yuhangyuan.ico" alt="tangxtang"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i></p>
+  <div class="reward-box">
+    
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.staticfile.org/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.staticfile.org/clipboard.js/2.0.10/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    <div id="music">
+    
+    
+    
+    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="200" height="52"
+        src="//music.163.com/outchain/player?type=2&id=2658106011&auto=1&height=32"></iframe>
+</div>
+
+<style>
+    #music {
+        position: fixed;
+        right: 15px;
+        bottom: 0;
+        z-index: 998;
+    }
+</style>
+    
+    
+
+  </div>
+</body>
+
+</html>
