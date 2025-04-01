@@ -1,6 +1,376 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Android Studio</title>
+    <url>/2025/04/01/Android-Studio/</url>
+    <content><![CDATA[<h1 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h1><h2 id="一、创建一个新的项目"><a href="#一、创建一个新的项目" class="headerlink" title="一、创建一个新的项目"></a>一、<strong>创建一个新的项目</strong></h2><ol>
+<li><strong>打开 Android Studio：</strong><ul>
+<li>启动 Android Studio，你会看到欢迎界面。</li>
+</ul>
+</li>
+<li><strong>选择创建新项目</strong>：<ul>
+<li>点击 **”New Project”**（新建项目）。</li>
+</ul>
+</li>
+<li><strong>选择项目模板</strong>：<ul>
+<li>在弹出的窗口中，选择 **”Empty Views Activity”**（空活动），然后点击 **”Next”**。</li>
+</ul>
+</li>
+<li><strong>配置项目信息</strong>：<ul>
+<li><strong>Name</strong>: 输入你的项目名称，例如 <code>HelloWorld</code>。</li>
+<li><strong>Package Name</strong>: 自动填充，通常是 <code>com.example.helloworld</code>。</li>
+<li><strong>Save Location</strong>: 选择项目的保存位置。</li>
+<li><strong>Language</strong>: 选择 <strong>Java</strong>。</li>
+<li><strong>Minimum SDK</strong>: 选择 API 21 或更高版本（建议选择默认值）。</li>
+<li>点击 **”Finish”**。</li>
+</ul>
+</li>
+<li><strong>等待项目加载</strong>：<ul>
+<li>Android Studio 会自动为你生成一个初始项目，可能需要几分钟时间。</li>
+</ul>
+</li>
+</ol>
+<h2 id="二、项目目录"><a href="#二、项目目录" class="headerlink" title="二、项目目录"></a>二、项目目录</h2><p><strong><code>app</code></strong></p>
+<ul>
+<li><strong><code>manifests</code></strong><ul>
+<li><code>AndroidManifest.xml</code></li>
+</ul>
+</li>
+<li><strong><code>java</code></strong><ul>
+<li><strong><code>com.example.helloworld</code></strong><ul>
+<li><code>MainActivity</code></li>
+</ul>
+</li>
+<li><strong><code>com.example.helloworld(androidTest)</code></strong><ul>
+<li><code>ExampleInstrumentedTest</code></li>
+</ul>
+</li>
+<li><strong><code>com.example.helloworld(test)</code></strong><ul>
+<li><code>ExampleUnitTest</code></li>
+</ul>
+</li>
+<li><strong><code>java(generated)</code></strong></li>
+</ul>
+</li>
+<li><strong><code>res</code></strong><ul>
+<li><strong><code>drawable</code></strong><ul>
+<li><code>ic_launcher_background.xml </code></li>
+<li><code>ic_launcher_background.xml(v24)</code></li>
+</ul>
+</li>
+<li><strong><code>layout</code></strong><ul>
+<li><code>activity_main.xml</code></li>
+</ul>
+</li>
+<li>**<code>mipmap**</code><ul>
+<li>**<code>ic_launcher**</code><ul>
+<li><code>ic_launcher.webp(hdpi)</code></li>
+<li><code>ic_launcher.webp(mdpi)</code></li>
+<li><code>ic_launcher.webp(xhdpi)</code></li>
+<li><code>ic_launcher.webp(xxhdpi)</code></li>
+<li><code>ic_launcher.webp(xxxhdpi)</code></li>
+<li><code>ic_launcher.xml(anydpi-v26)</code></li>
+</ul>
+</li>
+<li><strong><code>ic_launcher_round</code></strong><ul>
+<li><code>ic_launcher_round.webp(hdpi)</code></li>
+<li><code>ic_launcher_round.webpp(mdpi)</code></li>
+<li><code>ic_launcher_round.webp(xhdpi)</code></li>
+<li><code>ic_launcher_round.webp(xxhdpi)</code></li>
+<li><code>ic_launcher_round.webp(xxxhdpi)</code></li>
+<li><code>c_launcher_round.xml(anydpi-v26)</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong><code>values</code></strong><ul>
+<li><code>colors.xml</code></li>
+<li><code>strings.xml</code></li>
+<li><strong><code>themes</code></strong><ul>
+<li><code>themes.xml</code></li>
+<li><code>themes.xml(night)</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong><code>xml</code></strong><ul>
+<li><code>backup_rules.xml</code></li>
+<li><code>data_extraction_rules.xml</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong><code>res(generated)</code></strong></li>
+</ul>
+<p><strong><code>Gradle Scripts</code></strong></p>
+<ul>
+<li><code>build.gradle.kts(Project:helloworld)</code></li>
+<li><code>build.gradle.kts(Module:app)</code></li>
+<li><code>proguard-ruls.pro(ProGuard Rules for “:app”)</code></li>
+<li><code>gradle.properties(Project Properties)</code></li>
+<li><code>gradle-wrapper.properties(Gradle Version)</code></li>
+<li><code>libs.version.toml(Version Catalog)</code></li>
+<li><code>local.properties(SDK Location)</code></li>
+<li><code>settings.gradle.kts(Project Settings)</code></li>
+</ul>
+<p><strong>说明：</strong></p>
+<ol>
+<li><strong><code>app</code>模块根目录</strong></li>
+</ol>
+<p>这是 Android 应用的主模块，包含所有代码和资源。</p>
+<hr>
+<ol start="2">
+<li><strong><code>manifests</code>目录</strong></li>
+</ol>
+<ul>
+<li><p><code>AndroidManifest.xml</code></p>
+<ul>
+<li>作用：应用的全局配置文件，定义包名、四大组件（Activity&#x2F;Service等）、权限、最低 SDK 版本等核心信息。</li>
+<li>示例内容：</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">manifest</span> <span class="attr">xmlns:android</span>=<span class="string">&quot;http://schemas.android.com/apk/res/android&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">package</span>=<span class="string">&quot;com.example.helloworld&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">application</span> <span class="attr">...</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">activity</span> <span class="attr">android:name</span>=<span class="string">&quot;.MainActivity&quot;</span>&gt;</span>...<span class="tag">&lt;/<span class="name">activity</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">application</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">manifest</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<ol start="3">
+<li><strong><code>java</code> 目录</strong></li>
+</ol>
+<ul>
+<li><strong><code>com.example.helloworld</code></strong><ul>
+<li><strong>作用</strong>：主代码包，存放 Java&#x2F;Kotlin 源代码。</li>
+<li>**<code>MainActivity</code>**：默认的入口 Activity，对应应用启动时的界面逻辑。</li>
+</ul>
+</li>
+<li><strong><code>com.example.helloworld (androidTest)</code></strong><ul>
+<li><strong>作用</strong>：仪器化测试代码（需在真机或模拟器上运行），如 UI 测试。</li>
+<li>**<code>ExampleInstrumentedTest</code>**：示例测试类，验证 Android 框架相关功能。</li>
+</ul>
+</li>
+<li><strong><code>com.example.helloworld (test)</code></strong><ul>
+<li><strong>作用</strong>：本地单元测试代码（无需设备，可在 JVM 运行），如逻辑层测试。</li>
+<li>**<code>ExampleUnitTest</code>**：示例测试类，验证纯 Java&#x2F;Kotlin 逻辑。</li>
+</ul>
+</li>
+<li><strong><code>java (generated)</code></strong><ul>
+<li><strong>作用</strong>：自动生成的代码（如 R 文件、DataBinding 类等），<strong>不要手动修改</strong>。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ol start="4">
+<li><strong><code>res</code> 资源目录</strong></li>
+</ol>
+<ul>
+<li><strong><code>drawable</code></strong><ul>
+<li><strong>作用</strong>：存放图片或 XML 绘制的图形资源。</li>
+<li>**<code>ic_launcher_background.xml</code>**：应用图标的背景图层（矢量图形）。</li>
+<li>**<code>ic_launcher_foreground.xml (v24)</code>**：应用图标的前景图层（适配 API 24+）。</li>
+</ul>
+</li>
+<li><strong><code>layout</code></strong><ul>
+<li><strong>作用</strong>：存放 XML 布局文件。</li>
+<li>**<code>activity_main.xml</code>**：主 Activity 的界面布局。</li>
+</ul>
+</li>
+<li><strong><code>mipmap</code></strong><ul>
+<li><strong>作用</strong>：存放应用图标（不同分辨率适配）。</li>
+<li><strong><code>ic_launcher</code> 和 <code>ic_launcher_round</code></strong><ul>
+<li><code>.webp</code> 文件：不同屏幕密度（hdpi&#x2F;mdpi&#x2F;xhdpi等）的方形&#x2F;圆形图标。</li>
+<li><code>.xml</code> 文件（anydpi-v26）：适配 Android 8.0+ 的自适应图标配置。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong><code>values</code></strong><ul>
+<li>**<code>colors.xml</code>**：定义颜色常量（如主题色、文字颜色）。</li>
+<li>**<code>strings.xml</code>**：定义字符串资源（如应用名称、按钮文字）。</li>
+<li>**<code>themes.xml</code>**：定义应用主题（日间&#x2F;夜间模式）。</li>
+</ul>
+</li>
+<li><strong><code>xml</code></strong><ul>
+<li><strong>作用</strong>：存放其他 XML 配置文件。</li>
+<li>**<code>backup_rules.xml</code>**：定义自动备份规则。</li>
+<li>**<code>data_extraction_rules.xml</code>**：定义应用数据提取规则。</li>
+</ul>
+</li>
+</ul>
+<h2 id="三、第一个程序"><a href="#三、第一个程序" class="headerlink" title="三、第一个程序"></a><strong>三、第一个程序</strong></h2><ol>
+<li><p><strong>找到MainActivity类文件</strong>：</p>
+<ul>
+<li>在左侧的 <strong>Project</strong> 面板中，展开目录，找到 <code>app/src/main/java/com/example/helloworld/MainActivity</code> 文件。</li>
+</ul>
+</li>
+<li><p><strong>编辑MainActivity类文件</strong>：</p>
+<ul>
+<li>添加“用户名”和“注册码”输入框。编写MainActivity类文件。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.helloworld;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> android.os.Bundle;</span><br><span class="line"><span class="keyword">import</span> android.widget.Button;</span><br><span class="line"><span class="keyword">import</span> android.widget.EditText;</span><br><span class="line"><span class="keyword">import</span> android.widget.Toast;</span><br><span class="line"><span class="keyword">import</span> androidx.appcompat.app.AppCompatActivity;</span><br><span class="line"><span class="keyword">import</span> java.security.MessageDigest;</span><br><span class="line"><span class="keyword">import</span> java.security.NoSuchAlgorithmException;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MainActivity</span> <span class="keyword">extends</span> <span class="title class_">AppCompatActivity</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> EditText edit_userName;</span><br><span class="line">    <span class="keyword">private</span> EditText edit_sn;</span><br><span class="line">    <span class="keyword">private</span> Button btn_register;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 将字节数组转换为十六进制字符串</span></span><br><span class="line">    <span class="keyword">private</span> String <span class="title function_">toHexString</span><span class="params">(<span class="type">byte</span>[] bytes, String separator)</span> &#123;</span><br><span class="line">        <span class="type">StringBuilder</span> <span class="variable">hexString</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuilder</span>();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">byte</span> b : bytes) &#123;</span><br><span class="line">            <span class="type">String</span> <span class="variable">hex</span> <span class="operator">=</span> Integer.toHexString(<span class="number">0xFF</span> &amp; b);</span><br><span class="line">            <span class="keyword">if</span> (hex.length() == <span class="number">1</span>) &#123;</span><br><span class="line">                hexString.append(<span class="string">&#x27;0&#x27;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            hexString.append(hex);</span><br><span class="line">            <span class="keyword">if</span> (separator != <span class="literal">null</span> &amp;&amp; !separator.isEmpty()) &#123;</span><br><span class="line">                hexString.append(separator);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> hexString.toString();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//这个方法主要用于计算用户名与注册码是否匹配 。</span></span><br><span class="line">    <span class="comment">//首先，使用MD5算法计算用户名字符串的散列值，将计算结果转换成长度为32位的十六进制字符串。</span></span><br><span class="line">    <span class="comment">//然后，将字符串中的所有奇数位重新组合，生成新的字符串，这个字符串就是最终的注册码。</span></span><br><span class="line">    <span class="comment">//最后，将这个字符串与传人的注册码进行比较。如果二者相同，表示注册码是正确的；如果二者不同，表示注册码是错误的。</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">boolean</span> <span class="title function_">checkSN</span><span class="params">(String userName, String sn)</span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">if</span>((userName == <span class="literal">null</span>)||(userName.length()==<span class="number">0</span>))</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">if</span> ((sn == <span class="literal">null</span>)||(sn.length()!=<span class="number">16</span>))</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            <span class="type">MessageDigest</span> <span class="variable">digest</span> <span class="operator">=</span> MessageDigest.getInstance(<span class="string">&quot;MD5&quot;</span>);</span><br><span class="line">            digest.reset();</span><br><span class="line">            digest.update(userName.getBytes());</span><br><span class="line">            <span class="type">byte</span>[] bytes = digest.digest();</span><br><span class="line">            <span class="type">String</span> <span class="variable">hexstr</span> <span class="operator">=</span> toHexString(bytes,<span class="string">&quot;&quot;</span>);</span><br><span class="line">            <span class="type">StringBuilder</span> <span class="variable">sb</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuilder</span>();</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>;i &lt; hexstr.length();i+=<span class="number">2</span>)&#123;</span><br><span class="line">                sb.append(hexstr.charAt(i));</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="type">String</span> <span class="variable">userSN</span> <span class="operator">=</span> sb.toString();</span><br><span class="line">            <span class="keyword">if</span> (!userSN.equalsIgnoreCase(sn))</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;<span class="keyword">catch</span> (NoSuchAlgorithmException e)&#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            <span class="keyword">return</span>  <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//添加注册按钮点击事件的监听器。</span></span><br><span class="line">    <span class="comment">// 如果用户名与注册码匹配，就弹出注册成功的提示；</span></span><br><span class="line">    <span class="comment">// 如果用户名与注册码不匹配， 则弹出用户名或注册码无效的提示</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">onCreate</span><span class="params">(Bundle savedInstanceState)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line"></span><br><span class="line">        setTitle(R.string.unregistered);</span><br><span class="line"></span><br><span class="line">        edit_userName = findViewById(R.id.edit_username);</span><br><span class="line">        edit_sn = findViewById(R.id.edit_sn);</span><br><span class="line">        btn_register = findViewById(R.id.button_register);</span><br><span class="line"></span><br><span class="line">        btn_register.setOnClickListener(v -&gt; &#123;</span><br><span class="line">            <span class="keyword">if</span> (!checkSN(</span><br><span class="line">                    edit_userName.getText().toString().trim(),</span><br><span class="line">                    edit_sn.getText().toString().trim()</span><br><span class="line">            )) &#123;</span><br><span class="line">                Toast.makeText(MainActivity.<span class="built_in">this</span>,</span><br><span class="line">                        R.string.unsuccessful, Toast.LENGTH_SHORT).show();</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                Toast.makeText(MainActivity.<span class="built_in">this</span>,</span><br><span class="line">                        R.string.successful, Toast.LENGTH_SHORT).show();</span><br><span class="line">                btn_register.setEnabled(<span class="literal">false</span>);</span><br><span class="line">                setTitle(R.string.registered);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>找到字符串资源文件</strong></p>
+<ul>
+<li>在左侧的 <strong>Project</strong> 面板中，展开目录，找到 <code>app/src/main/res/layout/activity_main.xml</code> 文件。</li>
+</ul>
+</li>
+<li><p><strong>编辑字符串资源文件</strong></p>
+<ul>
+<li><p>完善字符串的定义</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">resources</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">string</span> <span class="attr">name</span>=<span class="string">&quot;app_name&quot;</span>&gt;</span>HelloWorldApp<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">string</span> <span class="attr">name</span>=<span class="string">&quot;unregistered&quot;</span>&gt;</span>未注册<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">string</span> <span class="attr">name</span>=<span class="string">&quot;registered&quot;</span>&gt;</span>已注册<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">string</span> <span class="attr">name</span>=<span class="string">&quot;unsuccessful&quot;</span>&gt;</span>用户名或注册码无效<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">string</span> <span class="attr">name</span>=<span class="string">&quot;successful&quot;</span>&gt;</span>注册成功<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resources</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>找到界面布局</strong></p>
+<ul>
+<li>在左侧的 <strong>Project</strong> 面板中，展开目录，找到 <code>app/src/main/res/layout/activity_main.xml</code> 文件。</li>
+</ul>
+</li>
+<li><p><strong>编辑界面布局文件</strong></p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;utf-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">androidx.constraintlayout.widget.ConstraintLayout</span> <span class="attr">xmlns:android</span>=<span class="string">&quot;http://schemas.android.com/apk/res/android&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:app</span>=<span class="string">&quot;http://schemas.android.com/apk/res-auto&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:tools</span>=<span class="string">&quot;http://schemas.android.com/tools&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:id</span>=<span class="string">&quot;@+id/main&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">tools:context</span>=<span class="string">&quot;.MainActivity&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">EditText</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">&quot;@+id/edit_username&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">&quot;0dp&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:minHeight</span>=<span class="string">&quot;48dp&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:hint</span>=<span class="string">&quot;请输入用户名&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">app:layout_constraintTop_toTopOf</span>=<span class="string">&quot;parent&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">app:layout_constraintStart_toStartOf</span>=<span class="string">&quot;parent&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">app:layout_constraintEnd_toEndOf</span>=<span class="string">&quot;parent&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">app:layout_marginHorizontal</span>=<span class="string">&quot;16dp&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">app:layout_marginTop</span>=<span class="string">&quot;16dp&quot;</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">EditText</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">&quot;@+id/edit_sn&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">&quot;0dp&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:minHeight</span>=<span class="string">&quot;48dp&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:hint</span>=<span class="string">&quot;请输入注册码&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">app:layout_constraintTop_toBottomOf</span>=<span class="string">&quot;@+id/edit_username&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">app:layout_constraintStart_toStartOf</span>=<span class="string">&quot;parent&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">app:layout_constraintEnd_toEndOf</span>=<span class="string">&quot;parent&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">app:layout_marginHorizontal</span>=<span class="string">&quot;16dp&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">app:layout_marginTop</span>=<span class="string">&quot;8dp&quot;</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">Button</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">&quot;@+id/button_register&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">&quot;0dp&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:minHeight</span>=<span class="string">&quot;48dp&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:text</span>=<span class="string">&quot;注册&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">app:layout_constraintEnd_toEndOf</span>=<span class="string">&quot;parent&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">app:layout_constraintStart_toStartOf</span>=<span class="string">&quot;parent&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">app:layout_constraintTop_toBottomOf</span>=<span class="string">&quot;@+id/edit_sn&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">app:layout_marginHorizontal</span>=<span class="string">&quot;16dp&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">app:layout_marginTop</span>=<span class="string">&quot;16dp&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">androidx.constraintlayout.widget.ConstraintLayout</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>切换到设计视图</strong></p>
+<ul>
+<li>如果想通过拖放控件来设计界面，可以切换到 <strong>Design</strong> 视图，在屏幕中央放置一个 <code>TextView</code>，并设置文本。如果没有报错，可以看到如下图。<img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250401133921303.png"></li>
+</ul>
+</li>
+</ol>
+<h2 id="四、生成-APK-文件"><a href="#四、生成-APK-文件" class="headerlink" title="四、生成 APK 文件"></a><strong>四、生成 APK 文件</strong></h2><ol>
+<li><p><strong>打开 Build 菜单</strong>：</p>
+<ul>
+<li>在顶部菜单栏中，点击 <strong>Build</strong> &gt; <strong>Build Bundle(s) &#x2F; APK(s)</strong> &gt; **Build APK(s)**。<img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/%E7%94%9F%E6%88%90APK%E6%96%87%E4%BB%B6.png"></li>
+</ul>
+<p><font color="red"><code>！ERROR: F:\AndroidProject\helloworld\app\src\main\res\layout\activity_main.xml:20: AAPT: error: attribute layout_marginTop (aka com.example.helloworld:layout_marginTop) not found.</code></font></p>
+<p><strong>错误原因：</strong></p>
+<p><strong><code>margin</code> 相关的属性必须用 <code>android:</code> 命名空间</strong>，不能用 <code>app:</code>。</p>
+<p><code>app:</code> 是给 <strong>自定义属性</strong> 或 <strong>第三方库属性</strong> 用的。一般只用于 <strong>ConstraintLayout 的约束属性</strong>（比如 <code>app:layout_constraintXXX</code>）。</p>
+<p><code>android:</code> 是 Android 系统自带的属性（比如 <code>margin</code>、<code>padding</code>、<code>textSize</code> 等）</p>
+<p>修改后运行，模拟器中会显示如下图。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/%E6%B3%A8%E5%86%8C%E7%A8%8B%E5%BA%8F%E6%A8%A1%E6%8B%9F.png"></p>
+</li>
+<li><p><strong>等待构建完成</strong>：</p>
+<ul>
+<li>构建完成后，Android Studio 会弹出一个通知，提示你 APK 文件已经生成。</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/%E6%9E%84%E5%BB%BA%E5%AE%8C%E6%88%90%E9%80%9A%E7%9F%A5.png"></p>
+</li>
+<li><p><strong>找到 APK 文件</strong>：</p>
+<ul>
+<li><p>点击通知中的 <strong>“locate”</strong> 链接，系统会打开 APK 文件所在的文件夹。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/locate.png"></p>
+</li>
+</ul>
+</li>
+</ol>
+]]></content>
+  </entry>
+  <entry>
+    <title>my plan</title>
+    <url>/2025/03/26/my-plan/</url>
+    <content><![CDATA[<h3 id="第一阶段：快速入门（1-2周）"><a href="#第一阶段：快速入门（1-2周）" class="headerlink" title="第一阶段：快速入门（1-2周）"></a><strong>第一阶段：快速入门（1-2周）</strong></h3><h4 id="目标：能修改简单APK，理解Smali基础。"><a href="#目标：能修改简单APK，理解Smali基础。" class="headerlink" title="目标：能修改简单APK，理解Smali基础。"></a><strong>目标</strong>：能修改简单APK，理解Smali基础。</h4><hr>
+<ol>
+<li><strong>Day 1-3：环境搭建与工具入门</strong><ul>
+<li>安装工具：Android Studio（用于调试）、Jadx、Apktool、Frida、雷电模拟器。</li>
+<li>任务：解包一个“Hello World”APK，修改字符串资源（如将“Hello”改为“Hi”），重新打包运行。</li>
+<li>补基础：Java基础语法（变量、if-else、循环）。</li>
+</ul>
+</li>
+<li><strong>Day 4-7：Smali语法速成</strong><ul>
+<li>学习Smali核心语法：寄存器（v0, p0）、方法调用（invoke-virtual）、跳转指令（if-eqz）。</li>
+<li>任务：用Apktool解包APK，修改Smali代码，实现按钮点击跳过广告。</li>
+<li>补基础：Java类与对象、方法定义。</li>
+</ul>
+</li>
+<li><strong>Day 8-14：逆向实战1——破解简单验证</strong><ul>
+<li>目标：破解一个“会员验证”的Demo App（自己写或GitHub找）。</li>
+<li>步骤：<ol>
+<li>用Jadx找到验证逻辑（如<code>if (isVip())</code>）。</li>
+<li>修改Smali代码中的条件判断（<code>if-eqz</code> → <code>if-nez</code>）。</li>
+</ol>
+</li>
+<li>补基础：Java中的条件语句、方法调用。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="第二阶段：进阶逆向（3-4周）"><a href="#第二阶段：进阶逆向（3-4周）" class="headerlink" title="第二阶段：进阶逆向（3-4周）"></a><strong>第二阶段：进阶逆向（3-4周）</strong></h3><h4 id="目标：掌握动态调试，Hook基础，理解加密算法。"><a href="#目标：掌握动态调试，Hook基础，理解加密算法。" class="headerlink" title="目标：掌握动态调试，Hook基础，理解加密算法。"></a><strong>目标</strong>：掌握动态调试，Hook基础，理解加密算法。</h4><hr>
+<ol>
+<li><strong>Week 3：Frida动态Hook</strong><ul>
+<li>学习Frida基础：Hook Java方法、修改返回值。</li>
+<li>任务：Hook一个计算器App的加法函数，使其结果+1。</li>
+<li>补基础：Java方法参数与返回值。</li>
+</ul>
+</li>
+<li><strong>Week 4：逆向实战2——拦截网络请求</strong><ul>
+<li>目标：分析一个带网络请求的App（如天气App），拦截API参数。</li>
+<li>步骤：<ol>
+<li>用Jadx搜索关键词（如“HttpURLConnection”）。</li>
+<li>用Frida Hook加密函数，打印输入输出。</li>
+</ol>
+</li>
+<li>补基础：Java网络请求基础、JSON解析。</li>
+</ul>
+</li>
+<li><strong>Week 5：Native层逆向（ARM汇编入门）</strong><ul>
+<li>学习IDA Pro基础：反编译so文件，阅读ARM汇编指令。</li>
+<li>任务：分析一个简单的JNI函数（如<code>nativeAdd(int a, int b)</code>），修改汇编逻辑。</li>
+<li>补基础：C语言函数与指针、ARM寄存器（R0-R3）。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="第三阶段：高级实战（5-8周）"><a href="#第三阶段：高级实战（5-8周）" class="headerlink" title="第三阶段：高级实战（5-8周）"></a><strong>第三阶段：高级实战（5-8周）</strong></h3><h4 id="目标：独立分析商业级App，处理混淆和加固。"><a href="#目标：独立分析商业级App，处理混淆和加固。" class="headerlink" title="目标：独立分析商业级App，处理混淆和加固。"></a><strong>目标</strong>：独立分析商业级App，处理混淆和加固。</h4><hr>
+<ol>
+<li><strong>Week 6-7：对抗混淆与加固</strong><ul>
+<li>学习工具：<ul>
+<li>脱壳工具（FDex2、DumpDex）处理加固。</li>
+<li>反混淆工具（Deobfuscator）处理代码混淆。</li>
+</ul>
+</li>
+<li>任务：脱壳某加固的App，找到关键逻辑入口。</li>
+</ul>
+</li>
+<li><strong>Week 8：逆向实战3——完整破解案例</strong><ul>
+<li>目标：选择一个中等难度App（如游戏修改或VIP解锁）。</li>
+<li>步骤：<ol>
+<li>静态分析找关键点（字符串搜索、交叉引用）。</li>
+<li>动态调试验证逻辑。</li>
+<li>修改Smali或Hook实现破解。</li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="第四阶段：查漏补缺（持续）"><a href="#第四阶段：查漏补缺（持续）" class="headerlink" title="第四阶段：查漏补缺（持续）"></a><strong>第四阶段：查漏补缺（持续）</strong></h3><h4 id="目标：系统化补足编程基础，提升代码审计能力。"><a href="#目标：系统化补足编程基础，提升代码审计能力。" class="headerlink" title="目标：系统化补足编程基础，提升代码审计能力。"></a><strong>目标</strong>：系统化补足编程基础，提升代码审计能力。</h4><hr>
+<ol>
+<li><strong>Java核心补漏</strong><ul>
+<li>多线程：理解<code>Runnable</code>和<code>Handler</code>（逆向中常见异步逻辑）。</li>
+<li>反射机制：<code>Class.forName()</code>、<code>Method.invoke()</code>（用于Hook复杂类）。</li>
+</ul>
+</li>
+<li><strong>安卓系统原理</strong><ul>
+<li>Binder机制：理解跨进程通信（逆向系统服务必备）。</li>
+<li>组件生命周期：Activity启动流程（分析恶意App常用）。</li>
+</ul>
+</li>
+<li><strong>密码学基础</strong><ul>
+<li>常见算法：AES、RSA、MD5（逆向中识别加密逻辑）。</li>
+<li>任务：用Frida Hook一个App的AES加密函数，输出明文密钥。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="学习资源与工具包"><a href="#学习资源与工具包" class="headerlink" title="学习资源与工具包"></a><strong>学习资源与工具包</strong></h3><h4 id="1-逆向工具包"><a href="#1-逆向工具包" class="headerlink" title="1. 逆向工具包"></a><strong>1. 逆向工具包</strong></h4><ul>
+<li>工具合集：<a href="https://github.com/rednaga/APKiD">https://github.com/rednaga/APKiD</a></li>
+<li>练习APK：GitHub搜索“android reverse engineering practice”。</li>
+</ul>
+<h4 id="2-书籍推荐"><a href="#2-书籍推荐" class="headerlink" title="2. 书籍推荐"></a><strong>2. 书籍推荐</strong></h4><ul>
+<li>《Android软件安全权威指南》</li>
+<li>《Frida Android SO逆向深入实践》</li>
+</ul>
+<h4 id="3-问答社区"><a href="#3-问答社区" class="headerlink" title="3. 问答社区"></a><strong>3. 问答社区</strong></h4><ul>
+<li>看雪论坛（<a href="https://www.kanxue.com/">https://www.kanxue.com）</a>&#x2F;)</li>
+<li>Stack Overflow（标签：android-reverse-engineering）</li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
     <title>Java编程</title>
     <url>/2025/03/23/Java%E7%BC%96%E7%A8%8B/</url>
     <content><![CDATA[<h1 id="第一章-入门基础"><a href="#第一章-入门基础" class="headerlink" title="第一章 入门基础"></a><strong>第一章 入门基础</strong></h1><h2 id="1-1Java重要特点"><a href="#1-1Java重要特点" class="headerlink" title="1.1Java重要特点"></a><strong>1.1Java重要特点</strong></h2><ol>
@@ -2095,8 +2465,7 @@
   <entry>
     <title>基础总结</title>
     <url>/2025/03/21/%E5%9F%BA%E7%A1%80%E6%80%BB%E7%BB%93/</url>
-    <content><![CDATA[<p>J</p>
-<h1 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h1><h2 id="一、基础语法结构"><a href="#一、基础语法结构" class="headerlink" title="一、基础语法结构"></a>一、基础语法结构</h2><h3 id="1-变量与数据类型"><a href="#1-变量与数据类型" class="headerlink" title="1. 变量与数据类型"></a>1. 变量与数据类型</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 基本数据类型</span></span><br><span class="line"><span class="type">int</span> <span class="variable">age</span> <span class="operator">=</span> <span class="number">25</span>;                  <span class="comment">// 整数（4字节）</span></span><br><span class="line"><span class="type">double</span> <span class="variable">price</span> <span class="operator">=</span> <span class="number">9.99</span>;           <span class="comment">// 双精度浮点</span></span><br><span class="line"><span class="type">char</span> <span class="variable">grade</span> <span class="operator">=</span> <span class="string">&#x27;A&#x27;</span>;              <span class="comment">// 单个字符</span></span><br><span class="line"><span class="type">boolean</span> <span class="variable">isOpen</span> <span class="operator">=</span> <span class="literal">true</span>;         <span class="comment">// 布尔值</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 引用数据类型</span></span><br><span class="line"><span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> <span class="string">&quot;Android&quot;</span>;       <span class="comment">// 字符串</span></span><br><span class="line"><span class="type">int</span>[] numbers = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;       <span class="comment">// 数组</span></span><br></pre></td></tr></table></figure>
+    <content><![CDATA[<h1 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h1><h2 id="一、基础语法结构"><a href="#一、基础语法结构" class="headerlink" title="一、基础语法结构"></a>一、基础语法结构</h2><h3 id="1-变量与数据类型"><a href="#1-变量与数据类型" class="headerlink" title="1. 变量与数据类型"></a>1. 变量与数据类型</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 基本数据类型</span></span><br><span class="line"><span class="type">int</span> <span class="variable">age</span> <span class="operator">=</span> <span class="number">25</span>;                  <span class="comment">// 整数（4字节）</span></span><br><span class="line"><span class="type">double</span> <span class="variable">price</span> <span class="operator">=</span> <span class="number">9.99</span>;           <span class="comment">// 双精度浮点</span></span><br><span class="line"><span class="type">char</span> <span class="variable">grade</span> <span class="operator">=</span> <span class="string">&#x27;A&#x27;</span>;              <span class="comment">// 单个字符</span></span><br><span class="line"><span class="type">boolean</span> <span class="variable">isOpen</span> <span class="operator">=</span> <span class="literal">true</span>;         <span class="comment">// 布尔值</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 引用数据类型</span></span><br><span class="line"><span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> <span class="string">&quot;Android&quot;</span>;       <span class="comment">// 字符串</span></span><br><span class="line"><span class="type">int</span>[] numbers = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;       <span class="comment">// 数组</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="2-控制流程"><a href="#2-控制流程" class="headerlink" title="2. 控制流程"></a>2. 控制流程</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 条件语句</span></span><br><span class="line"><span class="keyword">if</span> (score &gt;= <span class="number">60</span>) &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;及格&quot;</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (score &gt; <span class="number">40</span>) &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;补考&quot;</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;挂科&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 循环结构</span></span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>; i&lt;<span class="number">5</span>; i++) &#123;</span><br><span class="line">    System.out.println(i);      <span class="comment">// 0,1,2,3,4</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span> (j &lt; <span class="number">3</span>) &#123;</span><br><span class="line">    System.out.println(j++);    <span class="comment">// 0,1,2</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -2746,6 +3115,7 @@
 <p>5.在Edit菜单下选择Language，可以切换到中文界面。 </p>
 <p>6.反编译出的JAVA代码可以在Smart Code区域查看，搜索和跳转功能也十分便捷。 </p>
 <p>7.JEB需要使用到JDK，并且JDK的大小目前最大为4GB，可以通过配置文件进行修改。</p>
+<h5 id="4-1-4-apktool"><a href="#4-1-4-apktool" class="headerlink" title="4.1.4 apktool"></a>4.1.4 apktool</h5><p>官方地址<a href="https://maximoff.su/**apktool**/?history=1&lang=zh">https://maximoff.su/**apktool**/?history=1&amp;lang=zh</a></p>
 <h2 id="5-Windows注意事项"><a href="#5-Windows注意事项" class="headerlink" title="5.Windows注意事项"></a>5.Windows注意事项</h2><h3 id="5-1-Windows路径命名规范"><a href="#5-1-Windows路径命名规范" class="headerlink" title="5.1 Windows路径命名规范"></a>5.1 Windows路径命名规范</h3><p>1.Windows系统中路径命名应避免使用中文、空格和特殊符号，以防止出现错误。 </p>
 <p>2.计算机名也应避免使用中文，以确保软件的正常运行。 </p>
 <p>3.国外软件在Windows系统中对中文路径的兼容性较差。</p>
@@ -2838,24 +3208,6 @@
 <td>resources.arsc是编译后的二进制资源文件，它是一个映射表，映射着资源和id，通过R文件中的id就可以找到对应的资源</td>
 </tr>
 </tbody></table>
-<h2 id="3-Android目录"><a href="#3-Android目录" class="headerlink" title="3.Android目录"></a>3.Android目录</h2><p>1.data&#x2F;data目录  </p>
-<p>存放用户apk数据的目录，每个apk都有自己的目录，以包名命名  就是在data&#x2F;data&#x2F;目录下，会产生一个跟Package一样的目录  这是一个私有目录，app只能访问各自的目录，除非root权限</p>
-<p>2.data&#x2F;app</p>
-<p>目录用户安装的app存放在这个目录下</p>
-<p>3.data&#x2F;local&#x2F;tmp</p>
-<p>临时目录，权限比较大</p>
-<p>4.system&#x2F;app目录</p>
-<p>存放系统自带的app</p>
-<p>5.system&#x2F;lib目录、system&#x2F;lib64</p>
-<p>存放app用到so文件</p>
-<p>6.system&#x2F;bin目录</p>
-<p>存放shell命令</p>
-<p>7.system&#x2F;framework目录</p>
-<p>Android系统所用到框架，如一些jar文件，XposedBridge.jar</p>
-<p>8.sd卡目录 不管手机有没有存储卡都会有这个目录，app操作sd卡目录需要申请权限</p>
-<p>&#x2F;sdcard -&gt; &#x2F;storage&#x2F;self&#x2F;primary</p>
-<p>&#x2F;mnt&#x2F;sdcard</p>
-<p>&#x2F;storage&#x2F;emulated&#x2F;0</p>
 ]]></content>
       <categories>
         <category>笔记</category>

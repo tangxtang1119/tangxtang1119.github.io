@@ -13,7 +13,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title> tangxtang</title>
+      <title>my plan |  tangxtang</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="/favicon.ico" />
@@ -53,330 +53,273 @@
     
       
     <main class="content on">
-      
-<section class="cover">
+      <section class="outer">
+  <article
+  id="post-my-plan"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
     
-  <div class="cover-frame">
-    <div class="bg-box">
-      <img src="/images/cover1.jpg" alt="image frame" />
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  my plan
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2025/03/26/my-plan/" class="article-date">
+  <time datetime="2025-03-26T15:28:40.000Z" itemprop="datePublished">2025-03-26</time>
+</a>   
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">827</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">3 分钟</span>
+        </span>
+    </span>
+</div>
+ 
     </div>
-    <div class="cover-inner text-center text-white">
-      <h1><a href="/">tangxtang</a></h1>
-      <div id="subtitle-box">
-        
-        <span id="subtitle"></span>
-        
-      </div>
-      <div>
-        
-      </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h3 id="第一阶段：快速入门（1-2周）"><a href="#第一阶段：快速入门（1-2周）" class="headerlink" title="第一阶段：快速入门（1-2周）"></a><strong>第一阶段：快速入门（1-2周）</strong></h3><h4 id="目标：能修改简单APK，理解Smali基础。"><a href="#目标：能修改简单APK，理解Smali基础。" class="headerlink" title="目标：能修改简单APK，理解Smali基础。"></a><strong>目标</strong>：能修改简单APK，理解Smali基础。</h4><hr>
+<ol>
+<li><strong>Day 1-3：环境搭建与工具入门</strong><ul>
+<li>安装工具：Android Studio（用于调试）、Jadx、Apktool、Frida、雷电模拟器。</li>
+<li>任务：解包一个“Hello World”APK，修改字符串资源（如将“Hello”改为“Hi”），重新打包运行。</li>
+<li>补基础：Java基础语法（变量、if-else、循环）。</li>
+</ul>
+</li>
+<li><strong>Day 4-7：Smali语法速成</strong><ul>
+<li>学习Smali核心语法：寄存器（v0, p0）、方法调用（invoke-virtual）、跳转指令（if-eqz）。</li>
+<li>任务：用Apktool解包APK，修改Smali代码，实现按钮点击跳过广告。</li>
+<li>补基础：Java类与对象、方法定义。</li>
+</ul>
+</li>
+<li><strong>Day 8-14：逆向实战1——破解简单验证</strong><ul>
+<li>目标：破解一个“会员验证”的Demo App（自己写或GitHub找）。</li>
+<li>步骤：<ol>
+<li>用Jadx找到验证逻辑（如<code>if (isVip())</code>）。</li>
+<li>修改Smali代码中的条件判断（<code>if-eqz</code> → <code>if-nez</code>）。</li>
+</ol>
+</li>
+<li>补基础：Java中的条件语句、方法调用。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="第二阶段：进阶逆向（3-4周）"><a href="#第二阶段：进阶逆向（3-4周）" class="headerlink" title="第二阶段：进阶逆向（3-4周）"></a><strong>第二阶段：进阶逆向（3-4周）</strong></h3><h4 id="目标：掌握动态调试，Hook基础，理解加密算法。"><a href="#目标：掌握动态调试，Hook基础，理解加密算法。" class="headerlink" title="目标：掌握动态调试，Hook基础，理解加密算法。"></a><strong>目标</strong>：掌握动态调试，Hook基础，理解加密算法。</h4><hr>
+<ol>
+<li><strong>Week 3：Frida动态Hook</strong><ul>
+<li>学习Frida基础：Hook Java方法、修改返回值。</li>
+<li>任务：Hook一个计算器App的加法函数，使其结果+1。</li>
+<li>补基础：Java方法参数与返回值。</li>
+</ul>
+</li>
+<li><strong>Week 4：逆向实战2——拦截网络请求</strong><ul>
+<li>目标：分析一个带网络请求的App（如天气App），拦截API参数。</li>
+<li>步骤：<ol>
+<li>用Jadx搜索关键词（如“HttpURLConnection”）。</li>
+<li>用Frida Hook加密函数，打印输入输出。</li>
+</ol>
+</li>
+<li>补基础：Java网络请求基础、JSON解析。</li>
+</ul>
+</li>
+<li><strong>Week 5：Native层逆向（ARM汇编入门）</strong><ul>
+<li>学习IDA Pro基础：反编译so文件，阅读ARM汇编指令。</li>
+<li>任务：分析一个简单的JNI函数（如<code>nativeAdd(int a, int b)</code>），修改汇编逻辑。</li>
+<li>补基础：C语言函数与指针、ARM寄存器（R0-R3）。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="第三阶段：高级实战（5-8周）"><a href="#第三阶段：高级实战（5-8周）" class="headerlink" title="第三阶段：高级实战（5-8周）"></a><strong>第三阶段：高级实战（5-8周）</strong></h3><h4 id="目标：独立分析商业级App，处理混淆和加固。"><a href="#目标：独立分析商业级App，处理混淆和加固。" class="headerlink" title="目标：独立分析商业级App，处理混淆和加固。"></a><strong>目标</strong>：独立分析商业级App，处理混淆和加固。</h4><hr>
+<ol>
+<li><strong>Week 6-7：对抗混淆与加固</strong><ul>
+<li>学习工具：<ul>
+<li>脱壳工具（FDex2、DumpDex）处理加固。</li>
+<li>反混淆工具（Deobfuscator）处理代码混淆。</li>
+</ul>
+</li>
+<li>任务：脱壳某加固的App，找到关键逻辑入口。</li>
+</ul>
+</li>
+<li><strong>Week 8：逆向实战3——完整破解案例</strong><ul>
+<li>目标：选择一个中等难度App（如游戏修改或VIP解锁）。</li>
+<li>步骤：<ol>
+<li>静态分析找关键点（字符串搜索、交叉引用）。</li>
+<li>动态调试验证逻辑。</li>
+<li>修改Smali或Hook实现破解。</li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="第四阶段：查漏补缺（持续）"><a href="#第四阶段：查漏补缺（持续）" class="headerlink" title="第四阶段：查漏补缺（持续）"></a><strong>第四阶段：查漏补缺（持续）</strong></h3><h4 id="目标：系统化补足编程基础，提升代码审计能力。"><a href="#目标：系统化补足编程基础，提升代码审计能力。" class="headerlink" title="目标：系统化补足编程基础，提升代码审计能力。"></a><strong>目标</strong>：系统化补足编程基础，提升代码审计能力。</h4><hr>
+<ol>
+<li><strong>Java核心补漏</strong><ul>
+<li>多线程：理解<code>Runnable</code>和<code>Handler</code>（逆向中常见异步逻辑）。</li>
+<li>反射机制：<code>Class.forName()</code>、<code>Method.invoke()</code>（用于Hook复杂类）。</li>
+</ul>
+</li>
+<li><strong>安卓系统原理</strong><ul>
+<li>Binder机制：理解跨进程通信（逆向系统服务必备）。</li>
+<li>组件生命周期：Activity启动流程（分析恶意App常用）。</li>
+</ul>
+</li>
+<li><strong>密码学基础</strong><ul>
+<li>常见算法：AES、RSA、MD5（逆向中识别加密逻辑）。</li>
+<li>任务：用Frida Hook一个App的AES加密函数，输出明文密钥。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="学习资源与工具包"><a href="#学习资源与工具包" class="headerlink" title="学习资源与工具包"></a><strong>学习资源与工具包</strong></h3><h4 id="1-逆向工具包"><a href="#1-逆向工具包" class="headerlink" title="1. 逆向工具包"></a><strong>1. 逆向工具包</strong></h4><ul>
+<li>工具合集：<a target="_blank" rel="noopener" href="https://github.com/rednaga/APKiD">https://github.com/rednaga/APKiD</a></li>
+<li>练习APK：GitHub搜索“android reverse engineering practice”。</li>
+</ul>
+<h4 id="2-书籍推荐"><a href="#2-书籍推荐" class="headerlink" title="2. 书籍推荐"></a><strong>2. 书籍推荐</strong></h4><ul>
+<li>《Android软件安全权威指南》</li>
+<li>《Frida Android SO逆向深入实践》</li>
+</ul>
+<h4 id="3-问答社区"><a href="#3-问答社区" class="headerlink" title="3. 问答社区"></a><strong>3. 问答社区</strong></h4><ul>
+<li>看雪论坛（<a target="_blank" rel="noopener" href="https://www.kanxue.com/">https://www.kanxue.com）</a>&#x2F;)</li>
+<li>Stack Overflow（标签：android-reverse-engineering）</li>
+</ul>
+ 
+      <!-- reward -->
+      
     </div>
-  </div>
-  <div class="cover-learn-more">
-    <a href="javascript:void(0)" class="anchor"><i class="ri-arrow-down-line"></i></a>
-  </div>
-</section>
+    
 
-
-
-<script src="https://cdn.staticfile.org/typed.js/2.0.12/typed.min.js"></script>
-
-
-<!-- Subtitle -->
-
-  <script>
-    try {
-      var typed = new Typed("#subtitle", {
-        strings: ['有志少女，先读书', 'See you tomorrow', '在沉默中拼尽全力战斗，将对手精心围起来的全部摧毁才能获胜'],
-        startDelay: 0,
-        typeSpeed: 200,
-        loop: true,
-        backSpeed: 100,
-        showCursor: true
-      });
-    } catch (err) {
-      console.log(err)
-    }
-  </script>
-  
-<div id="main">
-  <section class="outer">
-  
-  
-  
-<div class="notice" style="margin-top:50px">
-    <i class="ri-heart-fill"></i>
-    <div class="notice-content">我愿意为我的错误买单，但不后悔我的任何决定。我从不怀疑我的眼光，之所以事与愿违，是我能力不够而已。</div>
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
 </div>
 
-
-<style>
-    .notice {
-        padding: 20px;
-        border: 1px dashed #e6e6e6;
-        color: #969696;
-        position: relative;
-        display: inline-block;
-        width: 100%;
-        background: #fbfbfb50;
-        border-radius: 10px;
-    }
-
-    .notice i {
-        float: left;
-        color: #999;
-        font-size: 16px;
-        padding-right: 10px;
-        vertical-align: middle;
-        margin-top: -2px;
-    }
-
-    .notice-content {
-        display: initial;
-        vertical-align: middle;
-    }
-</style>
-  
-  <article class="articles">
-    
-    
-    
-    
-    <article
-  id="post-安卓逆向工程计划"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2025/02/24/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B%E8%AE%A1%E5%88%92/"
-    >安卓逆向工程计划</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2025/02/24/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B%E8%AE%A1%E5%88%92/" class="article-date">
-  <time datetime="2025-02-23T16:00:00.000Z" itemprop="datePublished">2025-02-24</time>
-</a>    
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://tangxtang1119.github.io/2025/03/26/my-plan/" alt="微信分享二维码">
     </div>
-       
+</div>
 
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/" rel="tag">信息安全</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92/" rel="tag">学习计划</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B/" rel="tag">安卓逆向工程</a></li></ul>
-
+<div id="share-mask"></div>  
     </footer>
   </div>
 
-    
- 
    
-  
-</article>
-
+  <nav class="article-nav">
     
-    <article
-  id="post-恶意软件分析计划"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
+      <a href="/2025/04/01/Android-Studio/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            Android Studio
+          
+        </div>
+      </a>
     
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2025/02/22/%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E8%AE%A1%E5%88%92/"
-    >恶意软件分析计划</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2025/02/22/%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E8%AE%A1%E5%88%92/" class="article-date">
-  <time datetime="2025-02-21T16:00:00.000Z" itemprop="datePublished">2025-02-22</time>
-</a>    
-    </div>
-       
-
-    <!-- copyright -->
     
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/" rel="tag">信息安全</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92/" rel="tag">学习计划</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90/" rel="tag">恶意软件分析</a></li></ul>
-
-    </footer>
-  </div>
-
+      <a href="/2025/03/23/Java%E7%BC%96%E7%A8%8B/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">Java编程</div>
+      </a>
     
- 
-   
-  
-</article>
-
-    
-    <article
-  id="post-VMware虚拟机"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2025/02/20/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA/"
-    >VMware虚拟机</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2025/02/20/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA/" class="article-date">
-  <time datetime="2025-02-20T09:38:34.000Z" itemprop="datePublished">2025-02-20</time>
-</a>    
-    </div>
-       
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux%E7%B3%BB%E7%BB%9F/" rel="tag">Linux系统</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VMware/" rel="tag">VMware</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-   
-  
-</article>
-
-    
-    <article
-  id="post-Typora使用"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2025/01/24/Typora%E4%BD%BF%E7%94%A8/"
-    >Typora的使用</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2025/01/24/Typora%E4%BD%BF%E7%94%A8/" class="article-date">
-  <time datetime="2025-01-24T08:01:38.000Z" itemprop="datePublished">2025-01-24</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
-  </div>
-   
-    </div>
-       
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-   
-  
-</article>
-
-    
-    <article
-  id="post-hexo-github-部署博客"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2025/01/23/hexo-github-%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2/"
-    >hexo+github 部署博客</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2025/01/23/hexo-github-%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2/" class="article-date">
-  <time datetime="2025-01-22T16:00:00.000Z" itemprop="datePublished">2025-01-23</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
-  </div>
-   
-    </div>
-       
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-   
-  
-</article>
-
-    
-  </article>
-  
-
-  
-  <nav class="page-nav">
-    
-    <a class="extend prev" rel="prev" href="/">上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
   </nav>
-  
-</section>
-</div>
 
+   
+ 
+   
+  
+   
+    <script src="https://cdn.staticfile.org/twikoo/1.4.18/twikoo.all.min.js"></script>
+    <div id="twikoo" class="twikoo"></div>
+    <script>
+        twikoo.init({
+            envId: ""
+        })
+    </script>
+ 
+</article>
+
+</section>
       <footer class="footer">
   <div class="outer">
     <ul>
@@ -494,6 +437,22 @@
 <script src="/js/lazyload.min.js"></script>
 
 <!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
 
 <script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
 <link
