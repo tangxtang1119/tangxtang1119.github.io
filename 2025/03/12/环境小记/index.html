@@ -13,7 +13,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>安卓逆行工程 |  tangxtang</title>
+      <title>环境小记 |  tangxtang</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="/favicon.ico" />
@@ -55,7 +55,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-逆行工程"
+  id="post-环境小记"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -66,7 +66,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  安卓逆行工程
+  环境小记
 </h1>
  
 
@@ -74,7 +74,7 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2025/03/12/%E9%80%86%E8%A1%8C%E5%B7%A5%E7%A8%8B/" class="article-date">
+      <a href="/2025/03/12/%E7%8E%AF%E5%A2%83%E5%B0%8F%E8%AE%B0/" class="article-date">
   <time datetime="2025-03-11T16:00:00.000Z" itemprop="datePublished">2025-03-12</time>
 </a> 
   <div class="article-category">
@@ -86,7 +86,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">2.7k</span>
+            <span class="post-count">2.9k</span>
         </span>
     </span>
 
@@ -141,28 +141,6 @@
 <p>3.安装时选择合适的操作系统和版本，可以是ese或exe。</p>
 <h3 id="3-3-jdk的安装检测"><a href="#3-3-jdk的安装检测" class="headerlink" title="3.3 jdk的安装检测"></a>3.3 jdk的安装检测</h3><p>1.安装完成后，通过cmd输入JAVA或JAVA_HOME来检测安装是否成功。 </p>
 <p>2.如果输入JAVA或JAVA_HOME能显示版本信息，则表示环境配置正确。</p>
-<h2 id="4-dex反编译工具"><a href="#4-dex反编译工具" class="headerlink" title="4. dex反编译工具"></a>4. dex反编译工具</h2><h3 id="4-1-工具安装和使用"><a href="#4-1-工具安装和使用" class="headerlink" title="4.1 工具安装和使用"></a>4.1 工具安装和使用</h3><h4 id="4-1-1-jadx"><a href="#4-1-1-jadx" class="headerlink" title="4.1.1 jadx"></a>4.1.1 jadx</h4><p>下载地址：<a target="_blank" rel="noopener" href="https://github.com/skylot/jadx/releases/tag/v1.3.2">Release 1.3.2 · skylot&#x2F;jadx</a></p>
-<p>1.jadx是一个常用的反编译工具，更新到1.3版本，功能强大。 </p>
-<p>2.jadx安装在GitHub上，提供源代码和编译好的版本。 3.安装简单，不需要安装jadx本身，只需安装7-Zip用于解压。</p>
-<p> 4.安装完成后，通过修改注册表并勾选选项，自动识别jadx。 </p>
-<p>5.jadx界面默认中文版，可用于反编译APP，生成字面文件和代码。</p>
-<p> 6.新版本jadx可以直接导出源代码，支持中文显示内存使用栏。</p>
-<p>7.通过bat文件可以修改内存使用量，默认4GB，可改为8GB。 </p>
-<p>8.jadx支持搜索类名和源代码，具有调试功能，需配置ADB。 </p>
-<p>9.反混淆功能建议关闭，以免更改类名导致问题。</p>
-<h4 id="4-1-2-gda"><a href="#4-1-2-gda" class="headerlink" title="4.1.2 gda"></a>4.1.2 gda</h4><p>下载地址：<a target="_blank" rel="noopener" href="http://www.gda.wiki:9090/">http://www.gda.wiki:9090/</a></p>
-<p>使用free版本</p>
-<h4 id="4-1-3-jeb"><a href="#4-1-3-jeb" class="headerlink" title="4.1.3 jeb"></a>4.1.3 jeb</h4><h5 id="JAD与JEB的比较"><a href="#JAD与JEB的比较" class="headerlink" title="JAD与JEB的比较"></a>JAD与JEB的比较</h5><p>1.JAD可能反编译出的代码绿色注释部分不完整，反编译能力较弱。 </p>
-<p>2.JEB反编译能力更强，适用于JAD反编译失败的APP。 </p>
-<p>3.在JAD或JEB无法反编译的情况下，可以尝试使用定制ART虚拟机直接输出运行过程中的SMILE代码和寄存器参数进行分析。</p>
-<h5 id="JEB的安装与使用"><a href="#JEB的安装与使用" class="headerlink" title="JEB的安装与使用"></a>JEB的安装与使用</h5><p>1.下载JEB 4.2版本，解压后将jab.exe替换到bin目录下。 </p>
-<p>2.双击jab.exe打开软件，接受协议并生成key。 </p>
-<p>3.确保替换掉原jb.exe文件后，生成的东西才有用。 </p>
-<p>4.软件界面延迟到2033年，可以通过拖入文件进行反编译。 </p>
-<p>5.在Edit菜单下选择Language，可以切换到中文界面。 </p>
-<p>6.反编译出的JAVA代码可以在Smart Code区域查看，搜索和跳转功能也十分便捷。 </p>
-<p>7.JEB需要使用到JDK，并且JDK的大小目前最大为4GB，可以通过配置文件进行修改。</p>
-<h5 id="4-1-4-apktool"><a href="#4-1-4-apktool" class="headerlink" title="4.1.4 apktool"></a>4.1.4 apktool</h5><p>官方地址<a target="_blank" rel="noopener" href="https://maximoff.su/**apktool**/?history=1&lang=zh">https://maximoff.su/**apktool**/?history=1&amp;lang=zh</a></p>
 <h2 id="5-Windows注意事项"><a href="#5-Windows注意事项" class="headerlink" title="5.Windows注意事项"></a>5.Windows注意事项</h2><h3 id="5-1-Windows路径命名规范"><a href="#5-1-Windows路径命名规范" class="headerlink" title="5.1 Windows路径命名规范"></a>5.1 Windows路径命名规范</h3><p>1.Windows系统中路径命名应避免使用中文、空格和特殊符号，以防止出现错误。 </p>
 <p>2.计算机名也应避免使用中文，以确保软件的正常运行。 </p>
 <p>3.国外软件在Windows系统中对中文路径的兼容性较差。</p>
@@ -193,10 +171,10 @@
 <h2 id="7-ADB（Android-Debug-Bridge）"><a href="#7-ADB（Android-Debug-Bridge）" class="headerlink" title="7.ADB（Android Debug Bridge）"></a>7.ADB（Android Debug Bridge）</h2><h3 id="7-1-作用与原理"><a href="#7-1-作用与原理" class="headerlink" title="7.1 作用与原理"></a>7.1 作用与原理</h3><p>1.adb可以在电脑端操控手机，主要用于安卓应用安装和调试。 </p>
 <p>2.adb的原理是通过电脑端的客户端和服务器与手机端的adbd进程进行交互，发送指令并操控手机。</p>
 <p>3.adb客户端和服务器在电脑端，而adbd进程在手机端。</p>
-<h3 id="7-2-概念与命令"><a href="#7-2-概念与命令" class="headerlink" title="7.2 概念与命令"></a>7.2 概念与命令</h3><p>1.超级adbd具有root权限，不需要通过SEO申请，可以通过修改adbd源码实现。 </p>
-<p>2.超级adbd可以使用两个命令：adb root和adb remount。 </p>
+<h3 id="7-2-概念与命令"><a href="#7-2-概念与命令" class="headerlink" title="7.2 概念与命令"></a>7.2 概念与命令</h3><p>1.超级adb具有root权限，不需要通过SEO申请，可以通过修改adbd源码实现。 </p>
+<p>2.超级adb可以使用两个命令：adb root和adb remount。 </p>
 <p>3.adb root使adb在root权限下运行，adb remount将system分区挂载为可读写。</p>
-<h3 id="7-3-超级adbd配置与环境变量"><a href="#7-3-超级adbd配置与环境变量" class="headerlink" title="7.3 超级adbd配置与环境变量"></a>7.3 超级adbd配置与环境变量</h3><p>1.adb在SDK的platform tools目录下，使用前需将该目录添加到环境变量中。 </p>
+<h3 id="7-3-超级adb配置与环境变量"><a href="#7-3-超级adb配置与环境变量" class="headerlink" title="7.3 超级adb配置与环境变量"></a>7.3 超级adb配置与环境变量</h3><p>1.adb在SDK的platform tools目录下，使用前需将该目录添加到环境变量中。 </p>
 <p>2.通过修改环境变量，可以在任意目录下访问adb命令。 </p>
 <p>3.添加环境变量后，需重启计算机使其生效。</p>
 <h3 id="7-4-adb常用命令"><a href="#7-4-adb常用命令" class="headerlink" title="7.4 adb常用命令"></a>7.4 adb常用命令</h3><p>略</p>
@@ -255,6 +233,54 @@
 <td>resources.arsc是编译后的二进制资源文件，它是一个映射表，映射着资源和id，通过R文件中的id就可以找到对应的资源</td>
 </tr>
 </tbody></table>
+<h1 id="三、工具介绍"><a href="#三、工具介绍" class="headerlink" title="三、工具介绍"></a>三、工具介绍</h1><h2 id="1-IDE"><a href="#1-IDE" class="headerlink" title="1.IDE"></a>1.IDE</h2><p>IDE（集成开发环境）- IDEA</p>
+<ul>
+<li>IDEA介绍</li>
+</ul>
+<ol>
+<li><p>DEA全程InteliJ IDEA</p>
+</li>
+<li><p>在业界被公认为最好的Java开发工具</p>
+</li>
+<li><p>IDEA是JetBrains公司的产品，总部位于捷克的首部布拉格</p>
+</li>
+<li><p>除了支持Java开发，还支持HTML、CSS、PHP、MySQL、Python等</p>
+</li>
+</ol>
+<p>IDE（集成开发环境）- Eclipse</p>
+<ul>
+<li>Eclipse介绍</li>
+</ul>
+<ol>
+<li>Eclipse是开放源代码的、基于JAva的可拓展开发平台</li>
+<li>最初是由IBM公司耗资3000万美金开发的下一代IDE开发环境</li>
+<li>2001年11月贡献给开源社区</li>
+<li>Eclipse是目前最优秀的Java开发IDE之一</li>
+</ol>
+<h2 id="2-jadx"><a href="#2-jadx" class="headerlink" title="2. jadx"></a>2. jadx</h2><p>下载地址：<a target="_blank" rel="noopener" href="https://github.com/skylot/jadx/releases/tag/v1.3.2">Release 1.3.2 · skylot&#x2F;jadx</a></p>
+<p>1.jadx是一个常用的反编译工具，更新到1.3版本，功能强大。 </p>
+<p>2.jadx安装在GitHub上，提供源代码和编译好的版本。 3.安装简单，不需要安装jadx本身，只需安装7-Zip用于解压。</p>
+<p> 4.安装完成后，通过修改注册表并勾选选项，自动识别jadx。 </p>
+<p>5.jadx界面默认中文版，可用于反编译APP，生成字面文件和代码。</p>
+<p> 6.新版本jadx可以直接导出源代码，支持中文显示内存使用栏。</p>
+<p>7.通过bat文件可以修改内存使用量，默认4GB，可改为8GB。 </p>
+<p>8.jadx支持搜索类名和源代码，具有调试功能，需配置ADB。 </p>
+<p>9.反混淆功能建议关闭，以免更改类名导致问题。</p>
+<h2 id="3-gda"><a href="#3-gda" class="headerlink" title="3.gda"></a>3.gda</h2><p>下载地址：<a target="_blank" rel="noopener" href="http://www.gda.wiki:9090/">http://www.gda.wiki:9090/</a></p>
+<p>使用free版本</p>
+<h2 id="4-jeb"><a href="#4-jeb" class="headerlink" title="4. jeb"></a>4. jeb</h2><p><strong>JAD与JEB的比较</strong></p>
+<p>1.JAD可能反编译出的代码绿色注释部分不完整，反编译能力较弱。 </p>
+<p>2.JEB反编译能力更强，适用于JAD反编译失败的APP。 </p>
+<p>3.在JAD或JEB无法反编译的情况下，可以尝试使用定制ART虚拟机直接输出运行过程中的SMILE代码和寄存器参数进行分析。</p>
+<p><strong>JEB的安装与使用</strong></p>
+<p>1.下载JEB 4.2版本，解压后将jab.exe替换到bin目录下。 </p>
+<p>2.双击jab.exe打开软件，接受协议并生成key。 </p>
+<p>3.确保替换掉原jb.exe文件后，生成的东西才有用。 </p>
+<p>4.软件界面延迟到2033年，可以通过拖入文件进行反编译。 </p>
+<p>5.在Edit菜单下选择Language，可以切换到中文界面。 </p>
+<p>6.反编译出的JAVA代码可以在Smart Code区域查看，搜索和跳转功能也十分便捷。 </p>
+<p>7.JEB需要使用到JDK，并且JDK的大小目前最大为4GB，可以通过配置文件进行修改。</p>
+<h2 id="5-apktool"><a href="#5-apktool" class="headerlink" title="5. apktool"></a>5. apktool</h2><p>官方地址<a target="_blank" rel="noopener" href="https://maximoff.su/**apktool**/?history=1&lang=zh">https://maximoff.su/**apktool**/?history=1&amp;lang=zh</a></p>
  
       <!-- reward -->
       
@@ -319,7 +345,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://tangxtang1119.github.io/2025/03/12/%E9%80%86%E8%A1%8C%E5%B7%A5%E7%A8%8B/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://tangxtang1119.github.io/2025/03/12/%E7%8E%AF%E5%A2%83%E5%B0%8F%E8%AE%B0/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -342,9 +368,9 @@
       </a>
     
     
-      <a href="/2025/02/24/Kotlin%E5%9F%BA%E7%A1%80/" class="article-nav-link">
+      <a href="/2025/02/24/Kotlin/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">Kotlin基础</div>
+        <div class="article-nav-title">Kotlin编程语言</div>
       </a>
     
   </nav>

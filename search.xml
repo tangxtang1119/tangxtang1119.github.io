@@ -1,8 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Android Studio</title>
-    <url>/2025/04/01/Android-Studio/</url>
+    <title>Samli</title>
+    <url>/2025/04/04/Samli/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>编程语言</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>安卓逆向</title>
+    <url>/2025/04/04/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91/</url>
     <content><![CDATA[<h1 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h1><h2 id="一、创建一个新的项目"><a href="#一、创建一个新的项目" class="headerlink" title="一、创建一个新的项目"></a>一、<strong>创建一个新的项目</strong></h2><ol>
 <li><strong>打开 Android Studio：</strong><ul>
 <li>启动 Android Studio，你会看到欢迎界面。</li>
@@ -398,6 +409,21 @@
 <li><strong>State or Province</strong>: 输入你所在的州或省份。</li>
 <li><strong>Country Code</strong>: 输入你所在的国家代码（例如，CN 表示中国）。</li>
 </ul>
+<p><strong>首次生成签名密钥可以使用命令</strong></p>
+<p><code>keytool -genkeypair -v -keystore my-key.keystore -alias my-key -keyalg RSA -keysize 2048 -validity 10000</code></p>
+<ul>
+<li>按提示输入信息（密码、姓名等），生成 <code>my-key.keystore</code> 文件。 <ul>
+<li><code>keytool</code>: 这是Java自带的一个命令行工具，用于管理密钥库以及密钥和证书条目。</li>
+<li><code>-genkeypair</code> 或 <code>-genkey</code>（旧版本中的别名）：这是告诉<code>keytool</code>要生成一个新的密钥对。</li>
+<li><code>-v</code>: 表示详细模式，它会使<code>keytool</code>在执行过程中打印出更多的信息。</li>
+<li><code>-keystore my-key.keystore</code>: 指定生成的密钥库文件的名字为<code>my-key.keystore</code>。如果该文件不存在，则会创建一个新的文件；如果已经存在，则会在其中添加新的密钥条目。</li>
+<li><code>-alias my-key</code>: 给生成的密钥指定一个别名<code>my-key</code>。在密钥库中，每个密钥都有一个唯一的别名，这样可以通过别名来引用具体的密钥。</li>
+<li><code>-keyalg RSA</code>: 指定使用RSA算法来生成密钥对。RSA是一种常用的非对称加密算法。</li>
+<li><code>-keysize 2048</code>: 设置密钥大小为2048位。一般来说，密钥长度越长，安全性越高，但同时也会增加计算负担。</li>
+<li><code>-validity 10000</code>: 指定新生成的密钥的有效期为10000天。这意味着，在这之后，除非更新或重新生成密钥，否则密钥将不再有效。</li>
+</ul>
+</li>
+</ul>
 <hr>
 <ul>
 <li>Choose existing…: 选择一个现有的密钥库文件。</li>
@@ -419,14 +445,187 @@
 <p>输出APK文件于路径<code>F:\AndroidProject\helloworld\app\release\app-release</code></p>
 <p>使用ApkTool对app-release.apk进行反编译， 操作方法与对app-debug.apk的一样， 只不过要 将输出目录设置为outdir_rel。</p>
 <p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/rel%E7%BC%96%E8%AF%91.png"></p>
-<h3 id="修改smali文件的代码"><a href="#修改smali文件的代码" class="headerlink" title="修改smali文件的代码"></a>修改smali文件的代码</h3>]]></content>
+<h3 id="修改smali文件的代码"><a href="#修改smali文件的代码" class="headerlink" title="修改smali文件的代码"></a>修改smali文件的代码</h3><ol>
+<li><p><strong>用文本编辑器</strong>（如 VS Code、Notepad++）打开文件：<br><code>output_dir/res/values/strings.xml</code></p>
+</li>
+<li><p><strong>找到并修改</strong>：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">string</span> <span class="attr">name</span>=<span class="string">&quot;app_name&quot;</span>&gt;</span>xxxx<span class="tag">&lt;/<span class="name">string</span>&gt;</span> → <span class="tag">&lt;<span class="name">string</span> <span class="attr">name</span>=<span class="string">&quot;app_name&quot;</span>&gt;</span>yyyyy<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="重新打包APK"><a href="#重新打包APK" class="headerlink" title="重新打包APK"></a>重新打包APK</h3><ol>
+<li><p><strong>在终端执行</strong>：</p>
+<p><code>apktool b output_dir -o modified.apk</code></p>
+<ul>
+<li><strong>作用</strong>：将修改后的资源重新打包为APK（未签名，无法直接安装）。</li>
+</ul>
+</li>
+<li><p><strong>签名APK</strong>：</p>
+</li>
+</ol>
+<p>​	<code>jarsigner -verbose -sigalg SHA256withRSA -digestalg SHA-256 -keystore F:\KeyStore\my_key.jks modified.apk key0</code></p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/%E7%BB%88%E7%AB%AF%E5%BA%94%E7%94%A8%E7%AD%BE%E5%90%8D.png"></p>
+<p>……</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/%E7%BB%88%E7%AB%AF%E7%AD%BE%E5%90%8D.png"></p>
+<p>​	<strong>参数解析</strong></p>
+<ol>
+<li>**<code>jarsigner</code>**：<ul>
+<li>这是 Java 提供的一个命令行工具，用于对 JAR 文件或 APK 文件进行签名。</li>
+<li>它的主要作用是验证文件的完整性，并通过私钥生成数字签名。</li>
+</ul>
+</li>
+<li>**<code>-verbose</code>**：<ul>
+<li>表示以详细模式运行命令。</li>
+<li>在签名过程中，<code>jarsigner</code> 会输出详细的日志信息，包括每个文件的处理状态、签名进度等。</li>
+</ul>
+</li>
+<li>**<code>-sigalg SHA256withRSA</code>**：<ul>
+<li>指定签名算法为 <code>SHA256withRSA</code>。</li>
+<li>这意味着使用 RSA 算法结合 SHA-256 哈希函数来生成数字签名。</li>
+<li><code>SHA256withRSA</code> 是一种安全性较高的签名算法，适合现代应用。</li>
+</ul>
+</li>
+<li>**<code>-digestalg SHA-256</code>**：<ul>
+<li>指定摘要算法为 <code>SHA-256</code>。</li>
+<li>这是用来计算文件内容哈希值的算法。</li>
+<li>摘要算法的作用是生成文件的唯一指纹（哈希值），以便在签名时验证文件是否被篡改。</li>
+</ul>
+</li>
+<li>**<code>-keystore my-key.keystore</code>**：<ul>
+<li>指定密钥库文件为 <code>my-key.keystore</code>。</li>
+<li>密钥库文件是一个包含私钥和证书的容器。</li>
+<li>在签名过程中，<code>jarsigner</code> 会从这个密钥库中读取私钥和证书。</li>
+</ul>
+</li>
+<li>**<code>modified.apk</code>**：<ul>
+<li>这是要签名的目标 APK 文件。</li>
+<li>在签名之前，APK 文件通常已经通过 <code>apktool</code> 或其他工具重新打包完成。</li>
+</ul>
+</li>
+<li>**<code>my-key</code>**：<ul>
+<li>指定密钥库中的密钥别名。</li>
+<li>在创建密钥库时，你为每个密钥对指定了一个别名（如 <code>my-key</code>）。</li>
+<li><code>jarsigner</code> 会使用这个别名找到对应的私钥和证书。</li>
+</ul>
+</li>
+</ol>
+<h3 id="用Jadx查看APK代码-检查资源-ID-的方法"><a href="#用Jadx查看APK代码-检查资源-ID-的方法" class="headerlink" title="用Jadx查看APK代码(检查资源 ID 的方法)"></a>用Jadx查看APK代码(<strong>检查资源 ID 的方法</strong>)</h3><ol>
+<li><strong>下载并启动Jadx</strong></li>
+</ol>
+<p>​	从 <a href="https://github.com/skylot/jadx">Jadx GitHub</a> 下载最新版，解压后运行 （Windows：<code>jadx-gui.bat</code>）。</p>
+<ol start="2">
+<li><p><strong>拖入APK分析</strong></p>
+<p>打开jadx，将apk文件拖入窗口。</p>
+<p>使用 Jadx 打开 <code>modified.apk</code> 并检查资源 ID 是否变化，可以通过以下步骤完成。</p>
+<ul>
+<li><u>资源 ID 是 Android 应用中用于引用资源（如字符串、图片、布局等）的唯一标识符，通常由编译器自动生成。如果资源结构未被破坏，资源 ID 一般不会发生变化。</u></li>
+</ul>
+<p><strong>资源 ID 通常在以下文件中定义或引用：</strong></p>
+<ul>
+<li><strong><code>R.java</code> 文件</strong>：这是 Android 编译器生成的资源映射文件，包含所有资源的 ID。</li>
+<li><strong>代码中的资源引用</strong>：检查代码中是否仍然正确引用了资源。</li>
+<li><strong><code>resources.arsc</code> 文件</strong>：这是 APK 中的二进制资源表，存储了资源 ID 和其对应的值。</li>
+</ul>
+</li>
+</ol>
+<p><strong>步骤 1：检查代码中的资源引用</strong></p>
+<p>展开目录找到主逻辑文件，查看MainActivity.java。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MainActivity</span> <span class="keyword">extends</span> <span class="title class_">AppCompatActivity</span> &#123;</span><br><span class="line">    <span class="comment">/* JADX INFO: Access modifiers changed from: protected */</span></span><br><span class="line">    <span class="meta">@Override</span> <span class="comment">// androidx.fragment.app.FragmentActivity, androidx.activity.ComponentActivity, androidx.core.app.ComponentActivity, android.app.Activity</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onCreate</span><span class="params">(Bundle bundle)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>.onCreate(bundle);</span><br><span class="line">        EdgeToEdge.enable(<span class="built_in">this</span>);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line">        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), <span class="keyword">new</span> <span class="title class_">OnApplyWindowInsetsListener</span>() &#123; <span class="comment">// from class: com.example.test01.MainActivity$$ExternalSyntheticLambda0</span></span><br><span class="line">            <span class="meta">@Override</span> <span class="comment">// androidx.core.view.OnApplyWindowInsetsListener</span></span><br><span class="line">            <span class="keyword">public</span> <span class="keyword">final</span> WindowInsetsCompat <span class="title function_">onApplyWindowInsets</span><span class="params">(View view, WindowInsetsCompat windowInsetsCompat)</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> MainActivity.lambda$onCreate$<span class="number">0</span>(view, windowInsetsCompat);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>关键点</strong>：<code>onCreate</code> 是Activity入口，<code>setContentView</code> 加载布局文件。</li>
+<li>对比两个 APK 文件中的代码：<ul>
+<li>如果代码中引用的资源 ID（如 <code>R.string.app_name</code>）一致，则说明资源引用正常。</li>
+<li>如果引用发生了变化，可能需要进一步检查资源表或重新打包过程。</li>
+</ul>
+</li>
+</ul>
+<p><strong>步骤 2：查看 <code>R.java</code> 文件</strong>:</p>
+<p>从文件数中导航到应用包中，找到R文件，查看其中的资源ID定义，例如：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="variable">black</span> <span class="operator">=</span> <span class="number">0x7f050021</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="variable">white</span> <span class="operator">=</span> <span class="number">0x7f0502e6</span>;</span><br><span class="line"><span class="comment">/* JADX INFO: Added by JADX */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> <span class="variable">abc_background_cache_hint_selector_material_dark</span> <span class="operator">=</span> <span class="number">0x7f050000</span>;</span><br><span class="line"><span class="comment">/* JADX INFO: Added by JADX */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> <span class="variable">abc_background_cache_hint_selector_material_light</span> <span class="operator">=</span> <span class="number">0x7f050001</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>对比两个 APK 文件的 <code>R.java</code> 文件：</p>
+<ul>
+<li><p>如果资源 ID（如 <code>0x7f0e0001</code>）保持一致，则说明资源 ID 未发生变化。</p>
+</li>
+<li><p>如果资源 ID 发生变化，则可能是因为资源结构被破坏或重新编译时生成了新的 ID。</p>
+</li>
+</ul>
+<p><strong>步骤 3：查看 <code>resources.arsc</code> 文件</strong></p>
+<p>打开<code> resources.arsc</code> 文件，查看其中的资源表。Jadx 会解析出资源名称和对应的 ID。例如：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Resource ID: <span class="number">0x7f0e0001</span></span><br><span class="line">Resource Name: app_name</span><br><span class="line">Resource Value: Hello World</span><br></pre></td></tr></table></figure>
+
+<p>对比两个 APK 文件的<code>resources.arsc</code>文件：</p>
+<ul>
+<li>如果资源 ID 和资源名称一致，则说明资源表未被破坏。</li>
+<li>如果资源 ID 或名称发生变化，则可能是资源结构被破坏。</li>
+</ul>
+<p><strong>注意事项：</strong></p>
+<ol>
+<li><strong>资源 ID 的生成规则</strong>：<ul>
+<li>资源 ID 是由 AAPT（Android Asset Packaging Tool）根据资源类型、包名和资源顺序生成的。</li>
+<li>如果解包和重新打包过程中没有改变资源的顺序或类型，资源 ID 通常不会变化。</li>
+</ul>
+</li>
+<li><strong>可能导致资源 ID 变化的情况</strong>：<ul>
+<li>修改了资源文件（如新增、删除或重命名资源）。</li>
+<li>使用了不同的编译工具或版本。</li>
+<li>解包和重新打包过程中资源表被重新生成。</li>
+</ul>
+</li>
+<li><strong>验证资源的完整性</strong>：<ul>
+<li>如果资源 ID 发生变化，但功能正常，可以认为是正常的重新编译结果。</li>
+<li>如果资源 ID 发生变化且功能异常，则需要检查资源文件是否被破坏。</li>
+</ul>
+</li>
+</ol>
+<h2 id="六、关键原理总结"><a href="#六、关键原理总结" class="headerlink" title="六、关键原理总结"></a>六、关键原理总结</h2><table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>作用</th>
+<th>工具链依赖</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>解包APK</td>
+<td>将二进制APK转为可编辑的资源&#x2F;Smali代码</td>
+<td>Apktool、JDK</td>
+</tr>
+<tr>
+<td>修改字符串</td>
+<td>直接编辑XML资源文件，无需编译代码</td>
+<td>文本编辑器</td>
+</tr>
+<tr>
+<td>重新打包</td>
+<td>将修改后的资源重新编译为APK（未签名）</td>
+<td>Apktool</td>
+</tr>
+<tr>
+<td>签名APK</td>
+<td>确保APK来源可信，Android系统要求所有APK必须签名</td>
+<td>keytool、jarsigner</td>
+</tr>
+<tr>
+<td>Jadx反编译</td>
+<td>将DEX字节码转为可读的Java代码，便于分析逻辑</td>
+<td>Jadx</td>
+</tr>
+</tbody></table>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>信息安全</tag>
+        <tag>安卓逆向工程</tag>
+      </tags>
   </entry>
   <entry>
     <title>my plan</title>
     <url>/2025/03/26/my-plan/</url>
     <content><![CDATA[<h3 id="第一阶段：快速入门（1-2周）"><a href="#第一阶段：快速入门（1-2周）" class="headerlink" title="第一阶段：快速入门（1-2周）"></a><strong>第一阶段：快速入门（1-2周）</strong></h3><h4 id="目标：能修改简单APK，理解Smali基础。"><a href="#目标：能修改简单APK，理解Smali基础。" class="headerlink" title="目标：能修改简单APK，理解Smali基础。"></a><strong>目标</strong>：能修改简单APK，理解Smali基础。</h4><hr>
 <ol>
-<li><strong>Day 1-3：环境搭建与工具入门</strong><ul>
+<li><strong>Day 1-3：环境搭建与工具入门</strong>（已完成）<ul>
 <li>安装工具：Android Studio（用于调试）、Jadx、Apktool、Frida、雷电模拟器。</li>
 <li>任务：解包一个“Hello World”APK，修改字符串资源（如将“Hello”改为“Hi”），重新打包运行。</li>
 <li>补基础：Java基础语法（变量、if-else、循环）。</li>
@@ -531,10 +730,17 @@
 <li>Stack Overflow（标签：android-reverse-engineering）</li>
 </ul>
 ]]></content>
+      <categories>
+        <category>计划</category>
+      </categories>
+      <tags>
+        <tag>信息安全</tag>
+        <tag>安卓逆向工程</tag>
+      </tags>
   </entry>
   <entry>
-    <title>Java编程</title>
-    <url>/2025/03/23/Java%E7%BC%96%E7%A8%8B/</url>
+    <title>Java编程语言</title>
+    <url>/2025/03/23/Java/</url>
     <content><![CDATA[<h1 id="第一章-入门基础"><a href="#第一章-入门基础" class="headerlink" title="第一章 入门基础"></a><strong>第一章 入门基础</strong></h1><h2 id="1-1Java重要特点"><a href="#1-1Java重要特点" class="headerlink" title="1.1Java重要特点"></a><strong>1.1Java重要特点</strong></h2><ol>
 <li>java语言是面向对象的（oop）</li>
 <li>Java语言是健壮的。Java的强制型机制、异常处理、垃圾的自动手机等是Java程序健壮性的重要保证。</li>
@@ -2621,7 +2827,6 @@
       </categories>
       <tags>
         <tag>编程语言</tag>
-        <tag>安卓逆向工程</tag>
       </tags>
   </entry>
   <entry>
@@ -2932,44 +3137,12 @@
       <tags>
         <tag>Java</tag>
         <tag>Kotlin</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>IDEA</title>
-    <url>/2025/03/15/IDEA/</url>
-    <content><![CDATA[<h1 id="一、介绍"><a href="#一、介绍" class="headerlink" title="一、介绍"></a>一、介绍</h1><p>IDE（集成开发环境）- IDEA</p>
-<ul>
-<li>IDEA介绍</li>
-</ul>
-<ol>
-<li><p>DEA全程InteliJ IDEA</p>
-</li>
-<li><p>在业界被公认为最好的Java开发工具</p>
-</li>
-<li><p>IDEA是JetBrains公司的产品，总部位于捷克的首部布拉格</p>
-</li>
-<li><p>除了支持Java开发，还支持HTML、CSS、PHP、MySQL、Python等</p>
-</li>
-</ol>
-<p>IDE（集成开发环境）- Eclipse</p>
-<ul>
-<li>Eclipse介绍</li>
-</ul>
-<ol>
-<li>Eclipse是开放源代码的、基于JAva的可拓展开发平台</li>
-<li>最初是由IBM公司耗资3000万美金开发的下一代IDE开发环境</li>
-<li>2001年11月贡献给开源社区</li>
-<li>Eclipse是目前最优秀的Java开发IDE之一</li>
-</ol>
-]]></content>
-      <tags>
-        <tag>软件</tag>
-        <tag>IDEA</tag>
+        <tag>Android Studio</tag>
       </tags>
   </entry>
   <entry>
     <title>Python课程设计</title>
-    <url>/2025/03/15/Python%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1/</url>
+    <url>/2025/03/15/Python%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1%E2%80%94%E6%97%85%E6%B8%B8%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/</url>
     <content><![CDATA[<h1 id="摘-要"><a href="#摘-要" class="headerlink" title="摘  要"></a>摘  要</h1><p>本文针对市场上现有的旅游管理工具存在操作复杂、用户门槛高、不适用于普通家庭的问题，设计并实现了一个基于Python编程语言开发，并结合Tkinter库构建图形用户界面（GUI）的旅游管理系统。使得操作直观便捷，简化景点、路线管理和费用结算等操作。</p>
 <p>系统的主要功能包括景点管理、路线规划、费用结算以及报告生成等模块。用户可以通过该系统轻松地添加、修改和删除景点信息；创建和查看由多个景点组成的旅行路线；计算特定路线所需的总费用；并将选定的路线详细信息保存到文本文件中。此外，系统还提供了数据保存和加载功能，确保用户的旅行数据持久化存储和安全备份。</p>
 <p>关键词：旅游管理 管理系统 用户体验 </p>
@@ -3223,8 +3396,8 @@
       </tags>
   </entry>
   <entry>
-    <title>安卓逆行工程</title>
-    <url>/2025/03/12/%E9%80%86%E8%A1%8C%E5%B7%A5%E7%A8%8B/</url>
+    <title>环境小记</title>
+    <url>/2025/03/12/%E7%8E%AF%E5%A2%83%E5%B0%8F%E8%AE%B0/</url>
     <content><![CDATA[<h1 id="一、前期准备"><a href="#一、前期准备" class="headerlink" title="一、前期准备"></a>一、前期准备</h1><h2 id="1-Windows环境配置"><a href="#1-Windows环境配置" class="headerlink" title="1. Windows环境配置"></a>1. Windows环境配置</h2><h3 id="1-1-概述"><a href="#1-1-概述" class="headerlink" title="1.1 概述"></a>1.1 概述</h3><p>1.WINDOWS环境配置的难易程度因人而异，很多学员在此步骤上遇到困难。 </p>
 <p>2.LINUX系统问题较少，原因是使用者较少且版本统一，而WINDOWS系统版本繁多，导致问题多样。 </p>
 <p>3.WINDOWS系统使用ANSI编码，与常用的UTF-8编码不同，可能导致兼容性问题。</p>
@@ -3256,28 +3429,6 @@
 <p>3.安装时选择合适的操作系统和版本，可以是ese或exe。</p>
 <h3 id="3-3-jdk的安装检测"><a href="#3-3-jdk的安装检测" class="headerlink" title="3.3 jdk的安装检测"></a>3.3 jdk的安装检测</h3><p>1.安装完成后，通过cmd输入JAVA或JAVA_HOME来检测安装是否成功。 </p>
 <p>2.如果输入JAVA或JAVA_HOME能显示版本信息，则表示环境配置正确。</p>
-<h2 id="4-dex反编译工具"><a href="#4-dex反编译工具" class="headerlink" title="4. dex反编译工具"></a>4. dex反编译工具</h2><h3 id="4-1-工具安装和使用"><a href="#4-1-工具安装和使用" class="headerlink" title="4.1 工具安装和使用"></a>4.1 工具安装和使用</h3><h4 id="4-1-1-jadx"><a href="#4-1-1-jadx" class="headerlink" title="4.1.1 jadx"></a>4.1.1 jadx</h4><p>下载地址：<a href="https://github.com/skylot/jadx/releases/tag/v1.3.2">Release 1.3.2 · skylot&#x2F;jadx</a></p>
-<p>1.jadx是一个常用的反编译工具，更新到1.3版本，功能强大。 </p>
-<p>2.jadx安装在GitHub上，提供源代码和编译好的版本。 3.安装简单，不需要安装jadx本身，只需安装7-Zip用于解压。</p>
-<p> 4.安装完成后，通过修改注册表并勾选选项，自动识别jadx。 </p>
-<p>5.jadx界面默认中文版，可用于反编译APP，生成字面文件和代码。</p>
-<p> 6.新版本jadx可以直接导出源代码，支持中文显示内存使用栏。</p>
-<p>7.通过bat文件可以修改内存使用量，默认4GB，可改为8GB。 </p>
-<p>8.jadx支持搜索类名和源代码，具有调试功能，需配置ADB。 </p>
-<p>9.反混淆功能建议关闭，以免更改类名导致问题。</p>
-<h4 id="4-1-2-gda"><a href="#4-1-2-gda" class="headerlink" title="4.1.2 gda"></a>4.1.2 gda</h4><p>下载地址：<a href="http://www.gda.wiki:9090/">http://www.gda.wiki:9090/</a></p>
-<p>使用free版本</p>
-<h4 id="4-1-3-jeb"><a href="#4-1-3-jeb" class="headerlink" title="4.1.3 jeb"></a>4.1.3 jeb</h4><h5 id="JAD与JEB的比较"><a href="#JAD与JEB的比较" class="headerlink" title="JAD与JEB的比较"></a>JAD与JEB的比较</h5><p>1.JAD可能反编译出的代码绿色注释部分不完整，反编译能力较弱。 </p>
-<p>2.JEB反编译能力更强，适用于JAD反编译失败的APP。 </p>
-<p>3.在JAD或JEB无法反编译的情况下，可以尝试使用定制ART虚拟机直接输出运行过程中的SMILE代码和寄存器参数进行分析。</p>
-<h5 id="JEB的安装与使用"><a href="#JEB的安装与使用" class="headerlink" title="JEB的安装与使用"></a>JEB的安装与使用</h5><p>1.下载JEB 4.2版本，解压后将jab.exe替换到bin目录下。 </p>
-<p>2.双击jab.exe打开软件，接受协议并生成key。 </p>
-<p>3.确保替换掉原jb.exe文件后，生成的东西才有用。 </p>
-<p>4.软件界面延迟到2033年，可以通过拖入文件进行反编译。 </p>
-<p>5.在Edit菜单下选择Language，可以切换到中文界面。 </p>
-<p>6.反编译出的JAVA代码可以在Smart Code区域查看，搜索和跳转功能也十分便捷。 </p>
-<p>7.JEB需要使用到JDK，并且JDK的大小目前最大为4GB，可以通过配置文件进行修改。</p>
-<h5 id="4-1-4-apktool"><a href="#4-1-4-apktool" class="headerlink" title="4.1.4 apktool"></a>4.1.4 apktool</h5><p>官方地址<a href="https://maximoff.su/**apktool**/?history=1&lang=zh">https://maximoff.su/**apktool**/?history=1&amp;lang=zh</a></p>
 <h2 id="5-Windows注意事项"><a href="#5-Windows注意事项" class="headerlink" title="5.Windows注意事项"></a>5.Windows注意事项</h2><h3 id="5-1-Windows路径命名规范"><a href="#5-1-Windows路径命名规范" class="headerlink" title="5.1 Windows路径命名规范"></a>5.1 Windows路径命名规范</h3><p>1.Windows系统中路径命名应避免使用中文、空格和特殊符号，以防止出现错误。 </p>
 <p>2.计算机名也应避免使用中文，以确保软件的正常运行。 </p>
 <p>3.国外软件在Windows系统中对中文路径的兼容性较差。</p>
@@ -3308,10 +3459,10 @@
 <h2 id="7-ADB（Android-Debug-Bridge）"><a href="#7-ADB（Android-Debug-Bridge）" class="headerlink" title="7.ADB（Android Debug Bridge）"></a>7.ADB（Android Debug Bridge）</h2><h3 id="7-1-作用与原理"><a href="#7-1-作用与原理" class="headerlink" title="7.1 作用与原理"></a>7.1 作用与原理</h3><p>1.adb可以在电脑端操控手机，主要用于安卓应用安装和调试。 </p>
 <p>2.adb的原理是通过电脑端的客户端和服务器与手机端的adbd进程进行交互，发送指令并操控手机。</p>
 <p>3.adb客户端和服务器在电脑端，而adbd进程在手机端。</p>
-<h3 id="7-2-概念与命令"><a href="#7-2-概念与命令" class="headerlink" title="7.2 概念与命令"></a>7.2 概念与命令</h3><p>1.超级adbd具有root权限，不需要通过SEO申请，可以通过修改adbd源码实现。 </p>
-<p>2.超级adbd可以使用两个命令：adb root和adb remount。 </p>
+<h3 id="7-2-概念与命令"><a href="#7-2-概念与命令" class="headerlink" title="7.2 概念与命令"></a>7.2 概念与命令</h3><p>1.超级adb具有root权限，不需要通过SEO申请，可以通过修改adbd源码实现。 </p>
+<p>2.超级adb可以使用两个命令：adb root和adb remount。 </p>
 <p>3.adb root使adb在root权限下运行，adb remount将system分区挂载为可读写。</p>
-<h3 id="7-3-超级adbd配置与环境变量"><a href="#7-3-超级adbd配置与环境变量" class="headerlink" title="7.3 超级adbd配置与环境变量"></a>7.3 超级adbd配置与环境变量</h3><p>1.adb在SDK的platform tools目录下，使用前需将该目录添加到环境变量中。 </p>
+<h3 id="7-3-超级adb配置与环境变量"><a href="#7-3-超级adb配置与环境变量" class="headerlink" title="7.3 超级adb配置与环境变量"></a>7.3 超级adb配置与环境变量</h3><p>1.adb在SDK的platform tools目录下，使用前需将该目录添加到环境变量中。 </p>
 <p>2.通过修改环境变量，可以在任意目录下访问adb命令。 </p>
 <p>3.添加环境变量后，需重启计算机使其生效。</p>
 <h3 id="7-4-adb常用命令"><a href="#7-4-adb常用命令" class="headerlink" title="7.4 adb常用命令"></a>7.4 adb常用命令</h3><p>略</p>
@@ -3370,6 +3521,54 @@
 <td>resources.arsc是编译后的二进制资源文件，它是一个映射表，映射着资源和id，通过R文件中的id就可以找到对应的资源</td>
 </tr>
 </tbody></table>
+<h1 id="三、工具介绍"><a href="#三、工具介绍" class="headerlink" title="三、工具介绍"></a>三、工具介绍</h1><h2 id="1-IDE"><a href="#1-IDE" class="headerlink" title="1.IDE"></a>1.IDE</h2><p>IDE（集成开发环境）- IDEA</p>
+<ul>
+<li>IDEA介绍</li>
+</ul>
+<ol>
+<li><p>DEA全程InteliJ IDEA</p>
+</li>
+<li><p>在业界被公认为最好的Java开发工具</p>
+</li>
+<li><p>IDEA是JetBrains公司的产品，总部位于捷克的首部布拉格</p>
+</li>
+<li><p>除了支持Java开发，还支持HTML、CSS、PHP、MySQL、Python等</p>
+</li>
+</ol>
+<p>IDE（集成开发环境）- Eclipse</p>
+<ul>
+<li>Eclipse介绍</li>
+</ul>
+<ol>
+<li>Eclipse是开放源代码的、基于JAva的可拓展开发平台</li>
+<li>最初是由IBM公司耗资3000万美金开发的下一代IDE开发环境</li>
+<li>2001年11月贡献给开源社区</li>
+<li>Eclipse是目前最优秀的Java开发IDE之一</li>
+</ol>
+<h2 id="2-jadx"><a href="#2-jadx" class="headerlink" title="2. jadx"></a>2. jadx</h2><p>下载地址：<a href="https://github.com/skylot/jadx/releases/tag/v1.3.2">Release 1.3.2 · skylot&#x2F;jadx</a></p>
+<p>1.jadx是一个常用的反编译工具，更新到1.3版本，功能强大。 </p>
+<p>2.jadx安装在GitHub上，提供源代码和编译好的版本。 3.安装简单，不需要安装jadx本身，只需安装7-Zip用于解压。</p>
+<p> 4.安装完成后，通过修改注册表并勾选选项，自动识别jadx。 </p>
+<p>5.jadx界面默认中文版，可用于反编译APP，生成字面文件和代码。</p>
+<p> 6.新版本jadx可以直接导出源代码，支持中文显示内存使用栏。</p>
+<p>7.通过bat文件可以修改内存使用量，默认4GB，可改为8GB。 </p>
+<p>8.jadx支持搜索类名和源代码，具有调试功能，需配置ADB。 </p>
+<p>9.反混淆功能建议关闭，以免更改类名导致问题。</p>
+<h2 id="3-gda"><a href="#3-gda" class="headerlink" title="3.gda"></a>3.gda</h2><p>下载地址：<a href="http://www.gda.wiki:9090/">http://www.gda.wiki:9090/</a></p>
+<p>使用free版本</p>
+<h2 id="4-jeb"><a href="#4-jeb" class="headerlink" title="4. jeb"></a>4. jeb</h2><p><strong>JAD与JEB的比较</strong></p>
+<p>1.JAD可能反编译出的代码绿色注释部分不完整，反编译能力较弱。 </p>
+<p>2.JEB反编译能力更强，适用于JAD反编译失败的APP。 </p>
+<p>3.在JAD或JEB无法反编译的情况下，可以尝试使用定制ART虚拟机直接输出运行过程中的SMILE代码和寄存器参数进行分析。</p>
+<p><strong>JEB的安装与使用</strong></p>
+<p>1.下载JEB 4.2版本，解压后将jab.exe替换到bin目录下。 </p>
+<p>2.双击jab.exe打开软件，接受协议并生成key。 </p>
+<p>3.确保替换掉原jb.exe文件后，生成的东西才有用。 </p>
+<p>4.软件界面延迟到2033年，可以通过拖入文件进行反编译。 </p>
+<p>5.在Edit菜单下选择Language，可以切换到中文界面。 </p>
+<p>6.反编译出的JAVA代码可以在Smart Code区域查看，搜索和跳转功能也十分便捷。 </p>
+<p>7.JEB需要使用到JDK，并且JDK的大小目前最大为4GB，可以通过配置文件进行修改。</p>
+<h2 id="5-apktool"><a href="#5-apktool" class="headerlink" title="5. apktool"></a>5. apktool</h2><p>官方地址<a href="https://maximoff.su/**apktool**/?history=1&lang=zh">https://maximoff.su/**apktool**/?history=1&amp;lang=zh</a></p>
 ]]></content>
       <categories>
         <category>笔记</category>
@@ -3381,15 +3580,14 @@
       </tags>
   </entry>
   <entry>
-    <title>Kotlin基础</title>
-    <url>/2025/02/24/Kotlin%E5%9F%BA%E7%A1%80/</url>
+    <title>Kotlin编程语言</title>
+    <url>/2025/02/24/Kotlin/</url>
     <content><![CDATA[]]></content>
       <categories>
         <category>笔记</category>
       </categories>
       <tags>
         <tag>编程语言</tag>
-        <tag>安卓逆向工程</tag>
       </tags>
   </entry>
   <entry>
@@ -3875,413 +4073,6 @@
       <tags>
         <tag>VMware</tag>
         <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>安卓逆向工程计划</title>
-    <url>/2025/02/24/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B%E8%AE%A1%E5%88%92/</url>
-    <content><![CDATA[<p>以下是针对 自学安卓逆向工程 的半年学习路线规划，结合 理论+实战，逐步掌握核心技能。</p>
-<hr>
-<h3 id="第一阶段：基础准备（1个月）"><a href="#第一阶段：基础准备（1个月）" class="headerlink" title="第一阶段：基础准备（1个月）"></a><strong>第一阶段：基础准备（1个月）</strong></h3><p><strong>目标</strong>：掌握编程基础、安卓开发原理、逆向工程基础工具。</p>
-<h4 id="1-编程基础（Java-Kotlin）"><a href="#1-编程基础（Java-Kotlin）" class="headerlink" title="1. 编程基础（Java&#x2F;Kotlin）"></a><strong>1. 编程基础（Java&#x2F;Kotlin）</strong></h4><ul>
-<li><strong>学习内容</strong>：<ul>
-<li>Java语法（重点：类、对象、继承、多线程、反射）。</li>
-<li>Kotlin基础（推荐：Android官方推荐语言）。</li>
-<li>推荐资源：<ul>
-<li>书籍：《Java核心技术 卷Ⅰ》（第11版）。</li>
-<li>视频：<a href="https://www.bilibili.com/video/BV1fh411y7R8">B站-韩顺平Java零基础</a>。</li>
-<li>Kotlin官方文档：<a href="https://kotlinlang.org/docs/home.html">Kotlin 官方教程</a>。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h4 id="2-安卓开发入门"><a href="#2-安卓开发入门" class="headerlink" title="2. 安卓开发入门"></a><strong>2. 安卓开发入门</strong></h4><ul>
-<li><strong>学习内容</strong>：<ul>
-<li>Android Studio使用、APK打包流程。</li>
-<li>四大组件（Activity、Service、BroadcastReceiver、ContentProvider）。</li>
-<li>简单App开发（如计算器、天气预报App）。</li>
-<li>推荐资源：<ul>
-<li>官方文档：<a href="https://developer.android.com/">Android开发者官网</a>。</li>
-<li>视频：<a href="https://www.bilibili.com/video/BV1Rt411e76H">B站-《第一行代码》第三版配套视频</a>。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h4 id="3-逆向工具初探"><a href="#3-逆向工具初探" class="headerlink" title="3. 逆向工具初探"></a><strong>3. 逆向工具初探</strong></h4><ul>
-<li><strong>工具安装</strong>：<ul>
-<li>APKTool（反编译APK）。</li>
-<li>Jadx&#x2F;Ghidra（查看Java&#x2F;Smali代码）。</li>
-<li>Android Killer&#x2F;JEB（逆向分析工具）。</li>
-</ul>
-</li>
-<li><strong>实践任务</strong>：<ul>
-<li>反编译一个简单APK，修改资源文件（如文字&#x2F;图标）并重新打包。</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h3 id="第二阶段：逆向核心技能（2个月）"><a href="#第二阶段：逆向核心技能（2个月）" class="headerlink" title="第二阶段：逆向核心技能（2个月）"></a><strong>第二阶段：逆向核心技能（2个月）</strong></h3><p><strong>目标</strong>：掌握Smali语法、ARM汇编、动态调试、Hook技术。</p>
-<h4 id="1-Smali语法与静态分析"><a href="#1-Smali语法与静态分析" class="headerlink" title="1. Smali语法与静态分析"></a><strong>1. Smali语法与静态分析</strong></h4><ul>
-<li><strong>学习内容</strong>：<ul>
-<li>Smali语言基础（寄存器、指令、方法调用）。</li>
-<li>修改Smali代码实现简单逻辑（如破解注册验证）。</li>
-<li>推荐工具：Jadx、Android Killer。</li>
-<li>实战案例：破解一个“付费解锁”功能的APK。</li>
-</ul>
-</li>
-</ul>
-<h4 id="2-ARM汇编基础"><a href="#2-ARM汇编基础" class="headerlink" title="2. ARM汇编基础"></a><strong>2. ARM汇编基础</strong></h4><ul>
-<li><strong>学习内容</strong>：<ul>
-<li>ARM指令集（MOV、LDR、ADD、BL等）。</li>
-<li>反编译Native层代码（IDA Pro基础使用）。</li>
-<li>推荐资源：<ul>
-<li>书籍：《IDA Pro权威指南》。</li>
-<li>视频：<a href="https://www.bilibili.com/video/BV1gK411H7Uq">B站-ARM汇编入门</a>。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h4 id="3-动态调试与Hook"><a href="#3-动态调试与Hook" class="headerlink" title="3. 动态调试与Hook"></a><strong>3. 动态调试与Hook</strong></h4><ul>
-<li><strong>学习内容</strong>：<ul>
-<li>Frida框架（Hook Java&#x2F;Native函数）。</li>
-<li>Xposed框架（修改系统级行为）。</li>
-<li>实战案例：通过Frida绕过App的Root检测。</li>
-<li>推荐工具：<ul>
-<li>Frida官方文档：<a href="https://frida.re/docs/home/">Frida Docs</a>。</li>
-<li>Xposed模块开发教程：<a href="https://www.bilibili.com/video/BV1pK4y1j7dK">B站-Xposed入门</a>。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h3 id="第三阶段：实战进阶（2个月）"><a href="#第三阶段：实战进阶（2个月）" class="headerlink" title="第三阶段：实战进阶（2个月）"></a><strong>第三阶段：实战进阶（2个月）</strong></h3><p><strong>目标</strong>：掌握脱壳、反混淆、协议分析、漏洞挖掘。</p>
-<h4 id="1-脱壳与反混淆"><a href="#1-脱壳与反混淆" class="headerlink" title="1. 脱壳与反混淆"></a><strong>1. 脱壳与反混淆</strong></h4><ul>
-<li><strong>学习内容</strong>：<ul>
-<li>常见加固技术（如梆梆安全、腾讯御安全）。</li>
-<li>脱壳工具使用（Frida-Dump、DrizzleDumper）。</li>
-<li>实战案例：脱掉某加固APK并分析代码逻辑。</li>
-<li>推荐工具：Frida、Xposed插件（如FDex2）。</li>
-</ul>
-</li>
-</ul>
-<h4 id="2-协议分析与抓包"><a href="#2-协议分析与抓包" class="headerlink" title="2. 协议分析与抓包"></a><strong>2. 协议分析与抓包</strong></h4><ul>
-<li><strong>学习内容</strong>：<ul>
-<li>抓包工具（Charles、Fiddler、Wireshark）。</li>
-<li>HTTPS证书绕过（JustTrustMe插件）。</li>
-<li>实战案例：逆向某App的登录协议并模拟请求。</li>
-<li>推荐工具：MitmProxy + Frida脚本。</li>
-</ul>
-</li>
-</ul>
-<h4 id="3-漏洞挖掘与CTF实战"><a href="#3-漏洞挖掘与CTF实战" class="headerlink" title="3. 漏洞挖掘与CTF实战"></a><strong>3. 漏洞挖掘与CTF实战</strong></h4><ul>
-<li><strong>学习内容</strong>：<ul>
-<li>常见漏洞类型（组件暴露、WebView漏洞、逻辑漏洞）。</li>
-<li>CTF逆向题练习（如攻防世界、CTFHub）。</li>
-<li>推荐资源：<ul>
-<li>书籍：《Android安全攻防权威指南》。</li>
-<li>平台：<a href="https://ctf.pediy.com/">看雪CTF题库</a>。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h3 id="第四阶段：综合项目与求职准备（1个月）"><a href="#第四阶段：综合项目与求职准备（1个月）" class="headerlink" title="第四阶段：综合项目与求职准备（1个月）"></a><strong>第四阶段：综合项目与求职准备（1个月）</strong></h3><p><strong>目标</strong>：完成实战项目、完善简历、准备面试。</p>
-<h4 id="1-实战项目"><a href="#1-实战项目" class="headerlink" title="1. 实战项目"></a><strong>1. 实战项目</strong></h4><ul>
-<li><strong>可选方向</strong>：<ul>
-<li>逆向分析某金融App的加密算法。</li>
-<li>开发一个Xposed模块（如自动抢红包）。</li>
-<li>分析恶意软件（如银行木马）的通信协议。</li>
-</ul>
-</li>
-</ul>
-<h4 id="2-简历与面试"><a href="#2-简历与面试" class="headerlink" title="2. 简历与面试"></a><strong>2. 简历与面试</strong></h4><ul>
-<li><strong>简历重点</strong>：<ul>
-<li>突出实战项目（技术细节、成果）。</li>
-<li>技能关键词：Smali、Frida、IDA Pro、ARM汇编。</li>
-</ul>
-</li>
-<li><strong>面试准备</strong>：<ul>
-<li>高频问题：APK打包流程、Hook原理、脱壳方法。</li>
-<li>推荐刷题：<a href="https://bbs.pediy.com/">看雪论坛面试经验帖</a>。</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h3 id="学习资源汇总"><a href="#学习资源汇总" class="headerlink" title="学习资源汇总"></a><strong>学习资源汇总</strong></h3><table>
-<thead>
-<tr>
-<th align="left"><strong>类型</strong></th>
-<th><strong>资源</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><strong>书籍</strong></td>
-<td>《Android软件安全与逆向分析》《Frida Android SO逆向深入实践》</td>
-</tr>
-<tr>
-<td align="left"><strong>视频教程</strong></td>
-<td>B站搜索“安卓逆向”关键词（推荐：非虫、咸鱼等UP主系列课程）</td>
-</tr>
-<tr>
-<td align="left"><strong>工具导航</strong></td>
-<td><a href="https://github.com/rednaga/APKiD">安卓逆向工具包</a></td>
-</tr>
-<tr>
-<td align="left"><strong>社区论坛</strong></td>
-<td>看雪安全论坛、吾爱破解、FreeBuf</td>
-</tr>
-</tbody></table>
-]]></content>
-      <tags>
-        <tag>信息安全</tag>
-        <tag>学习计划</tag>
-        <tag>安卓逆向工程</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>恶意软件分析计划</title>
-    <url>/2025/02/22/%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E8%AE%A1%E5%88%92/</url>
-    <content><![CDATA[<p>以下是半年恶意软件分析学习计划，分为基础构建、专业提升、实战应用三个阶段。计划兼顾零基础起点和恶意软件分析的专业需求，注重高效学习和实践结合：</p>
-<hr>
-<h3 id="📅-第一阶段：计算机基础与编程入门（第1-2个月）"><a href="#📅-第一阶段：计算机基础与编程入门（第1-2个月）" class="headerlink" title="📅 第一阶段：计算机基础与编程入门（第1-2个月）"></a><strong>📅 第一阶段：计算机基础与编程入门（第1-2个月）</strong></h3><p><strong>目标</strong>：掌握计算机基础操作、网络基础、Python和C语言基础。</p>
-<ol>
-<li><p><strong>计算机基础（1周）</strong></p>
-<ul>
-<li><strong>操作系统</strong>：学习Windows&#x2F;Linux基础命令（文件管理、进程管理）、虚拟机安装（VMware&#x2F;VirtualBox）。</li>
-<li><strong>网络基础</strong>：理解IP地址、端口、TCP&#x2F;UDP协议，用Wireshark抓包分析HTTP流量。</li>
-</ul>
-</li>
-<li><p><strong>编程入门（3周）</strong></p>
-<ul>
-<li><strong>Python</strong>：学习语法、文件操作、正则表达式、网络请求（<code>requests</code>库），完成简单爬虫或日志分析脚本。</li>
-<li><strong>C语言</strong>：掌握指针、内存管理、结构体，编写简单的内存操作程序（如模拟缓冲区溢出）。</li>
-</ul>
-</li>
-<li><p><strong>工具准备（1周）</strong></p>
-<ul>
-<li>搭建虚拟机实验环境（Windows + Linux双系统）。</li>
-<li>安装基础工具：IDA Pro Free版、Ghidra、Wireshark、Process Monitor。</li>
-</ul>
-</li>
-</ol>
-<hr>
-<h3 id="📚-第二阶段：信息安全与恶意软件分析基础（第3-4个月）"><a href="#📚-第二阶段：信息安全与恶意软件分析基础（第3-4个月）" class="headerlink" title="📚 第二阶段：信息安全与恶意软件分析基础（第3-4个月）"></a><strong>📚 第二阶段：信息安全与恶意软件分析基础（第3-4个月）</strong></h3><p><strong>目标</strong>：掌握安全核心概念，学习静态&#x2F;动态分析基础。</p>
-<ol>
-<li><p><strong>信息安全基础（2周）</strong></p>
-<ul>
-<li><strong>密码学</strong>：AES&#x2F;RSA算法原理，使用Python实现加密解密。</li>
-<li><strong>漏洞类型</strong>：缓冲区溢出、Shellcode注入原理，用C编写漏洞示例程序。</li>
-<li><strong>网络攻防</strong>：分析ARP欺骗案例，用Scapy模拟数据包伪造。</li>
-</ul>
-</li>
-<li><p><strong>恶意软件分析入门（4周）</strong></p>
-<ul>
-<li><strong>静态分析</strong>：<ul>
-<li>使用PEiD分析样本的编译器和加壳情况。</li>
-<li>用Ghidra反编译样本，识别关键函数（如<code>CreateProcess</code>、注册表操作）。</li>
-</ul>
-</li>
-<li><strong>动态分析</strong>：<ul>
-<li>在虚拟机中运行样本，用Process Monitor监控文件&#x2F;注册表行为。</li>
-<li>使用x64dbg调试样本，跟踪API调用链（如<code>LoadLibrary</code>、<code>GetProcAddress</code>）。</li>
-</ul>
-</li>
-<li><strong>工具进阶</strong>：<ul>
-<li>编写Python脚本自动化提取样本字符串特征。</li>
-<li>配置Cuckoo沙箱分析样本的恶意行为报告。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<hr>
-<h3 id="🔍-第三阶段：逆向工程与实战进阶（第5-6个月）"><a href="#🔍-第三阶段：逆向工程与实战进阶（第5-6个月）" class="headerlink" title="🔍 第三阶段：逆向工程与实战进阶（第5-6个月）"></a><strong>🔍 第三阶段：逆向工程与实战进阶（第5-6个月）</strong></h3><p><strong>目标</strong>：掌握逆向工程核心技能，完成真实样本分析。</p>
-<ol>
-<li><p><strong>逆向工程深化（3周）</strong></p>
-<ul>
-<li><strong>汇编语言</strong>：学习x86&#x2F;x64指令集，用IDA Pro分析样本的反汇编代码。</li>
-<li><strong>反混淆技术</strong>：<ul>
-<li>手动脱UPX壳（使用OllyDbg的单步跟踪法）。</li>
-<li>分析字符串加密逻辑，编写Python解密脚本。</li>
-</ul>
-</li>
-<li><strong>高级调试</strong>：<ul>
-<li>使用IDA Pro的远程调试功能分析Linux恶意软件。</li>
-<li>通过修改寄存器值绕过反调试检测。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p><strong>实战项目（3周）</strong></p>
-<ul>
-<li><strong>样本分析</strong>：<ol>
-<li>分析勒索软件（如HelloKitty）的加密流程和密钥生成逻辑。</li>
-<li>逆向远控木马（如Poison Ivy）的C2通信协议。</li>
-</ol>
-</li>
-<li><strong>报告撰写</strong>：<ul>
-<li>按照MITRE ATT&amp;CK框架标注样本的攻击技术（如T1055进程注入）。</li>
-<li>使用YARA编写规则检测同类样本。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p><strong>知识整合（1周）</strong></p>
-<ul>
-<li>复现CTF逆向题目（如<a href="https://flare-on.com/">flare-on</a>历年赛题）。</li>
-<li>参与漏洞平台众测（如HackerOne的简单任务）。</li>
-</ul>
-</li>
-</ol>
-<hr>
-<h3 id="📦-资源推荐"><a href="#📦-资源推荐" class="headerlink" title="📦 资源推荐"></a><strong>📦 资源推荐</strong></h3><ul>
-<li><strong>书籍</strong>：《逆向工程核心原理》《加密与解密》</li>
-<li><strong>靶场</strong>：<a href="https://any.run/">Any.Run</a>（交互式沙箱）、<a href="https://malwaretrafficanalysis.net/">MalwareTrafficAnalysis</a>（带流量分析的样本）</li>
-<li><strong>样本来源</strong>：VirusTotal（需谨慎）、<a href="https://github.com/ytisf/theZoo">Zoo</a>（GitHub合法样本库）</li>
-</ul>
-<hr>
-<h3 id="⚠️-关键注意事项"><a href="#⚠️-关键注意事项" class="headerlink" title="⚠️ 关键注意事项"></a><strong>⚠️ 关键注意事项</strong></h3><ol>
-<li><strong>实验安全</strong>：所有分析必须在隔离的虚拟机中进行，禁用共享文件夹和剪贴板。</li>
-<li><strong>法律合规</strong>：仅分析开源样本或明确授权的数据，避免触碰灰色地带。</li>
-<li><strong>效率技巧</strong>：使用Jupyter Notebook记录分析过程，搭配截图和代码片段提升复盘效率。</li>
-</ol>
-<hr>
-<p><strong>调整建议</strong>：如果遇到瓶颈（如逆向工程难以突破），可暂时跳过深入理论，通过分析简单样本（如VBS脚本病毒）建立信心。坚持每天记录学习日志，重点标注未理解的概念，每周集中解决。遇到工具使用问题，优先查阅官方文档和GitHub Issue。</p>
-<p>针对<strong>第一阶段（计算机基础与编程入门）</strong>的详细学习平台和资源推荐，兼顾零基础学习者的理解能力和实践需求：</p>
-<hr>
-<h3 id="💻-计算机基础学习平台"><a href="#💻-计算机基础学习平台" class="headerlink" title="💻 计算机基础学习平台"></a><strong>💻 计算机基础学习平台</strong></h3><h4 id="1-操作系统与Linux入门"><a href="#1-操作系统与Linux入门" class="headerlink" title="1. 操作系统与Linux入门"></a><strong>1. 操作系统与Linux入门</strong></h4><table>
-<thead>
-<tr>
-<th>平台&#x2F;资源</th>
-<th>特点</th>
-<th>推荐内容</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong><a href="https://learn.microsoft.com/zh-cn/windows/">微软官方文档</a></strong></td>
-<td>权威的Windows操作指南</td>
-<td>Windows文件管理、进程管理、CMD&#x2F;PowerShell基础命令</td>
-</tr>
-<tr>
-<td><strong><a href="https://www.runoob.com/linux/linux-tutorial.html">菜鸟教程 - Linux</a></strong></td>
-<td>中文零基础教程</td>
-<td>Linux常用命令（<code>ls</code>&#x2F;<code>cd</code>&#x2F;<code>grep</code>&#x2F;<code>chmod</code>）</td>
-</tr>
-<tr>
-<td><strong><a href="https://www.youtube.com/c/NetworkChuck">YouTube: NetworkChuck</a></strong></td>
-<td>趣味实操演示</td>
-<td>“Linux for Hackers”系列（搭配虚拟机操作）</td>
-</tr>
-</tbody></table>
-<h4 id="2-网络基础"><a href="#2-网络基础" class="headerlink" title="2. 网络基础"></a><strong>2. 网络基础</strong></h4><table>
-<thead>
-<tr>
-<th>平台&#x2F;资源</th>
-<th>特点</th>
-<th>推荐内容</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong><a href="https://www.coursera.org/">Coursera - 计算机网络基础</a></strong></td>
-<td>体系化理论教学</td>
-<td>密歇根大学《计算机网络导论》（中文字幕）</td>
-</tr>
-<tr>
-<td><strong><a href="https://www.wireshark.org/docs/">Wireshark官方教程</a></strong></td>
-<td>实战导向</td>
-<td>抓包分析HTTP&#x2F;TCP协议（配合<a href="https://wiki.wireshark.org/SampleCaptures">SampleCaptures</a>）</td>
-</tr>
-<tr>
-<td><strong><a href="https://www.bilibili.com/">B站：湖科大王道计算机网络</a></strong></td>
-<td>中文系统讲解</td>
-<td>考研向课程，但适合打基础</td>
-</tr>
-</tbody></table>
-<hr>
-<h3 id="👨💻-编程入门平台"><a href="#👨💻-编程入门平台" class="headerlink" title="👨💻 编程入门平台"></a><strong>👨💻 编程入门平台</strong></h3><h4 id="1-Python学习"><a href="#1-Python学习" class="headerlink" title="1. Python学习"></a><strong>1. Python学习</strong></h4><table>
-<thead>
-<tr>
-<th>平台&#x2F;资源</th>
-<th>特点</th>
-<th>推荐内容</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong><a href="https://www.codecademy.com/learn/learn-python-3">Codecademy</a></strong></td>
-<td>交互式编程</td>
-<td>免费版Python 3语法和文件操作</td>
-</tr>
-<tr>
-<td><strong><a href="https://docs.python.org/zh-cn/3/tutorial/">Python官网教程</a></strong></td>
-<td>权威文档</td>
-<td>正则表达式（<code>re</code>模块）、网络请求（<code>requests</code>库）</td>
-</tr>
-<tr>
-<td><strong><a href="https://www.bilibili.com/">B站：小甲鱼零基础学Python</a></strong></td>
-<td>中文趣味教学</td>
-<td>配套《零基础入门学习Python》书籍</td>
-</tr>
-</tbody></table>
-<h4 id="2-C语言学习"><a href="#2-C语言学习" class="headerlink" title="2. C语言学习"></a><strong>2. C语言学习</strong></h4><table>
-<thead>
-<tr>
-<th>平台&#x2F;资源</th>
-<th>特点</th>
-<th>推荐内容</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong><a href="https://www.runoob.com/cprogramming/c-tutorial.html">菜鸟教程 - C语言</a></strong></td>
-<td>简洁中文教程</td>
-<td>指针、结构体、内存管理专题</td>
-</tr>
-<tr>
-<td><strong><a href="https://www.learn-c.org/">Learn-C.org</a></strong></td>
-<td>在线编译器</td>
-<td>实时练习指针和内存操作代码</td>
-</tr>
-<tr>
-<td><strong><a href="https://www.bilibili.com/">B站：浙江大学翁恺C语言</a></strong></td>
-<td>高校精品课</td>
-<td>深入理解指针与内存模型</td>
-</tr>
-</tbody></table>
-<hr>
-<h3 id="🔧-工具准备资源"><a href="#🔧-工具准备资源" class="headerlink" title="🔧 工具准备资源"></a><strong>🔧 工具准备资源</strong></h3><table>
-<thead>
-<tr>
-<th>工具</th>
-<th>学习资源</th>
-<th>重点内容</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>虚拟机（VMware&#x2F;VirtualBox）</strong></td>
-<td><a href="https://docs.vmware.com/cn/VMware-Workstation-Pro/index.html">VMware官方指南</a></td>
-<td>创建隔离的Windows&#x2F;Linux实验环境</td>
-</tr>
-<tr>
-<td><strong>IDA Pro Free</strong></td>
-<td><a href="https://hex-rays.com/ida-free/">官方快速入门</a></td>
-<td>基本反汇编操作（函数识别、交叉引用）</td>
-</tr>
-<tr>
-<td><strong>Process Monitor</strong></td>
-<td><a href="https://search.bilibili.com/all?keyword=Process%20Monitor">B站实操演示</a></td>
-<td>监控恶意软件的文件&#x2F;注册表行为</td>
-</tr>
-</tbody></table>
-<hr>
-]]></content>
-      <tags>
-        <tag>信息安全</tag>
-        <tag>恶意软件分析</tag>
-        <tag>学习计划</tag>
       </tags>
   </entry>
   <entry>

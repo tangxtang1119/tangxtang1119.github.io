@@ -13,7 +13,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>Android Studio |  tangxtang</title>
+      <title>安卓逆向 |  tangxtang</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="/favicon.ico" />
@@ -55,7 +55,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-Android-Studio"
+  id="post-安卓逆向"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -66,7 +66,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  Android Studio
+  安卓逆向
 </h1>
  
 
@@ -74,15 +74,19 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2025/04/01/Android-Studio/" class="article-date">
-  <time datetime="2025-03-31T16:00:00.000Z" itemprop="datePublished">2025-04-01</time>
-</a>   
+      <a href="/2025/04/04/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91/" class="article-date">
+  <time datetime="2025-04-03T16:00:00.000Z" itemprop="datePublished">2025-04-04</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+  </div>
+  
 <div class="word_count">
     <span class="post-time">
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">6.7k</span>
+            <span class="post-count">8.5k</span>
         </span>
     </span>
 
@@ -91,7 +95,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">34 分钟</span>
+            <span class="post-count">41 分钟</span>
         </span>
     </span>
 </div>
@@ -501,6 +505,21 @@
 <li><strong>State or Province</strong>: 输入你所在的州或省份。</li>
 <li><strong>Country Code</strong>: 输入你所在的国家代码（例如，CN 表示中国）。</li>
 </ul>
+<p><strong>首次生成签名密钥可以使用命令</strong></p>
+<p><code>keytool -genkeypair -v -keystore my-key.keystore -alias my-key -keyalg RSA -keysize 2048 -validity 10000</code></p>
+<ul>
+<li>按提示输入信息（密码、姓名等），生成 <code>my-key.keystore</code> 文件。 <ul>
+<li><code>keytool</code>: 这是Java自带的一个命令行工具，用于管理密钥库以及密钥和证书条目。</li>
+<li><code>-genkeypair</code> 或 <code>-genkey</code>（旧版本中的别名）：这是告诉<code>keytool</code>要生成一个新的密钥对。</li>
+<li><code>-v</code>: 表示详细模式，它会使<code>keytool</code>在执行过程中打印出更多的信息。</li>
+<li><code>-keystore my-key.keystore</code>: 指定生成的密钥库文件的名字为<code>my-key.keystore</code>。如果该文件不存在，则会创建一个新的文件；如果已经存在，则会在其中添加新的密钥条目。</li>
+<li><code>-alias my-key</code>: 给生成的密钥指定一个别名<code>my-key</code>。在密钥库中，每个密钥都有一个唯一的别名，这样可以通过别名来引用具体的密钥。</li>
+<li><code>-keyalg RSA</code>: 指定使用RSA算法来生成密钥对。RSA是一种常用的非对称加密算法。</li>
+<li><code>-keysize 2048</code>: 设置密钥大小为2048位。一般来说，密钥长度越长，安全性越高，但同时也会增加计算负担。</li>
+<li><code>-validity 10000</code>: 指定新生成的密钥的有效期为10000天。这意味着，在这之后，除非更新或重新生成密钥，否则密钥将不再有效。</li>
+</ul>
+</li>
+</ul>
 <hr>
 <ul>
 <li>Choose existing…: 选择一个现有的密钥库文件。</li>
@@ -522,7 +541,173 @@
 <p>输出APK文件于路径<code>F:\AndroidProject\helloworld\app\release\app-release</code></p>
 <p>使用ApkTool对app-release.apk进行反编译， 操作方法与对app-debug.apk的一样， 只不过要 将输出目录设置为outdir_rel。</p>
 <p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/rel%E7%BC%96%E8%AF%91.png"></p>
-<h3 id="修改smali文件的代码"><a href="#修改smali文件的代码" class="headerlink" title="修改smali文件的代码"></a>修改smali文件的代码</h3> 
+<h3 id="修改smali文件的代码"><a href="#修改smali文件的代码" class="headerlink" title="修改smali文件的代码"></a>修改smali文件的代码</h3><ol>
+<li><p><strong>用文本编辑器</strong>（如 VS Code、Notepad++）打开文件：<br><code>output_dir/res/values/strings.xml</code></p>
+</li>
+<li><p><strong>找到并修改</strong>：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">string</span> <span class="attr">name</span>=<span class="string">&quot;app_name&quot;</span>&gt;</span>xxxx<span class="tag">&lt;/<span class="name">string</span>&gt;</span> → <span class="tag">&lt;<span class="name">string</span> <span class="attr">name</span>=<span class="string">&quot;app_name&quot;</span>&gt;</span>yyyyy<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="重新打包APK"><a href="#重新打包APK" class="headerlink" title="重新打包APK"></a>重新打包APK</h3><ol>
+<li><p><strong>在终端执行</strong>：</p>
+<p><code>apktool b output_dir -o modified.apk</code></p>
+<ul>
+<li><strong>作用</strong>：将修改后的资源重新打包为APK（未签名，无法直接安装）。</li>
+</ul>
+</li>
+<li><p><strong>签名APK</strong>：</p>
+</li>
+</ol>
+<p>​	<code>jarsigner -verbose -sigalg SHA256withRSA -digestalg SHA-256 -keystore F:\KeyStore\my_key.jks modified.apk key0</code></p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/%E7%BB%88%E7%AB%AF%E5%BA%94%E7%94%A8%E7%AD%BE%E5%90%8D.png"></p>
+<p>……</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/%E7%BB%88%E7%AB%AF%E7%AD%BE%E5%90%8D.png"></p>
+<p>​	<strong>参数解析</strong></p>
+<ol>
+<li>**<code>jarsigner</code>**：<ul>
+<li>这是 Java 提供的一个命令行工具，用于对 JAR 文件或 APK 文件进行签名。</li>
+<li>它的主要作用是验证文件的完整性，并通过私钥生成数字签名。</li>
+</ul>
+</li>
+<li>**<code>-verbose</code>**：<ul>
+<li>表示以详细模式运行命令。</li>
+<li>在签名过程中，<code>jarsigner</code> 会输出详细的日志信息，包括每个文件的处理状态、签名进度等。</li>
+</ul>
+</li>
+<li>**<code>-sigalg SHA256withRSA</code>**：<ul>
+<li>指定签名算法为 <code>SHA256withRSA</code>。</li>
+<li>这意味着使用 RSA 算法结合 SHA-256 哈希函数来生成数字签名。</li>
+<li><code>SHA256withRSA</code> 是一种安全性较高的签名算法，适合现代应用。</li>
+</ul>
+</li>
+<li>**<code>-digestalg SHA-256</code>**：<ul>
+<li>指定摘要算法为 <code>SHA-256</code>。</li>
+<li>这是用来计算文件内容哈希值的算法。</li>
+<li>摘要算法的作用是生成文件的唯一指纹（哈希值），以便在签名时验证文件是否被篡改。</li>
+</ul>
+</li>
+<li>**<code>-keystore my-key.keystore</code>**：<ul>
+<li>指定密钥库文件为 <code>my-key.keystore</code>。</li>
+<li>密钥库文件是一个包含私钥和证书的容器。</li>
+<li>在签名过程中，<code>jarsigner</code> 会从这个密钥库中读取私钥和证书。</li>
+</ul>
+</li>
+<li>**<code>modified.apk</code>**：<ul>
+<li>这是要签名的目标 APK 文件。</li>
+<li>在签名之前，APK 文件通常已经通过 <code>apktool</code> 或其他工具重新打包完成。</li>
+</ul>
+</li>
+<li>**<code>my-key</code>**：<ul>
+<li>指定密钥库中的密钥别名。</li>
+<li>在创建密钥库时，你为每个密钥对指定了一个别名（如 <code>my-key</code>）。</li>
+<li><code>jarsigner</code> 会使用这个别名找到对应的私钥和证书。</li>
+</ul>
+</li>
+</ol>
+<h3 id="用Jadx查看APK代码-检查资源-ID-的方法"><a href="#用Jadx查看APK代码-检查资源-ID-的方法" class="headerlink" title="用Jadx查看APK代码(检查资源 ID 的方法)"></a>用Jadx查看APK代码(<strong>检查资源 ID 的方法</strong>)</h3><ol>
+<li><strong>下载并启动Jadx</strong></li>
+</ol>
+<p>​	从 <a target="_blank" rel="noopener" href="https://github.com/skylot/jadx">Jadx GitHub</a> 下载最新版，解压后运行 （Windows：<code>jadx-gui.bat</code>）。</p>
+<ol start="2">
+<li><p><strong>拖入APK分析</strong></p>
+<p>打开jadx，将apk文件拖入窗口。</p>
+<p>使用 Jadx 打开 <code>modified.apk</code> 并检查资源 ID 是否变化，可以通过以下步骤完成。</p>
+<ul>
+<li><u>资源 ID 是 Android 应用中用于引用资源（如字符串、图片、布局等）的唯一标识符，通常由编译器自动生成。如果资源结构未被破坏，资源 ID 一般不会发生变化。</u></li>
+</ul>
+<p><strong>资源 ID 通常在以下文件中定义或引用：</strong></p>
+<ul>
+<li><strong><code>R.java</code> 文件</strong>：这是 Android 编译器生成的资源映射文件，包含所有资源的 ID。</li>
+<li><strong>代码中的资源引用</strong>：检查代码中是否仍然正确引用了资源。</li>
+<li><strong><code>resources.arsc</code> 文件</strong>：这是 APK 中的二进制资源表，存储了资源 ID 和其对应的值。</li>
+</ul>
+</li>
+</ol>
+<p><strong>步骤 1：检查代码中的资源引用</strong></p>
+<p>展开目录找到主逻辑文件，查看MainActivity.java。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MainActivity</span> <span class="keyword">extends</span> <span class="title class_">AppCompatActivity</span> &#123;</span><br><span class="line">    <span class="comment">/* JADX INFO: Access modifiers changed from: protected */</span></span><br><span class="line">    <span class="meta">@Override</span> <span class="comment">// androidx.fragment.app.FragmentActivity, androidx.activity.ComponentActivity, androidx.core.app.ComponentActivity, android.app.Activity</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onCreate</span><span class="params">(Bundle bundle)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>.onCreate(bundle);</span><br><span class="line">        EdgeToEdge.enable(<span class="built_in">this</span>);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line">        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), <span class="keyword">new</span> <span class="title class_">OnApplyWindowInsetsListener</span>() &#123; <span class="comment">// from class: com.example.test01.MainActivity$$ExternalSyntheticLambda0</span></span><br><span class="line">            <span class="meta">@Override</span> <span class="comment">// androidx.core.view.OnApplyWindowInsetsListener</span></span><br><span class="line">            <span class="keyword">public</span> <span class="keyword">final</span> WindowInsetsCompat <span class="title function_">onApplyWindowInsets</span><span class="params">(View view, WindowInsetsCompat windowInsetsCompat)</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> MainActivity.lambda$onCreate$<span class="number">0</span>(view, windowInsetsCompat);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>关键点</strong>：<code>onCreate</code> 是Activity入口，<code>setContentView</code> 加载布局文件。</li>
+<li>对比两个 APK 文件中的代码：<ul>
+<li>如果代码中引用的资源 ID（如 <code>R.string.app_name</code>）一致，则说明资源引用正常。</li>
+<li>如果引用发生了变化，可能需要进一步检查资源表或重新打包过程。</li>
+</ul>
+</li>
+</ul>
+<p><strong>步骤 2：查看 <code>R.java</code> 文件</strong>:</p>
+<p>从文件数中导航到应用包中，找到R文件，查看其中的资源ID定义，例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="variable">black</span> <span class="operator">=</span> <span class="number">0x7f050021</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="variable">white</span> <span class="operator">=</span> <span class="number">0x7f0502e6</span>;</span><br><span class="line"><span class="comment">/* JADX INFO: Added by JADX */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> <span class="variable">abc_background_cache_hint_selector_material_dark</span> <span class="operator">=</span> <span class="number">0x7f050000</span>;</span><br><span class="line"><span class="comment">/* JADX INFO: Added by JADX */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> <span class="variable">abc_background_cache_hint_selector_material_light</span> <span class="operator">=</span> <span class="number">0x7f050001</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>对比两个 APK 文件的 <code>R.java</code> 文件：</p>
+<ul>
+<li><p>如果资源 ID（如 <code>0x7f0e0001</code>）保持一致，则说明资源 ID 未发生变化。</p>
+</li>
+<li><p>如果资源 ID 发生变化，则可能是因为资源结构被破坏或重新编译时生成了新的 ID。</p>
+</li>
+</ul>
+<p><strong>步骤 3：查看 <code>resources.arsc</code> 文件</strong></p>
+<p>打开<code> resources.arsc</code> 文件，查看其中的资源表。Jadx 会解析出资源名称和对应的 ID。例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Resource ID: <span class="number">0x7f0e0001</span></span><br><span class="line">Resource Name: app_name</span><br><span class="line">Resource Value: Hello World</span><br></pre></td></tr></table></figure>
+
+<p>对比两个 APK 文件的<code>resources.arsc</code>文件：</p>
+<ul>
+<li>如果资源 ID 和资源名称一致，则说明资源表未被破坏。</li>
+<li>如果资源 ID 或名称发生变化，则可能是资源结构被破坏。</li>
+</ul>
+<p><strong>注意事项：</strong></p>
+<ol>
+<li><strong>资源 ID 的生成规则</strong>：<ul>
+<li>资源 ID 是由 AAPT（Android Asset Packaging Tool）根据资源类型、包名和资源顺序生成的。</li>
+<li>如果解包和重新打包过程中没有改变资源的顺序或类型，资源 ID 通常不会变化。</li>
+</ul>
+</li>
+<li><strong>可能导致资源 ID 变化的情况</strong>：<ul>
+<li>修改了资源文件（如新增、删除或重命名资源）。</li>
+<li>使用了不同的编译工具或版本。</li>
+<li>解包和重新打包过程中资源表被重新生成。</li>
+</ul>
+</li>
+<li><strong>验证资源的完整性</strong>：<ul>
+<li>如果资源 ID 发生变化，但功能正常，可以认为是正常的重新编译结果。</li>
+<li>如果资源 ID 发生变化且功能异常，则需要检查资源文件是否被破坏。</li>
+</ul>
+</li>
+</ol>
+<h2 id="六、关键原理总结"><a href="#六、关键原理总结" class="headerlink" title="六、关键原理总结"></a>六、关键原理总结</h2><table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>作用</th>
+<th>工具链依赖</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>解包APK</td>
+<td>将二进制APK转为可编辑的资源&#x2F;Smali代码</td>
+<td>Apktool、JDK</td>
+</tr>
+<tr>
+<td>修改字符串</td>
+<td>直接编辑XML资源文件，无需编译代码</td>
+<td>文本编辑器</td>
+</tr>
+<tr>
+<td>重新打包</td>
+<td>将修改后的资源重新编译为APK（未签名）</td>
+<td>Apktool</td>
+</tr>
+<tr>
+<td>签名APK</td>
+<td>确保APK来源可信，Android系统要求所有APK必须签名</td>
+<td>keytool、jarsigner</td>
+</tr>
+<tr>
+<td>Jadx反编译</td>
+<td>将DEX字节码转为可读的Java代码，便于分析逻辑</td>
+<td>Jadx</td>
+</tr>
+</tbody></table>
+ 
       <!-- reward -->
       
     </div>
@@ -586,16 +771,27 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://tangxtang1119.github.io/2025/04/01/Android-Studio/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://tangxtang1119.github.io/2025/04/04/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/" rel="tag">信息安全</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B/" rel="tag">安卓逆向工程</a></li></ul>
+
     </footer>
   </div>
 
    
   <nav class="article-nav">
+    
+      <a href="/2025/04/04/Samli/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            Samli
+          
+        </div>
+      </a>
     
     
       <a href="/2025/03/26/my-plan/" class="article-nav-link">
