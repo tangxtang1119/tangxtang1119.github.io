@@ -13,7 +13,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>Samli |  tangxtang</title>
+      <title>Samli一 |  tangxtang</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="/favicon.ico" />
@@ -66,7 +66,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  Samli
+  Samli一
 </h1>
  
 
@@ -86,7 +86,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">0</span>
+            <span class="post-count">4.8k</span>
         </span>
     </span>
 
@@ -95,20 +95,351 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">1 分钟</span>
+            <span class="post-count">20 分钟</span>
         </span>
     </span>
 </div>
  
     </div>
       
+    <div class="tocbot"></div>
+
 
 
 
   
     <div class="article-entry" itemprop="articleBody">
        
-   
+  <p>参考：</p>
+<p><a href="%5BSmali%E8%AF%AD%E8%A8%80%E8%AF%A6%E8%A7%A3-CSDN%E5%8D%9A%E5%AE%A2%5D(https://blog.csdn.net/u012573920/article/details/44034397)">Smali和逆向分析</a></p>
+<p>[Smali 语法解析](<a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903732774174734">Smali 语法解析——Hello World通过上一篇文章的学习，我们都知道了 Java 代码是如何执行的。Java - 掘金</a>)</p>
+<p><a href="%5BSmali--Dalvik%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%8C%87%E4%BB%A4%E8%AF%AD%E8%A8%80--%3E%E3%80%90android_smali%E8%AF%AD%E6%B3%95%E5%AD%A6%E4%B9%A0%E4%B8%80%E3%80%91_smali;-%3E-CSDN%E5%8D%9A%E5%AE%A2%5D(https://blog.csdn.net/wdaming1986/article/details/8299996)">Smali–Dalvik虚拟机指令语言</a></p>
+<p>学习视频：</p>
+<p><a href="%E3%80%90smali%E8%AF%AD%E8%A8%80%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A%E3%80%91https://www.bilibili.com/video/BV1Vf4y1q7gh?vd_source=cbd0e7aa3299fa0fcc330c5ee16869bc">Smali语言从入门到精通</a></p>
+<p>利器：</p>
+<p><a target="_blank" rel="noopener" href="http://liuzhichao.com/p/1476.html">Smali Sublime Text语法高亮插件</a></p>
+<p><a target="_blank" rel="noopener" href="https://code.google.com/p/dex2jar/">dex2jar，配合Smali事半功倍</a></p>
+<h1 id="应用相关"><a href="#应用相关" class="headerlink" title="应用相关"></a>应用相关</h1><ol>
+<li><p>.method和.end method</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">类似于Java中的大括号，包含了方法的实现代码段。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>.locals</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">指明了这个方法用到的寄存器数量，当然寄存器可以重复利用，从“V0”起算</span><br><span class="line">使用这个指定表明方法中非参寄存器的总数，放在方法的第一行。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>.registers</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">使用这个指令指定方法中寄存器的总数</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>v、p0、p1</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public void int foo(int a,int b)</span><br><span class="line">&#123;</span><br><span class="line">  return (a+b)*(a-b);</span><br><span class="line">&#125;</span><br><span class="line">v命名法采用以小写字母v开头的方式表示函数中用到的局部变量与参数，所有的寄存器命名从v0开始，v0,v1用来表示函数的局部变量寄存器，v2表示传入的对象引用，v3，v4表示两个传入的整形参数</span><br><span class="line">p命名法，v0,v1用来表示函数的局部变量寄存器，p0表示传入的对象的引用，p1，p2分别表示传入的两个整形参数</span><br><span class="line">p0代表的是this，p1开始代表函数参数，静态函数没有this，所以从p0开始就代表参数</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>.prologue</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">指定了代码开始处</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>.line</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">表明这是在java源码中的第几行，其实这个值无所谓是多少，可以任意修改，主要用于调试</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>invoke-direct</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">这是对方法的调用，可以看到这里调用了是Android.app.Activity的init方法，这在java里是隐式调用的</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>.parameter</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">指明了参数名</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>return-void</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">返回类型</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>invoke-static</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">用于调用static函数,invoke-static后面有一对大括号“&#123;&#125;”，其实是调用该方法的实例+参数列表</span><br><span class="line">invoke-static &#123;v3,v0&#125;, Landroid/util/log;-&gt;v(Ljava/lang/String;Ljava/lang/String;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>invoke-virtual</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">用于调用protected或public函数，同样注意修改smali时不要错用invoke-direct或invoke-static</span><br><span class="line">invoke-virtual &#123;v1&#125;, Landroid/app/Activity;-&gt;getApplicationContext()Landroid/content/Context;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>invoke-direct</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">调用private函数</span><br><span class="line">invoke-direct &#123;v0, v4&#125;, Lcom/android/server/LightsService;-&gt;&lt;init&gt;(Landroid/content/Context;)V</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>invoke-super</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">调用父类方法用的指令，一般用于调用onCreate、onDestroy等方法。</span><br><span class="line">invoke-super &#123;p0, p1&#125;, Landroid/preference/PreferenceActivity;-&gt;onCreate(Landroid/os/Bundle;)V    //p0：this，p1：Bundle</span><br><span class="line">invoke-super &#123;p0, p1, p2&#125;, Landroid/view/View;-&gt;onKeyUp(ILandroid/view/KeyEvent;)Z</span><br><span class="line">invoke-super &#123;p0, p1&#125;, Landroid/app/Activity;-&gt;onCreate(Landroid/os/Bundle;)V</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>invokeinterface</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">调用接口方法，调用的方法运行时确认实际调用，即会在运行时才确定一个实现此接口的对象。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>const</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const v0, 0x7f04001b  //将值0x7f04001b 放入寄存器v0</span><br><span class="line">const/4 v2, 0x1       //4字节常量   v2=1</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>new-instance</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">新建一个实例</span><br><span class="line">new-instance v1, Lcom/droider/crackme0502/MainActivity$1; #新建一个MainActivity$1实例  </span><br><span class="line">invoke-direct &#123;v1, p0&#125;, Lcom/droider/crackme0502/MainActivity$1;-&gt;&lt;init&gt;(Lcom/droider/crackme0502/MainActivity;)V # 初始化MainActivity$1实例  </span><br></pre></td></tr></table></figure>
+</li>
+<li><p>iput-object</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">对象赋值</span><br><span class="line">iput-object v1, p0, Lcom/leachchen/testnixiang/MainActivity;-&gt;tree:Lcom/leachchen/testnixiang/Tree;  相当于tree = new Tree(); tree是类成员变量</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>iget-object</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">调用对象</span><br><span class="line">iget-object v1, p0, Lcom/leachchen/testnixiang/MainActivity;-&gt;tree:Lcom/leachchen/testnixiang/Tree; 相当于获取到tree对象</span><br><span class="line">invoke-virtual &#123;v1&#125;, Lcom/leachchen/testnixiang/Tree;-&gt;go()V  相当于调用Tree类的go方法，tree.go();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>if-eq vA, vB, :cond_</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">如果vA等于vB则跳转到:cond_</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>if-ne vA, vB, :cond_</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">如果vA不等于vB则跳转到:cond_**</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>if-lt vA, vB, :cond_</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">如果vA小于vB则跳转到:cond_**</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>if-ge vA, vB, :cond_</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">如果vA大于等于vB则跳转到:cond_**</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>if-gt vA, vB, :cond_</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">如果vA大于vB则跳转到:cond_**</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>if-le vA, vB, :cond_</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">如果vA小于等于vB则跳转到:cond_**</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>if-eqz vA, :cond_</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">如果vA等于0则跳转到:cond_**</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>if-nez vA, :cond_</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">如果vA不等于0则跳转到:cond_**</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>if-ltz vA, :cond_</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">如果vA小于0则跳转到:cond_**</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>if-gez vA, :cond_</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">如果vA大于等于0则跳转到:cond_**</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>if-gtz vA, :cond_</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">如果vA大于0则跳转到:cond_**</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>if-lez vA, :cond_</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">如果vA小于等于0则跳转到:cond_**</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>sput-boolean</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Puts boolean value in vx into a static field.</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h1 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h1><p>Smali 是 Android Dalvik 虚拟机（DEX 格式）的汇编语言（Smali是Dalvik的寄存器语言），它是对 <code>.dex</code> 文件的反编译结果。</p>
+<p>Smali与Java的关系，简单理解就是汇编之于C。假如你对汇编有足够的驾驭能力，那你可以通过修改汇编代码来改变C&#x2F;C++代码的走向。当然，学过汇编的都清楚，汇编比BrainFuck还难学，更不用说去反编译修改了。</p>
+<p>但是Smali有一点不一样，就是它很简单，只有一点点的语法，只要会java，了解Android的相关知识，那完全可以通过修改Smali代码来反向修改java代码，虽然绕了一点。</p>
+<ul>
+<li>samli是一种低级语言，用于描述Android应用程序的字节码</li>
+<li>基于寄存器的架构，所有的操作都通过寄存器完成</li>
+<li>寄存器命名规则：v0，v1，v3……或p0，p1，p2……（p通常表示方法参数）</li>
+</ul>
+<h1 id="Smali文件的产生"><a href="#Smali文件的产生" class="headerlink" title="Smali文件的产生"></a>Smali文件的产生</h1><p>​	Smali代码是安卓APK反编译而来的，所以Smali文件和Java文件一一对应。获取Smali文件，需要下载一个辅助工具：APKTool。APKTool这个命令行工具如果详细使用功能参数事比较多的，但是这里只需要用到最基础的两个功能。</p>
+<p>一个是反编译decode：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apktool d xxxx.apk</span><br></pre></td></tr></table></figure>
+
+<p>另一个是打包build：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apktool b</span><br></pre></td></tr></table></figure>
+
+<p>这里要注意的是路径问题，记得将apktool添加到环境变量中去。</p>
+<p>另一个是打包，如果指示简单的使用参数b，那要求是在反编译出来的项目目录下执行，而打包好的问价会保存在这个项目目录下的dist目录。</p>
+<p>以<code>Hello.java</code> 为例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Hello</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="type">String</span> <span class="variable">HELLO_WORLD</span> <span class="operator">=</span> <span class="string">&quot;Hello World!&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        System.out.println(HELLO_WORLD);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>javac</code> 生成 <code>Hello.class</code> 文件，然后通过 Sdk 自带的 <code>dx</code> 工具生成 <code>Hello.dex</code> 文件，命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dx --dex --output=Hello.dex  Hello.class</span><br></pre></td></tr></table></figure>
+
+<p><code>dx</code> 工具位于 Sdk 的 <code>build-tools</code> 目录下，可添加至环境变量方便调用。<code>dx</code> 也支持多 Class 文件生成 dex。</p>
+<p><code>dex</code> 转 <code>smali</code> 使用的工具是 <code>baksmali.jar</code> ，最新版本是 <code>2.2.5</code> ，<a href="https://link.juejin.cn/?target=https://bitbucket.org/JesusFreke/smali/downloads/">点击下载</a>，使用命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar baksmali-2.2.5.jar d hello.dex</span><br></pre></td></tr></table></figure>
+
+<p>执行完成后，会在当前目录生成 <code>out</code> 文件夹，文件夹内包含生成的 <code>smali</code> 文件。</p>
+<p>生成的 <code>Hello.smali</code> 文件内容：</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">.class</span><span class="keyword"> public</span> <span class="class">LHello;</span></span><br><span class="line"><span class="keyword">.super</span> <span class="class">Ljava/lang/Object;</span></span><br><span class="line"><span class="keyword">.source</span> <span class="string">&quot;Hello.java&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># static fields</span></span><br><span class="line"><span class="keyword">.field</span><span class="keyword"> private</span><span class="keyword"> static</span> HELLO_WORLD:<span class="class">Ljava/lang/String;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># direct methods</span></span><br><span class="line"><span class="keyword">.method</span><span class="keyword"> static</span><span class="keyword"> constructor</span> &lt;clinit&gt;()V</span><br><span class="line"><span class="keyword">    .registers</span> 1</span><br><span class="line"></span><br><span class="line"><span class="keyword">    .prologue</span></span><br><span class="line"><span class="keyword">    .line</span> 3</span><br><span class="line">   <span class="built_in"> const-string </span>v0, <span class="string">&quot;Hello World!&quot;</span></span><br><span class="line"></span><br><span class="line">   <span class="built_in"> sput-object </span>v0, <span class="class">LHello;</span>-&gt;HELLO_WORLD:<span class="class">Ljava/lang/String;</span></span><br><span class="line"></span><br><span class="line">   <span class="built_in"> return-void</span></span><br><span class="line"><span class="built_in"></span><span class="keyword">.end method</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">.method</span><span class="keyword"> public</span><span class="keyword"> constructor</span> &lt;init&gt;()V</span><br><span class="line"><span class="keyword">    .registers</span> 1</span><br><span class="line"></span><br><span class="line"><span class="keyword">    .prologue</span></span><br><span class="line"><span class="keyword">    .line</span> 1</span><br><span class="line">   <span class="built_in"> invoke-direct </span>&#123;p0&#125;, <span class="class">Ljava/lang/Object;</span>-&gt;&lt;init&gt;()V</span><br><span class="line"></span><br><span class="line">   <span class="built_in"> return-void</span></span><br><span class="line"><span class="built_in"></span><span class="keyword">.end method</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">.method</span><span class="keyword"> public</span><span class="keyword"> static</span> main([<span class="class">Ljava/lang/String;</span>)V</span><br><span class="line"><span class="keyword">    .registers</span> 3</span><br><span class="line"></span><br><span class="line"><span class="keyword">    .prologue</span></span><br><span class="line"><span class="keyword">    .line</span> 6</span><br><span class="line">   <span class="built_in"> sget-object </span>v0, <span class="class">Ljava/lang/System;</span>-&gt;out:<span class="class">Ljava/io/PrintStream;</span></span><br><span class="line"></span><br><span class="line">   <span class="built_in"> sget-object </span>v1, <span class="class">LHello;</span>-&gt;HELLO_WORLD:<span class="class">Ljava/lang/String;</span></span><br><span class="line"></span><br><span class="line">   <span class="built_in"> invoke-virtual </span>&#123;v0, v1&#125;, <span class="class">Ljava/io/PrintStream;</span>-&gt;println(<span class="class">Ljava/lang/String;</span>)V</span><br><span class="line"></span><br><span class="line"><span class="keyword">    .line</span> 7</span><br><span class="line">   <span class="built_in"> return-void</span></span><br><span class="line"><span class="built_in"></span><span class="keyword">.end method</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h1><p>dalvik字节码有两种类型，原始类型和引用类型。对象和数组是引用类型，其它都是原始类型。</p>
+<p>smali数据类型都是用一个字母表示，如果你熟悉Java的数据类型，你会发现表示smali数据类型的字母其实是Java基本数据类型首字母的大写，除boolean类型外，在smail中用大写的”Z”表示boolean类型。</p>
+<table>
+<thead>
+<tr>
+<th>Smali</th>
+<th>Java</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>V</td>
+<td>void，只能用于返回值类型</td>
+</tr>
+<tr>
+<td>Z</td>
+<td>boolean</td>
+</tr>
+<tr>
+<td>B</td>
+<td>byte</td>
+</tr>
+<tr>
+<td>S</td>
+<td>short</td>
+</tr>
+<tr>
+<td>C</td>
+<td>char</td>
+</tr>
+<tr>
+<td>I</td>
+<td>int</td>
+</tr>
+<tr>
+<td>J</td>
+<td>long (64 bits)</td>
+</tr>
+<tr>
+<td>F</td>
+<td>float</td>
+</tr>
+<tr>
+<td>D</td>
+<td>double (64 bits)</td>
+</tr>
+<tr>
+<td>[</td>
+<td>数组</td>
+</tr>
+<tr>
+<td>L+全类名路径用&#x2F;分割;结尾</td>
+<td>object</td>
+</tr>
+</tbody></table>
+<p><strong>对象的表示形式</strong></p>
+<p>对于基本类型和 Void 类型，都是用一个大写字母表示。对于引用类型，<u>使用字母 <code>L</code> 加上对象类型的全限定名来表示</u>。</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">Lpackage/name/ObjectName;</span></span><br><span class="line"><span class="comment">#L表示这是一个对象类型</span></span><br><span class="line"><span class="comment">#package/name/是该对象所在的包</span></span><br><span class="line"><span class="comment">#ObjectName是对象的名字</span></span><br><span class="line"><span class="comment">#“;”表示对象名称的结束</span></span><br></pre></td></tr></table></figure>
+
+<p>相当于java中的</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span>.name.ObjectName</span><br></pre></td></tr></table></figure>
+
+<p>例如：</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#smali</span></span><br><span class="line"><span class="class">Ljava/lang/String;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#java:</span><br><span class="line">java.lang.String</span><br></pre></td></tr></table></figure>
+
+<p><strong>数组的表现形式</strong></p>
+<p>[ 表示一个整型一维数组</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[I</span><br><span class="line">#相当于java中的int[]</span><br></pre></td></tr></table></figure>
+
+<p>对于多维数组，只要增加[就行了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[[I</span><br><span class="line">#相当于java中的int[][]</span><br><span class="line">[[[I</span><br><span class="line">#相当于java中的int[][][]</span><br></pre></td></tr></table></figure>
+
+<p>注意每一维的最多255个</p>
+<p><strong>对象数组的表现形式</strong></p>
+<p>表示一个String对象数组</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="class">Ljava/lang/String;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h1><p>方法通常必须详细的指定方法类型、方法名、参数类型、返回类型，所有这些信息都是为虚拟机是能够找到正确的方法并执行。</p>
+<p><strong>方法的表示形式</strong></p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">Lpackage/name/ObjectName;</span>-&gt;MethodName(III)Z</span><br><span class="line"><span class="comment">#Lpackage/name/ObjectName;表示类型</span></span><br><span class="line"><span class="comment">#MethodName是方法名</span></span><br><span class="line"><span class="comment">#III为参数（在此是3个整型参数）</span></span><br><span class="line"><span class="comment">#Z是返回类型（bool型）</span></span><br></pre></td></tr></table></figure>
+
+<p>方法的参数是一个接一个的，中间没有隔开</p>
+<p>例子：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">method(I[[IILjava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;</span><br><span class="line">#在java中则为：String method(int, int[][], int, String, Object[])</span><br></pre></td></tr></table></figure>
+
+<p>一个比较全面的例子：</p>
+<ul>
+<li>“.method”和“.end method”类似于Java中的大括号，包含了方法的实现代码段。</li>
+</ul>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">.class</span><span class="keyword"> public</span> interface<span class="keyword"> abstract</span> <span class="class">Lcom/kit/network/CachableImage;</span></span><br><span class="line"><span class="keyword">.super</span> <span class="class">Ljava/lang/Object;</span></span><br><span class="line"><span class="keyword">.source</span> <span class="string">&quot;SourceFile&quot;</span></span><br><span class="line"> </span><br><span class="line"><span class="comment"># virtual methods</span></span><br><span class="line"><span class="keyword">.method</span><span class="keyword"> public</span><span class="keyword"> abstract</span> getIsLarge()Z<span class="keyword"></span></span><br><span class="line"><span class="keyword">.end method</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">.method</span><span class="keyword"> public</span><span class="keyword"> abstract</span> getUrl()<span class="class">Ljava/lang/String;</span><span class="keyword"></span></span><br><span class="line"><span class="keyword">.end method</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">.method</span><span class="keyword"> public</span><span class="keyword"> abstract</span> getViewContext()<span class="class">Landroid/content/Context;</span><span class="keyword"></span></span><br><span class="line"><span class="keyword">.end method</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">.method</span><span class="keyword"> public</span><span class="keyword"> abstract</span> setBitmap(<span class="class">Landroid/graphics/Bitmap;</span>Z)V<span class="keyword"></span></span><br><span class="line"><span class="keyword">.end method</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">.method</span><span class="keyword"> public</span><span class="keyword"> abstract</span> setIsLarge(Z)V<span class="keyword"></span></span><br><span class="line"><span class="keyword">.end method</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">.method</span><span class="keyword"> public</span><span class="keyword"> abstract</span> setUrl(<span class="class">Ljava/lang/String;</span>)V<span class="keyword"></span></span><br><span class="line"><span class="keyword">.end method</span></span><br></pre></td></tr></table></figure>
+
+<p>上面的smali代码还原后的java代码为：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//#注：在实际代码中我们还必须引入相关的包</span></span><br><span class="line"><span class="keyword">import</span> android.content.Context;</span><br><span class="line"><span class="keyword">import</span> android.graphics.Bitmap;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">CachableImage</span> &#123;</span><br><span class="line"> </span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">abstract</span> <span class="type">boolean</span> <span class="title function_">getIsLarge</span><span class="params">()</span>;</span><br><span class="line"> </span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">abstract</span> String <span class="title function_">getUrl</span><span class="params">()</span>;</span><br><span class="line"> </span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">abstract</span> Context <span class="title function_">getViewContext</span><span class="params">()</span>;</span><br><span class="line"> </span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title function_">setBitmap</span><span class="params">(Bitmap bitmap)</span>;</span><br><span class="line"> </span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title function_">setIsLarge</span><span class="params">(<span class="type">boolean</span> islarge)</span>;</span><br><span class="line"> </span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title function_">setUrl</span><span class="params">(String url)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>以最开始的<code>Hello.smali</code> 为例，其中包含了三个方法，<code>clinit</code> , <code>init</code> 和 <code>main</code> 方法。<code>main</code> 方法是我们自己编写的，而 <code>clinit</code> 和 <code>init</code> 方法则是 javac 编译时生成的。下面进行逐一分析:</p>
+<h2 id="clinit"><a href="#clinit" class="headerlink" title="clinit"></a>clinit</h2><figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">.method</span><span class="keyword"> static</span><span class="keyword"> constructor</span> &lt;clinit&gt;()V</span><br><span class="line"><span class="keyword">    .registers</span> 1</span><br><span class="line"></span><br><span class="line"><span class="keyword">    .prologue</span></span><br><span class="line"><span class="keyword">    .line</span> 3</span><br><span class="line">   <span class="built_in"> const-string </span>v0, <span class="string">&quot;Hello World!&quot;</span></span><br><span class="line"></span><br><span class="line">   <span class="built_in"> sput-object </span>v0, <span class="class">LHello;</span>-&gt;HELLO_WORLD:<span class="class">Ljava/lang/String;</span></span><br><span class="line"></span><br><span class="line">   <span class="built_in"> return-void</span></span><br><span class="line"><span class="built_in"></span><span class="keyword">.end method</span></span><br></pre></td></tr></table></figure>
+
+<p><code>clinit</code> 方法会进行静态变量的初始化，静态代码块的执行等操作，该方法在类被加载的时候调用。逐行分析该方法的执行逻辑：</p>
+<ul>
+<li><code>.registers 1 :</code> 该方法需要使用的寄存器数量。之前已经提到，DalviK VM 是基于寄存器的，字节码可以使用的虚拟寄存器个数可达 65536 个，每个寄存器 32 位，64 位的数据使用相邻两个寄存器表示。最终，所有的虚拟寄存器都会被映射到真实的物理寄存器上。一般情况下，我们使用字母 <code>v</code> 表示局部变量使用的寄存器，使用字母 <code>p</code> 表示参数所使用的寄存器，且局部变量使用的寄存器排列在前，参数使用的寄存器排列在后。这里就表示 <code>clinit</code> 方法仅使用了一个寄存器。</li>
+<li><code>const-string v0, &quot;Hello World!&quot;</code> : 将字符串 <code>Hello World！</code> 的引用移到寄存器 <code>v0</code> 中。</li>
+<li><code>sput-object v0, LHello;-&gt;HELLO_WORLD:Ljava/lang/String;</code> : 前缀 <code>s</code> 的 <code>sput</code> 和 <code>sget</code> 指令用于静态字段的读写操作。将寄存器 <code>v0</code> 存储的字符串引用赋值给 <code>HELLO_WORLD</code> 字段，结合上一句字节码，这里完成了静态变量 <code>HELLO_WORLD</code> 的赋值工作，也验证了 <code>clinit</code> 方法的确进行了静态变量的初始化。</li>
+</ul>
+<h2 id="init"><a href="#init" class="headerlink" title="init"></a>init</h2><figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">.method</span><span class="keyword"> public</span><span class="keyword"> constructor</span> &lt;init&gt;()V</span><br><span class="line"><span class="keyword">    .registers</span> 1</span><br><span class="line"></span><br><span class="line"><span class="keyword">    .prologue</span></span><br><span class="line"><span class="keyword">    .line</span> 1</span><br><span class="line">    <span class="comment">#invoke-direct 用于调用非 static 直接方法（也就是说，本质上不可覆盖的实例方法，即 private 实例方法或构造函数）。显然，这里调用的是默认构造函数。</span></span><br><span class="line">   <span class="built_in"> invoke-direct </span>&#123;p0&#125;, <span class="class">Ljava/lang/Object;</span>-&gt;&lt;init&gt;()V</span><br><span class="line">   <span class="built_in"> return-void</span></span><br><span class="line"><span class="built_in"></span><span class="keyword">.end method</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="main"><a href="#main" class="headerlink" title="main"></a>main</h2><figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">.method</span><span class="keyword"> public</span><span class="keyword"> static</span> main([<span class="class">Ljava/lang/String;</span>)V</span><br><span class="line"><span class="keyword">    .registers</span> 3</span><br><span class="line"></span><br><span class="line"><span class="keyword">    .prologue</span></span><br><span class="line"><span class="keyword">    .line</span> 6</span><br><span class="line">   <span class="built_in"> sget-object </span>v0, <span class="class">Ljava/lang/System;</span>-&gt;out:<span class="class">Ljava/io/PrintStream;</span></span><br><span class="line"></span><br><span class="line">   <span class="built_in"> sget-object </span>v1, <span class="class">LHello;</span>-&gt;HELLO_WORLD:<span class="class">Ljava/lang/String;</span></span><br><span class="line"></span><br><span class="line">   <span class="built_in"> invoke-virtual </span>&#123;v0, v1&#125;, <span class="class">Ljava/io/PrintStream;</span>-&gt;println(<span class="class">Ljava/lang/String;</span>)V</span><br><span class="line"></span><br><span class="line"><span class="keyword">    .line</span> 7</span><br><span class="line">   <span class="built_in"> return-void</span></span><br><span class="line"><span class="built_in"></span><span class="keyword">.end method</span></span><br></pre></td></tr></table></figure>
+
+<p>最后是 <code>main</code> 方法，从上述 smali 代码我们可以看到 <code>main</code> 方法使用了 3 个寄存器，无返回值（那是肯定的），执行的具体代码是下面三行:</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sget-object v0, <span class="class">Ljava/lang/System;</span>-&gt;out:<span class="class">Ljava/io/PrintStream;</span></span><br><span class="line"><span class="built_in"></span></span><br><span class="line"><span class="built_in">sget-object </span>v1, <span class="class">LHello;</span>-&gt;HELLO_WORLD:<span class="class">Ljava/lang/String;</span></span><br><span class="line"><span class="built_in"></span></span><br><span class="line"><span class="built_in">invoke-virtual </span>&#123;v0, v1&#125;, <span class="class">Ljava/io/PrintStream;</span>-&gt;println(<span class="class">Ljava/lang/String;</span>)V</span><br></pre></td></tr></table></figure>
+
+<p><code>sget</code> 的用法在 <code>clinit</code> 方法中解释过，表示静态字段的读取。</p>
+<p>第一句代码，获取类 <code>System</code> 的静态字段 <code>out</code>，其类型是 <code>Ljava/io/PrintStream</code>，并将其引用赋给寄存器 <code>v0</code>。</p>
+<p>第二句代码获取在 <code>clinit</code> 方法中已经初始化的静态字段 <code>HELLO_WORLD</code>，并将其引用赋给寄存器 <code>v1</code>。第三句中使用了 <code>invoke-virtual</code> 指令，<code>invoke-virtual</code> 调用正常的虚方法（该方法不是 private、static 或 final，也不是构造函数），之后通常会跟上 <code>&#123;&#125;</code>，<code>&#123;&#125;</code>之中的第一个寄存器通常是指向当前实例对象，如 <code>v0</code> 就是指向 <code>System.out</code> 对象，后面的内容才是该方法真正的参数，如 <code>v1</code>。<code>&#123;&#125;,</code> 之后就是要执行的方法的描述，如 <code>Ljava/io/PrintStream;-&gt;println(Ljava/lang/String;)V</code> ,指的就是 <code>PrintStream</code> 对象的 <code>println</code> 方法。</p>
+<p>综上，这三句字节码执行的就是 <code>System.out.println(HELLO_WORLD);</code>。</p>
+<p>到这里，<code>Hello.smali</code> 文件就解析完了。</p>
+<hr>
+<h1 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#我是注释</span><br></pre></td></tr></table></figure>
+
+<h1 id="类声明"><a href="#类声明" class="headerlink" title="类声明"></a>类声明</h1><p>基本格式</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">.class</span>+权限修饰符+类名;</span><br></pre></td></tr></table></figure>
+
+<p>如下java代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>用smali代码表示为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#声明类（必须）</span><br><span class="line">.class public LTest;</span><br><span class="line">#声明父类 默认继承Object（必须）如果有明确的继承 将Object替换</span><br><span class="line">.super Ljava/lang/Object;</span><br><span class="line">#如果实现了接口 则必须添加接口代码</span><br><span class="line">.implements Ljava/lang/CharSequence;</span><br><span class="line">#源码文件名（非必填）如果有混淆就会没有这行代码</span><br><span class="line">.source &quot;Test.java&quot;</span><br></pre></td></tr></table></figure>
+
+<p><strong>关于分号：</strong></p>
+<p><u>凡是L开头全包名路径结尾都需要加分号</u></p>
+<h1 id="字段声明-成员-全局变量"><a href="#字段声明-成员-全局变量" class="headerlink" title="字段声明(成员&#x2F;全局变量)"></a>字段声明(成员&#x2F;全局变量)</h1><p>基本格式：</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">.field</span> 权限修饰符+静态修饰符+变量名;变量全类名路径;</span><br></pre></td></tr></table></figure>
+
+<p>如下java代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>用smali代码表示：</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">.class</span><span class="keyword"> public</span> <span class="class">LTest;</span></span><br><span class="line"><span class="keyword">.super</span> <span class="class">Ljava/lang/Object;</span></span><br><span class="line"><span class="keyword">.source</span> <span class="string">&quot;Test.java&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#如果是非静态的 只需要将static去掉即可</span></span><br><span class="line"><span class="keyword">.field</span><span class="keyword"> private</span><span class="keyword"> static</span> a:<span class="class">Ljava/lang/String;</span></span><br></pre></td></tr></table></figure>
+
+<p>例子：</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">.field</span><span class="keyword"> private</span> _requestLayout:Z</span><br><span class="line"> </span><br><span class="line"><span class="keyword">.field</span><span class="keyword"> public</span> isLarge:Z</span><br><span class="line"> </span><br><span class="line"><span class="keyword">.field</span><span class="keyword"> public</span> resize:Z</span><br><span class="line"> </span><br><span class="line"><span class="keyword">.field</span><span class="keyword"> public</span> thumbnailSize:I</span><br><span class="line"> </span><br><span class="line"><span class="keyword">.field</span><span class="keyword"> public</span> url:<span class="class">Ljava/lang/String;</span></span><br></pre></td></tr></table></figure>
+
+<p>还原后的java代码为：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">boolean</span> _requestLayout;</span><br><span class="line"><span class="keyword">public</span> <span class="type">boolean</span> isLarge;</span><br><span class="line"><span class="keyword">public</span> <span class="type">boolean</span> resize;</span><br><span class="line"><span class="keyword">public</span> <span class="type">int</span> thumbnailSize;</span><br><span class="line"><span class="keyword">public</span> String url;</span><br></pre></td></tr></table></figure>
+
+<p>以一个默认的HelloWorld的应用程序进行解释。新建一个HelloWorld安卓项目，在MainActivity中只保留onCreate函数。代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.fusijie.helloworld;</span><br><span class="line">  <span class="keyword">import</span> android.app.Activity;</span><br><span class="line">  <span class="keyword">import</span> android.os.Bundle;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MainActivity</span> <span class="keyword">extends</span> <span class="title class_">Activity</span> &#123;</span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">onCreate</span><span class="params">(Bundle savedInstanceState)</span> &#123;</span><br><span class="line">      <span class="built_in">super</span>.onCreate(savedInstanceState);</span><br><span class="line">      setContentView(R.layout.activity_main);</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>反编译后的Smali文件如下：</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">.class</span><span class="keyword"> public</span> <span class="class">Lcom/fusijie/helloworld/MainActivity;</span></span><br><span class="line"><span class="keyword">.super</span> <span class="class">Landroid/app/Activity;</span></span><br><span class="line"><span class="keyword">.source</span> <span class="string">&quot;MainActivity.java&quot;</span></span><br><span class="line"><span class="comment"># direct methods</span></span><br><span class="line"><span class="keyword">.method</span><span class="keyword"> public</span><span class="keyword"> constructor</span> ()V</span><br><span class="line">	<span class="comment">#“.locals”指明了这个方法用到的寄存器数量，当然寄存器可以重复利用，从“V0”起算</span></span><br><span class="line"><span class="keyword">  .locals</span> 0</span><br><span class="line">  <span class="comment">#“.prologue”指定了代码开始处。</span></span><br><span class="line"><span class="keyword">  .prologue</span></span><br><span class="line">  <span class="comment">#“.line”表明这是在java源码中的第几行，其实这个值无所谓是多少，可以任意修改，主要用于调试</span></span><br><span class="line"><span class="keyword">  .line</span> 14</span><br><span class="line">  <span class="comment">#“invoke-direct”这是对方法的调用，这里调用了是Android.app.Activity的init方法，这在java里是隐式调用的</span></span><br><span class="line"> <span class="built_in"> invoke-direct </span>&#123;p0&#125;, <span class="class">Landroid/app/Activity;</span>-&gt;()V</span><br><span class="line">  <span class="comment">#“return-void”表明了返回类型，这和java不一样，即使没有返回值，也需要这样写</span></span><br><span class="line"> <span class="built_in"> return-void</span></span><br><span class="line"><span class="built_in"></span><span class="keyword">.end method</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># virtual methods</span></span><br><span class="line"><span class="keyword">.method</span><span class="keyword"> protected</span> onCreate(<span class="class">Landroid/os/Bundle;</span>)V</span><br><span class="line"><span class="keyword">  .locals</span> 1</span><br><span class="line">  <span class="comment">#“.parameter”指明了参数名，但是一般没有用</span></span><br><span class="line"><span class="keyword">  .parameter</span> <span class="string">&quot;savedInstanceState&quot;</span></span><br><span class="line"><span class="keyword">  .prologue</span></span><br><span class="line"><span class="keyword">  .line</span> 18</span><br><span class="line">  <span class="comment">#需要注意的是p0代表的是this，p1开始代表函数参数，静态函数没有this，所以从p0开始就代表参数</span></span><br><span class="line"> <span class="built_in"> invoke-super </span>&#123;p0, p1&#125;, <span class="class">Landroid/app/Activity;</span>-&gt;onCreate(<span class="class">Landroid/os/Bundle;</span>)V</span><br><span class="line"><span class="keyword">  .line</span> 19</span><br><span class="line"> <span class="built_in"> const/high16 </span>v0, 0x7f03</span><br><span class="line"> <span class="built_in"> invoke-virtual </span>&#123;p0, v0&#125;, <span class="class">Lcom/fusijie/helloworld/MainActivity;</span>-&gt;setContentView(I)V</span><br><span class="line"><span class="keyword">  .line</span> 20</span><br><span class="line"> <span class="built_in"> return-void</span></span><br><span class="line"><span class="built_in"></span><span class="keyword">.end method</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>在实现里先是调用了父类的方法，然后再调用setContentView，注意这里给了一个传参。整形的传参，这个值是先赋给寄存器v0，然后再调用的使用传递进去的。smali中都是这么使用，所有的值必须通过寄存器来中转。这点和汇编很像。</li>
+</ul>
+<p><strong>文件头</strong></p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#类名为MainActivity</span></span><br><span class="line"><span class="keyword">.class</span><span class="keyword"> public</span> <span class="class">Lcom/fusijie/helloworld/MainActivity;</span>	</span><br><span class="line"><span class="comment">#父类名为Activity</span></span><br><span class="line"><span class="keyword">.super</span> <span class="class">Landroid/app/Activity;</span></span><br><span class="line"><span class="comment">#源文件名称为MainActivity</span></span><br><span class="line"><span class="keyword">.source</span> <span class="string">&quot;MainActivity.java&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>对比了Java代码和Smali代码，可以很清楚的看到，原本只有几行的代码到了Smali，内容被大大扩充了。Smali还原了Java隐藏的东西，同时显式地指定了很多细节。这还只是个最基本的HelloWorld的onCreate函数，如果有内部类，还会分文件显示。</p>
+<h1 id="常量声明"><a href="#常量声明" class="headerlink" title="常量声明"></a>常量声明</h1><p>基本格式</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">.field</span> 权限修饰符+静态修饰符+final+变量名;变量全类名路径;=常量值</span><br></pre></td></tr></table></figure>
+
+<p>如下java代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String a=<span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>用smali代码表示：</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">.class</span><span class="keyword"> public</span> <span class="class">LTest;</span></span><br><span class="line">,super <span class="class">Ljava/lang/Object;</span></span><br><span class="line"><span class="keyword">.source</span> <span class="string">&quot;Test.java&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">.field</span><span class="keyword"> private</span><span class="keyword"> static</span><span class="keyword"> final</span> a:<span class="class">Ljava/lang/String;</span> = <span class="string">&quot;Hello&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="方法声明"><a href="#方法声明" class="headerlink" title="方法声明"></a>方法声明</h1><figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">.method</span><span class="keyword"> public</span> testMethod(Lcom/lang/String)V<span class="keyword"></span></span><br><span class="line"><span class="keyword">.end method</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="字段取值赋值"><a href="#字段取值赋值" class="headerlink" title="字段取值赋值"></a>字段取值赋值</h1><figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iget<span class="built_in"> iput </span>sget<span class="built_in"> sput </span>instance<span class="keyword"> static</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="方法调用"><a href="#方法调用" class="headerlink" title="方法调用"></a>方法调用</h1><figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">invoke</span><br></pre></td></tr></table></figure>
+
+<h1 id="方法取值"><a href="#方法取值" class="headerlink" title="方法取值"></a>方法取值</h1><figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#第一步：调用方法	invoke--</span></span><br><span class="line"><span class="comment">#第二步：返回值的接收 move-result-object v0</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h1><ul>
+<li><p>一定要使用混淆。不单单是第三方SDK，你的代码也是。破解游戏很重要一点就是要抓住游戏的逻辑。代码混淆后，Smali更加晦涩难懂，逻辑也更难掌握。</p>
+</li>
+<li><p>回到开头的话，解读汇编比解读Smali难度大的多得多。所以重要的逻辑可以放到C&#x2F;C++层去处理就不要放在Java层上去处理。</p>
+</li>
+<li><p>多用连续调用的方式。这样出来的效果是Java只有一行，Smali可能有好几十行，看着都蛋疼。当然这对熟练的破解老手无效～</p>
+</li>
+<li><p>在一些关键的点上，比如支付，多绕一下。而不是像《消灭小星星》这样，直接在Java内用中文显示“支付成功”，同时去调用JNI方法。用dex2jar看一眼就暴露了。</p>
+</li>
+<li><p><code>java</code> 转 <code>smali</code> 的快捷方式，在 <code>IDEA</code> 或者 <code>Android Studo</code> 中安装插件 <code>java2smali</code>，在 <code>Build</code> 菜单栏下会出现 <code>Compile to smali</code>选项，可以迅速将 java 代码转化成 smali 代码。在学习 smali 的过程中，碰到不确定的内容，可以先写好 java 代码，再转成 smali 代码进行对照学习。</p>
+</li>
+<li><p>Android 官网也对 Dalvik 字节码的指令集进行了归纳，地址是 [Dalvik 字节码格式](<a target="_blank" rel="noopener" href="https://source.android.google.cn/docs/core/runtime/dalvik-bytecode?hl=zh-cn">Dalvik 字节码格式  | Android Open Source Project</a>)。在阅读过程中遇到不熟悉的指令，都可以在这个页面进行查找。</p>
+</li>
+</ul>
+ 
       <!-- reward -->
       
     </div>
