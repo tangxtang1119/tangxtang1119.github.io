@@ -13,7 +13,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>Samli一 |  tangxtang</title>
+      <title>Samli |  tangxtang</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="/favicon.ico" />
@@ -66,7 +66,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  Samli一
+  Samli
 </h1>
  
 
@@ -74,8 +74,8 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2025/04/04/Samli/" class="article-date">
-  <time datetime="2025-04-04T11:03:39.000Z" itemprop="datePublished">2025-04-04</time>
+      <a href="/2025/04/06/Samli/" class="article-date">
+  <time datetime="2025-04-05T16:00:00.000Z" itemprop="datePublished">2025-04-06</time>
 </a> 
   <div class="article-category">
     <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
@@ -86,7 +86,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">4.8k</span>
+            <span class="post-count">5.5k</span>
         </span>
     </span>
 
@@ -95,7 +95,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">20 分钟</span>
+            <span class="post-count">23 分钟</span>
         </span>
     </span>
 </div>
@@ -328,6 +328,8 @@
 <p><strong>方法的表示形式</strong></p>
 <figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">Lpackage/name/ObjectName;</span>-&gt;MethodName(III)Z</span><br><span class="line"><span class="comment">#Lpackage/name/ObjectName;表示类型</span></span><br><span class="line"><span class="comment">#MethodName是方法名</span></span><br><span class="line"><span class="comment">#III为参数（在此是3个整型参数）</span></span><br><span class="line"><span class="comment">#Z是返回类型（bool型）</span></span><br></pre></td></tr></table></figure>
 
+
+
 <p>方法的参数是一个接一个的，中间没有隔开</p>
 <p>例子：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">method(I[[IILjava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;</span><br><span class="line">#在java中则为：String method(int, int[][], int, String, Object[])</span><br></pre></td></tr></table></figure>
@@ -413,13 +415,112 @@
 <p>用smali代码表示：</p>
 <figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">.class</span><span class="keyword"> public</span> <span class="class">LTest;</span></span><br><span class="line">,super <span class="class">Ljava/lang/Object;</span></span><br><span class="line"><span class="keyword">.source</span> <span class="string">&quot;Test.java&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">.field</span><span class="keyword"> private</span><span class="keyword"> static</span><span class="keyword"> final</span> a:<span class="class">Ljava/lang/String;</span> = <span class="string">&quot;Hello&quot;</span></span><br></pre></td></tr></table></figure>
 
-<h1 id="方法声明"><a href="#方法声明" class="headerlink" title="方法声明"></a>方法声明</h1><figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">.method</span><span class="keyword"> public</span> testMethod(Lcom/lang/String)V<span class="keyword"></span></span><br><span class="line"><span class="keyword">.end method</span></span><br></pre></td></tr></table></figure>
+<h1 id="成员方法-函数声明"><a href="#成员方法-函数声明" class="headerlink" title="成员方法&#x2F;函数声明"></a>成员方法&#x2F;函数声明</h1><figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">.method</span> 权限修饰符+静态修饰符+方法名(参数类型)返回值类型</span><br><span class="line"><span class="comment">#方法体</span><span class="keyword"></span></span><br><span class="line"><span class="keyword">.end method</span><span class="comment">#注意方法结尾标志</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="无参-有参无返回"><a href="#无参-有参无返回" class="headerlink" title="无参&#x2F;有参无返回"></a><strong>无参&#x2F;有参无返回</strong></h2><p>如下java代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span></span><br><span class="line">&#123;</span><br><span class="line">    #无参无返回</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">getName</span><span class="params">()</span>&#123;&#125;</span><br><span class="line">    #有参无返回</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">getName</span><span class="params">(String a, <span class="type">int</span> b)</span>&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>用smali代码表示：</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">.class</span><span class="keyword"> public</span> <span class="class">LTest;</span></span><br><span class="line"><span class="keyword">.super</span> <span class="class">Ljava/lang/Object;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#如果是非静态 只需要将static去掉即可</span></span><br><span class="line"><span class="keyword">.method</span><span class="keyword"> public</span><span class="keyword"> static</span> getName()V</span><br><span class="line"><span class="built_in">	return-void</span></span><br><span class="line"><span class="built_in"></span><span class="keyword">.end method</span></span><br><span class="line"><span class="comment">#有参无返回</span></span><br><span class="line"><span class="keyword">.method</span><span class="keyword"> public</span><span class="keyword"> static</span> getName(<span class="class">Ljava/lang/String;</span>I)V</span><br><span class="line"><span class="built_in">	return-void</span></span><br><span class="line"><span class="built_in"></span><span class="keyword">.end method</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="带参有返回值"><a href="#带参有返回值" class="headerlink" title="带参有返回值"></a><strong>带参有返回值</strong></h2><p>如下java代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getName</span><span class="params">(String p)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;hello&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>用smali代码表示：</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">.class</span><span class="keyword"> public</span> <span class="class">LTest;</span></span><br><span class="line"><span class="keyword">.super</span> <span class="class">Ljava/lang/Object;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">.method</span><span class="keyword"> public</span> getName(<span class="class">Ljava/lang/String;</span>)<span class="class">Ljava/lang/String;</span></span><br><span class="line"><span class="built_in">	const-string </span>v0,<span class="string">&quot;hello&quot;</span></span><br><span class="line"><span class="built_in">	return-object </span>v0<span class="keyword"></span></span><br><span class="line"><span class="keyword">.end method</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="关于方法返回关键字"><a href="#关于方法返回关键字" class="headerlink" title="关于方法返回关键字"></a><strong>关于方法返回关键字</strong></h2><p><strong>主要有以下四种</strong></p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">return-void<span class="built_in"></span></span><br><span class="line"><span class="built_in">return-object</span></span><br><span class="line"><span class="built_in"></span>return</span><br><span class="line">return-wide</span><br></pre></td></tr></table></figure>
+
+<p>数据类型对应关系表如下：</p>
+<table>
+<thead>
+<tr>
+<th align="center">smali方法返回关键字</th>
+<th align="center">数据类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">return</td>
+<td align="center">boolean</td>
+</tr>
+<tr>
+<td align="center">return</td>
+<td align="center">byte</td>
+</tr>
+<tr>
+<td align="center">return</td>
+<td align="center">short</td>
+</tr>
+<tr>
+<td align="center">return</td>
+<td align="center">char</td>
+</tr>
+<tr>
+<td align="center">return</td>
+<td align="center">int</td>
+</tr>
+<tr>
+<td align="center">return-wide</td>
+<td align="center">long (64 bits)</td>
+</tr>
+<tr>
+<td align="center">return-wide</td>
+<td align="center">double</td>
+</tr>
+<tr>
+<td align="center">return</td>
+<td align="center">float</td>
+</tr>
+<tr>
+<td align="center">return-void</td>
+<td align="center">void</td>
+</tr>
+<tr>
+<td align="center">return-object</td>
+<td align="center">数组</td>
+</tr>
+<tr>
+<td align="center">return-object</td>
+<td align="center">object</td>
+</tr>
+</tbody></table>
+<h1 id="构造方法-构造函数声明"><a href="#构造方法-构造函数声明" class="headerlink" title="构造方法&#x2F;构造函数声明"></a>构造方法&#x2F;构造函数声明</h1><figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">.method</span> 权限修饰符+constructor &lt;init&gt;(参数类型)返回值类型</span><br><span class="line"><span class="comment">#方法体</span><span class="keyword"></span></span><br><span class="line"><span class="keyword">.end method</span></span><br></pre></td></tr></table></figure>
+
+<p>如下java代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Test</span><span class="params">(String a)</span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>用smali代码表示：</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">.class</span><span class="keyword"> public</span> <span class="class">LTest;</span></span><br><span class="line"><span class="keyword">.super</span> <span class="class">Ljava/lang/Object;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">.method</span><span class="keyword"> public</span><span class="keyword"> constructor</span> &lt;init&gt;(<span class="class">Ljava/lang/String;</span>)V</span><br><span class="line">	<span class="comment">#调用父类构造方法</span></span><br><span class="line"><span class="built_in">	invoke-direct </span>&#123;p0&#125;,<span class="class">Ljava/lang/Object;</span>-&gt;&lt;init&gt;()V</span><br><span class="line"><span class="built_in">	return-viod</span></span><br><span class="line"><span class="built_in"></span><span class="keyword">.end method</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="静态代码块声明"><a href="#静态代码块声明" class="headerlink" title="静态代码块声明"></a>静态代码块声明</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.method static +constructor &lt;clinit&gt;()V</span><br><span class="line">#方法体</span><br><span class="line">.end method</span><br></pre></td></tr></table></figure>
+
+<p>如下java代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span></span><br><span class="line">&#123;	</span><br><span class="line">    <span class="keyword">static</span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>用smali代码表示：</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">.class</span><span class="keyword"> public</span> <span class="class">LTest;</span></span><br><span class="line"><span class="keyword">.super</span> <span class="class">Ljava/lang/Object;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">.method</span><span class="keyword"> public</span><span class="keyword"> constructor</span> &lt;clinit&gt;()V</span><br><span class="line">	</span><br><span class="line"><span class="built_in">	return-viod</span></span><br><span class="line"><span class="built_in"></span><span class="keyword">.end method</span></span><br></pre></td></tr></table></figure>
 
 
 
-<h1 id="字段取值赋值"><a href="#字段取值赋值" class="headerlink" title="字段取值赋值"></a>字段取值赋值</h1><figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iget<span class="built_in"> iput </span>sget<span class="built_in"> sput </span>instance<span class="keyword"> static</span></span><br></pre></td></tr></table></figure>
+<h1 id="方法调用"><a href="#方法调用" class="headerlink" title="方法调用"></a>方法调用</h1><h2 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a><strong>关键字</strong></h2><figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">invoke-virtual	<span class="comment">#用于非私有实例方法的调用</span><span class="built_in"></span></span><br><span class="line"><span class="built_in">invoke-direct	</span><span class="comment">#用于构造方法以及私有方法的调用</span><span class="built_in"></span></span><br><span class="line"><span class="built_in">invoke-static	</span><span class="comment">#调用静态方法</span><span class="built_in"></span></span><br><span class="line"><span class="built_in">invoke-super	</span><span class="comment">#调用父类方法</span><span class="built_in"></span></span><br><span class="line"><span class="built_in">invoke-interface	</span><span class="comment">#调用接口方法</span></span><br></pre></td></tr></table></figure>
 
-<h1 id="方法调用"><a href="#方法调用" class="headerlink" title="方法调用"></a>方法调用</h1><figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">invoke</span><br></pre></td></tr></table></figure>
+<h2 id="非私有实例方法的调用"><a href="#非私有实例方法的调用" class="headerlink" title="非私有实例方法的调用"></a><strong>非私有实例方法的调用</strong></h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">invoke-virtual &#123;参数&#125;,方法所属类名;-&gt;方法名(参数类型)返回值类型</span><br></pre></td></tr></table></figure>
+
+<p>如下java代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span></span><br><span class="line">&#123;</span><br><span class="line">    #构造方法</span><br><span class="line">	<span class="keyword">public</span> <span class="title function_">Test</span><span class="params">(String a)</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.getName();</span><br><span class="line">    &#125;    </span><br><span class="line">    #成员方法</span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getName</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;hello&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>用smali代码表示：</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">.class</span><span class="keyword"> public</span> <span class="class">LTest;</span></span><br><span class="line"><span class="keyword">.super</span> <span class="class">Ljava/lang/Object;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">.method</span><span class="keyword"> public</span><span class="keyword"> constructor</span> &lt;init&gt;(<span class="class">Ljava/lang/String;</span>)V</span><br><span class="line">	</span><br><span class="line">	<span class="comment">#p0指代的是this.Ljava/lang/String;从0开始数是第0个参数,类似于本地变量表</span></span><br><span class="line">	<span class="comment">#调用父类构造方法</span></span><br><span class="line"><span class="built_in">	invoke-direct </span>&#123;p0&#125;, <span class="class">Ljava/lang/object;</span>-&gt;&lt;init&gt;()V</span><br><span class="line">	<span class="comment">#调用普通成员getName方法</span></span><br><span class="line"><span class="built_in">	invoke-virtual </span>&#123;p0&#125;, <span class="class">LTest;</span>-&gt;getName()<span class="class">Ljava/lang/String;</span></span><br><span class="line">	</span><br><span class="line"><span class="built_in">	return-void</span></span><br><span class="line"><span class="built_in"></span><span class="keyword">.end method</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">.method</span><span class="keyword"> public</span> getName()<span class="class">Ljava/lang/String;</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">#定义局部字符串常量</span></span><br><span class="line"><span class="built_in">	const-string </span>v0,<span class="string">&quot;hello&quot;</span></span><br><span class="line">	<span class="comment">#返回常量</span></span><br><span class="line">	retrun-object v<span class="keyword"></span></span><br><span class="line"><span class="keyword">.end method</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="私有方法或者构造方法的调用"><a href="#私有方法或者构造方法的调用" class="headerlink" title="私有方法或者构造方法的调用"></a><strong>私有方法或者构造方法的调用</strong></h2><figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">invoke-direct &#123;参数&#125;, 方法所属类名;-&gt;方法名(参数类型)返回值类型;</span><br></pre></td></tr></table></figure>
+
+<p><strong>私有方法调用：</strong></p>
+<p>如下java代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Test</span><span class="params">(String a)</span>&#123;</span><br><span class="line">        getName();</span><br><span class="line">    &#125;</span><br><span class="line">    #私有方法</span><br><span class="line">    <span class="keyword">private</span> String <span class="title function_">getName</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;hello&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>用smali代码表示：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">````</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 字段取值赋值</span><br><span class="line"></span><br><span class="line">````smali</span><br><span class="line">iget iput sget sput instance static</span><br></pre></td></tr></table></figure>
 
 <h1 id="方法取值"><a href="#方法取值" class="headerlink" title="方法取值"></a>方法取值</h1><figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#第一步：调用方法	invoke--</span></span><br><span class="line"><span class="comment">#第二步：返回值的接收 move-result-object v0</span></span><br></pre></td></tr></table></figure>
 
@@ -503,7 +604,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://tangxtang1119.github.io/2025/04/04/Samli/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://tangxtang1119.github.io/2025/04/06/Samli/" alt="微信分享二维码">
     </div>
 </div>
 
