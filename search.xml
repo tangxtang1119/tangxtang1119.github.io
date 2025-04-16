@@ -4436,8 +4436,9 @@
 <li><strong>State or Province</strong>: 输入你所在的州或省份。</li>
 <li><strong>Country Code</strong>: 输入你所在的国家代码（例如，CN 表示中国）。</li>
 </ul>
-<p><strong>首次生成签名密钥可以使用命令</strong></p>
-<p><code>keytool -genkeypair -v -keystore my-key.keystore -alias my-key -keyalg RSA -keysize 2048 -validity 10000</code></p>
+</li>
+</ul>
+<h3 id="首次生成签名密钥可以使用命令"><a href="#首次生成签名密钥可以使用命令" class="headerlink" title="首次生成签名密钥可以使用命令"></a><strong>首次生成签名密钥可以使用命令</strong></h3><p><code>keytool -genkeypair -v -keystore my-key.keystore -alias my-key -keyalg RSA -keysize 2048 -validity 10000</code></p>
 <ul>
 <li>按提示输入信息（密码、姓名等），生成 <code>my-key.keystore</code> 文件。 <ul>
 <li><code>keytool</code>: 这是Java自带的一个命令行工具，用于管理密钥库以及密钥和证书条目。</li>
@@ -4456,8 +4457,6 @@
 <li>Choose existing…: 选择一个现有的密钥库文件。</li>
 </ul>
 <p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/%E5%AF%86%E9%92%A5%E5%BA%930.png"></p>
-</li>
-</ul>
 <p><strong>选择输出目录</strong></p>
 <ul>
 <li>默认路径：<code>F:\AndroidProject\helloworld\app</code>（可手动修改存放位置）。</li>
@@ -4484,11 +4483,48 @@
 <ul>
 <li><strong>作用</strong>：将修改后的资源重新打包为APK（未签名，无法直接安装）。</li>
 </ul>
+<ol>
+<li><strong><code>apktool</code></strong><br>  Apktool 是一个用于逆向工程 Android APK 文件的工具。它可以解包 APK 文件（反编译资源文件和清单文件）以及重新打包修改后的文件。</li>
+<li><strong><code>b</code></strong><br>  表示“build”（构建）。这个参数告诉 Apktool 将解包后的文件重新打包成一个新的 APK 文件。</li>
+<li><strong><code>output_dir</code></strong><br>  这是解包后的目录路径，通常是由 <code>apktool d</code> 命令生成的目录。<ul>
+<li>当你使用 <code>apktool d some.apk</code> 解包一个 APK 文件时，Apktool 会将 APK 的内容解压到一个目录中（例如 <code>output_dir</code>），包括资源文件、清单文件等。</li>
+<li>在这里，<code>output_dir</code> 是你要重新打包的目标目录。</li>
+</ul>
 </li>
-<li><p><strong>签名APK</strong>：</p>
+<li><strong><code>-o modified.apk</code></strong><br>  指定输出的 APK 文件名。<ul>
+<li><code>-o</code> 参数用于指定重新打包后生成的 APK 文件的名称和路径。</li>
+<li>在这里，生成的 APK 文件名为 <code>modified.apk</code></li>
+</ul>
 </li>
 </ol>
+</li>
+<li><p><strong>签名APK</strong>：</p>
+<h3 id="打包签名命令行："><a href="#打包签名命令行：" class="headerlink" title="打包签名命令行："></a><strong>打包签名命令行：</strong></h3></li>
+</ol>
 <p>​	<code>jarsigner -verbose -sigalg SHA256withRSA -digestalg SHA-256 -keystore F:\KeyStore\my_key.jks modified.apk key0</code></p>
+<ol>
+<li><strong><code>jarsigner</code></strong><br>  这是 Java 提供的一个工具，用于对 JAR 文件或 APK 文件进行数字签名。签名的主要目的是验证文件的完整性和来源。</li>
+<li><strong><code>-verbose</code></strong><br>  启用详细模式。运行时会输出更多的信息，比如正在处理的文件、签名状态等。这有助于调试和确认签名过程是否成功。</li>
+<li><strong><code>-sigalg SHA256withRSA</code></strong><br>  指定签名算法为 <code>SHA256withRSA</code>。<ul>
+<li><strong>SHA256</strong> 是一种哈希算法，用于生成文件的摘要（固定长度的唯一标识）。</li>
+<li><strong>RSA</strong> 是一种非对称加密算法，用于对摘要进行加密，确保签名的安全性。</li>
+</ul>
+</li>
+<li><strong><code>-digestalg SHA-256</code></strong><br>  指定摘要算法为 <code>SHA-256</code>。这是用来计算文件内容的哈希值的算法。</li>
+<li><strong><code>-keystore my-key.keystore</code></strong><br>  指定密钥库文件（Keystore）的路径。<ul>
+<li>密钥库是一个包含私钥和证书的文件，用于对 APK 文件进行签名。</li>
+<li>在这里，密钥库文件名为 <code>my-key.keystore</code>。</li>
+</ul>
+</li>
+<li><strong><code>modified.apk</code></strong><br>  这是要签名的目标 APK 文件。<ul>
+<li><code>modified.apk</code> 是已经打包好的应用程序文件，可能经过修改或重新编译。</li>
+</ul>
+</li>
+<li><strong><code>my-key</code></strong><br>  指定密钥库中使用的密钥别名（Key Alias）。<ul>
+<li>一个密钥库可以包含多个密钥对（公钥和私钥），每个密钥对都有一个唯一的别名。</li>
+</ul>
+</li>
+</ol>
 <p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/%E7%BB%88%E7%AB%AF%E5%BA%94%E7%94%A8%E7%AD%BE%E5%90%8D.png"></p>
 <p>……</p>
 <p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/%E7%BB%88%E7%AB%AF%E7%AD%BE%E5%90%8D.png"></p>
@@ -4668,6 +4704,131 @@
 </ul>
 </li>
 </ol>
+<h1 id="“按钮点击跳过广告”功能"><a href="#“按钮点击跳过广告”功能" class="headerlink" title="“按钮点击跳过广告”功能"></a>“按钮点击跳过广告”功能</h1><h2 id="一、自行生成一个安全的测试APK"><a href="#一、自行生成一个安全的测试APK" class="headerlink" title="一、自行生成一个安全的测试APK"></a>一、自行生成一个安全的测试APK</h2><h3 id="1-在Android-Studio中创建测试项目"><a href="#1-在Android-Studio中创建测试项目" class="headerlink" title="1. 在Android Studio中创建测试项目"></a>1. 在Android Studio中创建测试项目</h3><h4 id="步骤1：新建项目"><a href="#步骤1：新建项目" class="headerlink" title="步骤1：新建项目"></a><strong>步骤1：新建项目</strong></h4><ol>
+<li>打开 <strong>Android Studio Ladybug</strong>，点击 <code>File &gt; New &gt; New Project</code>。</li>
+<li>选择 <strong>Empty Activity</strong> 模板，点击 <strong>Next</strong>。</li>
+<li>配置项目信息：<ul>
+<li><strong>Name</strong>: <code>Skip_ads</code></li>
+<li><strong>Package name</strong>: <code>com.example.Skip_ads</code></li>
+<li><strong>Language</strong>: Java（更易理解Smali代码）</li>
+<li><strong>Minimum SDK</strong>: API 24（Android 7.0）</li>
+</ul>
+</li>
+<li>点击 <strong>Finish</strong> 完成创建。</li>
+</ol>
+<h4 id="步骤2：添加广告按钮逻辑"><a href="#步骤2：添加广告按钮逻辑" class="headerlink" title="步骤2：添加广告按钮逻辑"></a><strong>步骤2：添加广告按钮逻辑</strong></h4><ol>
+<li><p>打开 <code>app/src/main/res/layout/activity_main.xml</code>，添加一个按钮：</p>
+ <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">&lt;Button</span><br><span class="line">    android:id=<span class="string">&quot;@+id/btn_skip_ad&quot;</span></span><br><span class="line">    android:layout_width=<span class="string">&quot;wrap_content&quot;</span></span><br><span class="line">    android:layout_height=<span class="string">&quot;wrap_content&quot;</span></span><br><span class="line">    android:text=<span class="string">&quot;跳过广告&quot;</span> /&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在 <code>MainActivity.java</code> 中模拟广告逻辑：</p>
+ <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MainActivity</span> <span class="keyword">extends</span> <span class="title class_">AppCompatActivity</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">onCreate</span><span class="params">(Bundle savedInstanceState)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line"></span><br><span class="line">        <span class="type">Button</span> <span class="variable">btnSkipAd</span> <span class="operator">=</span> findViewById(R.id.btn_skip_ad);</span><br><span class="line">        btnSkipAd.setOnClickListener(v -&gt; &#123;</span><br><span class="line">            <span class="comment">// 原始逻辑：显示广告（模拟弹窗）</span></span><br><span class="line">            showAd();</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">showAd</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">new</span> <span class="title class_">AlertDialog</span>.Builder(<span class="built_in">this</span>)</span><br><span class="line">            .setTitle(<span class="string">&quot;广告&quot;</span>)</span><br><span class="line">            .setMessage(<span class="string">&quot;这里是广告内容...&quot;</span>)</span><br><span class="line">            .setPositiveButton(<span class="string">&quot;关闭&quot;</span>, <span class="literal">null</span>)</span><br><span class="line">            .show();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>​	注意补全需要导入的类！然后运行模拟，页面效果如下：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/Skip_ads%E8%BF%90%E8%A1%8C%E6%A8%A1%E6%8B%9F%E6%95%88%E6%9E%9C.png"></p>
+<p>点击“跳过广告”按钮后，屏幕显示弹窗，效果如下：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/Skip_ads%E6%A8%A1%E6%8B%9F%E6%95%88%E6%9E%9C.png"></p>
+<p>虽然运行成功但是有Button报错，报错信息如下：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/Button%E9%94%99%E8%AF%AF.png"></p>
+<h3 id="错误分析：按钮未添加布局约束"><a href="#错误分析：按钮未添加布局约束" class="headerlink" title="错误分析：按钮未添加布局约束"></a><strong>错误分析：按钮未添加布局约束</strong></h3><p>你遇到的错误是 <strong><code>ConstraintLayout</code> 布局的典型警告</strong>，表示按钮（Button）在 XML 中缺少运行时约束（constraints），可能导致界面错乱。</p>
+<p><strong>理解问题原因</strong></p>
+<ul>
+<li><strong>设计时位置 ≠ 运行时位置</strong><br>  在 <code>ConstraintLayout</code> 中，所有控件必须通过约束（如 <code>app:layout_constraintLeft_toLeftOf</code>）明确其位置关系。<br>  如果未添加约束，预览界面中看到的位置只是临时占位，运行时控件会默认移动到 <code>(0,0)</code>（左上角）。</li>
+</ul>
+<p>不影响运行暂时不深入分析。</p>
+<h3 id="2-生成APK"><a href="#2-生成APK" class="headerlink" title="2.生成APK"></a>2.<strong>生成APK</strong></h3><ol>
+<li>点击菜单栏 <code>Build &gt; Build Bundle(s) / APK(s) &gt; Build APK(s)</code>。</li>
+<li>构建完成后，点击右下角提示中的 <strong>locate</strong>，找到生成的APK文件（路径通常为 <code>app/build/outputs/apk/debug/app-debug.apk</code>）。</li>
+</ol>
+<h3 id="3-生成-APK-的命令行操作"><a href="#3-生成-APK-的命令行操作" class="headerlink" title="3.生成 APK 的命令行操作"></a>3.生成 APK 的命令行操作</h3><p><strong>分为 调试版本（Debug） 和 发布版本（Release）</strong></p>
+<h4 id="3-1-调试版APK（无需签名）"><a href="#3-1-调试版APK（无需签名）" class="headerlink" title="3.1 调试版APK（无需签名）"></a><strong>3.1 调试版APK（无需签名）</strong></h4><h5 id="步骤一：打开终端"><a href="#步骤一：打开终端" class="headerlink" title="步骤一：打开终端"></a><strong>步骤一：打开终端</strong></h5><ul>
+<li><strong>Windows</strong>：在项目根目录下按住 <code>Shift</code> + 右键 → 选择 <strong>“在此处打开 PowerShell 窗口”</strong>。</li>
+</ul>
+<h5 id="步骤二：执行构建命令"><a href="#步骤二：执行构建命令" class="headerlink" title="步骤二：执行构建命令"></a><strong>步骤二：执行构建命令</strong></h5><ul>
+<li><pre><code>  # 生成调试版 APK（自动签名）
+  ./gradlew assembleDebug
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">- **作用**：生成未优化但可直接安装的 APK。</span><br><span class="line"></span><br><span class="line">- **生成路径**：</span><br><span class="line">	`app/build/outputs/apk/debug/app-debug.apk`</span><br><span class="line"></span><br><span class="line">#### **3.2生成发布版 APK（需手动签名）**</span><br><span class="line"></span><br><span class="line">##### **步骤一： 生成签名密钥（首次需要）**</span><br><span class="line"></span><br><span class="line">```</span><br><span class="line">keytool -genkeypair -v \</span><br><span class="line">  -keystore my-release-key.keystore \</span><br><span class="line">  -alias my-key \</span><br><span class="line">  -keyalg RSA \</span><br><span class="line">  -keysize 2048 \</span><br><span class="line">  -validity 10000</span><br><span class="line">```</span><br><span class="line"></span><br><span class="line">- **按提示输入**：</span><br><span class="line">	- 密钥库密码（需记住）</span><br><span class="line">	- 姓名、组织等（可随意填写）</span><br><span class="line">- **生成文件**：`my-release-key.keystore`</span><br><span class="line"></span><br><span class="line">##### **步骤二：生成未签名的发布版 APK**</span><br><span class="line"></span><br><span class="line">```</span><br><span class="line"># 生成未签名的 APK</span><br><span class="line">./gradlew assembleRelease</span><br><span class="line">```</span><br><span class="line"></span><br><span class="line">- **生成路径**：</span><br><span class="line">	`app/build/outputs/apk/release/app-release-unsigned.apk`</span><br><span class="line"></span><br><span class="line">##### **步骤三：签名 APK**</span><br><span class="line"></span><br><span class="line">```</span><br><span class="line">jarsigner -verbose \</span><br><span class="line">  -sigalg SHA256withRSA \</span><br><span class="line">  -digestalg SHA-256 \</span><br><span class="line">  -keystore my-release-key.keystore \</span><br><span class="line">  app/build/outputs/apk/release/app-release-unsigned.apk \</span><br><span class="line">  my-key</span><br><span class="line">```</span><br><span class="line"></span><br><span class="line">- **输入密钥库密码**完成签名。</span><br><span class="line">- **生成文件**：`app-release-unsigned.apk` → 自动覆盖为已签名文件。</span><br><span class="line"></span><br><span class="line">## 二、**解包 APK**</span><br><span class="line"></span><br><span class="line">```</span><br><span class="line">apktool d ad_app.apk -o output_dir</span><br><span class="line">```</span><br><span class="line"></span><br><span class="line">- **作用**：将 APK 反编译为资源文件（XML/图片）和 Smali 代码（位于 `output_dir_release` 目录）。</span><br><span class="line"></span><br><span class="line">## **三、定位广告按钮的 Smali 代码**</span><br><span class="line"></span><br><span class="line">### **查找按钮的 ID**</span><br><span class="line"></span><br><span class="line">- 打开 `output_dir_release/res/layout/activity_main.xml`。</span><br><span class="line"></span><br><span class="line">	- ![](https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/%E8%B7%B3%E8%BF%87%E5%B9%BF%E5%91%8A%E6%89%BEID.png)</span><br><span class="line"></span><br><span class="line">- 搜索 `Button` 控件，找到其 `android:id=&quot;@+id/btn_skip_ad&quot;`（示例 ID）。</span><br><span class="line"></span><br><span class="line">	```smali</span><br><span class="line">	&lt;Button android:id=&quot;@id/btn_skip_ad&quot; </span><br><span class="line">		android:layout_width=&quot;wrap_content&quot; </span><br><span class="line">		android:layout_height=&quot;wrap_content&quot; </span><br><span class="line">		android:text=&quot;跳过广告&quot; /&gt;</span><br><span class="line">	```</span><br><span class="line"></span><br><span class="line">### 定位 Smali 代码</span><br><span class="line"></span><br><span class="line">- 记录按钮 ID 的十六进制值：</span><br><span class="line">	打开 `output_dir_release/res/values/public.xml`，搜索 `btn_skip_ad`，找到 `0x7f080062`。</span><br><span class="line"></span><br><span class="line">	- ![](https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/%E8%B7%B3%E8%BF%87%E5%B9%BF%E5%91%8A%E5%AE%9A%E4%BD%8Dsmali.png)</span><br><span class="line"></span><br><span class="line">- 在 `output_dir_release/smali` 目录中搜索 `0x7f080062`：</span><br><span class="line"></span><br><span class="line">	**使用 PowerShell 搜索文件内容**</span><br><span class="line"></span><br><span class="line">	如果需要搜索文件内容而不是文件名，可以使用 PowerShell 的 `Get-ChildItem` 和 `Select-String` 命令。</span><br><span class="line"></span><br><span class="line">	```</span><br><span class="line">	Get-ChildItem -Path &quot;output_dir_release\smali&quot; -Recurse | Select-String -Pattern &quot;0x7f080062&quot;</span><br><span class="line">	```</span><br><span class="line"></span><br><span class="line">	- `-Path`：指定要搜索的目录。</span><br><span class="line">	- `-Recurse`：递归搜索子目录。</span><br><span class="line">	- `-Pattern`：指定要匹配的内容（支持正则表达式）。</span><br><span class="line"></span><br><span class="line">	这条命令会返回包含 `0x7f080062` 的文件路径和具体行内容。</span><br><span class="line"></span><br><span class="line">	![](https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/%E8%B7%B3%E8%BF%87%E5%B9%BF%E5%91%8A%E6%90%9C%E7%B4%A2%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9.png)</span><br><span class="line"></span><br><span class="line">- 找到匹配的 Smali 文件（`output_dir_release\smali\com\example\skip_ads\R$id.smali`）。</span><br><span class="line"></span><br><span class="line">`MainActivity.smali` 文件中并没有直接包含十六进制值（如 `0x7f0a0123`），而是通过引用 `R$id` 和 `R$layout` 的方式来访问资源 ID。这是 Android 应用的常见行为，资源 ID 通常存储在 `R.java` 或对应的 `R.smali` 文件中。&lt;u&gt;在 Release 版 APK 中，资源可能会被优化或混淆，导致资源 ID 的引用方式发生变化。&lt;/u&gt;</span><br><span class="line"></span><br><span class="line">- ### **资源 ID 的存储位置**</span><br><span class="line"></span><br><span class="line">	在反编译后的 APK 中：</span><br><span class="line"></span><br><span class="line">	- 资源 ID（如`0x7f0a0123 `）通常存储在 </span><br><span class="line"></span><br><span class="line">		```</span><br><span class="line">		R$&lt;type&gt;.smali</span><br><span class="line">		```</span><br><span class="line"></span><br><span class="line">		 文件中，例如：</span><br><span class="line"></span><br><span class="line">		- `R$id.smali`</span><br><span class="line">		- `R$layout.smali`</span><br><span class="line">		- `R$string.smali`</span><br><span class="line"></span><br><span class="line">	- 这些文件位于 `output_dir/smali/&lt;package_name&gt;/` 目录下。</span><br><span class="line"></span><br><span class="line">	- 在您的代码中，`btn_skip_ad` 和 `activity_main` 的资源 ID 是通过 `sget` 指令从 `R$id` 和 `R$layout` 中加载的。</span><br><span class="line"></span><br><span class="line">## **四、修改 Smali 代码**</span><br><span class="line"></span><br><span class="line">### 步骤一：**分析广告逻辑代码**</span><br><span class="line"></span><br><span class="line">`MainActivity.smali` 文件来看，广告逻辑集中在 `showAd()` 方法中。</span><br><span class="line"></span><br><span class="line">#### 1.**`showAd()` 方法的作用**</span><br><span class="line"></span><br><span class="line">- 该方法创建了一个 `AlertDialog` 对象，并设置了标题、内容和按钮。</span><br><span class="line"></span><br><span class="line">- 点击“关闭”按钮后，对话框会关闭。</span><br><span class="line"></span><br><span class="line">	- ````smali</span><br><span class="line">		.method private showAd()V</span><br><span class="line">		    .locals 3</span><br><span class="line">		</span><br><span class="line">		    .line 27</span><br><span class="line">		    new-instance v0, Landroid/app/AlertDialog$Builder;</span><br><span class="line">		</span><br><span class="line">		    invoke-direct &#123;v0, p0&#125;, Landroid/app/AlertDialog$Builder;-&gt;&lt;init&gt;(Landroid/content/Context;)V</span><br><span class="line">		</span><br><span class="line">		    const-string v1, &quot;\u5e7f\u544a&quot;</span><br><span class="line">		</span><br><span class="line">		    .line 28</span><br><span class="line">		    invoke-virtual &#123;v0, v1&#125;, Landroid/app/AlertDialog$Builder;-&gt;setTitle(Ljava/lang/CharSequence;)Landroid/app/AlertDialog$Builder;</span><br><span class="line">		</span><br><span class="line">		    move-result-object v0</span><br><span class="line">		</span><br><span class="line">		    const-string v1, &quot;\u8fd9\u91cc\u662f\u5e7f\u544a\u5185\u5bb9...&quot;</span><br><span class="line">		</span><br><span class="line">		    .line 29</span><br><span class="line">		    invoke-virtual &#123;v0, v1&#125;, Landroid/app/AlertDialog$Builder;-&gt;setMessage(Ljava/lang/CharSequence;)Landroid/app/AlertDialog$Builder;</span><br><span class="line">		</span><br><span class="line">		    move-result-object v0</span><br><span class="line">		</span><br><span class="line">		    const-string v1, &quot;\u5173\u95ed&quot;</span><br><span class="line">		</span><br><span class="line">		    const/4 v2, 0x0</span><br><span class="line">		</span><br><span class="line">		    .line 30</span><br><span class="line">		    invoke-virtual &#123;v0, v1, v2&#125;, Landroid/app/AlertDialog$Builder;-&gt;setPositiveButton(Ljava/lang/CharSequence;Landroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;</span><br><span class="line">		</span><br><span class="line">		    move-result-object v0</span><br><span class="line">		</span><br><span class="line">		    .line 31</span><br><span class="line">		    invoke-virtual &#123;v0&#125;, Landroid/app/AlertDialog$Builder;-&gt;show()Landroid/app/AlertDialog;</span><br><span class="line">		</span><br><span class="line">		    return-void</span><br><span class="line">		.end method</span><br></pre></td></tr></table></figure>
+</code></pre>
+</li>
+</ul>
+<h4 id="2-广告触发点"><a href="#2-广告触发点" class="headerlink" title="2.广告触发点"></a><strong>2.广告触发点</strong></h4><p>在 <code>onCreate()</code> 方法中，<code>btn_skip_ad</code> 按钮被设置了一个点击监听器：</p>
+<figure class="highlight smali"><table><tr><td class="code"><pre><span class="line">invoke-virtual &#123;p1, v0&#125;, <span class="class">Landroid/widget/Button;</span>-&gt;setOnClickListener(<span class="class">Landroid/view/View$OnClickListener;</span>)V</span><br></pre></td></tr></table></figure>
+
+<p>点击按钮时，会调用 <code>lambda$onCreate$0$com-example-skip_ads-MainActivity</code> 方法，而该方法最终调用了 <code>showAd()</code>。</p>
+<h3 id="步骤二：编辑-Smali-文件"><a href="#步骤二：编辑-Smali-文件" class="headerlink" title="步骤二：编辑 Smali 文件"></a><strong>步骤二：编辑 Smali 文件</strong></h3><p>为了跳过广告，可以修改代码，使广告逻辑直接关闭页面或不显示广告对话框。以下是几种修改方式：。</p>
+<h4 id="1-直接移除showAd-调用"><a href="#1-直接移除showAd-调用" class="headerlink" title="1.直接移除showAd()调用"></a>1.直接移除showAd()调用</h4><p>将 <code>lambda$onCreate$0$com-example-skip_ads-MainActivity</code> 方法中的 <code>showAd()</code> 调用移除，改为直接返回：</p>
+<p>原代码：</p>
+<figure class="highlight smali"><table><tr><td class="code"><pre><span class="line"><span class="keyword">.method</span><span class="keyword"> synthetic</span> lambda$onCreate$0$com-example-skip_ads-MainActivity(<span class="class">Landroid/view/View;</span>)V</span><br><span class="line"><span class="keyword">    .locals</span> 0</span><br><span class="line"></span><br><span class="line">   <span class="built_in"> invoke-direct </span>&#123;p0&#125;, <span class="class">Lcom/example/skip_ads/MainActivity;</span>-&gt;showAd()V</span><br><span class="line"></span><br><span class="line">   <span class="built_in"> return-void</span></span><br><span class="line"><span class="built_in"></span><span class="keyword">.end method</span></span><br></pre></td></tr></table></figure>
+
+<p>修改后：</p>
+<figure class="highlight smali"><table><tr><td class="code"><pre><span class="line"><span class="keyword">.method</span><span class="keyword"> synthetic</span> lambda$onCreate$0$com-example-skip_ads-MainActivity(<span class="class">Landroid/view/View;</span>)V</span><br><span class="line"><span class="keyword">    .locals</span> 0</span><br><span class="line"></span><br><span class="line">   <span class="built_in"> return-void</span></span><br><span class="line"><span class="built_in"></span><span class="keyword">.end method</span></span><br></pre></td></tr></table></figure>
+
+<p>这样，点击按钮时不会调用 <code>showAd()</code> 方法，广告对话框也不会显示。</p>
+<h4 id="2-修改showAd-方法"><a href="#2-修改showAd-方法" class="headerlink" title="2.修改showAd()方法"></a>2.修改showAd()方法</h4><p>保留 <code>showAd()</code> 方法但改变其行为，可以修改其内容，使其立即关闭对话框或不显示任何内容。</p>
+<p>原代码：</p>
+<figure class="highlight smali"><table><tr><td class="code"><pre><span class="line">invoke-virtual &#123;v0&#125;, <span class="class">Landroid/app/AlertDialog$Builder;</span>-&gt;show()<span class="class">Landroid/app/AlertDialog;</span></span><br></pre></td></tr></table></figure>
+
+<p>修改后：</p>
+<p>直接删除 <code>show()</code> 调用，或者添加一个空操作：</p>
+<figure class="highlight smali"><table><tr><td class="code"><pre><span class="line">return-void</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-直接跳过广告"><a href="#3-直接跳过广告" class="headerlink" title="3.直接跳过广告"></a>3.直接跳过广告</h4><p>完全绕过广告逻辑（例如在页面加载时自动跳过广告），可以在 <code>onCreate()</code> 方法中直接移除广告相关的代码。</p>
+<figure class="highlight smali"><table><tr><td class="code"><pre><span class="line">invoke-virtual &#123;p1, v0&#125;, <span class="class">Landroid/widget/Button;</span>-&gt;setOnClickListener(<span class="class">Landroid/view/View$OnClickListener;</span>)V</span><br></pre></td></tr></table></figure>
+
+<p>修改后：</p>
+<p>删除整个按钮的点击监听器逻辑：</p>
+<figure class="highlight smali"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 删除以下代码：</span><span class="built_in"></span></span><br><span class="line"><span class="built_in">new-instance </span>v0, <span class="class">Lcom/example/skip_ads/MainActivity$$ExternalSyntheticLambda0;</span><span class="built_in"></span></span><br><span class="line"><span class="built_in">invoke-direct </span>&#123;v0, p0&#125;, <span class="class">Lcom/example/skip_ads/MainActivity$$ExternalSyntheticLambda0;</span>-&gt;&lt;init&gt;(<span class="class">Lcom/example/skip_ads/MainActivity;</span>)V<span class="built_in"></span></span><br><span class="line"><span class="built_in">invoke-virtual </span>&#123;p1, v0&#125;, <span class="class">Landroid/widget/Button;</span>-&gt;setOnClickListener(<span class="class">Landroid/view/View$OnClickListener;</span>)V</span><br></pre></td></tr></table></figure>
+
+<h2 id="五、完整的MainActivity-smali代码分析"><a href="#五、完整的MainActivity-smali代码分析" class="headerlink" title="五、完整的MainActivity.smali代码分析"></a>五、完整的MainActivity.smali代码分析</h2><figure class="highlight smali"><table><tr><td class="code"><pre><span class="line"><span class="comment">#.class public：声明这是一个公共类，类名为 MainActivity</span></span><br><span class="line"><span class="comment">#.super：指定父类为 AppCompatActivity，表明这是一个 Android 的 Activity</span></span><br><span class="line"><span class="comment">#.source：指明该类对应的原始 Java 文件是 MainActivity.java</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">.class</span><span class="keyword"> public</span> <span class="class">Lcom/example/skip_ads/MainActivity;</span></span><br><span class="line"><span class="keyword">.super</span> <span class="class">Landroidx/appcompat/app/AppCompatActivity;</span></span><br><span class="line"><span class="keyword">.source</span> <span class="string">&quot;MainActivity.java&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># direct methods</span></span><br><span class="line"><span class="comment">#定义一个构造方法</span></span><br><span class="line"><span class="keyword">.method</span><span class="keyword"> public</span><span class="keyword"> constructor</span> &lt;init&gt;()V </span><br><span class="line"><span class="keyword">    .locals</span> 0</span><br><span class="line"></span><br><span class="line"><span class="keyword">    .line</span> 13</span><br><span class="line">    <span class="comment">#调用父类AppCompatActivity的构造方法，完成初始化</span></span><br><span class="line">   <span class="built_in"> invoke-direct </span>&#123;p0&#125;, <span class="class">Landroidx/appcompat/app/AppCompatActivity;</span>-&gt;&lt;init&gt;()V</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">   <span class="built_in"> return-void</span></span><br><span class="line"><span class="built_in"></span><span class="keyword">.end method</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#私有方法</span></span><br><span class="line"><span class="keyword">.method</span><span class="keyword"> private</span> showAd()V</span><br><span class="line"><span class="keyword">    .locals</span> 3</span><br><span class="line"></span><br><span class="line"><span class="keyword">    .line</span> 27</span><br><span class="line">    <span class="comment">#初始化一个对话框构建器，用于创建自定义的对话框</span></span><br><span class="line">    <span class="comment">#创建一个新的AlertDialog.Builder对象，并将其引用存储在寄存器 v0 中</span></span><br><span class="line">   <span class="built_in"> new-instance </span>v0, <span class="class">Landroid/app/AlertDialog$Builder;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">#调用 AlertDialog.Builder 的构造方法，传入当前上下文（p0）</span></span><br><span class="line">   <span class="built_in"> invoke-direct </span>&#123;v0, p0&#125;, <span class="class">Landroid/app/AlertDialog$Builder;</span>-&gt;&lt;init&gt;(<span class="class">Landroid/content/Context;</span>)V</span><br><span class="line">    </span><br><span class="line">	<span class="comment">#将字符串“广告”加载在寄存器v1中</span></span><br><span class="line">   <span class="built_in"> const-string </span>v1, <span class="string">&quot;\u5e7f\u544a&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">    .line</span> 28</span><br><span class="line">    <span class="comment">#调用 setTitle() 方法，将对话框的标题设置为“广告”</span></span><br><span class="line">   <span class="built_in"> invoke-virtual </span>&#123;v0, v1&#125;, <span class="class">Landroid/app/AlertDialog$Builder;</span>-&gt;setTitle(<span class="class">Ljava/lang/CharSequence;</span>)<span class="class">Landroid/app/AlertDialog$Builder;</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">#将返回值（即更新后的 AlertDialog.Builder 对象）存储回寄存器 v0</span></span><br><span class="line">   <span class="built_in"> move-result-object </span>v0</span><br><span class="line">    </span><br><span class="line">	<span class="comment">#将字符串“这里是广告内容...”加载在寄存器v1中</span></span><br><span class="line">   <span class="built_in"> const-string </span>v1, <span class="string">&quot;\u8fd9\u91cc\u662f\u5e7f\u544a\u5185\u5bb9...&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">    .line</span> 29</span><br><span class="line">    <span class="comment">#调用 setMessage() 方法，将对话框的内容设置为“这里是广告内容...”</span></span><br><span class="line">   <span class="built_in"> invoke-virtual </span>&#123;v0, v1&#125;, <span class="class">Landroid/app/AlertDialog$Builder;</span>-&gt;setMessage(<span class="class">Ljava/lang/CharSequence;</span>)<span class="class">Landroid/app/AlertDialog$Builder;</span></span><br><span class="line"></span><br><span class="line">   <span class="built_in"> move-result-object </span>v0</span><br><span class="line">	<span class="comment">#将字符串“关闭”加载到寄存器v1中</span></span><br><span class="line">   <span class="built_in"> const-string </span>v1, <span class="string">&quot;\u5173\u95ed&quot;</span></span><br><span class="line">    </span><br><span class="line">	<span class="comment">#将值0x0（即 null），加载到寄存器v2中</span></span><br><span class="line">	<span class="comment">#这里表示没有绑定具体的点击事件监听器，点击按钮时默认关闭对话框。</span></span><br><span class="line">   <span class="built_in"> const/4 </span>v2, 0x0</span><br><span class="line"></span><br><span class="line"><span class="keyword">    .line</span> 30</span><br><span class="line">    <span class="comment">#添加一个“关闭”按钮，默认点击后关闭对话框</span></span><br><span class="line">    <span class="comment">#调用 setPositiveButton() 方法，为对话框添加一个“关闭”按钮</span></span><br><span class="line">    <span class="comment">#第二个参数为 null，表示按钮点击时执行默认行为（关闭对话框）</span></span><br><span class="line">   <span class="built_in"> invoke-virtual </span>&#123;v0, v1, v2&#125;, <span class="class">Landroid/app/AlertDialog$Builder;</span>-&gt;setPositiveButton(<span class="class">Ljava/lang/CharSequence;</span><span class="class">Landroid/content/DialogInterface$OnClickListener;</span>)<span class="class">Landroid/app/AlertDialog$Builder;</span></span><br><span class="line"></span><br><span class="line">   <span class="built_in"> move-result-object </span>v0</span><br><span class="line"></span><br><span class="line"><span class="keyword">    .line</span> 31</span><br><span class="line">    <span class="comment">#调用 show() 方法，将对话框显示在屏幕上</span></span><br><span class="line">   <span class="built_in"> invoke-virtual </span>&#123;v0&#125;, <span class="class">Landroid/app/AlertDialog$Builder;</span>-&gt;show()<span class="class">Landroid/app/AlertDialog;</span></span><br><span class="line"></span><br><span class="line">   <span class="built_in"> return-void</span></span><br><span class="line"><span class="built_in"></span><span class="keyword">.end method</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># virtual methods</span></span><br><span class="line"><span class="comment">#这是一个合成方法（synthetic），通常由编译器生成，用于实现 Lambda 表达式</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="keyword">.method</span><span class="keyword"> synthetic</span> lambda$onCreate$0$com-example-skip_ads-MainActivity(<span class="class">Landroid/view/View;</span>)V</span><br><span class="line"><span class="keyword">    .locals</span> 0</span><br><span class="line"></span><br><span class="line"><span class="keyword">    .line</span> 22</span><br><span class="line">    <span class="comment">#调用 showAd() 方法</span></span><br><span class="line">    <span class="comment">#当按钮被点击时，会触发此方法，从而调用 showAd() 显示广告对话框</span></span><br><span class="line">   <span class="built_in"> invoke-direct </span>&#123;p0&#125;, <span class="class">Lcom/example/skip_ads/MainActivity;</span>-&gt;showAd()V</span><br><span class="line"></span><br><span class="line">   <span class="built_in"> return-void</span></span><br><span class="line"><span class="built_in"></span><span class="keyword">.end method</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#在 onCreate() 方法中，首先加载布局文件，然后找到按钮 btn_skip_ad，并为其绑定点击事件。点击按钮时会触发 Lambda 表达式，调用 showAd() 方法</span></span><br><span class="line"><span class="keyword">.method</span><span class="keyword"> protected</span> onCreate(<span class="class">Landroid/os/Bundle;</span>)V</span><br><span class="line"><span class="keyword">    .locals</span> 1</span><br><span class="line"></span><br><span class="line"><span class="keyword">    .line</span> 16</span><br><span class="line">   <span class="built_in"> invoke-super </span>&#123;p0, p1&#125;, <span class="class">Landroidx/appcompat/app/AppCompatActivity;</span>-&gt;onCreate(<span class="class">Landroid/os/Bundle;</span>)V</span><br><span class="line"></span><br><span class="line"><span class="keyword">    .line</span> 17</span><br><span class="line">    <span class="comment">#加载布局文件 activity_main 并设置为当前界面的内容</span></span><br><span class="line">   <span class="built_in"> sget </span>p1, <span class="class">Lcom/example/skip_ads/R$layout;</span>-&gt;activity_main:I</span><br><span class="line"></span><br><span class="line">   <span class="built_in"> invoke-virtual </span>&#123;p0, p1&#125;, <span class="class">Lcom/example/skip_ads/MainActivity;</span>-&gt;setContentView(I)V</span><br><span class="line"></span><br><span class="line"><span class="keyword">    .line</span> 19</span><br><span class="line">    <span class="comment">#通过 ID 找到按钮 btn_skip_ad</span></span><br><span class="line">   <span class="built_in"> sget </span>p1, <span class="class">Lcom/example/skip_ads/R$id;</span>-&gt;btn_skip_ad:I</span><br><span class="line"></span><br><span class="line">   <span class="built_in"> invoke-virtual </span>&#123;p0, p1&#125;, <span class="class">Lcom/example/skip_ads/MainActivity;</span>-&gt;findViewById(I)<span class="class">Landroid/view/View;</span></span><br><span class="line"></span><br><span class="line">   <span class="built_in"> move-result-object </span>p1</span><br><span class="line">	</span><br><span class="line">    <span class="comment">#check-cast：将找到的视图转换为 Button 类型</span></span><br><span class="line">   <span class="built_in"> check-cast </span>p1, <span class="class">Landroid/widget/Button;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">    .line</span> 20</span><br><span class="line">    <span class="comment">#创建一个匿名内部类（Lambda 表达式）对象。</span></span><br><span class="line">   <span class="built_in"> new-instance </span>v0, <span class="class">Lcom/example/skip_ads/MainActivity$$ExternalSyntheticLambda0;</span></span><br><span class="line"></span><br><span class="line">   <span class="built_in"> invoke-direct </span>&#123;v0, p0&#125;, <span class="class">Lcom/example/skip_ads/MainActivity$$ExternalSyntheticLambda0;</span>-&gt;&lt;init&gt;(<span class="class">Lcom/example/skip_ads/MainActivity;</span>)V</span><br><span class="line">	</span><br><span class="line">	<span class="comment">#为按钮设置点击监听器</span></span><br><span class="line">   <span class="built_in"> invoke-virtual </span>&#123;p1, v0&#125;, <span class="class">Landroid/widget/Button;</span>-&gt;setOnClickListener(<span class="class">Landroid/view/View$OnClickListener;</span>)V</span><br><span class="line"></span><br><span class="line">   <span class="built_in"> return-void</span></span><br><span class="line"><span class="built_in"></span><span class="keyword">.end method</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="代码执行流程："><a href="#代码执行流程：" class="headerlink" title="代码执行流程："></a>代码执行流程：</h3><p>以下是 <code>MainActivity</code> 的执行流程：</p>
+<ol>
+<li><strong>启动 Activity</strong>：<ul>
+<li>系统调用 <code>onCreate()</code> 方法。</li>
+<li>加载布局文件 <code>activity_main</code>。</li>
+<li>找到按钮 <code>btn_skip_ad</code> 并设置点击监听器。</li>
+</ul>
+</li>
+<li><strong>点击按钮</strong>：<ul>
+<li>用户点击按钮后，触发 Lambda 表达式方法。</li>
+<li>调用 <code>showAd()</code> 方法。</li>
+</ul>
+</li>
+<li><strong>显示广告对话框</strong>：<ul>
+<li>弹出一个带标题和内容的对话框，用户可以点击“关闭”按钮关闭对话框。</li>
+</ul>
+</li>
+</ol>
+<h2 id="六、重新打包并签名"><a href="#六、重新打包并签名" class="headerlink" title="六、重新打包并签名"></a>六、重新打包并签名</h2><h3 id="1-重新打包APK"><a href="#1-重新打包APK" class="headerlink" title="1.重新打包APK"></a><strong>1.重新打包APK</strong></h3><p>在终端输入</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apktool b output_dir_release -o modified.apk</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-签名APK"><a href="#2-签名APK" class="headerlink" title="2.签名APK"></a>2.签名APK</h3><p>在终端输入</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">jarsigner -verbose -sigalg SHA256withRSA -digestalg SHA-256 -keystore F:\KeyStore\my_key.jks modified.apk key0</span><br></pre></td></tr></table></figure>
+
+<h2 id="七、安装测试"><a href="#七、安装测试" class="headerlink" title="七、安装测试"></a>七、安装测试</h2><p>在雷电模拟器中安装，会发现点击按钮“条过广告”，什么弹窗都不会出现。</p>
+<h2 id="关键原理"><a href="#关键原理" class="headerlink" title="关键原理"></a><strong>关键原理</strong></h2><table>
+<thead>
+<tr>
+<th align="left">步骤</th>
+<th align="left">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">解包 APK</td>
+<td align="left">将二进制 APK 转为可编辑的代码和资源</td>
+</tr>
+<tr>
+<td align="left">定位 Smali 代码</td>
+<td align="left">通过资源 ID 关联布局和代码逻辑</td>
+</tr>
+<tr>
+<td align="left">修改 <code>onClick</code> 方法</td>
+<td align="left">覆盖原始广告逻辑，直接关闭页面</td>
+</tr>
+<tr>
+<td align="left">签名 APK</td>
+<td align="left">使修改后的 APK 能被 Android 系统识别为合法应用</td>
+</tr>
+</tbody></table>
 ]]></content>
       <categories>
         <category>笔记</category>
@@ -5457,5 +5618,25 @@
         <tag>安卓逆向工程</tag>
         <tag>工具</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Kali Linux</title>
+    <url>/2025/04/15/Kali-Linux/</url>
+    <content><![CDATA[<h1 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h1><p>参考：</p>
+<p><a href="https://blog.csdn.net/m0_74030222/article/details/143866270">kali Linux下载安装及配置（VMware虚拟机）</a></p>
+<h2 id="1-源文件的安装"><a href="#1-源文件的安装" class="headerlink" title="1.源文件的安装"></a>1.源文件的安装</h2><p>位置：&#x2F;etc&#x2F;apt&#x2F;sources.list<br>首先第一步<br>输入命令：cp &#x2F;etc&#x2F;apt&#x2F;sources.list &#x2F;etc&#x2F;apt&#x2F;sources.list.bak</p>
+<p>目的是将原来的sources的文件复制备份出一部分，然后再在原来的基础上修改内容。</p>
+<p>输入命令：vim &#x2F;etc&#x2F;apt&#x2F;sources.list<br>目的是用<a href="https://so.csdn.net/so/search?q=vim%E7%BC%96%E8%BE%91%E5%99%A8&spm=1001.2101.3001.7020">vim编辑器</a>进行编辑<br>（在出现的界面中输入字母“i”或者键盘上“insert”,这是“插入”的意思，当显示出下面汉字“插入”时就可以输入了）</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">国内常用的几个源文件：</span><br><span class="line"> </span><br><span class="line">#中科大</span><br><span class="line">deb http://mirrors.ustc.edu.cn/kali kali-rolling main non-free contrib </span><br><span class="line">deb-src http://mirrors.ustc.edu.cn/kali kali-rolling main non-free contrib</span><br><span class="line"></span><br><span class="line"> #阿里云</span><br><span class="line">deb http://mirrors.aliyun.com/kali kali-rolling main non-free contrib </span><br><span class="line">deb-src http://mirrors.aliyun.com/kali kali-rolling main non-free contrib</span><br><span class="line"></span><br><span class="line"> #清华大学</span><br><span class="line">deb http://mirrors.tuna.tsinghua.edu.cn/kali kali-rolling main contrib non-free</span><br><span class="line">deb-src https://mirrors.tuna.tsinghua.edu.cn/kali kali-rolling main contrib non-free</span><br><span class="line"></span><br><span class="line"> #浙江大学</span><br><span class="line">deb http://mirrors.zju.edu.cn/kali kali-rolling main contrib non-free </span><br><span class="line">deb-src http://mirrors.zju.edu.cn/kali kali-rolling main contrib non-free</span><br></pre></td></tr></table></figure>
+
+<p>由于里面的安装源是kali官网，对于国内而言下载的速度比较缓慢，所以把kali官网的安装源用“#”注释掉。</p>
+<p>用vim编辑器编写完成之后，按键盘上的“esc”键，退出之后，输入“：”冒号，然后输入wq，代表保存，并退出。</p>
+<h2 id="2-软件的更新-安装与删除"><a href="#2-软件的更新-安装与删除" class="headerlink" title="2.软件的更新 安装与删除"></a>2.软件的更新 安装与删除</h2><p>输入命令：apt-get updates 下载最新的安装包<br>输入命令：apt-get upgrade 系统会打开最新的安装包，并将软件安装的系统中<br>输入命令：apt-get clean 会将之前旧的安装包删除，清理内存<br>以上步骤不要着急，慢慢来</p>
+<h2 id="3-设置锁屏时间"><a href="#3-设置锁屏时间" class="headerlink" title="3.设置锁屏时间"></a>3.设置锁屏时间</h2><p>设置锁屏时间非常重要，将锁屏的时间设置为“从不”，因为这样不会导致程序在运行的过程中由于锁屏的原因而停止运行。</p>
+<h2 id="4-配置ssh服务"><a href="#4-配置ssh服务" class="headerlink" title="4.配置ssh服务"></a>4.配置ssh服务</h2><p>位置：&#x2F;etc&#x2F;ssh&#x2F;sshd_config<br>输入命令：vim &#x2F;etc&#x2F;ssh&#x2F;sshd_config<br>将下面的命令改为yes</p>
+<p>PermitRootLogin yes 允许管理员登陆<br>PasswordAuthentication yes 密码验证改为yes</p>
+<p>修改完成之后保存并退出</p>
+<p>输入命令：service ssh start 开启ssh服务<br>输入命令：update-rc.d ssh enable 设置为开机自启动</p>
+]]></content>
   </entry>
 </search>
