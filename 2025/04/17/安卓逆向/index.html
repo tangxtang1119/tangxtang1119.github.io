@@ -74,8 +74,8 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2025/04/16/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91/" class="article-date">
-  <time datetime="2025-04-15T16:00:00.000Z" itemprop="datePublished">2025-04-16</time>
+      <a href="/2025/04/17/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91/" class="article-date">
+  <time datetime="2025-04-16T16:00:00.000Z" itemprop="datePublished">2025-04-17</time>
 </a> 
   <div class="article-category">
     <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
@@ -86,7 +86,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">12.5k</span>
+            <span class="post-count">13.5k</span>
         </span>
     </span>
 
@@ -95,7 +95,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">58 分钟</span>
+            <span class="post-count">62 分钟</span>
         </span>
     </span>
 </div>
@@ -874,7 +874,7 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jarsigner -verbose -sigalg SHA256withRSA -digestalg SHA-256 -keystore F:\KeyStore\my_key.jks modified.apk key0</span><br></pre></td></tr></table></figure>
 
 <h2 id="七、安装测试"><a href="#七、安装测试" class="headerlink" title="七、安装测试"></a>七、安装测试</h2><p>在雷电模拟器中安装，会发现点击按钮“条过广告”，什么弹窗都不会出现。</p>
-<h2 id="关键原理"><a href="#关键原理" class="headerlink" title="关键原理"></a><strong>关键原理</strong></h2><table>
+<h2 id="八、关键原理总结"><a href="#八、关键原理总结" class="headerlink" title="八、关键原理总结"></a>八、<strong>关键原理总结</strong></h2><table>
 <thead>
 <tr>
 <th align="left">步骤</th>
@@ -898,6 +898,81 @@
 <td align="left">使修改后的 APK 能被 Android 系统识别为合法应用</td>
 </tr>
 </tbody></table>
+<h1 id="破解简单验证"><a href="#破解简单验证" class="headerlink" title="破解简单验证"></a><strong>破解简单验证</strong></h1><h2 id="一、准备一个简单的Vip-Demo"><a href="#一、准备一个简单的Vip-Demo" class="headerlink" title="一、准备一个简单的Vip_Demo"></a>一、准备一个简单的Vip_Demo</h2><h3 id="实现会员验证功能"><a href="#实现会员验证功能" class="headerlink" title="实现会员验证功能"></a>实现会员验证功能</h3><p>在MainActivity.java中，使用 <code>TextView</code> 和 <code>Button</code> 控件，并通过它们的 ID (<code>status_text</code> 和 <code>check_btn</code>) 来操作界面。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.vip_demo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> android.os.Bundle;</span><br><span class="line"><span class="keyword">import</span> android.widget.Button;</span><br><span class="line"><span class="keyword">import</span> android.widget.TextView;</span><br><span class="line"><span class="keyword">import</span> androidx.appcompat.app.AppCompatActivity;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MainActivity</span> <span class="keyword">extends</span> <span class="title class_">AppCompatActivity</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">onCreate</span><span class="params">(Bundle savedInstanceState)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line"></span><br><span class="line">        <span class="type">TextView</span> <span class="variable">status</span> <span class="operator">=</span> findViewById(R.id.status_text);</span><br><span class="line">        <span class="type">Button</span> <span class="variable">checkBtn</span> <span class="operator">=</span> findViewById(R.id.check_btn);</span><br><span class="line"></span><br><span class="line">        checkBtn.setOnClickListener(v -&gt; &#123;</span><br><span class="line">            <span class="keyword">if</span> (isVip()) &#123;</span><br><span class="line">                status.setText(<span class="string">&quot;VIP会员&quot;</span>);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                status.setText(<span class="string">&quot;普通用户&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="type">boolean</span> <span class="title function_">isVip</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>; <span class="comment">// 默认返回false</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在 <code>activity_main.xml</code> 文件中定义这些控件并设置对应的 ID。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">#……</span><br><span class="line">#原始代码</span><br><span class="line"><span class="comment">&lt;!-- TextView 用于显示状态 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">&quot;@+id/status_text&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:text</span>=<span class="string">&quot;状态&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:textSize</span>=<span class="string">&quot;18sp&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:padding</span>=<span class="string">&quot;16dp&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">app:layout_constraintTop_toTopOf</span>=<span class="string">&quot;parent&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">app:layout_constraintStart_toStartOf</span>=<span class="string">&quot;parent&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">app:layout_constraintEnd_toEndOf</span>=<span class="string">&quot;parent&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">app:layout_constraintBottom_toTopOf</span>=<span class="string">&quot;@+id/check_btn&quot;</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- Button 用于触发检查 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Button</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">&quot;@+id/check_btn&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:text</span>=<span class="string">&quot;检查会员状态&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:padding</span>=<span class="string">&quot;16dp&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">app:layout_constraintTop_toBottomOf</span>=<span class="string">&quot;@+id/status_text&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">app:layout_constraintStart_toStartOf</span>=<span class="string">&quot;parent&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">app:layout_constraintEnd_toEndOf</span>=<span class="string">&quot;parent&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">app:layout_constraintBottom_toBottomOf</span>=<span class="string">&quot;parent&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>在AndroidStudio运行模拟器查看效果</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/%E7%A0%B4%E8%A7%A3%E7%AE%80%E5%8D%95%E9%AA%8C%E8%AF%81%E7%8A%B6%E6%80%81.png"></p>
+<p>由于设置的isVip方法返回值为false所以运行后的页面效果为下图，显示“普通用户”</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/%E7%A0%B4%E8%A7%A3%E7%AE%80%E5%8D%95%E9%AA%8C%E8%AF%81false.png"></p>
+<p><strong>构建APK文件</strong></p>
+<ul>
+<li>在Android Studio中生成已签名的APK</li>
+</ul>
+<h2 id="二、使用jadx分析APk"><a href="#二、使用jadx分析APk" class="headerlink" title="二、使用jadx分析APk"></a>二、使用jadx分析APk</h2><p>1.打开jadx，将APK文件拖入窗口</p>
+<p>2.找到验证逻辑：</p>
+<ul>
+<li>导航到<code>MainActivity</code>类</li>
+<li>查找<code>isVip()</code>方法，会发现它总是返回<code>false</code></li>
+<li>查找调用<code>isVip()</code>的地方，通常是<code>if (isVip())</code>这样的条件判断</li>
+</ul>
+<h2 id="三、解压APK并定位关键文件"><a href="#三、解压APK并定位关键文件" class="headerlink" title="三、解压APK并定位关键文件"></a>三、解压APK并定位关键文件</h2><p>1.使用apktool解压APK</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apktool d app-release.apk -o out_dir_release</span><br></pre></td></tr></table></figure>
+
+<p>2.找到对应的smali文件</p>
+<p>一般情况下是MainActivity.smali</p>
+<h2 id="四、修改smali代码"><a href="#四、修改smali代码" class="headerlink" title="四、修改smali代码"></a>四、修改smali代码</h2><p>1.打开MainActivity.smali文件</p>
+<p>2.找到isVip()方法：</p>
+<ul>
+<li>会发现这是一个私有方法，返回值类型为布尔值</li>
+<li><code>.locals 1</code>表示该方法是哟个了1个局部变量</li>
+<li><code>const/4 v0,0x0</code>将布尔值<code>false</code>(0x0)存储在寄存器<code>v0</code>中</li>
+<li><code>return v0</code>返回寄存器<code>v0</code>的值，即false</li>
+</ul>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">.method</span><span class="keyword"> private</span> isVip()Z</span><br><span class="line"><span class="keyword">    .locals</span> 1</span><br><span class="line"></span><br><span class="line">   <span class="built_in"> const/4 </span>v0, 0x0</span><br><span class="line"></span><br><span class="line">   <span class="built_in"> return </span>v0<span class="keyword"></span></span><br><span class="line"><span class="keyword">.end method</span></span><br></pre></td></tr></table></figure>
+
+<p>3.修改返回值：</p>
+<p>将返回值false改为true</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">.method</span><span class="keyword"> private</span> isVip()Z</span><br><span class="line"><span class="keyword">    .locals</span> 1</span><br><span class="line">    </span><br><span class="line">	<span class="comment">#将v0修改 0x0 -&gt; 0x1</span></span><br><span class="line">   <span class="built_in"> const/4 </span>v0, 0x1</span><br><span class="line"></span><br><span class="line">   <span class="built_in"> return </span>v0<span class="keyword"></span></span><br><span class="line"><span class="keyword">.end method</span></span><br></pre></td></tr></table></figure>
+
+<p>或者修改调用处的条件判断</p>
+<p>原逻辑代码：</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#结合上下文代码，如果p2等于0（false），调准到cond_0，返回“普通用户”</span><span class="built_in"></span></span><br><span class="line"><span class="built_in">if-eqz </span>p2,<span class="keyword"> :cond_0</span></span><br></pre></td></tr></table></figure>
+
+<p>修改后逻辑代码：</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#结合上下文代码，如果p2不等于0（false），调准到cond_0，返回“VIP会员”</span><span class="built_in"></span></span><br><span class="line"><span class="built_in">if-nez </span>p2,<span class="keyword"> :cond_0</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="五、完整的MainActivity-smali代码分析-1"><a href="#五、完整的MainActivity-smali代码分析-1" class="headerlink" title="五、完整的MainActivity.smali代码分析"></a>五、完整的MainActivity.smali代码分析</h2><p><strong><code>isVip</code> 方法</strong></p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">.method</span><span class="keyword"> private</span> isVip()Z</span><br><span class="line"><span class="keyword">    .locals</span> 1</span><br><span class="line"></span><br><span class="line">   <span class="built_in"> const/4 </span>v0, 0x0</span><br><span class="line"></span><br><span class="line">   <span class="built_in"> return </span>v0<span class="keyword"></span></span><br><span class="line"><span class="keyword">.end method</span></span><br></pre></td></tr></table></figure>
+
+<p>这是一个合成方法（<code>synthetic</code>），由编译器生成，用于处理 Lambda 表达式。</p>
+<ul>
+<li>参数：<ul>
+<li><code>p1</code> 是一个 <code>TextView</code> 对象（<code>status</code>）。</li>
+<li><code>p2</code> 是一个 <code>View</code> 对象（点击事件的来源）。</li>
+</ul>
+</li>
+<li>方法逻辑：<ol>
+<li>调用 <code>isVip()</code> 方法，结果存储在 <code>p2</code> 中。</li>
+<li>如果 <code>isVip()</code> 返回 <code>true</code>，设置 <code>TextView</code> 的文本为 <code>&quot;VIP会员&quot;</code>。</li>
+<li>如果 <code>isVip()</code> 返回 <code>false</code>，设置 <code>TextView</code> 的文本为 <code>&quot;普通用户&quot;</code>。</li>
+</ol>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"># virtual methods</span><br><span class="line">.method synthetic lambda$onCreate$0$com-example-vip_demo-MainActivity(Landroid/widget/TextView;Landroid/view/View;)V</span><br><span class="line">    .locals 0</span><br><span class="line"></span><br><span class="line">    .line 19</span><br><span class="line">    invoke-direct &#123;p0&#125;, Lcom/example/vip_demo/MainActivity;-&gt;isVip()Z</span><br><span class="line"></span><br><span class="line">    move-result p2</span><br><span class="line"></span><br><span class="line">    if-eqz p2, :cond_0</span><br><span class="line"></span><br><span class="line">    .line 20</span><br><span class="line">    const-string p2, &quot;VIP\u4f1a\u5458&quot;</span><br><span class="line"></span><br><span class="line">    invoke-virtual &#123;p1, p2&#125;, Landroid/widget/TextView;-&gt;setText(Ljava/lang/CharSequence;)V</span><br><span class="line"></span><br><span class="line">    goto :goto_0</span><br><span class="line"></span><br><span class="line">    .line 22</span><br><span class="line">    :cond_0</span><br><span class="line">    const-string p2, &quot;\u666e\u901a\u7528\u6237&quot;</span><br><span class="line"></span><br><span class="line">    invoke-virtual &#123;p1, p2&#125;, Landroid/widget/TextView;-&gt;setText(Ljava/lang/CharSequence;)V</span><br><span class="line"></span><br><span class="line">    :goto_0</span><br><span class="line">    return-void</span><br><span class="line">.end method</span><br></pre></td></tr></table></figure>
+
+<h2 id="六、重新打包并签名-1"><a href="#六、重新打包并签名-1" class="headerlink" title="六、重新打包并签名"></a>六、重新打包并签名</h2><p>1.使用apktool重新打包</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apktool b output_dir_release -o modified.apk</span><br></pre></td></tr></table></figure>
+
+<p>2.对apl进行签名</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apktool -verbose -sigalg SHA256withRSA -digestalg SHA-256 -keystore F:\KeyStore\my_key.jks modified.apk key0</span><br></pre></td></tr></table></figure>
+
+<h2 id="七、测试修改后的APK"><a href="#七、测试修改后的APK" class="headerlink" title="七、测试修改后的APK"></a>七、测试修改后的APK</h2><p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/%E7%A0%B4%E8%A7%A3%E7%AE%80%E5%8D%95%E9%AA%8C%E8%AF%81%E6%B5%8B%E8%AF%95.png"></p>
+<p>点击按钮后</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/%E7%A0%B4%E8%A7%A3%E7%AE%80%E5%8D%95%E9%AA%8C%E8%AF%81%E7%BB%93%E6%9E%9C.png"></p>
  
       <!-- reward -->
       
@@ -962,7 +1037,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://tangxtang1119.github.io/2025/04/16/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://tangxtang1119.github.io/2025/04/17/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -975,10 +1050,19 @@
    
   <nav class="article-nav">
     
+      <a href="/2025/04/17/Samli/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            Samli
+          
+        </div>
+      </a>
     
-      <a href="/2025/04/15/Kali-Linux/" class="article-nav-link">
+    
+      <a href="/2025/04/14/%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">Kali Linux</div>
+        <div class="article-nav-title">系统安全</div>
       </a>
     
   </nav>

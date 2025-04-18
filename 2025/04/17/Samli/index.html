@@ -74,8 +74,8 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2025/04/14/Samli/" class="article-date">
-  <time datetime="2025-04-13T16:00:00.000Z" itemprop="datePublished">2025-04-14</time>
+      <a href="/2025/04/17/Samli/" class="article-date">
+  <time datetime="2025-04-16T16:00:00.000Z" itemprop="datePublished">2025-04-17</time>
 </a> 
   <div class="article-category">
     <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
@@ -86,7 +86,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">9.5k</span>
+            <span class="post-count">22.6k</span>
         </span>
     </span>
 
@@ -95,7 +95,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">41 分钟</span>
+            <span class="post-count">99 分钟</span>
         </span>
     </span>
 </div>
@@ -139,7 +139,7 @@
  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">表明这是在java源码中的第几行，其实这个值无所谓是多少，可以任意修改，主要用于调试</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>invoke-direct</p>
- <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">这是对方法的调用，可以看到这里调用了是Android.app.Activity的init方法，这在java里是隐式调用的</span><br></pre></td></tr></table></figure>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">这是对方法的调用</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>.parameter</p>
  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">指明了参数名</span><br></pre></td></tr></table></figure>
@@ -710,6 +710,1558 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">move-result-object v0 #调用方法后结果存储在v0中</span><br><span class="line">.local v0,&quot;b&quot;:Ljava/lang/String; #局部便零v0别名为b 是一个string类型 也就是String b=v0</span><br></pre></td></tr></table></figure>
 
 <h2 id="locals-N"><a href="#locals-N" class="headerlink" title=".locals N"></a>.locals N</h2><p>注意这个和上面loca的区别多加了一个s</p>
+<table>
+<thead>
+<tr>
+<th>Opcode操作码(hex)</th>
+<th>Opcode name操作码名称</th>
+<th>Explanation说明</th>
+<th>Example示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>00</td>
+<td>nop</td>
+<td>无操作</td>
+<td>0000 – nop</td>
+</tr>
+<tr>
+<td>01</td>
+<td>move vx, vy</td>
+<td>移动vy的内容到vx。两个寄存器都必须在最初的256寄存器范围以内。</td>
+<td>0110 – move v0, v1 移动v1寄存器中的内容到v0。</td>
+</tr>
+<tr>
+<td>02</td>
+<td>move&#x2F;from16 vx, vy</td>
+<td>移动vy的内容到vx。vy可能在64K寄存器范围以内，而vx则是在最初的256寄存器范围以内。</td>
+<td>0200 1900 – move&#x2F;from16 v0, v25 移动v25寄存器中的内容到v0。</td>
+</tr>
+<tr>
+<td>03</td>
+<td>move&#x2F;16</td>
+<td>未知注4</td>
+<td></td>
+</tr>
+<tr>
+<td>04</td>
+<td>move-wide</td>
+<td>未知注4</td>
+<td></td>
+</tr>
+<tr>
+<td>05</td>
+<td>move-wide&#x2F;from16 vx, vy</td>
+<td>移动一个long&#x2F;double值，从vy到vx。vy可能在64K寄存器范围以内，而vx则是在最初的256寄存器范围以内。</td>
+<td>0516 0000 – move-wide&#x2F;from16 v22, v0 移动v0,v1寄存器中的内容到 v22,v23。</td>
+</tr>
+<tr>
+<td>06</td>
+<td>move-wide&#x2F;16</td>
+<td>未知注4</td>
+<td></td>
+</tr>
+<tr>
+<td>07</td>
+<td>move-object vx, vy</td>
+<td>移动对象引用，从vy到vx。</td>
+<td>0781 – move-object v1, v8 移动v8寄存器中的对象引用到v1。</td>
+</tr>
+<tr>
+<td>08</td>
+<td>move-object&#x2F;from16 vx, vy</td>
+<td>移动对象引用，从vy到vx。vy可以处理64K寄存器地址，vx可以处理256寄存器地址。</td>
+<td>0801 1500 – move-object&#x2F;from16 v1, v21 移动v21寄存器中的对象引用到v1。</td>
+</tr>
+<tr>
+<td>09</td>
+<td>move-object&#x2F;16</td>
+<td>未知注4</td>
+<td></td>
+</tr>
+<tr>
+<td>0A</td>
+<td>move-result vx</td>
+<td>移动上一次方法调用的返回值到vx。</td>
+<td>0A00 – move-result v0 移动上一次方法调用的返回值到v0。</td>
+</tr>
+<tr>
+<td>0B</td>
+<td>move-result-wide vx</td>
+<td>移动上一次方法调用的long&#x2F;double型返回值到vx,vx+1。</td>
+<td>0B02 – move-result-wide v2 移动上一次方法调用的long&#x2F;double型返回值到v2,v3。</td>
+</tr>
+<tr>
+<td>0C</td>
+<td>move-result-object vx</td>
+<td>移动上一次方法调用的对象引用返回值到vx。</td>
+<td>0C00 – move-result-object v0 移动上一次方法调用的对象引用返回值到v0。</td>
+</tr>
+<tr>
+<td>0D</td>
+<td>move-exception vx</td>
+<td>当方法调用抛出异常时移动异常对象引用到vx。</td>
+<td>0D19 – move-exception v25 当方法调用抛出异常时移动异常对象引用到v25。</td>
+</tr>
+<tr>
+<td>0E</td>
+<td>return-void</td>
+<td>返回空值。</td>
+<td>0E00 – return-void 返回值为void，即无返回值，并非返回null。</td>
+</tr>
+<tr>
+<td>0F</td>
+<td>return vx</td>
+<td>返回在vx寄存器的值。</td>
+<td>0F00 – return v0 返回v0寄存器中的值。</td>
+</tr>
+<tr>
+<td>10</td>
+<td>return-wide vx</td>
+<td>返回在vx,vx+1寄存器的double&#x2F;long值。</td>
+<td>1000 – return-wide v0 返回v0,v1寄存器中的double&#x2F;long值。</td>
+</tr>
+<tr>
+<td>11</td>
+<td>return-object vx</td>
+<td>返回在vx寄存器的对象引用。</td>
+<td>1100 – return-object v0 返回v0寄存器中的对象引用。</td>
+</tr>
+<tr>
+<td>12</td>
+<td>const&#x2F;4 vx, lit4</td>
+<td>存入4位常量到vx。</td>
+<td>1221 – const&#x2F;4 v1, #int 2 存入int型常量2到v1。目的寄存器在第二个字节的低4位，常量2在更高的4位。</td>
+</tr>
+<tr>
+<td>13</td>
+<td>const&#x2F;16 vx, lit16</td>
+<td>存入16位常量到vx。</td>
+<td>1300 0A00 – const&#x2F;16 v0, #int 10 存入int型常量10到v0。</td>
+</tr>
+<tr>
+<td>14</td>
+<td>const vx, lit32</td>
+<td>存入int 型常量到vx。</td>
+<td>1400 4E61 BC00 – const v0, #12345678 &#x2F;&#x2F; #00BC614E 存入常量12345678到v0。</td>
+</tr>
+<tr>
+<td>15</td>
+<td>const&#x2F;high16 v0, lit16</td>
+<td>存入16位常量到最高位寄存器，用于初始化float值。</td>
+<td>1500 2041 – const&#x2F;high16 v0, #float 10.0 &#x2F;&#x2F; #41200000 存入float常量10.0到v0。该指令最高支持16位浮点数。</td>
+</tr>
+<tr>
+<td>16</td>
+<td>const-wide&#x2F;16 vx, lit16</td>
+<td>存入int常量到vx,vx+1寄存器，扩展int型常量为long常量。</td>
+<td>1600 0A00 – const-wide&#x2F;16 v0, #long 10 存入long常量10到v0,v1寄存器。</td>
+</tr>
+<tr>
+<td>17</td>
+<td>const-wide&#x2F;32 vx, lit32</td>
+<td>存入32位常量到vx,vx+1寄存器，扩展int型常量到long常量。</td>
+<td>1702 4e61 bc00 – const-wide&#x2F;32 v2, #long 12345678 &#x2F;&#x2F; #00bc614e 存入long常量12345678到v2,v3寄存器。</td>
+</tr>
+<tr>
+<td>18</td>
+<td>const-wide vx, lit64</td>
+<td>存入64位常量到vx,vx+1寄存器。</td>
+<td>1802 874b 6b5d 54dc 2b00- const-wide v2, #long 12345678901234567 &#x2F;&#x2F; #002bdc545d6b4b87 存入long常量12345678901234567到v2,v3寄存器。</td>
+</tr>
+<tr>
+<td>19</td>
+<td>const-wide&#x2F;high16 vx, lit16</td>
+<td>存入16位常量到最高16位的vx,vx+1寄存器，用于初始化double 值。</td>
+<td>1900 2440 – const-wide&#x2F;high16 v0, #double 10.0 &#x2F;&#x2F; #402400000 存入double常量10.0到v0,v1。</td>
+</tr>
+<tr>
+<td>1A</td>
+<td>const-string vx, 字符串ID</td>
+<td>存入字符串常量引用到vx，通过字符串ID或字符串。</td>
+<td>1A08 0000 – const-string v8, “” &#x2F;&#x2F; string@0000 存入string@0000（字符串表#0条目）的引用到v8。</td>
+</tr>
+<tr>
+<td>1B</td>
+<td>const-string-jumbo</td>
+<td>未知注4</td>
+<td></td>
+</tr>
+<tr>
+<td>1C</td>
+<td>const-class vx, 类型ID</td>
+<td>存入类对象常量到vx，通过类型ID或类型（如Object.class）。</td>
+<td>1C00 0100 – const-class v0, Test3 &#x2F;&#x2F; type@0001 存入Test3.class（类型ID表#1条目）的引用到v0。</td>
+</tr>
+<tr>
+<td>1D</td>
+<td>monitor-enter vx</td>
+<td>获得vx寄存器中的对象引用的监视器。</td>
+<td>1D03 – monitor-enter v3 获得v3寄存器中的对象引用的监视器。</td>
+</tr>
+<tr>
+<td>1E</td>
+<td>monitor-exit</td>
+<td>释放vx寄存器中的对象引用的监视器。</td>
+<td>1E03 – monitor-exit v3 释放v3寄存器中的对象引用的监视器。</td>
+</tr>
+<tr>
+<td>1F</td>
+<td>check-cast vx, 类型ID</td>
+<td>检查vx寄存器中的对象引用是否可以转换成类型ID对应类型的实例。如不可转换，抛出ClassCastException异常，否则继续执行。</td>
+<td>1F04 0100 – check-cast v4, Test3 &#x2F;&#x2F; type@0001 检查v4寄存器中的对象引用是否可以转换成Test3（类型ID表#1条目）的实例。</td>
+</tr>
+<tr>
+<td>20</td>
+<td>instance-of vx, vy, 类型ID</td>
+<td>检查vy寄存器中的对象引用是否是类型ID对应类型的实例，如果是，vx存入非0值，否则vx存入0。</td>
+<td>2040 0100 – instance-of v0, v4, Test3 &#x2F;&#x2F; type@0001 检查v4寄存器中的对象引用是否是Test3（类型ID表#1条目）的实例。如果是，v0存入非0值，否则v0存入0。</td>
+</tr>
+<tr>
+<td>21</td>
+<td>array-length vx, vy</td>
+<td>计算vy寄存器中数组引用的元素长度并将长度存入vx。</td>
+<td>2111 – array-length v0, v1 计算v1寄存器中数组引用的元素长度并将长度存入v0。</td>
+</tr>
+<tr>
+<td>22</td>
+<td>new-instance vx, 类型ID</td>
+<td>根据类型ID或类型新建一个对象实例，并将新建的对象的引用存入vx。</td>
+<td>2200 1500 – new-instance v0, java.io.FileInputStream &#x2F;&#x2F; type@0015 实例化java.io.FileInputStream（类型ID表#15H条目）类型，并将其对象引用存入v0。</td>
+</tr>
+<tr>
+<td>23</td>
+<td>new-array vx, vy, 类型ID</td>
+<td>根据类型ID或类型新建一个数组，vy存入数组的长度，vx存入数组的引用。</td>
+<td>2312 2500 – new-array v2, v1, char[] &#x2F;&#x2F; type@0025 新建一个char（类型ID表#25H条目）数组，v1存入数组的长度，v2存入数组的引用。</td>
+</tr>
+<tr>
+<td>24</td>
+<td>filled-new-array {参数}, 类型ID</td>
+<td>根据类型ID或类型新建一个数组并通过参数填充注5。新的数组引用可以得到一个move-result-object指令，前提是执行过filled-new-array 指令。</td>
+<td>2420 530D 0000 – filled-new-array {v0,v0},[I &#x2F;&#x2F; type@0D53 新建一个int（类型ID表#D53H条目）数组，长度将为2并且2个元素将填充到v0寄存器。</td>
+</tr>
+<tr>
+<td>25</td>
+<td>filled-new-array-range {vx..vy}, 类型ID</td>
+<td>根据类型ID或类型新建一个数组并以寄存器范围为参数填充。新的数组引用可以得到一个move-result-object指令，前提是执行过filled-new-array 指令。</td>
+<td>2503 0600 1300 - filled-new-array&#x2F;range {v19..v21}, [B &#x2F;&#x2F; type@0006 新建一个byte（类型ID表#6条目）数组，长度将为3并且3个元素将填充到v19,v20,v21寄存器注4。</td>
+</tr>
+<tr>
+<td>26</td>
+<td>fill-array-data vx, 偏移量</td>
+<td>用vx的静态数据填充数组引用。静态数据的位址是当前指令位置加偏移量的和。</td>
+<td>2606 2500 0000 - fill-array-data v6, 00e6 &#x2F;&#x2F; +0025 用当前指令位置+25H的静态数据填充v6寄存器的数组引用。偏移量是32位的数字，静态数据的存储格式如下：0003 &#x2F;&#x2F; 表类型：静态数组数据0400 &#x2F;&#x2F; 每个元素的字节数（这个例子是4字节的int型）0300 0000 &#x2F;&#x2F; 元素个数0100 0000 &#x2F;&#x2F; 元素 #0：int 10200 0000 &#x2F;&#x2F; 元素 #1：int 20300 0000 &#x2F;&#x2F; 元素 #2：int 3</td>
+</tr>
+<tr>
+<td>27</td>
+<td>throw vx</td>
+<td>抛出异常对象，异常对象的引用在vx寄存器。</td>
+<td>2700 - throw v0 抛出异常对象，异常对象的引用在v0寄存器。</td>
+</tr>
+<tr>
+<td>28</td>
+<td>goto 目标</td>
+<td>通过短偏移量注2无条件跳转到目标。</td>
+<td>28F0 - goto 0005 &#x2F;&#x2F; -0010 跳转到当前位置-16（hex 10）的位置，0005是目标指令标签。</td>
+</tr>
+<tr>
+<td>29</td>
+<td>goto&#x2F;16目标</td>
+<td>通过16位偏移量注2无条件跳转到目标。</td>
+<td>2900 0FFE - goto&#x2F;16 002f &#x2F;&#x2F; -01f1 跳转到当前位置-1F1H的位置，002f是目标指令标签。</td>
+</tr>
+<tr>
+<td>2A</td>
+<td>goto&#x2F;32目标</td>
+<td>通过32位偏移量注2无条件跳转到目标。</td>
+<td></td>
+</tr>
+<tr>
+<td>2B</td>
+<td>packed-switch vx, 索引表偏移量</td>
+<td>实现一个switch 语句，case常量是连续的。这个指令使用索引表，vx是在表中找到具体case的指令偏移量的索引，如果无法在表中找到vx对应的索引将继续执行下一个指令（即default case）。</td>
+<td>2B02 0C00 0000 - packed-switch v2, 000c &#x2F;&#x2F; +000c 根据v2寄存器中的值执行packed switch，索引表的位置是当前指令位置+0CH，表如下所示：0001 &#x2F;&#x2F; 表类型：packed switch表0300 &#x2F;&#x2F; 元素个数0000 0000 &#x2F;&#x2F; 基础元素0500 0000 0: 00000005 &#x2F;&#x2F; case 0: +000000050700 0000 1: 00000007 &#x2F;&#x2F; case 1: +000000070900 0000 2: 00000009 &#x2F;&#x2F; case 2: +00000009</td>
+</tr>
+<tr>
+<td>2C</td>
+<td>sparse-switch vx, 查询表偏移量</td>
+<td>实现一个switch 语句，case常量是非连续的。这个指令使用查询表，用于表示case常量和每个case常量的偏移量。如果vx无法在表中匹配将继续执行下一个指令（即default case）。</td>
+<td>2C02 0c00 0000 - sparse-switch v2, 000c &#x2F;&#x2F; +000c 根据v2寄存器中的值执行sparse switch ，查询表的位置是当前指令位置+0CH，表如下所示：0002 &#x2F;&#x2F; 表类型：sparse switch表0300 &#x2F;&#x2F; 元素个数9cff ffff &#x2F;&#x2F; 第一个case常量: -100fa00 0000 &#x2F;&#x2F; 第二个case常量: 250e803 0000 &#x2F;&#x2F; 第三个case常量: 10000500 0000 &#x2F;&#x2F; 第一个case常量的偏移量: +50700 0000 &#x2F;&#x2F; 第二个case常量的偏移量: +70900 0000 &#x2F;&#x2F; 第三个case常量的偏移量: +9</td>
+</tr>
+<tr>
+<td>2D</td>
+<td>cmpl-float vx, vy, vz</td>
+<td>比较vy和vz的float值并在vx存入int型返回值注3。</td>
+<td>2D00 0607 - cmpl-float v0, v6, v7 比较v6和v7的float值并在v0存入int型返回值。非数值默认为小于。如果参数为非数值将返回-1。</td>
+</tr>
+<tr>
+<td>2E</td>
+<td>cmpg-float vx, vy, vz</td>
+<td>比较vy和vz的float值并在vx存入int型返回值注3。</td>
+<td>2E00 0607 - cmpg-float v0, v6, v7 比较v6和v7的float值并在v0存入int型返回值。非数值默认为大于。如果参数为非数值将返回1。</td>
+</tr>
+<tr>
+<td>2F</td>
+<td>cmpl-double vx, vy, vz</td>
+<td>比较vy和vz注2的double值并在vx存入int型返回值注3。</td>
+<td>2F19 0608 - cmpl-double v25, v6, v8 比较v6,v7和v8,v9的double值并在v25存入int型返回值。非数值默认为小于。如果参数为非数值将返回-1。</td>
+</tr>
+<tr>
+<td>30</td>
+<td>cmpg-double vx, vy, vz</td>
+<td>比较vy和vz注2的double值并在vx存入int型返回值注3。</td>
+<td>3000 080A - cmpg-double v0, v8, v10 比较v8,v9和v10,v11的double值并在v0存入int型返回值。非数值默认为大于。如果参数为非数值将返回1。</td>
+</tr>
+<tr>
+<td>31</td>
+<td>cmp-long vx, vy, vz</td>
+<td>比较vy和vz的long值并在vx存入int型返回值注3。</td>
+<td>3100 0204 - cmp-long v0, v2, v4 比较v2和v4的long值并在v0存入int型返回值。</td>
+</tr>
+<tr>
+<td>32</td>
+<td>if-eq vx,vy, 目标</td>
+<td>如果vx &#x3D;&#x3D; vy注2，跳转到目标。vx和vy是int型值。</td>
+<td>32b3 6600 - if-eq v3, v11, 0080 &#x2F;&#x2F; +0066 如果v3 &#x3D;&#x3D; v11，跳转到当前位置+66H。0080是目标指令标签。</td>
+</tr>
+<tr>
+<td>33</td>
+<td>if-ne vx,vy, 目标</td>
+<td>如果vx !&#x3D; vy注2，跳转到目标。vx和vy是int型值。</td>
+<td>33A3 1000 - if-ne v3, v10, 002c &#x2F;&#x2F; +0010 如果v3 !&#x3D; v10，跳转到当前位置+10H。002c是目标指令标签。</td>
+</tr>
+<tr>
+<td>34</td>
+<td>if-lt vx,vy, 目标</td>
+<td>如果vx &lt; vy注2，跳转到目标。vx和vy是int型值。</td>
+<td>3432 CBFF - if-lt v2, v3, 0023 &#x2F;&#x2F; -0035 如果v2 &lt; v3，跳转到当前位置-35H。0023是目标指令标签。</td>
+</tr>
+<tr>
+<td>35</td>
+<td>if-ge vx, vy, 目标</td>
+<td>如果vx &gt;&#x3D; vy注2，跳转到目标。vx和vy是int型值。</td>
+<td>3510 1B00 - if-ge v0, v1, 002b &#x2F;&#x2F; +001b 如果v0 &gt;&#x3D; v1，跳转到当前位置+1BH。002b是目标指令标签。</td>
+</tr>
+<tr>
+<td>36</td>
+<td>if-gt vx,vy, 目标</td>
+<td>如果vx &gt; vy注2，跳转到目标。vx和vy是int型值。</td>
+<td>3610 1B00 - if-ge v0, v1, 002b &#x2F;&#x2F; +001b 如果v0 &gt; v1，跳转到当前位置+1BH。002b是目标指令标签。</td>
+</tr>
+<tr>
+<td>37</td>
+<td>if-le vx,vy, 目标</td>
+<td>如果vx &lt;&#x3D; vy注2，跳转到目标。vx和vy是int型值。</td>
+<td>3756 0B00 - if-le v6, v5, 0144 &#x2F;&#x2F; +000b 如果v6 &lt;&#x3D; v5，跳转到当前位置+0BH。0144是目标指令标签。</td>
+</tr>
+<tr>
+<td>38</td>
+<td>if-eqz vx, 目标</td>
+<td>如果vx &#x3D;&#x3D; 0注2，跳转到目标。vx是int型值。</td>
+<td>3802 1900 - if-eqz v2, 0038 &#x2F;&#x2F; +0019 如果v2 &#x3D;&#x3D; 0，跳转到当前位置+19H。0038是目标指令标签。</td>
+</tr>
+<tr>
+<td>39</td>
+<td>if-nez vx, 目标</td>
+<td>如果vx !&#x3D; 0注2，跳转到目标。</td>
+<td>3902 1200 - if-nez v2, 0014 &#x2F;&#x2F; +0012 如果v2 !&#x3D; 0，跳转到当前位置+18(hex 12)。0014是目标指令标签。</td>
+</tr>
+<tr>
+<td>3A</td>
+<td>if-ltz vx, 目标</td>
+<td>如果vx &lt; 0注2，跳转到目标。</td>
+<td>3A00 1600 - if-ltz v0, 002d &#x2F;&#x2F; +0016 如果v0 &lt; 0，跳转到当前位置+16H。002d是目标指令标签。</td>
+</tr>
+<tr>
+<td>3B</td>
+<td>if-gez vx, 目标</td>
+<td>如果vx &gt;&#x3D; 0注2，跳转到目标。</td>
+<td>3B00 1600 - if-gez v0, 002d &#x2F;&#x2F; +0016 如果v0 &gt;&#x3D; 0，跳转到当前位置+16H。002d是目标指令标签。</td>
+</tr>
+<tr>
+<td>3C</td>
+<td>if-gtz vx, 目标</td>
+<td>如果vx &gt; 0注2，跳转到目标。</td>
+<td>3C00 1D00 - if-gtz v0, 004a &#x2F;&#x2F; +001d 如果v0 &gt; 0，跳转到当前位置+1DH。004a是目标指令标签。</td>
+</tr>
+<tr>
+<td>3D</td>
+<td>if-lez vx, 目标</td>
+<td>如果vx &lt;&#x3D; 0注2，跳转到目标。</td>
+<td>3D00 1D00 - if-lez v0, 004a &#x2F;&#x2F; +001d 如果v0 &lt;&#x3D; 0，跳转到当前位置+1DH。004a是目标指令标签。</td>
+</tr>
+<tr>
+<td>3E</td>
+<td>unused_3E</td>
+<td>未使用</td>
+<td></td>
+</tr>
+<tr>
+<td>3F</td>
+<td>unused_3F</td>
+<td>未使用</td>
+<td></td>
+</tr>
+<tr>
+<td>40</td>
+<td>unused_40</td>
+<td>未使用</td>
+<td></td>
+</tr>
+<tr>
+<td>41</td>
+<td>unused_41</td>
+<td>未使用</td>
+<td></td>
+</tr>
+<tr>
+<td>42</td>
+<td>unused_42</td>
+<td>未使用</td>
+<td></td>
+</tr>
+<tr>
+<td>43</td>
+<td>unused_43</td>
+<td>未使用</td>
+<td></td>
+</tr>
+<tr>
+<td>44</td>
+<td>aget vx, vy, vz</td>
+<td>从int数组获取一个int型值到vx，对象数组的引用位于vy，需获取的元素的索引位于vz。</td>
+<td>4407 0306 - aget v7, v3, v6 从数组获取一个int型值到v7，对象数组的引用位于v3，需获取的元素的索引位于v6。</td>
+</tr>
+<tr>
+<td>45</td>
+<td>aget-wide vx, vy, vz</td>
+<td>从long&#x2F;double数组获取一个long&#x2F;double值到vx,vx+1，数组的引用位于vy，需获取的元素的索引位于vz。</td>
+<td>4505 0104 - aget-wide v5, v1, v4 从long&#x2F;double数组获取一个long&#x2F;double值到v5,vx6，数组的引用位于v1，需获取的元素的索引位于v4。</td>
+</tr>
+<tr>
+<td>46</td>
+<td>aget-object vx, vy, vz</td>
+<td>从对象引用数组获取一个对象引用到vx，对象数组的引用位于vy，需获取的元素的索引位于vz。</td>
+<td>4602 0200 - aget-object v2, v2, v0 从对象引用数组获取一个对象引用到v2，对象数组的引用位于v2，需获取的元素的索引位于v0。</td>
+</tr>
+<tr>
+<td>47</td>
+<td>aget-boolean vx, vy, vz</td>
+<td>从boolean数组获取一个boolean值到vx，数组的引用位于vy，需获取的元素的索引位于vz。</td>
+<td>4700 0001 - aget-boolean v0, v0, v1 从boolean数组获取一个boolean值到v0，数组的引用位于v0，需获取的元素的索引位于v1。</td>
+</tr>
+<tr>
+<td>48</td>
+<td>aget-byte vx, vy, vz</td>
+<td>从byte数组获取一个byte值到vx，数组的引用位于vy，需获取的元素的索引位于vz。</td>
+<td>4800 0001 - aget-byte v0, v0, v1 从byte数组获取一个byte值到v0，数组的引用位于v0，需获取的元素的索引位于v1。</td>
+</tr>
+<tr>
+<td>49</td>
+<td>aget-char vx, vy, vz</td>
+<td>从char数组获取一个char值到vx，数组的引用位于vy，需获取的元素的索引位于vz。</td>
+<td>4905 0003 - aget-char v5, v0, v3 从char数组获取一个char值到v5，数组的引用位于v0，需获取的元素的索引位于v3。</td>
+</tr>
+<tr>
+<td>4A</td>
+<td>aget-short vx, vy, vz</td>
+<td>从short数组获取一个short值到vx，数组的引用位于vy，需获取的元素的索引位于vz。</td>
+<td>4A00 0001 - aget-short v0, v0, v1 从short数组获取一个short值到v0，数组的引用位于v0，需获取的元素的索引位于v1。</td>
+</tr>
+<tr>
+<td>4B</td>
+<td>aput vx, vy, vz</td>
+<td>将vx的int值作为元素存入int数组，数组的引用位于vy，元素的索引位于vz。</td>
+<td>4B00 0305 - aput v0, v3, v5 将v0的int值作为元素存入int数组，数组的引用位于v3，元素的索引位于v5。</td>
+</tr>
+<tr>
+<td>4C</td>
+<td>aput-wide vx, vy, vz</td>
+<td>将vx,vx+1的double&#x2F;long值作为元素存入double&#x2F;long数组，数组的引用位于vy，元素的索引位于vz。</td>
+<td>4C05 0104 - aput-wide v5, v1, v4 将v5,v6的double&#x2F;long值作为元素存入double&#x2F;long数组，数组的引用位于v1，元素的索引位于v4。</td>
+</tr>
+<tr>
+<td>4D</td>
+<td>aput-object vx, vy, vz</td>
+<td>将vx的对象引用作为元素存入对象引用数组，数组的引用位于vy，元素的索引位于vz。</td>
+<td>4D02 0100 - aput-object v2, v1, v0 将v2的对象引用作为元素存入对象引用数组，数组的引用位于v1，元素的索引位于v0。</td>
+</tr>
+<tr>
+<td>4E</td>
+<td>aput-boolean vx, vy, vz</td>
+<td>将vx的boolean值作为元素存入boolean数组，数组的引用位于vy，元素的索引位于vz。</td>
+<td>4E01 0002 - aput-boolean v1, v0, v2 将v1的boolean值作为元素存入boolean数组，数组的引用位于v0，元素的索引位于v2。</td>
+</tr>
+<tr>
+<td>4F</td>
+<td>aput-byte vx, vy, vz</td>
+<td>将vx的byte值作为元素存入byte数组，数组的引用位于vy，元素的索引位于vz。</td>
+<td>4F02 0001 - aput-byte v2, v0, v1 将v2的byte值作为元素存入byte数组，数组的引用位于v0，元素的索引位于v1。</td>
+</tr>
+<tr>
+<td>50</td>
+<td>aput-char vx, vy, vz</td>
+<td>将vx的char值作为元素存入char数组，数组的引用位于vy，元素的索引位于vz。</td>
+<td>5003 0001 - aput-char v3, v0, v1 将v3的char值作为元素存入char数组，数组的引用位于v0，元素的索引位于v1。</td>
+</tr>
+<tr>
+<td>51</td>
+<td>aput-short vx, vy, vz</td>
+<td>将vx的short值作为元素存入short数组，数组的引用位于vy，元素的索引位于vz。</td>
+<td>5102 0001 - aput-short v2, v0, v1 将v2的short值作为元素存入short数组，数组的引用位于v0，元素的索引位于v1。</td>
+</tr>
+<tr>
+<td>52</td>
+<td>iget vx, vy, 字段ID</td>
+<td>根据字段ID读取实例的int型字段到vx，vy寄存器中是该实例的引用。</td>
+<td>5210 0300 - iget v0, v1, Test2.i6:I &#x2F;&#x2F; field@0003 读取int型字段i6（字段表#3条目）到v0，v1寄存器中是Test2实例的引用。</td>
+</tr>
+<tr>
+<td>53</td>
+<td>iget-wide vx, vy, 字段ID</td>
+<td>根据字段ID读取实例的double&#x2F;long型字段到vx,vx+1注1，vy寄存器中是该实例的引用。</td>
+<td>5320 0400 - iget-wide v0, v2, Test2.l0:J &#x2F;&#x2F; field@0004 读取long型字段l0（字段表#4条目）到v0,v1，v2寄存器中是Test2实例的引用。</td>
+</tr>
+<tr>
+<td>54</td>
+<td>iget-object vx, vy, 字段ID</td>
+<td>根据字段ID读取一个实例的对象引用字段到vx，vy寄存器中是该实例的引用。</td>
+<td>iget-object v1, v2, LineReader.fis:Ljava&#x2F;io&#x2F;FileInputStream; &#x2F;&#x2F; field@0002 读取FileInputStream对象引用字段fis（字段表#2条目）到v1，v2寄存器中是LineReader实例的引用。</td>
+</tr>
+<tr>
+<td>55</td>
+<td>iget-boolean vx, vy, 字段ID</td>
+<td>根据字段ID读取实例的boolean型字段到vx，vy寄存器中是该实例的引用。</td>
+<td>55FC 0000 - iget-boolean v12, v15, Test2.b0:Z &#x2F;&#x2F; field@0000 读取boolean型字段b0（字段表#0条目）到v12，v15寄存器中是Test2实例的引用。</td>
+</tr>
+<tr>
+<td>56</td>
+<td>iget-byte vx, vy, 字段ID</td>
+<td>根据字段ID读取实例的byte型字段到vx，vy寄存器中是该实例的引用。</td>
+<td>5632 0100 - iget-byte v2, v3, Test3.bi1:B &#x2F;&#x2F; field@0001 读取byte型字段bi1（字段表#1条目）到v2，v3寄存器中是Test2实例的引用。</td>
+</tr>
+<tr>
+<td>57</td>
+<td>iget-char vx, vy, 字段ID</td>
+<td>根据字段ID读取实例的char型字段到vx，vy寄存器中是该实例的引用。</td>
+<td>5720 0300 - iget-char v0, v2, Test3.ci1:C &#x2F;&#x2F; field@0003 读取char型字段bi1（字段表#3条目）到v0，v2寄存器中是Test2实例的引用。</td>
+</tr>
+<tr>
+<td>58</td>
+<td>iget-short vx, vy, 字段ID</td>
+<td>根据字段ID读取实例的short型字段到vx，vy寄存器中是该实例的引用。</td>
+<td>5830 0800 - iget-short v0, v3, Test3.si1:S &#x2F;&#x2F; field@0008 读取short型字段si1（字段表#8条目）到v0，v3寄存器中是Test2实例的引用。</td>
+</tr>
+<tr>
+<td>59</td>
+<td>iput vx, vy, 字段ID</td>
+<td>根据字段ID将vx寄存器的值存入实例的int型字段，vy寄存器中是该实例的引用。</td>
+<td>5920 0200 - iput v0, v2, Test2.i6:I &#x2F;&#x2F; field@0002 将v0寄存器的值存入实例的int型字段i6（字段表#2条目），v2寄存器中是Test2实例的引用。</td>
+</tr>
+<tr>
+<td>5A</td>
+<td>iput-wide vx, vy, 字段ID</td>
+<td>根据字段ID将vx,vx+1寄存器的值存入实例的double&#x2F;long型字段，vy寄存器中是该实例的引用。</td>
+<td>5A20 0000 - iput-wide v0, v2, Test2.d0:D &#x2F;&#x2F; field@0000 将v0,v1寄存器的值存入实例的double型字段d0（字段表#0条目），v2寄存器中是Test2实例的引用。</td>
+</tr>
+<tr>
+<td>5B</td>
+<td>iput-object vx, vy, 字段ID</td>
+<td>根据字段ID将vx寄存器的值存入实例的对象引用字段，vy寄存器中是该实例的引用。</td>
+<td>5B20 0000 - iput-object v0, v2, LineReader.bis:Ljava&#x2F;io&#x2F;BufferedInputStream; &#x2F;&#x2F; field@0000 将v0寄存器的值存入实例的对象引用字段bis（字段表#0条目），v2寄存器中是BufferedInputStream实例的引用。</td>
+</tr>
+<tr>
+<td>5C</td>
+<td>iput-boolean vx, vy, 字段ID</td>
+<td>根据字段ID将vx寄存器的值存入实例的boolean型字段，vy寄存器中是该实例的引用。</td>
+<td>5C30 0000 - iput-boolean v0, v3, Test2.b0:Z &#x2F;&#x2F; field@0000 将v0寄存器的值存入实例的boolean型字段b0（字段表#0条目），v3寄存器中是Test2实例的引用。</td>
+</tr>
+<tr>
+<td>5D</td>
+<td>iput-byte vx, vy, 字段ID</td>
+<td>根据字段ID将vx寄存器的值存入实例的byte型字段，vy寄存器中是该实例的引用。</td>
+<td>5D20 0100 - iput-byte v0, v2, Test3.bi1:B &#x2F;&#x2F; field@0001 将v0寄存器的值存入实例的byte型字段bi1（字段表#1条目），v2寄存器中是Test2实例的引用。</td>
+</tr>
+<tr>
+<td>5E</td>
+<td>iput-char vx, vy, 字段ID</td>
+<td>根据字段ID将vx寄存器的值存入实例的char型字段，vy寄存器中是该实例的引用。</td>
+<td>5E20 0300 - iput-char v0, v2, Test3.ci1:C &#x2F;&#x2F; field@0003 将v0寄存器的值存入实例的char型字段ci1（字段表#3条目），v2寄存器中是Test2实例的引用。</td>
+</tr>
+<tr>
+<td>5F</td>
+<td>iput-short vx, vy, 字段ID</td>
+<td>根据字段ID将vx寄存器的值存入实例的short型字段，vy寄存器中是该实例的引用。</td>
+<td>5F21 0800 - iput-short v1, v2, Test3.si1:S &#x2F;&#x2F; field@0008 将v0寄存器的值存入实例的short型字段si1（字段表#8条目），v2寄存器中是Test2实例的引用。</td>
+</tr>
+<tr>
+<td>60</td>
+<td>sget vx, 字段ID</td>
+<td>根据字段ID读取静态int型字段到vx。</td>
+<td>6000 0700 - sget v0, Test3.is1:I &#x2F;&#x2F; field@0007 读取Test3的静态int型字段is1（字段表#7条目）到v0。</td>
+</tr>
+<tr>
+<td>61</td>
+<td>sget-wide vx, 字段ID</td>
+<td>根据字段ID读取静态double&#x2F;long型字段到vx,vx+1。</td>
+<td>6100 0500 - sget-wide v0, Test2.l1:J &#x2F;&#x2F; field@0005 读取Test2的静态long型字段l1（字段表#5条目）到v0,v1。</td>
+</tr>
+<tr>
+<td>62</td>
+<td>sget-object vx, 字段ID</td>
+<td>根据字段ID读取静态对象引用字段到vx。</td>
+<td>6201 0C00 - sget-object v1, Test3.os1:Ljava&#x2F;lang&#x2F;Object; &#x2F;&#x2F; field@000c 读取Object的静态对象引用字段os1（字段表#CH条目）到v1。</td>
+</tr>
+<tr>
+<td>63</td>
+<td>sget-boolean vx, 字段ID</td>
+<td>根据字段ID读取静态boolean型字段到vx。</td>
+<td>6300 0C00 - sget-boolean v0, Test2.sb:Z &#x2F;&#x2F; field@000c 读取Test2的静态boolean型字段sb（字段表#CH条目）到v0。</td>
+</tr>
+<tr>
+<td>64</td>
+<td>sget-byte vx, 字段ID</td>
+<td>根据字段ID读取静态byte型字段到vx。</td>
+<td>6400 0200 - sget-byte v0, Test3.bs1:B &#x2F;&#x2F; field@0002 读取Test3的静态byte型字段bs1（字段表#2条目）到v0。</td>
+</tr>
+<tr>
+<td>65</td>
+<td>sget-char vx, 字段ID</td>
+<td>根据字段ID读取静态char型字段到vx。</td>
+<td>6500 0700 - sget-char v0, Test3.cs1:C &#x2F;&#x2F; field@0007 读取Test3的静态char型字段cs1（字段表#7条目）到v0。</td>
+</tr>
+<tr>
+<td>66</td>
+<td>sget-short vx, 字段ID</td>
+<td>根据字段ID读取静态short型字段到vx。</td>
+<td>6600 0B00 - sget-short v0, Test3.ss1:S &#x2F;&#x2F; field@000b 读取Test3的静态short型字段ss1（字段表#CH条目）到v0。</td>
+</tr>
+<tr>
+<td>67</td>
+<td>sput vx, 字段ID</td>
+<td>根据字段ID将vx寄存器中的值赋值到int型静态字段。</td>
+<td>6700 0100 - sput v0, Test2.i5:I &#x2F;&#x2F; field@0001 将v0寄存器中的值赋值到Test2的int型静态字段i5（字段表#1条目）。</td>
+</tr>
+<tr>
+<td>68</td>
+<td>sput-wide vx, 字段ID</td>
+<td>根据字段ID将vx,vx+1寄存器中的值赋值到double&#x2F;long型静态字段。</td>
+<td>6800 0500 - sput-wide v0, Test2.l1:J &#x2F;&#x2F; field@0005 将v0,v1寄存器中的值赋值到Test2的long型静态字段l1（字段表#5条目）。</td>
+</tr>
+<tr>
+<td>69</td>
+<td>sput-object vx, 字段ID</td>
+<td>根据字段ID将vx寄存器中的对象引用赋值到对象引用静态字段。</td>
+<td>6900 0c00 - sput-object v0, Test3.os1:Ljava&#x2F;lang&#x2F;Object; &#x2F;&#x2F; field@000c 将v0寄存器中的对象引用赋值到Test3的对象引用静态字段os1（字段表#CH条目）。</td>
+</tr>
+<tr>
+<td>6A</td>
+<td>sput-boolean vx, 字段ID</td>
+<td>根据字段ID将vx寄存器中的值赋值到boolean型静态字段。</td>
+<td>6A00 0300 - sput-boolean v0, Test3.bls1:Z &#x2F;&#x2F; field@0003 将v0寄存器中的值赋值到Test3的boolean型静态字段bls1（字段表#3条目）。</td>
+</tr>
+<tr>
+<td>6B</td>
+<td>sput-byte vx, 字段ID</td>
+<td>根据字段ID将vx寄存器中的值赋值到byte型静态字段。</td>
+<td>6B00 0200 - sput-byte v0, Test3.bs1:B &#x2F;&#x2F; field@0002 将v0寄存器中的值赋值到Test3的byte型静态字段bs1（字段表#2条目）。</td>
+</tr>
+<tr>
+<td>6C</td>
+<td>sput-char vx, 字段ID</td>
+<td>根据字段ID将vx寄存器中的值赋值到char型静态字段。</td>
+<td>6C01 0700 - sput-char v1, Test3.cs1:C &#x2F;&#x2F; field@0007 将v1寄存器中的值赋值到Test3的char型静态字段cs1（字段表#7条目）。</td>
+</tr>
+<tr>
+<td>6D</td>
+<td>sput-short vx, 字段ID</td>
+<td>根据字段ID将vx寄存器中的值赋值到short型静态字段。</td>
+<td>6D00 0B00 - sput-short v0, Test3.ss1:S &#x2F;&#x2F; field@000b 将v0寄存器中的值赋值到Test3的short型静态字段ss1（字段表#BH条目）。</td>
+</tr>
+<tr>
+<td>6E</td>
+<td>invoke-virtual {参数}, 方法名</td>
+<td>调用带参数的虚拟方法。</td>
+<td>6E53 0600 0421 - invoke-virtual { v4, v0, v1, v2, v3}, Test2.method5:(IIII)V &#x2F;&#x2F; method@0006 调用Test2的method5（方法表#6条目）方法，该指令共有5个参数（操作码第二个字节的4个最高有效位5）注5。参数v4是”this”实例，v0, v1, v2, v3是method5方法的参数，(IIII)V的4个I分表表示4个int型参数，V表示返回值为void。</td>
+</tr>
+<tr>
+<td>6F</td>
+<td>invoke-super {参数}, 方法名</td>
+<td>调用带参数的直接父类的虚拟方法。</td>
+<td>6F10 A601 0100 invoke-super {v1},java.io.FilterOutputStream.close:()V &#x2F;&#x2F; method@01a6 调用java.io.FilterOutputStream的close（方法表#1A6条目）方法，参数v1是”this”实例。()V表示close方法没有参数，V表示返回值为void。</td>
+</tr>
+<tr>
+<td>70</td>
+<td>invoke-direct {参数}, 方法名</td>
+<td>不解析直接调用带参数的方法。</td>
+<td>7010 0800 0100 - invoke-direct {v1}, java.lang.Object.<init>:()V &#x2F;&#x2F; method@0008 调用java.lang.Object 的<init>（方法表#8条目）方法，参数v1是”this”实例注5。()V表示<init>方法没有参数，V表示返回值为void。</td>
+</tr>
+<tr>
+<td>71</td>
+<td>invoke-static {参数}, 方法名</td>
+<td>调用带参数的静态方法。</td>
+<td>7110 3400 0400 - invoke-static {v4}, java.lang.Integer.parseInt:( Ljava&#x2F;lang&#x2F;String;)I &#x2F;&#x2F; method@0034 调用java.lang.Integer 的parseInt（方法表#34条目）静态方法，该指令只有1个参数v4注5，(Ljava&#x2F;lang&#x2F;String;)I中的Ljava&#x2F;lang&#x2F;String;表示parseInt方法需要String类型的参数，I表示返回值为int型。</td>
+</tr>
+<tr>
+<td>72</td>
+<td>invoke-interface {参数}, 方法名</td>
+<td>调用带参数的接口方法。</td>
+<td>7240 2102 3154 invoke-interface {v1, v3, v4, v5}, mwfw.IReceivingProtocolAdapter.receivePackage:(ILjava&#x2F;lang&#x2F;String;Ljava&#x2F;io&#x2F;InputStream;)Z &#x2F;&#x2F; method@0221 调用mwfw.IReceivingProtocolAdapter 接口的receivePackage方法（方法表#221条目），该指令共有4个参数注5，参数v1是”this”实例，v3,v4,v5是receivePackage方法的参数，(ILjava&#x2F;lang&#x2F;String;Ljava&#x2F;io&#x2F;InputStream;)Z中的I表示int型参数，Ljava&#x2F;lang&#x2F;String;表示String类型参数，Ljava&#x2F;io&#x2F;InputStream;表示InputStream类型参数，Z表示返回值为boolean型。</td>
+</tr>
+<tr>
+<td>73</td>
+<td>unused_73</td>
+<td>未使用</td>
+<td></td>
+</tr>
+<tr>
+<td>74</td>
+<td>invoke-virtual&#x2F;range {vx..vy}, 方法名</td>
+<td>调用以寄存器范围为参数的虚拟方法。该指令第一个寄存器和寄存器的数量将传递给方法。</td>
+<td>7403 0600 1300 - invoke-virtual {v19..v21}, Test2.method5:(IIII)V &#x2F;&#x2F; method@0006 调用Test2的method5（方法表#6条目）方法，该指令共有3个参数。参数v19是”this”实例，v20,v21是method5方法的参数，(IIII)V的4个I分表表示4个int型参数，V表示返回值为void。</td>
+</tr>
+<tr>
+<td>75</td>
+<td>invoke-super&#x2F;range {vx..vy}, 方法名</td>
+<td>调用以寄存器范围为参数的直接父类的虚拟方法。该指令第一个寄存器和寄存器的数量将会传递给方法。</td>
+<td>7501 A601 0100 invoke-super {v1},java.io.FilterOutputStream.close:()V &#x2F;&#x2F; method@01a6 调用java.io.FilterOutputStream的close（方法表#1A6条目）方法，参数v1是”this”实例。()V表示close方法没有参数，V表示返回值为void。</td>
+</tr>
+<tr>
+<td>76</td>
+<td>invoke-direct&#x2F;range {vx..vy}, 方法名</td>
+<td>不解析直接调用以寄存器范围为参数的方法。该指令第一个寄存器和寄存器的数量将会传递给方法。</td>
+<td>7603 3A00 1300 - invoke-direct&#x2F;range {v19..21},java.lang.Object.<init>:()V &#x2F;&#x2F; method@003a 调用java.lang.Object 的<init>（方法表#3A条目）方法，参数v19是”this”实例（操作码第五、第六字节表示范围从v19开始，第二个字节为03表示传入了3个参数），()V表示<init>方法没有参数，V表示返回值为void。</td>
+</tr>
+<tr>
+<td>77</td>
+<td>invoke-static&#x2F;range {vx..vy}, 方法名</td>
+<td>调用以寄存器范围为参数的静态方法。该指令第一个寄存器和寄存器的数量将会传递给方法。</td>
+<td>7703 3A00 1300 - invoke-static&#x2F;range {v19..21},java.lang.Integer.parseInt:(Ljava&#x2F;lang&#x2F;String;)I &#x2F;&#x2F; method@0034 调用java.lang.Integer 的parseInt（方法表#34条目）静态方法，参数v19是”this”实例（操作码第五、第六字节表示范围从v19开始，第二个字节为03表示传入了3个参数），(Ljava&#x2F;lang&#x2F;String;)I中的Ljava&#x2F;lang&#x2F;String;表示parseInt方法需要String类型的参数，I表示返回值为int型。</td>
+</tr>
+<tr>
+<td>78</td>
+<td>invoke-interface-range {vx..vy}, 方法名</td>
+<td>调用以寄存器范围为参数的接口方法。该指令第一个寄存器和寄存器的数量将会传递给方法。</td>
+<td>7840 2102 0100 invoke-interface {v1..v4}, mwfw.IReceivingProtocolAdapter.receivePackage:(ILjava&#x2F;lang&#x2F;String;Ljava&#x2F;io&#x2F;InputStream;)Z &#x2F;&#x2F; method@0221 调用mwfw.IReceivingProtocolAdapter 接口的receivePackage方法（方法表#221条目），该指令共有4个参数注5，参数v1是”this”实例，v2,v3,v4是receivePackage方法的参数，(ILjava&#x2F;lang&#x2F;String;Ljava&#x2F;io&#x2F;InputStream;)Z中的I表示int型参数，Ljava&#x2F;lang&#x2F;String;表示String类型参数，Ljava&#x2F;io&#x2F;InputStream;表示InputStream类型参数，Z表示返回值为boolean型。</td>
+</tr>
+<tr>
+<td>79</td>
+<td>unused_79</td>
+<td>未使用</td>
+<td></td>
+</tr>
+<tr>
+<td>7A</td>
+<td>unused_7A</td>
+<td>未使用</td>
+<td></td>
+</tr>
+<tr>
+<td>7B</td>
+<td>neg-int vx, vy</td>
+<td>计算vx &#x3D; -vy并将结果存入vx。</td>
+<td>7B01 - neg-int v1,v0 计算-v0并将结果存入v1。</td>
+</tr>
+<tr>
+<td>7C</td>
+<td>not-int vx, vy</td>
+<td>未知注4</td>
+<td></td>
+</tr>
+<tr>
+<td>7D</td>
+<td>neg-long vx, vy</td>
+<td>计算vx,vx+1 &#x3D; -(vy,vy+1) 并将结果存入vx,vx+1。</td>
+<td>7D02 - neg-long v2,v0 计算-(v0,v1) 并将结果存入(v2,v3)。</td>
+</tr>
+<tr>
+<td>7E</td>
+<td>not-long vx, vy</td>
+<td>未知注4</td>
+<td></td>
+</tr>
+<tr>
+<td>7F</td>
+<td>neg-float vx, vy</td>
+<td>计算vx &#x3D; -vy并将结果存入vx。</td>
+<td>7F01 - neg-float v1,v0 计算-v0并将结果存入v1。</td>
+</tr>
+<tr>
+<td>80</td>
+<td>neg-double vx, vy</td>
+<td>计算vx,vx+1&#x3D;-(vy,vy+1) 并将结果存入vx,vx+1。</td>
+<td>8002 - neg-double v2,v0 计算-(v0,v1) 并将结果存入(v2,v3)。</td>
+</tr>
+<tr>
+<td>81</td>
+<td>int-to-long vx, vy</td>
+<td>转换vy寄存器中的int型值为long型值存入vx,vx+1。</td>
+<td>8106 - int-to-long v6, v0 转换v0寄存器中的int型值为long型值存入v6,v7。</td>
+</tr>
+<tr>
+<td>82</td>
+<td>int-to-float vx, vy</td>
+<td>转换vy寄存器中的int型值为float型值存入vx。</td>
+<td>8206 - int-to-float v6, v0 转换v0寄存器中的int型值为float型值存入v6。</td>
+</tr>
+<tr>
+<td>83</td>
+<td>int-to-double vx, vy</td>
+<td>转换vy寄存器中的int型值为double型值存入vx,vx+1。</td>
+<td>8306 - int-to-double v6, v0 转换v0寄存器中的int型值为double型值存入v6,v7。</td>
+</tr>
+<tr>
+<td>84</td>
+<td>long-to-int vx, vy</td>
+<td>转换vy,vy+1寄存器中的long型值为int型值存入vx。</td>
+<td>8424 - long-to-int v4, v2 转换v2,v3寄存器中的long型值为int型值存入v4。</td>
+</tr>
+<tr>
+<td>85</td>
+<td>long-to-float vx, vy</td>
+<td>转换vy,vy+1寄存器中的long型值为float型值存入vx。</td>
+<td>8510 - long-to-float v0, v1 转换v1,v2寄存器中的long型值为float型值存入v0。</td>
+</tr>
+<tr>
+<td>86</td>
+<td>long-to-double vx, vy</td>
+<td>转换vy,vy+1寄存器中的long型值为double型值存入vx,vx+1。</td>
+<td>8610 - long-to-double v0, v1 转换v1,vy2寄存器中的long型值为double型值存入v0,v1。</td>
+</tr>
+<tr>
+<td>87</td>
+<td>float-to-int vx, vy</td>
+<td>转换vy寄存器中的float型值为int型值存入vx。</td>
+<td>8730 - float-to-int v0, v3 转换v3寄存器中的float型值为int型值存入v0。</td>
+</tr>
+<tr>
+<td>88</td>
+<td>float-to-long vx, vy</td>
+<td>转换vy寄存器中的float型值为long型值存入vx,vx+1。</td>
+<td>8830 - float-to-long v0, v3 转换v3寄存器中的float型值为long型值存入v0,v1。</td>
+</tr>
+<tr>
+<td>89</td>
+<td>float-to-double vx, vy</td>
+<td>转换vy寄存器中的float型值为double型值存入vx,vx+1。</td>
+<td>8930 - float-to-double v0, v3 转换v3寄存器中的float型值为double型值存入v0,v1。</td>
+</tr>
+<tr>
+<td>8A</td>
+<td>double-to-int vx, vy</td>
+<td>转换vy,vy+1寄存器中的double型值为int型值存入vx。</td>
+<td>8A40 - double-to-int v0, v4 转换v4,v5寄存器中的double型值为int型值存入v0。</td>
+</tr>
+<tr>
+<td>8B</td>
+<td>double-to-long vx, vy</td>
+<td>转换vy,vy+1寄存器中的double型值为long型值存入vx,vx+1。</td>
+<td>8B40 - double-to-long v0, v4 转换v4,v5寄存器中的double型值为long型值存入v0,v1。</td>
+</tr>
+<tr>
+<td>8C</td>
+<td>double-to-float vx, vy</td>
+<td>转换vy,vy+1寄存器中的double型值为float型值存入vx。</td>
+<td>8C40 - double-to-float v0, v4 转换v4,v5寄存器中的double型值为float型值存入v0。</td>
+</tr>
+<tr>
+<td>8D</td>
+<td>int-to-byte vx, vy</td>
+<td>转换vy寄存器中的int型值为byte型值存入vx。</td>
+<td>8D00 - int-to-byte v0, v0 转换v0寄存器中的int型值为byte型值存入v0。</td>
+</tr>
+<tr>
+<td>8E</td>
+<td>int-to-char vx, vy</td>
+<td>转换vy寄存器中的int型值为char型值存入vx。</td>
+<td>8E33 - int-to-char v3, v3 转换v3寄存器中的int型值为char型值存入v3。</td>
+</tr>
+<tr>
+<td>8F</td>
+<td>int-to-short vx, vy</td>
+<td>转换vy寄存器中的int型值为short型值存入vx。</td>
+<td>8F00 - int-to-short v3, v0 转换v0寄存器中的int型值为short型值存入v0。</td>
+</tr>
+<tr>
+<td>90</td>
+<td>add-int vx, vy, vz</td>
+<td>计算vy + vz并将结果存入vx。</td>
+<td>9000 0203 - add-int v0, v2, v3 计算v2 + v3并将结果存入v0注4。</td>
+</tr>
+<tr>
+<td>91</td>
+<td>sub-int vx, vy, vz</td>
+<td>计算vy - vz并将结果存入vx。</td>
+<td>9100 0203 - sub-int v0, v2, v3 计算v2 – v3并将结果存入v0。</td>
+</tr>
+<tr>
+<td>92</td>
+<td>mul-int vx, vy, vz</td>
+<td>计算vy * vz并将结果存入vx。</td>
+<td>9200 0203 - mul-int v0,v2,v3 计算v2 * w3并将结果存入v0。</td>
+</tr>
+<tr>
+<td>93</td>
+<td>div-int vx, vy, vz</td>
+<td>计算vy &#x2F; vz并将结果存入vx。</td>
+<td>9303 0001 - div-int v3, v0, v1 计算v0 &#x2F; v1并将结果存入v3。</td>
+</tr>
+<tr>
+<td>94</td>
+<td>rem-int vx, vy, vz</td>
+<td>计算vy % vz并将结果存入vx。</td>
+<td>9400 0203 - rem-int v0, v2, v3 计算v3 % v2并将结果存入v0。</td>
+</tr>
+<tr>
+<td>95</td>
+<td>and-int vx, vy, vz</td>
+<td>计算vy 与 vz并将结果存入vx。</td>
+<td>9503 0001 - and-int v3, v0, v1 计算v0 与 v1并将结果存入v3。</td>
+</tr>
+<tr>
+<td>96</td>
+<td>or-int vx, vy, vz</td>
+<td>计算vy 或 vz并将结果存入vx。</td>
+<td>9603 0001 - or-int v3, v0, v1 计算v0 或 v1并将结果存入v3。</td>
+</tr>
+<tr>
+<td>97</td>
+<td>xor-int vx, vy, vz</td>
+<td>计算vy 异或 vz并将结果存入vx。</td>
+<td>9703 0001 - xor-int v3, v0, v1 计算v0 异或 v1并将结果存入v3。</td>
+</tr>
+<tr>
+<td>98</td>
+<td>shl-int vx, vy, vz</td>
+<td>左移vy，vz指定移动的位置，结果存入vx。</td>
+<td>9802 0001 - shl-int v2, v0, v1 以v1指定的位置左移v0，结果存入v2。</td>
+</tr>
+<tr>
+<td>99</td>
+<td>shr-int vx, vy, vz</td>
+<td>右移vy，vz指定移动的位置，结果存入vx。</td>
+<td>9902 0001 - shr-int v2, v0, v1 以v1指定的位置右移v0，结果存入v2。</td>
+</tr>
+<tr>
+<td>9A</td>
+<td>ushr-int vx, vy, vz</td>
+<td>无符号右移vy，vz指定移动的位置，结果存入vx。</td>
+<td>9A02 0001 - ushr-int v2, v0, v1 以v1指定的位置无符号右移v0，结果存入v2。</td>
+</tr>
+<tr>
+<td>9B</td>
+<td>add-long vx, vy, vz</td>
+<td>计算vy,vy+1 + vz,vz+1并将结果存入vx,vx+1注1。</td>
+<td>9B00 0305 - add-long v0, v3, v5 计算v3,v4 + v5,v6并将结果存入v0,v1。</td>
+</tr>
+<tr>
+<td>9C</td>
+<td>sub-long vx, vy, vz</td>
+<td>计算vy,vy+1 - vz,vz+1并将结果存入vx,vx+1注1。</td>
+<td>9C00 0305 - sub-long v0, v3, v5 计算v3,v4 - v5,v6并将结果存入v0,v1。</td>
+</tr>
+<tr>
+<td>9D</td>
+<td>mul-long vx, vy, vz</td>
+<td>计算vy,vy+1 * vz,vz+1并将结果存入vx,vx+1注1。</td>
+<td>9D00 0305 - mul-long v0, v3, v5 计算v3,v4 * v5,v6并将结果存入v0,v1。</td>
+</tr>
+<tr>
+<td>9E</td>
+<td>div-long vx, vy, vz</td>
+<td>计算vy,vy+1 &#x2F; vz,vz+1并将结果存入vx,vx+1注1。</td>
+<td>9E06 0002 - div-long v6, v0, v2 计算v0,v1 &#x2F; v2,v3并将结果存入v6,v7。</td>
+</tr>
+<tr>
+<td>9F</td>
+<td>rem-long vx, vy, vz</td>
+<td>计算vy,vy+1 % vz,vz+1并将结果存入vx,vx+1注1。</td>
+<td>9F06 0002 - rem-long v6, v0, v2 计算v0,v1 % v2,v3并将结果存入v6,v7。</td>
+</tr>
+<tr>
+<td>A0</td>
+<td>and-long vx, vy, vz</td>
+<td>计算vy,vy+1 与 vz,vz+1并将结果存入vx,vx+1注1。</td>
+<td>A006 0002 - and-long v6, v0, v2 计算v0,v1 与 v2,v3并将结果存入v6,v7。</td>
+</tr>
+<tr>
+<td>A1</td>
+<td>or-long vx, vy, vz</td>
+<td>计算vy,vy+1 或 vz,vz+1并将结果存入vx,vx+1注1。</td>
+<td>A106 0002 - or-long v6, v0, v2 计算v0,v1 或 v2,v3并将结果存入v6,v7。</td>
+</tr>
+<tr>
+<td>A2</td>
+<td>xor-long vx, vy, vz</td>
+<td>计算vy,vy+1 异或 vz,vz+1并将结果存入vx,vx+1注1。</td>
+<td>A206 0002 - xor-long v6, v0, v2 计算v0,v1 异或 v2,v3并将结果存入v6,v7。</td>
+</tr>
+<tr>
+<td>A3</td>
+<td>shl-long vx, vy, vz</td>
+<td>左移vy,vy+1，vz指定移动的位置，结果存入vx,vx+1注1。</td>
+<td>A302 0004 - shl-long v2, v0, v4 以v4指定的位置左移v0,v1，结果存入v2,v3。</td>
+</tr>
+<tr>
+<td>A4</td>
+<td>shr-long vx, vy, vz</td>
+<td>右移vy,vy+1，vz指定移动的位置，结果存入vx,vx+1注1。</td>
+<td>A402 0004 - shr-long v2, v0, v4 以v4指定的位置右移v0,v1，结果存入v2,v3。</td>
+</tr>
+<tr>
+<td>A5</td>
+<td>ushr-long vx, vy, vz</td>
+<td>无符号右移vy,vy+1，vz指定移动的位置，结果存入vx,vx+1注1。</td>
+<td>A502 0004 - ushr-long v2, v0, v4 以v4指定的位置无符号右移v0,v1，结果存入v2,v3。</td>
+</tr>
+<tr>
+<td>A6</td>
+<td>add-float vx, vy, vz</td>
+<td>计算vy + vz并将结果存入vx。</td>
+<td>A600 0203 - add-float v0, v2, v3 计算v2 + v3并将结果存入v0。</td>
+</tr>
+<tr>
+<td>A7</td>
+<td>sub-float vx, vy, vz</td>
+<td>计算vy - vz并将结果存入vx。</td>
+<td>A700 0203 - sub-float v0, v2, v3 计算v2 - v3并将结果存入v0。</td>
+</tr>
+<tr>
+<td>A8</td>
+<td>mul-float vx, vy, vz</td>
+<td>计算vy * vz并将结果存入vx。</td>
+<td>A803 0001 - mul-float v3, v0, v1 计算v0 * v1并将结果存入v3。</td>
+</tr>
+<tr>
+<td>A9</td>
+<td>div-float vx, vy, vz</td>
+<td>计算vy &#x2F; vz并将结果存入vx。</td>
+<td>A903 0001 - div-float v3, v0, v1 计算v0 &#x2F; v1并将结果存入v3。</td>
+</tr>
+<tr>
+<td>AA</td>
+<td>rem-float vx, vy, vz</td>
+<td>计算vy % vz并将结果存入vx。</td>
+<td>AA03 0001 - rem-float v3, v0, v1 计算v0 % v1并将结果存入v3。</td>
+</tr>
+<tr>
+<td>AB</td>
+<td>add-double vx, vy, vz</td>
+<td>计算vy,vy+1 + vz,vz+1并将结果存入vx,vx+1注1。</td>
+<td>AB00 0305 - add-double v0, v3, v5 计算v3,v4 + v5,v6并将结果存入v0,v1。</td>
+</tr>
+<tr>
+<td>AC</td>
+<td>sub-double vx, vy, vz</td>
+<td>计算vy,vy+1 - vz,vz+1并将结果存入vx,vx+1注1。</td>
+<td>AC00 0305 - sub-double v0, v3, v5 计算v3,v4 - v5,v6并将结果存入v0,v1。</td>
+</tr>
+<tr>
+<td>AD</td>
+<td>mul-double vx, vy, vz</td>
+<td>计算vy,vy+1 * vz,vz+1并将结果存入vx,vx+1注1。</td>
+<td>AD06 0002 - mul-double v6, v0, v2 计算v0,v1 * v2,v3并将结果存入v6,v7。</td>
+</tr>
+<tr>
+<td>AE</td>
+<td>div-double vx, vy, vz</td>
+<td>计算vy,vy+1 &#x2F; vz,vz+1并将结果存入vx,vx+1注1。</td>
+<td>AE06 0002 - div-double v6, v0, v2 计算v0,v1 &#x2F; v2,v3并将结果存入v6,v7。</td>
+</tr>
+<tr>
+<td>AF</td>
+<td>rem-double vx, vy, vz</td>
+<td>计算vy,vy+1 % vz,vz+1并将结果存入vx,vx+1注1。</td>
+<td>AF06 0002 - rem-double v6, v0, v2 计算v0,v1 % v2,v3并将结果存入v6,v7。</td>
+</tr>
+<tr>
+<td>B0</td>
+<td>add-int&#x2F;2addr vx, vy</td>
+<td>计算vx + vy并将结果存入vx。</td>
+<td>B010 - add-int&#x2F;2addr v0,v1 计算v0 + v1并将结果存入v0。</td>
+</tr>
+<tr>
+<td>B1</td>
+<td>sub-int&#x2F;2addr vx, vy</td>
+<td>计算vx - vy并将结果存入vx。</td>
+<td>B140 - sub-int&#x2F;2addr v0, v4 计算v0 – v4并将结果存入v0。</td>
+</tr>
+<tr>
+<td>B2</td>
+<td>mul-int&#x2F;2addr vx, vy</td>
+<td>计算vx * vy并将结果存入vx。</td>
+<td>B210 - mul-int&#x2F;2addr v0, v1 计算v0 * v1并将结果存入v0。</td>
+</tr>
+<tr>
+<td>B3</td>
+<td>div-int&#x2F;2addr vx, vy</td>
+<td>计算vx &#x2F; vy并将结果存入vx。</td>
+<td>B310 - div-int&#x2F;2addr v0, v1 计算v0 &#x2F; v1并将结果存入v0。</td>
+</tr>
+<tr>
+<td>B4</td>
+<td>rem-int&#x2F;2addr vx, vy</td>
+<td>计算vx % vy并将结果存入vx。</td>
+<td>B410 - rem-int&#x2F;2addr v0, v1 计算v0 % v1并将结果存入v0。</td>
+</tr>
+<tr>
+<td>B5</td>
+<td>and-int&#x2F;2addr vx, vy</td>
+<td>计算vx 与 vy并将结果存入vx。</td>
+<td>B510 - and-int&#x2F;2addr v0, v1 计算v0 与 v1并将结果存入v0。</td>
+</tr>
+<tr>
+<td>B6</td>
+<td>or-int&#x2F;2addr vx, vy</td>
+<td>计算vx 或 vy并将结果存入vx。</td>
+<td>B610 - or-int&#x2F;2addr v0, v1 计算v0 或 v1并将结果存入v0。</td>
+</tr>
+<tr>
+<td>B7</td>
+<td>xor-int&#x2F;2addr vx, vy</td>
+<td>计算vx 异或 vy并将结果存入vx。</td>
+<td>B710 - xor-int&#x2F;2addr v0, v1 计算v0 异或 v1并将结果存入v0。</td>
+</tr>
+<tr>
+<td>B8</td>
+<td>shl-int&#x2F;2addr vx, vy</td>
+<td>左移vx，vy指定移动的位置，并将结果存入vx。</td>
+<td>B810 - shl-int&#x2F;2addr v0, v1 以v1指定的位置左移v0，结果存入v0。</td>
+</tr>
+<tr>
+<td>B9</td>
+<td>shr-int&#x2F;2addr vx, vy</td>
+<td>右移vx，vy指定移动的位置，并将结果存入vx。</td>
+<td>B910 - shr-int&#x2F;2addr v0, v1 以v1指定的位置右移v0，结果存入v0。</td>
+</tr>
+<tr>
+<td>BA</td>
+<td>ushr-int&#x2F;2addr vx, vy</td>
+<td>无符号右移vx，vy指定移动的位置，并将结果存入vx。</td>
+<td>BA10 - ushr-int&#x2F;2addr v0, v1 以v1指定的位置无符号右移v0，结果存入v0。</td>
+</tr>
+<tr>
+<td>BB</td>
+<td>add-long&#x2F;2addr vx, vy</td>
+<td>计算vx,vx+1 + vy,vy+1并将结果存入vx,vx+1注1。</td>
+<td>BB20 - add-long&#x2F;2addr v0, v2 计算v0,v1 + v2,v3并将结果存入v0,v1。</td>
+</tr>
+<tr>
+<td>BC</td>
+<td>sub-long&#x2F;2addr vx, vy</td>
+<td>计算vx,vx+1 - vy,vy+1并将结果存入vx,vx+1注1。</td>
+<td>BC70 - sub-long&#x2F;2addr v0, v7 计算v0,v1 - v7,v8并将结果存入v0,v1。</td>
+</tr>
+<tr>
+<td>BD</td>
+<td>mul-long&#x2F;2addr vx, vy</td>
+<td>计算vx,vx+1 * vy,vy+1并将结果存入vx,vx+1注1。</td>
+<td>BD70 - mul-long&#x2F;2addr v0, v7 计算v0,v1 * v7,v8并将结果存入v0,v1。</td>
+</tr>
+<tr>
+<td>BE</td>
+<td>div-long&#x2F;2addr vx, vy</td>
+<td>计算vx,vx+1 &#x2F; vy,vy+1并将结果存入vx,vx+1注1。</td>
+<td>BE20 - div-long&#x2F;2addr v0, v2 计算v0,v1 &#x2F; v2,v3并将结果存入v0,v1。</td>
+</tr>
+<tr>
+<td>BF</td>
+<td>rem-long&#x2F;2addr vx, vy</td>
+<td>计算vx,vx+1 % vy,vy+1并将结果存入vx,vx+1注1。</td>
+<td>BF20 - rem-long&#x2F;2addr v0, v2 计算v0,v1 % v2,v3并将结果存入v0,v1。</td>
+</tr>
+<tr>
+<td>C0</td>
+<td>and-long&#x2F;2addr vx, vy</td>
+<td>计算vx,vx+1 与 vy,vy+1并将结果存入vx,vx+1注1。</td>
+<td>C020 - and-long&#x2F;2addr v0, v2 计算v0,v1 与 v2,v3并将结果存入v0,v1。</td>
+</tr>
+<tr>
+<td>C1</td>
+<td>or-long&#x2F;2addr vx, vy</td>
+<td>计算vx,vx+1 或 vy,vy+1并将结果存入vx,vx+1注1。</td>
+<td>C120 - or-long&#x2F;2addr v0, v2 计算v0,v1 或 v2,v3并将结果存入v0,v1。</td>
+</tr>
+<tr>
+<td>C2</td>
+<td>xor-long&#x2F;2addr vx, vy</td>
+<td>计算vx,vx+1 异或 vy,vy+1并将结果存入vx,vx+1注1。</td>
+<td>C220 - xor-long&#x2F;2addr v0, v2 计算v0,v1 异或 v2,v3并将结果存入v0,v1。</td>
+</tr>
+<tr>
+<td>C3</td>
+<td>shl-long&#x2F;2addr vx, vy</td>
+<td>左移vx,vx+1，vy指定移动的位置，并将结果存入vx,vx+1。</td>
+<td>C320 - shl-long&#x2F;2addr v0, v2 以v2指定的位置左移v0,v1，结果存入v0,v1。</td>
+</tr>
+<tr>
+<td>C4</td>
+<td>shr-long&#x2F;2addr vx, vy</td>
+<td>右移vx,vx+1，vy指定移动的位置，并将结果存入vx,vx+1。</td>
+<td>C420 - shr-long&#x2F;2addr v0, v2 以v2指定的位置右移v0,v1，结果存入v0,v1。</td>
+</tr>
+<tr>
+<td>C5</td>
+<td>ushr-long&#x2F;2addr vx, vy</td>
+<td>无符号右移vx,vx+1，vy指定移动的位置，并将结果存入vx,vx+1。</td>
+<td>C520 - ushr-long&#x2F;2addr v0, v2 以v2指定的位置无符号右移v0,v1，结果存入v0,v1。</td>
+</tr>
+<tr>
+<td>C6</td>
+<td>add-float&#x2F;2addr vx, vy</td>
+<td>计算vx + vy并将结果存入vx。</td>
+<td>C640 - add-float&#x2F;2addr v0,v4 计算v0 + v4并将结果存入v0。</td>
+</tr>
+<tr>
+<td>C7</td>
+<td>sub-float&#x2F;2addr vx, vy</td>
+<td>计算vx - vy并将结果存入vx。</td>
+<td>C740 - sub-float&#x2F;2addr v0,v4 计算v0 - v4并将结果存入v0。</td>
+</tr>
+<tr>
+<td>C8</td>
+<td>mul-float&#x2F;2addr vx, vy</td>
+<td>计算vx * vy并将结果存入vx。</td>
+<td>C810 - mul-float&#x2F;2addr v0, v1 计算v0 * v1并将结果存入v0。</td>
+</tr>
+<tr>
+<td>C9</td>
+<td>div-float&#x2F;2addr vx, vy</td>
+<td>计算vx &#x2F; vy并将结果存入vx。</td>
+<td>C910 - div-float&#x2F;2addr v0, v1 计算v0 &#x2F; v1并将结果存入v0。</td>
+</tr>
+<tr>
+<td>CA</td>
+<td>rem-float&#x2F;2addr vx, vy</td>
+<td>计算vx % vy并将结果存入vx。</td>
+<td>CA10 - rem-float&#x2F;2addr v0, v1 计算v0 % v1并将结果存入v0。</td>
+</tr>
+<tr>
+<td>CB</td>
+<td>add-double&#x2F;2addr vx, vy</td>
+<td>计算vx,vx+1 + vy,vy+1并将结果存入vx,vx+1注1。</td>
+<td>CB70 - add-double&#x2F;2addr v0, v7 计算v0,v1 + v7,v8并将结果存入v0,v1。</td>
+</tr>
+<tr>
+<td>CC</td>
+<td>sub-double&#x2F;2addr vx, vy</td>
+<td>计算vx,vx+1 - vy,vy+1并将结果存入vx,vx+1注1。</td>
+<td>CC70 - sub-double&#x2F;2addr v0, v7 计算v0,v1 - v7,v8并将结果存入v0,v1。</td>
+</tr>
+<tr>
+<td>CD</td>
+<td>mul-double&#x2F;2addr vx, vy</td>
+<td>计算vx,vx+1 * vy,vy+1并将结果存入vx,vx+1注1。</td>
+<td>CD20 - mul-double&#x2F;2addr v0, v2 计算v0,v1 * v2,v3并将结果存入v0,v1。</td>
+</tr>
+<tr>
+<td>CE</td>
+<td>div-double&#x2F;2addr vx, vy</td>
+<td>计算vx,vx+1 &#x2F; vy,vy+1并将结果存入vx,vx+1注1。</td>
+<td>CE20 - div-double&#x2F;2addr v0, v2 计算v0,v1 &#x2F; v2,v3并将结果存入v0,v1。</td>
+</tr>
+<tr>
+<td>CF</td>
+<td>rem-double&#x2F;2addr vx, vy</td>
+<td>计算vx,vx+1 % vy,vy+1并将结果存入vx,vx+1注1。</td>
+<td>CF20 - rem-double&#x2F;2addr v0, v2 计算v0,v1 % v2,v3并将结果存入v0,v1。</td>
+</tr>
+<tr>
+<td>D0</td>
+<td>add-int&#x2F;lit16 vx, vy, lit16</td>
+<td>计算vy + lit16并将结果存入vx。</td>
+<td>D001 D204 - add-int&#x2F;lit16 v1, v0, #int 1234 &#x2F;&#x2F; #04d2 计算v0 + 1234并将结果存入v1。</td>
+</tr>
+<tr>
+<td>D1</td>
+<td>sub-int&#x2F;lit16 vx, vy, lit16</td>
+<td>计算vy - lit16并将结果存入vx。</td>
+<td>D101 D204 - sub-int&#x2F;lit16 v1, v0, #int 1234 &#x2F;&#x2F; #04d2 计算v0 - 1234并将结果存入v1。</td>
+</tr>
+<tr>
+<td>D2</td>
+<td>mul-int&#x2F;lit16 vx, vy, lit16</td>
+<td>计算vy * lit16并将结果存入vx。</td>
+<td>D201 D204 - mul-int&#x2F;lit16 v1, v0, #int 1234 &#x2F;&#x2F; #04d2 计算v0 * 1234并将结果存入v1。</td>
+</tr>
+<tr>
+<td>D3</td>
+<td>div-int&#x2F;lit16 vx, vy, lit16</td>
+<td>计算vy &#x2F; lit16并将结果存入vx。</td>
+<td>D301 D204 - div-int&#x2F;lit16 v1, v0, #int 1234 &#x2F;&#x2F; #04d2 计算v0 &#x2F; 1234并将结果存入v1。</td>
+</tr>
+<tr>
+<td>D4</td>
+<td>rem-int&#x2F;lit16 vx, vy, lit16</td>
+<td>计算vy % lit16并将结果存入vx。</td>
+<td>D401 D204 - rem-int&#x2F;lit16 v1, v0, #int 1234 &#x2F;&#x2F; #04d2 计算v0 % 1234并将结果存入v1。</td>
+</tr>
+<tr>
+<td>D5</td>
+<td>and-int&#x2F;lit16 vx, vy, lit16</td>
+<td>计算vy 与 lit16并将结果存入vx。</td>
+<td>D501 D204 - and-int&#x2F;lit16 v1, v0, #int 1234 &#x2F;&#x2F; #04d2 计算v0 与 1234并将结果存入v1。</td>
+</tr>
+<tr>
+<td>D6</td>
+<td>or-int&#x2F;lit16 vx, vy, lit16</td>
+<td>计算vy 或 lit16并将结果存入vx。</td>
+<td>D601 D204 - or-int&#x2F;lit16 v1, v0, #int 1234 &#x2F;&#x2F; #04d2 计算v0 或 1234并将结果存入v1。</td>
+</tr>
+<tr>
+<td>D7</td>
+<td>xor-int&#x2F;lit16 vx, vy, lit16</td>
+<td>计算vy 异或 lit16并将结果存入vx。</td>
+<td>D701 D204 - xor-int&#x2F;lit16 v1, v0, #int 1234 &#x2F;&#x2F; #04d2 计算v0 异或 1234并将结果存入v1。</td>
+</tr>
+<tr>
+<td>D8</td>
+<td>add-int&#x2F;lit8 vx, vy, lit8</td>
+<td>计算vy + lit8并将结果存入vx。</td>
+<td>D800 0201 - add-int&#x2F;lit8 v0,v2, #int1 计算v2 + 1并将结果存入v0。</td>
+</tr>
+<tr>
+<td>D9</td>
+<td>sub-int&#x2F;lit8 vx, vy, lit8</td>
+<td>计算vy - lit8并将结果存入vx。</td>
+<td>D900 0201 - sub-int&#x2F;lit8 v0,v2, #int1 计算v2 - 1并将结果存入v0。</td>
+</tr>
+<tr>
+<td>DA</td>
+<td>mul-int&#x2F;lit8 vx, vy, lit8</td>
+<td>计算vy * lit8并将结果存入vx。</td>
+<td>DA00 0002 - mul-int&#x2F;lit8 v0,v0, #int2 计算v0 * 2并将结果存入v0。</td>
+</tr>
+<tr>
+<td>DB</td>
+<td>div-int&#x2F;lit8 vx, vy, lit8</td>
+<td>计算vy &#x2F; lit8并将结果存入vx。</td>
+<td>DB00 0203 - mul-int&#x2F;lit8 v0,v2, #int3 计算v2 &#x2F; 3并将结果存入v0。</td>
+</tr>
+<tr>
+<td>DC</td>
+<td>rem-int&#x2F;lit8 vx, vy, lit8</td>
+<td>计算vy % lit8并将结果存入vx。</td>
+<td>DC00 0203 - rem-int&#x2F;lit8 v0,v2, #int3 计算v2 % 3并将结果存入v0。</td>
+</tr>
+<tr>
+<td>DD</td>
+<td>and-int&#x2F;lit8 vx, vy, lit8</td>
+<td>计算vy 与 lit8并将结果存入vx。</td>
+<td>DD00 0203 - and-int&#x2F;lit8 v0,v2, #int3 计算v2 与 3并将结果存入v0。</td>
+</tr>
+<tr>
+<td>DE</td>
+<td>or-int&#x2F;lit8 vx, vy, lit8</td>
+<td>计算vy 或 lit8并将结果存入vx。</td>
+<td>DE00 0203 - or-int&#x2F;lit8 v0, v2, #int 3 计算v2 或 3并将结果存入v0。</td>
+</tr>
+<tr>
+<td>DF</td>
+<td>xor-int&#x2F;lit8 vx, vy, lit8</td>
+<td>计算vy异或lit8并将结果存入vx。</td>
+<td>DF00 0203 | 0008: xor-int&#x2F;lit8 v0, v2, #int 3 计算v2 异或 3并将结果存入v0。</td>
+</tr>
+<tr>
+<td>E0</td>
+<td>shl-int&#x2F;lit8 vx, vy, lit8</td>
+<td>左移vy，lit8指定移动的位置，并将结果存入vx。</td>
+<td>E001 0001 - shl-int&#x2F;lit8 v1, v0, #int 1 将v0左移1位，结果存入v1。</td>
+</tr>
+<tr>
+<td>E1</td>
+<td>shr-int&#x2F;lit8 vx, vy, lit8</td>
+<td>右移vy，lit8指定移动的位置，并将结果存入vx。</td>
+<td>E101 0001 - shr-int&#x2F;lit8 v1, v0, #int 1 将v0右移1位，结果存入v1。</td>
+</tr>
+<tr>
+<td>E2</td>
+<td>ushr-int&#x2F;lit8 vx, vy, lit8</td>
+<td>无符号右移vy，lit8指定移动的位置，并将结果存入vx。</td>
+<td>E201 0001 - ushr-int&#x2F;lit8 v1, v0, #int 1 将v0无符号右移1位，结果存入v1。</td>
+</tr>
+<tr>
+<td>E3</td>
+<td>unused_E3</td>
+<td>未使用</td>
+<td></td>
+</tr>
+<tr>
+<td>E4</td>
+<td>unused_E4</td>
+<td>未使用</td>
+<td></td>
+</tr>
+<tr>
+<td>E5</td>
+<td>unused_E5</td>
+<td>未使用</td>
+<td></td>
+</tr>
+<tr>
+<td>E6</td>
+<td>unused_E6</td>
+<td>未使用</td>
+<td></td>
+</tr>
+<tr>
+<td>E7</td>
+<td>unused_E7</td>
+<td>未使用</td>
+<td></td>
+</tr>
+<tr>
+<td>E8</td>
+<td>unused_E8</td>
+<td>未使用</td>
+<td></td>
+</tr>
+<tr>
+<td>E9</td>
+<td>unused_E9</td>
+<td>未使用</td>
+<td></td>
+</tr>
+<tr>
+<td>EA</td>
+<td>unused_EA</td>
+<td>未使用</td>
+<td></td>
+</tr>
+<tr>
+<td>EB</td>
+<td>unused_EB</td>
+<td>未使用</td>
+<td></td>
+</tr>
+<tr>
+<td>EC</td>
+<td>unused_EC</td>
+<td>未使用</td>
+<td></td>
+</tr>
+<tr>
+<td>ED</td>
+<td>unused_ED</td>
+<td>未使用</td>
+<td></td>
+</tr>
+<tr>
+<td>EE</td>
+<td>execute-inline {参数}, 内联ID</td>
+<td>根据内联ID注6执行内联方法。</td>
+<td>EE20 0300 0100 - execute-inline {v1, v0}, inline #0003 执行内联方法#3，参数v1,v0，其中参数v1为”this”的实例，v0是方法的参数。</td>
+</tr>
+<tr>
+<td>EF</td>
+<td>unused_EF</td>
+<td>未使用</td>
+<td></td>
+</tr>
+<tr>
+<td>F0</td>
+<td>invoke-direct-empty</td>
+<td>用于空方法的占位符，如Object.<init>。这相当于正常执行了nop指令注6。</td>
+<td>F010 F608 0000 - invoke-direct-empty {v0}, Ljava&#x2F;lang&#x2F;Object;.<init>:()V &#x2F;&#x2F; method@08f6 替代空方法java&#x2F;lang&#x2F;Object;<init>。</td>
+</tr>
+<tr>
+<td>F1</td>
+<td>unused_F1</td>
+<td>未使用</td>
+<td></td>
+</tr>
+<tr>
+<td>F2</td>
+<td>iget-quick vx, vy, 偏移量</td>
+<td>获取vy寄存器中实例指向+偏移位置的数据区的值，存入vx注6。</td>
+<td>F221 1000 - iget-quick v1, v2, [obj+0010] 获取v2寄存器中的实例指向+10H位置的数据区的值，存入v1。</td>
+</tr>
+<tr>
+<td>F3</td>
+<td>iget-wide-quick vx, vy, 偏移量</td>
+<td>获取vy寄存器中实例指向+偏移位置的数据区的值，存入vx,vx+1注6。</td>
+<td>F364 3001 – iget-wide-quick v4, v6, [obj+0130] 获取v6寄存器中的实例指向+130H位置的数据区的值，存入v4,v5。</td>
+</tr>
+<tr>
+<td>F4</td>
+<td>iget-object-quick vx, vy, 偏移量</td>
+<td>获取vy寄存器中实例指向+偏移位置的数据区的对象引用，存入vx注6。</td>
+<td>F431 0C00 – iget-object-quick v1, v3, [obj+000c] 获取v3寄存器中的实例指向+0CH位置的数据区的对象引用，存入v1。</td>
+</tr>
+<tr>
+<td>F5</td>
+<td>iput-quick vx, vy, 偏移量</td>
+<td>将vx寄存器中的值存入vy寄存器中的实例指向+偏移位置的数据区注6。</td>
+<td>F521 1000 – iput-quick v1, v2, [obj+0010] 将v1寄存器中的值存入v2寄存器中的实例指向+10H位置的数据区。</td>
+</tr>
+<tr>
+<td>F6</td>
+<td>iput-wide-quick vx, vy, 偏移量</td>
+<td>将vx,vx+1寄存器中的值存入vy寄存器中的实例指向+偏移位置的数据区注6。</td>
+<td>F652 7001 – iput-wide-quick v2, v5, [obj+0170] 将v2,v3寄存器中的值存入v5寄存器中的实例指向+170H位置的数据区。</td>
+</tr>
+<tr>
+<td>F7</td>
+<td>iput-object-quick vx, vy, 偏移量</td>
+<td>将vx寄存器中的对象引用存入vy寄存器中的实例指向+偏移位置的数据区注6。</td>
+<td>F701 4C00 – iput-object-quick v1, v0, [obj+004c] 将v1寄存器中的对象引用存入v0寄存器中的实例指向+4CH位置的数据区。</td>
+</tr>
+<tr>
+<td>F8</td>
+<td>invoke-virtual-quick {参数}, 虚拟表偏移量</td>
+<td>调用虚拟方法，使用目标对象虚拟表注6。</td>
+<td>F820 B800 CF00 – invoke-virtual-quick {v15, v12}, vtable #00b8 调用虚拟方法，目标对象的实例指向位于v15寄存器，方法位于虚拟表#B8条目，方法所需的参数位于v12。</td>
+</tr>
+<tr>
+<td>F9</td>
+<td>invoke-virtual-quick&#x2F;range {参数范围}, 虚拟表偏移量</td>
+<td>调用虚拟方法，使用目标对象虚拟表注6。</td>
+<td>F906 1800 0000 – invoke-virtual-quick&#x2F;range {v0..v5},vtable #0018 调用虚拟方法，目标对象的实例指向位于v0寄存器，方法位于虚拟表#18H条目，方法所需的参数位于v1..v5。</td>
+</tr>
+<tr>
+<td>FA</td>
+<td>invoke-super-quick {参数}, 虚拟表偏移量</td>
+<td>调用父类虚拟方法，使用目标对象的直接父类的虚拟表注6。</td>
+<td>FA40 8100 3254 – invoke-super-quick {v2, v3, v4, v5}, vtable #0081 调用父类虚拟方法，目标对象的实例指向位于v2寄存器，方法位于虚拟表#81H条目，方法所需的参数位于v3,v4,v5。</td>
+</tr>
+<tr>
+<td>FB</td>
+<td>invoke-super-quick&#x2F;range {参数范围}, 虚拟表偏移量</td>
+<td>调用父类虚拟方法，使用目标对象的直接父类的虚拟表注6。</td>
+<td>F906 1B00 0000 – invoke-super-quick&#x2F;range {v0..v5}, vtable #001b 调用父类虚拟方法，目标对象的实例指向位于v0寄存器，方法位于虚拟表#1B条目，方法所需的参数位于v1..v5。</td>
+</tr>
+<tr>
+<td>FC</td>
+<td>unused_FC</td>
+<td>未使用</td>
+<td></td>
+</tr>
+<tr>
+<td>FD</td>
+<td>unused_FD</td>
+<td>未使用</td>
+<td></td>
+</tr>
+<tr>
+<td>FE</td>
+<td>unused_FE</td>
+<td>未使用</td>
+<td></td>
+</tr>
+<tr>
+<td>FF</td>
+<td>unused_FF</td>
+<td>未使用</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>注1：  Double和long值占用两个寄存器。（例：在vy地址上的值位于vy,vy+1寄存器）</p>
+<p>注2：  偏移量可以是正或负，从指令起始字节起计算偏移量。偏移量在（2字节每1偏移量递增&#x2F;递减）时解释执行。负偏移量用二进制补码格式存储。偏移量当前位置是指令起始字节。</p>
+<p>注3：  比较操作，如果第一个操作数大于第二个操作数返回正值；如果两者相等，返回0；如果第一个操作数小于第二个操作数，返回负值。</p>
+<p>注4：  正常使用没见到过的，从<a target="_blank" rel="noopener" href="http://code.google.com/android/reference/dalvik/bytecode/Opcodes.html">Android opcode constant list</a>引入。</p>
+<p>注5：  调用参数表的编译比较诡异。如果参数的数量大于4并且%4&#x3D;1，第5（第9或其他%4&#x3D;1的）个参数将编译在指令字节的下一个字节的4个最低位。奇怪的是，有一种情况不使用这种编译：方法有4个参数但用于编译单一参数，指令字节的下一个字节的4个最低位空置，将会编译为40而不是04。</p>
+<p>注6：  这是一个不安全的指令，仅适用于ODEX文件。</p>
 <h1 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h1><ul>
 <li><p>一定要使用混淆。不单单是第三方SDK，你的代码也是。破解游戏很重要一点就是要抓住游戏的逻辑。代码混淆后，Smali更加晦涩难懂，逻辑也更难掌握。</p>
 </li>
@@ -788,7 +2340,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://tangxtang1119.github.io/2025/04/14/Samli/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://tangxtang1119.github.io/2025/04/17/Samli/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -801,19 +2353,19 @@
    
   <nav class="article-nav">
     
-      <a href="/2025/04/14/Web%E6%A1%86%E6%9E%B6%E5%8E%9F%E7%90%86%E5%92%8C%E6%8A%80%E6%9C%AF/" class="article-nav-link">
+      <a href="/2025/04/18/Android/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            Web框架原理和技术
+            Android
           
         </div>
       </a>
     
     
-      <a href="/2025/03/26/my-plan/" class="article-nav-link">
+      <a href="/2025/04/17/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">my plan</div>
+        <div class="article-nav-title">安卓逆向</div>
       </a>
     
   </nav>

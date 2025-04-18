@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+  
+
+    <head>
+      <meta charset="utf-8" />
+        
+      <meta name="description" content="‘有志少女 先读书’" />
+      
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>Android |  tangxtang</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      
+<link rel="stylesheet" href="/css/fonts/remixicon.css">
+
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.staticfile.org/pace/1.2.4/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    </head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-Android"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  Android
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2025/04/18/Android/" class="article-date">
+  <time datetime="2025-04-18T05:48:10.000Z" itemprop="datePublished">2025-04-18</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">9.9k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">37 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>学习参考：</p>
+<p>[B站宁老师Android基础课程](【2022 最新 Android 基础教程，从开发入门到项目实战，看它就够了，更新中】<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV19U4y1R7zV?p=6&vd_source=cbd0e7aa3299fa0fcc330c5ee16869bc">https://www.bilibili.com/video/BV19U4y1R7zV?p=6&amp;vd_source=cbd0e7aa3299fa0fcc330c5ee16869bc</a>)</p>
+<h1 id="Android开发环境搭建"><a href="#Android开发环境搭建" class="headerlink" title="Android开发环境搭建"></a>Android开发环境搭建</h1><h2 id="Android发展历程"><a href="#Android发展历程" class="headerlink" title="Android发展历程"></a>Android发展历程</h2><p>安卓（Android）是一种基于Linux内核（不包含GNU组件）的自由及开放源代码的操作系统。主要使用 于移动设备，如智能手机和平板电脑，由美国Google公司和开放手机联盟领导及开发。Android操作系 统最初由Andy Rubin开发，主要支持手机。</p>
+<ul>
+<li>2005年8月由Google收购注资。</li>
+<li>2007年11月，Google与84家硬件制造商、软件开发商及电信营运商组建开放手机联盟共同研发改 良Android系统，并发布了Android的源代码。 </li>
+<li>第一部Android智能手机发布于2008年10月，由 HTC 公司制造。Android逐渐扩展到平板电脑及 其他领域上，如电视、数码相机、游戏机、智能手表、车载大屏、智能家居等，并逐渐成为了人们 日常生活中不可或缺的系统软件。 </li>
+<li>2011年第一季度，Android在全球的市场份额首次超过塞班系统，跃居全球第一。 </li>
+<li>2013年的第四季度，Android平台手机的全球市场份额已经达到78.1%。</li>
+<li>2013年09月24日谷歌开 发的操作系统Android在迎来了5岁生日，全世界采用这款系统的设备数量已经达到10亿台。 </li>
+<li>2019年，谷歌官方宣布全世界有25亿活跃的Android设备，还不包含大多数中国设备。</li>
+</ul>
+<p><strong>Android几乎每年都要发布一个大版本，技术的更新迭代非常之快。</strong></p>
+<h2 id="Android-Studio的发展历程"><a href="#Android-Studio的发展历程" class="headerlink" title="Android Studio的发展历程"></a>Android Studio的发展历程</h2><p>虽然Android基于Linux内核，但是Android手机的应用App主要采用Java语言开发。为了吸引众多的Java 程序员，早期的App开发工具使用Eclipse，通过给Eclipse安装ADT插件，使之支持开发和调试App。然 而Eclipse毕竟不是专门的App开发环境，运行速度也偏慢，因此谷歌公司在2013年5月推出了全新的 Android开发环境—Android Studio。Android Studio基于IntelliJ IDEA演变而来，既保持了IDEA方便快 捷的特点，又增加了Android开发的环境支持。自2015年之后，谷歌公司便停止了ADT的版本更新，转 而重点打造自家的Android Studio，数年升级换代下来，Android Studio的功能愈加丰富，性能也愈高 效，使得它逐步成为主流的App开发环境。</p>
+<h2 id="搭建Android-Studio开发环境"><a href="#搭建Android-Studio开发环境" class="headerlink" title="搭建Android Studio开发环境"></a>搭建Android Studio开发环境</h2><h3 id="开发机配置要求"><a href="#开发机配置要求" class="headerlink" title="开发机配置要求"></a>开发机配置要求</h3><p>用笔记本电脑开发App，下面是对电脑硬件的基本要求：  </p>
+<p>（1）内存要求至少8GB，越大越好。  </p>
+<p>（2）CPU要求1.5GHz以上，越快越好。  </p>
+<p>（3）硬盘要求系统盘剩余空间10GB以上，越大越好。  </p>
+<p>（4）要求带无线网卡与USB插槽。  </p>
+<p>下面是对操作系统的基本要求（以Windows为例）。 </p>
+<p>（1）必须是64位系统，不能是32位系统。  </p>
+<p>（2）Windows系统至少为Windows 7，推荐Windows 10，不支持Windows XP。 </p>
+<p>下面是对网络的基本要求： </p>
+<p>（1）最好连接公众网，因为校园网可能无法访问国外的网站。  </p>
+<p>（2）下载速度至少每秒1MB，越快越好。因为Android Studio安装包大小为1GB左右，还需要另外下 载几百MB的SDK，所以网络带宽一定要够大，否则下载文件都要等很久。</p>
+<h3 id="安装Android-Studio"><a href="#安装Android-Studio" class="headerlink" title="安装Android Studio"></a>安装Android Studio</h3><p>Android Studio的官方下载页面是 <a target="_blank" rel="noopener" href="https://developer.android.google.cn/studio/index.html%EF%BC%8C%E5%8D%95%E5%87%BB%E7%BD%91%E9%A1%B5">https://developer.android.google.cn/studio/index.html，单击网页</a> 中央的DOWNLOAD按钮即可下载Android Studio的安装包。或者下拉网页找到“Android Studio  downloads”区域，选择指定操作系统对应的Android Studio安装包。</p>
+<p>安装过程略</p>
+<p>SDK下载完成，可以打开Android SDK Location指定的SDK保存路径，发现下面还有十几 个目录，其中比较重要的几个目录说明如下： </p>
+<ul>
+<li>build-tools目录，存放各版本Android的编译工具。</li>
+<li>emulator目录，存放模拟器的管理工具。 </li>
+<li>platforms目录，存放各版本Android的资源文件与内核JAR包android.jar。 </li>
+<li>platform-tools目录，存放常用的开发辅助工具，包括客户端驱动程序adb.exe、数据库管理工具 sqlite3.exe，等等。 </li>
+<li>sources目录，存放各版本Android的SDK源码。</li>
+</ul>
+<h3 id="创建并编译App工程"><a href="#创建并编译App工程" class="headerlink" title="创建并编译App工程"></a>创建并编译App工程</h3><h4 id="创建新项目（略）"><a href="#创建新项目（略）" class="headerlink" title="创建新项目（略）"></a>创建新项目（略）</h4><h4 id="编译App工程"><a href="#编译App工程" class="headerlink" title="编译App工程"></a>编译App工程</h4><p>Android Studio跟IDEA一样，被改动的文件会自动保存，无须开发者手工保存。它还会自动编译最新的 代码，如果代码有误，编辑界面会标红提示出错了。但是有时候可能因为异常关闭的缘故，造成 Android Studio的编译文件发生损坏，此时需要开发者手动重新编译，手动编译有以下3种途径： </p>
+<p>（1）依次选择菜单Build→Make Project，该方式会编译整个项目下的所有模块。  </p>
+<p>（2）依次选择菜单Build→Make Module ***，该方式会编译指定名称的模块。  </p>
+<p>（3）先选择菜单Build→Clean Project，再选择菜单Build→Rebuild Project，表示先清理当前项目，再 对整个项目重新编译。</p>
+<p> 不管是编译项目还是编译模块，编译结果都展示在Android Studio主界面下方的Build窗口中，</p>
+<h2 id="运行和调试App"><a href="#运行和调试App" class="headerlink" title="运行和调试App"></a>运行和调试App</h2><h4 id="创建内置模拟器"><a href="#创建内置模拟器" class="headerlink" title="创建内置模拟器"></a>创建内置模拟器</h4><p>所谓模拟器，指的是在电脑上构造一个演示窗口，模拟手机屏幕的App运行效果。App通过编译之后， 只说明代码没有语法错误，若想验证App能否正确运行，还得让它在Android设备上跑起来。这个设备可 以是真实手机，也可以是电脑里的模拟器。依次选择菜单Run→Run （也可按快捷键Shift+F10），或者 选择菜单Run→Run…，在弹出的小窗中选择待运行的模块名称，Android Studio会判断当前是否存在已 经连接的设备，如果已有连接上的设备就在该设备上安装测试App。</p>
+<p>因为一开始没有任何已连上的设备，所以运行App会报错“Error running ：No target device found.”， 意思是未找到任何目标设备。此时要先创建一个模拟器，依次选择菜单Tools→AVD Manager，或者在 Android Studio右上角的按钮中单击图标。</p>
+<h4 id="观察App运行日志"><a href="#观察App运行日志" class="headerlink" title="观察App运行日志"></a>观察App运行日志</h4><p>虽然在模拟器上能够看到App的运行，却无法看到App的调试信息。以前写Java代码的时候，通过 System.out.println可以很方便地向IDEA的控制台输出日志，当然Android Studio也允许查看App的运 行日志，只是Android不使用System.out.println，而是采用Log工具打印日志。 </p>
+<p>有别于System.out.println，Log工具将各类日志划分为5个等级，每个等级的重要性是不一样的，这些 日志等级按照从高到低的顺序依次说明如下：</p>
+<ul>
+<li>Log.e：表示错误信息，比如可能导致程序崩溃的异常。 </li>
+<li>Log.w：表示警告信息。</li>
+<li>Log.i：表示一般消息。</li>
+<li>Log.d：表示调试信息，可把程序运行时的变量值打印出来，方便跟踪调试。 </li>
+<li>Log.v：表示冗余信息</li>
+</ul>
+<p>日志窗口的顶部从左到右依次为：</p>
+<ul>
+<li>测试设备的名称（如“Pixel_2_API_30”）</li>
+<li>测试 App的包名（例如只显示com.example.myapp的日志）</li>
+</ul>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>Android开发环境的搭建过程，包括：Android开发简介（Android的发展历程、 Android Studio的发展历程）、搭建Android Studio开发环境（开发机配置要求、安装Android  Studio、下载Android的SDK）、创建并编译App工程（创建新项目、导入已有的工程、编译App工 程）、运行和调试App（创建内置模拟器、在模拟器上运行App、观察App的运行日志）。</p>
+<p>掌握Android Studio的基本操作技能，能够使用自己搭建的Android Studio 环境创建简单的App工程，并在模拟器上成功运行测试App</p>
+<h1 id="Android-App开发基础"><a href="#Android-App开发基础" class="headerlink" title="Android App开发基础"></a>Android App开发基础</h1><h2 id="App的开发特点"><a href="#App的开发特点" class="headerlink" title="App的开发特点"></a>App的开发特点</h2><p>App能在哪些操作系统上运行、App开发用到 了哪些编程语言、App能操作哪些数据库等，搞清楚了App的开发运行环境，才能有的放矢不走弯路。</p>
+<h3 id="App的运行环境"><a href="#App的运行环境" class="headerlink" title="App的运行环境"></a>App的运行环境</h3><p>App 开发为Android上的应用开发，Android系统基于Linux内核，但不等于Linux系统，故App应用无法在 Linux系统上运行。</p>
+<p>Android Studio是谷歌官方推出的App开发环境，它提供了三种操作系统的安装包，分别是Windows、 Mac和Linux。这就产生一个问题：开发者可以在电脑上安装Android Studio，并使用Android Studio开 发App项目，但是编译出来的App在电脑上跑不起来。</p>
+<p>为了提供App开发的功能测试环境，一种办法是利用Android Studio创建内置的模拟器，然后启动内置 模拟器，再在模拟器上运行App应用。</p>
+<p>另一种办法是使用真实手机测试App，该办法在实际开发中更为常见。由于模拟器本身跑在电脑上面， 占用电脑的CPU和内存，会拖累电脑的运行速度；况且模拟器仅仅是模拟而已，无法完全验证App的所 有功能，因此最终都得通过真机测试才行。 </p>
+<p>利用真机调试要求具备以下5个条件：</p>
+<p>1．使用数据线把手机连到电脑上 手机的电源线拔掉插头就是数据线。数据线长方形的一端接到电脑的USB接口，即可完成手机与电脑的 连接。 </p>
+<p>2．在电脑上安装手机的驱动程序 一般电脑会把手机当作USB存储设备一样安装驱动，大多数情况会自动安装成功。如果遇到少数情况安 装失败，需要先安装手机助手，由助手软件下载并安装对应的手机驱动。 </p>
+<p>3．打开手机的开发者选项并启用USB调试 手机出厂后默认关闭开发者选项，需要开启开发者选项才能调试App。打开手机的设置菜单，进入“系统” →“关于手机”→“版本信息”页面，这里有好几个版本项，每个版本项都使劲点击七、八下，总会有某个版 本点击后出现“你将开启开发者模式”的提示。继续点击该版本开启开发者模式，然后退出并重新进入设 置页面，此时就能在“系统”菜单下找到“开发者选项”或“开发人员选项”了。进入“开发者选项”页面，启用 “开发者选项”和“USB调试”两处开关，允许手机通过USB接口安装调试应用。 </p>
+<p>4．将连接的手机设为文件传输模式，并允许计算机进行USB调试 手机通过USB数据线连接电脑后，屏幕弹出选择列表，请求选择某种USB连接方式。这里 记得选中“传输文件”，因为充电模式不支持调试App。  选完之后手机桌面弹出确认窗口，提示开发者是否允许当前计算机进行USB调试。这里勾 选“始终允许使用这台计算机进行调试”选项，再点击右下角的确定按钮，允许计算机在手机上调试App。</p>
+<p>5．手机要能正常使用 锁屏状态下，Android Studio向手机安装App的行为可能会被拦截，所以要保证手机处于解锁状态，才 能顺利通过电脑安装App到手机上。  有的手机还要求插入SIM卡才能调试App，还有的手机要求登录会员才能调试App，总之如果遇到无法安 装的问题，各种情况都尝试一遍才好。 经过以上步骤，总算具备通过电脑在手机上安装App的条件了。马上启动Android Studio，在顶部中央 的执行区域看到已连接的手机信息。</p>
+<h3 id="App的开发语言"><a href="#App的开发语言" class="headerlink" title="App的开发语言"></a>App的开发语言</h3><p>基于安卓系统的App开发主要有两大技术路线，分别是原生开发和混合开发。原生开发指的是在移动平 台上利用官方提供的编程语言（例如Java、Kotlin等）、开发工具包（SDK）、开发环境（Android  Studio）进行App开发；混合开发指的是结合原生与H5技术开发混合应用，也就是将部分App页面改成 内嵌的网页，这样无须升级App、只要覆盖服务器上的网页，即可动态更新App页面。</p>
+<p>不管是原生开发还是混合开发，都要求掌握Android Studio的开发技能，因为混合开发本质上依赖于原 生开发，如果没有原生开发的皮，哪里还有混合开发的毛呢？单就原生开发而言，又涉及多种编程语 言，包括Java、Kotlin、C&#x2F;C++、XML等。 </p>
+<h4 id="1．Java"><a href="#1．Java" class="headerlink" title="1．Java"></a>1．Java</h4><p> Java是Android开发的主要编程语言，在创建新项目时，弹出的项目配置对话框，看见 Language栏默认选择了Java，表示该项目采用Java编码。</p>
+<p>虽然Android开发需要Java环境，但没要求电脑上必须事先安装JDK，因为Android Studio已经自带了 JRE。依次选择菜单File→Project Structure，弹出的项目结构对话框。</p>
+<p>单击项目结构对话框左侧的SDK Location，对话框右边从上到下依次排列着“Android SDK location”、 “Android NDK location”、“JDK location”，其中下方的JDK location提示位于Android Studio安装路径的 JRE目录下，它正是Android Studio自带的Java运行环境。</p>
+<h4 id="2．Kotlin"><a href="#2．Kotlin" class="headerlink" title="2．Kotlin"></a>2．Kotlin</h4><p> Kotlin是谷歌官方力推的又一种编程语言，它与Java同样基于JVM（Java Virtual Machine，即Java虚拟 机），且完全兼容Java语言。创建新项目时，在Language栏下拉可选择Kotlin。  一旦在创建新项目时选定Kotlin，该项目就会自动加载Kotlin插件，并将Kotlin作为默认的编程语言。</p>
+<h4 id="3．C-C"><a href="#3．C-C" class="headerlink" title="3．C&#x2F;C++"></a>3．C&#x2F;C++</h4><p>不管是Java还是Kotlin，它们都属于解释型语言，这类语言在运行之时才将程序翻译成机器语言，故而执 行效率偏低。虽然现在手机配置越来越高，大多数场景的App运行都很流畅，但是涉及图像与音视频处 理等复杂运算的场合，解释型语言的性能瓶颈便暴露出来。 编译型语言在首次编译时就将代码编译为机器语言，后续运行无须重新编译，直接使用之前的编译文件 即可，因此执行效率比解释型语言高。C&#x2F;C++正是编译型语言的代表，它能够有效弥补解释型语言的性 能缺憾，借助于JNI技术（Java Native Interface，即Java原生接口），Java代码允许调用C&#x2F;C++编写的程 序。事实上，Android的SDK开发包内部定义了许多JNI接口，包括图像读写在内的底层代码均由 C&#x2F;C++编写，再由外部通过封装好的Java方法调用。 不过Android系统的JNI编程属于高级开发内容，初学者无须关注JNI开发，也不要求掌握C&#x2F;C++。</p>
+<h4 id="4．XML"><a href="#4．XML" class="headerlink" title="4．XML"></a>4．XML</h4><p>XML全称为Extensible Markup Language，即可扩展标记语言，严格地说，XML并非编程语言，只是一 种标记语言。它类似于HTML，利用各种标签表达页面元素，以及各元素之间的层级关系及其排列组 合。每个XML标签都是独立的控件对象，标签内部的属性以“android:”打头，表示这是标准的安卓属性，各属性分别代表控件的某种规格。比如下面是以XML书写的文本控件：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">          <span class="attr">android:id</span>=<span class="string">&quot;@+id/tv_hello&quot;</span></span></span><br><span class="line"><span class="tag">          <span class="attr">android:layout_width</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">          <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">          <span class="attr">android:text</span>=<span class="string">&quot;Hello World!&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>上面的标签名称为TextView，翻译过来叫文本视图，该标签携带4个属性，说明如下： </p>
+<ul>
+<li>id：控件的编号。 layout_width：控件的布局宽度，wrap_content表示刚好包住该控件的内容。 </li>
+<li>layout_height：控件的布局高度，wrap_content表示刚好包住该控件的内容。 </li>
+<li>text：控件的文本，也就是文本视图要显示什么文字。</li>
+</ul>
+<p>综合起来，以上XML代码所表达的意思为：这是一个名为tv_hello的文本视图，显示的文字内容是“Hello  World!”，它的宽度和高度都要刚好包住这些文字。</p>
+<h3 id="App连接的数据库"><a href="#App连接的数据库" class="headerlink" title="App连接的数据库"></a>App连接的数据库</h3><p>Android早已内置了专门的数据库名为SQLite，它遵循关系数据库的设计理念，SQL语法类似于 MySQL。不同之处在于，SQLite无须单独安装，因为它内嵌到应用进程当中，所以App无须配置连接信 息，即可直接对其增删改查。由于SQLite嵌入到应用程序，省去了配置数据库服务器的开销，因此它又 被归类为嵌入式数据库。</p>
+<p>手机端的App，连同程序代码及其内置的嵌入式数据库，其实是个又独立又完整的程序实体，它只负责 手机上的用户交互与信息处理，该实体被称作客户端。而后端的Java Web服务，包括Web代码和数据库 服务器，同样构成另一个单独运行的程序实体，它只负责后台的业务逻辑与数据库操作，该实体被称作 服务端。客户端与服务端之前通过HTTP接口通信，每当客户端觉得需要把信息发给服务端，或者需要从 服务端获取信息时，客户端便向服务端发起HTTP请求，服务端收到客户端的请求之后，根据规则完成数 据处理，并将处理结果返回给客户端。这样客户端经由HTTP接口并借服务端之手，方能间接读写后端的 数据库服务器（如MySQL）.</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/%E5%AE%A2%E6%88%B7%E7%AB%AF%E4%B8%8E%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%88%86%E5%88%AB%E6%93%8D%E4%BD%9C%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93.png"></p>
+<p>，一个具备用户管理功能的App系统，实际上并不单单只是手机上的一个应用，还包括与其对 应的Java Web服务。手机里的客户端App，面向的是手机用户，App与用户之间通过手机屏幕交互；而后端的服务程序，面向的是手机App，客户端与服务端之间通过HTTP接口交互。客户端和服务端是多对一的架构关系。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/%E5%AE%A2%E6%88%B7%E7%AB%AF%E4%B8%8E%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%9A%84%E5%A4%9A%E5%AF%B9%E4%B8%80%E6%9E%B6%E6%9E%84%E5%85%B3%E7%B3%BB.png"></p>
+<p>总结一下，手机App能够直接操作内置的SQLite数据库，但不能直接操作MySQL这种企业数据库。必须 事先搭建好服务端程序（如Java Web），然后客户端与服务端通过HTTP接口通信，再由服务端操作以 MySQL为代表的数据库服务器。</p>
+<h2 id="App的工程结构"><a href="#App的工程结构" class="headerlink" title="App的工程结构"></a>App的工程结构</h2><h3 id="App工程目录结构"><a href="#App工程目录结构" class="headerlink" title="App工程目录结构"></a>App工程目录结构</h3><p>App工程分为两个层次，第一个层次是项目，依次选择菜单File→New→New Project即可创建新项目。 另一个层次是模块，模块依附于项目，每个项目至少有一个模块，也能拥有多个模块，依次选择菜单 File→New→New Module即可在当前项目创建新模块。一般所言的“编译运行App”，指的是运行某个模 块，而非运行某个项目，因为模块才对应实际的App。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/App%E5%B7%A5%E7%A8%8B%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84.png"></p>
+<p>项目下面有两个分类：一个是app（代表app模块）；另一个是Gradle Scripts。其 中，app下面又有3个子目录，其功能说明如下： </p>
+<p>（1）manifests子目录，下面只有一个XML文件，即AndroidManifest.xml，它是App的运行配置文 件。 </p>
+<p>（2）java子目录，下面有3个com.example.myapp包，其中第一个包存放当前模块的Java源代码，后 面两个包存放测试用的Java代码。  </p>
+<p>（3）res子目录，存放当前模块的资源文件。res下面又有4个子目录：</p>
+<ul>
+<li>drawable目录存放图形描述文件与图片文件。</li>
+<li>layout目录存放App页面的布局文件。</li>
+<li>mipmap目录存放App的启动图标。</li>
+<li>values目录存放一些常量定义文件，例如字符串常量strings.xml、像素常量dimens.xml、颜色常 量colors.xml、样式风格定义styles.xml等。</li>
+</ul>
+<p> Gradle Scripts下面主要是工程的编译配置文件，主要有：  </p>
+<p>（1）build.gradle，该文件分为项目级与模块级两种，用于描述App工程的编译规则。  </p>
+<p>（2）proguard-rules.pro，该文件用于描述Java代码的混淆规则。  </p>
+<p>（3）gradle.properties，该文件用于配置编译工程的命令行参数，一般无须改动。  </p>
+<p>（4）settings.gradle，该文件配置了需要编译哪些模块。初始内容为include ‘:app’，表示只编译app模 块。</p>
+<p> （5）local.properties，项目的本地配置文件，它在工程编译时自动生成，用于描述开发者电脑的环境 配置，包括SDK的本地路径、NDK的本地路径等。</p>
+<h3 id="编译配置文件build-gradle"><a href="#编译配置文件build-gradle" class="headerlink" title="编译配置文件build.gradle"></a>编译配置文件build.gradle</h3><p>新创建的App项目默认有两个build.gradle，一个是Project项目级别的build.gradle；另一个是Module 模块级别的build.gradle。</p>
+<p>项目级别的build.gradle指定了当前项目的总体编译规则，打开该文件在buildscript下面找到 repositories和dependencies两个节点，其中repositories节点用于设置Android Studio插件的网络仓 库地址，而dependencies节点用于设置gradle插件的版本号。由于官方的谷歌仓库位于国外，下载速度 相对较慢，因此可在repositories节点添加阿里云的仓库地址，方便国内开发者下载相关插件。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">buildscript &#123;</span><br><span class="line">    repositories &#123;</span><br><span class="line">        // 以下四行添加阿里云的仓库地址，方便国内开发者下载相关插件</span><br><span class="line">        maven &#123; url &#x27;https://maven.aliyun.com/repository/jcenter&#x27; &#125;</span><br><span class="line">        maven &#123; url &#x27;https://maven.aliyun.com/repository/google&#x27;&#125;</span><br><span class="line">        maven &#123; url &#x27;https://maven.aliyun.com/repository/gradle-plugin&#x27;&#125;</span><br><span class="line">        maven &#123; url &#x27;https://maven.aliyun.com/repository/public&#x27;&#125;</span><br><span class="line">        google()</span><br><span class="line">        jcenter()</span><br><span class="line">    &#125;</span><br><span class="line">    dependencies &#123;</span><br><span class="line">        // 配置gradle插件版本，下面的版本号就是Android Studio的版本号</span><br><span class="line">        classpath &#x27;com.android.tools.build:gradle:4.1.0&#x27;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>模块级别的build.gradle对应于具体模块，每个模块都有自己的build.gradle，它指定了当前模块的详细 编译规则。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">android &#123;</span><br><span class="line">    // 指定编译用的SDK版本号。比如30表示使用Android 11.0编译</span><br><span class="line">    compileSdkVersion 30</span><br><span class="line">    // 指定编译工具的版本号。这里的头两位数字必须与compileSdkVersion保持一致，具体的版本号可</span><br><span class="line">在sdk安装目录的“sdk\build-tools”下找到</span><br><span class="line">    buildToolsVersion &quot;30.0.3&quot;</span><br><span class="line">    defaultConfig &#123;</span><br><span class="line">        // 指定该模块的应用编号，也就是App的包名</span><br><span class="line">        applicationId &quot;com.example.chapter02&quot;</span><br><span class="line">        // 指定App适合运行的最小SDK版本号。比如19表示至少要在Android 4.4上运行</span><br><span class="line">        minSdkVersion 19</span><br><span class="line">        // 指定目标设备的SDK版本号。表示App最希望在哪个版本的Android上运行</span><br><span class="line">        targetSdkVersion 30</span><br><span class="line">        // 指定App的应用版本号</span><br><span class="line">        versionCode 1</span><br><span class="line">        // 指定App的应用版本名称</span><br><span class="line">        versionName &quot;1.0&quot;</span><br><span class="line">        testInstrumentationRunner &quot;androidx.test.runner.AndroidJUnitRunner&quot;</span><br><span class="line">    &#125;</span><br><span class="line">    buildTypes &#123;</span><br><span class="line">        release &#123;</span><br><span class="line">            minifyEnabled false</span><br><span class="line">            proguardFiles getDefaultProguardFile(&#x27;proguard-android</span><br><span class="line">optimize.txt&#x27;), &#x27;proguard-rules.pro&#x27;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> // 指定App编译的依赖信息</span><br><span class="line">dependencies &#123;</span><br><span class="line">    // 指定引用jar包的路径</span><br><span class="line">    implementation fileTree(dir: &#x27;libs&#x27;, include: [&#x27;*.jar&#x27;])</span><br><span class="line">    // 指定编译Android的高版本支持库。如AppCompatActivity必须指定编译appcompat库</span><br><span class="line">    //appcompat库各版本见 </span><br><span class="line">https://mvnrepository.com/artifact/androidx.appcompat/appcompat</span><br><span class="line">    implementation &#x27;androidx.appcompat:appcompat:1.2.0&#x27;</span><br><span class="line">    // 指定单元测试编译用的junit版本号</span><br><span class="line">    testImplementation &#x27;junit:junit:4.13&#x27;</span><br><span class="line">    androidTestImplementation &#x27;androidx.test.ext:junit:1.1.2&#x27;</span><br><span class="line">    androidTestImplementation &#x27;androidx.test.espresso:espresso-core:3.3.0&#x27;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>为啥这两种编译配置文件的扩展名都是Gradle呢？这是因为它们采用了Gradle工具完成编译构建操作。Gradle工具的版本配置在gradle\wrapper\gradle-wrapper.properties，也可以依次选择菜单<br>File→Project Structure→Project，在弹出的设置页面中修改Gradle Version。注意每个版本的Android Studio都有对应的Gradle版本，只有二者的版本正确对应，App工程才能成功编译。比如Android Studio 4.1对应的Gradle版本为6.5，更多的版本对应关系见<a target="_blank" rel="noopener" href="https://developer.android.google.cn/studio/releases/gradle-plugin#updating-plugin%E3%80%82">https://developer.android.google.cn/studio/releases/gradle-plugin#updating-plugin。</a></p>
+<h4 id="行配置文件AndroidManifest-xml"><a href="#行配置文件AndroidManifest-xml" class="headerlink" title="行配置文件AndroidManifest.xml"></a>行配置文件AndroidManifest.xml</h4><p>AndroidManifest.xml指定了App的运行配置信息，它是一个XML描述文件，初始内容如下所示：                                                               </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;utf-8&quot;</span>?&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">manifest</span> <span class="attr">xmlns:android</span>=<span class="string">&quot;http://schemas.android.com/apk/res/android&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">package</span>=<span class="string">&quot;com.example.chapter02&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">application</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:allowBackup</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:icon</span>=<span class="string">&quot;@mipmap/ic_launcher&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:label</span>=<span class="string">&quot;@string/app_name&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:roundIcon</span>=<span class="string">&quot;@mipmap/ic_launcher_round&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:supportsRtl</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:theme</span>=<span class="string">&quot;@style/AppTheme&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">activity</span> <span class="attr">android:name</span>=<span class="string">&quot;.Main2Activity&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">activity</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- activity节点指定了该App拥有的活动页面信息，其中拥有</span></span><br><span class="line"><span class="comment">android.intent.action.MAIN的activity说明它是入口页面 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">activity</span> <span class="attr">android:name</span>=<span class="string">&quot;.MainActivity&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">&quot;android.intent.action.MAIN&quot;</span> /&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">&quot;android.intent.category.LAUNCHER&quot;</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">activity</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">application</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">manifest</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>可见AndroidManifest.xml的根节点为manifest，它的package属性指定了该App的包名。manifest下面有个application节点，它的各属性说明如下：</p>
+<ul>
+<li>android:allowBackup，是否允许应用备份。允许用户备份系统应用和第三方应用的apk安装包和 应用数据，以便在刷机或者数据丢失后恢复应用，用户即可通过adb backup和adb restore来进行 对应用数据的备份和恢复。为true表示允许，为false则表示不允许。 </li>
+<li>android:icon，指定App在手机屏幕上显示的图标。 </li>
+<li>android:label，指定App在手机屏幕上显示的名称。 </li>
+<li>android:roundIcon，指定App的圆角图标。 </li>
+<li>android:supportsRtl，是否支持阿拉伯语／波斯语这种从右往左的文字排列顺序。为true表示支 持，为false则表示不支持。 </li>
+<li>android:theme，指定App的显示风格。</li>
+</ul>
+<p>注意到application下面还有个activity节点，它是活动页面的注册声明，只有在AndroidManifest.xml中 正确配置了activity节点，才能在运行时访问对应的活动页面。</p>
+<p>Activity是一个应哟个程序组件，提供一个屏幕，用户可以用来交互为了完成某项任务。</p>
+<p>初始配置的MainActivity正是App的默认 主页，之所以说该页面是App主页，是因为它的activity节点内部还配置了以下的过滤信息：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;intent-filter&gt;</span><br><span class="line"> &lt;action android:name=&quot;android.intent.action.MAIN&quot; /&gt;</span><br><span class="line"> &lt;category android:name=&quot;android.intent.category.LAUNCHER&quot; /&gt;</span><br><span class="line">&lt;/intent-filter&gt;</span><br></pre></td></tr></table></figure>
+
+<p>其中action节点设置的android.intent.action.MAIN表示该页面是App的入口页面，启动App时会最先打开该页面。而category节点设置的android.intent.category.LAUNCHER决定了是否在手机屏幕上显示 App图标，如果同时有两个activity节点内部都设置了android.intent.category.LAUNCHER，那么桌面就会显示两个App图标。以上的两种节点规则可能一开始不太好理解，只需记住默认主页必须同时配置这两种过滤规则即可。</p>
+<h2 id="App的设计规范"><a href="#App的设计规范" class="headerlink" title="App的设计规范"></a>App的设计规范</h2><p>本节介绍了App工程的源码设计规范，首先App将看得见的界面设计与看不见的代码逻辑区分开，然后 利用XML标记描绘应用界面，同时使用Java代码书写程序逻辑，从而形成App前后端分离的设计规约， 有利于提高App集成的灵活性。</p>
+<h3 id="界面设计与代码逻辑"><a href="#界面设计与代码逻辑" class="headerlink" title="界面设计与代码逻辑"></a>界面设计与代码逻辑</h3><p>网站分为用户看得到的网页，以及用户看不到的Web后台；App也分为用户看得到的界面，以及用户看不到的App后台。</p>
+<p>虽然Android允许使用Java代码描绘界面，但不提倡这么做，推荐的做法是将界面设计从Java代码剥离出来，通过单独的XML文件定义界面布局，就像网站使用HTML文件定义网页那样。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/App%E7%9A%84%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%E8%AE%BE%E8%AE%A1.png"></p>
+<p>把界面设计与代码逻辑分开，不仅参考了网站的Web前后端分离，还有下列几点好处。</p>
+<p>（1）使用XML文件描述App界面，可以很方便地在Android Studio上预览界面效果。</p>
+<p>（2）一个界面布局可以被多处代码复用，反过来，一段Java代码也可能适配多个界面布局。</p>
+<h3 id="利用XML标记描绘应用界面"><a href="#利用XML标记描绘应用界面" class="headerlink" title="利用XML标记描绘应用界面"></a>利用XML标记描绘应用界面</h3><p>安卓控件的XML定义例子</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag"> <span class="attr">android:id</span>=<span class="string">&quot;@+id/tv_hello&quot;</span></span></span><br><span class="line"><span class="tag"> <span class="attr">android:layout_width</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag"> <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag"> <span class="attr">android:text</span>=<span class="string">&quot;Hello World!&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>注意到TextView标签以“&lt;”开头，以“&#x2F;&gt;”结尾，为何尾巴多了个斜杆呢？要是没有斜杆，以左右尖括号包 裹标签名称，岂不更好？其实这是XML的标记规范，凡是XML标签都由标签头与标签尾组成，标签头以 左右尖括号包裹标签名称，形如“”；标签尾在左尖括号后面插入斜杆，以此同标签头区分开，形如“”。标 签头允许在标签名称后面添加各种属性取值，而标签尾不允许添加任何属性，因此上述TextView标签的 完整XML定义是下面这样的：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag"> <span class="attr">android:id</span>=<span class="string">&quot;@+id/tv_hello&quot;</span></span></span><br><span class="line"><span class="tag"> <span class="attr">android:layout_width</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag"> <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag"> <span class="attr">android:text</span>=<span class="string">&quot;Hello World!&quot;</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">TextView</span>&gt;</span> </span><br></pre></td></tr></table></figure>
+
+<p>考虑到TextView仅仅是个文本视图，其标签头和标签尾之间不会插入其他标记，所以合并它的标签头和 标签尾，也就是让TextView标签以“&#x2F;&gt;”结尾，表示该标签到此为止。</p>
+<p>下面是个XML文件的布局内容，里面包含了根节点、布局节点，以及控件节点：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">xmlns:android</span>=<span class="string">&quot;http://schemas.android.com/apk/res/android&quot;</span></span></span><br><span class="line"><span class="tag"> <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag"> <span class="attr">android:layout_height</span>=<span class="string">&quot;match_parent&quot;</span>&gt;</span></span><br><span class="line"> <span class="comment">&lt;!-- 这是个线性布局， match_parent意思是与上级视图保持一致--&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">LinearLayout</span></span></span><br><span class="line"><span class="tag"> <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag"> <span class="attr">android:layout_height</span>=<span class="string">&quot;match_parent&quot;</span>&gt;</span></span><br><span class="line"> <span class="comment">&lt;!-- 这是个文本视图，名字叫做tv_hello，显示的文字内容为“Hello World!” --&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag"> <span class="attr">android:id</span>=<span class="string">&quot;@+id/tv_hello&quot;</span></span></span><br><span class="line"><span class="tag"> <span class="attr">android:layout_width</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag"> <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag"> <span class="attr">android:text</span>=<span class="string">&quot;Hello World!&quot;</span> /&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>上面的XML内容，最外层的LinearLayout标签为该界面的根节点，中间的LinearLayout标签为布局节 点，最内层的TextView为控件节点。由于根节点和布局节点都存在下级节点，因此它们要有配对的标签 头与标签尾，才能将下级节点包裹起来。根节点其实是特殊的布局节点，它的标签名称可以跟布局节点 一样，区别之处在于下列两点:</p>
+<p>（1）每个界面只有一个根节点，却可能有多个布局节点，也可能没有中间的布局节点，此时所有控件节 点都挂在根节点下面。 </p>
+<p>（2）根节点必须配备“xmlns:android&#x3D;” <a target="_blank" rel="noopener" href="http://schemas.android.com/apk/res/android%22%E2%80%9D%EF%BC%8C%E8%A1%A8%E7%A4%BA%E6%8C%87%E5%AE%9A">http://schemas.android.com/apk/res/android&quot;”，表示指定</a> XML内部的命名空间，有了这个命名空间，Android Studio会自动检查各节点的属性名称是否合法，如果不合法就提示报错。至于布局节点就不能再指定命名空间了。 </p>
+<p>有了根节点、布局节点、控件节点之后，XML内容即可表达丰富多彩的界面布局，因为每个界面都能划 分为若干豆腐块，每个豆腐块再细分为若干控件罢了。三种节点之外，尚有“”这类注释标记，它的作用 是包裹注释性质的说明文字，方便其他开发者理解此处的XML含义。</p>
+<h3 id="使用Java代码书写程序逻辑"><a href="#使用Java代码书写程序逻辑" class="headerlink" title="使用Java代码书写程序逻辑"></a>使用Java代码书写程序逻辑</h3><p>XML固然表达不了复杂的业务逻辑，这副重担就得交给App后台的Java代码了。Android Studio每次创 建新项目，除了生成默认的首页布局activity_main.xml之外，还会生成与其对应的代码文件 MainActivity.java。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MainActivity</span> <span class="keyword">extends</span> <span class="title class_">AppCompatActivity</span> &#123;</span><br><span class="line"> <span class="meta">@Override</span></span><br><span class="line"> <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">onCreate</span><span class="params">(Bundle savedInstanceState)</span> &#123;</span><br><span class="line"> <span class="built_in">super</span>.onCreate(savedInstanceState);</span><br><span class="line"> setContentView(R.layout.activity_main);</span><br><span class="line">	 &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>可见MainActivity.java的代码内容很简单，只有一个MainActivity类，该类下面只有一个onCreate方 法。注意onCreate内部的setContentView方法直接引用了布局文件的名字activity_main，该方法的意 思是往当前活动界面填充activity_main.xml的布局内容。现在准备在这里改动，把文字内容改成中文。 首先打开activity_main.xml，在TextView节点下方补充一行android:id&#x3D;”@+id&#x2F;tv_hello”，表示给它起 个名字编号；然后回到MainActivity.java，在setContentView方法下面补充几行代码，具体如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MainActivity</span> <span class="keyword">extends</span> <span class="title class_">AppCompatActivity</span> &#123;</span><br><span class="line"> <span class="meta">@Override</span></span><br><span class="line"> <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">onCreate</span><span class="params">(Bundle savedInstanceState)</span> &#123;</span><br><span class="line"> <span class="built_in">super</span>.onCreate(savedInstanceState);</span><br><span class="line"> <span class="comment">// 当前的页面布局采用的是res/layout/activity_main.xml</span></span><br><span class="line"> setContentView(R.layout.activity_main);</span><br><span class="line"> <span class="comment">// 获取名叫tv_hello的TextView控件，注意添加导包语句import </span></span><br><span class="line">android.widget.TextView;</span><br><span class="line"> <span class="type">TextView</span> <span class="variable">tv_hello</span> <span class="operator">=</span> findViewById(R.id.tv_hello);</span><br><span class="line"> <span class="comment">// 设置TextView控件的文字内容</span></span><br><span class="line">tv_hello.setText(<span class="string">&quot;你好，世界&quot;</span>);</span><br><span class="line"> &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>新增的两行代码主要做了这些事情：先调用findViewById方法，从布局文件中取出名为tv_hello的 TextView控件；再调用控件对象的setText方法，为其设置新的文字内容。</p>
+<h2 id="App的活动页面"><a href="#App的活动页面" class="headerlink" title="App的活动页面"></a>App的活动页面</h2><h3 id="创建新的App页面"><a href="#创建新的App页面" class="headerlink" title="创建新的App页面"></a>创建新的App页面</h3><p>每次创建新的项目，都会生成默认的activity_main.xml和MainActivity.java，它们正是App首页对应的 XML文件和Java代码。若要增加新的页面，就得由开发者自行操作了，完整的页面创建过程包括3个步 骤：</p>
+<ul>
+<li>在layout目录下创建XML文件</li>
+<li>创建与XML文件对应的Java代码</li>
+<li>在ActivityMainfest.xml中注册页面配置。</li>
+</ul>
+<h4 id="1．创建XML文件"><a href="#1．创建XML文件" class="headerlink" title="1．创建XML文件"></a>1．创建XML文件</h4><p>在Android Studio左上方找到项目结构图，右击res目录下面的layout，弹出右键菜单。在右键菜单中依次选择New→XML→Layout XML File。在XML创建对话框的Layout File Name输入框中填写XML文件名，例如activity_main2，然后单击窗口 右下角的Finish按钮。之后便会在layout目录下面看到新创建的XML文件activity_main2.xml，双击它即 可打开该XML的编辑窗口，再往其中填写详细的布局内容</p>
+<h4 id="2．创建Java代码"><a href="#2．创建Java代码" class="headerlink" title="2．创建Java代码"></a>2．创建Java代码</h4><p>同样在Android Studio左上方找到项目结构图，右击java目录下面的包名，弹出右键菜单。在右键菜单中依次选择New→Java Class，弹出代码创建窗口。在代码创建窗口的Name输入框中填写Java类名，例如Main2Activity，然后单击窗口下方的OK按钮。之后便会在Java包下面看到新创建的代码文件Main2Activity，双击它即可打开代码编辑窗口，再往其中填 写如下代码，表示加载来自activity_main2的页面布局。</p>
+<h4 id="3．注册页面配置"><a href="#3．注册页面配置" class="headerlink" title="3．注册页面配置"></a>3．注册页面配置</h4><p>创建好了页面的XML文件及其Java代码，还得在项目中注册该页面，打开AndroidManifest.xml，在 application节点内部补充如下一行配置：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;activity android:name=&quot;.Main2Activity&quot;&gt;&lt;/activity&gt;</span><br></pre></td></tr></table></figure>
+
+<p>添加了上面这行配置，表示给该页面注册身份，否则App运行时打开页面会提示错误“activity not  found”。如果activity的标记头与标记尾中间没有其他内容，则节点配置也可省略为下面这样：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;activity android:name=&quot;.Main2Activity /&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="快速生成页面源码"><a href="#快速生成页面源码" class="headerlink" title="快速生成页面源码"></a>快速生成页面源码</h4><p>旧在项目结构图中，右击java目录下面的包名，弹出右键菜单。右键菜单中依次选择New→Activity→Empty Activity，弹出页面创建对话框。</p>
+<p>在页面创建对话框的Activity Name输入框中填写页面的Java类名（例如Main2Activity），此时下方的 Layout Name输入框会自动填写对应的XML文件名（例如activity_main2），单击对话框右下角的Finish 按钮，完成新页面的创建动作。</p>
+<p>回到Android Studio左上方的项目结构图，发现res的layout目录下多了个activity_main2.xml，同时 java目录下多了个Main2Activity，并且Main2Activity代码已经设定了加载activity_main2布局。</p>
+<p>接着打 开AndroidManifest.xml，找到application节点发现多了下面这行配置：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;activity android:name=&quot;.Main2Activity&quot;&gt;&lt;/activity&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="跳到另一个页面"><a href="#跳到另一个页面" class="headerlink" title="跳到另一个页面"></a>跳到另一个页面</h4><p>一旦创建好新页面，就得在合适的时候跳到该页面，假设出发页面为A，到达页面为B，那么跳转动作是 从A跳到B。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 活动页面跳转，从MainActivity跳到Main2Activity</span><br><span class="line"> startActivity(new Intent(MainActivity.this, Main2Activity.class));</span><br></pre></td></tr></table></figure>
+
+<p>因为跳转动作通常发生在当前页面，也就是从当前页面跳到其他页面，所以不产生歧义的话，可以使用 this指代当前页面。简化后的跳转代码如下所示：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">startActivity(new Intent(this, Main2Activity.class));</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="简单控件"><a href="#简单控件" class="headerlink" title="简单控件"></a>简单控件</h1><h2 id="文本显示"><a href="#文本显示" class="headerlink" title="文本显示"></a>文本显示</h2><h3 id="设置文本内容"><a href="#设置文本内容" class="headerlink" title="设置文本内容"></a>设置文本内容</h3><p>一种是在XML 文件中通过属性android:text设置文本（layout.xml）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;TextView</span><br><span class="line"> android:id=<span class="string">&quot;@+id/tv_hello&quot;</span></span><br><span class="line"> android:layout_width=<span class="string">&quot;wrap_content&quot;</span></span><br><span class="line"> android:layout_height=<span class="string">&quot;wrap_content&quot;</span></span><br><span class="line"> android:text=<span class="string">&quot;你好，世界&quot;</span> /&gt;</span><br></pre></td></tr></table></figure>
+
+<p>另一种是在Java代码中调用文本视图对象的setText方法设置文本（com\example\test01.java）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取名为tv_hello的文本视图</span></span><br><span class="line"><span class="type">TextView</span> <span class="variable">tv_hello</span> <span class="operator">=</span> findViewById(R.id.tv_hello);</span><br><span class="line">tv_hello.setText(<span class="string">&quot;你好，世界&quot;</span>);  <span class="comment">// 设置tv_hello的文字内容</span></span><br></pre></td></tr></table></figure>
+
+<p>在XML文件中设置文本的话，把鼠标移到“你好，世界”上方时，Android Studio会弹出提示内容为“Hardcoded string “你好，世界”, should use @string resouce”的提示框。意思说这几个字是硬 编码的字符串，建议使用来自@string的资源。</p>
+<p>原来Android Studio不推荐在XML布局文件里直接写字符串，因为可能有好几个页面都显示“你好，世界”，若想把这句话换成“你吃饭了吗？”，就得一个一个XML 文件改过去，无疑费时费力。故而Android Studio推荐把字符串放到专门的地方管理，这个名为@string 的地方位于res&#x2F;values目录下的strings.xml。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;resources&gt;</span><br><span class="line"> &lt;string name=<span class="string">&quot;app_name&quot;</span>&gt;chapter03&lt;/string&gt;</span><br><span class="line"> &lt;/resources&gt;</span><br></pre></td></tr></table></figure>
+
+<p>看来strings.xml定义了一个名为“app_name”的字符串常量，其值为“chapter03”。那么在此添加新的字 符串定义，字符串名为“hello”，字符串值为“你好，世界”，添加之后的strings.xml内容如下所示:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;resources&gt;</span><br><span class="line"> &lt;string name=<span class="string">&quot;app_name&quot;</span>&gt;chapter03&lt;/string&gt;</span><br><span class="line"> &lt;string name=<span class="string">&quot;hello&quot;</span>&gt;你好，世界&lt;/string&gt;</span><br><span class="line"> &lt;/resources&gt;</span><br></pre></td></tr></table></figure>
+
+<p>添加完新的字符串定义，回到XML布局文件，将android:text属性值改为“@string&#x2F;字符串名”这般，也就 是“@string&#x2F;hello”，修改之后的TextView标签示例如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;TextView</span><br><span class="line"> android:id=<span class="string">&quot;@+id/tv_hello&quot;</span></span><br><span class="line"> android:layout_width=<span class="string">&quot;wrap_content&quot;</span></span><br><span class="line"> android:layout_height=<span class="string">&quot;wrap_content&quot;</span></span><br><span class="line"> android:text=<span class="string">&quot;@string/hello&quot;</span> /</span><br></pre></td></tr></table></figure>
+
+<p>然后把鼠标移到“你好，世界”上方，此时Android Studio不再弹出任何提示了。  若要在Java代码中引用字符串资源，则调用setText方法时填写形如“R.string.字符串名”的参数，就本例 而言填入“R.string.hello”，修改之后的Java代码示例如下:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取名为tv_hello的文本视图</span></span><br><span class="line"><span class="type">TextView</span> <span class="variable">tv_hello</span> <span class="operator">=</span> findViewById(R.id.tv_hello);</span><br><span class="line"> tv_hello.setText(R.string.hello);  <span class="comment">// 设置tv_hello的文字内容</span></span><br></pre></td></tr></table></figure>
+
+<p>至此不管XML文件还是Java代码都从strings.xml引用字符串资源，以后想把“你好，世界”改为其他文字 的话，只需改动strings.xml一个地方即可。</p>
+<h3 id="设置文本的大小"><a href="#设置文本的大小" class="headerlink" title="设置文本的大小"></a>设置文本的大小</h3><h3 id="设置文本的颜色"><a href="#设置文本的颜色" class="headerlink" title="设置文本的颜色"></a>设置文本的颜色</h3><h2 id="视图基础"><a href="#视图基础" class="headerlink" title="视图基础"></a>视图基础</h2><h3 id="设置视图的宽高"><a href="#设置视图的宽高" class="headerlink" title="设置视图的宽高"></a>设置视图的宽高</h3><h3 id="设置视图的间距"><a href="#设置视图的间距" class="headerlink" title="设置视图的间距"></a>设置视图的间距</h3><h3 id="设置视图的对齐方式"><a href="#设置视图的对齐方式" class="headerlink" title="设置视图的对齐方式"></a>设置视图的对齐方式</h3><h2 id="常用布局"><a href="#常用布局" class="headerlink" title="常用布局"></a>常用布局</h2><h3 id="线性布局LinearLayout"><a href="#线性布局LinearLayout" class="headerlink" title="线性布局LinearLayout"></a>线性布局LinearLayout</h3><h3 id="相对布局RelativeLayout"><a href="#相对布局RelativeLayout" class="headerlink" title="相对布局RelativeLayout"></a>相对布局RelativeLayout</h3><h3 id="网格布局GridLayout"><a href="#网格布局GridLayout" class="headerlink" title="网格布局GridLayout"></a>网格布局GridLayout</h3><h3 id="滚动视图ScrollView"><a href="#滚动视图ScrollView" class="headerlink" title="滚动视图ScrollView"></a>滚动视图ScrollView</h3><h2 id="按钮触控"><a href="#按钮触控" class="headerlink" title="按钮触控"></a>按钮触控</h2><h3 id="按钮控件Button"><a href="#按钮控件Button" class="headerlink" title="按钮控件Button"></a>按钮控件Button</h3><h3 id="点击事件和长按事件"><a href="#点击事件和长按事件" class="headerlink" title="点击事件和长按事件"></a>点击事件和长按事件</h3><h3 id="禁用与恢复按钮"><a href="#禁用与恢复按钮" class="headerlink" title="禁用与恢复按钮"></a>禁用与恢复按钮</h3><h2 id="图像显示"><a href="#图像显示" class="headerlink" title="图像显示"></a>图像显示</h2><h3 id="图像视图ImageView"><a href="#图像视图ImageView" class="headerlink" title="图像视图ImageView"></a>图像视图ImageView</h3><h3 id="图像按钮ImageButton"><a href="#图像按钮ImageButton" class="headerlink" title="图像按钮ImageButton"></a>图像按钮ImageButton</h3><h3 id="同时展示文本与图像"><a href="#同时展示文本与图像" class="headerlink" title="同时展示文本与图像"></a>同时展示文本与图像</h3><h2 id="实战项目：计算机"><a href="#实战项目：计算机" class="headerlink" title="实战项目：计算机"></a>实战项目：计算机</h2><h3 id="需求描述"><a href="#需求描述" class="headerlink" title="需求描述"></a>需求描述</h3><h3 id="界面设计"><a href="#界面设计" class="headerlink" title="界面设计"></a>界面设计</h3><h3 id="关键代码"><a href="#关键代码" class="headerlink" title="关键代码"></a>关键代码</h3> 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://tangxtang1119.github.io/2025/04/18/Android/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/" rel="tag">Android</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+    
+      <a href="/2025/04/17/Samli/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">Samli</div>
+      </a>
+    
+  </nav>
+
+   
+ 
+   
+  
+   
+    <script src="https://cdn.staticfile.org/twikoo/1.4.18/twikoo.all.min.js"></script>
+    <div id="twikoo" class="twikoo"></div>
+    <script>
+        twikoo.init({
+            envId: ""
+        })
+    </script>
+ 
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2025
+        <i class="ri-heart-fill heart_icon"></i> 唐小唐
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/yuhangyuan.ico" alt="tangxtang"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i></p>
+  <div class="reward-box">
+    
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.staticfile.org/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.staticfile.org/clipboard.js/2.0.10/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    <div id="music">
+    
+    
+    
+    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="200" height="52"
+        src="//music.163.com/outchain/player?type=2&id=2658106011&auto=1&height=32"></iframe>
+</div>
+
+<style>
+    #music {
+        position: fixed;
+        right: 15px;
+        bottom: 0;
+        z-index: 998;
+    }
+</style>
+    
+    
+
+  </div>
+</body>
+
+</html>
