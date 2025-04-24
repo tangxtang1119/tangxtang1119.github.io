@@ -229,7 +229,7 @@
 <li>sp：它专门用来设置字体大小，在系统设置中可以调整字体大小。</li>
 </ul>
 <h4 id="详解-1"><a href="#详解-1" class="headerlink" title="详解"></a>详解</h4><p>TextView允许设置文本内容，也允许设置文本大小，在Java代码中调用setTextSize方法，即可指定文本 大小（layout.xml）</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 从布局文件中获取名叫tv_sp的文本视图</span><br><span class="line">TextView tv_sp = findViewById(R.id.tv_sp);</span><br><span class="line"> tv_sp.setTextSize(30); // 设置tv_sp的文本大小</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 从布局文件中获取名叫tv_sp的文本视图</span></span><br><span class="line"><span class="type">TextView</span> <span class="variable">tv_sp</span> <span class="operator">=</span> findViewById(R.id.tv_sp);</span><br><span class="line"> tv_sp.setTextSize(<span class="number">30</span>); <span class="comment">// 设置tv_sp的文本大小</span></span><br></pre></td></tr></table></figure>
 
 <p>这里的大小数值越大，则看到的文本也越大；大小数值越小，则看到的文本也越小。在XML文件中则通 过属性android:textSize指定文本大小，可是如果给TextView标签添加“android:textSize&#x3D;”30””，数字马 上变成红色，鼠标移过去还会提示错误“Cannot resolve symbol ‘30’”，意思是无法解析“30” 这个符号。</p>
 <p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/textSize%E5%B1%9E%E6%80%A7%E5%8F%AA%E5%A1%AB%E6%95%B0%E5%AD%97%E6%97%B6%E6%8A%A5%E9%94%99.png"></p>
@@ -238,7 +238,7 @@
 <p> 2．dp  dp有时也写作dip，指的是与设备无关的显示单位，它只与屏幕的尺寸有关。一般来说，同样尺寸的屏 幕以dp计量的分辨率是相同的，比如同样是6英寸手机，无论它由哪个厂家生产，其分辨率换算成dp单 位都是一个大小。 </p>
 <p>3．sp  sp的原理跟dp差不多，但它专门用来设置字体大小。手机在系统设置里可以调整字体的大小（小、标 准、大、超大）。设置普通字体时，同数值dp和sp的文字看起来一样大；如果设置为大字体，用dp设置 的文字没有变化，用sp设置的文字就变大了。</p>
 <p>既然XML文件要求android:textSize必须指定字号单位，为什么Java代码调用setTextSize只填数字不填 单位呢？其实查看SDK源码，找到setTextSize方法的实现代码如下所示：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">public void setTextSize(float size) &#123;</span><br><span class="line"> setTextSize(TypedValue.COMPLEX_UNIT_SP, size);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setTextSize</span><span class="params">(<span class="type">float</span> size)</span> &#123;</span><br><span class="line"> setTextSize(TypedValue.COMPLEX_UNIT_SP, size);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
 
 <p> 原来纯数字的setTextSize方法，内部默认字号单位为sp（COMPLEX_UNIT_SP），这也从侧面印证了之 前的说法：sp才是Android推荐的字号单位。</p>
 <p><strong>补充</strong></p>
@@ -346,15 +346,15 @@
 <h5 id="引用颜色资源"><a href="#引用颜色资源" class="headerlink" title="引用颜色资源"></a>引用颜色资源</h5><p>在XML文件中引用（@color&#x2F;***）。</p>
 <p>在Java代码中引用（R.color.***）。</p>
 <h4 id="详解-2"><a href="#详解-2" class="headerlink" title="详解"></a>详解</h4><p>如以下代码便将文本视图的文字颜色改成了绿色：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 从布局文件中获取名为tv_code_system的文本视图</span><br><span class="line">TextView tv_code_system = findViewById(R.id.tv_code_system);</span><br><span class="line"> // 将tv_code_system的文字颜色设置系统自带的绿色</span><br><span class="line">tv_code_system.setTextColor(Color.GREEN);</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 从布局文件中获取名为tv_code_system的文本视图</span></span><br><span class="line"><span class="type">TextView</span> <span class="variable">tv_code_system</span> <span class="operator">=</span> findViewById(R.id.tv_code_system);</span><br><span class="line"> <span class="comment">// 将tv_code_system的文字颜色设置系统自带的绿色</span></span><br><span class="line">tv_code_system.setTextColor(Color.GREEN);</span><br></pre></td></tr></table></figure>
 
 <p>可是XML文件无法引用Color类的颜色常量，为此Android制定了一套规范的编码标准，将色值交由透明 度alpha和RGB三原色（红色red、绿色green、蓝色blue）联合定义。</p>
 <p>该标准又有八位十六进制数与六 位十六进制数两种表达方式，例如八位编码FFEEDDCC中，FF表示透明度，EE表示红色的浓度，DD表示 绿色的浓度，CC表示蓝色的浓度。透明度为FF表示完全不透明，为00表示完全透明。RGB三色的数值越 大，表示颜色越浓，也就越暗；数值越小，表示颜色越淡，也就越亮。RGB亮到极致就是白色，暗到极 致就是黑色。</p>
 <p>至于六位十六进制编码，则有两种情况，它在XML文件中默认不透明（等价于透明度为FF），而在代码 中默认透明（等价于透明度为00）。以下代码给两个文本视图分别设置六位色值与八位色值，注意添加 0x前缀表示十六进制数：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 从布局文件中获取名为tv_code_six的文本视图</span><br><span class="line">TextView tv_code_six = findViewById(R.id.tv_code_six);</span><br><span class="line"> // 将tv_code_six的文字颜色设置为透明的绿色，透明就是看不到</span><br><span class="line">tv_code_six.setTextColor(0x00ff00);</span><br><span class="line"> // 从布局文件中获取名为tv_code_eight的文本视图</span><br><span class="line">TextView tv_code_eight = findViewById(R.id.tv_code_eight);</span><br><span class="line"> // 将tv_code_eight的文字颜色设置为不透明的绿色，即正常的绿色</span><br><span class="line">tv_code_eight.setTextColor(0xff00ff00);</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 从布局文件中获取名为tv_code_six的文本视图</span></span><br><span class="line"><span class="type">TextView</span> <span class="variable">tv_code_six</span> <span class="operator">=</span> findViewById(R.id.tv_code_six);</span><br><span class="line"> <span class="comment">// 将tv_code_six的文字颜色设置为透明的绿色，透明就是看不到</span></span><br><span class="line">tv_code_six.setTextColor(<span class="number">0x00ff00</span>);</span><br><span class="line"> <span class="comment">// 从布局文件中获取名为tv_code_eight的文本视图</span></span><br><span class="line"><span class="type">TextView</span> <span class="variable">tv_code_eight</span> <span class="operator">=</span> findViewById(R.id.tv_code_eight);</span><br><span class="line"> <span class="comment">// 将tv_code_eight的文字颜色设置为不透明的绿色，即正常的绿色</span></span><br><span class="line">tv_code_eight.setTextColor(<span class="number">0xff00ff00</span>);</span><br></pre></td></tr></table></figure>
 
 <p>运行测试App，发现tv_code_six控件的文本不见了（其实是变透明了），而tv_code_eight控件的文本显 示正常的绿色。 在XML文件中可通过属性android:textColor设置文字颜色，但要给色值添加井号前缀“#”，设定好文本颜 色的TextView标签示例如下： </p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;TextView</span><br><span class="line"> android:id=&quot;@+id/tv_xml&quot;</span><br><span class="line"> android:layout_width=&quot;wrap_content&quot;</span><br><span class="line"> android:layout_height=&quot;wrap_content&quot;</span><br><span class="line"> android:text=&quot;布局文件设置六位文字颜色&quot;</span><br><span class="line"> android:textColor=&quot;#00ff00&quot;</span><br><span class="line"> android:textSize=&quot;17sp&quot; /&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag"> <span class="attr">android:id</span>=<span class="string">&quot;@+id/tv_xml&quot;</span></span></span><br><span class="line"><span class="tag"> <span class="attr">android:layout_width</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag"> <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag"> <span class="attr">android:text</span>=<span class="string">&quot;布局文件设置六位文字颜色&quot;</span></span></span><br><span class="line"><span class="tag"> <span class="attr">android:textColor</span>=<span class="string">&quot;#00ff00&quot;</span></span></span><br><span class="line"><span class="tag"> <span class="attr">android:textSize</span>=<span class="string">&quot;17sp&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>就像字符串资源那样，Android把颜色也当作一种资源，打开res&#x2F;values目录下的colors.xml，发现里面 已经定义了3种颜色：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;resources&gt;</span><br><span class="line"> &lt;color name=&quot;colorPrimary&quot;&gt;#008577&lt;/color&gt;</span><br><span class="line"> &lt;color name=&quot;colorPrimaryDark&quot;&gt;#00574B&lt;/color&gt;</span><br><span class="line"> &lt;color name=&quot;colorAccent&quot;&gt;#D81B60&lt;/color&gt;</span><br><span class="line"> &lt;/resources&gt;</span><br></pre></td></tr></table></figure>
@@ -363,10 +363,10 @@
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;color name=&quot;green&quot;&gt;#00ff00&lt;/color&gt;</span><br></pre></td></tr></table></figure>
 
 <p>然后回到XML布局文件，把android:textColor的属性值改为“@color&#x2F;颜色名称”，也就是 android:textColor&#x3D;”@color&#x2F;green”，修改之后的标签TextView如下所示：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;TextView</span><br><span class="line"> android:id=&quot;@+id/tv_values&quot;</span><br><span class="line"> android:layout_width=&quot;wrap_content&quot;</span><br><span class="line"> android:layout_height=&quot;wrap_content&quot;</span><br><span class="line"> android:text=&quot;资源文件引用六位文字颜色&quot;</span><br><span class="line"> android:textColor=&quot;@color/green&quot;</span><br><span class="line"> android:textSize=&quot;17sp&quot; /&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag"> <span class="attr">android:id</span>=<span class="string">&quot;@+id/tv_values&quot;</span></span></span><br><span class="line"><span class="tag"> <span class="attr">android:layout_width</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag"> <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag"> <span class="attr">android:text</span>=<span class="string">&quot;资源文件引用六位文字颜色&quot;</span></span></span><br><span class="line"><span class="tag"> <span class="attr">android:textColor</span>=<span class="string">&quot;@color/green&quot;</span></span></span><br><span class="line"><span class="tag"> <span class="attr">android:textSize</span>=<span class="string">&quot;17sp&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>不仅文字颜色，还有背景颜色也会用到上述的色值定义，在XML文件中通过属性android:background设 置控件的背景颜色。Java代码则有两种方式设置背景颜色，倘若色值来源于Color类或十六进制数，则调 用setBackgroundColor方法设置背景；倘若色值来源于colors.xml中的颜色资源，则调用 setBackgroundResource方法，以“R.color.颜色名称”的格式设置背景。下面是两种方式的背景设定代码 例子：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 从布局文件中获取名叫tv_code_background的文本视图</span><br><span class="line">TextView tv_code_background = findViewById(R.id.tv_code_background);</span><br><span class="line"> // 将tv_code_background的背景颜色设置为绿色</span><br><span class="line">tv_code_background.setBackgroundColor(Color.GREEN); // 在代码中定义的色值</span><br><span class="line">tv_code_background.setBackgroundResource(R.color.green); // 颜色来源于资源文件</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 从布局文件中获取名叫tv_code_background的文本视图</span></span><br><span class="line"><span class="type">TextView</span> <span class="variable">tv_code_background</span> <span class="operator">=</span> findViewById(R.id.tv_code_background);</span><br><span class="line"> <span class="comment">// 将tv_code_background的背景颜色设置为绿色</span></span><br><span class="line">tv_code_background.setBackgroundColor(Color.GREEN); <span class="comment">// 在代码中定义的色值</span></span><br><span class="line">tv_code_background.setBackgroundResource(R.color.green); <span class="comment">// 颜色来源于资源文件</span></span><br></pre></td></tr></table></figure>
 
 <p>注意属性android:background和setBackgroundResource方法，它俩用来设置控件的背景，不单单是 背景颜色，还包括背景图片。在设置背景图片之前，先将图片文件放到res&#x2F;drawable***目录（以 drawable开头的目录，不仅仅是drawable目录），然后把android:background的属性值改为 “@drawable&#x2F;不含扩展名的图片名称”，或者调用setBackgroundResource方法填入“R.drawable.不含扩 展名的图片名称”。</p>
 <h2 id="视图基础"><a href="#视图基础" class="headerlink" title="视图基础"></a>视图基础</h2><h3 id="设置视图的宽高"><a href="#设置视图的宽高" class="headerlink" title="设置视图的宽高"></a>设置视图的宽高</h3><h4 id="概述-3"><a href="#概述-3" class="headerlink" title="概述"></a>概述</h4><p>视图宽度通过属性android:layout_width表达，视图高度通过属性android:layout_heig ht表达，宽高的取值主要有下列三种： </p>
@@ -390,41 +390,82 @@
 <p>步骤二，布局参数的width属性表示宽度，height属性表示高度，修改这两个属性值，即可调整控件的宽 高。  </p>
 <p>步骤三，调用控件对象的setLayoutParams方法，填入修改后的布局参数使之生效。 </p>
 <p>不过布局参数的width和height两个数值默认是px单位，需要将dp单位的数值转换为px单位的数值，然后才能赋值给width属性和height属性。下面是把dp大小转为px大小的方法代码：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 根据手机的分辨率从 dp 的单位 转成为 px(像素)</span><br><span class="line"> public static int dip2px(Context context, float dpValue) &#123;</span><br><span class="line"> // 获取当前手机的像素密度（1个dp对应几个px）</span><br><span class="line">float scale = context.getResources().getDisplayMetrics().density;</span><br><span class="line"> return (int) (dpValue * scale + 0.5f); // 四舍五入取整</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 根据手机的分辨率从 dp 的单位 转成为 px(像素)</span></span><br><span class="line"> <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">dip2px</span><span class="params">(Context context, <span class="type">float</span> dpValue)</span> &#123;</span><br><span class="line"> <span class="comment">// 获取当前手机的像素密度（1个dp对应几个px）</span></span><br><span class="line"><span class="type">float</span> <span class="variable">scale</span> <span class="operator">=</span> context.getResources().getDisplayMetrics().density;</span><br><span class="line"> <span class="keyword">return</span> (<span class="type">int</span>) (dpValue * scale + <span class="number">0.5f</span>); <span class="comment">// 四舍五入取整</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>有了上面定义的公共方法dip2px，就能将某个dp数值转换成px数值，比如准备把文本视图的宽度改为 300dp，那么调整宽度的Java代码示例如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 获取名为tv_code的文本视图</span><br><span class="line">TextView tv_code = findViewById(R.id.tv_code);</span><br><span class="line"> // 获取tv_code的布局参数（含宽度和高度）</span><br><span class="line">ViewGroup.LayoutParams params = tv_code.getLayoutParams();</span><br><span class="line"> // 修改布局参数中的宽度数值，注意默认px单位，需要把dp数值转成px数值</span><br><span class="line">params.width = Utils.dip2px(this, 300);</span><br><span class="line"> tv_code.setLayoutParams(params);  // 设置tv_code的布局参数</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 获取名为tv_code的文本视图</span></span><br><span class="line"><span class="type">TextView</span> <span class="variable">tv_code</span> <span class="operator">=</span> findViewById(R.id.tv_code);</span><br><span class="line"> <span class="comment">// 获取tv_code的布局参数（含宽度和高度）</span></span><br><span class="line">ViewGroup.<span class="type">LayoutParams</span> <span class="variable">params</span> <span class="operator">=</span> tv_code.getLayoutParams();</span><br><span class="line"> <span class="comment">// 修改布局参数中的宽度数值，注意默认px单位，需要把dp数值转成px数值</span></span><br><span class="line">params.width = Utils.dip2px(<span class="built_in">this</span>, <span class="number">300</span>);</span><br><span class="line"> tv_code.setLayoutParams(params);  <span class="comment">// 设置tv_code的布局参数</span></span><br></pre></td></tr></table></figure>
 
 <p>接下来通过演示页面并观察几种尺寸设置方式的界面效果，主要通过背景色区分当前视图的宽高范围， 详细的XML文件内容如下所示：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    android:layout_width=&quot;match_parent&quot;</span><br><span class="line">    android:layout_height=&quot;match_parent&quot;</span><br><span class="line">    android:orientation=&quot;vertical&quot;&gt;</span><br><span class="line">    &lt;TextView</span><br><span class="line">        android:layout_width=&quot;wrap_content&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:layout_marginTop=&quot;5dp&quot;</span><br><span class="line">        android:background=&quot;#00ffff&quot;</span><br><span class="line">        android:text=&quot;视图宽度采用wrap_content定义&quot;</span><br><span class="line">        android:textColor=&quot;#000000&quot;</span><br><span class="line">        android:textSize=&quot;17sp&quot; /&gt;</span><br><span class="line">    &lt;TextView</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:layout_marginTop=&quot;5dp&quot;</span><br><span class="line">        android:background=&quot;#00ffff&quot;</span><br><span class="line">        android:text=&quot;视图宽度采用match_parent定义&quot;</span><br><span class="line">        android:textColor=&quot;#000000&quot;</span><br><span class="line">        android:textSize=&quot;17sp&quot; /&gt;</span><br><span class="line">    &lt;TextView</span><br><span class="line">        android:layout_width=&quot;300dp&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:layout_marginTop=&quot;5dp&quot;</span><br><span class="line">        android:background=&quot;#00ffff&quot;</span><br><span class="line">        android:text=&quot;视图宽度采用固定大小&quot;</span><br><span class="line">        android:textColor=&quot;#000000&quot;</span><br><span class="line">        android:textSize=&quot;17sp&quot; /&gt;</span><br><span class="line">    &lt;TextView</span><br><span class="line">        android:id=&quot;@+id/tv_code&quot;</span><br><span class="line">        android:layout_width=&quot;wrap_content&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:layout_marginTop=&quot;5dp&quot;</span><br><span class="line">        android:background=&quot;#00ffff&quot;</span><br><span class="line">        android:text=&quot;通过代码指定视图宽度&quot;</span><br><span class="line">        android:textColor=&quot;#000000&quot;</span><br><span class="line">        android:textSize=&quot;17sp&quot; /&gt;</span><br><span class="line"> &lt;/LinearLayout&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">xmlns:android</span>=<span class="string">&quot;http://schemas.android.com/apk/res/android&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:orientation</span>=<span class="string">&quot;vertical&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_marginTop</span>=<span class="string">&quot;5dp&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:background</span>=<span class="string">&quot;#00ffff&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:text</span>=<span class="string">&quot;视图宽度采用wrap_content定义&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:textColor</span>=<span class="string">&quot;#000000&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:textSize</span>=<span class="string">&quot;17sp&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_marginTop</span>=<span class="string">&quot;5dp&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:background</span>=<span class="string">&quot;#00ffff&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:text</span>=<span class="string">&quot;视图宽度采用match_parent定义&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:textColor</span>=<span class="string">&quot;#000000&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:textSize</span>=<span class="string">&quot;17sp&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">&quot;300dp&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_marginTop</span>=<span class="string">&quot;5dp&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:background</span>=<span class="string">&quot;#00ffff&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:text</span>=<span class="string">&quot;视图宽度采用固定大小&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:textColor</span>=<span class="string">&quot;#000000&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:textSize</span>=<span class="string">&quot;17sp&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">&quot;@+id/tv_code&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_marginTop</span>=<span class="string">&quot;5dp&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:background</span>=<span class="string">&quot;#00ffff&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:text</span>=<span class="string">&quot;通过代码指定视图宽度&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:textColor</span>=<span class="string">&quot;#000000&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:textSize</span>=<span class="string">&quot;17sp&quot;</span> /&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>运行测试App，打开演示界面如图3-7所示，依据背景色判断文本视图的边界，可见wrap_content方式刚好包住了文本内容，match_parent方式扩展到了与屏幕等宽，而300dp的宽度介于前两者之间（安卓手机的屏幕宽度基本为360dp）。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/%E8%AE%BE%E7%BD%AE%E7%A9%BA%E9%97%B4%E5%AE%BD%E5%BA%A6%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E6%B3%95%E6%95%88%E6%9E%9C.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/%E8%AE%BE%E7%BD%AE%E6%8E%A7%E4%BB%B6%E5%AE%BD%E5%BA%A6%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F%E6%95%88%E6%9E%9C.png"></p>
 <h3 id="设置视图的间距"><a href="#设置视图的间距" class="headerlink" title="设置视图的间距"></a>设置视图的间距</h3><h4 id="概述-4"><a href="#概述-4" class="headerlink" title="概述"></a>概述</h4><p>设置视图的间距有两种方式：</p>
 <ul>
 <li>采用layout_margin属性，它指定了当前视图与周围平级视图之间的距离。包括layout_margin、 layout_marginLeft、layout_marginTop、layout_marginRight、layout_marginBottom</li>
 <li>采用padding属性，它指定了当前视图与内部下级视图之间的距离。包括padding、paddingLef t、paddingTop、paddingRight、paddingBottom</li>
 </ul>
-<h4 id="详解-4"><a href="#详解-4" class="headerlink" title="详解"></a>详解</h4><h3 id="设置视图的对齐方式"><a href="#设置视图的对齐方式" class="headerlink" title="设置视图的对齐方式"></a>设置视图的对齐方式</h3><h4 id="概述-5"><a href="#概述-5" class="headerlink" title="概述"></a>概述</h4><p>设置视图的对齐方式有两种途径：</p>
+<h4 id="详解-4"><a href="#详解-4" class="headerlink" title="详解"></a>详解</h4><p>属性的作用是让当前视图与上方间隔一段距离：</p>
+<ul>
+<li>android:layout_marginLeft让当前视图与左边间隔一段距离</li>
+<li>android:layout_marginRight让当前视图 与右边间隔一段距离</li>
+<li>android:layout_marginBottom让当前视图与下方间隔一段距离</li>
+</ul>
+<p>如果上下左右 都间隔同样的距离，还能使用<strong>android:layout_margin</strong>一次性设置四周的间距。</p>
+<p>layout_margin不单单用于文本视图，还可用于所有视图，包括各类布局和各类控件。</p>
+<p>因为不管布局还 是控件，它们统统由视图基类View派生而来，而layout_margin正是View的一个通用属性，所以View的 子子孙孙都能使用layout_margin。在View的大家族中，视图组ViewGroup尤为特殊，它既是View的子 类，又是各类布局的基类。布局下面能容纳其他视图，而控件却不行，这正源自ViewGroup的组装特 性。View、ViewGroup、控件、布局四者的继承关系如图所示。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/%E8%A7%86%E5%9B%BE%E5%AE%B6%E6%97%8F%E7%9A%84%E4%BE%9D%E8%B5%96%E7%BB%A7%E6%89%BF%E5%85%B3%E7%B3%BB.png"></p>
+<p>除了layout_margin之外，padding也是View的一个通用属性，它用来设置视图的内部间距。</p>
+<p>padding也提供了paddingTop、paddingBottom、paddingLeft、paddingRight四个方向的距离属性。 </p>
+<p>同样是设置间距，layout_margin指的是当前视图与外部视图（包括上级视图和平级视图）之间的距 离，而padding指的是当前视图与内部视图（包括下级视图和内部文本）之间的距离。</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">  //最外层的布局背景为绿色  </span><br><span class="line"><span class="tag">&lt;<span class="name">LinearLayout</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">&quot;300dp&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_marginTop</span>=<span class="string">&quot;50dp&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:background</span>=<span class="string">&quot;#00ff00&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:orientation</span>=<span class="string">&quot;vertical&quot;</span>&gt;</span></span><br><span class="line">    //中间层的布局背景为紫色</span><br><span class="line">        <span class="tag">&lt;<span class="name">LinearLayout</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_height</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:background</span>=<span class="string">&quot;#ff00ff&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_margin</span>=<span class="string">&quot;30dp&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:padding</span>=<span class="string">&quot;50dp&quot;</span>&gt;</span></span><br><span class="line">            //最内层的试图北京为黑色</span><br><span class="line">            <span class="tag">&lt;<span class="name">View</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:layout_height</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:background</span>=<span class="string">&quot;#000000&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/%E4%B8%A4%E7%A7%8D%E9%97%B4%E8%B7%9D%E6%96%B9%E5%BC%8F%E7%9A%84%E6%BC%94%E7%A4%BA%E6%95%88%E6%9E%9C.png"></p>
+<h3 id="设置视图的对齐方式"><a href="#设置视图的对齐方式" class="headerlink" title="设置视图的对齐方式"></a>设置视图的对齐方式</h3><h4 id="概述-5"><a href="#概述-5" class="headerlink" title="概述"></a>概述</h4><p>设置视图的对齐方式有两种途径：</p>
 <ul>
 <li>采用layout_gravity属性，它指定了当前视图相对于上级视图的对齐方式。</li>
 <li>采用gravity属性，它指定了下级视图相对于当前视图的对齐方式。</li>
 </ul>
 <p>layout_gravity与gravity的取值包括：left、top、right、bottom，还可以用竖线连接各 取值，例如“left|top”表示即靠左又靠上，也就是朝左上角对齐。</p>
-<h4 id="详解-5"><a href="#详解-5" class="headerlink" title="详解"></a>详解</h4><h2 id="常用布局"><a href="#常用布局" class="headerlink" title="常用布局"></a>常用布局</h2><h3 id="线性布局LinearLayout"><a href="#线性布局LinearLayout" class="headerlink" title="线性布局LinearLayout"></a>线性布局LinearLayout</h3><p>概述</p>
-<p>线性布局内部的各视图有两种排列方式： </p>
+<h4 id="详解-5"><a href="#详解-5" class="headerlink" title="详解"></a>详解</h4><p>在XML文件中通过属性android:layout_gravity可以指定当前视图的对齐方向，属性值应用：</p>
 <ul>
-<li>orientation属性值为horizontal时，内部视图在水平方向从左往右排列。 </li>
-<li>orientation属性值为vertical时，内部视图在垂直方向从上往下排列。</li>
+<li>为top时表 示视图朝上对齐</li>
+<li>为bottom时表示视图朝下对齐</li>
+<li>为left时表示视图靠左对齐</li>
+<li>为right时表示视图靠右 对齐</li>
+</ul>
+<p>如果希望视图既朝上又靠左，则用竖线连接top与left，此时属性标记为 android:layout_gravity&#x3D;”top|left”；如果希望视图既朝下又靠右，则用竖线连接bottom与right，此时 属性标记为android:layout_gravity&#x3D;”bottom|right”。</p>
+<p><strong>注意layout_gravity规定的对齐方式，指的是当前视图往上级视图的哪个方向对齐，并非当前视图的内部对齐。</strong>若想设置内部视图的对齐方向，则需由当前视图的android:gravity指定，该属性一样拥有top、 bottom、left、right 4种取值及其组合。它与layout_gravity的不同之处在于：layout_gravity设定了当前视图相对于上级视图的对齐方式，而gravity设定了下级视图相对于当前视图的对齐方式；<strong>android:layout_gravity和android:gravity属性，前者决定了 当前视图的位置，而后者决定了下级视图的位置</strong>。</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">xmlns:android</span>=<span class="string">&quot;http://schemas.android.com/apk/res/android&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:id</span>=<span class="string">&quot;@+id/main&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">&quot;500dp&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:background</span>=<span class="string">&quot;#ffff99&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">LinearLayout</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">&quot;0dp&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">&quot;300dp&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_weight</span>=<span class="string">&quot;1&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:background</span>=<span class="string">&quot;#ff99ff&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_margin</span>=<span class="string">&quot;10dp&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:padding</span>=<span class="string">&quot;10dp&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_gravity</span>=<span class="string">&quot;bottom&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:gravity</span>=<span class="string">&quot;left&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">View</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_width</span>=<span class="string">&quot;100dp&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_height</span>=<span class="string">&quot;100dp&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:background</span>=<span class="string">&quot;#ff9900&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">LinearLayout</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">&quot;0dp&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">&quot;300dp&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_weight</span>=<span class="string">&quot;1&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:background</span>=<span class="string">&quot;#ff99ff&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_margin</span>=<span class="string">&quot;10dp&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:padding</span>=<span class="string">&quot;10dp&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_gravity</span>=<span class="string">&quot;top&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:gravity</span>=<span class="string">&quot;right&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">View</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_width</span>=<span class="string">&quot;100dp&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_height</span>=<span class="string">&quot;100dp&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:background</span>=<span class="string">&quot;#ff9900&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/%E4%B8%A4%E7%A7%8D%E5%AF%B9%E9%BD%90%E6%96%B9%E5%BC%8F%E7%9A%84%E6%BC%94%E7%A4%BA%E6%95%88%E6%9E%9C.png"></p>
+<h2 id="常用布局"><a href="#常用布局" class="headerlink" title="常用布局"></a>常用布局</h2><h3 id="线性布局LinearLayout"><a href="#线性布局LinearLayout" class="headerlink" title="线性布局LinearLayout"></a>线性布局LinearLayout</h3><h4 id="概述-6"><a href="#概述-6" class="headerlink" title="概述"></a>概述</h4><p>线性布局内部的各视图有两种排列方式： </p>
+<ul>
+<li><strong>orientation属性值为horizontal时，内部视图在水平方向从左往右排列</strong>。 </li>
+<li><strong>orientation属性值为vertical时，内部视图在垂直方向从上往下排列</strong>。</li>
 </ul>
 <p>如果不指定orientation属性，则LinearLayout默认水平方向排列。</p>
 <p>线性布局的权重概念，指的是线性布局的下级视图各自拥有多大比例的宽高。 </p>
-<p>权重属性名叫layout_weight，但该属性不在LinearLayout节点设置，而在线性布局的直 接下级视图设置，表示该下级视图占据的宽高比例。</p>
+<p>权重属性名叫layout_weight，但该属性不在LinearLayout节点设置，而在线性布局的直接下级视图设置，表示该下级视图占据的宽高比例。</p>
 <ul>
-<li>layout_width填0dp时，layout_weight表示水平方向的宽度比例。</li>
-<li>layout_height填0dp时，layout_weight表示垂直方向的高度比例。</li>
+<li><strong>layout_width填0dp时，layout_weight表示水平方向的宽度比例。</strong></li>
+<li><strong>layout_height填0dp时，layout_weight表示垂直方向的高度比例。</strong></li>
 </ul>
-<h3 id="相对布局RelativeLayout"><a href="#相对布局RelativeLayout" class="headerlink" title="相对布局RelativeLayout"></a>相对布局RelativeLayout</h3><h4 id="概述-6"><a href="#概述-6" class="headerlink" title="概述"></a>概述</h4><p>相对布局的下级视图位置由其他视图决定。用于确定下级视图位置的参照物分两种：</p>
+<h4 id="详解-6"><a href="#详解-6" class="headerlink" title="详解"></a>详解</h4><p>顾名思义，线性布局 像是用一根线把它的内部视图串起来，故而内部视图之间的排列顺序是固定的，要么从左到右排列，要 么从上到下排列。</p>
+<p>在XML文件中，LinearLayout通过属性android:orientation区分两种方向，其中从左 到右排列叫作水平方向，属性值为horizontal；从上到下排列叫作垂直方向，属性值为vertical。</p>
+<p>如果 LinearLayout标签不指定具体方向，则系统<strong>默认该布局为水平方向排列</strong>，也就是默认 android:orientation&#x3D;”horizontal”。</p>
+<p>做个实验，让XML文件的根节点挂着两个线性布局，第一个线性布局采取horizontal水平方向，第 二个线性布局采取vertical垂直方向。然后每个线性布局内部各有两个文本视图，通过观察这些文本视图 的排列情况，从而检验线性布局的显示效果。</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">xmlns:android</span>=<span class="string">&quot;http://schemas.android.com/apk/res/android&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_height</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:orientation</span>=<span class="string">&quot;vertical&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">LinearLayout</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:orientation</span>=<span class="string">&quot;horizontal&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">                    <span class="attr">android:layout_width</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">                    <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">                    <span class="attr">android:layout_margin</span>=<span class="string">&quot;5dp&quot;</span></span></span><br><span class="line"><span class="tag">                    <span class="attr">android:text</span>=<span class="string">&quot;@string/test03&quot;</span></span></span><br><span class="line"><span class="tag">                    <span class="attr">android:textColor</span>=<span class="string">&quot;#009900&quot;</span></span></span><br><span class="line"><span class="tag">                    <span class="attr">android:textSize</span>=<span class="string">&quot;20dp&quot;</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">                    <span class="attr">android:layout_width</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">                    <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">                    <span class="attr">android:layout_margin</span>=<span class="string">&quot;5dp&quot;</span></span></span><br><span class="line"><span class="tag">                    <span class="attr">android:text</span>=<span class="string">&quot;@string/test04&quot;</span></span></span><br><span class="line"><span class="tag">                    <span class="attr">android:textColor</span>=<span class="string">&quot;#009999&quot;</span></span></span><br><span class="line"><span class="tag">                    <span class="attr">android:textSize</span>=<span class="string">&quot;20dp&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">LinearLayout</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:layout_width</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:orientation</span>=<span class="string">&quot;vertical&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">                    <span class="attr">android:layout_width</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">                    <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">                    <span class="attr">android:layout_margin</span>=<span class="string">&quot;5dp&quot;</span></span></span><br><span class="line"><span class="tag">                    <span class="attr">android:text</span>=<span class="string">&quot;@string/test03&quot;</span></span></span><br><span class="line"><span class="tag">                    <span class="attr">android:textColor</span>=<span class="string">&quot;#009900&quot;</span></span></span><br><span class="line"><span class="tag">                    <span class="attr">android:textSize</span>=<span class="string">&quot;20dp&quot;</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">                    <span class="attr">android:layout_width</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">                    <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">                    <span class="attr">android:layout_margin</span>=<span class="string">&quot;5dp&quot;</span></span></span><br><span class="line"><span class="tag">                    <span class="attr">android:text</span>=<span class="string">&quot;@string/test04&quot;</span></span></span><br><span class="line"><span class="tag">                    <span class="attr">android:textColor</span>=<span class="string">&quot;#009999&quot;</span></span></span><br><span class="line"><span class="tag">                    <span class="attr">android:textSize</span>=<span class="string">&quot;20dp&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/.png"></p>
+<p>按照上下均分的话，线性布局设置垂直方向vertical，且甲乙两视图的layout_height都填0dp， layout_weight都填1，此时竖排的XML片段示例如下：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">LinearLayout</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:orientation</span>=<span class="string">&quot;vertical&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">              <span class="attr">android:layout_width</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">              <span class="attr">android:layout_height</span>=<span class="string">&quot;0dp&quot;</span></span></span><br><span class="line"><span class="tag">              <span class="attr">android:layout_weight</span>=<span class="string">&quot;1&quot;</span></span></span><br><span class="line"><span class="tag">              <span class="attr">android:text</span>=<span class="string">&quot;竖排第一个&quot;</span></span></span><br><span class="line"><span class="tag">              <span class="attr">android:textSize</span>=<span class="string">&quot;17sp&quot;</span></span></span><br><span class="line"><span class="tag">              <span class="attr">android:textColor</span>=<span class="string">&quot;#000000&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">              <span class="attr">android:layout_width</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">              <span class="attr">android:layout_height</span>=<span class="string">&quot;0dp&quot;</span></span></span><br><span class="line"><span class="tag">              <span class="attr">android:layout_weight</span>=<span class="string">&quot;1&quot;</span></span></span><br><span class="line"><span class="tag">              <span class="attr">android:text</span>=<span class="string">&quot;竖排第二个&quot;</span></span></span><br><span class="line"><span class="tag">              <span class="attr">android:textSize</span>=<span class="string">&quot;17sp&quot;</span></span></span><br><span class="line"><span class="tag">              <span class="attr">android:textColor</span>=<span class="string">&quot;#000000&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="相对布局RelativeLayout"><a href="#相对布局RelativeLayout" class="headerlink" title="相对布局RelativeLayout"></a>相对布局RelativeLayout</h3><h4 id="概述-7"><a href="#概述-7" class="headerlink" title="概述"></a>概述</h4><p>相对布局的下级视图位置由其他视图决定。用于确定下级视图位置的参照物分两种：</p>
 <ul>
 <li>与该视图自身平级的视图；</li>
 <li>该视图的上级视图（也就是它归属的RelativeLayout）</li>
@@ -498,18 +539,111 @@
 <td>当前视图与上级视图的底部对齐</td>
 </tr>
 </tbody></table>
-<h4 id="详解-6"><a href="#详解-6" class="headerlink" title="详解"></a>详解</h4><h3 id="网格布局GridLayout"><a href="#网格布局GridLayout" class="headerlink" title="网格布局GridLayout"></a>网格布局GridLayout</h3><h4 id="概述-7"><a href="#概述-7" class="headerlink" title="概述"></a>概述</h4><p>网格布局支持多行多列的表格排列。</p>
+<h4 id="详解-7"><a href="#详解-7" class="headerlink" title="详解"></a>详解</h4><p>相对布局名 为RelativeLayout，因为下级视图的位置是相对位置，所以得有具体的参照物才能确定最终位置。如果 不设定下级视图的参照物，那么下级视图默认显示在RelativeLayout内部的左上角。</p>
+<p>用于确定下级视图位置的参照物分两种，一种是与该视图自身平级的视图；另一种是该视图的上级视图 （也就是它归属的RelativeLayout）</p>
+<p>使用RelativeLayout及其下级视图进行布局</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">RelativeLayout</span> <span class="attr">xmlns:android</span>=<span class="string">&quot;http://schemas.android.com/apk/res/android&quot;</span></span></span><br><span class="line"><span class="tag"> <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag"> <span class="attr">android:layout_height</span>=<span class="string">&quot;150dp&quot;</span> &gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">&quot;@+id/tv_center&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_centerInParent</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:background</span>=<span class="string">&quot;#ffffff&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:text</span>=<span class="string">&quot;我在中间&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:textSize</span>=<span class="string">&quot;11sp&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:textColor</span>=<span class="string">&quot;#000000&quot;</span> /&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">&quot;@+id/tv_center_horizontal&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_centerHorizontal</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:background</span>=<span class="string">&quot;#eeeeee&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:text</span>=<span class="string">&quot;我在水平中间&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:textSize</span>=<span class="string">&quot;11sp&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:textColor</span>=<span class="string">&quot;#000000&quot;</span> /&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">&quot;@+id/tv_center_vertical&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_centerVertical</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:background</span>=<span class="string">&quot;#eeeeee&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:text</span>=<span class="string">&quot;我在垂直中间&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:textSize</span>=<span class="string">&quot;11sp&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:textColor</span>=<span class="string">&quot;#000000&quot;</span> /&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">&quot;@+id/tv_parent_left&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_alignParentLeft</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:background</span>=<span class="string">&quot;#eeeeee&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:text</span>=<span class="string">&quot;我跟上级左边对齐&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:textSize</span>=<span class="string">&quot;11sp&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:textColor</span>=<span class="string">&quot;#000000&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">&quot;@+id/tv_parent_right&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_alignParentRight</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:background</span>=<span class="string">&quot;#eeeeee&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:text</span>=<span class="string">&quot;我跟上级右边对齐&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:textSize</span>=<span class="string">&quot;11sp&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:textColor</span>=<span class="string">&quot;#000000&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">&quot;@+id/tv_parent_top&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_alignParentTop</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:background</span>=<span class="string">&quot;#eeeeee&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:text</span>=<span class="string">&quot;我跟上级顶部对齐&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:textSize</span>=<span class="string">&quot;11sp&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:textColor</span>=<span class="string">&quot;#000000&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">&quot;@+id/tv_parent_bottom&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_alignParentBottom</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:background</span>=<span class="string">&quot;#eeeeee&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:text</span>=<span class="string">&quot;我跟上级底部对齐&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:textSize</span>=<span class="string">&quot;11sp&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:textColor</span>=<span class="string">&quot;#000000&quot;</span> /&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">&quot;@+id/tv_left_center&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_toLeftOf</span>=<span class="string">&quot;@+id/tv_center&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_alignTop</span>=<span class="string">&quot;@+id/tv_center&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:background</span>=<span class="string">&quot;#eeeeee&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:text</span>=<span class="string">&quot;我在中间左边&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:textSize</span>=<span class="string">&quot;11sp&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:textColor</span>=<span class="string">&quot;#000000&quot;</span> /&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">&quot;@+id/tv_right_center&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_toRightOf</span>=<span class="string">&quot;@+id/tv_center&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_alignBottom</span>=<span class="string">&quot;@+id/tv_center&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:background</span>=<span class="string">&quot;#eeeeee&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:text</span>=<span class="string">&quot;我在中间右边&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:textSize</span>=<span class="string">&quot;11sp&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:textColor</span>=<span class="string">&quot;#000000&quot;</span> /&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">&quot;@+id/tv_above_center&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_above</span>=<span class="string">&quot;@+id/tv_center&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_alignLeft</span>=<span class="string">&quot;@+id/tv_center&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:background</span>=<span class="string">&quot;#eeeeee&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:text</span>=<span class="string">&quot;我在中间上面&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:textSize</span>=<span class="string">&quot;11sp&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:textColor</span>=<span class="string">&quot;#000000&quot;</span> /&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">&quot;@+id/tv_below_center&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_below</span>=<span class="string">&quot;@+id/tv_center&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_alignRight</span>=<span class="string">&quot;@+id/tv_center&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:background</span>=<span class="string">&quot;#eeeeee&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:text</span>=<span class="string">&quot;我在中间下面&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:textSize</span>=<span class="string">&quot;11sp&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:textColor</span>=<span class="string">&quot;#000000&quot;</span> /&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">RelativeLayout</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>上述XML文件的布局效果如图所示，RelativeLayout的下级视图都是文本视图，控件上的文字说明 了所处的相对位置，具体的控件显示方位正如XML属性中描述的那样。</p>
+<h3 id="网格布局GridLayout"><a href="#网格布局GridLayout" class="headerlink" title="网格布局GridLayout"></a>网格布局GridLayout</h3><h4 id="概述-8"><a href="#概述-8" class="headerlink" title="概述"></a>概述</h4><p>网格布局支持多行多列的表格排列。</p>
 <p>网格布局默认从左往右、从上到下排列，它新增了两个属性：</p>
 <ul>
-<li>columnCount属性，它指定了网格的列数，即每行能放多少个视图；</li>
-<li>rowCount属性，它指定了网格的行数，即每列能放多少个视图；</li>
+<li><strong>columnCount属性，它指定了网格的列数</strong>，即每行能放多少个视图；</li>
+<li><strong>rowCount属性，它指定了网格的行数</strong>，即每列能放多少个视图；</li>
 </ul>
-<h4 id="详解-7"><a href="#详解-7" class="headerlink" title="详解"></a>详解</h4><h3 id="滚动视图ScrollView"><a href="#滚动视图ScrollView" class="headerlink" title="滚动视图ScrollView"></a>滚动视图ScrollView</h3><h4 id="概述-8"><a href="#概述-8" class="headerlink" title="概述"></a>概述</h4><p>滚动视图有两种：</p>
+<h4 id="详解-8"><a href="#详解-8" class="headerlink" title="详解"></a>详解</h4><p>网格布局默认从左往右、从上到下排列，它先从第一行从左往右放置下级视图，塞满之后另起一行放置 其余的下级视图，如此循环往复直至所有下级视图都放置完毕。为了判断能够容纳几行几列，网格布局新增了android:columnCount与android:rowCount两个属性，其中columnCount指定了网格的列数， 即每行能放多少个视图；rowCount指定了网格的行数，即每列能放多少个视图。</p>
+<p>运用网格布局的XML布局样例，它规定了一个两行两列的网格布局，且内部容纳四个文本视图。 XML文件内容如下所示：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">GridLayout</span> <span class="attr">xmlns:android</span>=<span class="string">&quot;http://schemas.android.com/apk/res/android&quot;</span></span></span><br><span class="line"><span class="tag"><span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag"><span class="attr">android:layout_height</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag"><span class="attr">android:columnCount</span>=<span class="string">&quot;2&quot;</span></span></span><br><span class="line"><span class="tag"><span class="attr">android:rowCount</span>=<span class="string">&quot;2&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">              <span class="attr">android:layout_width</span>=<span class="string">&quot;180dp&quot;</span></span></span><br><span class="line"><span class="tag">              <span class="attr">android:layout_height</span>=<span class="string">&quot;60dp&quot;</span></span></span><br><span class="line"><span class="tag">              <span class="attr">android:gravity</span>=<span class="string">&quot;center&quot;</span></span></span><br><span class="line"><span class="tag">              <span class="attr">android:background</span>=<span class="string">&quot;#ffcccc&quot;</span></span></span><br><span class="line"><span class="tag">              <span class="attr">android:text</span>=<span class="string">&quot;浅红色&quot;</span></span></span><br><span class="line"><span class="tag">              <span class="attr">android:textColor</span>=<span class="string">&quot;#000000&quot;</span></span></span><br><span class="line"><span class="tag">              <span class="attr">android:textSize</span>=<span class="string">&quot;17sp&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">              <span class="attr">android:layout_width</span>=<span class="string">&quot;180dp&quot;</span></span></span><br><span class="line"><span class="tag">              <span class="attr">android:layout_height</span>=<span class="string">&quot;60dp&quot;</span></span></span><br><span class="line"><span class="tag">              <span class="attr">android:gravity</span>=<span class="string">&quot;center&quot;</span></span></span><br><span class="line"><span class="tag">              <span class="attr">android:background</span>=<span class="string">&quot;#ffaa00&quot;</span></span></span><br><span class="line"><span class="tag">              <span class="attr">android:text</span>=<span class="string">&quot;橙色&quot;</span></span></span><br><span class="line"><span class="tag">              <span class="attr">android:textColor</span>=<span class="string">&quot;#000000&quot;</span></span></span><br><span class="line"><span class="tag">              <span class="attr">android:textSize</span>=<span class="string">&quot;17sp&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">              <span class="attr">android:layout_width</span>=<span class="string">&quot;180dp&quot;</span></span></span><br><span class="line"><span class="tag">              <span class="attr">android:layout_height</span>=<span class="string">&quot;60dp&quot;</span></span></span><br><span class="line"><span class="tag">              <span class="attr">android:gravity</span>=<span class="string">&quot;center&quot;</span></span></span><br><span class="line"><span class="tag">              <span class="attr">android:background</span>=<span class="string">&quot;#00ff00&quot;</span></span></span><br><span class="line"><span class="tag">              <span class="attr">android:text</span>=<span class="string">&quot;绿色&quot;</span></span></span><br><span class="line"><span class="tag">              <span class="attr">android:textColor</span>=<span class="string">&quot;#000000&quot;</span></span></span><br><span class="line"><span class="tag">              <span class="attr">android:textSize</span>=<span class="string">&quot;17sp&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">              <span class="attr">android:layout_width</span>=<span class="string">&quot;180dp&quot;</span></span></span><br><span class="line"><span class="tag">              <span class="attr">android:layout_height</span>=<span class="string">&quot;60dp&quot;</span></span></span><br><span class="line"><span class="tag">              <span class="attr">android:gravity</span>=<span class="string">&quot;center&quot;</span></span></span><br><span class="line"><span class="tag">              <span class="attr">android:background</span>=<span class="string">&quot;#660066&quot;</span></span></span><br><span class="line"><span class="tag">              <span class="attr">android:text</span>=<span class="string">&quot;深紫色&quot;</span></span></span><br><span class="line"><span class="tag">              <span class="attr">android:textColor</span>=<span class="string">&quot;#000000&quot;</span></span></span><br><span class="line"><span class="tag">              <span class="attr">android:textSize</span>=<span class="string">&quot;17sp&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">GridLayout</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="滚动视图ScrollView"><a href="#滚动视图ScrollView" class="headerlink" title="滚动视图ScrollView"></a>滚动视图ScrollView</h3><h4 id="概述-9"><a href="#概述-9" class="headerlink" title="概述"></a>概述</h4><p>滚动视图有两种：</p>
 <ul>
-<li>ScrollView，它是垂直方向的滚动视图；垂直方向滚动时，layout_width属性值设置为match_p arent，layout_height属性值设置为wrap_content。 </li>
-<li>HorizontalScrollView，它是水平方向的滚动视图；水平方向滚动时，layout_width属性值设置 为wrap_content，layout_height属性值设置为match_parent。</li>
+<li><strong>ScrollView，它是垂直方向的滚动视图</strong>；垂直方向滚动时，layout_width属性值设置为match_p arent，layout_height属性值设置为wrap_content。 </li>
+<li><strong>HorizontalScrollView，它是水平方向的滚动视图</strong>；水平方向滚动时，layout_width属性值设置 为wrap_content，layout_height属性值设置为match_parent。</li>
 </ul>
-<h4 id="详解-8"><a href="#详解-8" class="headerlink" title="详解"></a>详解</h4><h2 id="按钮触控"><a href="#按钮触控" class="headerlink" title="按钮触控"></a>按钮触控</h2><h3 id="按钮控件Button"><a href="#按钮控件Button" class="headerlink" title="按钮控件Button"></a>按钮控件Button</h3><h3 id="点击事件和长按事件"><a href="#点击事件和长按事件" class="headerlink" title="点击事件和长按事件"></a>点击事件和长按事件</h3><h3 id="禁用与恢复按钮"><a href="#禁用与恢复按钮" class="headerlink" title="禁用与恢复按钮"></a>禁用与恢复按钮</h3><h2 id="图像显示"><a href="#图像显示" class="headerlink" title="图像显示"></a>图像显示</h2><h3 id="图像视图ImageView"><a href="#图像视图ImageView" class="headerlink" title="图像视图ImageView"></a>图像视图ImageView</h3><h3 id="图像按钮ImageButton"><a href="#图像按钮ImageButton" class="headerlink" title="图像按钮ImageButton"></a>图像按钮ImageButton</h3><h3 id="同时展示文本与图像"><a href="#同时展示文本与图像" class="headerlink" title="同时展示文本与图像"></a>同时展示文本与图像</h3><h2 id="实战项目：计算机"><a href="#实战项目：计算机" class="headerlink" title="实战项目：计算机"></a>实战项目：计算机</h2><h3 id="需求描述"><a href="#需求描述" class="headerlink" title="需求描述"></a>需求描述</h3><h3 id="界面设计"><a href="#界面设计" class="headerlink" title="界面设计"></a>界面设计</h3><h3 id="关键代码"><a href="#关键代码" class="headerlink" title="关键代码"></a>关键代码</h3>]]></content>
+<h4 id="详解-9"><a href="#详解-9" class="headerlink" title="详解"></a>详解</h4><p>与线性布局类似，滚动视图也分为垂直方向和水平方向 两类，其中垂直滚动视图名为ScrollView，水平滚动视图名为HorizontalScrollView。</p>
+<p>这两个滚动视图的 使用并不复杂，主要注意以下3点：  </p>
+<p>（1）垂直方向滚动时，layout_width属性值设置为match_parent，layout_height属性值设置为 wrap_content。 </p>
+<p>（2）水平方向滚动时，layout_width属性值设置为wrap_content，layout_height属性值设置为 match_parent。 </p>
+<p>（3）滚动视图节点下面必须且只能挂着一个子布局节点，否则会在运行时报错Caused by： java.lang.IllegalStateException：ScrollView can host only one direct child。</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">xmlns:android</span>=<span class="string">&quot;http://schemas.android.com/apk/res/android&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:orientation</span>=<span class="string">&quot;vertical&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- HorizontalScrollView是水平方向的滚动视图，当前高度为200dp --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">HorizontalScrollView</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">&quot;200dp&quot;</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 水平方向的线性布局，两个子视图的颜色分别为青色和黄色 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">LinearLayout</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_width</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_height</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:orientation</span>=<span class="string">&quot;horizontal&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">View</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:layout_width</span>=<span class="string">&quot;300dp&quot;</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:layout_height</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:background</span>=<span class="string">&quot;#aaffff&quot;</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">View</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:layout_width</span>=<span class="string">&quot;300dp&quot;</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:layout_height</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:background</span>=<span class="string">&quot;#ffff00&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">HorizontalScrollView</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- ScrollView是垂直方向的滚动视图，当前高度为自适应 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ScrollView</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 垂直方向的线性布局，两个子视图的颜色分别为绿色和橙色 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">LinearLayout</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:orientation</span>=<span class="string">&quot;vertical&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">View</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:layout_height</span>=<span class="string">&quot;400dp&quot;</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:background</span>=<span class="string">&quot;#00ff00&quot;</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">View</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:layout_height</span>=<span class="string">&quot;400dp&quot;</span></span></span><br><span class="line"><span class="tag">                <span class="attr">android:background</span>=<span class="string">&quot;#ffffaa&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ScrollView</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>运行测试App，可知ScrollView在纵向滚动，而HorizontalScrollView在横向滚动。  有时ScrollView的实际内容不够，又想让它充满屏幕，怎么办呢？如果把layout_height属性赋值为 match_parent，结果还是不会充满，正确的做法是再增加一行属性android:fillViewport（该属性为true 表示允许填满视图窗口），属性片段举例如下：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">android:layout_height=&quot;match_parent&quot;</span><br><span class="line"> android:fillViewport=&quot;true&quot;</span><br></pre></td></tr></table></figure>
+
+<h2 id="按钮触控"><a href="#按钮触控" class="headerlink" title="按钮触控"></a>按钮触控</h2><h3 id="按钮控件Button"><a href="#按钮控件Button" class="headerlink" title="按钮控件Button"></a>按钮控件Button</h3><h4 id="概述-10"><a href="#概述-10" class="headerlink" title="概述"></a>概述</h4><p>按钮控件Button由TextView派生而来，它们之间的区别有：</p>
+<ul>
+<li><p>Button拥有默认的按钮背景，而TextView默认无背景； </p>
+</li>
+<li><p>Button的内部文本默认居中对齐，而TextView的内部文本默认靠左对齐； </p>
+</li>
+<li><p>Button会默认将英文字母转为大写，而TextView保持原始的英文大小写；</p>
+</li>
+</ul>
+<p>与TextView相比，Button增加了两个新属性：</p>
+<ul>
+<li><p><strong>textAllCaps属性，它指定了是否将英文字母转为大写，</strong>为true是表示自动转为大写，为false表 示不做大写转换。 </p>
+</li>
+<li><p><strong>onClick属性，它用来接管用户的点击动作，</strong>指定了点击按钮时要触发哪个方法；</p>
+</li>
+</ul>
+<p>由于方法的名称多样化，并不利于规范化代码。因此<strong>在实际开发中，并不推荐使用Button标签的onClick属性</strong>，而是在代码中给按钮对象注册点击监听器。</p>
+<h4 id="详解-10"><a href="#详解-10" class="headerlink" title="详解"></a>详解</h4><p>因为Button是由TextView派生而来，所以文本视图 拥有的属性和方法，包括文本内容、文本大小、文本颜色等，按钮控件均能使用。</p>
+<p><strong>不同的是，Button拥有默认的按钮背景，而TextView默认无背景；Button的内部文本默认居中对齐，而TextView的内部文本 默认靠左对齐。</strong></p>
+<p>此外，按钮还要额外注意textAllCaps与onClick两个属性，分别介绍如下：</p>
+<h5 id="1．textAllCaps属性"><a href="#1．textAllCaps属性" class="headerlink" title="1．textAllCaps属性"></a>1．textAllCaps属性</h5><p>对于TextView来说，text属性设置了什么文本，文本视图就显示什么文本。但对于Button来说，不管 text属性设置的是大写字母还是小写字母，按钮控件都默认转成大写字母显示。比如在XML文件中加入 下面的Button标签：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Button</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:text</span>=<span class="string">&quot;Hello World&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>编译运行后的App界面，按钮上显示全大写的“HELLO WORLD”，而非原来大小写混合的“Hello  World”。显然这个效果不符合预期，为此需要给Button标签补充textAllCaps属性，该属性默认为true表 示全部转为大写，如果设置为false则表示不转为大写。于是在布局文件添加新的Button标签，该标签补 充了android:textAllCaps&#x3D;”false”，具体内容如下所示：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Button</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:text</span>=<span class="string">&quot;Hello World&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:textAllCaps</span>=<span class="string">&quot;false&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>再次运行App，此时包含新旧按钮的界面如图3-15所示，可见textAllCaps属性果然能够控制大小写转换。</p>
+<h5 id="2．onClick属性"><a href="#2．onClick属性" class="headerlink" title="2．onClick属性"></a>2．onClick属性</h5><p>按钮之所以成为按钮，是因为它会响应按下动作，就手机而言，按下动作等同于点击操作，即手指轻触 屏幕然后马上松开。每当点击按钮之时，就表示用户确认了某个事项，接下来轮到App接着处理了。 onClick属性便用来接管用户的点击动作，该属性的值是个方法名，也就是当前页面的Java代码存在这么 一个方法：<strong>当用户点击按钮时，就自动调用该方法。</strong></p>
+<p>譬如下面的Button标签指定了onClick属性值为doClick，表示点击该按钮会触发Java代码中的doClick方法：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Button</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">&quot;@+id/btn_click_xml&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:onClick</span>=<span class="string">&quot;doClick&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:text</span>=<span class="string">&quot;直接指定点击方法&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:textColor</span>=<span class="string">&quot;#000000&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:textSize</span>=<span class="string">&quot;17sp&quot;</span> /&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">           <span class="attr">android:id</span>=<span class="string">&quot;@+id/tv_result&quot;</span></span></span><br><span class="line"><span class="tag">           <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">           <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">           <span class="attr">android:text</span>=<span class="string">&quot;这里查看按钮的点击结果&quot;</span></span></span><br><span class="line"><span class="tag">           <span class="attr">android:textColor</span>=<span class="string">&quot;#000000&quot;</span></span></span><br><span class="line"><span class="tag">           <span class="attr">android:textSize</span>=<span class="string">&quot;17sp&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>与之相对应，页面所在的Java代码需要增加doClick方法，方法代码示例如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// activity_button_style.xml中给btn_click_xml指定了点击方法doClick</span></span><br><span class="line"> <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">doClick</span><span class="params">(View view)</span> &#123;</span><br><span class="line">     <span class="type">String</span> <span class="variable">desc</span> <span class="operator">=</span> String.format(<span class="string">&quot;%s 您点击了按钮：%s&quot;</span>,</span><br><span class="line">         DateUtil.getNowTime(), ((Button)view).getText());</span><br><span class="line">     tv_result.setText(desc); <span class="comment">// 设置文本视图的文本内容</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后编译运行，并在App界面上点击新加的按钮，点击前后的界面如下图所示。文字差异，可见点击按钮之后确实调用了doClick方法。</p>
+<h3 id="点击事件和长按事件"><a href="#点击事件和长按事件" class="headerlink" title="点击事件和长按事件"></a>点击事件和长按事件</h3><h4 id="概述-11"><a href="#概述-11" class="headerlink" title="概述"></a>概述</h4><p>监听器，意思是专门监听控件的动作行为。只有控件发生了指定的动作，监听器才会触发 开关去执行对应的代码逻辑。</p>
+<p>按钮控件有两种常用的监听器：</p>
+<ul>
+<li><p>点击监听器，通过setOnClickListener方法设置。按钮被按住少于500毫秒时，会触发点击事件。 </p>
+</li>
+<li><p>长按监听器，通过setOnLongClickListener方法设置。按钮被按住超过500毫秒时，会触发长按 事件。</p>
+</li>
+</ul>
+<h4 id="详解-11"><a href="#详解-11" class="headerlink" title="详解"></a>详解</h4><p>所谓监听器，意思是专门监听控件的动作行为，它平时无所事事，只有控件发生了指定的动作，监听器才会触发开关去执行对应的代码逻辑。</p>
+<p>点击监听器需要实现接口View.OnClickListener，并重写onClick 方法补充点击事件的处理代码，再由按钮调用setOnClickListener方法设置监听器对象。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 从布局文件中获取名为btn_click_single的按钮控件</span></span><br><span class="line"><span class="type">Button</span> <span class="variable">btn_click_single</span> <span class="operator">=</span> findViewById(R.id.btn_click_single);</span><br><span class="line"> <span class="comment">// 给btn_click_single设置点击监听器，一旦用户点击按钮，就触发监听器的onClick方法</span></span><br><span class="line">btn_click_single.setOnClickListener(<span class="keyword">new</span> <span class="title class_">MyOnClickListener</span>());</span><br></pre></td></tr></table></figure>
+
+<p>上面的点击监听器名为MyOnClickListener，它的定义代码示例如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 定义一个点击监听器，它实现了接口View.OnClickListener</span></span><br><span class="line"> <span class="keyword">class</span> <span class="title class_">MyOnClickListener</span> <span class="keyword">implements</span> <span class="title class_">View</span>.OnClickListener &#123;</span><br><span class="line"> <span class="meta">@Override</span></span><br><span class="line"> <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onClick</span><span class="params">(View v)</span> &#123; <span class="comment">// 点击事件的处理方法</span></span><br><span class="line">	<span class="type">String</span> <span class="variable">desc</span> <span class="operator">=</span> String.format(<span class="string">&quot;%s 您点击了按钮：%s&quot;</span>,</span><br><span class="line"> 		DateUtil.getNowTime(), ((Button)v).getText());</span><br><span class="line"> 	tv_result.setText(desc); <span class="comment">// 设置文本视图的文本内容</span></span><br><span class="line">	&#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>当然该页面的onCreate内部别忘了调用按钮对象的setOnClickListener方法，把按钮的点击监听器设置 成当前页面</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 从布局文件中获取名为btn_click_public的按钮控件</span></span><br><span class="line"><span class="type">Button</span> <span class="variable">btn_click_public</span> <span class="operator">=</span> findViewById(R.id.btn_click_public);</span><br><span class="line"> <span class="comment">// 设置点击监听器，一旦用户点击按钮，就触发监听器的onClick方法</span></span><br><span class="line">btn_click_public.setOnClickListener(<span class="built_in">this</span>);</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="禁用与恢复按钮"><a href="#禁用与恢复按钮" class="headerlink" title="禁用与恢复按钮"></a>禁用与恢复按钮</h3><h4 id="概述-12"><a href="#概述-12" class="headerlink" title="概述"></a>概述</h4><p>在实际业务中，按钮通常拥有两种状态，即不可用状态与可用状态，它们在外观和功能上的区别如下：</p>
+<ul>
+<li>不可用按钮：按钮不允许点击，即使点击也没反应，同时按钮文字为灰色； </li>
+<li>可用按钮：按钮允许点击，点击按钮会触发点击事件，同时按钮文字为正常的黑色；</li>
+</ul>
+<p>是否允许点击由<strong>enabled属性</strong>控制，属性值为true时表示允许点击，为false时表示不允许点击。</p>
+<h4 id="详解-12"><a href="#详解-12" class="headerlink" title="详解"></a>详解</h4><p>按钮先后拥有两种状态，即<strong>不可用状态与可用状态</strong>，它们在外观和功能上的区别如下：</p>
+<p> （1）不可用按钮：按钮不允许点击，即使点击也没反应，同时按钮文字为灰色。</p>
+<p> （2）可用按钮：按钮允许点击，点击按钮会触发点击事件，同时按钮文字为正常的黑色。</p>
+<p>有两点差异：<strong>其一，是否允许点击；其二，按钮文字的颜色</strong>。</p>
+<p>就文字颜色而言，可在布局文件中使用textColor属性设置颜色，也可在Java代码中调用 setTextColor方法设置颜色。</p>
+<p>至于是否允许点击，则需引入新属性android:enabled，该属性值为true时 表示启用按钮，即允许点击按钮；该属性值为false时表示禁用按钮，即不允许点击按钮。在Java代码 中，则可通过setEnabled方法设置按钮的可用状态（true表示启用，false表示禁用）。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="图像显示"><a href="#图像显示" class="headerlink" title="图像显示"></a>图像显示</h2><h3 id="图像视图ImageView"><a href="#图像视图ImageView" class="headerlink" title="图像视图ImageView"></a>图像视图ImageView</h3><h4 id="概述-13"><a href="#概述-13" class="headerlink" title="概述"></a>概述</h4><h4 id="详解-13"><a href="#详解-13" class="headerlink" title="详解"></a>详解</h4><h3 id="图像按钮ImageButton"><a href="#图像按钮ImageButton" class="headerlink" title="图像按钮ImageButton"></a>图像按钮ImageButton</h3><h3 id="同时展示文本与图像"><a href="#同时展示文本与图像" class="headerlink" title="同时展示文本与图像"></a>同时展示文本与图像</h3><h2 id="实战项目：计算机"><a href="#实战项目：计算机" class="headerlink" title="实战项目：计算机"></a>实战项目：计算机</h2><h3 id="需求描述"><a href="#需求描述" class="headerlink" title="需求描述"></a>需求描述</h3><h3 id="界面设计"><a href="#界面设计" class="headerlink" title="界面设计"></a>界面设计</h3><h3 id="关键代码"><a href="#关键代码" class="headerlink" title="关键代码"></a>关键代码</h3>]]></content>
       <categories>
         <category>笔记</category>
       </categories>
@@ -6332,160 +6466,6 @@
       </tags>
   </entry>
   <entry>
-    <title>安卓逆向这档子事</title>
-    <url>/2025/03/12/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E8%BF%99%E6%A1%A3%E5%AD%90%E4%BA%8B/</url>
-    <content><![CDATA[<h1 id="一、初识APK"><a href="#一、初识APK" class="headerlink" title="一、初识APK"></a>一、初识APK</h1><h2 id="1-Apk文件结构"><a href="#1-Apk文件结构" class="headerlink" title="1.Apk文件结构"></a>1.Apk文件结构</h2><p>apk 全称 Android Package，它相当于一个压缩文件，只要在电脑上将apk后缀改为zip即可解压。</p>
-<table>
-<thead>
-<tr>
-<th>文件</th>
-<th>注释</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>assets目录</td>
-<td>存放APK的静态资源文件，比如视频，音频，图片等（不一定有但常见）</td>
-</tr>
-<tr>
-<td>lib目录</td>
-<td>armeabi-v7a基本通用所有Android设备，arm64-v8a只是用与64为的Android设备，x86常用于Android模拟器，其目录下的.so文件时c或者c++编译的动态链接库文件（不一定有但常见）</td>
-</tr>
-<tr>
-<td>META-INF目录</td>
-<td>保存应用的签名信息，签名信息可以验证APK文件的额完整性，相当于APK的身份验证（验证文件是否又被修改）</td>
-</tr>
-<tr>
-<td>res目录</td>
-<td>res目录存放资源文件，包括图片，字符串等，APK的 脸蛋由它的layout文件设计</td>
-</tr>
-<tr>
-<td>AndroidManifest.xml文件</td>
-<td>APK的应用清单信息，他描述了应用的名字，版本，权限，引用的库文件等信息</td>
-</tr>
-<tr>
-<td>classes.dex文件</td>
-<td>classes.dex是java原码编译后生成的java字节码文件，APK运行的主要逻辑</td>
-</tr>
-<tr>
-<td>reaources.arsc文件</td>
-<td>resources.arsc是编译后的二进制资源文件，它是一个映射表，映射着资源和id，通过R文件中的id就可以找到对应的资源</td>
-</tr>
-</tbody></table>
-<h2 id="2-双开及其原理"><a href="#2-双开及其原理" class="headerlink" title="2.双开及其原理"></a>2.双开及其原理</h2><p><strong>双开：简单来说，就是手机同时运行两个或多个相同的应用，例如同时运行两个微信</strong></p>
-<table>
-<thead>
-<tr>
-<th align="left">原理</th>
-<th align="left">解释</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">修改包名</td>
-<td align="left">让手机系统认为这是2个APP，这样的话就能生成2个数据存储路径，此时的多开就等于你打开了两个互不干扰的APP</td>
-</tr>
-<tr>
-<td align="left">修改Framework</td>
-<td align="left">对于有系统修改权限的厂商，可以修改Framework来实现双开的目的，例如：小米自带多开</td>
-</tr>
-<tr>
-<td align="left">通过虚拟化技术实现</td>
-<td align="left">虚拟Framework层、虚拟文件系统、模拟Android对组件的管理、虚拟应用进程管理 等一整套虚拟技术，将APK复制一份到虚拟空间中运行，例如：平行空间</td>
-</tr>
-<tr>
-<td align="left">以插件机制运行</td>
-<td align="left">利用反射替换，动态代{过}{滤}理，hook了系统的大部分与system—server进程通讯的函数，以此作为“欺上瞒下”的目的，欺骗系统“以为”只有一个apk在运行，瞒过插件让其“认为”自己已经安装。例如：VirtualApp</td>
-</tr>
-</tbody></table>
-<h3 id="2-1-修改包名"><a href="#2-1-修改包名" class="headerlink" title="2.1 修改包名"></a>2.1 修改包名</h3><h4 id="2-1-1-使用工具"><a href="#2-1-1-使用工具" class="headerlink" title="2.1.1 使用工具"></a>2.1.1 使用工具</h4><p>MT管理器和NP管理器，都是Android设备上用于文件管理和系统操作的工具，但它们在功能特点、用户界面以及使用场景上有一些区别。</p>
-<p><strong>MT管理器</strong></p>
-<p>MT管理器（MT Manager）是一款功能强大的文件管理器，主要用于对APK文件、dex&#x2F;oat&#x2F;smali文件进行编辑，还可以进行文件对比、文本翻译等。它的主要特点包括：</p>
-<ul>
-<li>支持直接编辑APK文件中的资源文件、smali代码。</li>
-<li>提供了丰富的文件操作功能，如复制、粘贴、重命名等。</li>
-<li>可以用来汉化应用、修改游戏数据等高级操作。</li>
-<li>用户界面相对复杂，更适合有一定技术背景的用户使用。</li>
-</ul>
-<p><strong>NP管理器</strong></p>
-<p>NP管理器（NP Manager）也是一个文件管理器，虽然它也提供了对APK文件的基本编辑能力，但是其主要侧重点在于提供更直观的文件浏览体验和基本的文件管理功能。相比于MT管理器，NP管理器的特点有：</p>
-<ul>
-<li>界面设计更加简洁直观，适合普通用户进行基础的文件管理任务。</li>
-<li>提供了对多种文件格式的支持，如压缩文件(zip, rar)的解压与创建。</li>
-<li>功能性上相对于MT管理器来说较为简单，适用于不需要深入编辑apk或系统文件的用户。</li>
-</ul>
-<p><strong>区别</strong></p>
-<ul>
-<li><strong>功能深度</strong>：MT管理器在处理复杂的文件编辑和系统级操作方面更为强大；而NP管理器则侧重于提供一个易于使用的文件管理解决方案。</li>
-<li><strong>用户界面</strong>：MT管理器的UI更加复杂，包含更多专业化的选项；NP管理器设计得更加友好，适合所有级别的用户。</li>
-<li><strong>使用场景</strong>：如果需要对应用程序进行深层次的修改，比如反编译apk文件，则MT管理器是更好的选择。而对于那些仅需要基本文件管理功能的用户来说，NP管理器可能更加合适。</li>
-</ul>
-<p>根据实际需求应用，有的功能需要VIP……</p>
-<h4 id="2-1-2-操作"><a href="#2-1-2-操作" class="headerlink" title="2.1.2 操作"></a>2.1.2 操作</h4><p>将MT管理器、NP管理器以及练手demo安装至安卓模拟器</p>
-<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/%E5%8F%8C%E5%BC%80%E5%B7%A5%E5%85%B7%E5%AE%89%E8%A3%85.png"></p>
-<p>由于MT管理器双开需要会员，所以选择NP管理器。进入NP管理器软件，点击左上角的三根杠，选择安装包提取。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/NP%E7%AE%A1%E7%90%86%E5%99%A8%E7%AC%AC%E4%B8%80%E7%95%8C%E9%9D%A2.png"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/%E5%AE%89%E8%A3%85%E5%8C%85%E6%8F%90%E5%8F%96.png"></p>
-<p>然后选择需要提取的软件</p>
-<p> —&gt; 提取安装包—&gt; 定位 —&gt;点击软件 —&gt;功能—&gt;APK共存</p>
-<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/demo%E5%8A%9F%E8%83%BD%E9%80%89%E6%8B%A9.png"></p>
-<p>最后确认，此时便有了该软件的安装包，通过带点击下方提取出来的安装包，进行安装，桌面上便有了新的一个demo软件</p>
-<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/%E6%88%90%E5%8A%9F%E6%8F%90%E5%8F%96%E5%AE%89%E8%A3%85%E5%8C%85.png"></p>
-<p>注意这个地方，提取出来后，两个包的包名不一样</p>
-<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/%E6%8F%90%E5%8F%96%E5%AE%89%E8%A3%85.png"></p>
-<p>由于该方法是通过修改包名实现的，所以懂了应用的签名信息，如果开发者做了一个签名校验，那就很有可能安装后软件出现闪退奔溃的情况。</p>
-<h2 id="3-汉化"><a href="#3-汉化" class="headerlink" title="3.汉化"></a>3.汉化</h2><p><strong>汉化：使用专门的工具对外文版的软件资源进行读取、翻译、修改、回写等一系列处理，使软件的菜单、对话框、提示等用户界面显示为中文，而程序的内核和功能保持不变，这个过程即为软件汉化</strong></p>
-<p>基本上字符串都是在arsc里，建议一键汉化，然后再润色。<br>少量没汉化到的字符串参考视频中的方法定位去逐个汉化。</p>
-<p>流程图</p>
-<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/%E8%BD%AF%E4%BB%B6%E6%B1%89%E5%8C%96%E6%B5%81%E7%A8%8B%E5%9B%BE.png"></p>
-<p>可以使用MT管理器，进入demo的apk文件中，进行搜索需要修改句子对应的文件所在位置，使用搜索，点击高级搜索可以进入全局搜索。查找到文件位置后进入文件，手动修改句子，翻译为中文。真的累。</p>
-<p>修改后会出现一个签名改动的问题，可以直接卸载了再安装，或者核心破解。</p>
-<h2 id="4-初识AndroidManifest-xml"><a href="#4-初识AndroidManifest-xml" class="headerlink" title="4.初识AndroidManifest.xml"></a>4.初识AndroidManifest.xml</h2><p>AndroidManifest.xml文件是整个应用程序的信息描述文件，定义了应用程序中包含的Activity,Service,Content provider和BroadcastReceiver组件信息。每个应用程序在根目录下必须包含一个AndroidManifest.xml文件，且文件名不能修改。它描述了package中暴露的组件，他们各自的实现类，各种能被处理的数据和启动位置。</p>
-<table>
-<thead>
-<tr>
-<th align="left">属性</th>
-<th align="left">定义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">versionCode</td>
-<td align="left">版本号，主要用来更新，例如:12</td>
-</tr>
-<tr>
-<td align="left">versionName</td>
-<td align="left">版本名，给用户看的，例如:1.2</td>
-</tr>
-<tr>
-<td align="left">package</td>
-<td align="left">包名，例如：com.zj.52pj.demo</td>
-</tr>
-<tr>
-<td align="left">uses-permission android:name&#x3D;””</td>
-<td align="left">应用权限，例如：android.permission.INTERNET 代表网络权限</td>
-</tr>
-<tr>
-<td align="left">android:label&#x3D;”@string&#x2F;app_name”</td>
-<td align="left">应用名称</td>
-</tr>
-<tr>
-<td align="left">android:icon&#x3D;”@mipmap&#x2F;ic_launcher”</td>
-<td align="left">应用图标路径</td>
-</tr>
-<tr>
-<td align="left">android:debuggable&#x3D;”true”</td>
-<td align="left">应用是否开启debug权限</td>
-</tr>
-</tbody></table>
-<h1 id="二、初识smail"><a href="#二、初识smail" class="headerlink" title="二、初识smail"></a>二、初识smail</h1>]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-      <tags>
-        <tag>信息安全</tag>
-        <tag>安卓逆向工程</tag>
-        <tag>吾爱破解</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>环境小记</title>
     <url>/2025/03/12/%E7%8E%AF%E5%A2%83%E5%B0%8F%E8%AE%B0/</url>
     <content><![CDATA[<h1 id="一、前期准备"><a href="#一、前期准备" class="headerlink" title="一、前期准备"></a>一、前期准备</h1><h2 id="1-Windows环境配置"><a href="#1-Windows环境配置" class="headerlink" title="1. Windows环境配置"></a>1. Windows环境配置</h2><h3 id="1-1-概述"><a href="#1-1-概述" class="headerlink" title="1.1 概述"></a>1.1 概述</h3><p>1.WINDOWS环境配置的难易程度因人而异，很多学员在此步骤上遇到困难。 </p>
@@ -6678,6 +6658,160 @@
         <tag>信息安全</tag>
         <tag>安卓逆向工程</tag>
         <tag>工具</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>安卓逆向这档子事</title>
+    <url>/2025/03/12/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E8%BF%99%E6%A1%A3%E5%AD%90%E4%BA%8B/</url>
+    <content><![CDATA[<h1 id="一、初识APK"><a href="#一、初识APK" class="headerlink" title="一、初识APK"></a>一、初识APK</h1><h2 id="1-Apk文件结构"><a href="#1-Apk文件结构" class="headerlink" title="1.Apk文件结构"></a>1.Apk文件结构</h2><p>apk 全称 Android Package，它相当于一个压缩文件，只要在电脑上将apk后缀改为zip即可解压。</p>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>注释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>assets目录</td>
+<td>存放APK的静态资源文件，比如视频，音频，图片等（不一定有但常见）</td>
+</tr>
+<tr>
+<td>lib目录</td>
+<td>armeabi-v7a基本通用所有Android设备，arm64-v8a只是用与64为的Android设备，x86常用于Android模拟器，其目录下的.so文件时c或者c++编译的动态链接库文件（不一定有但常见）</td>
+</tr>
+<tr>
+<td>META-INF目录</td>
+<td>保存应用的签名信息，签名信息可以验证APK文件的额完整性，相当于APK的身份验证（验证文件是否又被修改）</td>
+</tr>
+<tr>
+<td>res目录</td>
+<td>res目录存放资源文件，包括图片，字符串等，APK的 脸蛋由它的layout文件设计</td>
+</tr>
+<tr>
+<td>AndroidManifest.xml文件</td>
+<td>APK的应用清单信息，他描述了应用的名字，版本，权限，引用的库文件等信息</td>
+</tr>
+<tr>
+<td>classes.dex文件</td>
+<td>classes.dex是java原码编译后生成的java字节码文件，APK运行的主要逻辑</td>
+</tr>
+<tr>
+<td>reaources.arsc文件</td>
+<td>resources.arsc是编译后的二进制资源文件，它是一个映射表，映射着资源和id，通过R文件中的id就可以找到对应的资源</td>
+</tr>
+</tbody></table>
+<h2 id="2-双开及其原理"><a href="#2-双开及其原理" class="headerlink" title="2.双开及其原理"></a>2.双开及其原理</h2><p><strong>双开：简单来说，就是手机同时运行两个或多个相同的应用，例如同时运行两个微信</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">原理</th>
+<th align="left">解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">修改包名</td>
+<td align="left">让手机系统认为这是2个APP，这样的话就能生成2个数据存储路径，此时的多开就等于你打开了两个互不干扰的APP</td>
+</tr>
+<tr>
+<td align="left">修改Framework</td>
+<td align="left">对于有系统修改权限的厂商，可以修改Framework来实现双开的目的，例如：小米自带多开</td>
+</tr>
+<tr>
+<td align="left">通过虚拟化技术实现</td>
+<td align="left">虚拟Framework层、虚拟文件系统、模拟Android对组件的管理、虚拟应用进程管理 等一整套虚拟技术，将APK复制一份到虚拟空间中运行，例如：平行空间</td>
+</tr>
+<tr>
+<td align="left">以插件机制运行</td>
+<td align="left">利用反射替换，动态代{过}{滤}理，hook了系统的大部分与system—server进程通讯的函数，以此作为“欺上瞒下”的目的，欺骗系统“以为”只有一个apk在运行，瞒过插件让其“认为”自己已经安装。例如：VirtualApp</td>
+</tr>
+</tbody></table>
+<h3 id="2-1-修改包名"><a href="#2-1-修改包名" class="headerlink" title="2.1 修改包名"></a>2.1 修改包名</h3><h4 id="2-1-1-使用工具"><a href="#2-1-1-使用工具" class="headerlink" title="2.1.1 使用工具"></a>2.1.1 使用工具</h4><p>MT管理器和NP管理器，都是Android设备上用于文件管理和系统操作的工具，但它们在功能特点、用户界面以及使用场景上有一些区别。</p>
+<p><strong>MT管理器</strong></p>
+<p>MT管理器（MT Manager）是一款功能强大的文件管理器，主要用于对APK文件、dex&#x2F;oat&#x2F;smali文件进行编辑，还可以进行文件对比、文本翻译等。它的主要特点包括：</p>
+<ul>
+<li>支持直接编辑APK文件中的资源文件、smali代码。</li>
+<li>提供了丰富的文件操作功能，如复制、粘贴、重命名等。</li>
+<li>可以用来汉化应用、修改游戏数据等高级操作。</li>
+<li>用户界面相对复杂，更适合有一定技术背景的用户使用。</li>
+</ul>
+<p><strong>NP管理器</strong></p>
+<p>NP管理器（NP Manager）也是一个文件管理器，虽然它也提供了对APK文件的基本编辑能力，但是其主要侧重点在于提供更直观的文件浏览体验和基本的文件管理功能。相比于MT管理器，NP管理器的特点有：</p>
+<ul>
+<li>界面设计更加简洁直观，适合普通用户进行基础的文件管理任务。</li>
+<li>提供了对多种文件格式的支持，如压缩文件(zip, rar)的解压与创建。</li>
+<li>功能性上相对于MT管理器来说较为简单，适用于不需要深入编辑apk或系统文件的用户。</li>
+</ul>
+<p><strong>区别</strong></p>
+<ul>
+<li><strong>功能深度</strong>：MT管理器在处理复杂的文件编辑和系统级操作方面更为强大；而NP管理器则侧重于提供一个易于使用的文件管理解决方案。</li>
+<li><strong>用户界面</strong>：MT管理器的UI更加复杂，包含更多专业化的选项；NP管理器设计得更加友好，适合所有级别的用户。</li>
+<li><strong>使用场景</strong>：如果需要对应用程序进行深层次的修改，比如反编译apk文件，则MT管理器是更好的选择。而对于那些仅需要基本文件管理功能的用户来说，NP管理器可能更加合适。</li>
+</ul>
+<p>根据实际需求应用，有的功能需要VIP……</p>
+<h4 id="2-1-2-操作"><a href="#2-1-2-操作" class="headerlink" title="2.1.2 操作"></a>2.1.2 操作</h4><p>将MT管理器、NP管理器以及练手demo安装至安卓模拟器</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/%E5%8F%8C%E5%BC%80%E5%B7%A5%E5%85%B7%E5%AE%89%E8%A3%85.png"></p>
+<p>由于MT管理器双开需要会员，所以选择NP管理器。进入NP管理器软件，点击左上角的三根杠，选择安装包提取。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/NP%E7%AE%A1%E7%90%86%E5%99%A8%E7%AC%AC%E4%B8%80%E7%95%8C%E9%9D%A2.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/%E5%AE%89%E8%A3%85%E5%8C%85%E6%8F%90%E5%8F%96.png"></p>
+<p>然后选择需要提取的软件</p>
+<p> —&gt; 提取安装包—&gt; 定位 —&gt;点击软件 —&gt;功能—&gt;APK共存</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/demo%E5%8A%9F%E8%83%BD%E9%80%89%E6%8B%A9.png"></p>
+<p>最后确认，此时便有了该软件的安装包，通过带点击下方提取出来的安装包，进行安装，桌面上便有了新的一个demo软件</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/%E6%88%90%E5%8A%9F%E6%8F%90%E5%8F%96%E5%AE%89%E8%A3%85%E5%8C%85.png"></p>
+<p>注意这个地方，提取出来后，两个包的包名不一样</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/%E6%8F%90%E5%8F%96%E5%AE%89%E8%A3%85.png"></p>
+<p>由于该方法是通过修改包名实现的，所以懂了应用的签名信息，如果开发者做了一个签名校验，那就很有可能安装后软件出现闪退奔溃的情况。</p>
+<h2 id="3-汉化"><a href="#3-汉化" class="headerlink" title="3.汉化"></a>3.汉化</h2><p><strong>汉化：使用专门的工具对外文版的软件资源进行读取、翻译、修改、回写等一系列处理，使软件的菜单、对话框、提示等用户界面显示为中文，而程序的内核和功能保持不变，这个过程即为软件汉化</strong></p>
+<p>基本上字符串都是在arsc里，建议一键汉化，然后再润色。<br>少量没汉化到的字符串参考视频中的方法定位去逐个汉化。</p>
+<p>流程图</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/%E8%BD%AF%E4%BB%B6%E6%B1%89%E5%8C%96%E6%B5%81%E7%A8%8B%E5%9B%BE.png"></p>
+<p>可以使用MT管理器，进入demo的apk文件中，进行搜索需要修改句子对应的文件所在位置，使用搜索，点击高级搜索可以进入全局搜索。查找到文件位置后进入文件，手动修改句子，翻译为中文。真的累。</p>
+<p>修改后会出现一个签名改动的问题，可以直接卸载了再安装，或者核心破解。</p>
+<h2 id="4-初识AndroidManifest-xml"><a href="#4-初识AndroidManifest-xml" class="headerlink" title="4.初识AndroidManifest.xml"></a>4.初识AndroidManifest.xml</h2><p>AndroidManifest.xml文件是整个应用程序的信息描述文件，定义了应用程序中包含的Activity,Service,Content provider和BroadcastReceiver组件信息。每个应用程序在根目录下必须包含一个AndroidManifest.xml文件，且文件名不能修改。它描述了package中暴露的组件，他们各自的实现类，各种能被处理的数据和启动位置。</p>
+<table>
+<thead>
+<tr>
+<th align="left">属性</th>
+<th align="left">定义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">versionCode</td>
+<td align="left">版本号，主要用来更新，例如:12</td>
+</tr>
+<tr>
+<td align="left">versionName</td>
+<td align="left">版本名，给用户看的，例如:1.2</td>
+</tr>
+<tr>
+<td align="left">package</td>
+<td align="left">包名，例如：com.zj.52pj.demo</td>
+</tr>
+<tr>
+<td align="left">uses-permission android:name&#x3D;””</td>
+<td align="left">应用权限，例如：android.permission.INTERNET 代表网络权限</td>
+</tr>
+<tr>
+<td align="left">android:label&#x3D;”@string&#x2F;app_name”</td>
+<td align="left">应用名称</td>
+</tr>
+<tr>
+<td align="left">android:icon&#x3D;”@mipmap&#x2F;ic_launcher”</td>
+<td align="left">应用图标路径</td>
+</tr>
+<tr>
+<td align="left">android:debuggable&#x3D;”true”</td>
+<td align="left">应用是否开启debug权限</td>
+</tr>
+</tbody></table>
+<h1 id="二、初识smail"><a href="#二、初识smail" class="headerlink" title="二、初识smail"></a>二、初识smail</h1>]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>信息安全</tag>
+        <tag>安卓逆向工程</tag>
+        <tag>吾爱破解</tag>
       </tags>
   </entry>
   <entry>
@@ -7704,7 +7838,7 @@
 </code></pre>
 <p> Port 443</p>
 <p>如果没有config文件就新建一个即可。</p>
-<p>如果执行命令ssh -T <a href="mailto:&#103;&#x69;&#x74;&#x40;&#103;&#x69;&#x74;&#x68;&#117;&#x62;&#x2e;&#x63;&#111;&#x6d;">&#103;&#x69;&#x74;&#x40;&#103;&#x69;&#x74;&#x68;&#117;&#x62;&#x2e;&#x63;&#111;&#x6d;</a>，还是报错，就执行命令</p>
+<p>如果执行命令ssh -T <a href="mailto:&#x67;&#x69;&#116;&#x40;&#103;&#x69;&#x74;&#104;&#117;&#98;&#46;&#x63;&#x6f;&#x6d;">&#x67;&#x69;&#116;&#x40;&#103;&#x69;&#x74;&#104;&#117;&#98;&#46;&#x63;&#x6f;&#x6d;</a>，还是报错，就执行命令</p>
 <p>ssh -T -p 443 <a href="mailto:git@ssh.github.com，">git@ssh.github.com</a></p>
 <p>如果提示Hi xxxxx! You’ve successfully authenticated, but GitHub does not provide <a href="https://zhida.zhihu.com/search?content_id=203985854&content_type=Article&match_order=2&q=shell+access&zhida_source=entity">shell access</a>. 就表示一切正常了。</p>
 <h1 id="四、本地部署"><a href="#四、本地部署" class="headerlink" title="四、本地部署"></a><strong>四、本地部署</strong></h1><h4 id="1-创建目录"><a href="#1-创建目录" class="headerlink" title="1.创建目录"></a><strong>1.创建目录</strong></h4><p>由于Hexo的所有文章都是以文件的形式存储在目录下的，</p>
