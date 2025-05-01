@@ -74,8 +74,8 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2025/04/22/Android/" class="article-date">
-  <time datetime="2025-04-21T16:00:00.000Z" itemprop="datePublished">2025-04-22</time>
+      <a href="/2025/04/24/Android/" class="article-date">
+  <time datetime="2025-04-23T16:00:00.000Z" itemprop="datePublished">2025-04-24</time>
 </a> 
   <div class="article-category">
     <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
@@ -86,7 +86,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">19.8k</span>
+            <span class="post-count">23k</span>
         </span>
     </span>
 
@@ -95,7 +95,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">78 分钟</span>
+            <span class="post-count">90 分钟</span>
         </span>
     </span>
 </div>
@@ -746,11 +746,105 @@
 <p>有两点差异：<strong>其一，是否允许点击；其二，按钮文字的颜色</strong>。</p>
 <p>就文字颜色而言，可在布局文件中使用textColor属性设置颜色，也可在Java代码中调用 setTextColor方法设置颜色。</p>
 <p>至于是否允许点击，则需引入新属性android:enabled，该属性值为true时 表示启用按钮，即允许点击按钮；该属性值为false时表示禁用按钮，即不允许点击按钮。在Java代码 中，则可通过setEnabled方法设置按钮的可用状态（true表示启用，false表示禁用）。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">````</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## 图像显示</span><br><span class="line"></span><br><span class="line">### 图像视图ImageView</span><br><span class="line"></span><br><span class="line">#### 概述</span><br><span class="line"></span><br><span class="line">图像视图展示的图片通常位于res/drawable***目录，设置图像视图的显示图片有两种方 式：</span><br><span class="line"></span><br><span class="line">- 在XML文件中，通过属性android:src设置图片资源，属性值格式形如“<span class="meta">@drawable</span>/不含扩展名 的图片名称”。</span><br><span class="line">- 在Java代码中，调用setImageResource方法设置图片资源，方法参数格式形如“R.drawable.不 含扩展名的图片名称”</span><br><span class="line"></span><br><span class="line">#### 详解</span><br><span class="line"></span><br><span class="line">由于图像通常保存为单独的 图片文件，因此需要先把图片放到**res/drawable目录**，然后再去引用该图片的资源名称。比如现在有张苹果图片名为<span class="number">0.</span>png，那么XML文件通过属性android:src设置图片资源，**属性值格式形如 “<span class="meta">@drawable</span>/不含扩展名的图片名称”**。添加了src属性的ImageView标签示例如下：</span><br><span class="line"></span><br><span class="line">````xml</span><br><span class="line">&lt;ImageView</span><br><span class="line"> android:id=<span class="string">&quot;@+id/iv_scale&quot;</span></span><br><span class="line"> android:layout_width=<span class="string">&quot;match_parent&quot;</span></span><br><span class="line"> android:layout_height=<span class="string">&quot;220dp&quot;</span></span><br><span class="line"> android:src=<span class="string">&quot;@drawable/apple&quot;</span> /&gt;</span><br></pre></td></tr></table></figure>
 
+<p>若想在Java代码中设置图像视图的图片资源，可调用ImageView控件的setImageResource方法，方法参 数格式形如“R.drawable.不含扩展名的图片名称”。仍以上述的图片为例，给图像视图设置图片资源 的代码例子如下所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 从布局文件中获取名为iv_scale的图像视图</span></span><br><span class="line"><span class="type">ImageView</span> <span class="variable">iv_scale</span> <span class="operator">=</span> findViewById(R.id.iv_scale);</span><br><span class="line">iv_scale.setImageResource(R.drawable.apple);  <span class="comment">// 设置图像视图的图片资源</span></span><br></pre></td></tr></table></figure>
 
+<p>ImageView本身默认图片居中显示，不管图片有多大抑或有多小，图像视图都会自动缩放图片，使之刚 好够着ImageView的边界，并且缩放后的图片保持原始的宽高比例，看起来图片很完美地占据视图中央。这种缩放类型在XML文件中<strong>通过属性android:scaleType定义，即使图像视图未明确指定该属性，系统也会默认其值为fitCenter，表示让图像缩放后居中显示</strong>。添加了缩放属性的ImageView标签如下所 示：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ImageView</span></span></span><br><span class="line"><span class="tag">     <span class="attr">android:id</span>=<span class="string">&quot;@+id/iv_scale&quot;</span></span></span><br><span class="line"><span class="tag">     <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">     <span class="attr">android:layout_height</span>=<span class="string">&quot;220dp&quot;</span></span></span><br><span class="line"><span class="tag">     <span class="attr">android:src</span>=<span class="string">&quot;@drawable/apple&quot;</span></span></span><br><span class="line"><span class="tag">     <span class="attr">android:scaleType</span>=<span class="string">&quot;fitCenter&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="图像显示"><a href="#图像显示" class="headerlink" title="图像显示"></a>图像显示</h2><h3 id="图像视图ImageView"><a href="#图像视图ImageView" class="headerlink" title="图像视图ImageView"></a>图像视图ImageView</h3><h4 id="概述-13"><a href="#概述-13" class="headerlink" title="概述"></a>概述</h4><h4 id="详解-13"><a href="#详解-13" class="headerlink" title="详解"></a>详解</h4><h3 id="图像按钮ImageButton"><a href="#图像按钮ImageButton" class="headerlink" title="图像按钮ImageButton"></a>图像按钮ImageButton</h3><h3 id="同时展示文本与图像"><a href="#同时展示文本与图像" class="headerlink" title="同时展示文本与图像"></a>同时展示文本与图像</h3><h2 id="实战项目：计算机"><a href="#实战项目：计算机" class="headerlink" title="实战项目：计算机"></a>实战项目：计算机</h2><h3 id="需求描述"><a href="#需求描述" class="headerlink" title="需求描述"></a>需求描述</h3><h3 id="界面设计"><a href="#界面设计" class="headerlink" title="界面设计"></a>界面设计</h3><h3 id="关键代码"><a href="#关键代码" class="headerlink" title="关键代码"></a>关键代码</h3> 
+<p>在Java代码中可调用setScaleType方法设置图像视图的缩放类型，其中fitCenter对应的类型为 ScaleType.FIT_CENTER，设置代码示例如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 将缩放类型设置为“保持宽高比例，缩放图片使其位于视图中间”</span></span><br><span class="line"> iv_scale.setScaleType(ImageView.ScaleType.FIT_CENTER);</span><br></pre></td></tr></table></figure>
+
+<p>除了居中显示，图像视图还提供了其他缩放类型</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/%E7%BC%A9%E6%94%BE%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%8F%96%E5%80%BC%E8%AF%B4%E6%98%8E.png"></p>
+<p>注意到centerInside和center的显示效果居然一模一样，这缘于它们的缩放规则设定。表面上 fitCenter、centerInside、center三个类型都是居中显示，且均不越过图像视图的边界。</p>
+<p>它们之间的区 别在于：</p>
+<ul>
+<li>fitCenter既允许缩小图片、也允许放大图片</li>
+<li>centerInside只允许缩小图片、不允许放大图 标</li>
+<li>center自始至终保持原始尺寸（既不允许缩小图片、也不允许放大图片）</li>
+</ul>
+<p>因此，当图片尺寸大于视图宽高，centerInside与fitCenter都会缩小图片，此时它俩的显示效果相同；当图片尺寸小于视图宽高，centerInside与center都保持图片大小不变，此时它俩的显示效果相同。</p>
+<h3 id="图像按钮ImageButton"><a href="#图像按钮ImageButton" class="headerlink" title="图像按钮ImageButton"></a>图像按钮ImageButton</h3><h4 id="概述-13"><a href="#概述-13" class="headerlink" title="概述"></a>概述</h4><p>ImageButton是显示图片的图像按钮，但它继承自ImageView，而非继承Button。</p>
+<p>ImageButton和Button之间的区别有： </p>
+<ul>
+<li>Button既可显示文本也可显示图片，ImageButton只能显示图片不能显示文本。</li>
+<li>ImageButton上的图像可按比例缩放，而Button通过背景设置的图像会拉伸变形。 </li>
+<li>Button只能靠背景显示一张图片，而ImageButton可分别在前景和背景显示图片，从而实现两 张图片叠加的效果。</li>
+</ul>
+<p><strong>ImageButton的使用场合</strong></p>
+<p>在某些场合，有的字符无法由输入法打出来，或者某些文字以特殊字体展示，就适合适合 先切图再放到ImageButton。例如：开平方符号，等等。 </p>
+<p>ImageButton与ImageView之间的区别有：</p>
+<ul>
+<li>ImageButton有默认的按钮背景，ImageView默认无背景。 </li>
+<li>ImageButton默认的缩放类型为center，而ImageView默认的缩放类型为fitCenter。</li>
+</ul>
+<h4 id="详解-13"><a href="#详解-13" class="headerlink" title="详解"></a>详解</h4><p>常见的按钮控件Button其实是文本按钮，因为按钮上面只能显示文字，不能显示图片，<strong>ImageButton才 是显示图片的图像按钮</strong>。虽然<strong>ImageButton号称图像按钮，但它并非继承Button，而是继承了 ImageView，所以凡是ImageView拥有的属性和方法，ImageButton统统拿了过来</strong>，区别在于 ImageButton有个按钮背景。</p>
+<p>尽管ImageButton源自ImageView，但它毕竟是个按钮呀，按钮家族常用的点击事件和长按事件， ImageButton全都没落下。不过ImageButton和Button之间除了名称不同，还有下列差异：</p>
+<ul>
+<li>Button既可显示文本也可显示图片（通过setBackgroundResource方法设置背景图片），而 ImageButton只能显示图片不能显示文本。</li>
+<li>ImageButton上的图像可按比例缩放，而Button通过背景设置的图像会拉伸变形，因为背景图采取 fitXY方式，无法按比例缩放。 </li>
+<li>Button只能靠背景显示一张图片，而ImageButton可分别在前景和背景显示图片，从而实现两张图 片叠加的效果。</li>
+</ul>
+<p>从上面可以看出，Button与ImageButton各有千秋，通常情况使用Button就够用了。但<strong>在某些场合，比 如输入法打不出来的字符，以及特殊字体显示的字符串，就适合先切图再放到ImageButton</strong>。</p>
+<p>不过使用ImageButton得注意，图像按钮默认的缩放类型为center（保持原始尺寸不缩放图片），而非 图像视图默认的fitCenter，倘若图片尺寸较大，那么图像按钮将无法显示整个图片。<strong>为避免显示不完整 的情况，XML文件中的ImageButton标签必须指定fitCenter的缩放类型</strong>，详细的标签内容示例如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ImageButton</span></span></span><br><span class="line"><span class="tag"> <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag"> <span class="attr">android:layout_height</span>=<span class="string">&quot;80dp&quot;</span></span></span><br><span class="line"><span class="tag"> <span class="attr">android:src</span>=<span class="string">&quot;@drawable/sqrt&quot;</span></span></span><br><span class="line"><span class="tag"> <span class="attr">android:scaleType</span>=<span class="string">&quot;fitCenter&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="同时展示文本与图像"><a href="#同时展示文本与图像" class="headerlink" title="同时展示文本与图像"></a>同时展示文本与图像</h3><h4 id="概述-14"><a href="#概述-14" class="headerlink" title="概述"></a>概述</h4><p> 同时展示文本与图像的可能途径包括： </p>
+<p>（1）利用LinearLayout对ImageView和TextView组合布局。 </p>
+<p>（2）通过按钮控件Button的drawable***属性设置文本周围的图标。</p>
+<ul>
+<li>drawableTop：指定文字上方的图片。</li>
+<li>drawableBottom：指定文字下方的图片。</li>
+<li>drawableLeft：指定文字左边的图片。</li>
+<li>drawableRight：指定文字右边的图片。</li>
+<li>drawablePadding：指定图片与文字的间距。</li>
+</ul>
+<h4 id="详解-14"><a href="#详解-14" class="headerlink" title="详解"></a>详解</h4><p>要想在文字周围放置图片，使用可以使用按钮控件Button实现。</p>
+<p>原来Button 悄悄提供了几个与图标有关的属性，通过这些属性即可指定文字旁边的图标，有关的图标属性说明。见概述。 </p>
+<p>譬如下面是个既有文字又有图标的Button标签例子：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Button</span></span></span><br><span class="line"><span class="tag">     <span class="attr">android:layout_width</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">     <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">     <span class="attr">android:drawableLeft</span>=<span class="string">&quot;@drawable/ic_about&quot;</span></span></span><br><span class="line"><span class="tag">     <span class="attr">android:drawablePadding</span>=<span class="string">&quot;5dp&quot;</span></span></span><br><span class="line"><span class="tag">     <span class="attr">android:text</span>=<span class="string">&quot;图标在左&quot;</span></span></span><br><span class="line"><span class="tag">     <span class="attr">android:textSize</span>=<span class="string">&quot;17sp&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="实战项目：计算机"><a href="#实战项目：计算机" class="headerlink" title="实战项目：计算机"></a>实战项目：计算机</h2><h3 id="需求描述"><a href="#需求描述" class="headerlink" title="需求描述"></a>需求描述</h3><p>计算器是人们日常生活中最常用的工具之一，无论在电脑上还是手机上，都少不了计算器的身影。以 Windows系统自带的计算器为例，它的界面简洁且十分实用。</p>
+<p>计算器的界面分为两大部分，第一部分是上方的计算表达式，既包括用户的按键输入，也包括计算结果 数字；第二部分是下方的各个按键，例如：从0到9的数字按钮、加减乘除与等号、正负号按钮、小数点 按钮、求倒数按钮、平方按钮、开方按钮，以及退格、清空、取消等控制按钮。通过这些按键操作，能 够实现整数和小数的四则运算，以及求倒数、求平方、求开方等简单运算。</p>
+<h3 id="界面设计"><a href="#界面设计" class="headerlink" title="界面设计"></a>界面设计</h3><p>Windows计算器，它主要由上半部分的计算结果与下半部分的计算按钮两块区域组成， 据此可创建一个界面相似的计算器App，同样由计算结果和计算按钮两部分组成。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/%E8%AE%A1%E7%AE%97%E5%99%A8App%E7%9A%84%E6%95%88%E6%9E%9C%E5%9B%BE.png"></p>
+<p>根据效果图进行分析，大致分布着下列Android控件：</p>
+<ul>
+<li>线性布局LinearLayout：因为计算器界面整体从上往下布局，所以需要垂直方向的LinearLayout。 </li>
+<li>网格布局GridLayout：计算器下半部分的几排按钮，正好成五行四列表格分布，适合采用 GridLayout。 </li>
+<li>滚动视图ScrollView：虽然计算器界面不宽也不高，但是以防万一，最好还是加个垂直方向的 ScrollView。 </li>
+<li>文本视图TextView：很明显顶部标题“简单计算器”就是TextView，且文字居中显示；标题下面的计 算结果也需要使用TextView，且文字靠右靠下显示。 </li>
+<li>按钮Button：几乎所有的数字与运算符按钮都采用了Button控件。 </li>
+<li>图像按钮ImageButton：开根号的运算符“√”虽然能够打出来，但是右上角少了数学课本上的一横， 所以该按钮要显示一张标准的开根号图片，这用到了ImageButton。</li>
+</ul>
+<h3 id="关键代码"><a href="#关键代码" class="headerlink" title="关键代码"></a>关键代码</h3><p>App同用户交互的过程中，时常要向用户反馈一些信息，例如：点错了按钮、输入了非法字符等等，诸 如此类。对于这些一句话的提示，Android设计了Toast控件，用于展示短暂的提示文字。Toast的用法 很简单，只需以下一行代码即可弹出提示小窗：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Toast.makeText(MainActivity.this, &quot;提示文字&quot;, Toast.LENGTH_SHORT).show();</span><br></pre></td></tr></table></figure>
+
+<p>上面代码用到了两个方法，分别是makeText和show，其中show方法用来展示提示窗，而makeText方 法用来构建提示文字的模板。</p>
+<p>makeText的第一个参数为当前页面的实例，倘若当前页面名为 MainActivity的话，这里就填MainActivity.this，当然如果不引发歧义的话，直接填this也可以；</p>
+<p>第二个 参数为准备显示的提示文本；</p>
+<p>第三个参数规定了提示窗的驻留时长，为Toast.LENGTH_SHORT表示停留 2秒后消失，为Toast.LENGTH_LONG表示停留3.5秒后消失。</p>
+<p>对于计算器来说，有好几种情况需要提示用户，比如“被除数不能为零”、“开根号的数值不能小于零”、 “不能对零求倒数”等等，这时就能通过Toast控件弹窗提醒用户。Toast弹窗的展示效果如图3-37所示， 此时App发现了被除数为零的情况。</p>
+<p><img src="/Android.assets/image-20250427211915256.png"></p>
+<p>对于简单计算来说，每次运算至少需要两个操作数，比如加减乘除四则运算就要求有两个操作数，求倒 数、求平方、求开方只要求一个操作数；并且每次运算过程有且仅有一个运算符（等号不计在内），故 而计算器App得事先声明下列几个字符串变量：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="type">String</span> <span class="variable">operator</span> <span class="operator">=</span> <span class="string">&quot;&quot;</span>;  <span class="comment">// 运算符</span></span><br><span class="line"><span class="keyword">private</span> <span class="type">String</span> <span class="variable">firstNum</span> <span class="operator">=</span> <span class="string">&quot;&quot;</span>;  <span class="comment">// 第一个操作数</span></span><br><span class="line"><span class="keyword">private</span> <span class="type">String</span> <span class="variable">secondNum</span> <span class="operator">=</span> <span class="string">&quot;&quot;</span>;  <span class="comment">// 第二个操作数</span></span><br><span class="line"><span class="keyword">private</span> <span class="type">String</span> <span class="variable">result</span> <span class="operator">=</span> <span class="string">&quot;&quot;</span>;  <span class="comment">// 当前的计算结果</span></span><br></pre></td></tr></table></figure>
+
+<p>用户在计算器界面每输入一个按键，App都要进行下列两项操作：</p>
+<p>1．输入按键的合法性校验  在开展计算之前，务必检查用户的按键是否合法，因为非法按键将导致不能正常运算。非法的按键输入 包括但不限于下列情况： </p>
+<p>（1）被除数不能为零。  </p>
+<p>（2）开根号的数值不能小于零。  </p>
+<p>（3）不能对零求倒数。  </p>
+<p>（4）一个数字不能有两个小数点。  </p>
+<p>（5）如果没输入运算符，就不能点击等号按钮。  </p>
+<p>（6）如果没输入操作数，也不能点击等号按钮。  </p>
+<p>比如点击等号按钮之时，App的逻辑校验代码示例如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (v.getId() == R.id.btn_equal) &#123; <span class="comment">// 点击了等号按钮</span></span><br><span class="line"><span class="keyword">if</span> (operator.equals(<span class="string">&quot;&quot;</span>)) &#123; <span class="comment">// 无运算符</span></span><br><span class="line">Toast.makeText(<span class="built_in">this</span>, <span class="string">&quot;请输入运算符&quot;</span>, Toast.LENGTH_SHORT).show();</span><br><span class="line"> <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">if</span> (firstNum.equals(<span class="string">&quot;&quot;</span>) || secondNum.equals(<span class="string">&quot;&quot;</span>)) &#123; <span class="comment">// 无操作数</span></span><br><span class="line">Toast.makeText(<span class="built_in">this</span>, <span class="string">&quot;请输入数字&quot;</span>, Toast.LENGTH_SHORT).show();</span><br><span class="line"> <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">if</span> (operator.equals(<span class="string">&quot;÷&quot;</span>) &amp;&amp; Double.parseDouble(secondNum) == <span class="number">0</span>) &#123; <span class="comment">// 除数为零</span></span><br><span class="line">Toast.makeText(<span class="built_in">this</span>, <span class="string">&quot;除数不能为零&quot;</span>, Toast.LENGTH_SHORT).show();</span><br><span class="line"> <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line"> &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<p> 2．执行运算并显示计算结果 合法性校验通过，方能继续接下来的业务逻辑，倘若用户本次未输入与计算有关的按钮（例如等号、求 倒数、求平方、求开方），则计算器只需拼接操作数或者运算符；倘若用户本次输入了与计算有关的按 钮（例如等号、求倒数、求平方、求开方），则计算器立即执行运算操作并显示计算结果。以加减乘除 四则运算为例，它们的计算代码例子如下所示：</p>
+<h1 id="活动Activity"><a href="#活动Activity" class="headerlink" title="活动Activity"></a>活动Activity</h1> 
       <!-- reward -->
       
     </div>
@@ -814,7 +908,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://tangxtang1119.github.io/2025/04/22/Android/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://tangxtang1119.github.io/2025/04/24/Android/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -826,6 +920,15 @@
 
    
   <nav class="article-nav">
+    
+      <a href="/2025/04/26/CTF/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            CTF
+          
+        </div>
+      </a>
     
     
       <a href="/2025/04/17/Samli/" class="article-nav-link">
