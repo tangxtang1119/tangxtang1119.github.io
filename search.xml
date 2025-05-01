@@ -816,9 +816,127 @@
 <p>如果尚未安装，请在此处获取有关安装 Wireshark 的说明：<a href="https://primer.picoctf.org/#installing_wireshark">安装 Wireshark</a>。</p>
 <p>安装并打开它后，应该会看到一个类似于以下内容的窗口：</p>
 <p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/Wireshark%E5%9B%BE%E5%BD%A2%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2.png"></p>
-<h1 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h1><h2 id=""><a href="#" class="headerlink" title=""></a></h2><p><a href="https://blog.csdn.net/Spontaneous_0/article/details/142087893">2024CTF入门指南、CTF夺旗赛及刷题网站-CSDN博客</a></p>
-<p><a href="https://primer.picoctf.org/#_input_and_output">CTF 引言</a></p>
-]]></content>
+<h1 id="逆向工程"><a href="#逆向工程" class="headerlink" title="逆向工程"></a>逆向工程</h1><h2 id="环境与工具"><a href="#环境与工具" class="headerlink" title="环境与工具"></a>环境与工具</h2><h3 id="工具链："><a href="#工具链：" class="headerlink" title="工具链："></a><strong>工具链</strong>：</h3><ul>
+<li><strong>反汇编工具</strong>：IDA Pro（主力）、Ghidra（免费替代）、Binary Ninja</li>
+<li><strong>调试器</strong>：x64dbg（Windows）、GDB（Linux，配合Pwngdb插件）</li>
+<li><strong>其他工具</strong>：PEiD&#x2F;Detect It Easy（查壳）、010 Editor（二进制分析）、Cutter（逆向辅助）</li>
+<li><strong>动态分析</strong>：Cheat Engine（内存修改）、Process Monitor（行为监控）</li>
+</ul>
+<h3 id="环境："><a href="#环境：" class="headerlink" title="环境："></a><strong>环境</strong>：</h3><ul>
+<li>虚拟机或Docker（隔离实验环境）</li>
+<li>Windows&#x2F;Linux双系统（覆盖常见题型）</li>
+</ul>
+<h3 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h3><h4 id="汇编语言"><a href="#汇编语言" class="headerlink" title="汇编语言"></a>汇编语言</h4><h5 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h5><ul>
+<li>掌握x86&#x2F;x64基础指令（<code>mov</code>, <code>push/pop</code>, <code>call/ret</code>, <code>cmp/jmp</code>）</li>
+<li>理解函数调用约定（<code>cdecl</code>, <code>stdcall</code>, <code>fastcall</code>）</li>
+<li>熟悉栈帧结构（EBP&#x2F;RBP、ESP&#x2F;RSP）</li>
+</ul>
+<h5 id="详解"><a href="#详解" class="headerlink" title="详解"></a>详解</h5><h6 id="背景知识介绍"><a href="#背景知识介绍" class="headerlink" title="背景知识介绍"></a><strong>背景知识介绍</strong></h6><ol>
+<li><strong>计算机基础原理</strong><br>  计算机是通过执行二进制指令来运行的程序。理解计算机的基本工作原理，如CPU、内存、输入输出设备等，是学习汇编的基础。二进制指令是计算机能够直接执行的最低级语言，而汇编语言则是对这些二进制指令的符号化表示。</li>
+<li><strong>操作系统基础</strong><br>  操作系统管理计算机的硬件和软件资源。汇编语言与操作系统密切相关，因为不同的操作系统可能使用不同的函数调用约定和栈帧结构。了解操作系统的基本概念，如进程、线程、内存管理等，有助于理解汇编程序的执行环境。</li>
+<li><strong>数据表示与存储</strong><br>  计算机中的数据以二进制形式存储和处理。理解数据的表示方式（如整数、浮点数、字符等）以及它们在内存中的存储方式（如大端序、小端序）对汇编编程至关重要。例如，x86架构通常使用小端序存储数据。</li>
+<li><strong>寄存器与内存模型</strong><br>  寄存器是CPU内部的高速存储单元，用于临时存储数据和指令。x86&#x2F;x64架构中有多个寄存器（如EAX、EBX、ECX、EDX等），每个寄存器有特定的用途。理解寄存器的作用以及它们与内存之间的交互是汇编编程的核心。</li>
+<li><strong>机器码与汇编指令的关系</strong><br>  汇编指令是对人类友好的指令表示，而机器码是计算机能够直接执行的二进制代码。每条汇编指令都对应一条或多条机器码指令。理解这两者之间的关系有助于更好地掌握汇编语言的本<strong>质。</strong></li>
+</ol>
+<h6 id="知识点详细讲解"><a href="#知识点详细讲解" class="headerlink" title="知识点详细讲解"></a><strong>知识点详细讲解</strong></h6><p><strong>1. x86&#x2F;x64基础指令</strong></p>
+<ul>
+<li><strong>mov</strong>: 用于将数据从一个位置移动到另一个位置。例如，<code>mov eax, 5</code> 将整数5加载到EAX寄存器中。</li>
+<li><strong>push&#x2F;pop</strong>: 用于将数据压入栈或从栈中弹出。<code>push eax</code> 将EAX寄存器的值压入栈顶，<code>pop eax</code> 将栈顶的值弹出到EAX寄存器。</li>
+<li><strong>call&#x2F;ret</strong>: <code>call</code> 用于调用一个函数，<code>ret</code> 用于从函数返回。<code>call label</code> 会将当前指令地址压入栈，然后跳转到<code>label</code>处执行代码；<code>ret</code> 会从栈中弹出地址并跳转回去。</li>
+<li><strong>cmp&#x2F;jmp</strong>: <code>cmp</code> 用于比较两个操作数，<code>jmp</code> 用于无条件跳转。例如，<code>cmp eax, ebx</code> 会比较EAX和EBX寄存器的值，<code>je label</code> 会在相等时跳转到<code>label</code>。</li>
+</ul>
+<p><strong>2. 函数调用约定</strong></p>
+<ul>
+<li><strong>cdecl (C语言调用约定)</strong>: 调用者负责清理栈。参数从右到左压入栈，调用者在函数返回后清理栈。</li>
+<li><strong>stdcall (标准调用约定)</strong>: 被调用函数负责清理栈。参数同样从右到左压入栈，但被调用函数会在返回前清理栈。</li>
+<li><strong>fastcall</strong>: 使用寄存器传递前两个参数，剩余参数通过栈传递。这种约定提高了函数调用的效率。</li>
+</ul>
+<p><strong>3. 栈帧结构</strong></p>
+<ul>
+<li><strong>EBP&#x2F;RBP (基址指针)</strong>: 用于指向当前栈帧的底部。在函数调用时，EBP&#x2F;RBP通常用于保存上一个栈帧的基址，以便在函数返回时恢复。</li>
+<li><strong>ESP&#x2F;RSP (栈指针)</strong>: 指向当前栈顶。在函数调用时，ESP&#x2F;RSP会随着<code>push</code>和<code>pop</code>指令的变化而移动。</li>
+<li>栈帧是函数调用时在栈上分配的一块内存区域，用于存储局部变量、参数和返回地址。</li>
+</ul>
+<h6 id="具体例子"><a href="#具体例子" class="headerlink" title="具体例子"></a>具体例子</h6><p><strong>问题描述</strong>：编写一个简单的汇编程序，计算两个整数的和并返回结果。<br> <strong>分析</strong>：我们需要定义一个函数，接受两个整数作为参数，计算它们的和并返回结果。由于涉及函数调用，我们需要遵循调用约定（这里使用cdecl）。<br> <strong>为什么用该知识点</strong>：这个例子涉及x86&#x2F;x64基础指令（如<code>mov</code>、<code>push</code>、<code>call</code>、<code>ret</code>）、函数调用约定（cdecl）以及栈帧结构的使用。<br> <strong>应用过程</strong>：</p>
+<ol>
+<li>定义函数<code>add_two_numbers</code>，参数为<code>a</code>和<code>b</code>。</li>
+<li>在函数内部，将<code>a</code>和<code>b</code>相加，结果存储在EAX寄存器中。</li>
+<li>使用<code>ret</code>指令返回，调用者负责清理栈。</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">section .text</span><br><span class="line">global _start</span><br><span class="line"></span><br><span class="line">_start:</span><br><span class="line">    ; 调用add_two_numbers(5, 10)</span><br><span class="line">    push 10      ; 第二个参数</span><br><span class="line">    push 5       ; 第一个参数</span><br><span class="line">    call add_two_numbers</span><br><span class="line">    add esp, 8   ; 清理栈（2个参数，每个4字节）</span><br><span class="line">    ; 结果在EAX中</span><br><span class="line">    ; 退出程序</span><br><span class="line">    mov eax, 1   ; 系统调用号（exit）</span><br><span class="line">    int 0x80     ; 调用内核</span><br><span class="line"></span><br><span class="line">add_two_numbers:</span><br><span class="line">    push ebp     ; 保存上一个栈帧</span><br><span class="line">    mov ebp, esp ; 设置当前栈帧</span><br><span class="line">    mov eax, [ebp+8] ; 获取第一个参数</span><br><span class="line">    add eax, [ebp+12] ; 加上第二个参数</span><br><span class="line">    pop ebp     ; 恢复上一个栈帧</span><br><span class="line">    ret         ; 返回</span><br></pre></td></tr></table></figure>
+
+<p><strong>计算结果</strong>：EAX寄存器中存储的值为15，即5 + 10的结果。</p>
+<h6 id="扩展知识点"><a href="#扩展知识点" class="headerlink" title="扩展知识点"></a>扩展知识点</h6><ol>
+<li><strong>汇编器与链接器</strong><br>  汇编器将汇编代码转换为机器码，链接器将多个目标文件合并为一个可执行文件。理解它们的工作原理有助于更好地掌握汇编编程的完整流程。</li>
+<li><strong>逆向工程</strong><br>  通过分析可执行文件的机器码，还原出汇编代码甚至高级语言代码。逆向工程在安全、破解、调试等领域有重要应用。</li>
+<li><strong>中断与异常处理</strong><br>  中断是CPU响应外部事件的一种机制，异常是CPU内部错误或特殊条件的处理。理解中断和异常处理有助于编写更健壮的汇编程序。</li>
+<li><strong>多线程与并发编程</strong><br>  在汇编语言中实现多线程和并发编程需要深入理解CPU的上下文切换、锁机制、同步原语等。这是高级汇编编程的重要内容。</li>
+<li><strong>优化技术</strong><br>  汇编语言允许程序员直接控制CPU指令的执行，因此可以通过优化指令顺序、减少内存访问、利用CPU特性等手段提升程序性能。</li>
+</ol>
+<h4 id="C语言逆向"><a href="#C语言逆向" class="headerlink" title="C语言逆向"></a>C语言逆向</h4><h5 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h5><ul>
+<li>变量存储（栈、堆、全局区）</li>
+<li>函数调用、循环和分支结构的汇编对应</li>
+<li>简单逆向练习（如CrackMe题：尝试<a href="https://crackmes.one/">Easy CrackMe</a>）</li>
+</ul>
+<h5 id="详解-1"><a href="#详解-1" class="headerlink" title="详解"></a>详解</h5><h6 id="背景知识介绍-1"><a href="#背景知识介绍-1" class="headerlink" title="背景知识介绍"></a><strong>背景知识介绍</strong></h6><ol>
+<li><strong>计算机内存结构</strong>：计算机内存可以粗略分为代码区、数据区和未使用区。数据区又细分为栈区、堆区和静态存储区（包括全局区和静态局部变量区）。理解这些区域的划分和各自用途，是掌握变量存储的基础。</li>
+<li><strong>函数调用栈</strong>：函数调用时，系统会在栈上为该函数创建一个栈帧，用于存储函数的局部变量、参数、返回地址等。随着函数的嵌套调用，栈会不断增长；函数返回时，对应的栈帧会被销毁，栈空间得以回收。这一过程是理解函数调用与栈关系的关键。</li>
+<li><strong>动态内存管理</strong>：堆区是程序中用于动态内存分配的区域。通过malloc、calloc、realloc等函数，我们可以在运行时申请所需大小的内存块；使用完毕后，需要通过free函数释放，以避免内存泄漏。动态内存管理是编程中一项重要技能。</li>
+<li><strong>汇编语言基础</strong>：汇编语言是与机器语言紧密相关的编程语言，它直接操作计算机硬件，包括寄存器、内存等。了解汇编语言的基本语法和指令集，有助于我们理解C语言代码如何被翻译成机器指令，以及这些指令如何在CPU上执行。</li>
+<li><strong>逆向工程概念</strong>：逆向工程是指通过对目标程序的分析，推导出其源代码或逻辑结构的过程。在C语言逆向中，我们通常需要分析程序的二进制文件（如可执行文件或库文件），从中提取出有用的信息，如函数调用关系、变量布局等。这是理解C语言逆向基础的重要背景。</li>
+</ol>
+<h6 id="知识点详细讲解-1"><a href="#知识点详细讲解-1" class="headerlink" title="知识点详细讲解"></a>知识点详细讲解</h6><p><strong>变量存储</strong></p>
+<ul>
+<li><strong>栈区</strong>：栈是一种后进先出的数据结构，用于存储函数的局部变量、参数以及函数调用时的维护信息（如返回地址）。每当进入一个函数，系统就会在栈上为该函数分配一个栈帧；函数返回时，栈帧被销毁，栈空间得以回收。由于栈的先进后出特性，使得局部变量的生命周期与其所在函数的执行时间严格对应。此外，栈区的操作非常高效，因为只需要移动栈指针即可完成变量的分配和释放。</li>
+<li><strong>堆区</strong>：堆是程序中一块预留的内存空间，用于动态内存分配。与栈不同，堆区的内存分配不受函数调用范围的限制，可以跨越多个函数甚至整个程序生命周期。通过malloc等函数申请的内存块，在没有被free释放之前，将一直有效。然而，这也意味着程序员需要手动管理堆区的内存，包括及时释放不再使用的内存块，以避免内存泄漏和碎片化问题。</li>
+<li><strong>全局区</strong>：全局区用于存储全局变量和静态变量。这些变量在程序启动时即已分配内存，并在整个程序运行期间都存在。全局变量在所有文件中可见（需通过extern声明），而静态变量仅在其定义的作用域内可见但具有全局生命周期。全局区的内存分配和释放由操作系统负责，程序员无需显式管理。</li>
+</ul>
+<p><strong>函数调用与汇编对应</strong></p>
+<p>当C语言中的函数被调用时，背后发生了一系列与汇编指令相关的动作。以x86架构为例，函数调用时通常会进行以下操作：</p>
+<ul>
+<li><strong>压栈</strong>：将函数的参数、返回地址以及调用者的上下文（如寄存器值）压入栈中。这些信息构成了被调函数的栈帧。</li>
+<li><strong>跳转</strong>：通过call指令跳转到被调函数的起始地址执行代码。此时，CPU的指令指针寄存器（如EIP）指向被调函数的第一条指令。</li>
+<li><strong>执行函数体</strong>：在函数体内，可以通过栈指针（如ESP）访问局部变量和参数；通过寄存器进行计算和数据处理。</li>
+<li><strong>返回准备</strong>：函数执行完毕前，需要恢复调用者的上下文（如从栈中弹出寄存器值），并将返回值（如果有的话）放入指定的寄存器（如EAX）或内存位置。</li>
+<li><strong>返回</strong>：通过ret指令从栈中弹出返回地址并跳转回去执行调用者代码。此时，被调函数的栈帧被销毁，栈空间得以回收。</li>
+</ul>
+<h6 id="实例分析：Easy-CrackMe"><a href="#实例分析：Easy-CrackMe" class="headerlink" title="实例分析：Easy CrackMe"></a>实例分析：Easy CrackMe</h6><p>为了更好地理解上述知识点，将通过一个简单的CrackMe题目来演示如何运用这些知识进行逆向分析。</p>
+<p><strong>1. 问题描述</strong></p>
+<p>假设我们有一个简单的C程序（CrackMe题），其功能是要求用户输入一个密码，如果密码正确则输出“Congratulations!”，否则输出“Try again!”。任务是通过逆向分析找出正确的密码。</p>
+<p><strong>2. 分析步骤</strong></p>
+<ul>
+<li><strong>获取二进制文件</strong>：首先，我们需要获取该C程序的二进制文件（如可执行文件或库文件）。这通常是通过编译源代码得到的。</li>
+<li><strong>反汇编</strong>：使用反汇编工具（如IDA Pro、Ghidra等）打开二进制文件，将其转化为汇编代码以便分析。这一步将帮助我们理解程序的逻辑结构和函数调用关系。</li>
+<li><strong>查找关键函数</strong>：在反汇编后的代码中查找与用户输入和密码验证相关的函数。通常这些函数会包含字符串比较、条件判断等逻辑。通过分析这些函数的汇编代码，我们可以推断出密码的存储位置和比较方式。</li>
+<li><strong>定位密码字符串</strong>：根据字符串比较函数的参数或硬编码的字符串常量定位到密码字符串所在的内存地址。这一步可能需要结合数据区分析和调试技巧来完成。</li>
+<li><strong>验证密码</strong>：一旦找到密码字符串就可以尝试输入该密码看是否能够成功通过验证。如果程序输出“Congratulations!”则说明密码正确；否则需要重新分析或尝试其他可能的密码组合。</li>
+</ul>
+<p><strong>3. 示例应用</strong></p>
+<p>假设通过反汇编分析我们发现密码字符串存储在数据区的某个位置且为明文存储（如”.data section”中的某个字符串常量）。我们可以直接读取该字符串作为密码尝试输入；如果程序验证通过则说明分析成功。当然实际情况可能更复杂一些比如密码可能经过加密处理或者隐藏在其他位置需要通过更深入的分析才能找到。但无论如何只要掌握了正确的分析方法和工具就一定能够找到解决问题的办法。</p>
+<h6 id="扩展知识点-1"><a href="#扩展知识点-1" class="headerlink" title="扩展知识点"></a>扩展知识点</h6><ul>
+<li><strong>调试技术</strong>：调试是逆向工程中不可或缺的一部分。通过调试工具（如GDB、WinDbg等）可以实时观察程序的运行状态、寄存器值、内存变化等信息从而帮助分析人员更准确地理解程序逻辑和定位问题所在。掌握调试技术对于提高逆向工程的效率和准确性具有重要意义。</li>
+<li><strong>加密与解密技术</strong>：在逆向工程中经常会遇到加密和解密的问题。了解常见的加密算法（如AES、DES等）和解密技术可以帮助分析人员更好地理解和处理加密数据从而突破某些保护机制获取关键信息。此外还需要关注加密算法的实现细节和可能存在的安全漏洞以便在必要时进行利用或修复。</li>
+<li><strong>漏洞挖掘与利用</strong>：漏洞挖掘与利用是信息安全领域中的一个重要分支也是逆向工程的一个重要应用场景。通过逆向工程技术可以发现软件中的漏洞并对其进行详细分析；同时结合漏洞利用技术可以实现对目标系统的渗透测试或攻击模拟从而评估系统的安全性并提出改进建议。需要注意的是漏洞挖掘与利用应遵守法律法规和道德规范不得用于非法目的。</li>
+<li><strong>自动化脚本编写</strong>：在逆向工程中经常需要处理大量的重复性工作如日志分析、数据提取等。此时编写自动化脚本（如Python、Perl等）可以大大提高分析效率减少人为错误。掌握一定的脚本编程能力对于逆向工程师来说是一项非常重要的技能可以帮助他们更好地应对复杂的分析任务和挑战。</li>
+<li><strong>跨平台逆向工程</strong>：随着移动互联网和物联网的快速发展应用程序越来越多地运行在不同的操作系统和硬件平台上。因此掌握跨平台逆向工程技能变得尤为重要。这包括了解不同平台的系统架构、指令集、调试工具以及逆向工程技术的差异等以便能够针对不同平台进行有效的逆向分析和攻击模拟。同时还需要关注新兴技术和趋势如人工智能、区块链等对逆向工程的影响和挑战以便及时调整自己的技能和知识结构适应行业发展的需求。</li>
+</ul>
+<h3 id="静态与动态分析"><a href="#静态与动态分析" class="headerlink" title="静态与动态分析"></a>静态与动态分析</h3><h4 id="静态分析"><a href="#静态分析" class="headerlink" title="静态分析"></a>静态分析</h4><h5 id="概述："><a href="#概述：" class="headerlink" title="概述："></a>概述：</h5><ul>
+<li>使用IDA Pro分析控制流图（CFG）</li>
+<li>识别关键函数（如<code>main</code>、<code>check_flag</code>）</li>
+<li>修改反汇编结果（IDA Patch功能）</li>
+</ul>
+<h5 id="详解-2"><a href="#详解-2" class="headerlink" title="详解"></a>详解</h5><h4 id="动态调试"><a href="#动态调试" class="headerlink" title="动态调试"></a>动态调试</h4><h5 id="概述-2"><a href="#概述-2" class="headerlink" title="概述"></a>概述</h5><ul>
+<li>设置断点、观察寄存器&#x2F;内存变化</li>
+<li>修改执行流程（如跳过<code>jz</code>跳转）</li>
+<li>实战：调试带简单加密的CrackMe（如异或加密）</li>
+</ul>
+<h5 id="详解-3"><a href="#详解-3" class="headerlink" title="详解"></a>详解</h5><h4 id="常见加密算法识别"><a href="#常见加密算法识别" class="headerlink" title="常见加密算法识别"></a>常见加密算法识别</h4><h5 id="概述-3"><a href="#概述-3" class="headerlink" title="概述"></a>概述</h5><ul>
+<li>固定异或（<code>xor eax, 0x1234</code>）</li>
+<li>常量比较（如<code>strcmp</code>后的<code>test eax, eax</code>）</li>
+<li>识别Base64、TEA、RC4、AES的特征代码</li>
+</ul>
+<h5 id="详解-4"><a href="#详解-4" class="headerlink" title="详解"></a>详解</h5><h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><h2 id=""><a href="#" class="headerlink" title=""></a></h2><p><a href="https://blog.csdn.net/Spontaneous_0/article/details/142087893">2024CTF入门指南、CTF夺旗赛及刷题网站-CSDN博客</a></p>
+<h6 id="CTF-引言"><a href="#CTF-引言" class="headerlink" title="CTF 引言"></a><a href="https://primer.picoctf.org/#_input_and_output">CTF 引言</a></h6>]]></content>
       <categories>
         <category>笔记</category>
       </categories>
@@ -8447,7 +8565,7 @@
 </code></pre>
 <p> Port 443</p>
 <p>如果没有config文件就新建一个即可。</p>
-<p>如果执行命令ssh -T <a href="mailto:&#x67;&#x69;&#x74;&#64;&#x67;&#105;&#x74;&#x68;&#117;&#98;&#46;&#99;&#111;&#109;">&#x67;&#x69;&#x74;&#64;&#x67;&#105;&#x74;&#x68;&#117;&#98;&#46;&#99;&#111;&#109;</a>，还是报错，就执行命令</p>
+<p>如果执行命令ssh -T <a href="mailto:&#x67;&#x69;&#116;&#x40;&#x67;&#105;&#116;&#x68;&#117;&#x62;&#x2e;&#99;&#111;&#109;">&#x67;&#x69;&#116;&#x40;&#x67;&#105;&#116;&#x68;&#117;&#x62;&#x2e;&#99;&#111;&#109;</a>，还是报错，就执行命令</p>
 <p>ssh -T -p 443 <a href="mailto:git@ssh.github.com，">git@ssh.github.com</a></p>
 <p>如果提示Hi xxxxx! You’ve successfully authenticated, but GitHub does not provide <a href="https://zhida.zhihu.com/search?content_id=203985854&content_type=Article&match_order=2&q=shell+access&zhida_source=entity">shell access</a>. 就表示一切正常了。</p>
 <h1 id="四、本地部署"><a href="#四、本地部署" class="headerlink" title="四、本地部署"></a><strong>四、本地部署</strong></h1><h4 id="1-创建目录"><a href="#1-创建目录" class="headerlink" title="1.创建目录"></a><strong>1.创建目录</strong></h4><p>由于Hexo的所有文章都是以文件的形式存储在目录下的，</p>
