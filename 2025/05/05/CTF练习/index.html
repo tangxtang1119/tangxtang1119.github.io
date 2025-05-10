@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+  
+
+    <head>
+      <meta charset="utf-8" />
+        
+      <meta name="description" content="‘有志少女 先读书’" />
+      
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>CTF练习 |  tangxtang</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      
+<link rel="stylesheet" href="/css/fonts/remixicon.css">
+
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.staticfile.org/pace/1.2.4/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    </head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-CTF练习"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  CTF练习
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2025/05/05/CTF%E7%BB%83%E4%B9%A0/" class="article-date">
+  <time datetime="2025-05-04T16:00:00.000Z" itemprop="datePublished">2025-05-05</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AB%9E%E8%B5%9B/">竞赛</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">4.4k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">18 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="IDA-Pro快速上手"><a href="#IDA-Pro快速上手" class="headerlink" title="IDA Pro快速上手"></a>IDA Pro快速上手</h1><p>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/Python_0011/article/details/146866529">IDA Pro的使用CSDN</a></p>
+<p>来源：BUUCTF 	题目：easyre</p>
+<h2 id="打开软件"><a href="#打开软件" class="headerlink" title="打开软件"></a>打开软件</h2><p>打开IDA，会看到 “New” 和 “Go” 两个选项。”New” 是直接打开程序，”Go” 是先启动 IDA 界面。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/IDA%E6%89%93%E5%BC%80%E7%95%8C%E9%9D%A2.png"></p>
+<p>选 “Go”，启动后，在菜单栏里点 “File” -&gt; “Open”，找到要分析的程序。然后会跳出个窗口，默认设置就好。</p>
+<h3 id="加载文件配置窗口"><a href="#加载文件配置窗口" class="headerlink" title="加载文件配置窗口"></a>加载文件配置窗口</h3><p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/Load_a_new_file.png"></p>
+<p>这个界面是一个IDA Pro或类似的逆向工程软件在加载可执行文件时显示的配置对话框。以下是各部分的解释：</p>
+<p><strong>1. 文件加载信息</strong></p>
+<ul>
+<li><strong><code>Load file F:\AA-Reversing\BUUCTF\easyre\easyre.exe as</code></strong><br>  表示正在加载的可执行文件路径和名称（<code>easyre.exe</code>），并询问以何种格式解析该文件。<br>  提供的选项包括：<ul>
+<li>**Portable executable for AMD64 (PE) [pe.dll]**：将文件解析为64位PE格式（Windows可执行文件）。</li>
+<li>**MS-DOS executable (EXE) [dos.dll]**：将文件解析为MS-DOS格式（旧版兼容模式）。</li>
+<li><strong>Binary file</strong>：直接以二进制文件形式加载（无自动解析）。</li>
+</ul>
+</li>
+</ul>
+<p><strong>2. 处理器类型（Processor type）</strong></p>
+<p>选择目标文件的CPU架构，通常工具会根据文件头自动识别，但也可手动调整。例如：</p>
+<ul>
+<li><strong>Intel Pentium protected with MMX</strong>：保护模式下的x86指令集（常见于Windows&#x2F;Linux可执行文件）。</li>
+<li><strong>Intel Pentium real with MMX</strong>：实模式（常见于DOS程序）。</li>
+<li><strong>MetaPC</strong>：通用反汇编模式。</li>
+<li><strong>Intel 860</strong>：较少见的架构（通常不用于常规逆向）。</li>
+</ul>
+<p><strong>3. 加载段配置（Loading segment&#x2F;offset）</strong></p>
+<ul>
+<li><strong>Loading segment 0x0000000000000000</strong><br>  指定代码段的起始地址（通常PE文件会从<code>0x00400000</code>开始，此处可能是默认值或手动输入）。</li>
+<li><strong>Loading offset 0x0000000000000000</strong><br>  指定文件在内存中的偏移量（与段地址配合使用）。</li>
+</ul>
+<p><strong>4. 分析选项（Analysis&#x2F;Options）</strong></p>
+<ul>
+<li><strong>Enabled</strong>：是否启用自动分析（如识别函数、字符串等）。</li>
+<li><strong>Create segments</strong>：自动创建代码&#x2F;数据段。</li>
+<li><strong>Load resources</strong>：加载PE文件的资源部分（如图标、字符串表）。</li>
+<li><strong>Fill segment gaps</strong>：填充段之间的空隙（对齐内存）。</li>
+<li><strong>Create FLAT group</strong>：将段合并为平坦内存模型（简化地址计算）。</li>
+<li><strong>Manual load</strong>：手动加载（高级用户自定义配置）。</li>
+</ul>
+<p><strong>5. 底部按钮</strong></p>
+<ul>
+<li><strong>OK</strong>：确认配置并加载文件。</li>
+<li><strong>Cancel</strong>：取消加载。</li>
+<li><strong>Help</strong>：查看帮助文档。</li>
+</ul>
+<p><strong>用户操作建议</strong></p>
+<ol>
+<li><strong>保持默认选项</strong>：如果是标准的Windows PE文件（如<code>easyre.exe</code>），直接选择<code>Portable executable for AMD64</code>并点击<code>OK</code>。</li>
+<li><strong>手动调整</strong>：若文件特殊（如加壳、混淆），可能需要修改处理器类型或关闭自动分析。</li>
+<li><strong>错误处理</strong>：如果加载后代码混乱，可能是架构选错，需重新尝试其他选项。</li>
+</ol>
+<p>这个界面主要用于确保工具正确解析文件结构和指令集，是逆向工程的第一步。</p>
+<h3 id="DWARF调试信息-配置窗口"><a href="#DWARF调试信息-配置窗口" class="headerlink" title="DWARF调试信息 配置窗口"></a><strong>DWARF调试信息</strong> 配置窗口</h3><p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/DWARF%E8%B0%83%E8%AF%95%E9%85%8D%E7%BD%AE%E7%95%8C%E9%9D%A2.png"></p>
+<p>检测到目标文件中包含 <strong>DWARF调试信息</strong> 时弹出的配置对话框。</p>
+<p>DWARF是一种常见的调试数据格式（主要用于ELF文件，如Linux&#x2F;gcc编译的程序），包含函数名、变量类型、源代码行号等高级信息。以下是各选项的详细解释：</p>
+<p><strong>1. 核心选项</strong></p>
+<ul>
+<li><strong><code>Global names</code></strong><br>  加载全局变量和符号的名称（如<code>g_counter</code>）。勾选后，逆向时能看到更有意义的变量名。</li>
+<li><strong><code>Functions</code></strong><br>  <strong>（默认勾选）</strong> 加载函数名和边界信息（如<code>main()</code>、<code>sub_401000</code>会被替换为原始函数名）。</li>
+<li><strong><code>Use function bounds</code></strong><br>  严格按DWARF信息定义函数范围（避免工具错误分割函数）。</li>
+</ul>
+<p><strong>2. 类型与调用约定</strong></p>
+<ul>
+<li><strong><code>Types (uncheck for speed)</code></strong><br>  <strong>（默认勾选）</strong> 加载变量&#x2F;结构体的类型信息（如<code>int</code>、<code>char*</code>）。取消勾选可加快加载速度，但会丢失类型提示。</li>
+<li><strong><code>Apply calling conventions</code></strong><br>  <strong>（默认勾选）</strong> 应用DWARF中记录的调用约定（如<code>cdecl</code>、<code>fastcall</code>），确保反汇编的调用逻辑准确。</li>
+<li><strong><code>Allow __usercall</code></strong><br>  <strong>（默认勾选）</strong> 支持非标准调用约定（如用户自定义的寄存器传参方式）。</li>
+<li><strong><code>Function prototypes are definitive</code></strong><br>  <strong>（默认勾选）</strong> 强制使用DWARF中的函数原型（覆盖工具的自动推断）。</li>
+</ul>
+<p><strong>3. 源代码关联</strong></p>
+<ul>
+<li><strong><code>Import file names/line numbers</code></strong><br>  关联源代码文件名和行号（需DWARF中包含编译路径信息）。勾选后，反汇编窗口可能显示类似<code>/home/user/src/main.c:10</code>的注释。</li>
+</ul>
+<p><strong>4. 底部按钮</strong></p>
+<ul>
+<li><strong><code>Yes</code></strong> 确认加载DWARF信息（推荐勾选所需选项后点击）。</li>
+<li><strong><code>No</code></strong> 忽略DWARF信息，仅按二进制文件分析。</li>
+</ul>
+<p><strong>用户操作建议</strong></p>
+<ol>
+<li><strong>常规逆向</strong>：保持默认勾选（尤其是<code>Functions</code>和<code>Types</code>），以获取最大信息量。</li>
+<li><strong>性能优先</strong>：若文件较大，可取消<code>Types</code>或<code>Import file names/line numbers</code>加速加载。</li>
+<li><strong>混淆&#x2F;优化代码</strong>：若DWARF信息可能被篡改（如某些CTF题目），可关闭<code>Function prototypes are definitive</code>，避免误导。</li>
+<li><strong>无源码调试</strong>：即使勾选<code>Import file names/line numbers</code>，若DWARF中路径无效，则不会显示行号。</li>
+</ol>
+<h3 id="为什么重要？"><a href="#为什么重要？" class="headerlink" title="为什么重要？"></a><strong>为什么重要？</strong></h3><p>DWARF信息能极大提升逆向效率，例如：</p>
+<ul>
+<li>直接显示<code>main()</code>而非<code>sub_401000</code>。</li>
+<li>恢复结构体字段名（如<code>struct.user.name</code>）。</li>
+<li>识别库函数调用（如<code>strcpy</code>的参数类型）。<br>  但需注意：<strong>发布版本通常剥离DWARF</strong>，此界面多见于开发&#x2F;调试版本。</li>
+</ul>
+<h2 id="窗口介绍"><a href="#窗口介绍" class="headerlink" title="窗口介绍"></a>窗口介绍</h2><p>主窗口界面：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/IDA%E4%B8%BB%E7%AA%97%E5%8F%A3.png"></p>
+<ul>
+<li><p><strong>函数窗口 (Functions window)：</strong></p>
+<p>  在左侧的就是函数窗口，所有的后汉书都在此窗口列出。</p>
+<p>  拿到一个题目，一般从main函数开始，但main函数通常不会直接显示出来，所以需要点击窗口后用Ctrl+F搜一下。</p>
+<p>  <img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/IDA_Functions%20window.png"></p>
+</li>
+<li><p><strong>汇编窗口 (IDA views):</strong></p>
+<p>  这块是汇编代码的地盘，有两种显示方式：</p>
+<p>  1.图形模式</p>
+<p>  <img src="/CTF%E7%BB%83%E4%B9%A0.assets/image-20250505171601237.png"></p>
+<p>  2.文本模式</p>
+<p>  在图形模式下，右键选 “Text view” 或者按空格键就能切换到文本模式。</p>
+<p>  展示汇编代码和地址。<img src="/CTF%E7%BB%83%E4%B9%A0.assets/image-20250505173014063.png"></p>
+<ul>
+<li><p><strong>伪代码窗口：</strong></p>
+<p>  在汇编窗口文本模式中，对着函数按 <code>F5</code>，就能看到伪代码，把汇编语言变成了更易读的伪代码。</p>
+</li>
+</ul>
+<p>  <img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/IDA_views%E4%BC%AA%E4%BB%A3%E7%A0%81.png" alt="image-20250505180517503"></p>
+</li>
+<li><p><strong>十六进制窗口：</strong></p>
+<p>  虽然叫“十六进制窗口”，但它其实能显示各种格式，还能当十六进制编辑器用。默认情况下，它会显示程序的十六进制代码和对应的 ASCII 字符，每行 16 个字节。可以同时打开好几个十六进制窗口。</p>
+<p>  <img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/202505051809928.png"></p>
+</li>
+<li><p><strong>消息窗口：</strong></p>
+<p>  会显示 IDA 输出的信息，比如文件分析状态、操作错误等等，就像 Pycharm 的 Console 控制台。</p>
+<p>  <img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/202505051810911.png"></p>
+</li>
+<li><p><strong>导航栏：</strong></p>
+<p>  导航栏就是那条彩色的水平带，它能线性地展示被加载文件的地址空间。默认情况下，它会显示整个二进制文件的地址范围。右击导航栏，会显示一个提示，告诉你光标所在位置对应二进制文件中的哪个位置。</p>
+<p>  简单来说，点哪儿跳哪儿，不同的颜色代表不同的数据段，比如 data 段、text 段等等。</p>
+<p>  <img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/202505051811379.png"></p>
+</li>
+</ul>
+<h2 id="修正"><a href="#修正" class="headerlink" title="修正"></a>修正</h2><p>IDA在加载文件的时候会有些错误，需要手动纠正。</p>
+<ol>
+<li>函数修正：</li>
+</ol>
+<p>通常以 push ebp&#x2F;rbp 指令开头的地址是函数的起始地址，但 IDA 有时会认错。这时候，在起始地址的汇编代码处，按快捷键 P (或者右键选 “Create Function”)，就能把它变成函数。<br>2. 指令修正：</p>
+<p>如果 IDA 把某些指令识别错了，选中后按快捷键 D 就能手动修正。<br>3. 数据修正：</p>
+<p>在数据段，一个数据的长度可能是 1&#x2F;2&#x2F;4&#x2F;8 字节，用快捷键 D 可以修改类型。如果某部分数据是字符串但没被正确识别，按快捷键 A 就能把它变成 ASCII 字符串。</p>
+<h2 id="注释和重命名"><a href="#注释和重命名" class="headerlink" title="注释和重命名"></a>注释和重命名</h2><ul>
+<li><p><strong>重命名：</strong></p>
+<p>  在 IDA 里，你可以修改变量名、函数名等等，方便理解代码。在需要重命名的地方右键，选 “Rename” 就行。</p>
+<p>  <img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/202505051817181.png"></p>
+</li>
+<li><p><strong>注释：</strong></p>
+<p>  快捷键 <code>;</code> 可以在反汇编窗口加注释，快捷键 <code>/</code> 可以在反编译窗口加注释。IDA 还能自动给不常用架构的代码加注释，在 “Auto comments” 那里勾选就行。</p>
+<p>  <img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/202505051825870.png"></p>
+</li>
+</ul>
+<h2 id="交叉引用"><a href="#交叉引用" class="headerlink" title="交叉引用"></a>交叉引用</h2><ul>
+<li><p><strong>代码交叉引用：</strong></p>
+<p>  表示一个指令把控制权交给另一个指令，能帮忙了解指令和指令、指令和函数之间的调用关系。</p>
+</li>
+<li><p><strong>数据交叉引用：</strong></p>
+<p>  用于追踪二进制文件访问数据的情况，能让知道指令和数据之间有啥关系。这部分需要比较扎实的汇编知识。</p>
+</li>
+</ul>
+<h2 id="常用快捷键"><a href="#常用快捷键" class="headerlink" title="常用快捷键"></a>常用快捷键</h2><ul>
+<li><p>F5：</p>
+<p>  在汇编窗口里按 F5，能生成对应函数的伪代码。</p>
+</li>
+</ul>
+<ul>
+<li><p>Ctrl+F5：</p>
+<p>  可以把伪代码导出保存下来。</p>
+</li>
+<li><p>Shift+F12：</p>
+<p>  在汇编窗口里按 Shift+F12，能打开字符串窗口。所有字符串都在这儿展示，你可以搜一些关键字符串。双击某个字符串，就能跳到汇编窗口中该字符串对应的位置。用 Ctrl+F 可以查找字符串。</p>
+<p>  <img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/202505051953784.png"></p>
+</li>
+</ul>
+<ul>
+<li><p><strong>Ctrl+X (交叉引用)：</strong></p>
+<p>  在汇编窗口中，用 <code>Ctrl+X</code> 可以查看哪些函数引用了这个字符串或数据。点 “OK” 会跳到相应位置。</p>
+<p>  <img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/202505051955880.png"></p>
+</li>
+<li><p><strong>Alt+T (文本搜索)：</strong></p>
+<p>  IDA 文本搜索相当于在反汇编列表窗口文本模式下搜索子字符串。搜到字符串后，会自动跳到汇编窗口中对应的位置。</p>
+<p>  它只会查找完整的词，包括操作码助记符或常量。</p>
+<p>  选 “Find all occurences”，IDA 会在一个新窗口里显示所有搜索结果，方便你快速定位。</p>
+</li>
+<li><p><strong>跳转地址：</strong></p>
+<p>  汇编窗口左边是地址，右边是汇编代码。</p>
+<p>  在浏览代码的时候，可能会迷路。或者你知道想去的目标地址，但反汇编窗口里没有可供双击导航的名称。这时候，用 <code>G</code> 就能跳到指定位置。</p>
+</li>
+<li><p><strong>N (重命名)：</strong></p>
+<p>  可以把一些函数名或者变量名改成方便理解的名字。</p>
+</li>
+<li><p><strong>Ctrl+Z (撤回操作)：</strong></p>
+<p>  不小心改错了，Ctrl+Z回到上一步。</p>
+</li>
+</ul>
+<h2 id="数据类型转换快捷键"><a href="#数据类型转换快捷键" class="headerlink" title="数据类型转换快捷键"></a>数据类型转换快捷键</h2><p>当flag 是 16 进制 ASCII 值时，可以靠快捷键搞定。</p>
+<ul>
+<li><p>D (转换成数据形式)：</p>
+<p>  分析数据时，有时候需要把字符串转换成数据。</p>
+</li>
+</ul>
+<ul>
+<li><p>A (转换成字符形式)：</p>
+<p>  转换成字符串。</p>
+</li>
+<li><p>C (转换成汇编代码)：</p>
+<p>  转换成汇编代码。</p>
+</li>
+<li><p>U (转成原始字符)：</p>
+<p>  转换成最原始的状态。</p>
+</li>
+<li><p>Shift+E (导出数据)：</p>
+<p>  导出数据，选中后按 Shift+E，选你想导出的方式。</p>
+</li>
+</ul>
+<ul>
+<li><p><strong>数据转化形式：</strong></p>
+<p>  分析伪代码时，有时候要对数据进行类型转化。右键数据，会出现这些选项：</p>
+<p>  <img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/202505052002733.png"></p>
+<ul>
+<li>Hexadecimal: 十六进制</li>
+<li>Octal: 八进制</li>
+<li>Char: 字符</li>
+<li>Enum: 枚举</li>
+</ul>
+</li>
+</ul>
+<p>main函数翻成伪代码后：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> __fastcall <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, const <span class="type">char</span> **argv, const <span class="type">char</span> **envp)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">int</span> b; <span class="comment">// [rsp+28h] [rbp-8h] BYREF</span></span><br><span class="line">  <span class="type">int</span> b_1; <span class="comment">// [rsp+2Ch] [rbp-4h] BYREF</span></span><br><span class="line"></span><br><span class="line">  _main();</span><br><span class="line">  scanf(<span class="string">&quot;%d%d&quot;</span>, &amp;b_1, &amp;b);</span><br><span class="line">  <span class="keyword">if</span> ( b_1 == b )</span><br><span class="line">    printf(<span class="string">&quot;flag&#123;this_Is_a_EaSyRe&#125;&quot;</span>);</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    printf(<span class="string">&quot;sorry,you can&#x27;t get flag&quot;</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>分析出 <code>main</code> 函数的逻辑是：<strong>输入两个相同的数字 → 输出 flag</strong></p>
+<h2 id="解题方法"><a href="#解题方法" class="headerlink" title="解题方法"></a><strong>解题方法</strong></h2><h3 id="方法-1：直接运行程序并输入相同数字"><a href="#方法-1：直接运行程序并输入相同数字" class="headerlink" title="方法 1：直接运行程序并输入相同数字"></a><strong>方法 1：直接运行程序并输入相同数字</strong></h3><ol>
+<li><p><strong>运行程序</strong>（如果是 Windows 的 <code>.exe</code>，直接双击；如果是 Linux 的 ELF，用 <code>./program</code> 运行）。</p>
+</li>
+<li><p><strong>输入两个相同的数字</strong>，比如：</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">123</span><br><span class="line">123</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>程序输出 flag</strong>：</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;this_Is_a_EaSyRe&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="方法-2：直接修改二进制文件（硬编码绕过检查）"><a href="#方法-2：直接修改二进制文件（硬编码绕过检查）" class="headerlink" title="方法 2：直接修改二进制文件（硬编码绕过检查）"></a><strong>方法 2：直接修改二进制文件（硬编码绕过检查）</strong></h3><p>如果不想手动输入，可以修改汇编代码，让程序直接输出 flag（适用于逆向题目）：</p>
+<ol>
+<li>用 <strong>IDA&#x2F;Ghidra</strong> 找到 <code>if (b_1 == b)</code> 的判断部分。</li>
+<li>把 <code>JNE</code>（跳转如果不相等）改成 <code>JMP</code> 或 <code>NOP</code>，让程序直接执行 <code>printf(&quot;flag&#123;...&#125;&quot;)</code>。</li>
+<li>保存修改后的程序，运行即可直接得 flag。</li>
+</ol>
+<h1 id="adworld-xctf"><a href="#adworld-xctf" class="headerlink" title="adworld.xctf"></a>adworld.xctf</h1><h2 id="Reversing-x64Elf-100"><a href="#Reversing-x64Elf-100" class="headerlink" title="Reversing-x64Elf-100"></a>Reversing-x64Elf-100</h2><p>方向：Reverse	工具：IDA Pro</p>
+<h3 id="查看main函数"><a href="#查看main函数" class="headerlink" title="查看main函数"></a>查看main函数</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">__int64 __fastcall <span class="title function_">main</span><span class="params">(<span class="type">int</span> a1, <span class="type">char</span> **a2, <span class="type">char</span> **a3)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">char</span> s[<span class="number">264</span>]; <span class="comment">// [rsp+0h] [rbp-110h] BYREF</span></span><br><span class="line">  unsigned __int64 v5; <span class="comment">// [rsp+108h] [rbp-8h]</span></span><br><span class="line"></span><br><span class="line">  v5 = __readfsqword(0x28u);</span><br><span class="line">  printf(<span class="string">&quot;Enter the password: &quot;</span>);</span><br><span class="line">  <span class="keyword">if</span> ( !fgets(s, <span class="number">255</span>, stdin) )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">if</span> ( (unsigned <span class="type">int</span>)sub_4006FD(s) )</span><br><span class="line">  &#123;</span><br><span class="line">    puts(<span class="string">&quot;Incorrect password!&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">  &#123;</span><br><span class="line">    puts(<span class="string">&quot;Nice!&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="关键点sub-4006FD"><a href="#关键点sub-4006FD" class="headerlink" title="关键点sub_4006FD"></a>关键点sub_4006FD</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">__int64 __fastcall <span class="title function_">sub_4006FD</span><span class="params">(__int64 p_s)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">int</span> n11; <span class="comment">// [rsp+14h] [rbp-24h]</span></span><br><span class="line">  _QWORD v3[<span class="number">4</span>]; <span class="comment">// [rsp+18h] [rbp-20h]</span></span><br><span class="line"></span><br><span class="line">  v3[<span class="number">0</span>] = <span class="string">&quot;Dufhbmf&quot;</span>;</span><br><span class="line">  v3[<span class="number">1</span>] = <span class="string">&quot;pG`imos&quot;</span>;</span><br><span class="line">  v3[<span class="number">2</span>] = <span class="string">&quot;ewUglpt&quot;</span>;</span><br><span class="line">  <span class="keyword">for</span> ( n11 = <span class="number">0</span>; n11 &lt;= <span class="number">11</span>; ++n11 )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> ( *(<span class="type">char</span> *)(v3[n11 % <span class="number">3</span>] + <span class="number">2</span> * (n11 / <span class="number">3</span>)) - *(<span class="type">char</span> *)(n11 + p_s) != <span class="number">1</span> )</span><br><span class="line">      <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个函数 <strong>检查输入的字符串 <code>p_s</code> 是否符合某种规律</strong>，如果符合返回 <code>0</code>，否则返回 <code>1</code>。<br>（可以理解为 <strong>“密码验证”</strong> 逻辑，输入正确则返回 <code>0</code>，错误返回 <code>1</code>。）</p>
+<h4 id="函数参数和变量"><a href="#函数参数和变量" class="headerlink" title="函数参数和变量"></a><strong>函数参数和变量</strong></h4><ul>
+<li><strong>参数</strong>：<code>p_s</code> 是一个指向输入字符串的指针（<code>char*</code> 类型）。</li>
+<li><strong>局部变量</strong>：<ul>
+<li><code>n11</code>：循环计数器（<code>int</code> 类型）。</li>
+<li><code>v3</code>：一个包含 3 个字符串指针的数组（<code>_QWORD[4]</code>，实际只用了前 3 个）。</li>
+</ul>
+</li>
+</ul>
+<h4 id="字符串数组-v3"><a href="#字符串数组-v3" class="headerlink" title="字符串数组 v3"></a><strong>字符串数组 v3</strong></h4><p><code>v3</code> 初始化了 3 个字符串：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">v3[<span class="number">0</span>] = <span class="string">&quot;Dufhbmf&quot;</span>;</span><br><span class="line">v3[<span class="number">1</span>] = <span class="string">&quot;pG`imos&quot;</span>;</span><br><span class="line">v3[<span class="number">2</span>] = <span class="string">&quot;ewUglpt&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<h4 id="核心逻辑（循环检查）"><a href="#核心逻辑（循环检查）" class="headerlink" title="核心逻辑（循环检查）"></a><strong>核心逻辑（循环检查）</strong></h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> ( n11 = <span class="number">0</span>; n11 &lt;= <span class="number">11</span>; ++n11 ) &#123;</span><br><span class="line">    <span class="keyword">if</span> ( *(<span class="type">char</span> *)(v3[n11 % <span class="number">3</span>] + <span class="number">2</span> * (n11 / <span class="number">3</span>)) - *(<span class="type">char</span> *)(n11 + p_s) != <span class="number">1</span> )</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+
+<h4 id="关键点解析"><a href="#关键点解析" class="headerlink" title="关键点解析"></a><strong>关键点解析</strong></h4><ol>
+<li><strong>循环范围</strong>：<code>n11</code> 从 <code>0</code> 到 <code>11</code>，说明输入字符串长度应为 <strong>12</strong>。</li>
+<li><strong>字符选择逻辑</strong>：<ul>
+<li><code>v3[n11 % 3]</code>：从 <code>v3[0]</code>、<code>v3[1]</code>、<code>v3[2]</code> 中循环选择字符串。</li>
+<li><code>2 * (n11 / 3)</code>：每 3 个字符后，偏移量增加 2。</li>
+<li><code>*(char *)(...)</code>：获取对应位置的字符。</li>
+</ul>
+</li>
+<li><strong>条件判断</strong>：<ul>
+<li><code>v3 中的字符 - 输入字符 == 1</code>。</li>
+<li>如果不满足，返回 <code>1</code>（失败）；否则返回 <code>0</code>（成功）。</li>
+</ul>
+</li>
+</ol>
+<h3 id="解密"><a href="#解密" class="headerlink" title="解密"></a><strong>解密</strong></h3><p>我们需要找到一个长度为 12 的字符串 <code>s</code>，使得：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">12</span>):</span><br><span class="line">    v3_char = v3[i % <span class="number">3</span>][<span class="number">2</span> * (i // <span class="number">3</span>)]</span><br><span class="line">    <span class="keyword">assert</span> <span class="built_in">ord</span>(v3_char) - <span class="built_in">ord</span>(s[i]) == <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<p>即：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s[i] = <span class="built_in">chr</span>(<span class="built_in">ord</span>(v3[i % <span class="number">3</span>][<span class="number">2</span> * (i // <span class="number">3</span>)]) - <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<p><strong><code>ord()</code> 函数</strong></p>
+<ul>
+<li><strong>作用</strong>：返回字符的 <strong>ASCII 码值</strong>（整数）</li>
+</ul>
+<p><strong><code>assert</code> 语句</strong></p>
+<ul>
+<li><strong>作用</strong>：断言条件是否为真。如果为假，程序会抛出 <code>AssertionError</code> 并终止。</li>
+</ul>
+<h5 id="计算步骤"><a href="#计算步骤" class="headerlink" title="计算步骤"></a><strong>计算步骤</strong></h5><ol>
+<li><p><strong><code>n11 % 3</code></strong> 决定使用 <code>v3</code> 的哪个字符串：</p>
+<ul>
+<li><code>n11=0,3,6,9</code> → <code>v3[0] = &quot;Dufhbmf&quot;</code></li>
+<li><code>n11=1,4,7,10</code> → <code>v3[1] = &quot;pG</code>imos”&#96;</li>
+<li><code>n11=2,5,8,11</code> → <code>v3[2] = &quot;ewUglpt&quot;</code></li>
+</ul>
+</li>
+<li><p><strong><code>2 \* (n11 / 3)</code></strong> 决定取该字符串的第几个字符：</p>
+<ul>
+<li><code>n11=0,1,2</code> → <code>0/3=0</code> → 取第 <code>0</code> 个字符</li>
+<li><code>n11=3,4,5</code> → <code>3/3=1</code> → 取第 <code>2</code> 个字符</li>
+<li><code>n11=6,7,8</code> → <code>6/3=2</code> → 取第 <code>4</code> 个字符</li>
+<li><code>n11=9,10,11</code> → <code>9/3=3</code> → 取第 <code>6</code> 个字符</li>
+</ul>
+</li>
+<li><p>**计算 <code>p_s[n11]</code>**：</p>
+<ul>
+<li>取 <code>v3[n11 % 3][2 * (n11 / 3)]</code> 的字符，然后 <strong>ASCII 码减 1</strong>。</li>
+</ul>
+</li>
+<li><p><strong>计算示例</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><code>n11</code></th>
+<th align="left"><code>n11%3</code></th>
+<th align="left"><code>v3</code> 字符串</th>
+<th align="left"><code>2*(n11/3)</code></th>
+<th align="left">取字符</th>
+<th align="left"><code>p_s[n11]</code> (字符-1)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">“Dufhbmf”</td>
+<td align="left">0</td>
+<td align="left">‘D’</td>
+<td align="left">‘C’</td>
+</tr>
+<tr>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">“pG&#96;imos”</td>
+<td align="left">0</td>
+<td align="left">‘p’</td>
+<td align="left">‘o’</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">“ewUglpt”</td>
+<td align="left">0</td>
+<td align="left">‘e’</td>
+<td align="left">‘d’</td>
+</tr>
+<tr>
+<td align="left">3</td>
+<td align="left">0</td>
+<td align="left">“Dufhbmf”</td>
+<td align="left">2</td>
+<td align="left">‘f’</td>
+<td align="left">‘e’</td>
+</tr>
+<tr>
+<td align="left">4</td>
+<td align="left">1</td>
+<td align="left">“pG&#96;imos”</td>
+<td align="left">2</td>
+<td align="left">‘&#96;’</td>
+<td align="left">‘_’</td>
+</tr>
+<tr>
+<td align="left">5</td>
+<td align="left">2</td>
+<td align="left">“ewUglpt”</td>
+<td align="left">2</td>
+<td align="left">‘U’</td>
+<td align="left">‘T’</td>
+</tr>
+<tr>
+<td align="left">6</td>
+<td align="left">0</td>
+<td align="left">“Dufhbmf”</td>
+<td align="left">4</td>
+<td align="left">‘b’</td>
+<td align="left">‘a’</td>
+</tr>
+<tr>
+<td align="left">7</td>
+<td align="left">1</td>
+<td align="left">“pG&#96;imos”</td>
+<td align="left">4</td>
+<td align="left">‘m’</td>
+<td align="left">‘l’</td>
+</tr>
+<tr>
+<td align="left">8</td>
+<td align="left">2</td>
+<td align="left">“ewUglpt”</td>
+<td align="left">4</td>
+<td align="left">‘l’</td>
+<td align="left">‘k’</td>
+</tr>
+<tr>
+<td align="left">9</td>
+<td align="left">0</td>
+<td align="left">“Dufhbmf”</td>
+<td align="left">6</td>
+<td align="left">‘f’</td>
+<td align="left">‘e’</td>
+</tr>
+<tr>
+<td align="left">10</td>
+<td align="left">1</td>
+<td align="left">“pG&#96;imos”</td>
+<td align="left">6</td>
+<td align="left">‘s’</td>
+<td align="left">‘r’</td>
+</tr>
+<tr>
+<td align="left">11</td>
+<td align="left">2</td>
+<td align="left">“ewUglpt”</td>
+<td align="left">6</td>
+<td align="left">‘t’</td>
+<td align="left">‘s’</td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+<p><strong>最终 <code>p_s</code>（输入字符串）</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C o d e _ T a l k e r s</span><br></pre></td></tr></table></figure>
+
+<p>（去掉空格：<code>Code_Talkers</code>）</p>
+<p>答案：flag{Code_Talkers}</p>
+<h2 id="easyRE1"><a href="#easyRE1" class="headerlink" title="easyRE1"></a>easyRE1</h2><p>方向：Reverse	工具：IDA Pro</p>
+<p>答案：flag{db2f62a36a018bce28e46d976e3f9864}</p>
+<h2 id="666"><a href="#666" class="headerlink" title="666"></a>666</h2><p>方向：Reverse	工具：IDA Pro</p>
+<h3 id="main函数"><a href="#main函数" class="headerlink" title="main函数"></a>main函数</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">nt __fastcall <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, const <span class="type">char</span> **argv, const <span class="type">char</span> **envp)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">char</span> s[<span class="number">240</span>]; <span class="comment">// [rsp+0h] [rbp-1E0h] BYREF</span></span><br><span class="line">  <span class="type">char</span> s_[<span class="number">240</span>]; <span class="comment">// [rsp+F0h] [rbp-F0h] BYREF</span></span><br><span class="line"></span><br><span class="line">  memset(s, <span class="number">0</span>, 0x1Eu);</span><br><span class="line">  printf(<span class="string">&quot;Please Input Key: &quot;</span>);</span><br><span class="line">  __isoc99_scanf(<span class="string">&quot;%s&quot;</span>, s_);</span><br><span class="line">  encode(s_, s);</span><br><span class="line">  <span class="keyword">if</span> ( strlen(s_) == key )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> ( !strcmp(s, enflag) )	<span class="comment">// &quot;izwhroz\&quot;\&quot;w\&quot;v.K\&quot;.Ni&quot;</span></span><br><span class="line">      puts(<span class="string">&quot;You are Right&quot;</span>);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      puts(<span class="string">&quot;flag&#123;This_1s_f4cker_flag&#125;&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="关键点encode"><a href="#关键点encode" class="headerlink" title="关键点encode"></a>关键点encode</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> __fastcall <span class="title function_">encode</span><span class="params">(const <span class="type">char</span> *s, __int64 p_s)</span></span><br><span class="line">&#123;</span><br><span class="line">  _BYTE v3[<span class="number">104</span>]; <span class="comment">// [rsp+10h] [rbp-70h]</span></span><br><span class="line">  <span class="type">int</span> v4; <span class="comment">// [rsp+78h] [rbp-8h]</span></span><br><span class="line">  <span class="type">int</span> key; <span class="comment">// [rsp+7Ch] [rbp-4h]</span></span><br><span class="line"></span><br><span class="line">  key = <span class="number">0</span>;</span><br><span class="line">  v4 = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">if</span> ( strlen(s) != ::key )</span><br><span class="line">    <span class="keyword">return</span> puts(<span class="string">&quot;Your Length is Wrong&quot;</span>);</span><br><span class="line">  <span class="keyword">for</span> ( key = <span class="number">0</span>; key &lt; ::key; key += <span class="number">3</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    v3[key + <span class="number">64</span>] = ::key ^ (s[key] + <span class="number">6</span>);</span><br><span class="line">    v3[key + <span class="number">33</span>] = (s[key + <span class="number">1</span>] - <span class="number">6</span>) ^ ::key;</span><br><span class="line">    v3[key + <span class="number">2</span>] = s[key + <span class="number">2</span>] ^ <span class="number">6</span> ^ ::key;</span><br><span class="line">    *(_BYTE *)(p_s + key) = v3[key + <span class="number">64</span>];</span><br><span class="line">    *(_BYTE *)(p_s + key + 1LL) = v3[key + <span class="number">33</span>];</span><br><span class="line">    *(_BYTE *)(p_s + key + 2LL) = v3[key + <span class="number">2</span>];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> p_s;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个函数 <strong>对输入的字符串 <code>s</code> 进行加密</strong>，并将结果存储到 <code>p_s</code> 指向的内存中。<br>加密过程涉及 <strong>按 3 字节分组处理</strong>，每组分别使用不同的运算规则。</p>
+<h4 id="函数参数和变量-1"><a href="#函数参数和变量-1" class="headerlink" title="函数参数和变量"></a>函数参数和变量</h4><ul>
+<li>**<code>s</code>**：输入的明文字符串。</li>
+<li>**<code>p_s</code>**：存储加密结果的缓冲区。</li>
+<li>**<code>::key</code>**：一个全局变量，表示 <strong>密钥</strong> 或 <strong>字符串长度</strong>（从 <code>if (strlen(s) != ::key)</code> 可推测）。</li>
+<li>**<code>v3</code>**：临时缓冲区，用于存储中间加密结果。</li>
+</ul>
+<h4 id="加密逻辑"><a href="#加密逻辑" class="headerlink" title="加密逻辑"></a><strong>加密逻辑</strong></h4><ol>
+<li><p><strong>检查输入长度</strong>：</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (strlen(s) != ::key)</span><br><span class="line">  <span class="keyword">return</span> puts(<span class="string">&quot;Your Length is Wrong&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>输入字符串 <code>s</code> 的长度必须等于 <code>::key</code>，否则报错。</li>
+</ul>
+</li>
+<li><p><strong>按 3 字节分组加密</strong>：</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (key = <span class="number">0</span>; key &lt; ::key; key += <span class="number">3</span>) &#123;</span><br><span class="line">    <span class="comment">// 处理 s[key], s[key+1], s[key+2]</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>每次循环处理 <strong>3 个字符</strong>，分别进行不同的运算：</p>
+<ul>
+<li><p>**第 1 个字符 <code>s[key]</code>**：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">v3[key + 64] = ::key ^ (s[key] + 6);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>**第 2 个字符 <code>s[key + 1]</code>**：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">v3[key + 33] = (s[key + 1] - 6) ^ ::key;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>**第 3 个字符 <code>s[key + 2]</code>**：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">v3[key + 2] = s[key + 2] ^ 6 ^ ::key;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>存储加密结果</strong>：</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">*(_BYTE *)(p_s + key) = v3[key + 64];</span><br><span class="line">*(_BYTE *)(p_s + key + 1LL) = v3[key + 33];</span><br><span class="line">*(_BYTE *)(p_s + key + 2LL) = v3[key + 2];</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>将加密后的 3 个字符存入 <code>p_s</code>。</li>
+</ul>
+</li>
+<li><p><strong>逆向解密方法</strong></p>
+<p> 要还原明文 <code>s</code>，需 <strong>逆向运算</strong> 加密逻辑：</p>
+<ol>
+<li><p>**假设已知 <code>::key</code>**：</p>
+<ul>
+<li>从 <code>if (strlen(s) != ::key)</code> 可推测 <code>::key</code> 是输入字符串的长度。</li>
+<li>若 <code>::key</code> 未知，可能需要动态调试或进一步分析。</li>
+</ul>
+</li>
+<li><p><strong>解密公式</strong>：</p>
+<ul>
+<li><p>**第 1 个字符 <code>s[key]</code>**：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s[key] = (p_s[key] ^ ::key) - 6;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>**第 2 个字符 <code>s[key + 1]</code>**：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s[key + 1] = (p_s[key + 1] ^ ::key) + 6;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>**第 3 个字符 <code>s[key + 2]</code>**：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s[key + 2] = p_s[key + 2] ^ 6 ^ ::key;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>分组处理</strong>：</p>
+<ul>
+<li>每 3 个加密字符对应 3 个明文字符。</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p><strong>确定 <code>::key</code></strong></p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.data:0000000000004080                 public key</span><br><span class="line">.data:0000000000004080 key             dd 12h                  ; DATA XREF: encode+2D↑r</span><br><span class="line">.data:0000000000004080                                         ; encode+5F↑r ...</span><br><span class="line">.data:0000000000004080 _data           ends</span><br><span class="line">.data:0000000000004080</span><br></pre></td></tr></table></figure>
+
+<p> 双击找到</p>
+</li>
+</ol>
+<p>答案：flag{}</p>
+<h2 id="bad-python"><a href="#bad-python" class="headerlink" title="bad_python"></a>bad_python</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_55038440/article/details/136580205">Reverse逆向：pyc字节码转py文件（python）_pycdc.exe-CSDN博客</a></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://tangxtang1119.github.io/2025/05/05/CTF%E7%BB%83%E4%B9%A0/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Reverse/" rel="tag">Reverse</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+    
+      <a href="/2025/05/01/%E5%9F%BA%E7%A1%80%E6%80%BB%E7%BB%93/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">基础总结</div>
+      </a>
+    
+  </nav>
+
+   
+ 
+   
+  
+   
+    <script src="https://cdn.staticfile.org/twikoo/1.4.18/twikoo.all.min.js"></script>
+    <div id="twikoo" class="twikoo"></div>
+    <script>
+        twikoo.init({
+            envId: ""
+        })
+    </script>
+ 
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2025
+        <i class="ri-heart-fill heart_icon"></i> 唐小唐
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/yuhangyuan.ico" alt="tangxtang"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i></p>
+  <div class="reward-box">
+    
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.staticfile.org/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.staticfile.org/clipboard.js/2.0.10/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    <div id="music">
+    
+    
+    
+    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="200" height="52"
+        src="//music.163.com/outchain/player?type=2&id=2658106011&auto=1&height=32"></iframe>
+</div>
+
+<style>
+    #music {
+        position: fixed;
+        right: 15px;
+        bottom: 0;
+        z-index: 998;
+    }
+</style>
+    
+    
+
+  </div>
+</body>
+
+</html>

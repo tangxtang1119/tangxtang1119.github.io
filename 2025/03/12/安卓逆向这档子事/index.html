@@ -86,7 +86,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">1.8k</span>
+            <span class="post-count">1.5k</span>
         </span>
     </span>
 
@@ -95,7 +95,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">6 分钟</span>
+            <span class="post-count">5 分钟</span>
         </span>
     </span>
 </div>
@@ -110,44 +110,7 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h1 id="一、初识APK"><a href="#一、初识APK" class="headerlink" title="一、初识APK"></a>一、初识APK</h1><h2 id="1-Apk文件结构"><a href="#1-Apk文件结构" class="headerlink" title="1.Apk文件结构"></a>1.Apk文件结构</h2><p>apk 全称 Android Package，它相当于一个压缩文件，只要在电脑上将apk后缀改为zip即可解压。</p>
-<table>
-<thead>
-<tr>
-<th>文件</th>
-<th>注释</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>assets目录</td>
-<td>存放APK的静态资源文件，比如视频，音频，图片等（不一定有但常见）</td>
-</tr>
-<tr>
-<td>lib目录</td>
-<td>armeabi-v7a基本通用所有Android设备，arm64-v8a只是用与64为的Android设备，x86常用于Android模拟器，其目录下的.so文件时c或者c++编译的动态链接库文件（不一定有但常见）</td>
-</tr>
-<tr>
-<td>META-INF目录</td>
-<td>保存应用的签名信息，签名信息可以验证APK文件的额完整性，相当于APK的身份验证（验证文件是否又被修改）</td>
-</tr>
-<tr>
-<td>res目录</td>
-<td>res目录存放资源文件，包括图片，字符串等，APK的 脸蛋由它的layout文件设计</td>
-</tr>
-<tr>
-<td>AndroidManifest.xml文件</td>
-<td>APK的应用清单信息，他描述了应用的名字，版本，权限，引用的库文件等信息</td>
-</tr>
-<tr>
-<td>classes.dex文件</td>
-<td>classes.dex是java原码编译后生成的java字节码文件，APK运行的主要逻辑</td>
-</tr>
-<tr>
-<td>reaources.arsc文件</td>
-<td>resources.arsc是编译后的二进制资源文件，它是一个映射表，映射着资源和id，通过R文件中的id就可以找到对应的资源</td>
-</tr>
-</tbody></table>
-<h2 id="2-双开及其原理"><a href="#2-双开及其原理" class="headerlink" title="2.双开及其原理"></a>2.双开及其原理</h2><p><strong>双开：简单来说，就是手机同时运行两个或多个相同的应用，例如同时运行两个微信</strong></p>
+  <h1 id="一、初识APK"><a href="#一、初识APK" class="headerlink" title="一、初识APK"></a>一、初识APK</h1><h2 id="1-双开及其原理"><a href="#1-双开及其原理" class="headerlink" title="1..双开及其原理"></a>1..双开及其原理</h2><p><strong>双开：简单来说，就是手机同时运行两个或多个相同的应用，例如同时运行两个微信</strong></p>
 <table>
 <thead>
 <tr>

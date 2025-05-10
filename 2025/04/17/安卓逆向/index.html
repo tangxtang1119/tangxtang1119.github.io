@@ -86,7 +86,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">13.5k</span>
+            <span class="post-count">18.9k</span>
         </span>
     </span>
 
@@ -95,7 +95,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">62 分钟</span>
+            <span class="post-count">83 分钟</span>
         </span>
     </span>
 </div>
@@ -110,7 +110,259 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h1 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h1><h2 id="一、创建一个新的项目"><a href="#一、创建一个新的项目" class="headerlink" title="一、创建一个新的项目"></a>一、<strong>创建一个新的项目</strong></h2><ol>
+  <h1 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h1><p>参考：[<a target="_blank" rel="noopener" href="https://bbs.kanxue.com/thread-285906.htm">原创]Android逆向0基础入门-APK全面解析,动调与脱壳-Android安全-看雪-安全社区|安全招聘|kanxue.com</a></p>
+<h3 id="雷电模拟器运行APK"><a href="#雷电模拟器运行APK" class="headerlink" title="雷电模拟器运行APK"></a>雷电模拟器运行APK</h3><p><strong>雷电模拟器</strong>，作为安卓模拟器的佼佼者，一直以来备受用户青睐。它不仅可以让你在PC上畅快运行安卓应用，还能提供与手机端接近的使用体验，让你在开发、调试乃至游戏娱乐中都能游刃有余。安装雷电模拟器其实并不复杂，但要确保顺利完成，还是有一些细节需要关注。</p>
+<p>相关使用:<a target="_blank" rel="noopener" href="https://bbs.kanxue.com/elink@661K9s2c8@1M7s2y4Q4x3@1q4Q4x3V1k6Q4x3V1k6U0L8W2">雷电模拟器的使用 - 搜索</a><br>下载地址:<a target="_blank" rel="noopener" href="https://bbs.kanxue.com/elink@498K9s2c8@1M7s2y4Q4x3@1q4Q4x3V1k6Q4x3V1k6%4N6%4N6Q4x3X3g2D9k6r3#2F1M7g2">雷电模拟器官网_安卓模拟器_电脑手游模拟器</a></p>
+<h3 id="ADB的使用"><a href="#ADB的使用" class="headerlink" title="ADB的使用"></a>ADB的使用</h3><p><strong>ADB（Android Debug Bridge）</strong>，简直是安卓开发者和逆向工程师的“瑞士军刀”。无论是调试、安装应用，还是进行日志分析，ADB都是不可或缺的工具。你可能会认为ADB只是一个命令行工具，然而它的强大远超你的想象。<br>相关使用:<a target="_blank" rel="noopener" href="https://bbs.kanxue.com/elink@9a1K9s2c8@1M7s2y4Q4x3@1q4Q4x3V1k6Q4x3V1k6T1L8r3!0Y4i4K6u0W2j5%4y4V1L8W2">ADB安装及使用详解（非常详细）从零基础入门到精通，看完这一篇就够了-CSDN博客</a><br>下载地址:<a target="_blank" rel="noopener" href="https://bbs.kanxue.com/elink@9a3K9s2c8@1M7s2y4Q4x3@1q4Q4x3V1k6Q4x3V1k6V1L8q4">https://dl.google.com/android/repository/platform-tools-latest-windows.zip</a></p>
+<h3 id="使用JADX反编译APK"><a href="#使用JADX反编译APK" class="headerlink" title="使用JADX反编译APK"></a><strong>使用JADX反编译APK</strong></h3><p><strong>JADX</strong>是一款非常流行且功能强大的APK反编译工具，它能够将APK中的DEX文件（即Dalvik Executable文件）反编译成可读的Java源代码。JADX的优势不仅仅在于它的易用性，还在于它的反编译效果非常优秀，能够清晰地显示反编译后的Java代码，帮助开发者和安全人员深入理解应用的内部逻辑。</p>
+<h5 id="JADX的优点："><a href="#JADX的优点：" class="headerlink" title="JADX的优点："></a>JADX的优点：</h5><ul>
+<li><p><strong>易用性</strong>：图形界面的设计使得操作简单直观，适合初学者和经验丰富的开发者。</p>
+</li>
+<li><p><strong>高效的反编译效果</strong>：JADX能够将DEX文件反编译成非常接近原始Java代码的源代码，对于Java层的应用分析尤为高效。</p>
+</li>
+<li><p><strong>支持多种格式</strong>：除了反编译Java代码，JADX还支持查看APK中的资源文件（如图片、XML文件等），让你能够全面了解应用的构成。</p>
+<p>  相关使用:<a target="_blank" rel="noopener" href="https://bbs.kanxue.com/elink@17aK9s2c8@1M7s2y4Q4x3@1q4Q4x3V1k6Q4x3V1k6%4N6%4N6Q4x3X3g2U0L8X3u0D9L8$3N6K6i4K6u0W2j5$3!0E0i4K6u0r3j5%4W2%5E5i4K6u0V1j5W2">APK反编译工具jadx - chuyaoxin - 博客园</a><br>  下载地址:<a target="_blank" rel="noopener" href="https://bbs.kanxue.com/elink@bf8K9s2c8@1M7s2y4Q4x3@1q4Q4x3V1k6Q4x3V1k6V1L8%4N6F1i4K6u0W2y4e0u0H3L8$3A6A6k6g2">https://down.52pojie.cn/Tools/Android_Tools&#x2F;jadx-1.5.0.zip</a></p>
+</li>
+</ul>
+<h3 id="使用GAD进行APK反汇编"><a href="#使用GAD进行APK反汇编" class="headerlink" title="使用GAD进行APK反汇编"></a><strong>使用GAD进行APK反汇编</strong></h3><p>GAD（<strong>Google Android Disassembler</strong>）是一个专注于APK底层字节码分析的工具。与JADX不同，GAD更多侧重于字节码级别的反汇编，它能够帮助安全研究人员和开发者深入到应用的最底层，查看其具体的机器码和执行逻辑。GAD特别适用于那些对字节码和汇编语言感兴趣的逆向工程师，它可以帮助我们获得应用中深层次的行为信息。</p>
+<h5 id="GAD的优点："><a href="#GAD的优点：" class="headerlink" title="GAD的优点："></a><strong>GAD的优点：</strong></h5><ul>
+<li><strong>底层分析能力</strong>：GAD能够提供非常详细的底层字节码分析，帮助你更深入地理解应用的执行过程。</li>
+<li><strong>适用于高级分析</strong>：如果你需要分析复杂的应用行为或破解复杂的加密算法，GAD提供的反汇编信息可以帮助你做出准确的判断。<br>  相关使用:[<a target="_blank" rel="noopener" href="https://bbs.kanxue.com/thread-266700.htm">原创]GDA使用手册-Android安全-看雪-安全社区|安全招聘|kanxue.com</a><br>  下载地址:<a target="_blank" rel="noopener" href="https://bbs.kanxue.com/elink@204K9s2c8@1M7s2y4Q4x3@1q4Q4x3V1k6Q4x3V1k6V1L8%4N6F1i4K6u0W2y4e0u0H3L8$3A6A6k6g2">https://down.52pojie.cn/Tools/Android_Tools&#x2F;GDA4.11.zip</a></li>
+</ul>
+<h3 id="JEB进行APK反汇编"><a href="#JEB进行APK反汇编" class="headerlink" title="JEB进行APK反汇编"></a><strong>JEB进行APK反汇编</strong></h3><p><strong>JEB</strong>的魅力在于其高精度的反汇编能力。它不仅能解析传统的DEX文件，还能处理各类复杂的文件格式，包括加固过的APK、经过混淆处理的代码，甚至是一些非标准的Android文件结构。它像一把锐利的刀刃，切开了应用的“外壳”，揭示其最核心的部分。</p>
+<h5 id="JEB的优点："><a href="#JEB的优点：" class="headerlink" title="JEB的优点："></a><strong>JEB的优点：</strong></h5><ul>
+<li><strong>强大的反汇编能力</strong>:JEB不仅仅局限于常规的字节码反汇编，它能够对各种复杂和非标准格式的APK进行深入分析。</li>
+<li><strong>支持多种文件格式</strong> :JEB支持广泛的文件格式解析，除了DEX文件，还包括PE（Portable Executable）、ELF、Java字节码等多种格式。</li>
+<li><strong>高级功能与插件支持</strong> :JEB的插件架构极为强大，用户可以根据自己的需求，定制化扩展JEB的功能。<br>  相关使用:<a target="_blank" rel="noopener" href="https://bbs.kanxue.com/elink@d1fK9s2c8@1M7s2y4Q4x3@1q4Q4x3V1k6Q4x3V1k6T1L8r3!0Y4i4K6u0W2j5%4y4V1L8W2">第36讲: 使用Jeb工具反编译安卓APK_jeb反编译工具-CSDN博客</a><br>  下载地址:<a target="_blank" rel="noopener" href="https://bbs.kanxue.com/elink@b5bK9s2c8@1M7s2y4Q4x3@1q4Q4x3V1k6Q4x3V1k6V1L8%4N6F1i4K6u0W2y4e0u0H3L8$3A6A6k6g2">https://down.52pojie.cn/Tools/Android_Tools&#x2F;JEB_Decompiler_3.19.1_Professional.rar</a></li>
+</ul>
+<h3 id="IDA进行反汇编"><a href="#IDA进行反汇编" class="headerlink" title="IDA进行反汇编"></a>IDA进行反汇编</h3><p>进入<strong>IDA</strong>的世界，你将步入一个顶级的反汇编领域。<strong>IDA</strong>（Interactive Disassembler）是众多逆向工程师手中的“神器”，无论是操作系统、应用程序还是嵌入式系统，它都能提供无与伦比的反汇编支持。</p>
+<h5 id="IDA的优势："><a href="#IDA的优势：" class="headerlink" title="IDA的优势："></a><strong>IDA的优势：</strong></h5><ul>
+<li><strong>精确的反汇编能力</strong>：IDA能反汇编几乎所有的二进制文件格式，展示底层机器码及其执行路径，让逆向分析更加精准。</li>
+<li><strong>高度可扩展</strong>：IDA支持插件开发，用户可以根据需求扩展其功能，实现个性化分析。</li>
+<li><strong>复杂任务支持</strong>：IDA特别适合进行复杂的逆向分析任务，如破解软件、分析恶意代码等。<br>  相关使用:<a target="_blank" rel="noopener" href="https://bbs.kanxue.com/elink@9e3K9s2c8@1M7s2y4Q4x3@1q4Q4x3V1k6Q4x3V1k6T1L8r3!0Y4i4K6u0W2j5%4y4V1L8W2">菜鸟的逆向工程学习之路——逆向工具IDA的使用_ida工具-CSDN博客</a><br>  下载地址:<a target="_blank" rel="noopener" href="https://bbs.kanxue.com/elink@503K9s2c8@1M7s2y4Q4x3@1q4Q4x3V1k6Q4x3V1k6V1L8%4N6F1i4K6u0W2y4e0u0H3L8$3A6A6k6g2">https://down.52pojie.cn/Tools/Disassemblers/IDA_Pro_v8.3_Portable.zip</a></li>
+</ul>
+<h3 id="Frida脱壳工具的使用"><a href="#Frida脱壳工具的使用" class="headerlink" title="Frida脱壳工具的使用"></a>Frida脱壳工具的使用</h3><p>Frida 是一个强大的动态分析工具，广泛应用于反向工程和安全测试中，尤其是在对 Android 应用进行脱壳（解除保护）时，它能够帮助研究人员通过动态注入脚本来分析应用程序的行为。以下是使用 Frida 进行脱壳的环境配置和基本步骤。</p>
+<p>环境配置:<br>首先，确保你已经安装了 Frida 及其相关工具，可以通过以下命令进行安装：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pip install frida         # 安装 Frida 主库</span><br><span class="line">pip install frida-tools   # 安装 Frida 的工具集，提供命令行工具</span><br><span class="line">pip install frida-dexdump # 安装 frida-dexdump，用于分析 APK 文件的 dex 内容</span><br></pre></td></tr></table></figure>
+
+<p>这些工具将帮助你在 Android 环境中启动和操作 Frida Server，以及进行 APK 分析等操作。<br>Frida 的环境搭建并不复杂，特别是在虚拟设备（如雷电模拟器）和 Android Debug Bridge (ADB) 的支持下。具体的搭建流程可以参考以下链接：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://bbs.kanxue.com/elink@af5K9s2c8@1M7s2y4Q4x3@1q4Q4x3V1k6Q4x3V1k6T1L8r3!0Y4i4K6u0W2j5%4y4V1L8W2">Frida入门教程：基于逍遥模拟器和 ADB 环境搭建</a><br>  这个教程将详细介绍如何安装和配置 Frida 环境，并提供如何在模拟器和实际设备上运行 Frida Server 和脚本的操作步骤。</li>
+</ul>
+<h1 id="APK解析基础"><a href="#APK解析基础" class="headerlink" title="APK解析基础"></a>APK解析基础</h1><p>应用打包的核心文件——<strong>APK（Android Package）</strong></p>
+<p>APK 文件是Android操作系统中的应用程序包，它包含了应用的所有资源、代码和必要的配置文件。可以把APK看作一个容器，其中集成了Android应用的所有组成部分。</p>
+<h2 id="APK文件结构"><a href="#APK文件结构" class="headerlink" title="APK文件结构"></a>APK文件结构</h2><p>实际上，APK 文件是以 <strong>ZIP</strong> 格式进行压缩打包的，只要在电脑上将apk后缀改为zip即可解压。典型的APK文件的结构示例：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/202505101458101.png"></p>
+<p>APK <strong>文件通常包括以下几个主要部分</strong>：</p>
+<ol>
+<li><strong>AndroidManifest.xml</strong></li>
+<li><strong>classes.dex</strong></li>
+<li><strong>resources.arsc</strong></li>
+<li><strong>assets&#x2F;</strong></li>
+<li><strong>lib&#x2F;</strong></li>
+<li><strong>res&#x2F;</strong></li>
+<li><strong>META-INF&#x2F;</strong></li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>注释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>assets目录</td>
+<td>存放APK的静态资源文件，比如视频，音频，图片等（不一定有但常见）</td>
+</tr>
+<tr>
+<td>lib目录</td>
+<td>armeabi-v7a基本通用所有Android设备，arm64-v8a只是用与64为的Android设备，x86常用于Android模拟器，其目录下的.so文件时c或者c++编译的动态链接库文件（不一定有但常见）</td>
+</tr>
+<tr>
+<td>META-INF目录</td>
+<td>保存应用的签名信息，签名信息可以验证APK文件的额完整性，相当于APK的身份验证（验证文件是否又被修改）</td>
+</tr>
+<tr>
+<td>res目录</td>
+<td>res目录存放资源文件，包括图片，字符串等，APK的 脸蛋由它的layout文件设计</td>
+</tr>
+<tr>
+<td>AndroidManifest.xml文件</td>
+<td>APK的应用清单信息，他描述了应用的名字，版本，权限，引用的库文件等信息</td>
+</tr>
+<tr>
+<td>classes.dex文件</td>
+<td>classes.dex是java原码编译后生成的java字节码文件，APK运行的主要逻辑</td>
+</tr>
+<tr>
+<td>reaources.arsc文件</td>
+<td>resources.arsc是编译后的二进制资源文件，它是一个映射表，映射着资源和id，通过R文件中的id就可以找到对应的资源</td>
+</tr>
+</tbody></table>
+<h3 id="1-AndroidManifest-xml-关键核心"><a href="#1-AndroidManifest-xml-关键核心" class="headerlink" title="1.AndroidManifest.xml(关键核心)"></a>1.AndroidManifest.xml(关键核心)</h3><p><strong>AndroidManifest.xml</strong> 是每个Android应用不可或缺的配置文件，它包含了应用的关键信息。可以把它看作是应用的“蓝图”或“说明书”，它向系统声明了应用的基本属性、组件以及权限等。AndroidManifest.xml中包括以下重要部分：</p>
+<ul>
+<li><strong>应用的包名（package）</strong>：每个Android应用都有一个唯一的包名，通过包名来区分不同的应用。</li>
+<li><strong>应用的组件（Activities, Services, Broadcast Receivers, Content Providers）</strong>：声明应用包含哪些组件，以及这些组件的属性和功能。</li>
+<li><strong>权限声明</strong>：列出应用所需的权限，如访问网络、读取存储、使用相机等。</li>
+<li><strong>应用主题和图标</strong>：定义应用的UI样式、图标等。</li>
+<li><strong>最小SDK版本和目标SDK版本</strong>：确定应用能在什么版本的Android系统上运行。</li>
+</ul>
+<p><strong>详细解析Manifest中的关键字段</strong></p>
+<ul>
+<li>&lt;manifest&gt;：包含整个应用的包信息及权限定义。<ul>
+<li><code>package</code>: 定义了应用的包名，通常为反向域名格式，如<code>com.example.app</code>。</li>
+<li><code>android:versionCode</code>: 定义应用的版本号。</li>
+<li><code>android:versionName</code>: 定义应用的版本名称。</li>
+</ul>
+</li>
+<li>&lt;application&gt;：包含应用的核心配置，如主题、图标等。<ul>
+<li><code>android:icon</code>: 定义应用的图标。</li>
+<li><code>android:label</code>: 定义应用的名称。</li>
+<li><code>android:theme</code>: 应用的UI主题。</li>
+</ul>
+</li>
+<li>&lt;activity&gt; ：声明应用的各个界面（Activity），以及这些Activity的属性和行为。<ul>
+<li><code>android:name</code>: Activity的类名。</li>
+<li><code>android:label</code>: Activity的标签。</li>
+<li><code>android:theme</code>: Activity特有的UI主题。</li>
+</ul>
+</li>
+<li>&lt;uses-permission&gt;：声明应用所需要的权限，如访问网络、发送短信等。</li>
+<li>&lt;intent-filter&gt;：定义组件的功能和响应的事件，如Activity的启动方式或Broadcast Receiver接收的广播类型。</li>
+</ul>
+<h3 id="2-classes-dex"><a href="#2-classes-dex" class="headerlink" title="2. classes.dex"></a>2. classes.dex</h3><p><strong>classes.dex</strong> 文件包含了应用程序的可执行代码。它是应用的Dalvik字节码文件，也是Android应用在运行时通过 <strong>Dalvik虚拟机</strong> 或 <strong>ART（Android Runtime）</strong> 解释执行的核心文件。每个Android应用中，所有的Java源代码都经过编译后形成一个或多个DEX（Dalvik Executable）文件，这些文件包含了应用的业务逻辑和代码实现。<br>在Android 5.0（Lollipop）之后，Google引入了 <strong>ART（Android Runtime）</strong> 代替了传统的Dalvik虚拟机，ART的执行方式比Dalvik更高效，支持Ahead-of-Time（AOT）编译和即时编译（JIT）策略。<br>这部分比较难可以拓展阅读一下,相关文档:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://bbs.kanxue.com/elink@9e4K9s2c8@1M7s2y4Q4x3@1q4Q4x3V1k6Q4x3V1k6T1L8r3!0Y4i4K6u0W2j5%4y4V1L8W2">JAVA虚拟机、Dalvik虚拟机和ART虚拟机简要对比_java dalvik-CSDN博客</a></li>
+<li><a target="_blank" rel="noopener" href="https://bbs.kanxue.com/elink@4a8K9s2c8@1M7s2y4Q4x3@1q4Q4x3V1k6Q4x3V1k6T1L8r3!0Y4i4K6u0W2j5%4y4V1L8W2">安卓逆向学习—-smali,dex,java等文件之间转换关系_dex与smail-CSDN博客</a></li>
+</ul>
+<h3 id="3-resources-arsc"><a href="#3-resources-arsc" class="headerlink" title="3. resources.arsc"></a>3. resources.arsc</h3><p><strong>resources.arsc</strong> 文件包含了应用程序的所有编译后的资源映射信息。这个文件并不存储实际的资源内容（如图片或字符串），而是存储资源与资源ID的映射关系。例如，它会保存应用中的字符串、颜色、尺寸、样式等信息以及这些资源的ID。通过这个文件，Android系统能够在应用运行时快速访问和加载所需的资源。</p>
+<h3 id="4-assets"><a href="#4-assets" class="headerlink" title="4. assets&#x2F;"></a>4. assets&#x2F;</h3><p><strong>assets&#x2F;</strong> 目录包含了应用程序的原始资源文件，这些资源不经过编译，直接以原始形式存储。通常，开发者可以在该目录中存放字体文件、音频文件、HTML文件等，应用在运行时通过API来读取这些资源。例如，游戏可能会将所有的地图文件或纹理图像存放在此目录中。通过<code>AssetManager</code> API，应用可以访问这些文件。</p>
+<h3 id="5-lib"><a href="#5-lib" class="headerlink" title="5. lib&#x2F;"></a>5. lib&#x2F;</h3><p><strong>lib&#x2F;</strong> 目录包含了本地库文件，通常是通过 <strong>JNI（Java Native Interface）</strong> 与C&#x2F;C++编写的本地代码。这些库文件可以针对不同的硬件架构（如arm、x86等）进行编译，因此<code>lib/</code>目录下通常会为每个架构创建相应的子目录。这个目录中存放的本地库可以通过Java代码调用JNI接口实现与系统底层的交互。</p>
+<p>不同架构的手机拥有不同的操汇编代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">├─arm64-v8a</span><br><span class="line">│      libcyberpeace.so</span><br><span class="line">│</span><br><span class="line">├─armeabi-v7a</span><br><span class="line">│      libcyberpeace.so</span><br><span class="line">│</span><br><span class="line">├─x86</span><br><span class="line">│      libcyberpeace.so</span><br><span class="line">│</span><br><span class="line">└─x86_64</span><br><span class="line">        libcyberpeace.so</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-res"><a href="#6-res" class="headerlink" title="6. res&#x2F;"></a>6. res&#x2F;</h3><p><strong>res&#x2F;</strong> 目录包含了Android应用所需的所有资源文件。与 <strong>assets&#x2F;</strong> 目录不同，<strong>res&#x2F;</strong> 目录中的资源文件是<strong>经过编译</strong>的，按照不同类型的资源进行组织，例如：</p>
+<ul>
+<li><p>**drawable&#x2F;**：存放图像资源（如PNG、JPEG等格式的图片）。</p>
+</li>
+<li><p>**layout&#x2F;**：存放XML格式的布局文件，定义界面的结构。</p>
+</li>
+<li><p>values&#x2F;</p>
+<p>  ：存放各种配置文件，定义应用的常量、颜色、字符串等资源。例如：</p>
+<ul>
+<li><code>strings.xml</code>：存储应用的文本字符串。</li>
+<li><code>colors.xml</code>：存储应用使用的颜色资源。</li>
+<li><code>styles.xml</code>：存储样式资源。</li>
+</ul>
+</li>
+</ul>
+<p>在<code>values/</code>目录下，除了<code>strings.xml</code>、<code>colors.xml</code>等常见资源文件，还会有像<code>dimens.xml</code>（尺寸定义文件）和<code>attrs.xml</code>（自定义属性）等资源文件。</p>
+<p>可以在文件夹目录中找到也可以在jadx里面查看。</p>
+<h3 id="7-META-INF"><a href="#7-META-INF" class="headerlink" title="7.META-INF&#x2F;"></a>7.META-INF&#x2F;</h3><p><strong>META-INF&#x2F;</strong> 目录与Java的JAR文件类似，用于存放APK文件的元数据，如签名文件、校验信息等。此目录主要包括以下文件：</p>
+<ul>
+<li><strong>MANIFEST.MF</strong>：存放APK的清单文件，包含关于APK文件本身的信息。</li>
+<li><strong>CERT.RSA</strong>：包含APK文件的数字签名。</li>
+<li><strong>CERT.SF</strong>：存放APK文件的签名摘要。<br>  这些文件确保了APK的完整性和安全性，保证APK文件没有被篡改，且来自合法的开发者。</li>
+</ul>
+<h1 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h1><p>Android 逆向分析是一个深入挖掘应用内部工作原理的过程，通常用于漏洞挖掘、恶意软件分析或应用的安全性研究。</p>
+<ul>
+<li>Android APK 的反编译与结构分析</li>
+<li>剖析壳分析与绕过技术</li>
+<li>如何对资源与布局文件进行分析</li>
+<li>Java 层的逆向技巧</li>
+<li>如何在 Native 层执行逆向工程</li>
+<li>……</li>
+</ul>
+<h2 id="1-APK反编译与结构分析"><a href="#1-APK反编译与结构分析" class="headerlink" title="1. APK反编译与结构分析"></a>1. APK反编译与结构分析</h2><p><strong>如何找出程序的入口点</strong></p>
+<h3 id="定位入口点实战案例"><a href="#定位入口点实战案例" class="headerlink" title="定位入口点实战案例"></a>定位入口点实战案例</h3><blockquote>
+<p><strong>目标</strong>: 学习如何反编译 APK 文件并分析其结构，找出应用程序的入口点。<br><strong>文章</strong>: <a target="_blank" rel="noopener" href="https://bbs.kanxue.com/elink@670K9s2c8@1M7s2y4Q4x3@1q4Q4x3V1k6Q4x3V1k6T1L8r3!0Y4i4K6u0W2j5%4y4V1L8W2">android apk入口分析_5.apk的程序入口界面 - CSDN博客</a></p>
+<p><strong>实战案例</strong>:<a target="_blank" rel="noopener" href="https://bbs.kanxue.com/elink@489K9s2c8@1M7s2y4Q4x3@1q4Q4x3V1k6Q4x3V1k6T1N6i4g2G2K9W2">BUU刷题-简单注册器</a></p>
+<p><strong>更详细的WP</strong>:<a target="_blank" rel="noopener" href="https://bbs.kanxue.com/elink@6e5K9s2c8@1M7s2y4Q4x3@1q4Q4x3V1k6Q4x3V1k6%4N6%4N6Q4x3X3g2U0L8X3u0D9L8$3N6K6i4K6u0W2j5$3!0E0i4K6u0r3x3s2R3@1y4e0b7&6y4e0m8Q4x3V1k6S2M7Y4c8A6j5$3I4W2M7#2">BUUCTF之简单注册器(RE) - Eip的浪漫 - 博客园</a></p>
+</blockquote>
+<h3 id="基本app的逆向流程"><a href="#基本app的逆向流程" class="headerlink" title="基本app的逆向流程"></a>基本app的逆向流程</h3><ul>
+<li>获取APK文件</li>
+<li>反编译APK文件<ul>
+<li>使用工具JADX、dex2jar、或者JD-GUI</li>
+</ul>
+</li>
+<li>分析AndroidManifest.xml<ul>
+<li>查找入口点（Activity）</li>
+<li>查找权限、服务、广播接收器</li>
+</ul>
+</li>
+<li>分析Java层代码</li>
+<li>分析完毕</li>
+</ul>
+<p><strong>1.将apk拖入JADX后寻找到AndroidManifest.xml文件</strong></p>
+<p>它定义了应用的所有组件以及组件之间的关系，包括应用的入口点。打开反编译后的 APK 中的 <code>AndroidManifest.xml</code> 文件，查找 <code>&lt;activity&gt;</code> 标签，它们通常定义了应用的各个 Activity（包括启动 Activity）。</p>
+<p>入口点通常由以下两个标记表示：</p>
+<ul>
+<li><code>&lt;action android:name=&quot;android.intent.action.MAIN&quot; /&gt;</code>：标记这是应用的主入口。</li>
+<li><code>&lt;category android:name=&quot;android.intent.category.LAUNCHER&quot; /&gt;</code>：表示该 Activity 会出现在应用启动器中（即桌面）。</li>
+</ul>
+<p>所以最终得出该app的程序入口点代码是在<code>android:name=&quot;com.example.flag.MainActivity&quot;</code>处!          </p>
+<p> <strong>2.成功寻找到activity的代码入口处,开始分析activity的生命执行流程</strong>            </p>
+<p>根据<code>android:name=&quot;com.example.flag.MainActivity&quot;</code>字段成功找到Activity的功能实现代码位置,一个Activity的生命周期是:<strong><code>onCreate()</code>-&gt;<code>onStart()</code>-&gt;<code>onResume()</code>-&gt;<code>onPause()</code>-&gt;<code>onStop()</code>-&gt;<code>onDestroy()</code></strong>,所以可以先锁定omCreate函数,锁定app加载的主要逻辑!     </p>
+<p>3.开始分析按钮的逻辑代码,成功解析出需要输入的内容    </p>
+<p>4.理清楚解题脚本后,使用python代码实现flag输出   </p>
+<h4 id="寻找入口点流程梳理"><a href="#寻找入口点流程梳理" class="headerlink" title="寻找入口点流程梳理"></a><strong>寻找入口点流程梳理</strong></h4><p>每个 Android 应用的启动通常由一个 <code>Activity</code> 或者 <code>Service</code> 作为入口，通常位于 <code>AndroidManifest.xml</code> 中。我们可以通过以下步骤来快速找到入口点：</p>
+<ol>
+<li><p>**查看 **<code>AndroidManifest.xml</code>：这是每个 Android 应用的配置文件，包含应用的所有组件声明。入口 <code>Activity</code> 通常会在 <code>intent-filter</code> 中声明 <code>MAIN</code> action 和 <code>LAUNCHER</code> category。  例如：</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;manifest xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    android:versionCode=&quot;1&quot;  &lt;!-- 应用版本代码，用于区分不同版本的更新 --&gt;</span><br><span class="line">    android:versionName=&quot;1.0&quot;  &lt;!-- 应用版本名称，通常为可见版本号 --&gt;</span><br><span class="line">    package=&quot;com.example.flag&quot;&gt;  &lt;!-- 应用包名，唯一标识应用 --&gt;</span><br><span class="line">...</span><br><span class="line">    &lt;application</span><br><span class="line">    ...</span><br><span class="line">        &lt;!-- 定义应用的主 Activity --&gt;</span><br><span class="line">        &lt;activity</span><br><span class="line">            android:label=&quot;@string/app_name&quot;  &lt;!-- 设置 Activity 的名称 --&gt;</span><br><span class="line">            android:name=&quot;com.example.flag.MainActivity&quot;&gt;  &lt;!-- 定义该 Activity 的完整类名 --&gt;</span><br><span class="line">            &lt;!-- 配置启动该 Activity 的 Intent Filter --&gt;</span><br><span class="line">            &lt;intent-filter&gt;</span><br><span class="line">                &lt;action android:name=&quot;android.intent.action.MAIN&quot;/&gt;  &lt;!-- 指定这是应用的主入口 --&gt;</span><br><span class="line">                &lt;category android:name=&quot;android.intent.category.LAUNCHER&quot;/&gt;  &lt;!-- 表明该 Activity 是启动器中的入口 --&gt;</span><br><span class="line">            &lt;/intent-filter&gt;</span><br><span class="line"> </span><br><span class="line">        &lt;/activity&gt;</span><br><span class="line"> </span><br><span class="line">    &lt;/application&gt;</span><br><span class="line"> </span><br><span class="line">&lt;/manifest&gt;</span><br></pre></td></tr></table></figure>
+
+<p> 该 <code>Activity</code> 是应用的入口点。</p>
+</li>
+<li><p><strong>反编译并查看<code>classes.dex</code>文件</strong></p>
+<p> 通过工具（如 JADX 或者 JEB）反编译 <code>DEX</code> 文件，可以进一步理解应用的控制流和逻辑。通过分析反编译后的代码，可以找到主 <code>&quot;com.example.flag.MainActivity&quot;</code> 的 <code>onCreate()</code> 方法，这是启动应用时的第一步。</p>
+</li>
+</ol>
+<h2 id="2-壳分析与绕过-简单分析梆梆免费加固"><a href="#2-壳分析与绕过-简单分析梆梆免费加固" class="headerlink" title="2.壳分析与绕过:简单分析梆梆免费加固"></a>2.壳分析与绕过:简单分析梆梆免费加固</h2><p>在 Android 安全分析中，许多应用都使用加固技术来防止反编译和分析。梆梆是一种常见的加固，主要通过修改 APK 的结构，注入防护代码来提高应用的安全性。</p>
+<h3 id="脱壳实战案例讲解"><a href="#脱壳实战案例讲解" class="headerlink" title="脱壳实战案例讲解"></a>脱壳实战案例讲解</h3><blockquote>
+<p><strong>目标</strong>: 理解如何识别并绕过应用程序加壳保护。<br><strong>加固与脱壳学习</strong>: <a target="_blank" rel="noopener" href="https://bbs.kanxue.com/thread-285906.htm">安卓逆向-脱壳学习记录 - Is Yang’s Blog</a><br><strong>实战案例</strong>:<a target="_blank" rel="noopener" href="https://bbs.kanxue.com/elink@09fK9s2c8@1M7s2y4Q4x3@1q4Q4x3V1k6Q4x3V1k6T1N6i4g2G2K9W2">网鼎杯_2020_青龙组_bang</a><br><strong>更详细的WP</strong>:</p>
+</blockquote>
+<h3 id="加壳app的逆向流程"><a href="#加壳app的逆向流程" class="headerlink" title="加壳app的逆向流程:"></a>加壳app的逆向流程:</h3><ul>
+<li>获取APK文件</li>
+<li>反编译APK文件</li>
+<li>分析AndroidMainfest.xml</li>
+<li>分析加固&#x2F;壳保护机制<ul>
+<li>识别壳和绕过保护</li>
+</ul>
+</li>
+<li>Frida-dexdump脱壳</li>
+<li>分析Java层代码</li>
+<li>分析完毕</li>
+</ul>
+<p><strong>1.将apk拖入JADX后寻找到AndroidManifest.xml文件</strong></p>
+<p>虽然在这个xml文件中寻找到了Activity的MainActivity的方法,但是并无此com.example.how.MainActivity的代码实现，首先判定该app进行了加壳操作!</p>
+<p>还可以通过观察APK文件是否在AndroidManifest.xml配置Applicaiton信息来判定,该app实现了一个自定义操作将<code>Application</code> 类进行了自定义修改成了<code>com.SecShell.SecShell.ApplicationWrapper</code>来实现自己的加壳逻辑。</p>
+<p><strong>拓展</strong>:</p>
+<blockquote>
+<p><strong>梆梆加固原理</strong>:<br>根据APK文件是否在AndroidManifest.xml配置Applicaiton信息，梆梆加固会做不同的处理：<br>通过上传Applicaiton不同配置的APK文件：</p>
+<ol>
+<li>当APK配置有Applicaition信息时，梆梆加固重写Application类</li>
+<li>当APK未配置Application信息时，梆梆加固新建类，并在AndroidManifest.xml中配置自己Application类<br> <strong>详细介绍</strong>:<a target="_blank" rel="noopener" href="https://bbs.kanxue.com/elink@2f3K9s2c8@1M7s2y4Q4x3@1q4Q4x3V1k6Q4x3V1k6%4N6%4N6Q4x3X3g2U0L8X3u0D9L8$3N6K6i4K6u0W2j5$3!0E0i4K6u0r3L8r3W2@1N6r3I4W2k6X3W2K6K9s2S2#2i4K6u0r3M7q4">梆梆加壳原理 - 徐小鱼 - 博客园</a></li>
+</ol>
+</blockquote>
+<p><strong>2.开始使用FRIDA-DEXDump工具进行简单的脱壳</strong></p>
+<blockquote>
+<p><strong>脱壳原理讲解</strong>：<a target="_blank" rel="noopener" href="https://bbs.kanxue.com/elink@6f0K9s2c8@1M7s2y4Q4x3@1q4Q4x3V1k6Q4x3V1k6E0M7q4">深入 FRIDA-DEXDump 中的矛与盾 (qq.com)</a><br><strong>思维导图</strong>：<a target="_blank" rel="noopener" href="https://bbs.kanxue.com/elink@f6dK9s2c8@1M7s2y4Q4x3@1q4Q4x3V1k6Q4x3V1k6%4N6%4N6Q4x3X3f1#2x3Y4m8G2K9X3W2W2i4K6u0W2j5$3&6Q4x3V1k6@1K9s2u0W2j5h3c8Q4x3X3b7I4y4U0p5@1y4o6M7$3i4K6u0V1x3g2">frida-dexdump脱壳工具简单使用的思维导图 - 『移动安全区』</a><br><strong>原理</strong>：</p>
+<ol>
+<li>在进程的内存中搜索dex文件头</li>
+<li>如果dex头被抹除，则需要开启深度搜索模式，搜索其他关键字段</li>
+<li>如果dex的文件file_size字段被抹去，就需要搜索dex的尾部字段来判断是否是dex和dex的大小</li>
+</ol>
+</blockquote>
+<p>先在模拟器中运行该APP,使用安卓7.1成功安装app</p>
+<p>将frida传入,启动fridaserver服务后frida才可以正常工作:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"># 将`frida-server`文件推送到设备的`/data/local/tmp`目录</span><br><span class="line">PS C:\Users\Administrator&gt; adb push D:\CTF_Study\Reverse\AndroidWorkSpace\Frida_libc\frida-server-16.1.11-android-x86_64 /data/local/tmp</span><br><span class="line"> </span><br><span class="line"># 进入Android设备的shell环境</span><br><span class="line">PS C:\Users\Administrator&gt; adb shell</span><br><span class="line"> </span><br><span class="line"># 切换到`/data/local/tmp`目录</span><br><span class="line">aosp:/ # cd /data/local/tmp</span><br><span class="line"> </span><br><span class="line"># 查看目录下的文件，确认`frida-server`是否存在</span><br><span class="line">aosp:/data/local/tmp # ls</span><br><span class="line"> </span><br><span class="line"># 赋予`frida-server`文件可执行权限</span><br><span class="line">aosp:/data/local/tmp # chmod 777 ./frida-server-16.1.11-android-x86_64</span><br><span class="line"> </span><br><span class="line"># 启动Frida Server</span><br><span class="line">aosp:/data/local/tmp # ./frida-server-16.1.11-android-x86_64</span><br></pre></td></tr></table></figure>
+
+<p>成功脱壳,寻找到两个dex文件:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"># 使用frida-dexdump(frida-dexdump -U -f 包名 -o 保存地址)</span><br><span class="line"># frida-dexdump -U -p port -o 保存地址 //通过端口</span><br><span class="line"># frida-dexdump -U -n n1book1 -o 保存地址 //通过名字</span><br><span class="line">PS D:\CTF_Study\Reverse\AndroidWorkSpace&gt;  frida-dexdump -U -n how_debug -o ./</span><br><span class="line"> </span><br><span class="line">...</span><br><span class="line"> </span><br><span class="line">Attaching...</span><br><span class="line">INFO:Agent:DexDumpAgent&lt;Connection(pid=Session(pid=2525), connected:True), attached=True&gt;: Attach.</span><br><span class="line">INFO:frida-dexdump:[+] Searching...</span><br><span class="line">INFO:frida-dexdump:[*] Successful found 2 dex, used 0 time.</span><br><span class="line">INFO:frida-dexdump:[+] Starting dump to &#x27;./&#x27;...</span><br><span class="line">INFO:frida-dexdump:[+] DexMd5=5cc5b1ecee503082181d8ddae2f9c115, SavePath=./classes.dex, DexSize=0x1d60b8</span><br><span class="line">INFO:frida-dexdump:[+] DexMd5=28514d4f7ccf16c6bb7ba28602b5d72f, SavePath=./classes02.dex, DexSize=0x446c</span><br><span class="line">INFO:frida-dexdump:[*] All done...</span><br></pre></td></tr></table></figure>
+
+<p><strong>3.开始分析脱壳出来后的DEX文件,成功寻找到activity的代码入口处</strong>:<br>脱壳出来的两个dex文件中偏大的就是需要分析的dex了</p>
+<p>直接拖入JADX开始分析工作,脱壳后成功找到了逻辑主要代码,之后就可以继续逆向分析了</p>
+<p><strong>4.开始分析按钮的逻辑代码,成功解析出flag的内容</strong></p>
+<h2 id="3-资源与布局文件分析"><a href="#3-资源与布局文件分析" class="headerlink" title="3. 资源与布局文件分析"></a>3. 资源与布局文件分析</h2><h1 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h1><h2 id="一、创建一个新的项目"><a href="#一、创建一个新的项目" class="headerlink" title="一、创建一个新的项目"></a>一、<strong>创建一个新的项目</strong></h2><ol>
 <li><strong>打开 Android Studio：</strong><ul>
 <li>启动 Android Studio，你会看到欢迎界面。</li>
 </ul>
