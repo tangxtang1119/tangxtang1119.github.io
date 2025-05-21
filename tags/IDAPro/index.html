@@ -13,7 +13,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>系统安全 |  tangxtang</title>
+      <title>Tag: IDAPro |  tangxtang</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="/favicon.ico" />
@@ -54,291 +54,56 @@
       
     <main class="content on">
       <section class="outer">
-  <article
-  id="post-系统安全"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
+  
+  
+  <article class="articles">
     
-    <header class="article-header">
+    
+    <h1 class="page-type-title">#&nbspIDAPro</h1>
+    
+    
+  
+  
+  
+  
+  
+  
+  <div class="archives-wrap">
+    <div class="archive-year-wrap">
+      <a href="/archives/2025" class="archive-year">2025</a>
+    </div>
+    <div class="archives">
+      
+      <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2025/05/11/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90%E5%AE%9E%E6%88%98/" class="archive-article-date">
+  <time datetime="2025-05-11T08:40:32.000Z" itemprop="datePublished">05/11</time>
+</a>
        
-<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  系统安全
-</h1>
+<h2 itemprop="name">
+  <a class="archive-article-title" href="/2025/05/11/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90%E5%AE%9E%E6%88%98/"
+    >恶意代码分析实战</a> 
+</h2>
  
 
-      
     </header>
-     
-    <div class="article-meta">
-      <a href="/2025/04/14/%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8/" class="article-date">
-  <time datetime="2025-04-14T01:10:19.000Z" itemprop="datePublished">2025-04-14</time>
-</a>   
-<div class="word_count">
-    <span class="post-time">
-        <span class="post-meta-item-icon">
-            <i class="ri-quill-pen-line"></i>
-            <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">635</span>
-        </span>
-    </span>
-
-    <span class="post-time">
-        &nbsp; | &nbsp;
-        <span class="post-meta-item-icon">
-            <i class="ri-book-open-line"></i>
-            <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">2 分钟</span>
-        </span>
-    </span>
-</div>
- 
-    </div>
+    
+    
       
-    <div class="tocbot"></div>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IDAPro/" rel="tag">IDAPro</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OllyDbg/" rel="tag">OllyDbg</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WinDbg/" rel="tag">WinDbg</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/x86/" rel="tag">x86</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8F%8D%E6%B1%87%E7%BC%96/" rel="tag">反汇编</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90/" rel="tag">恶意代码分析</a></li></ul>
 
-
-
-
-  
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h2 id="Windows身份认证和访问控制实验"><a href="#Windows身份认证和访问控制实验" class="headerlink" title="Windows身份认证和访问控制实验"></a>Windows身份认证和访问控制实验</h2><h3 id="实验目的"><a href="#实验目的" class="headerlink" title="实验目的"></a><strong>实验目的</strong></h3><ol>
-<li>了解Windows系统中的身份认证机制</li>
-<li>掌握Windows系统中用户权限和访问控制列表（ACL）的配置方法</li>
-<li>分析Windows系统中不同级别用户权限的安全影响</li>
-</ol>
-<h3 id="实验内容"><a href="#实验内容" class="headerlink" title="实验内容"></a><strong>实验内容</strong></h3><ol>
-<li>用户账户创建与管理</li>
-<li>本地安全策略配置</li>
-<li>NTFS权限设置与访问控制列表管理</li>
-<li>用户组策略设定与应用</li>
-</ol>
-<h3 id="实验准备"><a href="#实验准备" class="headerlink" title="实验准备"></a><strong>实验准备</strong></h3><ol>
-<li>确保你有一台运行Windows 10&#x2F;11（专业版）的计算机，注意：<strong>家庭版</strong>不包含后续使用到的功能</li>
-<li>使用管理员账户登录系统</li>
-<li>建议在虚拟机环境中进行实验，以避免影响日常使用的系统（虚拟机安装windows11专业版可参考</li>
-</ol>
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1fe411g74Z%EF%BC%89">https://www.bilibili.com/video/BV1fe411g74Z）</a></p>
-<h3 id="实验步骤"><a href="#实验步骤" class="headerlink" title="实验步骤"></a>实验步骤</h3><ol>
-<li><strong>用户账户管理</strong></li>
-</ol>
-<p><strong>步骤1：创建不同权限级别的用户账户</strong></p>
-<ol>
-<li><p>按下 Win + X 键，选择”计算机管理”</p>
-</li>
-<li><p>在左侧导航栏中，展开”本地用户和组”，点击”用户”</p>
-</li>
-<li><p>右键点击右侧空白区域，选择”新用户”</p>
-</li>
-<li><p>创建管理员账户：</p>
-</li>
-</ol>
-<ul>
-<li><p>用户名：AdminTest</p>
-</li>
-<li><p>全名：Test Administrator</p>
-</li>
-<li><p>密码：设置一个复杂密码（例如：AdminPassword123）</p>
-</li>
-<li><p>取消勾选”用户下次登录时须更改密码”</p>
-</li>
-<li><p>勾选”密码永不过期”</p>
-</li>
-<li><p>点击”创建”</p>
-</li>
-</ul>
-<p>  <img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8AdminTest.png"></p>
-<ol start="5">
-<li>重复步骤3-4，创建标准用户账户：</li>
-</ol>
-<ul>
-<li><p>用户名：StandardTest</p>
-</li>
-<li><p>全名：Test Standard User</p>
-</li>
-<li><p>密码：StdPassword123</p>
-</li>
-<li><p>取消勾选”用户下次登录时须更改密码”</p>
-</li>
-<li><p>勾选”密码永不过期”</p>
-</li>
-<li><p>点击”创建”</p>
-</li>
-</ul>
-<p>  <img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8StandardTest.png"></p>
-<ol start="6">
-<li><p>重复步骤3-4，创建受限用户账户：</p>
-<ul>
-<li><p>用户名：RestrictedTest</p>
-</li>
-<li><p>全名：Test Restricted User</p>
-</li>
-<li><p>密码：RestPassword123</p>
-</li>
-<li><p>取消勾选”用户下次登录时须更改密码”</p>
-</li>
-<li><p>勾选”密码永不过期”</p>
-</li>
-<li><p>点击”创建</p>
-</li>
-</ul>
-<p> <img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8RestrictedTest.png"></p>
-</li>
-</ol>
-<p><strong>步骤2：设置用户权限级别</strong></p>
-<ol>
-<li><p>仍在”计算机管理”窗口</p>
-</li>
-<li><p>在左侧导航栏中，点击”组”</p>
-</li>
-<li><p>双击打开”Administrators”组</p>
-</li>
-<li><p>点击”添加”按钮</p>
-</li>
-<li><p>在”输入要选择的对象名称”框中，输入”AdminTest”</p>
-</li>
-<li><p>点击”检查名称”，然后点击”确定”</p>
-</li>
-<li><p>点击”应用”和”确定”关闭窗口</p>
-</li>
-<li><p>对于StandardTest用户，确保他只在”Users”组中：</p>
-<ul>
-<li><p>双击打开”Users”组</p>
-</li>
-<li><p>确认StandardTest已经在列表中（Windows自动把新用户添加到Users组）</p>
-</li>
-<li><p>如果没有，使用”添加”按钮添加它</p>
-</li>
-</ul>
-</li>
-<li><p>对于RestrictedTest用户，我们需要创建一个受限组：</p>
-<ul>
-<li><p>右键点击”组”，选择”新建组”</p>
-</li>
-<li><p>组名：RestrictedUsers</p>
-</li>
-<li><p>描述：有限权限的用户组</p>
-</li>
-<li><p>点击”创建”，然后关闭</p>
-</li>
-<li><p>将RestrictedTest用户添加到这个组</p>
-</li>
-</ul>
-</li>
-</ol>
- 
-      <!-- reward -->
-      
-    </div>
     
-
-    <!-- copyright -->
-    
-    <div class="declare">
-      <ul class="post-copyright">
-        <li>
-          <i class="ri-copyright-line"></i>
-          <strong>版权声明： </strong>
-          
-          本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
-          
-        </li>
-      </ul>
-    </div>
-    
-    <footer class="article-footer">
-       
-<div class="share-btn">
-      <span class="share-sns share-outer">
-        <i class="ri-share-forward-line"></i>
-        分享
-      </span>
-      <div class="share-wrap">
-        <i class="arrow"></i>
-        <div class="share-icons">
-          
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="ri-weibo-fill"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="ri-wechat-fill"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="ri-qq-fill"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="ri-douban-line"></i>
-          </a>
-          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a> -->
-          
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="ri-facebook-circle-fill"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="ri-twitter-fill"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="ri-google-fill"></i>
-          </a>
-        </div>
-      </div>
-</div>
-
-<div class="wx-share-modal">
-    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://tangxtang1119.github.io/2025/04/14/%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div id="share-mask"></div>  
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AF%BE%E7%A8%8B%E4%BD%9C%E4%B8%9A/" rel="tag">课程作业</a></li></ul>
-
-    </footer>
   </div>
-
-   
-  <nav class="article-nav">
-    
-      <a href="/2025/04/17/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            安卓逆向
-          
-        </div>
-      </a>
-    
-    
-      <a href="/2025/04/14/Web%E6%A1%86%E6%9E%B6%E5%8E%9F%E7%90%86%E5%92%8C%E6%8A%80%E6%9C%AF/" class="article-nav-link">
-        <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">Web框架原理和技术</div>
-      </a>
-    
-  </nav>
-
-   
- 
-   
-  
-   
-    <script src="https://cdn.staticfile.org/twikoo/1.4.18/twikoo.all.min.js"></script>
-    <div id="twikoo" class="twikoo"></div>
-    <script>
-        twikoo.init({
-            envId: ""
-        })
-    </script>
- 
 </article>
+      
+      
+    </div>
+  </div>
+  
+  
 
+  
 </section>
       <footer class="footer">
   <div class="outer">
@@ -457,22 +222,6 @@
 <script src="/js/lazyload.min.js"></script>
 
 <!-- Tocbot -->
- 
-<script src="/js/tocbot.min.js"></script>
-
-<script>
-  tocbot.init({
-    tocSelector: ".tocbot",
-    contentSelector: ".article-entry",
-    headingSelector: "h1, h2, h3, h4, h5, h6",
-    hasInnerContainers: true,
-    scrollSmooth: true,
-    scrollContainer: "main",
-    positionFixedSelector: ".tocbot",
-    positionFixedClass: "is-position-fixed",
-    fixedSidebarOffset: "auto",
-  });
-</script>
 
 <script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
 <link
