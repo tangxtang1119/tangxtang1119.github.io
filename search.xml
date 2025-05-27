@@ -1,8 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>本地部署AI</title>
+    <url>/2025/05/27/%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2deepseek/</url>
+    <content><![CDATA[<h1 id="DeepSeek-本地化部署"><a href="#DeepSeek-本地化部署" class="headerlink" title="DeepSeek 本地化部署"></a>DeepSeek 本地化部署</h1><p>参考：<a href="https://zhuanlan.zhihu.com/p/21030210489">DeepSeek 本地化部署</a></p>
+<p>​	   <a href="https://zhuanlan.zhihu.com/p/23369668872">DeepSeek R1本地部署+知识库+联网搜索</a></p>
+<p><strong>通过下载模型，然后进行基础配置，就可以在本地部署模型</strong></p>
+<h2 id="Ollama下载安装"><a href="#Ollama下载安装" class="headerlink" title="Ollama下载安装"></a><strong>Ollama下载安装</strong></h2><p>Ollama 是一个轻量级的本地AI模型运行框架，可在本地运行各种开源大语言模型（如<a href="https://zhida.zhihu.com/search?content_id=253228484&content_type=Article&match_order=1&q=Llama&zd_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ6aGlkYV9zZXJ2ZXIiLCJleHAiOjE3NDg0OTIyMDEsInEiOiJMbGFtYSIsInpoaWRhX3NvdXJjZSI6ImVudGl0eSIsImNvbnRlbnRfaWQiOjI1MzIyODQ4NCwiY29udGVudF90eXBlIjoiQXJ0aWNsZSIsIm1hdGNoX29yZGVyIjoxLCJ6ZF90b2tlbiI6bnVsbH0.zy8RrQhA_ARMPDWY12XYCebb0b3u4qd5ergsDGr6rco&zhida_source=entity">Llama</a>、<a href="https://zhida.zhihu.com/search?content_id=253228484&content_type=Article&match_order=1&q=Mistral&zd_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ6aGlkYV9zZXJ2ZXIiLCJleHAiOjE3NDg0OTIyMDEsInEiOiJNaXN0cmFsIiwiemhpZGFfc291cmNlIjoiZW50aXR5IiwiY29udGVudF9pZCI6MjUzMjI4NDg0LCJjb250ZW50X3R5cGUiOiJBcnRpY2xlIiwibWF0Y2hfb3JkZXIiOjEsInpkX3Rva2VuIjpudWxsfQ.vArX78L6pxTb-DZsBns0BbdrY4AG9xkIzguO4LIvsVw&zhida_source=entity">Mistral</a>等）</p>
+<p>浏览器输入网址：<a href="https://link.zhihu.com/?target=https://ollama.com/">https://ollama.com/</a></p>
+<p>选择windows系统安装。</p>
+<p>安装之后，Ollama已经运行了，它是CMD命令工具，我们可以在命令行输入ollama来验证，是否安装成功。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/202505271224198.png"></p>
+<h2 id="DeepSeek-r1模型"><a href="#DeepSeek-r1模型" class="headerlink" title="DeepSeek-r1模型"></a>DeepSeek-r1模型</h2><p>还是刚刚的网站，选择Mode模块，选deepseek-r1这个模型</p>
+<p>一定要根据自己的显卡大小，选择对应的参数规模，1.5b最小，可以先试试。参数越大效果越好，也就月吃电脑的性能。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/202505271226642.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/202505271223661.png"></p>
+<p><strong>注意：由于ollama默认是将模型下载到C盘的，如果空间不够，就需要修改一下，下载模型的位置</strong></p>
+<h2 id="编辑环境变量"><a href="#编辑环境变量" class="headerlink" title="编辑环境变量"></a>编辑环境变量</h2><p>在系统变量中新建</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">变量名：OLLAMA_MODELS</span><br><span class="line">变量值：#模型下载所下载到的路径</span><br></pre></td></tr></table></figure>
+
+<p>然后还需要去用户环境变量里，新增两个环境变量</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">变量名：OLLAMA_HOST</span><br><span class="line">变量值：0.0.0.0</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">变量名：OLLAMA_ORIGINS</span><br><span class="line">变量值：*</span><br></pre></td></tr></table></figure>
+
+<p><strong>都设置好后，就保存，然后重启ollama</strong></p>
+<p>复制以下命令行，再终端进行下载模型。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ollama run deepseek-r1:7b</span><br></pre></td></tr></table></figure>
+
+<p>最后在命令行输入以下命令，查看是否成功下载了模型。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ollama list</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/202505271352298.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/202505271351037.png"></p>
+<h2 id="ps"><a href="#ps" class="headerlink" title="ps"></a>ps</h2><p>如果已经在默认的情况下安装了模型，找到默认路径C:\Users\你的用户名.ollama\models</p>
+<p>如果你确定要删除已安装的 DeepSeek 模型，可以执行以下命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ollama rm deepseek</span><br></pre></td></tr></table></figure>
+
+<p><strong>手动删除方法</strong>（不推荐，仅在命令失败时使用）：</p>
+<ol>
+<li>进入模型存储目录（如<code>~/.ollama/models</code>）</li>
+<li>找到并删除名为<code>deepseek</code>的文件夹</li>
+<li>删除后建议运行<code>ollama pull deepseek</code>重新拉取最新版本</li>
+</ol>
+<p><strong>清理旧模型的方法</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 删除指定模型（包括所有版本）</span></span><br><span class="line">ollama <span class="built_in">rm</span> deepseek</span><br><span class="line"></span><br><span class="line"><span class="comment"># 列出所有已下载的模型及其大小</span></span><br><span class="line">ollama list</span><br><span class="line"></span><br><span class="line"><span class="comment"># 清理未被引用的模型文件（释放磁盘空间）</span></span><br><span class="line">ollama gc</span><br></pre></td></tr></table></figure>
+
+<p><strong>最佳实践</strong></p>
+<ul>
+<li>定期执行 <code>ollama gc</code> 清理无用文件</li>
+<li>使用 <code>ollama list -v</code> 查看详细版本信息</li>
+<li>如果需要节省空间，手动删除不再需要的模型</li>
+</ul>
+<h2 id="chatBox下载安装"><a href="#chatBox下载安装" class="headerlink" title="chatBox下载安装"></a><strong>chatBox下载安装</strong></h2><p>通过ollama下载模型后，可以在命令行使用deepseek了，但是命令行的形式还是有些不美观，所以我们可以借助chatBox,它拥有美观的UI，只要接入ollama的Api就可以使用了</p>
+<p>下载网址：<a href="https://link.zhihu.com/?target=https://chatboxai.app/zh">Chatbox AI官网：办公学习的AI好助手，全平台AI客户端，官方免费下载</a></p>
+<p>选择windows下载，安装启动后，点击设置</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/202505271353180.png"></p>
+<p>随后使用。个人觉得有点鸡肋。页面观感也很一般。</p>
+<p>另外一方式</p>
+<h2 id="安装Page-Assist插件"><a href="#安装Page-Assist插件" class="headerlink" title="安装Page Assist插件"></a><strong>安装Page Assist插件</strong></h2><p>在Edge浏览器中也有，浏览器上方的扩展程序列表，找到Page Assist插件，点击进入WebUI界面。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/202505271412327.png"></p>
+<p>在左上角选择ollama的所有本地模型，所以选deepseek-r1:7b就好了，即可使用。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/202505271412680.png"></p>
+<p>首次使用是英文版，不太习惯，点击右上角设置齿轮，【General Settings】，分别选择【简体中文】。</p>
+<p><strong>设置联网搜索</strong></p>
+<p>依然是右上角设置齿轮，【一般设置】，下方有个【管理网络搜索】，选择合适的搜索引擎，总搜索结果默认是2，可以适当调大一些，这样参考网络资源的权重更大。</p>
+<p>记得<strong>点击保存。</strong></p>
+<p>回到聊天页面，打开聊天框下方的【搜索互联网】开关，联网搜索功能就搞定啦。</p>
+<h2 id="搭建私人知识库（待定）"><a href="#搭建私人知识库（待定）" class="headerlink" title="搭建私人知识库（待定）"></a><strong>搭建私人知识库</strong>（待定）</h2><p>CMD窗口运行命令：</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">ollama pull nomic-embed-text</span><br></pre></td></tr></table></figure>
+
+<p>回到设置，【RAG设置】，文本嵌入模型选择【nomic-embed-text:latest】，保存。</p>
+<p>文本嵌入模型的作用是，让大模型理解我们的文本资料。</p>
+<p>左侧菜单【管理知识】，【添加新知识】，指定知识的标题，并上传我们的本地资料，提交。</p>
+<p>这里的知识，指的就是知识库，当状态是【已完成】，代表大模型已经处理完成了。</p>
+<p>回到聊天窗口，右下方就可以选到刚刚添加的知识库。</p>
+]]></content>
+      <categories>
+        <category>环境记录</category>
+      </categories>
+      <tags>
+        <tag>AI</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>CTF练习</title>
-    <url>/2025/05/21/CTF%E7%BB%83%E4%B9%A0/</url>
+    <url>/2025/05/26/CTF%E7%BB%83%E4%B9%A0/</url>
     <content><![CDATA[<h1 id="adworld-xctf"><a href="#adworld-xctf" class="headerlink" title="adworld.xctf"></a>adworld.xctf</h1><h2 id="Reversing-x64Elf-100"><a href="#Reversing-x64Elf-100" class="headerlink" title="Reversing-x64Elf-100"></a>Reversing-x64Elf-100</h2><p>方向：Reverse	工具：IDA Pro</p>
 <h3 id="查看main函数"><a href="#查看main函数" class="headerlink" title="查看main函数"></a>查看main函数</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">__int64 __fastcall <span class="title function_">main</span><span class="params">(<span class="type">int</span> a1, <span class="type">char</span> **a2, <span class="type">char</span> **a3)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">char</span> s[<span class="number">264</span>]; <span class="comment">// [rsp+0h] [rbp-110h] BYREF</span></span><br><span class="line">  unsigned __int64 v5; <span class="comment">// [rsp+108h] [rbp-8h]</span></span><br><span class="line"></span><br><span class="line">  v5 = __readfsqword(0x28u);</span><br><span class="line">  printf(<span class="string">&quot;Enter the password: &quot;</span>);</span><br><span class="line">  <span class="keyword">if</span> ( !fgets(s, <span class="number">255</span>, stdin) )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">if</span> ( (unsigned <span class="type">int</span>)sub_4006FD(s) )</span><br><span class="line">  &#123;</span><br><span class="line">    puts(<span class="string">&quot;Incorrect password!&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">  &#123;</span><br><span class="line">    puts(<span class="string">&quot;Nice!&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -271,6 +354,500 @@
 <p>答案：flag{}</p>
 <h2 id="bad-python"><a href="#bad-python" class="headerlink" title="bad_python"></a>bad_python</h2><p><a href="https://blog.csdn.net/qq_55038440/article/details/136580205">Reverse逆向：pyc字节码转py文件（python）_pycdc.exe-CSDN博客</a></p>
 <h2 id="基础android"><a href="#基础android" class="headerlink" title="基础android"></a>基础android</h2><p>方向：mobile   工具：</p>
+<h2 id="maze"><a href="#maze" class="headerlink" title="maze"></a>maze</h2><p>方向：Reverse	工具：IDA Pro	tip：迷宫</p>
+<p>直接下载后放进IDA Pro</p>
+<h3 id="main函数-1"><a href="#main函数-1" class="headerlink" title="main函数"></a>main函数</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">__int64 __fastcall main(int a1, char **a2, char **a3)</span><br><span class="line">&#123;</span><br><span class="line">  __int64 n5; // rbx</span><br><span class="line">  int n79; // eax</span><br><span class="line">  char v5; // bp</span><br><span class="line">  char v6; // al</span><br><span class="line">  const char *Wrong_flag; // rdi</span><br><span class="line">  unsigned int v9[10]; // [rsp+0h] [rbp-28h] BYREF</span><br><span class="line"></span><br><span class="line">  *(_QWORD *)v9 = 0;</span><br><span class="line">  puts(&quot;Input flag:&quot;);</span><br><span class="line">  scanf(&quot;%s&quot;, &amp;s1);</span><br><span class="line">  if ( strlen(&amp;s1) != 24 || strncmp(&amp;s1, &quot;nctf&#123;&quot;, 5u) || algn_6010C1[22] != 125 )// </span><br><span class="line">                                                // 总体长度要求为24</span><br><span class="line">                                                // 格式要求必须是nctf&#123;&#125;包裹</span><br><span class="line">                                                // 125：十进制的 ASCII 码值，对应字符 &#125;</span><br><span class="line">                                                // 迷宫移动逻辑只需要处理中间的 18 个字符</span><br><span class="line">                                                // （从索引 5 到索引 22）</span><br><span class="line">  &#123;</span><br><span class="line">LABEL_22:</span><br><span class="line">    puts(&quot;Wrong flag!&quot;);</span><br><span class="line">    exit(-1);</span><br><span class="line">  &#125;</span><br><span class="line">  n5 = 5;                                       // 因为索引是从0开始数</span><br><span class="line">                                                // 所以给n5赋值为5</span><br><span class="line">                                                // 从第6个字符开始处理</span><br><span class="line">  if ( strlen(&amp;s1) - 1 &gt; 5 )</span><br><span class="line">  &#123;</span><br><span class="line">    while ( 1 )</span><br><span class="line">    &#123;</span><br><span class="line">      n79 = *(&amp;s1 + n5);</span><br><span class="line">      v5 = 0;</span><br><span class="line">      if ( n79 &gt; 78 )</span><br><span class="line">      &#123;</span><br><span class="line">        if ( (unsigned __int8)n79 == 79 )       // &#x27;O&#x27; (ASCII 79)</span><br><span class="line">        &#123;</span><br><span class="line">          v6 = sub_400650(&amp;v9[1]);              // v9[1]代表是x轴</span><br><span class="line">                                                // 函数内是减</span><br><span class="line">                                                // 所以是向左</span><br><span class="line">          goto LABEL_14;</span><br><span class="line">        &#125;</span><br><span class="line">        if ( (unsigned __int8)n79 == 111 )      // &#x27;o&#x27; (ASCII 111) </span><br><span class="line">        &#123;</span><br><span class="line">          v6 = sub_400660(&amp;v9[1]);              // v9[1]代表是轴</span><br><span class="line">                                                // 函数内是加</span><br><span class="line">                                                // 所以是向右</span><br><span class="line">          goto LABEL_14;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      else</span><br><span class="line">      &#123;</span><br><span class="line">        if ( (unsigned __int8)n79 == 46 )       // &#x27;.&#x27; (ASCII 46) </span><br><span class="line">        &#123;</span><br><span class="line">          v6 = sub_400670(v9);                  // v9就是v9[0]代表是y轴</span><br><span class="line">                                                // 函数内是减</span><br><span class="line">                                                // 所以是向上</span><br><span class="line">          goto LABEL_14;</span><br><span class="line">        &#125;</span><br><span class="line">        if ( (unsigned __int8)n79 == 48 )       // &#x27;0&#x27; (ASCII 48) </span><br><span class="line">        &#123;</span><br><span class="line">          v6 = sub_400680(v9);                  // v9就是v9[0]代表是y轴</span><br><span class="line">                                                // 函数内是加</span><br><span class="line">                                                // 所以是向下</span><br><span class="line">LABEL_14:</span><br><span class="line">          v5 = v6;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      if ( !(unsigned __int8)sub_400690(asc_601060, v9[1], v9[0]) )// &quot;  *******   *  **** * ****  * ***  *#  *** *** ***     *********&quot;</span><br><span class="line">        goto LABEL_22;</span><br><span class="line">      if ( ++n5 &gt;= strlen(&amp;s1) - 1 )            // 处理字符截至在倒数第2个字符</span><br><span class="line">                                                // 也就是不包括&#125;</span><br><span class="line">      &#123;</span><br><span class="line">        if ( v5 )</span><br><span class="line">          break;</span><br><span class="line">LABEL_20:</span><br><span class="line">        Wrong_flag = &quot;Wrong flag!&quot;;</span><br><span class="line">        goto LABEL_21;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  if ( asc_601060[8 * v9[0] + v9[1]] != 35 )    // &quot;  *******   *  **** * ****  * ***  *#  *** *** ***     *********&quot;</span><br><span class="line">                                                // 二维数组的线性索引公式 index = row * width + col</span><br><span class="line">                                                // 宽度width=8</span><br><span class="line">                                                // 行号row=v9[0]</span><br><span class="line">                                                // 列号col=v9[1]</span><br><span class="line">    goto LABEL_20;</span><br><span class="line">  Wrong_flag = &quot;Congratulations!&quot;;</span><br><span class="line">LABEL_21:</span><br><span class="line">  puts(Wrong_flag);</span><br><span class="line">  return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="方向函数"><a href="#方向函数" class="headerlink" title="方向函数"></a>方向函数</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bool __fastcall sub_400650(_DWORD *a1)</span><br><span class="line">&#123;</span><br><span class="line">  int v1; // eax</span><br><span class="line"></span><br><span class="line">  v1 = (*a1)--;</span><br><span class="line">  return v1 &gt; 0;		// 检查减1前是否&gt;0</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">bool __fastcall sub_400660(int *a1)</span><br><span class="line">&#123;</span><br><span class="line">  int n8; // eax</span><br><span class="line"></span><br><span class="line">  n8 = *a1 + 1;</span><br><span class="line">  *a1 = n8;</span><br><span class="line">  return n8 &lt; 8;		// 检查加1后是否&lt;8</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">bool __fastcall sub_400670(_DWORD *a1)</span><br><span class="line">&#123;</span><br><span class="line">  int v1; // eax</span><br><span class="line"></span><br><span class="line">  v1 = (*a1)--;</span><br><span class="line">  return v1 &gt; 0;		// 检查减1前是否&gt;0</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">bool __fastcall sub_400680(int *a1)</span><br><span class="line">&#123;</span><br><span class="line">  int n8; // eax</span><br><span class="line"></span><br><span class="line">  n8 = *a1 + 1;</span><br><span class="line">  *a1 = n8;</span><br><span class="line">  return n8 &lt; 8;		// 检查加1后是否&lt;8</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="迷宫合理性函数"><a href="#迷宫合理性函数" class="headerlink" title="迷宫合理性函数"></a>迷宫合理性函数</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 迷宫合法性检查函数</span><br><span class="line">__int64 __fastcall sub_400690(__int64 a1, int a2, int a3);</span><br><span class="line">&#123;</span><br><span class="line">  int64a1asc_601060__; // rax</span><br><span class="line">  n32 = *(unsigned __int8 *)(a1 + a2 + 8LL * a3); </span><br><span class="line">      // a1：迷宫地图的基址（对应全局变量 asc_601060）</span><br><span class="line">      // a2：X 坐标（列号）</span><br><span class="line">      // a3：Y 坐标（行号）</span><br><span class="line">      // a1 + a2 + 8LL * a3</span><br><span class="line">      // a1是起始位置</span><br><span class="line">      // 8LL * a3 对应行偏移（Y 坐标 × 每行宽度 8）</span><br><span class="line">      // a2 对应列偏移（X 坐标）</span><br><span class="line">      // *(unsigned __int8 *)(地址)</span><br><span class="line">      // 从计算出的地址读取一个字节（8 位无符号整数）</span><br><span class="line">      // 即迷宫地图中 (X, Y) 位置的字符</span><br><span class="line">  LOBYTE(n32) = (_DWORD)n32 == 32 || (_DWORD)n32 == 35;</span><br><span class="line">      // 判断合法性</span><br><span class="line">      // 32 是空格字符 &#x27; &#x27; 的 ASCII 码</span><br><span class="line">      // 35 是井号字符 &#x27;#&#x27; 的 ASCII 码</span><br><span class="line">      // 返回值：如果该位置是空格或井号，则返回 true（表示可移动）；否则返回 false（表示不可移动）</span><br><span class="line">  return n32;		      					    </span><br><span class="line">  	  // 返回值：布尔值，表示坐标 (a2, a3) 是否为合法位置</span><br><span class="line">      &#125;                                         </span><br><span class="line">      // 整体含义</span><br><span class="line">      // 空格 &#x27; &#x27;：表示通路，可以移动到该位置</span><br><span class="line">      // 井号 &#x27;#&#x27;：表示终点，可以移动到该位置</span><br><span class="line">      // 星号 &#x27;*&#x27;：表示墙壁，不能移动到该位置</span><br></pre></td></tr></table></figure>
+
+<p>编写行列格式输出脚本：</p>
+<p>名称：string-formatter</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">format_by_rows_and_columns</span>(<span class="params">s, rows, cols</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;按照指定的行数和列数格式化字符串&quot;&quot;&quot;</span></span><br><span class="line">    formatted = []</span><br><span class="line">    index = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(rows):</span><br><span class="line">        row = []</span><br><span class="line">        <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(cols):</span><br><span class="line">            <span class="keyword">if</span> index &lt; <span class="built_in">len</span>(s):</span><br><span class="line">                row.append(s[index])</span><br><span class="line">                index += <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                row.append(<span class="string">&#x27; &#x27;</span>)  <span class="comment"># 不足的位置用空格填充</span></span><br><span class="line">        formatted.append(<span class="string">&#x27;&#x27;</span>.join(row))</span><br><span class="line">    <span class="keyword">return</span> formatted</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">format_by_width</span>(<span class="params">s, width</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;按照指定的宽度格式化字符串&quot;&quot;&quot;</span></span><br><span class="line">    formatted = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(s), width):</span><br><span class="line">        line = s[i:i+width]</span><br><span class="line">        <span class="comment"># 不足宽度的行用空格填充</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(line) &lt; width:</span><br><span class="line">            line += <span class="string">&#x27; &#x27;</span> * (width - <span class="built_in">len</span>(line))</span><br><span class="line">        formatted.append(line)</span><br><span class="line">    <span class="keyword">return</span> formatted</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;==== 字符串格式化工具 ====&quot;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;\n请选择格式化模式:&quot;</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;1. 按行和列格式化&quot;</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;2. 按每行宽度格式化&quot;</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;3. 退出&quot;</span>)</span><br><span class="line">        </span><br><span class="line">        choice = <span class="built_in">input</span>(<span class="string">&quot;请输入选项 (1-3): &quot;</span>)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> choice == <span class="string">&#x27;3&#x27;</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;退出程序...&quot;</span>)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        </span><br><span class="line">        s = <span class="built_in">input</span>(<span class="string">&quot;请输入要格式化的字符串: &quot;</span>)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> choice == <span class="string">&#x27;1&#x27;</span>:</span><br><span class="line">            <span class="keyword">try</span>:</span><br><span class="line">                rows = <span class="built_in">int</span>(<span class="built_in">input</span>(<span class="string">&quot;请输入行数: &quot;</span>))</span><br><span class="line">                cols = <span class="built_in">int</span>(<span class="built_in">input</span>(<span class="string">&quot;请输入列数: &quot;</span>))</span><br><span class="line">                <span class="keyword">if</span> rows &lt;= <span class="number">0</span> <span class="keyword">or</span> cols &lt;= <span class="number">0</span>:</span><br><span class="line">                    <span class="built_in">print</span>(<span class="string">&quot;行数和列数必须为正整数&quot;</span>)</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                formatted = format_by_rows_and_columns(s, rows, cols)</span><br><span class="line">            <span class="keyword">except</span> ValueError:</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&quot;请输入有效的整数&quot;</span>)</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">elif</span> choice == <span class="string">&#x27;2&#x27;</span>:</span><br><span class="line">            <span class="keyword">try</span>:</span><br><span class="line">                width = <span class="built_in">int</span>(<span class="built_in">input</span>(<span class="string">&quot;请输入每行宽度: &quot;</span>))</span><br><span class="line">                <span class="keyword">if</span> width &lt;= <span class="number">0</span>:</span><br><span class="line">                    <span class="built_in">print</span>(<span class="string">&quot;宽度必须为正整数&quot;</span>)</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                formatted = format_by_width(s, width)</span><br><span class="line">            <span class="keyword">except</span> ValueError:</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&quot;请输入有效的整数&quot;</span>)</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;无效的选项，请重新输入&quot;</span>)</span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 输出结果</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;\n格式化结果:&quot;</span>)</span><br><span class="line">        <span class="keyword">for</span> line <span class="keyword">in</span> formatted:</span><br><span class="line">            <span class="built_in">print</span>(line)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 输出迷宫风格的结果（可选）</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">input</span>(<span class="string">&quot;是否以迷宫风格输出？(y/n): &quot;</span>).lower() == <span class="string">&#x27;y&#x27;</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;\n迷宫风格输出:&quot;</span>)</span><br><span class="line">            <span class="keyword">for</span> line <span class="keyword">in</span> formatted:</span><br><span class="line">                <span class="comment"># 将空格替换为&#x27;.&#x27;，其他字符保持不变</span></span><br><span class="line">                maze_line = <span class="string">&#x27;&#x27;</span>.join([<span class="string">&#x27;.&#x27;</span> <span class="keyword">if</span> c == <span class="string">&#x27; &#x27;</span> <span class="keyword">else</span> c <span class="keyword">for</span> c <span class="keyword">in</span> line])</span><br><span class="line">                <span class="built_in">print</span>(maze_line)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()    </span><br></pre></td></tr></table></figure>
+
+<p>最终迷宫输出图样为：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/202505222020822.png"></p>
+<p>故，最终的flag为：<u>nctf{o0oo00O000oooo…OO}</u></p>
+<h3 id="二维数组线性存储"><a href="#二维数组线性存储" class="headerlink" title="二维数组线性存储"></a>二维数组线性存储</h3><p>在二维数组中，我们通常使用行（row）和列（column）来定位元素。但在计算机内存中，二维数组实际上是<strong>线性存储</strong>的，也就是一个连续的内存块。为了在这个线性内存中找到对应的行和列位置，就需要使用一个转换公式：<code>index = row * width + col</code>。</p>
+<h4 id="公式的一般形式"><a href="#公式的一般形式" class="headerlink" title="公式的一般形式"></a>公式的一般形式</h4><p>对于一个<code>height</code>行、<code>width</code>列的二维数组，任意元素<code>(row, col)</code>对应的内存索引是</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">index = row * width + col</span><br></pre></td></tr></table></figure>
+
+<h4 id="公式背后的逻辑"><a href="#公式背后的逻辑" class="headerlink" title="公式背后的逻辑"></a>公式背后的逻辑</h4><ol>
+<li><strong>计算行偏移量</strong>：<code>row * width</code><ul>
+<li>每行有<code>width</code>个元素，所以第<code>row</code>行之前有<code>row</code>行，总共占用了<code>row * width</code>个位置。</li>
+</ul>
+</li>
+<li><strong>加上列偏移量</strong>：<code>+ col</code><ul>
+<li>在当前行中，目标元素是第<code>col</code>个，所以需要在该行的起始位置上再加上<code>col</code>。</li>
+</ul>
+</li>
+</ol>
+<h2 id="HelloCTF"><a href="#HelloCTF" class="headerlink" title="HelloCTF"></a>HelloCTF</h2><p>方向：Reverse	工具：IDA Pro</p>
+<p>直接进IDA</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> __cdecl <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">const</span> <span class="type">char</span> **argv, <span class="type">const</span> <span class="type">char</span> **envp)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">int</span> n17; <span class="comment">// ebx</span></span><br><span class="line">  <span class="type">char</span> v4; <span class="comment">// al</span></span><br><span class="line">  <span class="type">int</span> result; <span class="comment">// eax</span></span><br><span class="line">  <span class="type">int</span> v6; <span class="comment">// [esp+0h] [ebp-70h]</span></span><br><span class="line">  <span class="type">int</span> v7; <span class="comment">// [esp+0h] [ebp-70h]</span></span><br><span class="line">  <span class="type">char</span> Buffer[<span class="number">2</span>]; <span class="comment">// [esp+12h] [ebp-5Eh] BYREF</span></span><br><span class="line">  <span class="type">char</span> v9[<span class="number">20</span>]; <span class="comment">// [esp+14h] [ebp-5Ch] BYREF</span></span><br><span class="line">  <span class="type">char</span> buf_[<span class="number">32</span>]; <span class="comment">// [esp+28h] [ebp-48h] BYREF</span></span><br><span class="line">  __int16 v11; <span class="comment">// [esp+48h] [ebp-28h]</span></span><br><span class="line">  <span class="type">char</span> v12; <span class="comment">// [esp+4Ah] [ebp-26h]</span></span><br><span class="line">  <span class="type">char</span> _437261636b4d654a757374466f7246756e_[<span class="number">36</span>]; <span class="comment">// [esp+4Ch] [ebp-24h] BYREF</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">strcpy</span>(_437261636b4d654a757374466f7246756e_, <span class="string">&quot;437261636b4d654a757374466f7246756e&quot;</span>);</span><br><span class="line">  <span class="keyword">while</span> ( <span class="number">1</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">memset</span>(buf_, <span class="number">0</span>, <span class="keyword">sizeof</span>(buf_));</span><br><span class="line">    v11 = <span class="number">0</span>;</span><br><span class="line">    v12 = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">// &quot;please input your serial:&quot;</span></span><br><span class="line">    sub_40134B(p_please_input_your_serial_, v6);</span><br><span class="line">    <span class="comment">//读取用户输入的序列号</span></span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, v9);</span><br><span class="line">    <span class="keyword">if</span> ( <span class="built_in">strlen</span>(v9) &gt; <span class="number">0x11</span> )    <span class="comment">// 长度应小于17位</span></span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">      </span><br><span class="line">    <span class="keyword">for</span> ( n17 = <span class="number">0</span>; n17 &lt; <span class="number">17</span>; ++n17 )</span><br><span class="line">    &#123;</span><br><span class="line">      v4 = v9[n17];</span><br><span class="line">      <span class="keyword">if</span> ( !v4 )<span class="comment">//遇到空字符（&#x27;\0&#x27;）提前终止</span></span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="comment">//转换为十六进制字符串（小写形式）</span></span><br><span class="line">      <span class="built_in">sprintf</span>(Buffer, <span class="string">&quot;%x&quot;</span>, v4);</span><br><span class="line">      <span class="comment">//将每个字符的十六进制结果拼接至 buf_ 缓冲区</span></span><br><span class="line">      <span class="built_in">strcat</span>(buf_, Buffer);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> ( !<span class="built_in">strcmp</span>(buf_, _437261636b4d654a757374466f7246756e_) )</span><br><span class="line">      sub_40134B(aSuccess, v7);    <span class="comment">// &quot;success!&quot;</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      sub_40134B(aWrong, v7);      <span class="comment">// &quot;wrong!&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">  sub_40134B(aWrong, v7);           <span class="comment">// &quot;wrong!&quot;</span></span><br><span class="line">  result = (<span class="type">int</span>)*(&amp;Stream + <span class="number">1</span>) - <span class="number">1</span>;</span><br><span class="line">  *(&amp;Stream + <span class="number">1</span>) = (Stream *)((<span class="type">char</span> *)*(&amp;Stream + <span class="number">1</span>) - <span class="number">1</span>);</span><br><span class="line">  <span class="keyword">if</span> ( (<span class="type">int</span>)*(&amp;Stream + <span class="number">1</span>) &lt; <span class="number">0</span> )</span><br><span class="line">    <span class="keyword">return</span> _filbuf((FILE *)&amp;Stream);</span><br><span class="line">  Stream = (Stream *)((<span class="type">char</span> *)Stream + <span class="number">1</span>);</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="程序目的"><a href="#程序目的" class="headerlink" title="程序目的"></a><strong>程序目的</strong></h3><p>该程序是一个简单的序列号验证程序，要求用户输入一个序列号，验证通过则输出 <code>success!</code>，否则输出 <code>wrong!</code>。</p>
+<h3 id="核心逻辑"><a href="#核心逻辑" class="headerlink" title="核心逻辑"></a>核心逻辑</h3><p>将用户输入的字符串（如序列号）中的<strong>每个字符</strong>转换为对应的<strong>小写十六进制表示</strong>，并将所有结果拼接成一个连续的十六进制字符串</p>
+<h4 id="关键变量"><a href="#关键变量" class="headerlink" title="关键变量"></a><strong>关键变量</strong></h4><ul>
+<li>**<code>v9</code>**：用户输入的原始字符串（如序列号），类型为 <code>char[20]</code>。</li>
+<li>**<code>n17</code>**：循环变量，遍历 <code>v9</code> 中的每个字符（索引从 0 到 16，共 17 字节）。</li>
+<li>**<code>Buffer</code>**：临时缓冲区，长度为 2 字节（<code>char[2]</code>），用于存储单个字符的十六进制结果。</li>
+<li>**<code>buf_</code>**：目标缓冲区，类型为 <code>char[32]</code>，用于拼接所有十六进制字符串。</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (n17 = <span class="number">0</span>; n17 &lt; <span class="number">17</span>; ++n17) &#123;</span><br><span class="line">    v4 = v9[n17];         <span class="comment">// 取出当前字符</span></span><br><span class="line">    <span class="keyword">if</span> (!v4) <span class="keyword">break</span>;       <span class="comment">// 遇到空字符（&#x27;\0&#x27;）提前终止</span></span><br><span class="line">    <span class="built_in">sprintf</span>(Buffer, <span class="string">&quot;%x&quot;</span>, v4); <span class="comment">// 转换为小写十六进制字符串</span></span><br><span class="line">    <span class="built_in">strcat</span>(buf_, Buffer); <span class="comment">// 拼接至目标缓冲区</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="sprintf-转换细节"><a href="#sprintf-转换细节" class="headerlink" title="sprintf 转换细节"></a><strong>sprintf 转换细节</strong></h4><ul>
+<li><p>格式字符串 <code>%x</code></p>
+<ul>
+<li>将整数 <code>v4</code>（字符的 ASCII 码）转换为<strong>小写十六进制</strong>字符串。</li>
+<li>若数值小于 <code>0x10</code>（如字符 <code>&#39;\n&#39;</code>，ASCII 0x0A），则补前导零，确保结果为两位</li>
+</ul>
+</li>
+<li><p><code>Buffer</code> 的长度</p>
+<ul>
+<li>单个字符的十六进制最多为两位（如 <code>0xFF</code>），因此 <code>Buffer</code> 长度为 2 字节即可容纳结果（含字符串结束符 <code>&#39;\0&#39;</code>？<strong>注意隐患</strong>：<code>sprintf(Buffer, &quot;%x&quot;, v4)</code> 生成的字符串可能为 1 或 2 字节，如 <code>0x8</code> 转换为 <code>&quot;8&quot;</code>，此时 <code>Buffer</code> 中存储 <code>&quot;8\0&quot;</code>，长度为 2 字节（含 <code>&#39;\0&#39;</code>）。</li>
+</ul>
+</li>
+</ul>
+<h4 id="strcat-拼接逻辑"><a href="#strcat-拼接逻辑" class="headerlink" title="strcat 拼接逻辑"></a><strong>strcat 拼接逻辑</strong></h4><ul>
+<li><p><code>strcat(buf_, Buffer)</code></p>
+<ul>
+<li><p>将 <code>Buffer</code> 中的十六进制字符串追加到 <code>buf_</code> 末尾。</p>
+  <figure class="highlight c"><table><tr><td class="code"><pre><span class="line">buf_ = <span class="string">&quot;&quot;</span>;         <span class="comment">// 初始为空</span></span><br><span class="line">Buffer = <span class="string">&quot;41&quot;</span>;     <span class="comment">// &#x27;A&#x27;的十六进制</span></span><br><span class="line"><span class="built_in">strcat</span>(buf_, Buffer); <span class="comment">// buf_ 变为 &quot;41&quot;</span></span><br><span class="line"></span><br><span class="line">Buffer = <span class="string">&quot;42&quot;</span>;     <span class="comment">// &#x27;B&#x27;的十六进制</span></span><br><span class="line"><span class="built_in">strcat</span>(buf_, Buffer); <span class="comment">// buf_ 变为 &quot;4142&quot;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h3 id="关键结论总结"><a href="#关键结论总结" class="headerlink" title="关键结论总结"></a><strong>关键结论总结</strong></h3><table>
+<thead>
+<tr>
+<th>函数</th>
+<th>作用描述</th>
+<th>关键细节</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>sprintf</code></td>
+<td>将字符的 ASCII 码转换为小写十六进制字符串</td>
+<td>- 格式符 <code>%x</code> 不补前导零，单字节结果可能导致缓冲区溢出 - 正确做法：使用 <code>%02x</code> 和至少 3 字节缓冲区</td>
+</tr>
+<tr>
+<td><code>strcat</code></td>
+<td>将单个字符的十六进制字符串拼接成完整的校验字符串</td>
+<td>- 拼接时需确保目标缓冲区容量 &gt;&#x3D; 2× 输入长度 + 1 - 题目中存在溢出漏洞，输入 17 字节将覆盖栈内存</td>
+</tr>
+</tbody></table>
+<h2 id="2ex"><a href="#2ex" class="headerlink" title="2ex"></a>2ex</h2><p>wp参考：<a href="https://blog.csdn.net/xiao__1bai/article/details/122372452">攻防世界逆向高手题之2ex1_攻防世界 2ex1-CSDN博客</a></p>
+<h1 id="BUUCTF"><a href="#BUUCTF" class="headerlink" title="BUUCTF"></a>BUUCTF</h1><h2 id="reverse1"><a href="#reverse1" class="headerlink" title="reverse1"></a>reverse1</h2><p>方向：Reverse	工具：IDA Pro	</p>
+<p>直接点击运行.exe文件，可以看到要求直接输入flag</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/202505261220215.png"></p>
+<p>拖进IDA查看执行文件的字符串情况（F12），可以看到刚刚在终端里的“input the flag:”，以及关键的“this is the right flag!&#x2F;”<img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/202505261221669.png"></p>
+<p>双击它，点进去找到这段字符串的位置</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/202505261227441.png"></p>
+<p>按X，查询该字符串的交叉使用情况。可以发现是在main_0类中。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/202505261225647.png"></p>
+<h3 id="main-0函数"><a href="#main-0函数" class="headerlink" title="main_0函数"></a>main_0函数</h3><p>按F5，查看伪代码。</p>
+<p>定位加密后的flag字符串，也就是定位加密的函数（如何加密的flag）</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> __fastcall <span class="title function_">main_0</span><span class="params">(<span class="type">int</span> argc, const <span class="type">char</span> **argv, const <span class="type">char</span> **envp)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">char</span> *v3; <span class="comment">// rdi</span></span><br><span class="line">  __int64 n82; <span class="comment">// rcx</span></span><br><span class="line">  size_t __hello_world__; <span class="comment">// rax</span></span><br><span class="line">  <span class="type">char</span> v7; <span class="comment">// [rsp+0h] [rbp-20h] BYREF</span></span><br><span class="line">  <span class="type">int</span> i; <span class="comment">// [rsp+24h] [rbp+4h]</span></span><br><span class="line">  <span class="type">char</span> Str1[<span class="number">224</span>]; <span class="comment">// [rsp+48h] [rbp+28h] BYREF</span></span><br><span class="line">  __int64 v10; <span class="comment">// [rsp+128h] [rbp+108h]</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment">//内存初始化</span></span><br><span class="line">  v3 = &amp;v7;</span><br><span class="line">  <span class="keyword">for</span> ( n82 = <span class="number">82</span>; n82; --n82 )</span><br><span class="line">  &#123;</span><br><span class="line">    *(_DWORD *)v3 = -<span class="number">858993460</span>;</span><br><span class="line">    v3 += <span class="number">4</span>;</span><br><span class="line">  &#125;</span><br><span class="line">    </span><br><span class="line">  <span class="comment">//遍历字符串Str2</span></span><br><span class="line">  <span class="keyword">for</span> ( i = <span class="number">0</span>; ; ++i )</span><br><span class="line">  &#123;</span><br><span class="line">    v10 = i;</span><br><span class="line">    <span class="keyword">if</span> ( i &gt; j_strlen(Str2) )        <span class="comment">// &quot;&#123;hello_world&#125;&quot;</span></span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="comment">//将所有字符&#x27;o&#x27;(ASCII 111) 替换为字符&#x27;0&#x27;(ASCII 48)</span></span><br><span class="line">    <span class="comment">//IDA中，选中数字按&quot;R&quot;键可以将数字转换为字符</span></span><br><span class="line">    <span class="keyword">if</span> ( Str2[i] == <span class="number">111</span> )            </span><br><span class="line">      Str2[i] = <span class="number">48</span>;                  </span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//双击.exe文件时显示的。所以这是用户输入处理</span></span><br><span class="line">  sub_1400111D1(<span class="string">&quot;input the flag:&quot;</span>);</span><br><span class="line">  <span class="comment">//将输入读取到Str1中</span></span><br><span class="line">  <span class="comment">//%20s格式化说明符限制最多读取 20 个字符 (包括终止符)</span></span><br><span class="line">  sub_14001128F(<span class="string">&quot;%20s&quot;</span>, Str1);</span><br><span class="line">    </span><br><span class="line">  <span class="comment">//验证逻辑</span></span><br><span class="line">  __hello_world__ = j_strlen(Str2);  <span class="comment">// &quot;&#123;hello_world&#125;&quot;</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment">//__hello_world__ 的值为 13，这是因为字符串 Str2 &quot;&#123;hello_world&#125;&quot;其长度为 13 个字符（包括大括号和下划线）</span></span><br><span class="line">  <span class="keyword">if</span> ( !strncmp(Str1, Str2, __hello_world__) )  <span class="comment">// &quot;&#123;hello_world&#125;&quot;</span></span><br><span class="line">    sub_1400111D1(<span class="string">&quot;this is the right flag!\n&quot;</span>);</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    sub_1400111D1(<span class="string">&quot;wrong flag\n&quot;</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>故，最终的flag为：flag{hell0_w0rld}</p>
+<h3 id="strncmp函数的工作原理"><a href="#strncmp函数的工作原理" class="headerlink" title="strncmp函数的工作原理"></a><strong>strncmp函数的工作原理</strong></h3><p><code>strncmp</code> 是 C 语言标准库中的一个字符串比较函数，其原型定义在 <code>&lt;string.h&gt;</code> 头文件中。它的主要功能是比较两个字符串的前 <code>n</code> 个字符，常用于需要限制比较长度的场景。</p>
+<h4 id="函数原型"><a href="#函数原型" class="headerlink" title="函数原型"></a><strong>函数原型</strong></h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">strncmp</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *s1, <span class="type">const</span> <span class="type">char</span> *s2, <span class="type">size_t</span> n)</span>;</span><br></pre></td></tr></table></figure>
+
+<h4 id="参数说明"><a href="#参数说明" class="headerlink" title="参数说明"></a><strong>参数说明</strong></h4><ul>
+<li>**<code>s1</code>**：第一个要比较的字符串。</li>
+<li>**<code>s2</code>**：第二个要比较的字符串。</li>
+<li>**<code>n</code>**：最多比较的字符数（以字节为单位）。</li>
+</ul>
+<h4 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a><strong>工作原理</strong></h4><ol>
+<li><p><strong>逐字符比较</strong>：<br> 函数从两个字符串的第一个字符开始逐个比较，直到：</p>
+<ul>
+<li>发现不相等的字符（此时返回非零值）。</li>
+<li>遇到字符串结束符 <code>&#39;\0&#39;</code>（此时停止比较，除非已比较的字符数达到 <code>n</code>）。</li>
+<li>已经比较了 <code>n</code> 个字符（无论是否遇到 <code>&#39;\0&#39;</code>）。</li>
+</ul>
+</li>
+<li><p><strong>返回值规则</strong>：</p>
+<ul>
+<li><p><strong>若 <code>s1</code> 和 <code>s2</code> 完全相同</strong>（或仅比较部分相同且长度均为 <code>n</code>），返回 **<code>0</code>**。</p>
+</li>
+<li><p>若找到不相等的字符</p>
+<p>  ，返回这两个字符的 ASCII 码差值（</p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">s1[i] - s2[i]</span><br></pre></td></tr></table></figure>
+
+<p>  ）：</p>
+<ul>
+<li>若 <code>s1[i] &lt; s2[i]</code>，返回 <strong>负数</strong>。</li>
+<li>若 <code>s1[i] &gt; s2[i]</code>，返回 <strong>正数</strong>。</li>
+</ul>
+</li>
+<li><p>**若未找到不相等字符，但 <code>s1</code> 的长度小于 <code>s2</code>**（且比较长度 <code>n</code> 超过 <code>s1</code> 的长度），返回 <strong>负数</strong>（因为 <code>&#39;\0&#39;</code> 的 ASCII 值为 0，小于任何其他字符）。</p>
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="与-strcmp-的区别"><a href="#与-strcmp-的区别" class="headerlink" title="与 strcmp 的区别"></a><strong>与 <code>strcmp</code> 的区别</strong></h4><ul>
+<li>**<code>strcmp</code>**：比较整个字符串，直到遇到 <code>&#39;\0&#39;</code> 为止。</li>
+<li>**<code>strncmp</code>**：最多比较 <code>n</code> 个字符，即使字符串尚未结束。</li>
+</ul>
+<h2 id="xor"><a href="#xor" class="headerlink" title="xor"></a>xor</h2><p>方向：Reverse	工具：IDA Pro	</p>
+<p>查看是否有壳，没有有效信息</p>
+<p>直接放进IDA，进行分析</p>
+<p>关键语句是if判断句，因为字符串最后输出了Success，所以global和_b这两个字符串时相同的。</p>
+<p>双击global，然后看到global字符串中的值,其实已经在main函数通过注释展示出来了。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">int __fastcall main(int argc, const char **argv, const char **envp)</span><br><span class="line">&#123;</span><br><span class="line">  int n33; // [rsp+2Ch] [rbp-124h]</span><br><span class="line">  char __b[264]; // [rsp+40h] [rbp-110h] BYREF</span><br><span class="line"></span><br><span class="line">  memset(__b, 0, 0x100u);</span><br><span class="line">  printf(&quot;Input your flag:\n&quot;);</span><br><span class="line">  get_line(__b, 256);</span><br><span class="line">  if ( strlen(__b) != 33 )    // 长度应该等于33位</span><br><span class="line">    goto LABEL_7;</span><br><span class="line">  for ( n33 = 1; n33 &lt; 33; ++n33 )</span><br><span class="line">  //后一位与前一位进行异或运算</span><br><span class="line">    __b[n33] ^= __b[n33 - 1];</span><br><span class="line">  if ( !strncmp(</span><br><span class="line">          __b,</span><br><span class="line">          global,                               </span><br><span class="line">          // &quot;f\nk\fw&amp;O.@\x11x\rZ;U\x11p\x19F\x1Fv\&quot;M#D\x0Eg\x06h\x0FG2O&quot;</span><br><span class="line">          0x21u) )</span><br><span class="line">    printf(&quot;Success&quot;);</span><br><span class="line">  else</span><br><span class="line">LABEL_7:</span><br><span class="line">    printf(&quot;Failed&quot;);</span><br><span class="line">  return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/202505261930383.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/202505261930922.png"></p>
+<p>可以通过点击选中aFKWOXZUPFVMDGH后再点击任务栏的Edit-&gt;Export Data导出数据。</p>
+<p>具体选项是</p>
+<ul>
+<li>hex字符串（未空格）</li>
+<li>hex字符串（间隔）</li>
+<li>字符串文字</li>
+<li>C无符号字符数组（十六进制）</li>
+<li>C无符号字符数组（十进制）</li>
+<li>C变量初始化</li>
+<li>原始字节</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/202505261931323.png"></p>
+<p>最后选择了十进制导出</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">unsigned char aFKWOXZUPFVMDGH[] =</span><br><span class="line">&#123;</span><br><span class="line">102,  10, 107,  12, 119,  38,  79,  46,  64,  17,120,  13,  90,  59,  85,  17, 112,  25,  70,  31, 118,  34,  77,  35,  68,  14, 103,   6, 104,  15, 71,  50,  79,   0</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>编写脚本</p>
+<p>识别逗号分隔的输入数据类型，然后将每个数据与其前一个数据进行异或运算，最终输出处理后的字符串</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">detect_and_convert</span>(<span class="params">value</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;检测输入值的进制并转换为整数&quot;&quot;&quot;</span></span><br><span class="line">    value = value.strip()</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 检测二进制</span></span><br><span class="line">    <span class="keyword">if</span> re.<span class="keyword">match</span>(<span class="string">r&#x27;^0b[01]+$&#x27;</span>, value, re.IGNORECASE):</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">int</span>(value, <span class="number">2</span>)</span><br><span class="line">    <span class="comment"># 检测十六进制</span></span><br><span class="line">    <span class="keyword">elif</span> re.<span class="keyword">match</span>(<span class="string">r&#x27;^0x[0-9a-f]+$&#x27;</span>, value, re.IGNORECASE):</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">int</span>(value, <span class="number">16</span>)</span><br><span class="line">    <span class="comment"># 检测十进制</span></span><br><span class="line">    <span class="keyword">elif</span> re.<span class="keyword">match</span>(<span class="string">r&#x27;^\d+$&#x27;</span>, value):</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">int</span>(value)</span><br><span class="line">    <span class="comment"># 视为字符串（返回其ASCII值）</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(value) != <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">raise</span> ValueError(<span class="string">f&quot;字符串 &#x27;<span class="subst">&#123;value&#125;</span>&#x27; 长度必须为1&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">ord</span>(value)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">process_input</span>(<span class="params">input_str</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;处理输入字符串，进行异或运算并返回结果字符串&quot;&quot;&quot;</span></span><br><span class="line">    <span class="comment"># 分割输入字符串，允许逗号后有空格</span></span><br><span class="line">    elements = re.split(<span class="string">r&#x27;,\s*&#x27;</span>, input_str)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 转换所有元素为整数</span></span><br><span class="line">    converted = []</span><br><span class="line">    <span class="keyword">for</span> elem <span class="keyword">in</span> elements:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> elem:</span><br><span class="line">            <span class="keyword">continue</span>  <span class="comment"># 跳过空元素</span></span><br><span class="line">        converted.append(detect_and_convert(elem))</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> converted:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;&quot;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 处理第一个元素</span></span><br><span class="line">    result = [converted[<span class="number">0</span>]]</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 处理后续元素：当前元素与前一个元素异或</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(converted)):</span><br><span class="line">        xor_result = converted[i] ^ converted[i-<span class="number">1</span>]</span><br><span class="line">        result.append(xor_result)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 转换为字符串</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span>.join(<span class="built_in">chr</span>(c) <span class="keyword">for</span> c <span class="keyword">in</span> result)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    <span class="comment"># 示例输入，可以是混合进制</span></span><br><span class="line">    input_data = <span class="built_in">input</span>(<span class="string">&quot;请输入数据（逗号分隔，支持多种进制）：&quot;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        output = process_input(input_data)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;处理结果：<span class="subst">&#123;output&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;错误：<span class="subst">&#123;e&#125;</span>&quot;</span>)    </span><br></pre></td></tr></table></figure>
+
+<p>最终得到结果：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/202505261935505.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">flag&#123;QianQiuWanDai_YiTongJiangHu&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="reverse3"><a href="#reverse3" class="headerlink" title="reverse3"></a>reverse3</h2><p>方向：Reverse	工具：IDA Pro</p>
+<p>查壳，没有</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/202505262014099.png"></p>
+<p>进入IDA</p>
+<h3 id="main函数-2"><a href="#main函数-2" class="headerlink" title="main函数"></a>main函数</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> __cdecl <span class="title function_">main_0</span><span class="params">(<span class="type">int</span> argc, <span class="type">const</span> <span class="type">char</span> **argv, <span class="type">const</span> <span class="type">char</span> **envp)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">size_t</span> v3; <span class="comment">// eax</span></span><br><span class="line">  <span class="type">const</span> <span class="type">char</span> *Source; <span class="comment">// eax</span></span><br><span class="line">  <span class="type">size_t</span> MaxCount; <span class="comment">// eax</span></span><br><span class="line">  <span class="type">char</span> v7; <span class="comment">// [esp+0h] [ebp-188h]</span></span><br><span class="line">  <span class="type">char</span> v8; <span class="comment">// [esp+0h] [ebp-188h]</span></span><br><span class="line">  <span class="type">signed</span> <span class="type">int</span> i; <span class="comment">// [esp+DCh] [ebp-ACh]</span></span><br><span class="line">  <span class="type">int</span> n0x64; <span class="comment">// [esp+E8h] [ebp-A0h]</span></span><br><span class="line">  <span class="type">signed</span> <span class="type">int</span> v11; <span class="comment">// [esp+E8h] [ebp-A0h]</span></span><br><span class="line">  <span class="type">char</span> Destination[<span class="number">108</span>]; <span class="comment">// [esp+F4h] [ebp-94h] BYREF</span></span><br><span class="line">  <span class="type">char</span> Str[<span class="number">28</span>]; <span class="comment">// [esp+160h] [ebp-28h] BYREF</span></span><br><span class="line">  _BYTE v14[<span class="number">8</span>]; <span class="comment">// [esp+17Ch] [ebp-Ch] BYREF</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> ( n0x64 = <span class="number">0</span>; n0x64 &lt; <span class="number">100</span>; ++n0x64 )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> ( (<span class="type">unsigned</span> <span class="type">int</span>)n0x64 &gt;= <span class="number">0x64</span> )</span><br><span class="line">      j____report_rangecheckfailure();</span><br><span class="line">    Destination[n0x64] = <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//直接捕捉字符串flag</span></span><br><span class="line">  sub_41132F(<span class="string">&quot;please enter the flag:&quot;</span>, v7);</span><br><span class="line">  sub_411375(<span class="string">&quot;%20s&quot;</span>, (<span class="type">char</span>)Str);</span><br><span class="line">  v3 = j_strlen(Str);</span><br><span class="line">    <span class="comment">//sub_4110BE为加密函数</span></span><br><span class="line">  Source = (<span class="type">const</span> <span class="type">char</span> *)sub_4110BE(Str, v3, v14);</span><br><span class="line">  <span class="built_in">strncpy</span>(Destination, Source, <span class="number">0x28u</span>);</span><br><span class="line">  v11 = j_strlen(Destination);</span><br><span class="line">  <span class="keyword">for</span> ( i = <span class="number">0</span>; i &lt; v11; ++i )</span><br><span class="line">    Destination[i] += i;</span><br><span class="line">  MaxCount = j_strlen(Destination);</span><br><span class="line">  <span class="keyword">if</span> ( !<span class="built_in">strncmp</span>(Destination, Str2, MaxCount) )  <span class="comment">// &quot;e3nifIH9b_C@n@dH&quot;</span></span><br><span class="line">    sub_41132F(<span class="string">&quot;rigth flag!\n&quot;</span>, v8);</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    sub_41132F(<span class="string">&quot;wrong flag!\n&quot;</span>, v8);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="加密函数"><a href="#加密函数" class="headerlink" title="加密函数"></a>加密函数</h3><p>通过分析函数的缓冲区计算、分组处理、字符映射表、填充逻辑和位操作模式，可以确定这个函数实现了 Base64 编码算法。这种实现方式在逆向工程中很常见，虽然代码结构可能与标准库不同，但核心算法特征是一致的。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">void</span> *__cdecl <span class="title function_">sub_411AB0</span><span class="params">(<span class="type">char</span> *p_Str, <span class="type">size_t</span> a2, _BYTE *a3)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">int</span> v4; <span class="comment">// [esp+D4h] [ebp-38h]</span></span><br><span class="line">  <span class="type">int</span> v5; <span class="comment">// [esp+D4h] [ebp-38h]</span></span><br><span class="line">  <span class="type">int</span> v6; <span class="comment">// [esp+D4h] [ebp-38h]</span></span><br><span class="line">  <span class="type">int</span> v7; <span class="comment">// [esp+D4h] [ebp-38h]</span></span><br><span class="line">  <span class="type">int</span> n3; <span class="comment">// [esp+E0h] [ebp-2Ch]</span></span><br><span class="line">  <span class="type">size_t</span> v9; <span class="comment">// [esp+ECh] [ebp-20h]</span></span><br><span class="line">  <span class="type">int</span> v10; <span class="comment">// [esp+ECh] [ebp-20h]</span></span><br><span class="line">  <span class="type">int</span> v11; <span class="comment">// [esp+ECh] [ebp-20h]</span></span><br><span class="line">  <span class="type">void</span> *v12; <span class="comment">// [esp+F8h] [ebp-14h]</span></span><br><span class="line">  <span class="type">char</span> *p_Str_1; <span class="comment">// [esp+104h] [ebp-8h]</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> ( !p_Str || !a2 )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="comment">//Base64 编码会将 3 字节的输入数据转换为 4 字节的输出数据，因此输出长度通常为 (输入长度 + 2) / 3 * 4。</span></span><br><span class="line">    <span class="comment">//a2 是输入长度、v9 计算输入能分成多少个 3 字节块、如果不能整除，需要额外的块（++v9）、v10 是最终输出长度（4 * v9）</span></span><br><span class="line">    <span class="comment">//这与 Base64 编码的空间复杂度完全一致</span></span><br><span class="line">  v9 = a2 / <span class="number">3</span>;</span><br><span class="line">  <span class="keyword">if</span> ( (<span class="type">int</span>)(a2 / <span class="number">3</span>) % <span class="number">3</span> )</span><br><span class="line">    ++v9;</span><br><span class="line">  v10 = <span class="number">4</span> * v9;</span><br><span class="line"></span><br><span class="line">  *(_DWORD *)a3 = v10;</span><br><span class="line">  v12 = <span class="built_in">malloc</span>(v10 + <span class="number">1</span>);</span><br><span class="line">  <span class="keyword">if</span> ( !v12 )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  j_memset(v12, <span class="number">0</span>, v10 + <span class="number">1</span>);</span><br><span class="line">  p_Str_1 = p_Str;</span><br><span class="line">  v11 = a2;</span><br><span class="line">  v4 = <span class="number">0</span>;</span><br><span class="line"><span class="comment">//Base64 编码按 3 字节分组处理输入数据，不足 3 字节时进行填充</span></span><br><span class="line">  <span class="keyword">while</span> ( v11 &gt; <span class="number">0</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    algn_41A145[<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">    algn_41A145[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">    byte_41A144[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> ( n3 = <span class="number">0</span>; n3 &lt; <span class="number">3</span> &amp;&amp; v11 &gt;= <span class="number">1</span>; ++n3 )</span><br><span class="line">    &#123;</span><br><span class="line">      byte_41A144[n3] = *p_Str_1;</span><br><span class="line">      --v11;</span><br><span class="line">      ++p_Str_1;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> ( !n3 )</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">switch</span> ( n3 )</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="comment">//Base64 编码使用一个固定的字符映射表，将 6 位数值转换为对应的 ASCII 字符。函数中频繁引用的 aAbcdefghijklmn 数组就是这个映射表。</span></span><br><span class="line">      <span class="comment">//aAbcdefghijklmn 是 Base64 字符表（通常是ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/）</span></span><br><span class="line">      <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">        *((_BYTE *)v12 + v4) = aAbcdefghijklmn[(<span class="type">int</span>)(<span class="type">unsigned</span> __int8)byte_41A144[<span class="number">0</span>] &gt;&gt; <span class="number">2</span>];</span><br><span class="line">        v5 = v4 + <span class="number">1</span>;</span><br><span class="line">        *((_BYTE *)v12 + v5) = aAbcdefghijklmn[((algn_41A145[<span class="number">0</span>] &amp; <span class="number">0xF0</span>) &gt;&gt; <span class="number">4</span>) | (<span class="number">16</span> * (byte_41A144[<span class="number">0</span>] &amp; <span class="number">3</span>))];</span><br><span class="line">        *((_BYTE *)v12 + ++v5) = aAbcdefghijklmn[<span class="number">64</span>];</span><br><span class="line">        *((_BYTE *)v12 + ++v5) = aAbcdefghijklmn[<span class="number">64</span>];</span><br><span class="line">        v4 = v5 + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">        *((_BYTE *)v12 + v4) = aAbcdefghijklmn[(<span class="type">int</span>)(<span class="type">unsigned</span> __int8)byte_41A144[<span class="number">0</span>] &gt;&gt; <span class="number">2</span>];</span><br><span class="line">        v6 = v4 + <span class="number">1</span>;</span><br><span class="line">        *((_BYTE *)v12 + v6) = aAbcdefghijklmn[((algn_41A145[<span class="number">0</span>] &amp; <span class="number">0xF0</span>) &gt;&gt; <span class="number">4</span>) | (<span class="number">16</span> * (byte_41A144[<span class="number">0</span>] &amp; <span class="number">3</span>))];</span><br><span class="line">        *((_BYTE *)v12 + ++v6) = aAbcdefghijklmn[((algn_41A145[<span class="number">1</span>] &amp; <span class="number">0xC0</span>) &gt;&gt; <span class="number">6</span>) | (<span class="number">4</span> * (algn_41A145[<span class="number">0</span>] &amp; <span class="number">0xF</span>))];</span><br><span class="line">        *((_BYTE *)v12 + ++v6) = aAbcdefghijklmn[<span class="number">64</span>];</span><br><span class="line">        v4 = v6 + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">        *((_BYTE *)v12 + v4) = aAbcdefghijklmn[(<span class="type">int</span>)(<span class="type">unsigned</span> __int8)byte_41A144[<span class="number">0</span>] &gt;&gt; <span class="number">2</span>];</span><br><span class="line">        v7 = v4 + <span class="number">1</span>;</span><br><span class="line">        *((_BYTE *)v12 + v7) = aAbcdefghijklmn[((algn_41A145[<span class="number">0</span>] &amp; <span class="number">0xF0</span>) &gt;&gt; <span class="number">4</span>) | (<span class="number">16</span> * (byte_41A144[<span class="number">0</span>] &amp; <span class="number">3</span>))];</span><br><span class="line">        *((_BYTE *)v12 + ++v7) = aAbcdefghijklmn[((algn_41A145[<span class="number">1</span>] &amp; <span class="number">0xC0</span>) &gt;&gt; <span class="number">6</span>) | (<span class="number">4</span> * (algn_41A145[<span class="number">0</span>] &amp; <span class="number">0xF</span>))];</span><br><span class="line">        *((_BYTE *)v12 + ++v7) = aAbcdefghijklmn[algn_41A145[<span class="number">1</span>] &amp; <span class="number">0x3F</span>];</span><br><span class="line">        v4 = v7 + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  *((_BYTE *)v12 + v4) = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">return</span> v12;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>通过脚本解码</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"></span><br><span class="line">str2=<span class="built_in">input</span>(<span class="string">&quot;请输入需要数据：&quot;</span>)</span><br><span class="line">flag=<span class="string">&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="built_in">len</span>(str2)):</span><br><span class="line">    flag+=<span class="built_in">chr</span>(<span class="built_in">ord</span>(str2[i])-i)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;加密：&#123;&#125;&quot;</span>.<span class="built_in">format</span>(flag))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;解密：&#123;&#125;&quot;</span>.<span class="built_in">format</span>(base64.b64decode(flag).decode(<span class="string">&#x27;utf-8&#x27;</span>)))</span><br></pre></td></tr></table></figure>
+
+<p>最终得到结果</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/202505262056499.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;i_l0ve_you&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Base64（换表）"><a href="#Base64（换表）" class="headerlink" title="Base64（换表）"></a>Base64（换表）</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> base64 <span class="comment">#导入base64模块用于解密</span></span><br><span class="line">s1 = <span class="string">&#x27;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/&#x27;</span> <span class="comment">#标准表</span></span><br><span class="line">s2 = <span class="string">&#x27;qvEJAfHmUYjBac+u8Ph5n9Od17FrICL/X0gVtM4Qk6T2z3wNSsyoebilxWKGZpRD&#x27;</span> <span class="comment">#base64换表</span></span><br><span class="line">en_text = <span class="string">&#x27;5Mc58bPHLiAx7J8ocJIlaVUxaJvMcoYMaoPMaOfg15c475tscHfM/8==&#x27;</span> <span class="comment">#密文</span></span><br><span class="line"> </span><br><span class="line">map_text = <span class="string">&#x27;&#x27;</span> <span class="comment">#用于存放密文通过换表映射回标准表的字符</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> en_text:</span><br><span class="line">    <span class="keyword">if</span>(i != <span class="string">&#x27;=&#x27;</span>): <span class="comment">#注意密文中存在等号的情况下，不需要替换！</span></span><br><span class="line">        idx = s2.index(i) <span class="comment">#获取每个密文的字符在换表中的索引</span></span><br><span class="line">        map_text += s1[idx] <span class="comment">#取出标准表中的该索引的字符，就是正常base64加密的密文</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        map_text += i</span><br><span class="line"><span class="built_in">print</span>(map_text) <span class="comment">#可以先看看标准表base64加密的密文</span></span><br><span class="line"><span class="built_in">print</span>(base64.b64decode(map_text)) <span class="comment">#直接使用提供的base64解密函数，获得明文，就是flag</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h4><p>Base64 编码使用一个固定的字符表：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/</span><br></pre></td></tr></table></figure>
+
+<p>但在某些场景（如 CTF 题目）中，会使用自定义的字符表（如代码中的<code>s2</code>）进行编码。此时，标准的 Base64 解码器无法直接解码，需要先将密文从<strong>自定义表</strong>映射回<strong>标准表</strong>，再进行解码。</p>
+<h4 id="代码逐行解析"><a href="#代码逐行解析" class="headerlink" title="代码逐行解析"></a>代码逐行解析</h4><ol>
+<li>定义映射表和密文</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">s1 = <span class="string">&#x27;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/&#x27;</span> <span class="comment">#标准表</span></span><br><span class="line">s2 = <span class="string">&#x27;qvEJAfHmUYjBac+u8Ph5n9Od17FrICL/X0gVtM4Qk6T2z3wNSsyoebilxWKGZpRD&#x27;</span> <span class="comment">#自定义表</span></span><br><span class="line">en_text = <span class="string">&#x27;5Mc58bPHLiAx7J8ocJIlaVUxaJvMcoYMaoPMaOfg15c475tscHfM/8==&#x27;</span> <span class="comment">#密文</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>s1</code>是标准 Base64 表，每个字符对应一个 6 位数值（0-63）</li>
+<li><code>s2</code>是自定义表，字符顺序被打乱，但仍对应相同的 6 位数值</li>
+<li><code>en_text</code>是使用<code>s2</code>编码后的密文</li>
+</ul>
+<p>映射转换过程</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">map_text = <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> en_text:</span><br><span class="line">    <span class="keyword">if</span>(i != <span class="string">&#x27;=&#x27;</span>):</span><br><span class="line">        idx = s2.index(i)  <span class="comment"># 在自定义表中找到字符的位置</span></span><br><span class="line">        map_text += s1[idx]  <span class="comment"># 从标准表中取出对应位置的字符</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        map_text += i  <span class="comment"># 保留填充字符&#x27;=&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>关键逻辑</strong>：</p>
+<ul>
+<li>遍历密文<code>en_text</code>中的每个字符</li>
+<li>对于非<code>=</code>字符，找到它在<code>s2</code>中的位置（例如字符<code>5</code>在<code>s2</code>中位于索引 40）</li>
+<li>用这个索引从标准表<code>s1</code>中取出对应字符（索引 40 对应标准表中的<code>Q</code>）</li>
+<li>最终得到标准 Base64 编码的字符串<code>map_text</code></li>
+</ul>
+<h4 id="解码标准-Base64"><a href="#解码标准-Base64" class="headerlink" title="解码标准 Base64"></a>解码标准 Base64</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="built_in">print</span>(map_text)  <span class="comment"># 转换后的标准Base64字符串</span></span><br><span class="line"><span class="built_in">print</span>(base64.b64decode(map_text))  <span class="comment"># 使用标准库解码</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>map_text</code>是符合标准 Base64 编码规则的字符串</li>
+<li><code>base64.b64decode()</code>直接处理标准编码，输出原始数据</li>
+</ul>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>这段代码的工作流程：</p>
+<ol>
+<li><strong>密文</strong>（使用自定义表编码）</li>
+<li><strong>映射转换</strong>（从自定义表→标准表）</li>
+<li><strong>标准解码</strong>（得到原始数据）</li>
+</ol>
+<p>这是处理 Base64 换表问题的标准方法，在 CTF 和逆向工程中非常常见。</p>
+<h2 id="secret-of-inkey"><a href="#secret-of-inkey" class="headerlink" title="secret_of_inkey"></a>secret_of_inkey</h2><p>方向：Reverse	工具：IDA Pro	</p>
+<p>来源：[DASCTF 2024最后一战｜寒夜破晓，冬至终章]</p>
+<p>查壳，没有</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/202505271034408.png"></p>
+<p>点击运行，可以看到窗口是。许多个格子组成的。<img src="/CTF%E7%BB%83%E4%B9%A0.assets/image-20250527142653829.png"></p>
+<p>点击右上角的方块会有提示。意思就是第565个各自的key是9fc巴拉巴拉。在对应的各自输入后。</p>
+<p><img src="/CTF%E7%BB%83%E4%B9%A0.assets/image-20250527142620390.png"></p>
+<p>弹框。还是i相同的意思。以此类推。</p>
+<p><img src="/CTF%E7%BB%83%E4%B9%A0.assets/image-20250527142559862.png"></p>
+<p>拖进IDA，查看。</p>
+<p>直接搜索输出框上的字符串“Right”</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/202505271430294.png"></p>
+<p>双击后再进行交叉引用查看对应的使用函数，即sub_416D70+374</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/202505271431725.png"></p>
+<p>进入该函数然后使用F5，查看伪代码。</p>
+<h4 id="关键类与函数（基于-Qt-框架）"><a href="#关键类与函数（基于-Qt-框架）" class="headerlink" title="关键类与函数（基于 Qt 框架）"></a><strong>关键类与函数（基于 Qt 框架）</strong></h4><ul>
+<li>**<code>QString</code>**：处理字符串，涉及 <code>fromAscii_helper</code>、<code>fromUtf8_helper</code>、<code>append</code> 等函数，用于字符串转换和拼接。</li>
+<li>**<code>QMessageBox</code>**：弹出对话框，<code>setWindowTitle</code> 和 <code>setText</code> 用于设置标题和内容，<code>exec</code> 显示对话框。</li>
+<li><strong>内存操作</strong>：<code>_InterlockedSub</code> 等原子操作函数，可能用于引用计数管理（Qt 的隐式共享机制）。</li>
+</ul>
+<h3 id="加密1"><a href="#加密1" class="headerlink" title="加密1"></a>加密1</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (n32 = <span class="number">0</span>; n32 != <span class="number">32</span>; ++n32)</span><br><span class="line">    *((_BYTE *)v35 + n32) ^= *(_BYTE *)(v4 + (n32 &amp; <span class="number">0xF</span>)) ^ (<span class="type">unsigned</span> __int8)n32;</span><br></pre></td></tr></table></figure>
+
+<p>这段代码是一个<strong>循环加密 &#x2F; 解密过程</strong>，主要做了两件事：</p>
+<ol>
+<li><strong>用密钥（<code>v4</code>）对数据（<code>v35</code>）进行异或</strong></li>
+<li><strong>用「当前位置编号」增加随机性</strong></li>
+</ol>
+<h4 id="分步解释"><a href="#分步解释" class="headerlink" title="分步解释"></a><strong>分步解释</strong></h4><h4 id="循环过程（逐字节处理）"><a href="#循环过程（逐字节处理）" class="headerlink" title="循环过程（逐字节处理）"></a><strong>循环过程（逐字节处理）</strong></h4><p>对<strong>每个字节</strong>执行以下操作：</p>
+<ol>
+<li><strong>找到对应的密钥字节</strong>：<br> 由于密钥只有 16 字节，但数据有 32 字节，所以需要<strong>循环使用密钥</strong>。<ul>
+<li>当处理前 16 字节（0<del>15）时，直接用密钥的 0</del>15 字节</li>
+<li>当处理后 16 字节（16<del>31）时，<strong>重复使用</strong>密钥的 0</del>15 字节<br>  <strong>计算方式</strong>：<code>密钥位置 = 当前字节编号 % 16</code>（用<code>n32 &amp; 0xF</code>实现）</li>
+</ul>
+</li>
+<li><strong>第一次异或</strong>：<br> 将<strong>当前数据字节</strong>与<strong>对应的密钥字节</strong>异或</li>
+<li><strong>第二次异或</strong>：<br> 将结果再与<strong>当前字节编号</strong>异或（增加随机性）</li>
+</ol>
+<p><strong>数学公式</strong></p>
+<p>设：</p>
+<ul>
+<li><code>data[i]</code> &#x3D; 第 i 个数据字节</li>
+<li><code>key[j]</code> &#x3D; 第 j 个密钥字节</li>
+<li><code>i % 16</code> &#x3D; 用<code>i &amp; 0xF</code>计算</li>
+</ul>
+<p>则加密过程为：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">data[i] = data[i] ⊕ key[i % 16] ⊕ i</span><br></pre></td></tr></table></figure>
+
+<p>（⊕ 表示异或运算）</p>
+<h4 id="举个栗子（假设数据和密钥）"><a href="#举个栗子（假设数据和密钥）" class="headerlink" title="举个栗子（假设数据和密钥）"></a><strong>举个栗子（假设数据和密钥）</strong></h4><h5 id="假设："><a href="#假设：" class="headerlink" title="假设："></a><strong>假设</strong>：</h5><ul>
+<li>数据（v35）前 4 字节 &#x3D; <code>[0x10, 0x20, 0x30, 0x40]</code></li>
+<li>密钥（v4）前 4 字节 &#x3D; <code>[0xAA, 0xBB, 0xCC, 0xDD]</code></li>
+</ul>
+<h5 id="加密过程："><a href="#加密过程：" class="headerlink" title="加密过程："></a><strong>加密过程</strong>：</h5><table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>数据位置 (i)</th>
+<th>对应密钥位置 (j)</th>
+<th>计算过程</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>0</td>
+<td>0 &amp; 15 &#x3D; 0</td>
+<td>0x10 ⊕ 0xAA ⊕ 0x00 &#x3D; <strong>0xBA</strong></td>
+<td>0xBA</td>
+</tr>
+<tr>
+<td>2</td>
+<td>1</td>
+<td>1 &amp; 15 &#x3D; 1</td>
+<td>0x20 ⊕ 0xBB ⊕ 0x01 &#x3D; <strong>0x9A</strong></td>
+<td>0x9A</td>
+</tr>
+<tr>
+<td>3</td>
+<td>2</td>
+<td>2 &amp; 15 &#x3D; 2</td>
+<td>0x30 ⊕ 0xCC ⊕ 0x02 &#x3D; <strong>0xFC</strong></td>
+<td>0xFC</td>
+</tr>
+<tr>
+<td>4</td>
+<td>3</td>
+<td>3 &amp; 15 &#x3D; 3</td>
+<td>0x40 ⊕ 0xDD ⊕ 0x03 &#x3D; <strong>0x9E</strong></td>
+<td>0x9E</td>
+</tr>
+</tbody></table>
+<h5 id="解密过程："><a href="#解密过程：" class="headerlink" title="解密过程："></a><strong>解密过程</strong>：</h5><p>完全相同！因为异或运算满足：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">(A ⊕ B ⊕ C) ⊕ B ⊕ C = A （两次异或抵消）</span><br></pre></td></tr></table></figure>
+
+<h4 id="如何在-CTF-中快速识别这种模式？"><a href="#如何在-CTF-中快速识别这种模式？" class="headerlink" title="如何在 CTF 中快速识别这种模式？"></a><strong>如何在 CTF 中快速识别这种模式？</strong></h4><p>A：当看到类似「循环异或」+「密钥复用」+「索引参与运算」的代码，很可能就是这种加密方式。<br>关键特征：<code>key[i % 密钥长度]</code>和<code>循环变量参与异或</code>。</p>
+<h3 id="加密2"><a href="#加密2" class="headerlink" title="加密2"></a>加密2</h3><p>在异或预处理后调用 <strong><code>sub_401F90</code> 进一步处理</strong></p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">sub_401F90(v4, <span class="number">16</span>, (<span class="type">unsigned</span> <span class="type">int</span>)v35, (<span class="type">unsigned</span> <span class="type">int</span>)v30, <span class="number">32</span>);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>参数分析<ul>
+<li><code>v4</code>：可能是密钥（长度 16 字节）。</li>
+<li><code>v35</code>：输入数据（32 字节）。</li>
+<li><code>v30</code>：输出缓冲区（32 字节，存储解密后的数据）。</li>
+</ul>
+</li>
+</ul>
+<p>关键代码</p>
+<p>校验密钥长度与数据分组 → 2. 密钥扩展 → 3. 对每个 16 字节分组执行 AES 轮函数（S 盒、移位、混淆、异或） → 4. 输出明文</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"> // 参数非空校验</span><br><span class="line">  if ( a3 == 0 || a1 == 0 || !a4 )</span><br><span class="line">  &#123;</span><br><span class="line">    puts(&quot;param err.&quot;);</span><br><span class="line">    return 0xFFFFFFFFLL;</span><br><span class="line">  &#125;</span><br><span class="line">  // 密钥长度校验强制要求密钥为 16 字节（AES-128 密钥长度）</span><br><span class="line">  if ( n16 &gt; 0x10 )</span><br><span class="line">  &#123;</span><br><span class="line">    puts(&quot;keyLen must be 16.&quot;);</span><br><span class="line">    return 0xFFFFFFFFLL;</span><br><span class="line">  &#125;</span><br><span class="line">  // 数据长度校验 </span><br><span class="line">  // 输入数据必须是 16 字节的整数倍（分组密码典型要求）</span><br><span class="line">  if ( (n32 &amp; 0xF) != 0 )</span><br><span class="line">  &#123;</span><br><span class="line">    puts(&quot;inLen is invalid.&quot;);</span><br><span class="line">    return 0xFFFFFFFFLL;</span><br><span class="line">  &#125;</span><br><span class="line">  v7 = a1;</span><br><span class="line">  v8 = v41;</span><br><span class="line">  if ( n16 &gt;= 8 )</span><br><span class="line">  &#123;</span><br><span class="line">    LODWORD(v37) = 0;</span><br><span class="line">    do</span><br><span class="line">    &#123;</span><br><span class="line">      v38 = (unsigned int)v37;</span><br><span class="line">      v37 = (unsigned int)(v37 + 8);</span><br><span class="line">      *(_QWORD *)((char *)v41 + v38) = *(_QWORD *)((char *)a1 + v38);</span><br><span class="line">    &#125;</span><br><span class="line">    while ( (unsigned int)v37 &lt; (n16 &amp; 0xFFFFFFF8) );</span><br><span class="line">    v8 = (_DWORD *)((char *)v41 + v37);</span><br><span class="line">    v7 = (_DWORD *)((char *)a1 + v37);</span><br><span class="line">  &#125;</span><br><span class="line">  n4 = 0;</span><br><span class="line">  if ( (n16 &amp; 4) == 0 )</span><br><span class="line">  &#123;</span><br><span class="line">    if ( (n16 &amp; 2) == 0 )</span><br><span class="line">      goto LABEL_8;</span><br><span class="line">LABEL_40:</span><br><span class="line">    *(_WORD *)((char *)v8 + n4) = *(_WORD *)((char *)v7 + n4);</span><br><span class="line">    n4 += 2;</span><br><span class="line">    if ( (n16 &amp; 1) == 0 )</span><br><span class="line">      goto LABEL_9;</span><br><span class="line">    goto LABEL_39;</span><br><span class="line">  &#125;</span><br><span class="line">  n4 = 4;</span><br><span class="line">  *v8 = *v7;</span><br><span class="line">  if ( (n16 &amp; 2) != 0 )</span><br><span class="line">    goto LABEL_40;</span><br><span class="line">LABEL_8:</span><br><span class="line">  if ( (n16 &amp; 1) != 0 )</span><br><span class="line">LABEL_39:</span><br><span class="line">    *((_BYTE *)v8 + n4) = *((_BYTE *)v7 + n4);</span><br><span class="line">LABEL_9:</span><br><span class="line">  sub_4015C0(v41, 16, v43);</span><br><span class="line">  if ( n32 )</span><br><span class="line">  &#123;</span><br><span class="line">    v40 = v6 + 16 * (((unsigned int)(n32 - 1) &gt;&gt; 4) + 1LL);</span><br><span class="line">    v10 = a3;</span><br><span class="line">    do</span><br><span class="line">    &#123;</span><br><span class="line">      v11 = v10 + 16;                           // 每次处理16字节分组</span><br><span class="line">      v12 = (char *)v42;</span><br><span class="line">      v13 = (char *)v42;</span><br><span class="line">      v39 = v10 + 16;</span><br><span class="line">      // 将输入密文分组（16 字节）按 4 字节块逆序重组 到 v42 中</span><br><span class="line">      do</span><br><span class="line">      &#123;</span><br><span class="line">        v14 = *v10;</span><br><span class="line">        v10 += 4;</span><br><span class="line">        *v13++ = v14;</span><br><span class="line">        v13[3] = *(v10 - 3);</span><br><span class="line">        v13[7] = *(v10 - 2);</span><br><span class="line">        v13[11] = *(v10 - 1);</span><br><span class="line">      &#125;</span><br><span class="line">      while ( v11 != v10 );</span><br><span class="line">      v15 = v42;</span><br><span class="line">      for ( n24 = 24; n24 != -8; n24 -= 8 )</span><br><span class="line">      &#123;</span><br><span class="line">        for ( n4_1 = 0; n4_1 != 4; ++n4_1 )</span><br><span class="line">          *((_BYTE *)v15 + n4_1) ^= *((_DWORD *)&amp;v43[22] + n4_1) &gt;&gt; n24;</span><br><span class="line">        v15 = (_QWORD *)((char *)v15 + 4);</span><br><span class="line">      &#125;</span><br><span class="line">      v18 = &amp;v44;</span><br><span class="line">      do</span><br><span class="line">      &#123;</span><br><span class="line">        v19 = v18 + 2;</span><br><span class="line">        sub_4017D0((unsigned int *)v42);</span><br><span class="line">        // 引用全局字节数组 byte_41F020（S盒）</span><br><span class="line">        v21 = (unsigned __int8 *)v42;</span><br><span class="line">        do</span><br><span class="line">        &#123;</span><br><span class="line">          v22 = v21 + 4;</span><br><span class="line">          do</span><br><span class="line">          &#123;</span><br><span class="line">            v23 = *v21++;</span><br><span class="line">            *(v21 - 1) = byte_41F020[v23];</span><br><span class="line">          &#125;</span><br><span class="line">          while ( v22 != v21 );</span><br><span class="line">        &#125;</span><br><span class="line">        while ( v43 != (_QWORD *)v22 );</span><br><span class="line">        v24 = v42;</span><br><span class="line">        for ( n24_1 = 24; n24_1 != -8; n24_1 -= 8 )</span><br><span class="line">        &#123;</span><br><span class="line">          for ( n4_2 = 0; n4_2 != 4; ++n4_2 )</span><br><span class="line">          &#123;</span><br><span class="line">            v27 = (unsigned int)(*(_DWORD *)(v20 + 4 * n4_2 + 16) &gt;&gt; n24_1);</span><br><span class="line">            *((_BYTE *)v24 + n4_2) ^= v27;</span><br><span class="line">          &#125;</span><br><span class="line">          v24 = (_QWORD *)((char *)v24 + 4);</span><br><span class="line">        &#125;</span><br><span class="line">        sub_401A50(v42, v27, v24);</span><br><span class="line">        v18 = v19;</span><br><span class="line">      &#125;</span><br><span class="line">      while ( v19 != (__int64 *)v45 );</span><br><span class="line">      v28 = (unsigned __int8 *)v42;</span><br><span class="line">      do</span><br><span class="line">      &#123;</span><br><span class="line">        v29 = v28 + 4;</span><br><span class="line">        do</span><br><span class="line">        &#123;</span><br><span class="line">          v30 = *v28++;</span><br><span class="line">          *(v28 - 1) = byte_41F020[v30];</span><br><span class="line">        &#125;</span><br><span class="line">        while ( v29 != v28 );</span><br><span class="line">      &#125;</span><br><span class="line">      while ( v43 != (_QWORD *)v29 );</span><br><span class="line">      sub_4017D0((unsigned int *)v42);</span><br><span class="line">      v31 = v42;</span><br><span class="line">      for ( n24_2 = 24; n24_2 != -8; n24_2 -= 8 )</span><br><span class="line">      &#123;</span><br><span class="line">        for ( n4_3 = 0; n4_3 != 4; ++n4_3 )</span><br><span class="line">          *((_BYTE *)v31 + n4_3) ^= *(_DWORD *)&amp;v45[4 * n4_3 + 16] &gt;&gt; n24_2;</span><br><span class="line">        v31 = (_QWORD *)((char *)v31 + 4);</span><br><span class="line">      &#125;</span><br><span class="line">      v34 = v6 + 16;</span><br><span class="line">      do</span><br><span class="line">      &#123;</span><br><span class="line">        v35 = *v12;</span><br><span class="line">        v6 += 4;</span><br><span class="line">        ++v12;</span><br><span class="line">        *(_BYTE *)(v6 - 4) = v35;</span><br><span class="line">        *(_BYTE *)(v6 - 3) = v12[3];</span><br><span class="line">        *(_BYTE *)(v6 - 2) = v12[7];</span><br><span class="line">        *(_BYTE *)(v6 - 1) = v12[11];</span><br><span class="line">      &#125;</span><br><span class="line">      while ( v6 != v34 );</span><br><span class="line">      v10 = v39;</span><br><span class="line">    &#125;</span><br><span class="line">    while ( v6 != v40 );</span><br><span class="line">  &#125;</span><br><span class="line">  return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="解密后的数据校验"><a href="#解密后的数据校验" class="headerlink" title="解密后的数据校验"></a><strong>解密后的数据校验</strong></h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> ((*(_BYTE *)v8 - <span class="number">32</span>) &gt; <span class="number">0x5F</span>) &#123; <span class="comment">// 检查字节是否在 &#x27; &#x27;（0x20）到 &#x27;~&#x27;（0x7E）之间</span></span><br><span class="line">        <span class="comment">// 失败则提示 &quot;decrypt failed \n&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">    v8++;</span><br><span class="line">&#125; <span class="keyword">while</span> (v8 != &amp;v34); <span class="comment">// 遍历整个 32 字节结果</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>解密后的数据必须是可打印 ASCII 字符（0x20-0x7E），否则解密失败。</li>
+</ul>
+<p><strong>UTF-8 有效性检查</strong></p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">v15 = *v14++;</span><br><span class="line">v16 = ~v15 &amp; (v15 - <span class="number">0x1010101</span>) &amp; <span class="number">0x80808080</span>; <span class="comment">// 检测多字节字符起始位</span></span><br><span class="line"><span class="keyword">while</span> (!v16); <span class="comment">// 找到首个可能的多字节字符</span></span><br><span class="line"><span class="keyword">if</span> ((~v15 &amp; (v15 - <span class="number">0x10101</span>) &amp; <span class="number">0x8080</span>) == <span class="number">0</span>) &#123; <span class="comment">// 检查是否为双字节字符</span></span><br><span class="line">    <span class="comment">// 调整指针偏移</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>验证解密后的数据是否为合法 UTF-8 字符串（如检测 <code>0xC0-0xDF</code> 开头的双字节字符）</p>
+<h3 id="撰写代码"><a href="#撰写代码" class="headerlink" title="撰写代码"></a>撰写代码</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">from Crypto.Cipher import AES</span><br><span class="line"></span><br><span class="line">datas=[]</span><br><span class="line">f_number=[]</span><br><span class="line"></span><br><span class="line">def Get_datas():</span><br><span class="line"></span><br><span class="line">    with open(&quot;inkey.exe&quot;,&quot;rb&quot;) as file:</span><br><span class="line">        file_read = file.read()</span><br><span class="line"></span><br><span class="line">    begin=0x3bf40</span><br><span class="line"></span><br><span class="line">    for i in range(961):</span><br><span class="line">        data_addr=begin-i*0x80</span><br><span class="line">        datas.append(file_read[data_addr:data_addr+0x80])</span><br><span class="line"></span><br><span class="line">def decrypt(number ,key ):</span><br><span class="line"></span><br><span class="line">    if number in f_number :</span><br><span class="line">        return</span><br><span class="line">    f_number.append(number)</span><br><span class="line"></span><br><span class="line">    data=list(datas[number])</span><br><span class="line"></span><br><span class="line">    for i in range(len(data)):</span><br><span class="line">        data[i] = data[i] ^ (i%0x20) ^ key[i%0x10]</span><br><span class="line">        </span><br><span class="line">    cipher = AES.new(key, AES.MODE_ECB)</span><br><span class="line">    data_re = cipher.decrypt(bytes(data))</span><br><span class="line"></span><br><span class="line">    keys=[]</span><br><span class="line">    numbers=[]</span><br><span class="line">    t=0</span><br><span class="line">    i=0</span><br><span class="line">    data_re_s=str(data_re)</span><br><span class="line"></span><br><span class="line">    while(i&lt;len(data_re_s)):</span><br><span class="line">        if &quot;DASCTF&quot; in data_re_s :</span><br><span class="line">            print(data_re_s)</span><br><span class="line">            exit(0)</span><br><span class="line">        if data_re_s[i]==&quot;\&quot;&quot;:</span><br><span class="line">            keys.append(data_re_s[i+1:i+17])</span><br><span class="line">            </span><br><span class="line">            while(t&lt;i):</span><br><span class="line">                if data_re_s[t-1]==&quot;_&quot; and &quot;0&quot;&lt;=data_re_s[t]&lt;=&quot;9&quot;:</span><br><span class="line">                    w=t</span><br><span class="line">                    while(&quot;0&quot;&lt;=data_re_s[w]&lt;=&quot;9&quot;):</span><br><span class="line">                        w+=1</span><br><span class="line">                    numbers.append(data_re_s[t:w])</span><br><span class="line"></span><br><span class="line">                    break</span><br><span class="line">                t+=1</span><br><span class="line"></span><br><span class="line">            i+=17</span><br><span class="line">            t=i+1</span><br><span class="line"></span><br><span class="line">        i+=1</span><br><span class="line">    if len(keys)==0 :</span><br><span class="line">        return </span><br><span class="line">    for i in range(len(keys)):</span><br><span class="line">        print(int(numbers[i]) ,bytes(keys[i],encoding=&quot;utf-8&quot;),end=&#x27; &#x27;)</span><br><span class="line">    print(&#x27;\n&#x27;)</span><br><span class="line"></span><br><span class="line">    for i in range(len(keys)):</span><br><span class="line">        decrypt(int(numbers[i]) ,bytes(keys[i],encoding=&quot;utf-8&quot;) )</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">Get_datas()</span><br><span class="line"></span><br><span class="line">decrypt(565 ,b&#x27;9fc82e15d9de6ef2&#x27;)</span><br></pre></td></tr></table></figure>
+
+<p>最后的flag</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">flag=DASCTF&#123;Do_y0u_l1ke_wh4t_you_s3e&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="关键类与函数详细解读"><a href="#关键类与函数详细解读" class="headerlink" title="关键类与函数详细解读"></a>关键类与函数详细解读</h3><h4 id="一、QString：字符串处理的瑞士军刀"><a href="#一、QString：字符串处理的瑞士军刀" class="headerlink" title="一、QString：字符串处理的瑞士军刀"></a><strong>一、QString：字符串处理的瑞士军刀</strong></h4><p><strong>作用</strong></p>
+<p>Qt 中最常用的字符串类，用于<strong>存储、操作、转换字符串</strong>，支持多种编码（ASCII、UTF-8、Unicode 等）。</p>
+<p><strong>关键函数</strong></p>
+<ol>
+<li><strong><code>fromAscii_helper</code></strong><ul>
+<li><strong>功能</strong>：将 <strong>ASCII 字节数据</strong> 转换为 <code>QString</code> 对象。</li>
+<li><strong>场景</strong>：当程序从文件 &#x2F; 网络读取原始字节数据（如 <code>char*</code>）并需要转为字符串时使用。</li>
+<li><strong>逆向提示</strong>：若看到该函数，可能涉及<strong>硬编码字符串的解密</strong>（如密文先转为 ASCII 再处理）。</li>
+</ul>
+</li>
+<li><strong><code>fromUtf8_helper</code></strong><ul>
+<li><strong>功能</strong>：将 <strong>UTF-8 字节数据</strong> 转换为 <code>QString</code> 对象（支持中文等多字节字符）。</li>
+<li><strong>场景</strong>：处理国际化字符串（如中文错误提示、用户名）。</li>
+<li><strong>逆向提示</strong>：解密后的明文若为中文，常通过此函数转换，可作为<strong>解密成功的标志</strong>。</li>
+</ul>
+</li>
+<li><strong><code>append</code></strong><ul>
+<li><strong>功能</strong>：向 <code>QString</code> <strong>追加字符串</strong>（拼接多个子串）。</li>
+<li><strong>场景</strong>：组装最终显示的文本（如将多个解密后的片段合并为完整 flag）。</li>
+<li><strong>逆向提示</strong>：关注被追加的字符串顺序，可能对应<strong>解密后的数据块顺序</strong>。</li>
+</ul>
+</li>
+</ol>
+<p><strong>内存特点</strong></p>
+<ul>
+<li><strong>隐式共享（Copy-On-Write）</strong>：多个 <code>QString</code> 可共享同一块内存，修改时才复制。</li>
+<li><strong>逆向关键点</strong>：通过 <code>_InterlockedSub</code> 等原子操作管理引用计数（如 <code>refCount--</code>），判断字符串生命周期。</li>
+</ul>
+<h4 id="二、QMessageBox：弹窗提示的幕后黑手"><a href="#二、QMessageBox：弹窗提示的幕后黑手" class="headerlink" title="二、QMessageBox：弹窗提示的幕后黑手"></a><strong>二、QMessageBox：弹窗提示的幕后黑手</strong></h4><p><strong>作用</strong></p>
+<p>用于创建<strong>对话框</strong>，显示信息（如错误提示、解密结果），是逆向分析中<strong>定位关键逻辑的突破口</strong>。</p>
+<p><strong>关键函数</strong></p>
+<ol>
+<li><strong><code>setWindowTitle</code></strong><ul>
+<li><strong>功能</strong>：设置对话框的<strong>标题</strong>（如 <code>&quot;Right!&quot;</code>、<code>&quot;Error&quot;</code>）。</li>
+<li><strong>逆向提示</strong>：若标题为固定字符串（如 <code>&quot;Flag&quot;</code>），可能是<strong>解密成功的标志</strong>，可通过交叉引用找到对应逻辑。</li>
+</ul>
+</li>
+<li><strong><code>setText</code></strong><ul>
+<li><strong>功能</strong>：设置对话框的<strong>显示内容</strong>（如解密后的明文、错误信息）。</li>
+<li><strong>逆向提示</strong>：重点追踪传递给 <code>setText</code> 的参数，可能直接是<strong>flag 或关键数据</strong>。</li>
+</ul>
+</li>
+<li><strong><code>exec</code></strong><ul>
+<li><strong>功能</strong>：<strong>显示对话框并阻塞程序</strong>，直到用户关闭。</li>
+<li><strong>逆向提示</strong>：对话框显示时，程序处于暂停状态，可通过调试在此处<strong>提取内存中的明文</strong>。</li>
+</ul>
+</li>
+</ol>
+<p><strong>典型场景</strong></p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">QMessageBox msg;</span><br><span class="line">msg.setWindowTitle(<span class="string">&quot;Success&quot;</span>);</span><br><span class="line">msg.setText(<span class="string">&quot;The flag is: &quot;</span> + decryptedString); <span class="comment">// decryptedString 可能是解密后的flag</span></span><br><span class="line">msg.exec(); <span class="comment">// 弹出对话框显示结果</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="三、内存操作：原子函数与引用计数"><a href="#三、内存操作：原子函数与引用计数" class="headerlink" title="三、内存操作：原子函数与引用计数"></a><strong>三、内存操作：原子函数与引用计数</strong></h4><h4 id="InterlockedSub-等原子操作"><a href="#InterlockedSub-等原子操作" class="headerlink" title="_InterlockedSub 等原子操作"></a><strong><code>_InterlockedSub</code> 等原子操作</strong></h4><ul>
+<li><strong>作用</strong>：对变量进行<strong>原子减法操作</strong>（线程安全），常用于<strong>引用计数管理</strong>。</li>
+<li>Qt 隐式共享机制<ul>
+<li>每个 <code>QString</code>&#x2F;<code>QObject</code> 内部有一个 <strong>引用计数变量</strong>（如 <code>refCount</code>）。</li>
+<li>当对象被复制时，<code>refCount++</code>；当对象被销毁时，<code>_InterlockedSub(refCount, 1)</code>，若减到 0 则释放内存。</li>
+</ul>
+</li>
+</ul>
+<p><strong>逆向中的意义</strong></p>
+<ol>
+<li>判断对象生命周期<ul>
+<li>若看到 <code>_InterlockedSub(variable, 1)</code>，且 <code>variable</code> 是 <code>QString</code> 的成员，可能表示<strong>字符串引用减少</strong>，即将被销毁。</li>
+</ul>
+</li>
+<li>避免内存误判<ul>
+<li>即使对象指针被释放，只要引用计数 &gt;0，内存仍有效（易混淆逆向者对数据存储位置的判断）。</li>
+</ul>
+</li>
+</ol>
+<h4 id="四、逆向分析中的实战技巧"><a href="#四、逆向分析中的实战技巧" class="headerlink" title="四、逆向分析中的实战技巧"></a><strong>四、逆向分析中的实战技巧</strong></h4><p><strong>1. 通过函数名定位关键逻辑</strong></p>
+<ul>
+<li>在 IDA&#x2F; Ghidra 中搜索 <code>QMessageBox::setText</code> 或 <code>QString::append</code>，快速找到<strong>处理显示数据的代码段</strong>，向上追溯即可找到解密逻辑。</li>
+</ul>
+<p><strong>2. 动态调试提取明文</strong></p>
+<ul>
+<li>在 <code>QMessageBox::exec</code> 处下断点，程序暂停时查看 <code>setText</code> 的参数值（通常为 <code>QString</code> 对象），直接获取解密后的明文。</li>
+</ul>
+<p><strong>3. 分析引用计数异常</strong></p>
+<ul>
+<li>若 <code>_InterlockedSub</code> 后未释放内存，可能存在<strong>内存泄漏</strong>或<strong>故意混淆逻辑</strong>（如虚假的解密失败提示）。</li>
+</ul>
+<h4 id="五、总结：Qt-框架逆向的三板斧"><a href="#五、总结：Qt-框架逆向的三板斧" class="headerlink" title="五、总结：Qt 框架逆向的三板斧"></a><strong>五、总结：Qt 框架逆向的三板斧</strong></h4><ol>
+<li><strong>字符串函数</strong>：通过 <code>fromUtf8_helper</code>&#x2F;<code>append</code> 定位明文拼接逻辑。</li>
+<li><strong>对话框函数</strong>：通过 <code>QMessageBox</code> 的标题和内容锁定成功 &#x2F; 失败分支。</li>
+<li><strong>内存操作</strong>：通过引用计数函数理解对象生命周期，避免误判数据有效性。</li>
+</ol>
+<p>遇到具体 Qt 程序时，可优先搜索这些函数，快速切入核心逻辑！</p>
+<h3 id="AES-ECB"><a href="#AES-ECB" class="headerlink" title="AES-ECB"></a><strong>AES-ECB</strong></h3><h4 id="静态代码分析：识别-AES-算法特征"><a href="#静态代码分析：识别-AES-算法特征" class="headerlink" title="静态代码分析：识别 AES 算法特征"></a><strong>静态代码分析：识别 AES 算法特征</strong></h4><h4 id="1-密钥长度与分组长度"><a href="#1-密钥长度与分组长度" class="headerlink" title="1. 密钥长度与分组长度"></a><strong>1. 密钥长度与分组长度</strong></h4><ul>
+<li><p>AES 标准</p>
+<ul>
+<li>密钥长度固定为 <strong>16&#x2F;24&#x2F;32 字节</strong>（对应 AES-128&#x2F;192&#x2F;256）。</li>
+<li>分组长度固定为 <strong>16 字节</strong>，输入数据必须是 16 字节的整数倍。</li>
+</ul>
+</li>
+<li><p>代码特征</p>
+  <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (key_len != <span class="number">16</span>) error();  <span class="comment">// 强制密钥长度为16字节 → AES-128</span></span><br><span class="line"><span class="keyword">if</span> (data_len % <span class="number">16</span> != <span class="number">0</span>) error();  <span class="comment">// 数据长度必须为16的倍数</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="AES-核心操作识别"><a href="#AES-核心操作识别" class="headerlink" title="AES 核心操作识别"></a><strong>AES 核心操作识别</strong></h4><ul>
+<li><p><strong>S 盒替换</strong>：<br>  查找固定的 256 字节替换表（AES S 盒）：</p>
+  <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">static</span> <span class="type">const</span> <span class="type">unsigned</span> <span class="type">char</span> sbox[<span class="number">256</span>] = &#123;</span><br><span class="line">    <span class="number">0x63</span>, <span class="number">0x7c</span>, <span class="number">0x77</span>, <span class="number">0x7b</span>, <span class="number">0xf2</span>, <span class="number">0x6b</span>, <span class="number">0x6f</span>, <span class="number">0xc5</span>, ...</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>逆向技巧</strong>：导出替换表与 <a href="https://en.wikipedia.org/wiki/Rijndael_S-box">标准 AES S 盒</a> 比对。</li>
+</ul>
+</li>
+<li><p><strong>行移位（ShiftRows）</strong>：<br>  查找固定的字节位置置换逻辑（如第 2 行左移 1 字节，第 3 行左移 2 字节）：</p>
+  <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 示例：行移位伪代码</span></span><br><span class="line">state[<span class="number">1</span>][<span class="number">0</span>] = tmp[<span class="number">1</span>][<span class="number">1</span>];  <span class="comment">// 第2行左移1字节</span></span><br><span class="line">state[<span class="number">1</span>][<span class="number">1</span>] = tmp[<span class="number">1</span>][<span class="number">2</span>];</span><br><span class="line">state[<span class="number">1</span>][<span class="number">2</span>] = tmp[<span class="number">1</span>][<span class="number">3</span>];</span><br><span class="line">state[<span class="number">1</span>][<span class="number">3</span>] = tmp[<span class="number">1</span>][<span class="number">0</span>];</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>列混淆（MixColumns）</strong>：<br>  查找固定的有限域乘法（GF (2^8)）操作：</p>
+  <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 示例：列混淆核心操作（multiply by 2 in GF(2^8)）</span></span><br><span class="line"><span class="keyword">if</span> (a &amp; <span class="number">0x80</span>) &#123;</span><br><span class="line">    r = (a &lt;&lt; <span class="number">1</span>) ^ <span class="number">0x1B</span>;  <span class="comment">// AES多项式 x^8 + x^4 + x^3 + x + 1</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    r = a &lt;&lt; <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>轮密钥加（AddRoundKey）</strong>：<br>  查找与轮密钥的异或操作：</p>
+  <figure class="highlight c"><table><tr><td class="code"><pre><span class="line">state[i] ^= round_key[i];  <span class="comment">// 每轮与不同的子密钥异或</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="3-密钥扩展函数"><a href="#3-密钥扩展函数" class="headerlink" title="3. 密钥扩展函数"></a><strong>3. 密钥扩展函数</strong></h4><ul>
+<li><p><strong>特征</strong>：<br>  将主密钥扩展为多个轮密钥（AES-128 需要 11 个子密钥，每个 16 字节）。</p>
+</li>
+<li><p>函数调用</p>
+  <figure class="highlight c"><table><tr><td class="code"><pre><span class="line">KeyExpansion(key, round_keys);  <span class="comment">// 生成11个子密钥</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>逆向提示</strong>：若看到循环生成 11 个子密钥（如 <code>for (i=0; i&lt;11; i++)</code>），高度怀疑是 AES-128。</li>
+</ul>
+</li>
+</ul>
+<h4 id="判断是否为-ECB-模式"><a href="#判断是否为-ECB-模式" class="headerlink" title="判断是否为 ECB 模式"></a><strong>判断是否为 ECB 模式</strong></h4><h4 id="1-ECB-模式特征"><a href="#1-ECB-模式特征" class="headerlink" title="1. ECB 模式特征"></a><strong>1. ECB 模式特征</strong></h4><ul>
+<li><p><strong>无初始化向量（IV）</strong>：<br>  ECB 模式不使用 IV，加密相同明文始终生成相同密文。</p>
+</li>
+<li><p>代码特征</p>
+<p>  加密函数不接收 IV 参数，或 IV 固定为全 0：</p>
+  <figure class="highlight c"><table><tr><td class="code"><pre><span class="line">AES_Encrypt(key, plaintext, ciphertext);  <span class="comment">// 无IV参数 → 可能是ECB</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="2-分组独立处理"><a href="#2-分组独立处理" class="headerlink" title="2. 分组独立处理"></a><strong>2. 分组独立处理</strong></h4><ul>
+<li><p>循环结构</p>
+<p>  代码中直接按 16 字节分组处理，组间无依赖：</p>
+  <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; data_len; i += <span class="number">16</span>) &#123;</span><br><span class="line">    ProcessBlock(input + i, output + i);  <span class="comment">// 每组独立加密</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="3-相同明文加密结果相同"><a href="#3-相同明文加密结果相同" class="headerlink" title="3. 相同明文加密结果相同"></a><strong>3. 相同明文加密结果相同</strong></h4><ul>
+<li><strong>动态调试验证</strong>：<br>  输入两段相同的 16 字节明文，观察密文是否完全一致。若一致，则为 ECB 模式。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
 ]]></content>
       <categories>
         <category>WP</category>
@@ -429,7 +1006,7 @@
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">PS D:\&gt; adb shell   // 进入手机</span><br><span class="line">VOG-AL00:/ # su    // 确定手机是root权限</span><br><span class="line">VOG-AL00:/ # cd /data/local/tmp      // 进入到tmp目录下</span><br><span class="line">VOG-AL00:/data/local/tmp # chmod 777 frida-server      // 给执行权限，可读可写可执行</span><br><span class="line">VOG-AL00:/data/local/tmp # ./frida-server      //正式启动frida-server</span><br></pre></td></tr></table></figure>
 
 <p><code>提示：执行完毕后为运行状态。这个shell不能关闭，关闭了frida就停止了。</code></p>
-<p><img src="https://bbs.kanxue.com/upload/attach/202206/905443_2RFKXYW4DDDQ5PN.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/202505220856003.png"></p>
 <p>应用参考：<a href="https://blog.csdn.net/qq_38474570/article/details/120876120">Android之Frida框架完全使用指南_android frida-CSDN博客</a></p>
 <h4 id="安装-FRIDA-DEXDump"><a href="#安装-FRIDA-DEXDump" class="headerlink" title="安装 FRIDA-DEXDump"></a><strong>安装 FRIDA-DEXDump</strong></h4><p>从 GitHub 仓库克隆项目并安装：</p>
 <p>手动下载<a href="https://github.com/hluwa/frida-dexdump">frida-dexdump</a></p>
@@ -758,15 +1335,27 @@
   123
   <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">3. **程序输出 flag**：</span><br><span class="line"></span><br></pre></td></tr></table></figure>
   flag&#123;this_Is_a_EaSyRe&#125;
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">### **方法 2：直接修改二进制文件（硬编码绕过检查）**</span><br><span class="line"></span><br><span class="line">如果不想手动输入，可以修改汇编代码，让程序直接输出 flag（适用于逆向题目）：</span><br><span class="line"></span><br><span class="line">1. 用 **IDA/Ghidra** 找到 `if (b_1 == b)` 的判断部分。</span><br><span class="line">2. 把 `JNE`（跳转如果不相等）改成 `JMP` 或 `NOP`，让程序直接执行 `printf(&quot;flag&#123;...&#125;&quot;)`。</span><br><span class="line">3. 保存修改后的程序，运行即可直接得 flag。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># IDA Pro MCP 逆向分析利器</span><br><span class="line"></span><br><span class="line">参考：[AI逆向50页长文掌握 IDA Pro MCP 逆向分析利器](https://bbs.kanxue.com/thread-286813.htm)</span><br><span class="line"></span><br><span class="line">## 步骤一：准备大模型 API Key</span><br><span class="line"></span><br><span class="line">要使用 IDA Pro MCP，首先需要一个大模型服务的 API Key。</span><br><span class="line"></span><br><span class="line">### DeepSeek</span><br><span class="line"></span><br><span class="line">- **官方网站:** [https://www.deepseek.com/](https://bbs.kanxue.com/elink@cc8K9s2c8@1M7s2y4Q4x3@1q4Q4x3V1k6Q4x3V1k6%4N6%4N6Q4x3X3g2V1k6h3g2H3M7$3g2W2K9#2)</span><br><span class="line">- **API 管理平台:** [https://platform.deepseek.com/usage](https://bbs.kanxue.com/elink@fa1K9s2c8@1M7s2y4Q4x3@1q4Q4x3V1k6Q4x3V1k6H3L8r3q4@1k6X3!0J5L8g2)</span><br><span class="line"></span><br><span class="line">根据平台的指引完成实名认证和充值，在API管理页创建一个新的API Key。</span><br><span class="line"></span><br><span class="line">`务必妥善保管API Key，防止泄露！！！`</span><br><span class="line"></span><br><span class="line">![](%E7%8E%AF%E5%A2%83%E5%B0%8F%E8%AE%B0.assets/image-20250522085543235.png)</span><br><span class="line"></span><br><span class="line">在充值后，在liunx系统使用curl命令测试api是否可用。</span><br><span class="line"></span><br><span class="line">将 `&lt;DeepSeek API Key&gt;` 替换为自己的 Key</span><br><span class="line"></span><br><span class="line">````</span><br><span class="line">curl https://api.deepseek.com/chat/completions \</span><br><span class="line">  -H &quot;Content-Type: application/json&quot; \</span><br><span class="line">  -H &quot;Authorization: Bearer &lt;DeepSeek API Key&gt;&quot; \</span><br><span class="line">  -d &#x27;&#123;</span><br><span class="line">        &quot;model&quot;: &quot;deepseek-chat&quot;,</span><br><span class="line">        &quot;messages&quot;: [</span><br><span class="line">          &#123;&quot;role&quot;: &quot;system&quot;, &quot;content&quot;: &quot;You are a helpful assistant.&quot;&#125;,</span><br><span class="line">          &#123;&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;Hello!&quot;&#125;</span><br><span class="line">        ],</span><br><span class="line">        &quot;stream&quot;: false</span><br><span class="line">      &#125;&#x27;</span><br><span class="line">````</span><br><span class="line"></span><br><span class="line">![](https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/202505220917980.png)</span><br><span class="line"></span><br><span class="line">如果终端成功输出了 AI 的回复消息，则表示 DeepSeek API Key 配置成功.</span><br><span class="line"></span><br><span class="line">## 步骤二：选择并配置 MCP 客户端</span><br><span class="line"></span><br><span class="line">### 客户端一：VS Code 插件 (Cline / RooCode)</span><br><span class="line"></span><br><span class="line">Cline 和 RooCode 是两款支持 MCP 的 VS Code 插件，可以将 VS Code 作为 IDA Pro MCP 的客户端。</span><br><span class="line"></span><br><span class="line">#### 安装</span><br><span class="line"></span><br><span class="line">“扩展”，插件cline或RooCode</span><br><span class="line"></span><br><span class="line">#### 初始化配置</span><br><span class="line"></span><br><span class="line">进行初始化配置，主要是设置大模型API Key</span><br><span class="line"></span><br><span class="line">1. 打开其中一个插件的设置界面，点击插件图标（或是用命令面板Ctrl+Shift+P/Cmd+Shift+P走索插件名称找到。）</span><br><span class="line"></span><br><span class="line">2. 选择“使用自己的PAPI Key”（Use your own API key）</span><br><span class="line"></span><br><span class="line">	![](https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/202505220931666.png)</span><br><span class="line"></span><br><span class="line">3. 配置 API Key</span><br><span class="line"></span><br><span class="line">	根据选择的 API 服务商进行配置：</span><br><span class="line"></span><br><span class="line">	- **DeepSeek:**</span><br><span class="line">		- 选择 `API Provider` 为 `DeepSeek`。</span><br><span class="line">		- 在 `API Key` 字段中填入 DeepSeek API Key。</span><br><span class="line"></span><br><span class="line">![](https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/202505220933934.png)</span><br><span class="line"></span><br><span class="line">**语言设置（Preferred Language）**</span><br><span class="line"></span><br><span class="line">- **简体中文**：强制工具（如Cline插件）始终以中文与你交互，即使你的提问包含其他语言。</span><br><span class="line">- **作用场景**：例如当你输入英文问题时，工具仍会用中文回答。</span><br><span class="line"></span><br><span class="line">![](https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/202505220957109.png)</span><br><span class="line"></span><br><span class="line">## 步骤四：部署 IDA Pro MCP (Windows)</span><br><span class="line"></span><br><span class="line">1. **配置python环境**</span><br><span class="line"></span><br><span class="line">	Windows 环境需要安装 Python 3.11 或更高版本</span><br><span class="line"></span><br><span class="line">	已安装python使用的版本为3.12.6</span><br><span class="line"></span><br><span class="line">2. **切换 IDA Pro 的 Python 环境**</span><br><span class="line"></span><br><span class="line">	告知 IDA Pro 使用安装的 Python 3.12.6，cmd中执行</span><br><span class="line"></span><br><span class="line">	````</span><br><span class="line">	&quot;F:\IDA Professional 9.1\idapyswitch.exe&quot; --force-path &quot;E:\python\python3,dll&quot;</span><br><span class="line">	````</span><br><span class="line"></span><br><span class="line">	![](https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/202505221043566.png)</span><br><span class="line"></span><br><span class="line">	成功执行后通常没有输出。</span><br><span class="line"></span><br><span class="line">3. **安装 ida-pro-mcp Python 包**</span><br><span class="line"></span><br><span class="line">	下载 `uv` 包</span><br><span class="line"></span><br><span class="line">	#### 分步安装依赖</span><br><span class="line"></span><br><span class="line">	如果直接安装失败，先安装小体积依赖包，再尝试安装 `uv`：</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+  # 先安装其他小包（如有必要）
+  pip install numpy pandas -i https://pypi.tuna.tsinghua.edu.cn/simple
+  
+  # 再安装 uv
+  pip install uv -i https://pypi.tuna.tsinghua.edu.cn/simple
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">使用 Python  的 pip 来安装 `ida-pro-mcp`。</span><br><span class="line"></span><br><span class="line">之后所有 pip 安装都会默认使用清华源，**永久配置镜像源**（推荐）</span><br><span class="line"></span><br><span class="line">````</span><br><span class="line">pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line">````</span><br><span class="line"></span><br><span class="line">**临时指定镜像源**：在命令中添加 `-i` 参数：</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+  pip install --upgrade git+https://github.com/mrexodia/ida-pro-mcp -i https://pypi.tuna.tsinghua.edu.cn/simple
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">4. **安装 MCP 插件到 IDA Pro**</span><br><span class="line"></span><br><span class="line">	执行安装命令将插件复制到 IDA Pro</span><br><span class="line"></span><br><span class="line">	使用命令查找`ida-pro-mcp.exe` 可执行文件的路径。</span><br><span class="line"></span><br><span class="line">	````</span><br><span class="line">	pip show -f ida-pro-mcp</span><br><span class="line">	````</span><br><span class="line"></span><br><span class="line">	输出信息：</span><br><span class="line"></span><br><span class="line">	````</span><br><span class="line">	Name: ida-pro-mcp</span><br><span class="line">	Version: 1.3.0</span><br><span class="line">	...</span><br><span class="line">	Location: E:\python\Lib\site-packages# &lt;--- 包安装位置</span><br><span class="line">	Requires: mcp</span><br><span class="line">	Required-by:</span><br><span class="line">	Files:</span><br><span class="line">	  ..\..\Scripts\ida-pro-mcp.exe# &lt;--- 可执行文件相对路</span><br><span class="line">	  ..\..\Scripts\idalib-mcp.exe</span><br><span class="line">	  ida_pro_mcp-1.3.0.dist-info\INSTALLER</span><br><span class="line">		...</span><br><span class="line">	````</span><br><span class="line"></span><br><span class="line">	可得绝对路径：E:\python\Scripts\ida-pro-mcp.exe</span><br><span class="line"></span><br><span class="line">	执行安装命令：</span><br><span class="line"></span><br><span class="line">	````</span><br><span class="line">	&quot;E:\python\Scripts\ida-pro-mcp.exe&quot; --install</span><br><span class="line">	````</span><br><span class="line"></span><br><span class="line">	![](%E7%8E%AF%E5%A2%83%E5%B0%8F%E8%AE%B0.assets/image-20250522122835156.png)</span><br><span class="line"></span><br><span class="line">​	**MCP 服务器配置生成**，这是 **MCP 服务器的标准配置模板**，需手动添加到对应工具的配置文件中。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 </code></pre>
 </li>
 </ul>
-<h3 id="方法-2：直接修改二进制文件（硬编码绕过检查）"><a href="#方法-2：直接修改二进制文件（硬编码绕过检查）" class="headerlink" title="方法 2：直接修改二进制文件（硬编码绕过检查）"></a><strong>方法 2：直接修改二进制文件（硬编码绕过检查）</strong></h3><p>如果不想手动输入，可以修改汇编代码，让程序直接输出 flag（适用于逆向题目）：</p>
-<ol>
-<li>用 <strong>IDA&#x2F;Ghidra</strong> 找到 <code>if (b_1 == b)</code> 的判断部分。</li>
-<li>把 <code>JNE</code>（跳转如果不相等）改成 <code>JMP</code> 或 <code>NOP</code>，让程序直接执行 <code>printf(&quot;flag&#123;...&#125;&quot;)</code>。</li>
-<li>保存修改后的程序，运行即可直接得 flag。</li>
-</ol>
+<p>Installed IDA Pro plugin (IDA restart required)<br>Plugin: C:\Users\tangxtang\AppData\Roaming\Hex-Rays\IDA Pro\plugins\mcp-plugin.py</p>
+<pre><code>
+- **核心功能已部署**，插件文件已复制到 IDA 的插件目录。
+- 需要 **重启 IDA** 才能生效。
+
+## 检查安装情况和效果展示 
+
+通过 IDA 插件操作（`Edit -&gt; Plugins -&gt; MCP`）启动服务器
+</code></pre>
 ]]></content>
       <categories>
         <category>笔记</category>

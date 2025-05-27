@@ -1,0 +1,1339 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+  
+
+    <head>
+      <meta charset="utf-8" />
+        
+      <meta name="description" content="‘有志少女 先读书’" />
+      
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>CTF练习 |  tangxtang</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      
+<link rel="stylesheet" href="/css/fonts/remixicon.css">
+
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.staticfile.org/pace/1.2.4/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    </head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-CTF练习"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  CTF练习
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2025/05/26/CTF%E7%BB%83%E4%B9%A0/" class="article-date">
+  <time datetime="2025-05-25T16:00:00.000Z" itemprop="datePublished">2025-05-26</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/WP/">WP</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">10.4k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">47 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="adworld-xctf"><a href="#adworld-xctf" class="headerlink" title="adworld.xctf"></a>adworld.xctf</h1><h2 id="Reversing-x64Elf-100"><a href="#Reversing-x64Elf-100" class="headerlink" title="Reversing-x64Elf-100"></a>Reversing-x64Elf-100</h2><p>方向：Reverse	工具：IDA Pro</p>
+<h3 id="查看main函数"><a href="#查看main函数" class="headerlink" title="查看main函数"></a>查看main函数</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">__int64 __fastcall <span class="title function_">main</span><span class="params">(<span class="type">int</span> a1, <span class="type">char</span> **a2, <span class="type">char</span> **a3)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">char</span> s[<span class="number">264</span>]; <span class="comment">// [rsp+0h] [rbp-110h] BYREF</span></span><br><span class="line">  unsigned __int64 v5; <span class="comment">// [rsp+108h] [rbp-8h]</span></span><br><span class="line"></span><br><span class="line">  v5 = __readfsqword(0x28u);</span><br><span class="line">  printf(<span class="string">&quot;Enter the password: &quot;</span>);</span><br><span class="line">  <span class="keyword">if</span> ( !fgets(s, <span class="number">255</span>, stdin) )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">if</span> ( (unsigned <span class="type">int</span>)sub_4006FD(s) )</span><br><span class="line">  &#123;</span><br><span class="line">    puts(<span class="string">&quot;Incorrect password!&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">  &#123;</span><br><span class="line">    puts(<span class="string">&quot;Nice!&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="关键点sub-4006FD"><a href="#关键点sub-4006FD" class="headerlink" title="关键点sub_4006FD"></a>关键点sub_4006FD</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">__int64 __fastcall <span class="title function_">sub_4006FD</span><span class="params">(__int64 p_s)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">int</span> n11; <span class="comment">// [rsp+14h] [rbp-24h]</span></span><br><span class="line">  _QWORD v3[<span class="number">4</span>]; <span class="comment">// [rsp+18h] [rbp-20h]</span></span><br><span class="line"></span><br><span class="line">  v3[<span class="number">0</span>] = <span class="string">&quot;Dufhbmf&quot;</span>;</span><br><span class="line">  v3[<span class="number">1</span>] = <span class="string">&quot;pG`imos&quot;</span>;</span><br><span class="line">  v3[<span class="number">2</span>] = <span class="string">&quot;ewUglpt&quot;</span>;</span><br><span class="line">  <span class="keyword">for</span> ( n11 = <span class="number">0</span>; n11 &lt;= <span class="number">11</span>; ++n11 )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> ( *(<span class="type">char</span> *)(v3[n11 % <span class="number">3</span>] + <span class="number">2</span> * (n11 / <span class="number">3</span>)) - *(<span class="type">char</span> *)(n11 + p_s) != <span class="number">1</span> )</span><br><span class="line">      <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个函数 <strong>检查输入的字符串 <code>p_s</code> 是否符合某种规律</strong>，如果符合返回 <code>0</code>，否则返回 <code>1</code>。<br>（可以理解为 <strong>“密码验证”</strong> 逻辑，输入正确则返回 <code>0</code>，错误返回 <code>1</code>。）</p>
+<h4 id="函数参数和变量"><a href="#函数参数和变量" class="headerlink" title="函数参数和变量"></a><strong>函数参数和变量</strong></h4><ul>
+<li><strong>参数</strong>：<code>p_s</code> 是一个指向输入字符串的指针（<code>char*</code> 类型）。</li>
+<li><strong>局部变量</strong>：<ul>
+<li><code>n11</code>：循环计数器（<code>int</code> 类型）。</li>
+<li><code>v3</code>：一个包含 3 个字符串指针的数组（<code>_QWORD[4]</code>，实际只用了前 3 个）。</li>
+</ul>
+</li>
+</ul>
+<h4 id="字符串数组-v3"><a href="#字符串数组-v3" class="headerlink" title="字符串数组 v3"></a><strong>字符串数组 v3</strong></h4><p><code>v3</code> 初始化了 3 个字符串：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">v3[<span class="number">0</span>] = <span class="string">&quot;Dufhbmf&quot;</span>;</span><br><span class="line">v3[<span class="number">1</span>] = <span class="string">&quot;pG`imos&quot;</span>;</span><br><span class="line">v3[<span class="number">2</span>] = <span class="string">&quot;ewUglpt&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<h4 id="核心逻辑（循环检查）"><a href="#核心逻辑（循环检查）" class="headerlink" title="核心逻辑（循环检查）"></a><strong>核心逻辑（循环检查）</strong></h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> ( n11 = <span class="number">0</span>; n11 &lt;= <span class="number">11</span>; ++n11 ) &#123;</span><br><span class="line">    <span class="keyword">if</span> ( *(<span class="type">char</span> *)(v3[n11 % <span class="number">3</span>] + <span class="number">2</span> * (n11 / <span class="number">3</span>)) - *(<span class="type">char</span> *)(n11 + p_s) != <span class="number">1</span> )</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+
+<h4 id="关键点解析"><a href="#关键点解析" class="headerlink" title="关键点解析"></a><strong>关键点解析</strong></h4><ol>
+<li><strong>循环范围</strong>：<code>n11</code> 从 <code>0</code> 到 <code>11</code>，说明输入字符串长度应为 <strong>12</strong>。</li>
+<li><strong>字符选择逻辑</strong>：<ul>
+<li><code>v3[n11 % 3]</code>：从 <code>v3[0]</code>、<code>v3[1]</code>、<code>v3[2]</code> 中循环选择字符串。</li>
+<li><code>2 * (n11 / 3)</code>：每 3 个字符后，偏移量增加 2。</li>
+<li><code>*(char *)(...)</code>：获取对应位置的字符。</li>
+</ul>
+</li>
+<li><strong>条件判断</strong>：<ul>
+<li><code>v3 中的字符 - 输入字符 == 1</code>。</li>
+<li>如果不满足，返回 <code>1</code>（失败）；否则返回 <code>0</code>（成功）。</li>
+</ul>
+</li>
+</ol>
+<h3 id="解密"><a href="#解密" class="headerlink" title="解密"></a><strong>解密</strong></h3><p>我们需要找到一个长度为 12 的字符串 <code>s</code>，使得：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">12</span>):</span><br><span class="line">    v3_char = v3[i % <span class="number">3</span>][<span class="number">2</span> * (i // <span class="number">3</span>)]</span><br><span class="line">    <span class="keyword">assert</span> <span class="built_in">ord</span>(v3_char) - <span class="built_in">ord</span>(s[i]) == <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<p>即：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s[i] = <span class="built_in">chr</span>(<span class="built_in">ord</span>(v3[i % <span class="number">3</span>][<span class="number">2</span> * (i // <span class="number">3</span>)]) - <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<p><strong><code>ord()</code> 函数</strong></p>
+<ul>
+<li><strong>作用</strong>：返回字符的 <strong>ASCII 码值</strong>（整数）</li>
+</ul>
+<p><strong><code>assert</code> 语句</strong></p>
+<ul>
+<li><strong>作用</strong>：断言条件是否为真。如果为假，程序会抛出 <code>AssertionError</code> 并终止。</li>
+</ul>
+<h5 id="计算步骤"><a href="#计算步骤" class="headerlink" title="计算步骤"></a><strong>计算步骤</strong></h5><ol>
+<li><p><strong><code>n11 % 3</code></strong> 决定使用 <code>v3</code> 的哪个字符串：</p>
+<ul>
+<li><code>n11=0,3,6,9</code> → <code>v3[0] = &quot;Dufhbmf&quot;</code></li>
+<li><code>n11=1,4,7,10</code> → <code>v3[1] = &quot;pG</code>imos”&#96;</li>
+<li><code>n11=2,5,8,11</code> → <code>v3[2] = &quot;ewUglpt&quot;</code></li>
+</ul>
+</li>
+<li><p><strong><code>2 \* (n11 / 3)</code></strong> 决定取该字符串的第几个字符：</p>
+<ul>
+<li><code>n11=0,1,2</code> → <code>0/3=0</code> → 取第 <code>0</code> 个字符</li>
+<li><code>n11=3,4,5</code> → <code>3/3=1</code> → 取第 <code>2</code> 个字符</li>
+<li><code>n11=6,7,8</code> → <code>6/3=2</code> → 取第 <code>4</code> 个字符</li>
+<li><code>n11=9,10,11</code> → <code>9/3=3</code> → 取第 <code>6</code> 个字符</li>
+</ul>
+</li>
+<li><p>**计算 <code>p_s[n11]</code>**：</p>
+<ul>
+<li>取 <code>v3[n11 % 3][2 * (n11 / 3)]</code> 的字符，然后 <strong>ASCII 码减 1</strong>。</li>
+</ul>
+</li>
+<li><p><strong>计算示例</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left"><code>n11</code></th>
+<th align="left"><code>n11%3</code></th>
+<th align="left"><code>v3</code> 字符串</th>
+<th align="left"><code>2*(n11/3)</code></th>
+<th align="left">取字符</th>
+<th align="left"><code>p_s[n11]</code> (字符-1)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">“Dufhbmf”</td>
+<td align="left">0</td>
+<td align="left">‘D’</td>
+<td align="left">‘C’</td>
+</tr>
+<tr>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">“pG&#96;imos”</td>
+<td align="left">0</td>
+<td align="left">‘p’</td>
+<td align="left">‘o’</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">“ewUglpt”</td>
+<td align="left">0</td>
+<td align="left">‘e’</td>
+<td align="left">‘d’</td>
+</tr>
+<tr>
+<td align="left">3</td>
+<td align="left">0</td>
+<td align="left">“Dufhbmf”</td>
+<td align="left">2</td>
+<td align="left">‘f’</td>
+<td align="left">‘e’</td>
+</tr>
+<tr>
+<td align="left">4</td>
+<td align="left">1</td>
+<td align="left">“pG&#96;imos”</td>
+<td align="left">2</td>
+<td align="left">‘&#96;’</td>
+<td align="left">‘_’</td>
+</tr>
+<tr>
+<td align="left">5</td>
+<td align="left">2</td>
+<td align="left">“ewUglpt”</td>
+<td align="left">2</td>
+<td align="left">‘U’</td>
+<td align="left">‘T’</td>
+</tr>
+<tr>
+<td align="left">6</td>
+<td align="left">0</td>
+<td align="left">“Dufhbmf”</td>
+<td align="left">4</td>
+<td align="left">‘b’</td>
+<td align="left">‘a’</td>
+</tr>
+<tr>
+<td align="left">7</td>
+<td align="left">1</td>
+<td align="left">“pG&#96;imos”</td>
+<td align="left">4</td>
+<td align="left">‘m’</td>
+<td align="left">‘l’</td>
+</tr>
+<tr>
+<td align="left">8</td>
+<td align="left">2</td>
+<td align="left">“ewUglpt”</td>
+<td align="left">4</td>
+<td align="left">‘l’</td>
+<td align="left">‘k’</td>
+</tr>
+<tr>
+<td align="left">9</td>
+<td align="left">0</td>
+<td align="left">“Dufhbmf”</td>
+<td align="left">6</td>
+<td align="left">‘f’</td>
+<td align="left">‘e’</td>
+</tr>
+<tr>
+<td align="left">10</td>
+<td align="left">1</td>
+<td align="left">“pG&#96;imos”</td>
+<td align="left">6</td>
+<td align="left">‘s’</td>
+<td align="left">‘r’</td>
+</tr>
+<tr>
+<td align="left">11</td>
+<td align="left">2</td>
+<td align="left">“ewUglpt”</td>
+<td align="left">6</td>
+<td align="left">‘t’</td>
+<td align="left">‘s’</td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+<p><strong>最终 <code>p_s</code>（输入字符串）</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C o d e _ T a l k e r s</span><br></pre></td></tr></table></figure>
+
+<p>（去掉空格：<code>Code_Talkers</code>）</p>
+<p>答案：flag{Code_Talkers}</p>
+<h2 id="easyRE1"><a href="#easyRE1" class="headerlink" title="easyRE1"></a>easyRE1</h2><p>方向：Reverse	工具：IDA Pro</p>
+<p>答案：flag{db2f62a36a018bce28e46d976e3f9864}</p>
+<h2 id="666"><a href="#666" class="headerlink" title="666"></a>666</h2><p>方向：Reverse	工具：IDA Pro</p>
+<h3 id="main函数"><a href="#main函数" class="headerlink" title="main函数"></a>main函数</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">nt __fastcall <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, const <span class="type">char</span> **argv, const <span class="type">char</span> **envp)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">char</span> s[<span class="number">240</span>]; <span class="comment">// [rsp+0h] [rbp-1E0h] BYREF</span></span><br><span class="line">  <span class="type">char</span> s_[<span class="number">240</span>]; <span class="comment">// [rsp+F0h] [rbp-F0h] BYREF</span></span><br><span class="line"></span><br><span class="line">  memset(s, <span class="number">0</span>, 0x1Eu);</span><br><span class="line">  printf(<span class="string">&quot;Please Input Key: &quot;</span>);</span><br><span class="line">  __isoc99_scanf(<span class="string">&quot;%s&quot;</span>, s_);</span><br><span class="line">  encode(s_, s);</span><br><span class="line">  <span class="keyword">if</span> ( strlen(s_) == key )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> ( !strcmp(s, enflag) )	<span class="comment">// &quot;izwhroz\&quot;\&quot;w\&quot;v.K\&quot;.Ni&quot;</span></span><br><span class="line">      puts(<span class="string">&quot;You are Right&quot;</span>);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      puts(<span class="string">&quot;flag&#123;This_1s_f4cker_flag&#125;&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="关键点encode"><a href="#关键点encode" class="headerlink" title="关键点encode"></a>关键点encode</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> __fastcall <span class="title function_">encode</span><span class="params">(const <span class="type">char</span> *s, __int64 p_s)</span></span><br><span class="line">&#123;</span><br><span class="line">  _BYTE v3[<span class="number">104</span>]; <span class="comment">// [rsp+10h] [rbp-70h]</span></span><br><span class="line">  <span class="type">int</span> v4; <span class="comment">// [rsp+78h] [rbp-8h]</span></span><br><span class="line">  <span class="type">int</span> key; <span class="comment">// [rsp+7Ch] [rbp-4h]</span></span><br><span class="line"></span><br><span class="line">  key = <span class="number">0</span>;</span><br><span class="line">  v4 = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">if</span> ( strlen(s) != ::key )</span><br><span class="line">    <span class="keyword">return</span> puts(<span class="string">&quot;Your Length is Wrong&quot;</span>);</span><br><span class="line">  <span class="keyword">for</span> ( key = <span class="number">0</span>; key &lt; ::key; key += <span class="number">3</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    v3[key + <span class="number">64</span>] = ::key ^ (s[key] + <span class="number">6</span>);</span><br><span class="line">    v3[key + <span class="number">33</span>] = (s[key + <span class="number">1</span>] - <span class="number">6</span>) ^ ::key;</span><br><span class="line">    v3[key + <span class="number">2</span>] = s[key + <span class="number">2</span>] ^ <span class="number">6</span> ^ ::key;</span><br><span class="line">    *(_BYTE *)(p_s + key) = v3[key + <span class="number">64</span>];</span><br><span class="line">    *(_BYTE *)(p_s + key + 1LL) = v3[key + <span class="number">33</span>];</span><br><span class="line">    *(_BYTE *)(p_s + key + 2LL) = v3[key + <span class="number">2</span>];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> p_s;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个函数 <strong>对输入的字符串 <code>s</code> 进行加密</strong>，并将结果存储到 <code>p_s</code> 指向的内存中。<br>加密过程涉及 <strong>按 3 字节分组处理</strong>，每组分别使用不同的运算规则。</p>
+<h4 id="函数参数和变量-1"><a href="#函数参数和变量-1" class="headerlink" title="函数参数和变量"></a>函数参数和变量</h4><ul>
+<li>**<code>s</code>**：输入的明文字符串。</li>
+<li>**<code>p_s</code>**：存储加密结果的缓冲区。</li>
+<li>**<code>::key</code>**：一个全局变量，表示 <strong>密钥</strong> 或 <strong>字符串长度</strong>（从 <code>if (strlen(s) != ::key)</code> 可推测）。</li>
+<li>**<code>v3</code>**：临时缓冲区，用于存储中间加密结果。</li>
+</ul>
+<h4 id="加密逻辑"><a href="#加密逻辑" class="headerlink" title="加密逻辑"></a><strong>加密逻辑</strong></h4><ol>
+<li><p><strong>检查输入长度</strong>：</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (strlen(s) != ::key)</span><br><span class="line">  <span class="keyword">return</span> puts(<span class="string">&quot;Your Length is Wrong&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>输入字符串 <code>s</code> 的长度必须等于 <code>::key</code>，否则报错。</li>
+</ul>
+</li>
+<li><p><strong>按 3 字节分组加密</strong>：</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (key = <span class="number">0</span>; key &lt; ::key; key += <span class="number">3</span>) &#123;</span><br><span class="line">    <span class="comment">// 处理 s[key], s[key+1], s[key+2]</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>每次循环处理 <strong>3 个字符</strong>，分别进行不同的运算：</p>
+<ul>
+<li><p>**第 1 个字符 <code>s[key]</code>**：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">v3[key + 64] = ::key ^ (s[key] + 6);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>**第 2 个字符 <code>s[key + 1]</code>**：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">v3[key + 33] = (s[key + 1] - 6) ^ ::key;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>**第 3 个字符 <code>s[key + 2]</code>**：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">v3[key + 2] = s[key + 2] ^ 6 ^ ::key;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>存储加密结果</strong>：</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">*(_BYTE *)(p_s + key) = v3[key + 64];</span><br><span class="line">*(_BYTE *)(p_s + key + 1LL) = v3[key + 33];</span><br><span class="line">*(_BYTE *)(p_s + key + 2LL) = v3[key + 2];</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>将加密后的 3 个字符存入 <code>p_s</code>。</li>
+</ul>
+</li>
+<li><p><strong>逆向解密方法</strong></p>
+<p> 要还原明文 <code>s</code>，需 <strong>逆向运算</strong> 加密逻辑：</p>
+<ol>
+<li><p>**假设已知 <code>::key</code>**：</p>
+<ul>
+<li>从 <code>if (strlen(s) != ::key)</code> 可推测 <code>::key</code> 是输入字符串的长度。</li>
+<li>若 <code>::key</code> 未知，可能需要动态调试或进一步分析。</li>
+</ul>
+</li>
+<li><p><strong>解密公式</strong>：</p>
+<ul>
+<li><p>**第 1 个字符 <code>s[key]</code>**：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s[key] = (p_s[key] ^ ::key) - 6;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>**第 2 个字符 <code>s[key + 1]</code>**：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s[key + 1] = (p_s[key + 1] ^ ::key) + 6;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>**第 3 个字符 <code>s[key + 2]</code>**：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s[key + 2] = p_s[key + 2] ^ 6 ^ ::key;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>分组处理</strong>：</p>
+<ul>
+<li>每 3 个加密字符对应 3 个明文字符。</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p><strong>确定 <code>::key</code></strong></p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.data:0000000000004080                 public key</span><br><span class="line">.data:0000000000004080 key             dd 12h                  ; DATA XREF: encode+2D↑r</span><br><span class="line">.data:0000000000004080                                         ; encode+5F↑r ...</span><br><span class="line">.data:0000000000004080 _data           ends</span><br><span class="line">.data:0000000000004080</span><br></pre></td></tr></table></figure>
+
+<p> 双击找到</p>
+</li>
+</ol>
+<p>答案：flag{}</p>
+<h2 id="bad-python"><a href="#bad-python" class="headerlink" title="bad_python"></a>bad_python</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_55038440/article/details/136580205">Reverse逆向：pyc字节码转py文件（python）_pycdc.exe-CSDN博客</a></p>
+<h2 id="基础android"><a href="#基础android" class="headerlink" title="基础android"></a>基础android</h2><p>方向：mobile   工具：</p>
+<h2 id="maze"><a href="#maze" class="headerlink" title="maze"></a>maze</h2><p>方向：Reverse	工具：IDA Pro	tip：迷宫</p>
+<p>直接下载后放进IDA Pro</p>
+<h3 id="main函数-1"><a href="#main函数-1" class="headerlink" title="main函数"></a>main函数</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line">__int64 __fastcall main(int a1, char **a2, char **a3)</span><br><span class="line">&#123;</span><br><span class="line">  __int64 n5; // rbx</span><br><span class="line">  int n79; // eax</span><br><span class="line">  char v5; // bp</span><br><span class="line">  char v6; // al</span><br><span class="line">  const char *Wrong_flag; // rdi</span><br><span class="line">  unsigned int v9[10]; // [rsp+0h] [rbp-28h] BYREF</span><br><span class="line"></span><br><span class="line">  *(_QWORD *)v9 = 0;</span><br><span class="line">  puts(&quot;Input flag:&quot;);</span><br><span class="line">  scanf(&quot;%s&quot;, &amp;s1);</span><br><span class="line">  if ( strlen(&amp;s1) != 24 || strncmp(&amp;s1, &quot;nctf&#123;&quot;, 5u) || algn_6010C1[22] != 125 )// </span><br><span class="line">                                                // 总体长度要求为24</span><br><span class="line">                                                // 格式要求必须是nctf&#123;&#125;包裹</span><br><span class="line">                                                // 125：十进制的 ASCII 码值，对应字符 &#125;</span><br><span class="line">                                                // 迷宫移动逻辑只需要处理中间的 18 个字符</span><br><span class="line">                                                // （从索引 5 到索引 22）</span><br><span class="line">  &#123;</span><br><span class="line">LABEL_22:</span><br><span class="line">    puts(&quot;Wrong flag!&quot;);</span><br><span class="line">    exit(-1);</span><br><span class="line">  &#125;</span><br><span class="line">  n5 = 5;                                       // 因为索引是从0开始数</span><br><span class="line">                                                // 所以给n5赋值为5</span><br><span class="line">                                                // 从第6个字符开始处理</span><br><span class="line">  if ( strlen(&amp;s1) - 1 &gt; 5 )</span><br><span class="line">  &#123;</span><br><span class="line">    while ( 1 )</span><br><span class="line">    &#123;</span><br><span class="line">      n79 = *(&amp;s1 + n5);</span><br><span class="line">      v5 = 0;</span><br><span class="line">      if ( n79 &gt; 78 )</span><br><span class="line">      &#123;</span><br><span class="line">        if ( (unsigned __int8)n79 == 79 )       // &#x27;O&#x27; (ASCII 79)</span><br><span class="line">        &#123;</span><br><span class="line">          v6 = sub_400650(&amp;v9[1]);              // v9[1]代表是x轴</span><br><span class="line">                                                // 函数内是减</span><br><span class="line">                                                // 所以是向左</span><br><span class="line">          goto LABEL_14;</span><br><span class="line">        &#125;</span><br><span class="line">        if ( (unsigned __int8)n79 == 111 )      // &#x27;o&#x27; (ASCII 111) </span><br><span class="line">        &#123;</span><br><span class="line">          v6 = sub_400660(&amp;v9[1]);              // v9[1]代表是轴</span><br><span class="line">                                                // 函数内是加</span><br><span class="line">                                                // 所以是向右</span><br><span class="line">          goto LABEL_14;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      else</span><br><span class="line">      &#123;</span><br><span class="line">        if ( (unsigned __int8)n79 == 46 )       // &#x27;.&#x27; (ASCII 46) </span><br><span class="line">        &#123;</span><br><span class="line">          v6 = sub_400670(v9);                  // v9就是v9[0]代表是y轴</span><br><span class="line">                                                // 函数内是减</span><br><span class="line">                                                // 所以是向上</span><br><span class="line">          goto LABEL_14;</span><br><span class="line">        &#125;</span><br><span class="line">        if ( (unsigned __int8)n79 == 48 )       // &#x27;0&#x27; (ASCII 48) </span><br><span class="line">        &#123;</span><br><span class="line">          v6 = sub_400680(v9);                  // v9就是v9[0]代表是y轴</span><br><span class="line">                                                // 函数内是加</span><br><span class="line">                                                // 所以是向下</span><br><span class="line">LABEL_14:</span><br><span class="line">          v5 = v6;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      if ( !(unsigned __int8)sub_400690(asc_601060, v9[1], v9[0]) )// &quot;  *******   *  **** * ****  * ***  *#  *** *** ***     *********&quot;</span><br><span class="line">        goto LABEL_22;</span><br><span class="line">      if ( ++n5 &gt;= strlen(&amp;s1) - 1 )            // 处理字符截至在倒数第2个字符</span><br><span class="line">                                                // 也就是不包括&#125;</span><br><span class="line">      &#123;</span><br><span class="line">        if ( v5 )</span><br><span class="line">          break;</span><br><span class="line">LABEL_20:</span><br><span class="line">        Wrong_flag = &quot;Wrong flag!&quot;;</span><br><span class="line">        goto LABEL_21;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  if ( asc_601060[8 * v9[0] + v9[1]] != 35 )    // &quot;  *******   *  **** * ****  * ***  *#  *** *** ***     *********&quot;</span><br><span class="line">                                                // 二维数组的线性索引公式 index = row * width + col</span><br><span class="line">                                                // 宽度width=8</span><br><span class="line">                                                // 行号row=v9[0]</span><br><span class="line">                                                // 列号col=v9[1]</span><br><span class="line">    goto LABEL_20;</span><br><span class="line">  Wrong_flag = &quot;Congratulations!&quot;;</span><br><span class="line">LABEL_21:</span><br><span class="line">  puts(Wrong_flag);</span><br><span class="line">  return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="方向函数"><a href="#方向函数" class="headerlink" title="方向函数"></a>方向函数</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">bool __fastcall sub_400650(_DWORD *a1)</span><br><span class="line">&#123;</span><br><span class="line">  int v1; // eax</span><br><span class="line"></span><br><span class="line">  v1 = (*a1)--;</span><br><span class="line">  return v1 &gt; 0;		// 检查减1前是否&gt;0</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">bool __fastcall sub_400660(int *a1)</span><br><span class="line">&#123;</span><br><span class="line">  int n8; // eax</span><br><span class="line"></span><br><span class="line">  n8 = *a1 + 1;</span><br><span class="line">  *a1 = n8;</span><br><span class="line">  return n8 &lt; 8;		// 检查加1后是否&lt;8</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">bool __fastcall sub_400670(_DWORD *a1)</span><br><span class="line">&#123;</span><br><span class="line">  int v1; // eax</span><br><span class="line"></span><br><span class="line">  v1 = (*a1)--;</span><br><span class="line">  return v1 &gt; 0;		// 检查减1前是否&gt;0</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">bool __fastcall sub_400680(int *a1)</span><br><span class="line">&#123;</span><br><span class="line">  int n8; // eax</span><br><span class="line"></span><br><span class="line">  n8 = *a1 + 1;</span><br><span class="line">  *a1 = n8;</span><br><span class="line">  return n8 &lt; 8;		// 检查加1后是否&lt;8</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="迷宫合理性函数"><a href="#迷宫合理性函数" class="headerlink" title="迷宫合理性函数"></a>迷宫合理性函数</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">// 迷宫合法性检查函数</span><br><span class="line">__int64 __fastcall sub_400690(__int64 a1, int a2, int a3);</span><br><span class="line">&#123;</span><br><span class="line">  int64a1asc_601060__; // rax</span><br><span class="line">  n32 = *(unsigned __int8 *)(a1 + a2 + 8LL * a3); </span><br><span class="line">      // a1：迷宫地图的基址（对应全局变量 asc_601060）</span><br><span class="line">      // a2：X 坐标（列号）</span><br><span class="line">      // a3：Y 坐标（行号）</span><br><span class="line">      // a1 + a2 + 8LL * a3</span><br><span class="line">      // a1是起始位置</span><br><span class="line">      // 8LL * a3 对应行偏移（Y 坐标 × 每行宽度 8）</span><br><span class="line">      // a2 对应列偏移（X 坐标）</span><br><span class="line">      // *(unsigned __int8 *)(地址)</span><br><span class="line">      // 从计算出的地址读取一个字节（8 位无符号整数）</span><br><span class="line">      // 即迷宫地图中 (X, Y) 位置的字符</span><br><span class="line">  LOBYTE(n32) = (_DWORD)n32 == 32 || (_DWORD)n32 == 35;</span><br><span class="line">      // 判断合法性</span><br><span class="line">      // 32 是空格字符 &#x27; &#x27; 的 ASCII 码</span><br><span class="line">      // 35 是井号字符 &#x27;#&#x27; 的 ASCII 码</span><br><span class="line">      // 返回值：如果该位置是空格或井号，则返回 true（表示可移动）；否则返回 false（表示不可移动）</span><br><span class="line">  return n32;		      					    </span><br><span class="line">  	  // 返回值：布尔值，表示坐标 (a2, a3) 是否为合法位置</span><br><span class="line">      &#125;                                         </span><br><span class="line">      // 整体含义</span><br><span class="line">      // 空格 &#x27; &#x27;：表示通路，可以移动到该位置</span><br><span class="line">      // 井号 &#x27;#&#x27;：表示终点，可以移动到该位置</span><br><span class="line">      // 星号 &#x27;*&#x27;：表示墙壁，不能移动到该位置</span><br></pre></td></tr></table></figure>
+
+<p>编写行列格式输出脚本：</p>
+<p>名称：string-formatter</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">format_by_rows_and_columns</span>(<span class="params">s, rows, cols</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;按照指定的行数和列数格式化字符串&quot;&quot;&quot;</span></span><br><span class="line">    formatted = []</span><br><span class="line">    index = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(rows):</span><br><span class="line">        row = []</span><br><span class="line">        <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(cols):</span><br><span class="line">            <span class="keyword">if</span> index &lt; <span class="built_in">len</span>(s):</span><br><span class="line">                row.append(s[index])</span><br><span class="line">                index += <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                row.append(<span class="string">&#x27; &#x27;</span>)  <span class="comment"># 不足的位置用空格填充</span></span><br><span class="line">        formatted.append(<span class="string">&#x27;&#x27;</span>.join(row))</span><br><span class="line">    <span class="keyword">return</span> formatted</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">format_by_width</span>(<span class="params">s, width</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;按照指定的宽度格式化字符串&quot;&quot;&quot;</span></span><br><span class="line">    formatted = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(s), width):</span><br><span class="line">        line = s[i:i+width]</span><br><span class="line">        <span class="comment"># 不足宽度的行用空格填充</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(line) &lt; width:</span><br><span class="line">            line += <span class="string">&#x27; &#x27;</span> * (width - <span class="built_in">len</span>(line))</span><br><span class="line">        formatted.append(line)</span><br><span class="line">    <span class="keyword">return</span> formatted</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;==== 字符串格式化工具 ====&quot;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;\n请选择格式化模式:&quot;</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;1. 按行和列格式化&quot;</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;2. 按每行宽度格式化&quot;</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;3. 退出&quot;</span>)</span><br><span class="line">        </span><br><span class="line">        choice = <span class="built_in">input</span>(<span class="string">&quot;请输入选项 (1-3): &quot;</span>)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> choice == <span class="string">&#x27;3&#x27;</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;退出程序...&quot;</span>)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        </span><br><span class="line">        s = <span class="built_in">input</span>(<span class="string">&quot;请输入要格式化的字符串: &quot;</span>)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> choice == <span class="string">&#x27;1&#x27;</span>:</span><br><span class="line">            <span class="keyword">try</span>:</span><br><span class="line">                rows = <span class="built_in">int</span>(<span class="built_in">input</span>(<span class="string">&quot;请输入行数: &quot;</span>))</span><br><span class="line">                cols = <span class="built_in">int</span>(<span class="built_in">input</span>(<span class="string">&quot;请输入列数: &quot;</span>))</span><br><span class="line">                <span class="keyword">if</span> rows &lt;= <span class="number">0</span> <span class="keyword">or</span> cols &lt;= <span class="number">0</span>:</span><br><span class="line">                    <span class="built_in">print</span>(<span class="string">&quot;行数和列数必须为正整数&quot;</span>)</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                formatted = format_by_rows_and_columns(s, rows, cols)</span><br><span class="line">            <span class="keyword">except</span> ValueError:</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&quot;请输入有效的整数&quot;</span>)</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">elif</span> choice == <span class="string">&#x27;2&#x27;</span>:</span><br><span class="line">            <span class="keyword">try</span>:</span><br><span class="line">                width = <span class="built_in">int</span>(<span class="built_in">input</span>(<span class="string">&quot;请输入每行宽度: &quot;</span>))</span><br><span class="line">                <span class="keyword">if</span> width &lt;= <span class="number">0</span>:</span><br><span class="line">                    <span class="built_in">print</span>(<span class="string">&quot;宽度必须为正整数&quot;</span>)</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                formatted = format_by_width(s, width)</span><br><span class="line">            <span class="keyword">except</span> ValueError:</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&quot;请输入有效的整数&quot;</span>)</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;无效的选项，请重新输入&quot;</span>)</span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 输出结果</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;\n格式化结果:&quot;</span>)</span><br><span class="line">        <span class="keyword">for</span> line <span class="keyword">in</span> formatted:</span><br><span class="line">            <span class="built_in">print</span>(line)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 输出迷宫风格的结果（可选）</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">input</span>(<span class="string">&quot;是否以迷宫风格输出？(y/n): &quot;</span>).lower() == <span class="string">&#x27;y&#x27;</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;\n迷宫风格输出:&quot;</span>)</span><br><span class="line">            <span class="keyword">for</span> line <span class="keyword">in</span> formatted:</span><br><span class="line">                <span class="comment"># 将空格替换为&#x27;.&#x27;，其他字符保持不变</span></span><br><span class="line">                maze_line = <span class="string">&#x27;&#x27;</span>.join([<span class="string">&#x27;.&#x27;</span> <span class="keyword">if</span> c == <span class="string">&#x27; &#x27;</span> <span class="keyword">else</span> c <span class="keyword">for</span> c <span class="keyword">in</span> line])</span><br><span class="line">                <span class="built_in">print</span>(maze_line)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()    </span><br></pre></td></tr></table></figure>
+
+<p>最终迷宫输出图样为：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/202505222020822.png"></p>
+<p>故，最终的flag为：<u>nctf{o0oo00O000oooo…OO}</u></p>
+<h3 id="二维数组线性存储"><a href="#二维数组线性存储" class="headerlink" title="二维数组线性存储"></a>二维数组线性存储</h3><p>在二维数组中，我们通常使用行（row）和列（column）来定位元素。但在计算机内存中，二维数组实际上是<strong>线性存储</strong>的，也就是一个连续的内存块。为了在这个线性内存中找到对应的行和列位置，就需要使用一个转换公式：<code>index = row * width + col</code>。</p>
+<h4 id="公式的一般形式"><a href="#公式的一般形式" class="headerlink" title="公式的一般形式"></a>公式的一般形式</h4><p>对于一个<code>height</code>行、<code>width</code>列的二维数组，任意元素<code>(row, col)</code>对应的内存索引是</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">index = row * width + col</span><br></pre></td></tr></table></figure>
+
+<h4 id="公式背后的逻辑"><a href="#公式背后的逻辑" class="headerlink" title="公式背后的逻辑"></a>公式背后的逻辑</h4><ol>
+<li><strong>计算行偏移量</strong>：<code>row * width</code><ul>
+<li>每行有<code>width</code>个元素，所以第<code>row</code>行之前有<code>row</code>行，总共占用了<code>row * width</code>个位置。</li>
+</ul>
+</li>
+<li><strong>加上列偏移量</strong>：<code>+ col</code><ul>
+<li>在当前行中，目标元素是第<code>col</code>个，所以需要在该行的起始位置上再加上<code>col</code>。</li>
+</ul>
+</li>
+</ol>
+<h2 id="HelloCTF"><a href="#HelloCTF" class="headerlink" title="HelloCTF"></a>HelloCTF</h2><p>方向：Reverse	工具：IDA Pro</p>
+<p>直接进IDA</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> __cdecl <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">const</span> <span class="type">char</span> **argv, <span class="type">const</span> <span class="type">char</span> **envp)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">int</span> n17; <span class="comment">// ebx</span></span><br><span class="line">  <span class="type">char</span> v4; <span class="comment">// al</span></span><br><span class="line">  <span class="type">int</span> result; <span class="comment">// eax</span></span><br><span class="line">  <span class="type">int</span> v6; <span class="comment">// [esp+0h] [ebp-70h]</span></span><br><span class="line">  <span class="type">int</span> v7; <span class="comment">// [esp+0h] [ebp-70h]</span></span><br><span class="line">  <span class="type">char</span> Buffer[<span class="number">2</span>]; <span class="comment">// [esp+12h] [ebp-5Eh] BYREF</span></span><br><span class="line">  <span class="type">char</span> v9[<span class="number">20</span>]; <span class="comment">// [esp+14h] [ebp-5Ch] BYREF</span></span><br><span class="line">  <span class="type">char</span> buf_[<span class="number">32</span>]; <span class="comment">// [esp+28h] [ebp-48h] BYREF</span></span><br><span class="line">  __int16 v11; <span class="comment">// [esp+48h] [ebp-28h]</span></span><br><span class="line">  <span class="type">char</span> v12; <span class="comment">// [esp+4Ah] [ebp-26h]</span></span><br><span class="line">  <span class="type">char</span> _437261636b4d654a757374466f7246756e_[<span class="number">36</span>]; <span class="comment">// [esp+4Ch] [ebp-24h] BYREF</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">strcpy</span>(_437261636b4d654a757374466f7246756e_, <span class="string">&quot;437261636b4d654a757374466f7246756e&quot;</span>);</span><br><span class="line">  <span class="keyword">while</span> ( <span class="number">1</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">memset</span>(buf_, <span class="number">0</span>, <span class="keyword">sizeof</span>(buf_));</span><br><span class="line">    v11 = <span class="number">0</span>;</span><br><span class="line">    v12 = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">// &quot;please input your serial:&quot;</span></span><br><span class="line">    sub_40134B(p_please_input_your_serial_, v6);</span><br><span class="line">    <span class="comment">//读取用户输入的序列号</span></span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, v9);</span><br><span class="line">    <span class="keyword">if</span> ( <span class="built_in">strlen</span>(v9) &gt; <span class="number">0x11</span> )    <span class="comment">// 长度应小于17位</span></span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">      </span><br><span class="line">    <span class="keyword">for</span> ( n17 = <span class="number">0</span>; n17 &lt; <span class="number">17</span>; ++n17 )</span><br><span class="line">    &#123;</span><br><span class="line">      v4 = v9[n17];</span><br><span class="line">      <span class="keyword">if</span> ( !v4 )<span class="comment">//遇到空字符（&#x27;\0&#x27;）提前终止</span></span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="comment">//转换为十六进制字符串（小写形式）</span></span><br><span class="line">      <span class="built_in">sprintf</span>(Buffer, <span class="string">&quot;%x&quot;</span>, v4);</span><br><span class="line">      <span class="comment">//将每个字符的十六进制结果拼接至 buf_ 缓冲区</span></span><br><span class="line">      <span class="built_in">strcat</span>(buf_, Buffer);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> ( !<span class="built_in">strcmp</span>(buf_, _437261636b4d654a757374466f7246756e_) )</span><br><span class="line">      sub_40134B(aSuccess, v7);    <span class="comment">// &quot;success!&quot;</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      sub_40134B(aWrong, v7);      <span class="comment">// &quot;wrong!&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">  sub_40134B(aWrong, v7);           <span class="comment">// &quot;wrong!&quot;</span></span><br><span class="line">  result = (<span class="type">int</span>)*(&amp;Stream + <span class="number">1</span>) - <span class="number">1</span>;</span><br><span class="line">  *(&amp;Stream + <span class="number">1</span>) = (Stream *)((<span class="type">char</span> *)*(&amp;Stream + <span class="number">1</span>) - <span class="number">1</span>);</span><br><span class="line">  <span class="keyword">if</span> ( (<span class="type">int</span>)*(&amp;Stream + <span class="number">1</span>) &lt; <span class="number">0</span> )</span><br><span class="line">    <span class="keyword">return</span> _filbuf((FILE *)&amp;Stream);</span><br><span class="line">  Stream = (Stream *)((<span class="type">char</span> *)Stream + <span class="number">1</span>);</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="程序目的"><a href="#程序目的" class="headerlink" title="程序目的"></a><strong>程序目的</strong></h3><p>该程序是一个简单的序列号验证程序，要求用户输入一个序列号，验证通过则输出 <code>success!</code>，否则输出 <code>wrong!</code>。</p>
+<h3 id="核心逻辑"><a href="#核心逻辑" class="headerlink" title="核心逻辑"></a>核心逻辑</h3><p>将用户输入的字符串（如序列号）中的<strong>每个字符</strong>转换为对应的<strong>小写十六进制表示</strong>，并将所有结果拼接成一个连续的十六进制字符串</p>
+<h4 id="关键变量"><a href="#关键变量" class="headerlink" title="关键变量"></a><strong>关键变量</strong></h4><ul>
+<li>**<code>v9</code>**：用户输入的原始字符串（如序列号），类型为 <code>char[20]</code>。</li>
+<li>**<code>n17</code>**：循环变量，遍历 <code>v9</code> 中的每个字符（索引从 0 到 16，共 17 字节）。</li>
+<li>**<code>Buffer</code>**：临时缓冲区，长度为 2 字节（<code>char[2]</code>），用于存储单个字符的十六进制结果。</li>
+<li>**<code>buf_</code>**：目标缓冲区，类型为 <code>char[32]</code>，用于拼接所有十六进制字符串。</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (n17 = <span class="number">0</span>; n17 &lt; <span class="number">17</span>; ++n17) &#123;</span><br><span class="line">    v4 = v9[n17];         <span class="comment">// 取出当前字符</span></span><br><span class="line">    <span class="keyword">if</span> (!v4) <span class="keyword">break</span>;       <span class="comment">// 遇到空字符（&#x27;\0&#x27;）提前终止</span></span><br><span class="line">    <span class="built_in">sprintf</span>(Buffer, <span class="string">&quot;%x&quot;</span>, v4); <span class="comment">// 转换为小写十六进制字符串</span></span><br><span class="line">    <span class="built_in">strcat</span>(buf_, Buffer); <span class="comment">// 拼接至目标缓冲区</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="sprintf-转换细节"><a href="#sprintf-转换细节" class="headerlink" title="sprintf 转换细节"></a><strong>sprintf 转换细节</strong></h4><ul>
+<li><p>格式字符串 <code>%x</code></p>
+<ul>
+<li>将整数 <code>v4</code>（字符的 ASCII 码）转换为<strong>小写十六进制</strong>字符串。</li>
+<li>若数值小于 <code>0x10</code>（如字符 <code>&#39;\n&#39;</code>，ASCII 0x0A），则补前导零，确保结果为两位</li>
+</ul>
+</li>
+<li><p><code>Buffer</code> 的长度</p>
+<ul>
+<li>单个字符的十六进制最多为两位（如 <code>0xFF</code>），因此 <code>Buffer</code> 长度为 2 字节即可容纳结果（含字符串结束符 <code>&#39;\0&#39;</code>？<strong>注意隐患</strong>：<code>sprintf(Buffer, &quot;%x&quot;, v4)</code> 生成的字符串可能为 1 或 2 字节，如 <code>0x8</code> 转换为 <code>&quot;8&quot;</code>，此时 <code>Buffer</code> 中存储 <code>&quot;8\0&quot;</code>，长度为 2 字节（含 <code>&#39;\0&#39;</code>）。</li>
+</ul>
+</li>
+</ul>
+<h4 id="strcat-拼接逻辑"><a href="#strcat-拼接逻辑" class="headerlink" title="strcat 拼接逻辑"></a><strong>strcat 拼接逻辑</strong></h4><ul>
+<li><p><code>strcat(buf_, Buffer)</code></p>
+<ul>
+<li><p>将 <code>Buffer</code> 中的十六进制字符串追加到 <code>buf_</code> 末尾。</p>
+  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">buf_ = <span class="string">&quot;&quot;</span>;         <span class="comment">// 初始为空</span></span><br><span class="line">Buffer = <span class="string">&quot;41&quot;</span>;     <span class="comment">// &#x27;A&#x27;的十六进制</span></span><br><span class="line"><span class="built_in">strcat</span>(buf_, Buffer); <span class="comment">// buf_ 变为 &quot;41&quot;</span></span><br><span class="line"></span><br><span class="line">Buffer = <span class="string">&quot;42&quot;</span>;     <span class="comment">// &#x27;B&#x27;的十六进制</span></span><br><span class="line"><span class="built_in">strcat</span>(buf_, Buffer); <span class="comment">// buf_ 变为 &quot;4142&quot;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h3 id="关键结论总结"><a href="#关键结论总结" class="headerlink" title="关键结论总结"></a><strong>关键结论总结</strong></h3><table>
+<thead>
+<tr>
+<th>函数</th>
+<th>作用描述</th>
+<th>关键细节</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>sprintf</code></td>
+<td>将字符的 ASCII 码转换为小写十六进制字符串</td>
+<td>- 格式符 <code>%x</code> 不补前导零，单字节结果可能导致缓冲区溢出 - 正确做法：使用 <code>%02x</code> 和至少 3 字节缓冲区</td>
+</tr>
+<tr>
+<td><code>strcat</code></td>
+<td>将单个字符的十六进制字符串拼接成完整的校验字符串</td>
+<td>- 拼接时需确保目标缓冲区容量 &gt;&#x3D; 2× 输入长度 + 1 - 题目中存在溢出漏洞，输入 17 字节将覆盖栈内存</td>
+</tr>
+</tbody></table>
+<h2 id="2ex"><a href="#2ex" class="headerlink" title="2ex"></a>2ex</h2><p>wp参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/xiao__1bai/article/details/122372452">攻防世界逆向高手题之2ex1_攻防世界 2ex1-CSDN博客</a></p>
+<h1 id="BUUCTF"><a href="#BUUCTF" class="headerlink" title="BUUCTF"></a>BUUCTF</h1><h2 id="reverse1"><a href="#reverse1" class="headerlink" title="reverse1"></a>reverse1</h2><p>方向：Reverse	工具：IDA Pro	</p>
+<p>直接点击运行.exe文件，可以看到要求直接输入flag</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/202505261220215.png"></p>
+<p>拖进IDA查看执行文件的字符串情况（F12），可以看到刚刚在终端里的“input the flag:”，以及关键的“this is the right flag!&#x2F;”<img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/202505261221669.png"></p>
+<p>双击它，点进去找到这段字符串的位置</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/202505261227441.png"></p>
+<p>按X，查询该字符串的交叉使用情况。可以发现是在main_0类中。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/202505261225647.png"></p>
+<h3 id="main-0函数"><a href="#main-0函数" class="headerlink" title="main_0函数"></a>main_0函数</h3><p>按F5，查看伪代码。</p>
+<p>定位加密后的flag字符串，也就是定位加密的函数（如何加密的flag）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> __fastcall <span class="title function_">main_0</span><span class="params">(<span class="type">int</span> argc, const <span class="type">char</span> **argv, const <span class="type">char</span> **envp)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">char</span> *v3; <span class="comment">// rdi</span></span><br><span class="line">  __int64 n82; <span class="comment">// rcx</span></span><br><span class="line">  size_t __hello_world__; <span class="comment">// rax</span></span><br><span class="line">  <span class="type">char</span> v7; <span class="comment">// [rsp+0h] [rbp-20h] BYREF</span></span><br><span class="line">  <span class="type">int</span> i; <span class="comment">// [rsp+24h] [rbp+4h]</span></span><br><span class="line">  <span class="type">char</span> Str1[<span class="number">224</span>]; <span class="comment">// [rsp+48h] [rbp+28h] BYREF</span></span><br><span class="line">  __int64 v10; <span class="comment">// [rsp+128h] [rbp+108h]</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment">//内存初始化</span></span><br><span class="line">  v3 = &amp;v7;</span><br><span class="line">  <span class="keyword">for</span> ( n82 = <span class="number">82</span>; n82; --n82 )</span><br><span class="line">  &#123;</span><br><span class="line">    *(_DWORD *)v3 = -<span class="number">858993460</span>;</span><br><span class="line">    v3 += <span class="number">4</span>;</span><br><span class="line">  &#125;</span><br><span class="line">    </span><br><span class="line">  <span class="comment">//遍历字符串Str2</span></span><br><span class="line">  <span class="keyword">for</span> ( i = <span class="number">0</span>; ; ++i )</span><br><span class="line">  &#123;</span><br><span class="line">    v10 = i;</span><br><span class="line">    <span class="keyword">if</span> ( i &gt; j_strlen(Str2) )        <span class="comment">// &quot;&#123;hello_world&#125;&quot;</span></span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="comment">//将所有字符&#x27;o&#x27;(ASCII 111) 替换为字符&#x27;0&#x27;(ASCII 48)</span></span><br><span class="line">    <span class="comment">//IDA中，选中数字按&quot;R&quot;键可以将数字转换为字符</span></span><br><span class="line">    <span class="keyword">if</span> ( Str2[i] == <span class="number">111</span> )            </span><br><span class="line">      Str2[i] = <span class="number">48</span>;                  </span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//双击.exe文件时显示的。所以这是用户输入处理</span></span><br><span class="line">  sub_1400111D1(<span class="string">&quot;input the flag:&quot;</span>);</span><br><span class="line">  <span class="comment">//将输入读取到Str1中</span></span><br><span class="line">  <span class="comment">//%20s格式化说明符限制最多读取 20 个字符 (包括终止符)</span></span><br><span class="line">  sub_14001128F(<span class="string">&quot;%20s&quot;</span>, Str1);</span><br><span class="line">    </span><br><span class="line">  <span class="comment">//验证逻辑</span></span><br><span class="line">  __hello_world__ = j_strlen(Str2);  <span class="comment">// &quot;&#123;hello_world&#125;&quot;</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment">//__hello_world__ 的值为 13，这是因为字符串 Str2 &quot;&#123;hello_world&#125;&quot;其长度为 13 个字符（包括大括号和下划线）</span></span><br><span class="line">  <span class="keyword">if</span> ( !strncmp(Str1, Str2, __hello_world__) )  <span class="comment">// &quot;&#123;hello_world&#125;&quot;</span></span><br><span class="line">    sub_1400111D1(<span class="string">&quot;this is the right flag!\n&quot;</span>);</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    sub_1400111D1(<span class="string">&quot;wrong flag\n&quot;</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>故，最终的flag为：flag{hell0_w0rld}</p>
+<h3 id="strncmp函数的工作原理"><a href="#strncmp函数的工作原理" class="headerlink" title="strncmp函数的工作原理"></a><strong>strncmp函数的工作原理</strong></h3><p><code>strncmp</code> 是 C 语言标准库中的一个字符串比较函数，其原型定义在 <code>&lt;string.h&gt;</code> 头文件中。它的主要功能是比较两个字符串的前 <code>n</code> 个字符，常用于需要限制比较长度的场景。</p>
+<h4 id="函数原型"><a href="#函数原型" class="headerlink" title="函数原型"></a><strong>函数原型</strong></h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">strncmp</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *s1, <span class="type">const</span> <span class="type">char</span> *s2, <span class="type">size_t</span> n)</span>;</span><br></pre></td></tr></table></figure>
+
+<h4 id="参数说明"><a href="#参数说明" class="headerlink" title="参数说明"></a><strong>参数说明</strong></h4><ul>
+<li>**<code>s1</code>**：第一个要比较的字符串。</li>
+<li>**<code>s2</code>**：第二个要比较的字符串。</li>
+<li>**<code>n</code>**：最多比较的字符数（以字节为单位）。</li>
+</ul>
+<h4 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a><strong>工作原理</strong></h4><ol>
+<li><p><strong>逐字符比较</strong>：<br> 函数从两个字符串的第一个字符开始逐个比较，直到：</p>
+<ul>
+<li>发现不相等的字符（此时返回非零值）。</li>
+<li>遇到字符串结束符 <code>&#39;\0&#39;</code>（此时停止比较，除非已比较的字符数达到 <code>n</code>）。</li>
+<li>已经比较了 <code>n</code> 个字符（无论是否遇到 <code>&#39;\0&#39;</code>）。</li>
+</ul>
+</li>
+<li><p><strong>返回值规则</strong>：</p>
+<ul>
+<li><p><strong>若 <code>s1</code> 和 <code>s2</code> 完全相同</strong>（或仅比较部分相同且长度均为 <code>n</code>），返回 **<code>0</code>**。</p>
+</li>
+<li><p>若找到不相等的字符</p>
+<p>  ，返回这两个字符的 ASCII 码差值（</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s1[i] - s2[i]</span><br></pre></td></tr></table></figure>
+
+<p>  ）：</p>
+<ul>
+<li>若 <code>s1[i] &lt; s2[i]</code>，返回 <strong>负数</strong>。</li>
+<li>若 <code>s1[i] &gt; s2[i]</code>，返回 <strong>正数</strong>。</li>
+</ul>
+</li>
+<li><p>**若未找到不相等字符，但 <code>s1</code> 的长度小于 <code>s2</code>**（且比较长度 <code>n</code> 超过 <code>s1</code> 的长度），返回 <strong>负数</strong>（因为 <code>&#39;\0&#39;</code> 的 ASCII 值为 0，小于任何其他字符）。</p>
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="与-strcmp-的区别"><a href="#与-strcmp-的区别" class="headerlink" title="与 strcmp 的区别"></a><strong>与 <code>strcmp</code> 的区别</strong></h4><ul>
+<li>**<code>strcmp</code>**：比较整个字符串，直到遇到 <code>&#39;\0&#39;</code> 为止。</li>
+<li>**<code>strncmp</code>**：最多比较 <code>n</code> 个字符，即使字符串尚未结束。</li>
+</ul>
+<h2 id="xor"><a href="#xor" class="headerlink" title="xor"></a>xor</h2><p>方向：Reverse	工具：IDA Pro	</p>
+<p>查看是否有壳，没有有效信息</p>
+<p>直接放进IDA，进行分析</p>
+<p>关键语句是if判断句，因为字符串最后输出了Success，所以global和_b这两个字符串时相同的。</p>
+<p>双击global，然后看到global字符串中的值,其实已经在main函数通过注释展示出来了。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">int __fastcall main(int argc, const char **argv, const char **envp)</span><br><span class="line">&#123;</span><br><span class="line">  int n33; // [rsp+2Ch] [rbp-124h]</span><br><span class="line">  char __b[264]; // [rsp+40h] [rbp-110h] BYREF</span><br><span class="line"></span><br><span class="line">  memset(__b, 0, 0x100u);</span><br><span class="line">  printf(&quot;Input your flag:\n&quot;);</span><br><span class="line">  get_line(__b, 256);</span><br><span class="line">  if ( strlen(__b) != 33 )    // 长度应该等于33位</span><br><span class="line">    goto LABEL_7;</span><br><span class="line">  for ( n33 = 1; n33 &lt; 33; ++n33 )</span><br><span class="line">  //后一位与前一位进行异或运算</span><br><span class="line">    __b[n33] ^= __b[n33 - 1];</span><br><span class="line">  if ( !strncmp(</span><br><span class="line">          __b,</span><br><span class="line">          global,                               </span><br><span class="line">          // &quot;f\nk\fw&amp;O.@\x11x\rZ;U\x11p\x19F\x1Fv\&quot;M#D\x0Eg\x06h\x0FG2O&quot;</span><br><span class="line">          0x21u) )</span><br><span class="line">    printf(&quot;Success&quot;);</span><br><span class="line">  else</span><br><span class="line">LABEL_7:</span><br><span class="line">    printf(&quot;Failed&quot;);</span><br><span class="line">  return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/202505261930383.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/202505261930922.png"></p>
+<p>可以通过点击选中aFKWOXZUPFVMDGH后再点击任务栏的Edit-&gt;Export Data导出数据。</p>
+<p>具体选项是</p>
+<ul>
+<li>hex字符串（未空格）</li>
+<li>hex字符串（间隔）</li>
+<li>字符串文字</li>
+<li>C无符号字符数组（十六进制）</li>
+<li>C无符号字符数组（十进制）</li>
+<li>C变量初始化</li>
+<li>原始字节</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/202505261931323.png"></p>
+<p>最后选择了十进制导出</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">unsigned char aFKWOXZUPFVMDGH[] =</span><br><span class="line">&#123;</span><br><span class="line">102,  10, 107,  12, 119,  38,  79,  46,  64,  17,120,  13,  90,  59,  85,  17, 112,  25,  70,  31, 118,  34,  77,  35,  68,  14, 103,   6, 104,  15, 71,  50,  79,   0</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>编写脚本</p>
+<p>识别逗号分隔的输入数据类型，然后将每个数据与其前一个数据进行异或运算，最终输出处理后的字符串</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">detect_and_convert</span>(<span class="params">value</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;检测输入值的进制并转换为整数&quot;&quot;&quot;</span></span><br><span class="line">    value = value.strip()</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 检测二进制</span></span><br><span class="line">    <span class="keyword">if</span> re.<span class="keyword">match</span>(<span class="string">r&#x27;^0b[01]+$&#x27;</span>, value, re.IGNORECASE):</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">int</span>(value, <span class="number">2</span>)</span><br><span class="line">    <span class="comment"># 检测十六进制</span></span><br><span class="line">    <span class="keyword">elif</span> re.<span class="keyword">match</span>(<span class="string">r&#x27;^0x[0-9a-f]+$&#x27;</span>, value, re.IGNORECASE):</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">int</span>(value, <span class="number">16</span>)</span><br><span class="line">    <span class="comment"># 检测十进制</span></span><br><span class="line">    <span class="keyword">elif</span> re.<span class="keyword">match</span>(<span class="string">r&#x27;^\d+$&#x27;</span>, value):</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">int</span>(value)</span><br><span class="line">    <span class="comment"># 视为字符串（返回其ASCII值）</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(value) != <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">raise</span> ValueError(<span class="string">f&quot;字符串 &#x27;<span class="subst">&#123;value&#125;</span>&#x27; 长度必须为1&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">ord</span>(value)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">process_input</span>(<span class="params">input_str</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;处理输入字符串，进行异或运算并返回结果字符串&quot;&quot;&quot;</span></span><br><span class="line">    <span class="comment"># 分割输入字符串，允许逗号后有空格</span></span><br><span class="line">    elements = re.split(<span class="string">r&#x27;,\s*&#x27;</span>, input_str)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 转换所有元素为整数</span></span><br><span class="line">    converted = []</span><br><span class="line">    <span class="keyword">for</span> elem <span class="keyword">in</span> elements:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> elem:</span><br><span class="line">            <span class="keyword">continue</span>  <span class="comment"># 跳过空元素</span></span><br><span class="line">        converted.append(detect_and_convert(elem))</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> converted:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;&quot;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 处理第一个元素</span></span><br><span class="line">    result = [converted[<span class="number">0</span>]]</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 处理后续元素：当前元素与前一个元素异或</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(converted)):</span><br><span class="line">        xor_result = converted[i] ^ converted[i-<span class="number">1</span>]</span><br><span class="line">        result.append(xor_result)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 转换为字符串</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span>.join(<span class="built_in">chr</span>(c) <span class="keyword">for</span> c <span class="keyword">in</span> result)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    <span class="comment"># 示例输入，可以是混合进制</span></span><br><span class="line">    input_data = <span class="built_in">input</span>(<span class="string">&quot;请输入数据（逗号分隔，支持多种进制）：&quot;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        output = process_input(input_data)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;处理结果：<span class="subst">&#123;output&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;错误：<span class="subst">&#123;e&#125;</span>&quot;</span>)    </span><br></pre></td></tr></table></figure>
+
+<p>最终得到结果：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/202505261935505.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;QianQiuWanDai_YiTongJiangHu&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="reverse3"><a href="#reverse3" class="headerlink" title="reverse3"></a>reverse3</h2><p>方向：Reverse	工具：IDA Pro</p>
+<p>查壳，没有</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/202505262014099.png"></p>
+<p>进入IDA</p>
+<h3 id="main函数-2"><a href="#main函数-2" class="headerlink" title="main函数"></a>main函数</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> __cdecl <span class="title function_">main_0</span><span class="params">(<span class="type">int</span> argc, <span class="type">const</span> <span class="type">char</span> **argv, <span class="type">const</span> <span class="type">char</span> **envp)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">size_t</span> v3; <span class="comment">// eax</span></span><br><span class="line">  <span class="type">const</span> <span class="type">char</span> *Source; <span class="comment">// eax</span></span><br><span class="line">  <span class="type">size_t</span> MaxCount; <span class="comment">// eax</span></span><br><span class="line">  <span class="type">char</span> v7; <span class="comment">// [esp+0h] [ebp-188h]</span></span><br><span class="line">  <span class="type">char</span> v8; <span class="comment">// [esp+0h] [ebp-188h]</span></span><br><span class="line">  <span class="type">signed</span> <span class="type">int</span> i; <span class="comment">// [esp+DCh] [ebp-ACh]</span></span><br><span class="line">  <span class="type">int</span> n0x64; <span class="comment">// [esp+E8h] [ebp-A0h]</span></span><br><span class="line">  <span class="type">signed</span> <span class="type">int</span> v11; <span class="comment">// [esp+E8h] [ebp-A0h]</span></span><br><span class="line">  <span class="type">char</span> Destination[<span class="number">108</span>]; <span class="comment">// [esp+F4h] [ebp-94h] BYREF</span></span><br><span class="line">  <span class="type">char</span> Str[<span class="number">28</span>]; <span class="comment">// [esp+160h] [ebp-28h] BYREF</span></span><br><span class="line">  _BYTE v14[<span class="number">8</span>]; <span class="comment">// [esp+17Ch] [ebp-Ch] BYREF</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> ( n0x64 = <span class="number">0</span>; n0x64 &lt; <span class="number">100</span>; ++n0x64 )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> ( (<span class="type">unsigned</span> <span class="type">int</span>)n0x64 &gt;= <span class="number">0x64</span> )</span><br><span class="line">      j____report_rangecheckfailure();</span><br><span class="line">    Destination[n0x64] = <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//直接捕捉字符串flag</span></span><br><span class="line">  sub_41132F(<span class="string">&quot;please enter the flag:&quot;</span>, v7);</span><br><span class="line">  sub_411375(<span class="string">&quot;%20s&quot;</span>, (<span class="type">char</span>)Str);</span><br><span class="line">  v3 = j_strlen(Str);</span><br><span class="line">    <span class="comment">//sub_4110BE为加密函数</span></span><br><span class="line">  Source = (<span class="type">const</span> <span class="type">char</span> *)sub_4110BE(Str, v3, v14);</span><br><span class="line">  <span class="built_in">strncpy</span>(Destination, Source, <span class="number">0x28u</span>);</span><br><span class="line">  v11 = j_strlen(Destination);</span><br><span class="line">  <span class="keyword">for</span> ( i = <span class="number">0</span>; i &lt; v11; ++i )</span><br><span class="line">    Destination[i] += i;</span><br><span class="line">  MaxCount = j_strlen(Destination);</span><br><span class="line">  <span class="keyword">if</span> ( !<span class="built_in">strncmp</span>(Destination, Str2, MaxCount) )  <span class="comment">// &quot;e3nifIH9b_C@n@dH&quot;</span></span><br><span class="line">    sub_41132F(<span class="string">&quot;rigth flag!\n&quot;</span>, v8);</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    sub_41132F(<span class="string">&quot;wrong flag!\n&quot;</span>, v8);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="加密函数"><a href="#加密函数" class="headerlink" title="加密函数"></a>加密函数</h3><p>通过分析函数的缓冲区计算、分组处理、字符映射表、填充逻辑和位操作模式，可以确定这个函数实现了 Base64 编码算法。这种实现方式在逆向工程中很常见，虽然代码结构可能与标准库不同，但核心算法特征是一致的。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> *__cdecl <span class="title function_">sub_411AB0</span><span class="params">(<span class="type">char</span> *p_Str, <span class="type">size_t</span> a2, _BYTE *a3)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">int</span> v4; <span class="comment">// [esp+D4h] [ebp-38h]</span></span><br><span class="line">  <span class="type">int</span> v5; <span class="comment">// [esp+D4h] [ebp-38h]</span></span><br><span class="line">  <span class="type">int</span> v6; <span class="comment">// [esp+D4h] [ebp-38h]</span></span><br><span class="line">  <span class="type">int</span> v7; <span class="comment">// [esp+D4h] [ebp-38h]</span></span><br><span class="line">  <span class="type">int</span> n3; <span class="comment">// [esp+E0h] [ebp-2Ch]</span></span><br><span class="line">  <span class="type">size_t</span> v9; <span class="comment">// [esp+ECh] [ebp-20h]</span></span><br><span class="line">  <span class="type">int</span> v10; <span class="comment">// [esp+ECh] [ebp-20h]</span></span><br><span class="line">  <span class="type">int</span> v11; <span class="comment">// [esp+ECh] [ebp-20h]</span></span><br><span class="line">  <span class="type">void</span> *v12; <span class="comment">// [esp+F8h] [ebp-14h]</span></span><br><span class="line">  <span class="type">char</span> *p_Str_1; <span class="comment">// [esp+104h] [ebp-8h]</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> ( !p_Str || !a2 )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="comment">//Base64 编码会将 3 字节的输入数据转换为 4 字节的输出数据，因此输出长度通常为 (输入长度 + 2) / 3 * 4。</span></span><br><span class="line">    <span class="comment">//a2 是输入长度、v9 计算输入能分成多少个 3 字节块、如果不能整除，需要额外的块（++v9）、v10 是最终输出长度（4 * v9）</span></span><br><span class="line">    <span class="comment">//这与 Base64 编码的空间复杂度完全一致</span></span><br><span class="line">  v9 = a2 / <span class="number">3</span>;</span><br><span class="line">  <span class="keyword">if</span> ( (<span class="type">int</span>)(a2 / <span class="number">3</span>) % <span class="number">3</span> )</span><br><span class="line">    ++v9;</span><br><span class="line">  v10 = <span class="number">4</span> * v9;</span><br><span class="line"></span><br><span class="line">  *(_DWORD *)a3 = v10;</span><br><span class="line">  v12 = <span class="built_in">malloc</span>(v10 + <span class="number">1</span>);</span><br><span class="line">  <span class="keyword">if</span> ( !v12 )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  j_memset(v12, <span class="number">0</span>, v10 + <span class="number">1</span>);</span><br><span class="line">  p_Str_1 = p_Str;</span><br><span class="line">  v11 = a2;</span><br><span class="line">  v4 = <span class="number">0</span>;</span><br><span class="line"><span class="comment">//Base64 编码按 3 字节分组处理输入数据，不足 3 字节时进行填充</span></span><br><span class="line">  <span class="keyword">while</span> ( v11 &gt; <span class="number">0</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    algn_41A145[<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">    algn_41A145[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">    byte_41A144[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> ( n3 = <span class="number">0</span>; n3 &lt; <span class="number">3</span> &amp;&amp; v11 &gt;= <span class="number">1</span>; ++n3 )</span><br><span class="line">    &#123;</span><br><span class="line">      byte_41A144[n3] = *p_Str_1;</span><br><span class="line">      --v11;</span><br><span class="line">      ++p_Str_1;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> ( !n3 )</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">switch</span> ( n3 )</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="comment">//Base64 编码使用一个固定的字符映射表，将 6 位数值转换为对应的 ASCII 字符。函数中频繁引用的 aAbcdefghijklmn 数组就是这个映射表。</span></span><br><span class="line">      <span class="comment">//aAbcdefghijklmn 是 Base64 字符表（通常是ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/）</span></span><br><span class="line">      <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">        *((_BYTE *)v12 + v4) = aAbcdefghijklmn[(<span class="type">int</span>)(<span class="type">unsigned</span> __int8)byte_41A144[<span class="number">0</span>] &gt;&gt; <span class="number">2</span>];</span><br><span class="line">        v5 = v4 + <span class="number">1</span>;</span><br><span class="line">        *((_BYTE *)v12 + v5) = aAbcdefghijklmn[((algn_41A145[<span class="number">0</span>] &amp; <span class="number">0xF0</span>) &gt;&gt; <span class="number">4</span>) | (<span class="number">16</span> * (byte_41A144[<span class="number">0</span>] &amp; <span class="number">3</span>))];</span><br><span class="line">        *((_BYTE *)v12 + ++v5) = aAbcdefghijklmn[<span class="number">64</span>];</span><br><span class="line">        *((_BYTE *)v12 + ++v5) = aAbcdefghijklmn[<span class="number">64</span>];</span><br><span class="line">        v4 = v5 + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">        *((_BYTE *)v12 + v4) = aAbcdefghijklmn[(<span class="type">int</span>)(<span class="type">unsigned</span> __int8)byte_41A144[<span class="number">0</span>] &gt;&gt; <span class="number">2</span>];</span><br><span class="line">        v6 = v4 + <span class="number">1</span>;</span><br><span class="line">        *((_BYTE *)v12 + v6) = aAbcdefghijklmn[((algn_41A145[<span class="number">0</span>] &amp; <span class="number">0xF0</span>) &gt;&gt; <span class="number">4</span>) | (<span class="number">16</span> * (byte_41A144[<span class="number">0</span>] &amp; <span class="number">3</span>))];</span><br><span class="line">        *((_BYTE *)v12 + ++v6) = aAbcdefghijklmn[((algn_41A145[<span class="number">1</span>] &amp; <span class="number">0xC0</span>) &gt;&gt; <span class="number">6</span>) | (<span class="number">4</span> * (algn_41A145[<span class="number">0</span>] &amp; <span class="number">0xF</span>))];</span><br><span class="line">        *((_BYTE *)v12 + ++v6) = aAbcdefghijklmn[<span class="number">64</span>];</span><br><span class="line">        v4 = v6 + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">        *((_BYTE *)v12 + v4) = aAbcdefghijklmn[(<span class="type">int</span>)(<span class="type">unsigned</span> __int8)byte_41A144[<span class="number">0</span>] &gt;&gt; <span class="number">2</span>];</span><br><span class="line">        v7 = v4 + <span class="number">1</span>;</span><br><span class="line">        *((_BYTE *)v12 + v7) = aAbcdefghijklmn[((algn_41A145[<span class="number">0</span>] &amp; <span class="number">0xF0</span>) &gt;&gt; <span class="number">4</span>) | (<span class="number">16</span> * (byte_41A144[<span class="number">0</span>] &amp; <span class="number">3</span>))];</span><br><span class="line">        *((_BYTE *)v12 + ++v7) = aAbcdefghijklmn[((algn_41A145[<span class="number">1</span>] &amp; <span class="number">0xC0</span>) &gt;&gt; <span class="number">6</span>) | (<span class="number">4</span> * (algn_41A145[<span class="number">0</span>] &amp; <span class="number">0xF</span>))];</span><br><span class="line">        *((_BYTE *)v12 + ++v7) = aAbcdefghijklmn[algn_41A145[<span class="number">1</span>] &amp; <span class="number">0x3F</span>];</span><br><span class="line">        v4 = v7 + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  *((_BYTE *)v12 + v4) = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">return</span> v12;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>通过脚本解码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"></span><br><span class="line">str2=<span class="built_in">input</span>(<span class="string">&quot;请输入需要数据：&quot;</span>)</span><br><span class="line">flag=<span class="string">&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="built_in">len</span>(str2)):</span><br><span class="line">    flag+=<span class="built_in">chr</span>(<span class="built_in">ord</span>(str2[i])-i)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;加密：&#123;&#125;&quot;</span>.<span class="built_in">format</span>(flag))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;解密：&#123;&#125;&quot;</span>.<span class="built_in">format</span>(base64.b64decode(flag).decode(<span class="string">&#x27;utf-8&#x27;</span>)))</span><br></pre></td></tr></table></figure>
+
+<p>最终得到结果</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/202505262056499.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;i_l0ve_you&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Base64（换表）"><a href="#Base64（换表）" class="headerlink" title="Base64（换表）"></a>Base64（换表）</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> base64 <span class="comment">#导入base64模块用于解密</span></span><br><span class="line">s1 = <span class="string">&#x27;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/&#x27;</span> <span class="comment">#标准表</span></span><br><span class="line">s2 = <span class="string">&#x27;qvEJAfHmUYjBac+u8Ph5n9Od17FrICL/X0gVtM4Qk6T2z3wNSsyoebilxWKGZpRD&#x27;</span> <span class="comment">#base64换表</span></span><br><span class="line">en_text = <span class="string">&#x27;5Mc58bPHLiAx7J8ocJIlaVUxaJvMcoYMaoPMaOfg15c475tscHfM/8==&#x27;</span> <span class="comment">#密文</span></span><br><span class="line"> </span><br><span class="line">map_text = <span class="string">&#x27;&#x27;</span> <span class="comment">#用于存放密文通过换表映射回标准表的字符</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> en_text:</span><br><span class="line">    <span class="keyword">if</span>(i != <span class="string">&#x27;=&#x27;</span>): <span class="comment">#注意密文中存在等号的情况下，不需要替换！</span></span><br><span class="line">        idx = s2.index(i) <span class="comment">#获取每个密文的字符在换表中的索引</span></span><br><span class="line">        map_text += s1[idx] <span class="comment">#取出标准表中的该索引的字符，就是正常base64加密的密文</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        map_text += i</span><br><span class="line"><span class="built_in">print</span>(map_text) <span class="comment">#可以先看看标准表base64加密的密文</span></span><br><span class="line"><span class="built_in">print</span>(base64.b64decode(map_text)) <span class="comment">#直接使用提供的base64解密函数，获得明文，就是flag</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h4><p>Base64 编码使用一个固定的字符表：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/</span><br></pre></td></tr></table></figure>
+
+<p>但在某些场景（如 CTF 题目）中，会使用自定义的字符表（如代码中的<code>s2</code>）进行编码。此时，标准的 Base64 解码器无法直接解码，需要先将密文从<strong>自定义表</strong>映射回<strong>标准表</strong>，再进行解码。</p>
+<h4 id="代码逐行解析"><a href="#代码逐行解析" class="headerlink" title="代码逐行解析"></a>代码逐行解析</h4><ol>
+<li>定义映射表和密文</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">s1 = <span class="string">&#x27;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/&#x27;</span> <span class="comment">#标准表</span></span><br><span class="line">s2 = <span class="string">&#x27;qvEJAfHmUYjBac+u8Ph5n9Od17FrICL/X0gVtM4Qk6T2z3wNSsyoebilxWKGZpRD&#x27;</span> <span class="comment">#自定义表</span></span><br><span class="line">en_text = <span class="string">&#x27;5Mc58bPHLiAx7J8ocJIlaVUxaJvMcoYMaoPMaOfg15c475tscHfM/8==&#x27;</span> <span class="comment">#密文</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>s1</code>是标准 Base64 表，每个字符对应一个 6 位数值（0-63）</li>
+<li><code>s2</code>是自定义表，字符顺序被打乱，但仍对应相同的 6 位数值</li>
+<li><code>en_text</code>是使用<code>s2</code>编码后的密文</li>
+</ul>
+<p>映射转换过程</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">map_text = <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> en_text:</span><br><span class="line">    <span class="keyword">if</span>(i != <span class="string">&#x27;=&#x27;</span>):</span><br><span class="line">        idx = s2.index(i)  <span class="comment"># 在自定义表中找到字符的位置</span></span><br><span class="line">        map_text += s1[idx]  <span class="comment"># 从标准表中取出对应位置的字符</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        map_text += i  <span class="comment"># 保留填充字符&#x27;=&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>关键逻辑</strong>：</p>
+<ul>
+<li>遍历密文<code>en_text</code>中的每个字符</li>
+<li>对于非<code>=</code>字符，找到它在<code>s2</code>中的位置（例如字符<code>5</code>在<code>s2</code>中位于索引 40）</li>
+<li>用这个索引从标准表<code>s1</code>中取出对应字符（索引 40 对应标准表中的<code>Q</code>）</li>
+<li>最终得到标准 Base64 编码的字符串<code>map_text</code></li>
+</ul>
+<h4 id="解码标准-Base64"><a href="#解码标准-Base64" class="headerlink" title="解码标准 Base64"></a>解码标准 Base64</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(map_text)  <span class="comment"># 转换后的标准Base64字符串</span></span><br><span class="line"><span class="built_in">print</span>(base64.b64decode(map_text))  <span class="comment"># 使用标准库解码</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>map_text</code>是符合标准 Base64 编码规则的字符串</li>
+<li><code>base64.b64decode()</code>直接处理标准编码，输出原始数据</li>
+</ul>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>这段代码的工作流程：</p>
+<ol>
+<li><strong>密文</strong>（使用自定义表编码）</li>
+<li><strong>映射转换</strong>（从自定义表→标准表）</li>
+<li><strong>标准解码</strong>（得到原始数据）</li>
+</ol>
+<p>这是处理 Base64 换表问题的标准方法，在 CTF 和逆向工程中非常常见。</p>
+<h2 id="secret-of-inkey"><a href="#secret-of-inkey" class="headerlink" title="secret_of_inkey"></a>secret_of_inkey</h2><p>方向：Reverse	工具：IDA Pro	</p>
+<p>来源：[DASCTF 2024最后一战｜寒夜破晓，冬至终章]</p>
+<p>查壳，没有</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/202505271034408.png"></p>
+<p>点击运行，可以看到窗口是。许多个格子组成的。<img src="/CTF%E7%BB%83%E4%B9%A0.assets/image-20250527142653829.png"></p>
+<p>点击右上角的方块会有提示。意思就是第565个各自的key是9fc巴拉巴拉。在对应的各自输入后。</p>
+<p><img src="/CTF%E7%BB%83%E4%B9%A0.assets/image-20250527142620390.png"></p>
+<p>弹框。还是i相同的意思。以此类推。</p>
+<p><img src="/CTF%E7%BB%83%E4%B9%A0.assets/image-20250527142559862.png"></p>
+<p>拖进IDA，查看。</p>
+<p>直接搜索输出框上的字符串“Right”</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/202505271430294.png"></p>
+<p>双击后再进行交叉引用查看对应的使用函数，即sub_416D70+374</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/202505271431725.png"></p>
+<p>进入该函数然后使用F5，查看伪代码。</p>
+<h4 id="关键类与函数（基于-Qt-框架）"><a href="#关键类与函数（基于-Qt-框架）" class="headerlink" title="关键类与函数（基于 Qt 框架）"></a><strong>关键类与函数（基于 Qt 框架）</strong></h4><ul>
+<li>**<code>QString</code>**：处理字符串，涉及 <code>fromAscii_helper</code>、<code>fromUtf8_helper</code>、<code>append</code> 等函数，用于字符串转换和拼接。</li>
+<li>**<code>QMessageBox</code>**：弹出对话框，<code>setWindowTitle</code> 和 <code>setText</code> 用于设置标题和内容，<code>exec</code> 显示对话框。</li>
+<li><strong>内存操作</strong>：<code>_InterlockedSub</code> 等原子操作函数，可能用于引用计数管理（Qt 的隐式共享机制）。</li>
+</ul>
+<h3 id="加密1"><a href="#加密1" class="headerlink" title="加密1"></a>加密1</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (n32 = <span class="number">0</span>; n32 != <span class="number">32</span>; ++n32)</span><br><span class="line">    *((_BYTE *)v35 + n32) ^= *(_BYTE *)(v4 + (n32 &amp; <span class="number">0xF</span>)) ^ (<span class="type">unsigned</span> __int8)n32;</span><br></pre></td></tr></table></figure>
+
+<p>这段代码是一个<strong>循环加密 &#x2F; 解密过程</strong>，主要做了两件事：</p>
+<ol>
+<li><strong>用密钥（<code>v4</code>）对数据（<code>v35</code>）进行异或</strong></li>
+<li><strong>用「当前位置编号」增加随机性</strong></li>
+</ol>
+<h4 id="分步解释"><a href="#分步解释" class="headerlink" title="分步解释"></a><strong>分步解释</strong></h4><h4 id="循环过程（逐字节处理）"><a href="#循环过程（逐字节处理）" class="headerlink" title="循环过程（逐字节处理）"></a><strong>循环过程（逐字节处理）</strong></h4><p>对<strong>每个字节</strong>执行以下操作：</p>
+<ol>
+<li><strong>找到对应的密钥字节</strong>：<br> 由于密钥只有 16 字节，但数据有 32 字节，所以需要<strong>循环使用密钥</strong>。<ul>
+<li>当处理前 16 字节（0<del>15）时，直接用密钥的 0</del>15 字节</li>
+<li>当处理后 16 字节（16<del>31）时，<strong>重复使用</strong>密钥的 0</del>15 字节<br>  <strong>计算方式</strong>：<code>密钥位置 = 当前字节编号 % 16</code>（用<code>n32 &amp; 0xF</code>实现）</li>
+</ul>
+</li>
+<li><strong>第一次异或</strong>：<br> 将<strong>当前数据字节</strong>与<strong>对应的密钥字节</strong>异或</li>
+<li><strong>第二次异或</strong>：<br> 将结果再与<strong>当前字节编号</strong>异或（增加随机性）</li>
+</ol>
+<p><strong>数学公式</strong></p>
+<p>设：</p>
+<ul>
+<li><code>data[i]</code> &#x3D; 第 i 个数据字节</li>
+<li><code>key[j]</code> &#x3D; 第 j 个密钥字节</li>
+<li><code>i % 16</code> &#x3D; 用<code>i &amp; 0xF</code>计算</li>
+</ul>
+<p>则加密过程为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data[i] = data[i] ⊕ key[i % 16] ⊕ i</span><br></pre></td></tr></table></figure>
+
+<p>（⊕ 表示异或运算）</p>
+<h4 id="举个栗子（假设数据和密钥）"><a href="#举个栗子（假设数据和密钥）" class="headerlink" title="举个栗子（假设数据和密钥）"></a><strong>举个栗子（假设数据和密钥）</strong></h4><h5 id="假设："><a href="#假设：" class="headerlink" title="假设："></a><strong>假设</strong>：</h5><ul>
+<li>数据（v35）前 4 字节 &#x3D; <code>[0x10, 0x20, 0x30, 0x40]</code></li>
+<li>密钥（v4）前 4 字节 &#x3D; <code>[0xAA, 0xBB, 0xCC, 0xDD]</code></li>
+</ul>
+<h5 id="加密过程："><a href="#加密过程：" class="headerlink" title="加密过程："></a><strong>加密过程</strong>：</h5><table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>数据位置 (i)</th>
+<th>对应密钥位置 (j)</th>
+<th>计算过程</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>0</td>
+<td>0 &amp; 15 &#x3D; 0</td>
+<td>0x10 ⊕ 0xAA ⊕ 0x00 &#x3D; <strong>0xBA</strong></td>
+<td>0xBA</td>
+</tr>
+<tr>
+<td>2</td>
+<td>1</td>
+<td>1 &amp; 15 &#x3D; 1</td>
+<td>0x20 ⊕ 0xBB ⊕ 0x01 &#x3D; <strong>0x9A</strong></td>
+<td>0x9A</td>
+</tr>
+<tr>
+<td>3</td>
+<td>2</td>
+<td>2 &amp; 15 &#x3D; 2</td>
+<td>0x30 ⊕ 0xCC ⊕ 0x02 &#x3D; <strong>0xFC</strong></td>
+<td>0xFC</td>
+</tr>
+<tr>
+<td>4</td>
+<td>3</td>
+<td>3 &amp; 15 &#x3D; 3</td>
+<td>0x40 ⊕ 0xDD ⊕ 0x03 &#x3D; <strong>0x9E</strong></td>
+<td>0x9E</td>
+</tr>
+</tbody></table>
+<h5 id="解密过程："><a href="#解密过程：" class="headerlink" title="解密过程："></a><strong>解密过程</strong>：</h5><p>完全相同！因为异或运算满足：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(A ⊕ B ⊕ C) ⊕ B ⊕ C = A （两次异或抵消）</span><br></pre></td></tr></table></figure>
+
+<h4 id="如何在-CTF-中快速识别这种模式？"><a href="#如何在-CTF-中快速识别这种模式？" class="headerlink" title="如何在 CTF 中快速识别这种模式？"></a><strong>如何在 CTF 中快速识别这种模式？</strong></h4><p>A：当看到类似「循环异或」+「密钥复用」+「索引参与运算」的代码，很可能就是这种加密方式。<br>关键特征：<code>key[i % 密钥长度]</code>和<code>循环变量参与异或</code>。</p>
+<h3 id="加密2"><a href="#加密2" class="headerlink" title="加密2"></a>加密2</h3><p>在异或预处理后调用 <strong><code>sub_401F90</code> 进一步处理</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sub_401F90(v4, <span class="number">16</span>, (<span class="type">unsigned</span> <span class="type">int</span>)v35, (<span class="type">unsigned</span> <span class="type">int</span>)v30, <span class="number">32</span>);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>参数分析<ul>
+<li><code>v4</code>：可能是密钥（长度 16 字节）。</li>
+<li><code>v35</code>：输入数据（32 字节）。</li>
+<li><code>v30</code>：输出缓冲区（32 字节，存储解密后的数据）。</li>
+</ul>
+</li>
+</ul>
+<p>关键代码</p>
+<p>校验密钥长度与数据分组 → 2. 密钥扩展 → 3. 对每个 16 字节分组执行 AES 轮函数（S 盒、移位、混淆、异或） → 4. 输出明文</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br></pre></td><td class="code"><pre><span class="line"> // 参数非空校验</span><br><span class="line">  if ( a3 == 0 || a1 == 0 || !a4 )</span><br><span class="line">  &#123;</span><br><span class="line">    puts(&quot;param err.&quot;);</span><br><span class="line">    return 0xFFFFFFFFLL;</span><br><span class="line">  &#125;</span><br><span class="line">  // 密钥长度校验强制要求密钥为 16 字节（AES-128 密钥长度）</span><br><span class="line">  if ( n16 &gt; 0x10 )</span><br><span class="line">  &#123;</span><br><span class="line">    puts(&quot;keyLen must be 16.&quot;);</span><br><span class="line">    return 0xFFFFFFFFLL;</span><br><span class="line">  &#125;</span><br><span class="line">  // 数据长度校验 </span><br><span class="line">  // 输入数据必须是 16 字节的整数倍（分组密码典型要求）</span><br><span class="line">  if ( (n32 &amp; 0xF) != 0 )</span><br><span class="line">  &#123;</span><br><span class="line">    puts(&quot;inLen is invalid.&quot;);</span><br><span class="line">    return 0xFFFFFFFFLL;</span><br><span class="line">  &#125;</span><br><span class="line">  v7 = a1;</span><br><span class="line">  v8 = v41;</span><br><span class="line">  if ( n16 &gt;= 8 )</span><br><span class="line">  &#123;</span><br><span class="line">    LODWORD(v37) = 0;</span><br><span class="line">    do</span><br><span class="line">    &#123;</span><br><span class="line">      v38 = (unsigned int)v37;</span><br><span class="line">      v37 = (unsigned int)(v37 + 8);</span><br><span class="line">      *(_QWORD *)((char *)v41 + v38) = *(_QWORD *)((char *)a1 + v38);</span><br><span class="line">    &#125;</span><br><span class="line">    while ( (unsigned int)v37 &lt; (n16 &amp; 0xFFFFFFF8) );</span><br><span class="line">    v8 = (_DWORD *)((char *)v41 + v37);</span><br><span class="line">    v7 = (_DWORD *)((char *)a1 + v37);</span><br><span class="line">  &#125;</span><br><span class="line">  n4 = 0;</span><br><span class="line">  if ( (n16 &amp; 4) == 0 )</span><br><span class="line">  &#123;</span><br><span class="line">    if ( (n16 &amp; 2) == 0 )</span><br><span class="line">      goto LABEL_8;</span><br><span class="line">LABEL_40:</span><br><span class="line">    *(_WORD *)((char *)v8 + n4) = *(_WORD *)((char *)v7 + n4);</span><br><span class="line">    n4 += 2;</span><br><span class="line">    if ( (n16 &amp; 1) == 0 )</span><br><span class="line">      goto LABEL_9;</span><br><span class="line">    goto LABEL_39;</span><br><span class="line">  &#125;</span><br><span class="line">  n4 = 4;</span><br><span class="line">  *v8 = *v7;</span><br><span class="line">  if ( (n16 &amp; 2) != 0 )</span><br><span class="line">    goto LABEL_40;</span><br><span class="line">LABEL_8:</span><br><span class="line">  if ( (n16 &amp; 1) != 0 )</span><br><span class="line">LABEL_39:</span><br><span class="line">    *((_BYTE *)v8 + n4) = *((_BYTE *)v7 + n4);</span><br><span class="line">LABEL_9:</span><br><span class="line">  sub_4015C0(v41, 16, v43);</span><br><span class="line">  if ( n32 )</span><br><span class="line">  &#123;</span><br><span class="line">    v40 = v6 + 16 * (((unsigned int)(n32 - 1) &gt;&gt; 4) + 1LL);</span><br><span class="line">    v10 = a3;</span><br><span class="line">    do</span><br><span class="line">    &#123;</span><br><span class="line">      v11 = v10 + 16;                           // 每次处理16字节分组</span><br><span class="line">      v12 = (char *)v42;</span><br><span class="line">      v13 = (char *)v42;</span><br><span class="line">      v39 = v10 + 16;</span><br><span class="line">      // 将输入密文分组（16 字节）按 4 字节块逆序重组 到 v42 中</span><br><span class="line">      do</span><br><span class="line">      &#123;</span><br><span class="line">        v14 = *v10;</span><br><span class="line">        v10 += 4;</span><br><span class="line">        *v13++ = v14;</span><br><span class="line">        v13[3] = *(v10 - 3);</span><br><span class="line">        v13[7] = *(v10 - 2);</span><br><span class="line">        v13[11] = *(v10 - 1);</span><br><span class="line">      &#125;</span><br><span class="line">      while ( v11 != v10 );</span><br><span class="line">      v15 = v42;</span><br><span class="line">      for ( n24 = 24; n24 != -8; n24 -= 8 )</span><br><span class="line">      &#123;</span><br><span class="line">        for ( n4_1 = 0; n4_1 != 4; ++n4_1 )</span><br><span class="line">          *((_BYTE *)v15 + n4_1) ^= *((_DWORD *)&amp;v43[22] + n4_1) &gt;&gt; n24;</span><br><span class="line">        v15 = (_QWORD *)((char *)v15 + 4);</span><br><span class="line">      &#125;</span><br><span class="line">      v18 = &amp;v44;</span><br><span class="line">      do</span><br><span class="line">      &#123;</span><br><span class="line">        v19 = v18 + 2;</span><br><span class="line">        sub_4017D0((unsigned int *)v42);</span><br><span class="line">        // 引用全局字节数组 byte_41F020（S盒）</span><br><span class="line">        v21 = (unsigned __int8 *)v42;</span><br><span class="line">        do</span><br><span class="line">        &#123;</span><br><span class="line">          v22 = v21 + 4;</span><br><span class="line">          do</span><br><span class="line">          &#123;</span><br><span class="line">            v23 = *v21++;</span><br><span class="line">            *(v21 - 1) = byte_41F020[v23];</span><br><span class="line">          &#125;</span><br><span class="line">          while ( v22 != v21 );</span><br><span class="line">        &#125;</span><br><span class="line">        while ( v43 != (_QWORD *)v22 );</span><br><span class="line">        v24 = v42;</span><br><span class="line">        for ( n24_1 = 24; n24_1 != -8; n24_1 -= 8 )</span><br><span class="line">        &#123;</span><br><span class="line">          for ( n4_2 = 0; n4_2 != 4; ++n4_2 )</span><br><span class="line">          &#123;</span><br><span class="line">            v27 = (unsigned int)(*(_DWORD *)(v20 + 4 * n4_2 + 16) &gt;&gt; n24_1);</span><br><span class="line">            *((_BYTE *)v24 + n4_2) ^= v27;</span><br><span class="line">          &#125;</span><br><span class="line">          v24 = (_QWORD *)((char *)v24 + 4);</span><br><span class="line">        &#125;</span><br><span class="line">        sub_401A50(v42, v27, v24);</span><br><span class="line">        v18 = v19;</span><br><span class="line">      &#125;</span><br><span class="line">      while ( v19 != (__int64 *)v45 );</span><br><span class="line">      v28 = (unsigned __int8 *)v42;</span><br><span class="line">      do</span><br><span class="line">      &#123;</span><br><span class="line">        v29 = v28 + 4;</span><br><span class="line">        do</span><br><span class="line">        &#123;</span><br><span class="line">          v30 = *v28++;</span><br><span class="line">          *(v28 - 1) = byte_41F020[v30];</span><br><span class="line">        &#125;</span><br><span class="line">        while ( v29 != v28 );</span><br><span class="line">      &#125;</span><br><span class="line">      while ( v43 != (_QWORD *)v29 );</span><br><span class="line">      sub_4017D0((unsigned int *)v42);</span><br><span class="line">      v31 = v42;</span><br><span class="line">      for ( n24_2 = 24; n24_2 != -8; n24_2 -= 8 )</span><br><span class="line">      &#123;</span><br><span class="line">        for ( n4_3 = 0; n4_3 != 4; ++n4_3 )</span><br><span class="line">          *((_BYTE *)v31 + n4_3) ^= *(_DWORD *)&amp;v45[4 * n4_3 + 16] &gt;&gt; n24_2;</span><br><span class="line">        v31 = (_QWORD *)((char *)v31 + 4);</span><br><span class="line">      &#125;</span><br><span class="line">      v34 = v6 + 16;</span><br><span class="line">      do</span><br><span class="line">      &#123;</span><br><span class="line">        v35 = *v12;</span><br><span class="line">        v6 += 4;</span><br><span class="line">        ++v12;</span><br><span class="line">        *(_BYTE *)(v6 - 4) = v35;</span><br><span class="line">        *(_BYTE *)(v6 - 3) = v12[3];</span><br><span class="line">        *(_BYTE *)(v6 - 2) = v12[7];</span><br><span class="line">        *(_BYTE *)(v6 - 1) = v12[11];</span><br><span class="line">      &#125;</span><br><span class="line">      while ( v6 != v34 );</span><br><span class="line">      v10 = v39;</span><br><span class="line">    &#125;</span><br><span class="line">    while ( v6 != v40 );</span><br><span class="line">  &#125;</span><br><span class="line">  return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="解密后的数据校验"><a href="#解密后的数据校验" class="headerlink" title="解密后的数据校验"></a><strong>解密后的数据校验</strong></h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> ((*(_BYTE *)v8 - <span class="number">32</span>) &gt; <span class="number">0x5F</span>) &#123; <span class="comment">// 检查字节是否在 &#x27; &#x27;（0x20）到 &#x27;~&#x27;（0x7E）之间</span></span><br><span class="line">        <span class="comment">// 失败则提示 &quot;decrypt failed \n&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">    v8++;</span><br><span class="line">&#125; <span class="keyword">while</span> (v8 != &amp;v34); <span class="comment">// 遍历整个 32 字节结果</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>解密后的数据必须是可打印 ASCII 字符（0x20-0x7E），否则解密失败。</li>
+</ul>
+<p><strong>UTF-8 有效性检查</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">v15 = *v14++;</span><br><span class="line">v16 = ~v15 &amp; (v15 - <span class="number">0x1010101</span>) &amp; <span class="number">0x80808080</span>; <span class="comment">// 检测多字节字符起始位</span></span><br><span class="line"><span class="keyword">while</span> (!v16); <span class="comment">// 找到首个可能的多字节字符</span></span><br><span class="line"><span class="keyword">if</span> ((~v15 &amp; (v15 - <span class="number">0x10101</span>) &amp; <span class="number">0x8080</span>) == <span class="number">0</span>) &#123; <span class="comment">// 检查是否为双字节字符</span></span><br><span class="line">    <span class="comment">// 调整指针偏移</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>验证解密后的数据是否为合法 UTF-8 字符串（如检测 <code>0xC0-0xDF</code> 开头的双字节字符）</p>
+<h3 id="撰写代码"><a href="#撰写代码" class="headerlink" title="撰写代码"></a>撰写代码</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line">from Crypto.Cipher import AES</span><br><span class="line"></span><br><span class="line">datas=[]</span><br><span class="line">f_number=[]</span><br><span class="line"></span><br><span class="line">def Get_datas():</span><br><span class="line"></span><br><span class="line">    with open(&quot;inkey.exe&quot;,&quot;rb&quot;) as file:</span><br><span class="line">        file_read = file.read()</span><br><span class="line"></span><br><span class="line">    begin=0x3bf40</span><br><span class="line"></span><br><span class="line">    for i in range(961):</span><br><span class="line">        data_addr=begin-i*0x80</span><br><span class="line">        datas.append(file_read[data_addr:data_addr+0x80])</span><br><span class="line"></span><br><span class="line">def decrypt(number ,key ):</span><br><span class="line"></span><br><span class="line">    if number in f_number :</span><br><span class="line">        return</span><br><span class="line">    f_number.append(number)</span><br><span class="line"></span><br><span class="line">    data=list(datas[number])</span><br><span class="line"></span><br><span class="line">    for i in range(len(data)):</span><br><span class="line">        data[i] = data[i] ^ (i%0x20) ^ key[i%0x10]</span><br><span class="line">        </span><br><span class="line">    cipher = AES.new(key, AES.MODE_ECB)</span><br><span class="line">    data_re = cipher.decrypt(bytes(data))</span><br><span class="line"></span><br><span class="line">    keys=[]</span><br><span class="line">    numbers=[]</span><br><span class="line">    t=0</span><br><span class="line">    i=0</span><br><span class="line">    data_re_s=str(data_re)</span><br><span class="line"></span><br><span class="line">    while(i&lt;len(data_re_s)):</span><br><span class="line">        if &quot;DASCTF&quot; in data_re_s :</span><br><span class="line">            print(data_re_s)</span><br><span class="line">            exit(0)</span><br><span class="line">        if data_re_s[i]==&quot;\&quot;&quot;:</span><br><span class="line">            keys.append(data_re_s[i+1:i+17])</span><br><span class="line">            </span><br><span class="line">            while(t&lt;i):</span><br><span class="line">                if data_re_s[t-1]==&quot;_&quot; and &quot;0&quot;&lt;=data_re_s[t]&lt;=&quot;9&quot;:</span><br><span class="line">                    w=t</span><br><span class="line">                    while(&quot;0&quot;&lt;=data_re_s[w]&lt;=&quot;9&quot;):</span><br><span class="line">                        w+=1</span><br><span class="line">                    numbers.append(data_re_s[t:w])</span><br><span class="line"></span><br><span class="line">                    break</span><br><span class="line">                t+=1</span><br><span class="line"></span><br><span class="line">            i+=17</span><br><span class="line">            t=i+1</span><br><span class="line"></span><br><span class="line">        i+=1</span><br><span class="line">    if len(keys)==0 :</span><br><span class="line">        return </span><br><span class="line">    for i in range(len(keys)):</span><br><span class="line">        print(int(numbers[i]) ,bytes(keys[i],encoding=&quot;utf-8&quot;),end=&#x27; &#x27;)</span><br><span class="line">    print(&#x27;\n&#x27;)</span><br><span class="line"></span><br><span class="line">    for i in range(len(keys)):</span><br><span class="line">        decrypt(int(numbers[i]) ,bytes(keys[i],encoding=&quot;utf-8&quot;) )</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">Get_datas()</span><br><span class="line"></span><br><span class="line">decrypt(565 ,b&#x27;9fc82e15d9de6ef2&#x27;)</span><br></pre></td></tr></table></figure>
+
+<p>最后的flag</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag=DASCTF&#123;Do_y0u_l1ke_wh4t_you_s3e&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="关键类与函数详细解读"><a href="#关键类与函数详细解读" class="headerlink" title="关键类与函数详细解读"></a>关键类与函数详细解读</h3><h4 id="一、QString：字符串处理的瑞士军刀"><a href="#一、QString：字符串处理的瑞士军刀" class="headerlink" title="一、QString：字符串处理的瑞士军刀"></a><strong>一、QString：字符串处理的瑞士军刀</strong></h4><p><strong>作用</strong></p>
+<p>Qt 中最常用的字符串类，用于<strong>存储、操作、转换字符串</strong>，支持多种编码（ASCII、UTF-8、Unicode 等）。</p>
+<p><strong>关键函数</strong></p>
+<ol>
+<li><strong><code>fromAscii_helper</code></strong><ul>
+<li><strong>功能</strong>：将 <strong>ASCII 字节数据</strong> 转换为 <code>QString</code> 对象。</li>
+<li><strong>场景</strong>：当程序从文件 &#x2F; 网络读取原始字节数据（如 <code>char*</code>）并需要转为字符串时使用。</li>
+<li><strong>逆向提示</strong>：若看到该函数，可能涉及<strong>硬编码字符串的解密</strong>（如密文先转为 ASCII 再处理）。</li>
+</ul>
+</li>
+<li><strong><code>fromUtf8_helper</code></strong><ul>
+<li><strong>功能</strong>：将 <strong>UTF-8 字节数据</strong> 转换为 <code>QString</code> 对象（支持中文等多字节字符）。</li>
+<li><strong>场景</strong>：处理国际化字符串（如中文错误提示、用户名）。</li>
+<li><strong>逆向提示</strong>：解密后的明文若为中文，常通过此函数转换，可作为<strong>解密成功的标志</strong>。</li>
+</ul>
+</li>
+<li><strong><code>append</code></strong><ul>
+<li><strong>功能</strong>：向 <code>QString</code> <strong>追加字符串</strong>（拼接多个子串）。</li>
+<li><strong>场景</strong>：组装最终显示的文本（如将多个解密后的片段合并为完整 flag）。</li>
+<li><strong>逆向提示</strong>：关注被追加的字符串顺序，可能对应<strong>解密后的数据块顺序</strong>。</li>
+</ul>
+</li>
+</ol>
+<p><strong>内存特点</strong></p>
+<ul>
+<li><strong>隐式共享（Copy-On-Write）</strong>：多个 <code>QString</code> 可共享同一块内存，修改时才复制。</li>
+<li><strong>逆向关键点</strong>：通过 <code>_InterlockedSub</code> 等原子操作管理引用计数（如 <code>refCount--</code>），判断字符串生命周期。</li>
+</ul>
+<h4 id="二、QMessageBox：弹窗提示的幕后黑手"><a href="#二、QMessageBox：弹窗提示的幕后黑手" class="headerlink" title="二、QMessageBox：弹窗提示的幕后黑手"></a><strong>二、QMessageBox：弹窗提示的幕后黑手</strong></h4><p><strong>作用</strong></p>
+<p>用于创建<strong>对话框</strong>，显示信息（如错误提示、解密结果），是逆向分析中<strong>定位关键逻辑的突破口</strong>。</p>
+<p><strong>关键函数</strong></p>
+<ol>
+<li><strong><code>setWindowTitle</code></strong><ul>
+<li><strong>功能</strong>：设置对话框的<strong>标题</strong>（如 <code>&quot;Right!&quot;</code>、<code>&quot;Error&quot;</code>）。</li>
+<li><strong>逆向提示</strong>：若标题为固定字符串（如 <code>&quot;Flag&quot;</code>），可能是<strong>解密成功的标志</strong>，可通过交叉引用找到对应逻辑。</li>
+</ul>
+</li>
+<li><strong><code>setText</code></strong><ul>
+<li><strong>功能</strong>：设置对话框的<strong>显示内容</strong>（如解密后的明文、错误信息）。</li>
+<li><strong>逆向提示</strong>：重点追踪传递给 <code>setText</code> 的参数，可能直接是<strong>flag 或关键数据</strong>。</li>
+</ul>
+</li>
+<li><strong><code>exec</code></strong><ul>
+<li><strong>功能</strong>：<strong>显示对话框并阻塞程序</strong>，直到用户关闭。</li>
+<li><strong>逆向提示</strong>：对话框显示时，程序处于暂停状态，可通过调试在此处<strong>提取内存中的明文</strong>。</li>
+</ul>
+</li>
+</ol>
+<p><strong>典型场景</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">QMessageBox msg;</span><br><span class="line">msg.setWindowTitle(<span class="string">&quot;Success&quot;</span>);</span><br><span class="line">msg.setText(<span class="string">&quot;The flag is: &quot;</span> + decryptedString); <span class="comment">// decryptedString 可能是解密后的flag</span></span><br><span class="line">msg.exec(); <span class="comment">// 弹出对话框显示结果</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="三、内存操作：原子函数与引用计数"><a href="#三、内存操作：原子函数与引用计数" class="headerlink" title="三、内存操作：原子函数与引用计数"></a><strong>三、内存操作：原子函数与引用计数</strong></h4><h4 id="InterlockedSub-等原子操作"><a href="#InterlockedSub-等原子操作" class="headerlink" title="_InterlockedSub 等原子操作"></a><strong><code>_InterlockedSub</code> 等原子操作</strong></h4><ul>
+<li><strong>作用</strong>：对变量进行<strong>原子减法操作</strong>（线程安全），常用于<strong>引用计数管理</strong>。</li>
+<li>Qt 隐式共享机制<ul>
+<li>每个 <code>QString</code>&#x2F;<code>QObject</code> 内部有一个 <strong>引用计数变量</strong>（如 <code>refCount</code>）。</li>
+<li>当对象被复制时，<code>refCount++</code>；当对象被销毁时，<code>_InterlockedSub(refCount, 1)</code>，若减到 0 则释放内存。</li>
+</ul>
+</li>
+</ul>
+<p><strong>逆向中的意义</strong></p>
+<ol>
+<li>判断对象生命周期<ul>
+<li>若看到 <code>_InterlockedSub(variable, 1)</code>，且 <code>variable</code> 是 <code>QString</code> 的成员，可能表示<strong>字符串引用减少</strong>，即将被销毁。</li>
+</ul>
+</li>
+<li>避免内存误判<ul>
+<li>即使对象指针被释放，只要引用计数 &gt;0，内存仍有效（易混淆逆向者对数据存储位置的判断）。</li>
+</ul>
+</li>
+</ol>
+<h4 id="四、逆向分析中的实战技巧"><a href="#四、逆向分析中的实战技巧" class="headerlink" title="四、逆向分析中的实战技巧"></a><strong>四、逆向分析中的实战技巧</strong></h4><p><strong>1. 通过函数名定位关键逻辑</strong></p>
+<ul>
+<li>在 IDA&#x2F; Ghidra 中搜索 <code>QMessageBox::setText</code> 或 <code>QString::append</code>，快速找到<strong>处理显示数据的代码段</strong>，向上追溯即可找到解密逻辑。</li>
+</ul>
+<p><strong>2. 动态调试提取明文</strong></p>
+<ul>
+<li>在 <code>QMessageBox::exec</code> 处下断点，程序暂停时查看 <code>setText</code> 的参数值（通常为 <code>QString</code> 对象），直接获取解密后的明文。</li>
+</ul>
+<p><strong>3. 分析引用计数异常</strong></p>
+<ul>
+<li>若 <code>_InterlockedSub</code> 后未释放内存，可能存在<strong>内存泄漏</strong>或<strong>故意混淆逻辑</strong>（如虚假的解密失败提示）。</li>
+</ul>
+<h4 id="五、总结：Qt-框架逆向的三板斧"><a href="#五、总结：Qt-框架逆向的三板斧" class="headerlink" title="五、总结：Qt 框架逆向的三板斧"></a><strong>五、总结：Qt 框架逆向的三板斧</strong></h4><ol>
+<li><strong>字符串函数</strong>：通过 <code>fromUtf8_helper</code>&#x2F;<code>append</code> 定位明文拼接逻辑。</li>
+<li><strong>对话框函数</strong>：通过 <code>QMessageBox</code> 的标题和内容锁定成功 &#x2F; 失败分支。</li>
+<li><strong>内存操作</strong>：通过引用计数函数理解对象生命周期，避免误判数据有效性。</li>
+</ol>
+<p>遇到具体 Qt 程序时，可优先搜索这些函数，快速切入核心逻辑！</p>
+<h3 id="AES-ECB"><a href="#AES-ECB" class="headerlink" title="AES-ECB"></a><strong>AES-ECB</strong></h3><h4 id="静态代码分析：识别-AES-算法特征"><a href="#静态代码分析：识别-AES-算法特征" class="headerlink" title="静态代码分析：识别 AES 算法特征"></a><strong>静态代码分析：识别 AES 算法特征</strong></h4><h4 id="1-密钥长度与分组长度"><a href="#1-密钥长度与分组长度" class="headerlink" title="1. 密钥长度与分组长度"></a><strong>1. 密钥长度与分组长度</strong></h4><ul>
+<li><p>AES 标准</p>
+<ul>
+<li>密钥长度固定为 <strong>16&#x2F;24&#x2F;32 字节</strong>（对应 AES-128&#x2F;192&#x2F;256）。</li>
+<li>分组长度固定为 <strong>16 字节</strong>，输入数据必须是 16 字节的整数倍。</li>
+</ul>
+</li>
+<li><p>代码特征</p>
+  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (key_len != <span class="number">16</span>) error();  <span class="comment">// 强制密钥长度为16字节 → AES-128</span></span><br><span class="line"><span class="keyword">if</span> (data_len % <span class="number">16</span> != <span class="number">0</span>) error();  <span class="comment">// 数据长度必须为16的倍数</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="AES-核心操作识别"><a href="#AES-核心操作识别" class="headerlink" title="AES 核心操作识别"></a><strong>AES 核心操作识别</strong></h4><ul>
+<li><p><strong>S 盒替换</strong>：<br>  查找固定的 256 字节替换表（AES S 盒）：</p>
+  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">static</span> <span class="type">const</span> <span class="type">unsigned</span> <span class="type">char</span> sbox[<span class="number">256</span>] = &#123;</span><br><span class="line">    <span class="number">0x63</span>, <span class="number">0x7c</span>, <span class="number">0x77</span>, <span class="number">0x7b</span>, <span class="number">0xf2</span>, <span class="number">0x6b</span>, <span class="number">0x6f</span>, <span class="number">0xc5</span>, ...</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>逆向技巧</strong>：导出替换表与 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Rijndael_S-box">标准 AES S 盒</a> 比对。</li>
+</ul>
+</li>
+<li><p><strong>行移位（ShiftRows）</strong>：<br>  查找固定的字节位置置换逻辑（如第 2 行左移 1 字节，第 3 行左移 2 字节）：</p>
+  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 示例：行移位伪代码</span></span><br><span class="line">state[<span class="number">1</span>][<span class="number">0</span>] = tmp[<span class="number">1</span>][<span class="number">1</span>];  <span class="comment">// 第2行左移1字节</span></span><br><span class="line">state[<span class="number">1</span>][<span class="number">1</span>] = tmp[<span class="number">1</span>][<span class="number">2</span>];</span><br><span class="line">state[<span class="number">1</span>][<span class="number">2</span>] = tmp[<span class="number">1</span>][<span class="number">3</span>];</span><br><span class="line">state[<span class="number">1</span>][<span class="number">3</span>] = tmp[<span class="number">1</span>][<span class="number">0</span>];</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>列混淆（MixColumns）</strong>：<br>  查找固定的有限域乘法（GF (2^8)）操作：</p>
+  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 示例：列混淆核心操作（multiply by 2 in GF(2^8)）</span></span><br><span class="line"><span class="keyword">if</span> (a &amp; <span class="number">0x80</span>) &#123;</span><br><span class="line">    r = (a &lt;&lt; <span class="number">1</span>) ^ <span class="number">0x1B</span>;  <span class="comment">// AES多项式 x^8 + x^4 + x^3 + x + 1</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    r = a &lt;&lt; <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>轮密钥加（AddRoundKey）</strong>：<br>  查找与轮密钥的异或操作：</p>
+  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">state[i] ^= round_key[i];  <span class="comment">// 每轮与不同的子密钥异或</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="3-密钥扩展函数"><a href="#3-密钥扩展函数" class="headerlink" title="3. 密钥扩展函数"></a><strong>3. 密钥扩展函数</strong></h4><ul>
+<li><p><strong>特征</strong>：<br>  将主密钥扩展为多个轮密钥（AES-128 需要 11 个子密钥，每个 16 字节）。</p>
+</li>
+<li><p>函数调用</p>
+  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">KeyExpansion(key, round_keys);  <span class="comment">// 生成11个子密钥</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>逆向提示</strong>：若看到循环生成 11 个子密钥（如 <code>for (i=0; i&lt;11; i++)</code>），高度怀疑是 AES-128。</li>
+</ul>
+</li>
+</ul>
+<h4 id="判断是否为-ECB-模式"><a href="#判断是否为-ECB-模式" class="headerlink" title="判断是否为 ECB 模式"></a><strong>判断是否为 ECB 模式</strong></h4><h4 id="1-ECB-模式特征"><a href="#1-ECB-模式特征" class="headerlink" title="1. ECB 模式特征"></a><strong>1. ECB 模式特征</strong></h4><ul>
+<li><p><strong>无初始化向量（IV）</strong>：<br>  ECB 模式不使用 IV，加密相同明文始终生成相同密文。</p>
+</li>
+<li><p>代码特征</p>
+<p>  加密函数不接收 IV 参数，或 IV 固定为全 0：</p>
+  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AES_Encrypt(key, plaintext, ciphertext);  <span class="comment">// 无IV参数 → 可能是ECB</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="2-分组独立处理"><a href="#2-分组独立处理" class="headerlink" title="2. 分组独立处理"></a><strong>2. 分组独立处理</strong></h4><ul>
+<li><p>循环结构</p>
+<p>  代码中直接按 16 字节分组处理，组间无依赖：</p>
+  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; data_len; i += <span class="number">16</span>) &#123;</span><br><span class="line">    ProcessBlock(input + i, output + i);  <span class="comment">// 每组独立加密</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="3-相同明文加密结果相同"><a href="#3-相同明文加密结果相同" class="headerlink" title="3. 相同明文加密结果相同"></a><strong>3. 相同明文加密结果相同</strong></h4><ul>
+<li><strong>动态调试验证</strong>：<br>  输入两段相同的 16 字节明文，观察密文是否完全一致。若一致，则为 ECB 模式。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://tangxtang1119.github.io/2025/05/26/CTF%E7%BB%83%E4%B9%A0/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag">CTF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Reverse/" rel="tag">Reverse</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2025/05/27/%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2deepseek/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            本地部署AI
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2025/05/21/%E7%8E%AF%E5%A2%83%E5%B0%8F%E8%AE%B0/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">环境小记</div>
+      </a>
+    
+  </nav>
+
+   
+ 
+   
+  
+   
+    <script src="https://cdn.staticfile.org/twikoo/1.4.18/twikoo.all.min.js"></script>
+    <div id="twikoo" class="twikoo"></div>
+    <script>
+        twikoo.init({
+            envId: ""
+        })
+    </script>
+ 
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2025
+        <i class="ri-heart-fill heart_icon"></i> 唐小唐
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/yuhangyuan.ico" alt="tangxtang"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i></p>
+  <div class="reward-box">
+    
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.staticfile.org/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.staticfile.org/clipboard.js/2.0.10/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    <div id="music">
+    
+    
+    
+    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="200" height="52"
+        src="//music.163.com/outchain/player?type=2&id=2658106011&auto=1&height=32"></iframe>
+</div>
+
+<style>
+    #music {
+        position: fixed;
+        right: 15px;
+        bottom: 0;
+        z-index: 998;
+    }
+</style>
+    
+    
+
+  </div>
+</body>
+
+</html>
