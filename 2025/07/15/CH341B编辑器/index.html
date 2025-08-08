@@ -13,7 +13,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>categories |  tangxtang</title>
+      <title>CH341B编辑器 |  tangxtang</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="/favicon.ico" />
@@ -54,12 +54,217 @@
       
     <main class="content on">
       <section class="outer">
+  <article
+  id="post-CH341B编辑器"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  CH341B编辑器
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2025/07/15/CH341B%E7%BC%96%E8%BE%91%E5%99%A8/" class="article-date">
+  <time datetime="2025-07-14T17:27:53.000Z" itemprop="datePublished">2025-07-15</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+  </div>
   
-    <h1 class="page-type-title">分类</h1>
-    <div class="categories-box">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a><span class="category-list-count">5</span></li></ul>
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">738</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">2 分钟</span>
+        </span>
+    </span>
+</div>
+ 
     </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
   
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>​	CH341B 编程器是一个极其经济实惠的入门级芯片编程工具，特别适合读写常见的 24&#x2F;25&#x2F;93 系列存储芯片以及部分 8051 单片机。它的核心优势在于价格低廉和基本功能满足需求。使用时务必牢记电压设置、芯片方向和备份原始数据这三个关键安全点。</p>
+<h1 id="详细介绍"><a href="#详细介绍" class="headerlink" title="详细介绍"></a>详细介绍</h1><ul>
+<li><p><strong>CH341B：</strong> 指的是一颗由 <strong>沁恒电子（WCH）</strong> 生产的 USB 转串口&#x2F;I2C&#x2F;SPI 接口转换芯片。它本身只是一个集成电路。</p>
+</li>
+<li><p><strong>CH341B 编程器：</strong> 是指<strong>基于 CH341B 芯片设计制造的硬件设备</strong>，主要用于<strong>读写、编程（烧录）</strong> 各种类型的串行存储芯片（EEPROM、Flash）以及一些特定类型的单片机（如 24&#x2F;93 系列 EEPROM, 25 系列 SPI Flash, 某些 8051 单片机等）。</p>
+</li>
+</ul>
+<ol>
+<li><p><strong>核心功能：</strong></p>
+<ul>
+<li><strong>读取芯片：</strong> 将存储芯片（如 BIOS 芯片、配置芯片）里的数据读取出来，保存为二进制文件（.bin）或十六进制文件（.hex）。</li>
+<li><strong>写入芯片：</strong> 将预先准备好的固件文件（.bin, .hex）写入到目标芯片中。</li>
+<li><strong>擦除芯片：</strong> 在写入新数据前，清除芯片内原有的数据。</li>
+<li><strong>校验芯片：</strong> 写入后，将芯片内容与源文件进行对比，确保写入无误。</li>
+<li><strong>空片检查：</strong> 检查芯片是否为空（全为 0xFF）。</li>
+<li><strong>修改数据：</strong> 在编程软件中查看和编辑读取出来的数据（十六进制或文本形式）。</li>
+</ul>
+</li>
+<li><p><strong>主要支持的芯片类型：</strong></p>
+<ul>
+<li><strong>SPI Flash (25 系列)：</strong> 这是最常用的，如 W25Q80, W25Q16, W25Q32, W25Q64, W25Q128, MX25L 系列等。常用于主板 BIOS、显卡 BIOS、路由器固件、各种嵌入式设备。</li>
+<li><strong>I2C EEPROM (24 系列)：</strong> 如 24C02, 24C04, 24C08, 24C16, 24C32, 24C64, 24C128, 24C256 等。常用于存储小量配置信息。</li>
+<li><strong>MicroWire EEPROM (93 系列)：</strong> 如 93C46, 93C56, 93C66 等（现在相对少用）。</li>
+<li><strong>部分 8051 内核单片机：</strong> 如 STC89C51&#x2F;52, STC12C5A60S2 等（需要特定适配器和软件支持）。</li>
+<li><strong>其他：</strong> 一些特定封装的 NOR Flash 等。</li>
+</ul>
+</li>
+<li><p><strong>硬件特点：</strong></p>
+<ul>
+<li><strong>价格低廉：</strong> 这是其最大的优势，非常适合个人爱好者、维修人员使用。</li>
+<li><strong>USB 供电：</strong> 直接通过 USB 接口供电，无需外接电源（大多数情况下）。</li>
+<li><strong>电压切换：</strong> 很多 CH341B 编程器板子上有跳线帽或开关，可以在 <strong>3.3V</strong> 和 <strong>5V</strong> 之间切换，以适应不同工作电压的芯片。<strong>这是关键的安全设置！</strong></li>
+<li><strong>ZIF 插座：</strong> 通常配备一个 <strong>Zero Insertion Force</strong> 插座（8脚 SOP&#x2F;DIP&#x2F;WSON 兼容），方便芯片的放置和取出。部分型号还支持其他封装（如 SOP16）的适配板。</li>
+<li><strong>状态指示灯：</strong> 一般有电源指示灯和读写状态指示灯。</li>
+<li><strong>简单紧凑：</strong> 体积小巧，方便携带。</li>
+</ul>
+<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a><strong>使用方法</strong></h2><ol>
+<li><p><strong>安装驱动：</strong></p>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://www.wch.cn/downloads/category/67.html?feature=USB%E8%BD%ACSPI&product_name=CH341">CH341B 编程器驱动下载链接</a></p>
+</li>
+<li><p>驱动只安装 CH341PAR.EXE 即可，无需安装 CH341SER.EXE</p>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://tangxtang1119.github.io/2025/07/15/CH341B%E7%BC%96%E8%BE%91%E5%99%A8/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2025/08/08/%E5%AE%89%E5%8D%93%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            安卓系统基础
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2025/05/21/%E7%8E%AF%E5%A2%83%E5%B0%8F%E8%AE%B0/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">环境小记</div>
+      </a>
+    
+  </nav>
+
+   
+ 
+   
+  
+   
+    <script src="https://cdn.staticfile.org/twikoo/1.4.18/twikoo.all.min.js"></script>
+    <div id="twikoo" class="twikoo"></div>
+    <script>
+        twikoo.init({
+            envId: ""
+        })
+    </script>
+ 
+</article>
+
 </section>
       <footer class="footer">
   <div class="outer">
@@ -178,6 +383,22 @@
 <script src="/js/lazyload.min.js"></script>
 
 <!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
 
 <script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
 <link

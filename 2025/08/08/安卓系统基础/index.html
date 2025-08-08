@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+  
+
+    <head>
+      <meta charset="utf-8" />
+        
+      <meta name="description" content="‘有志少女 先读书’" />
+      
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>安卓系统基础 |  tangxtang</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      
+<link rel="stylesheet" href="/css/fonts/remixicon.css">
+
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.staticfile.org/pace/1.2.4/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    </head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-安卓系统基础"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  安卓系统基础
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2025/08/08/%E5%AE%89%E5%8D%93%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80/" class="article-date">
+  <time datetime="2025-08-07T17:36:17.000Z" itemprop="datePublished">2025-08-08</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">5.2k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">18 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p><strong>理论：Linux 内核、Framework 层（四大组件：Activity&#x2F;Service&#x2F;Broadcast&#x2F;ContentProvider）、APK 结构（classes.dex&#x2F;res&#x2F;AndroidManifest.xml）。</strong></p>
+<p>安卓系统就像一座功能强大得“智能大楼”，而<strong>Linux内核、Framework层、APK结构</strong>就是这座大楼得“地基、基础设施、和具体房间”。现使用生活中得例子一步步拆解。</p>
+<h2 id="一、Linux内核：安卓得“地基和水电管道”"><a href="#一、Linux内核：安卓得“地基和水电管道”" class="headerlink" title="一、Linux内核：安卓得“地基和水电管道”"></a>一、Linux内核：安卓得“地基和水电管道”</h2><h3 id="易理解"><a href="#易理解" class="headerlink" title="易理解"></a>易理解</h3><p>可以把安卓系统想象成一座大楼，而 <strong>Linux 内核</strong> 就是这座大楼的 “地基” 和 “水电管道系统”。它是安卓系统最底层的核心，负责连接手机的硬件（比如 CPU、内存、电池、摄像头等）和上层的软件（比如你的微信、抖音），让硬件能正常工作。</p>
+<h4 id="具体作用（用生活例子说）："><a href="#具体作用（用生活例子说）：" class="headerlink" title="具体作用（用生活例子说）："></a>具体作用（用生活例子说）：</h4><ul>
+<li><strong>“交通指挥”</strong>：管理手机里的 “程序任务”（比如同时开微信和抖音），确保它们不打架、不卡顿（专业叫 “进程管理”）。</li>
+<li><strong>“水电分配”</strong>：给每个应用分配手机的内存、电量等资源，避免某个应用 “霸占” 太多资源导致手机卡死（专业叫 “内存管理、电源管理”）。</li>
+<li><strong>“硬件翻译官”</strong>：手机的摄像头、触摸屏、麦克风等硬件都是 “哑巴”，需要内核来 “翻译” 软件的指令（比如你点屏幕 “拍照”），让硬件听懂并执行（专业叫 “硬件驱动”）。</li>
+</ul>
+<p>简单说：没有 Linux 内核，手机的硬件就是一堆废铁，上层的任何应用都跑不起来。</p>
+<h3 id="专业知识"><a href="#专业知识" class="headerlink" title="专业知识"></a>专业知识</h3><p>在安卓系统中，<strong>Linux 内核</strong>是整个系统的底层核心，负责硬件与软件之间的 “桥梁” 作用，提供基础的系统资源管理和硬件抽象能力。从专业角度来说，它的核心功能和作用可以概括为以下几个方面：</p>
+<h4 id="1-硬件抽象层（Hardware-Abstraction）"><a href="#1-硬件抽象层（Hardware-Abstraction）" class="headerlink" title="1. 硬件抽象层（Hardware Abstraction）"></a>1. <strong>硬件抽象层（Hardware Abstraction）</strong></h4><p>Linux 内核通过 “驱动程序（Drivers）” 对手机的硬件设备（如 CPU、内存、摄像头、触摸屏、传感器、电池、存储芯片等）进行抽象。</p>
+<ul>
+<li>上层的 Framework 框架和应用程序不需要直接操作硬件的物理接口（如寄存器、电路信号），而是通过内核提供的标准化接口（如系统调用、设备文件）与硬件交互。</li>
+<li>例如：当应用需要调用摄像头拍照时，它不会直接发送电信号到摄像头传感器，而是通过内核的摄像头驱动程序，由驱动程序完成硬件的具体控制。</li>
+</ul>
+<h4 id="2-进程与线程管理"><a href="#2-进程与线程管理" class="headerlink" title="2. 进程与线程管理"></a>2. <strong>进程与线程管理</strong></h4><p>内核负责对系统中的 “进程（Process）” 和 “线程（Thread）” 进行调度和管理，确保多任务高效运行：</p>
+<ul>
+<li><strong>进程调度</strong>：通过调度算法（如安卓优化的 CFS 调度器）为每个进程分配 CPU 时间片，避免某个进程独占资源，保证系统流畅性（比如同时运行微信、音乐和浏览器时，内核协调它们的 CPU 使用权）。</li>
+<li><strong>进程隔离</strong>：通过 “进程 ID（PID）” 和内存隔离机制，确保不同应用的进程相互独立，一个应用崩溃不会影响其他应用或系统核心。</li>
+<li><strong>线程管理</strong>：支持多线程并发，允许单个应用内的多个任务（如 UI 渲染、后台数据加载）并行执行，提升应用响应速度。</li>
+</ul>
+<h4 id="3-内存管理"><a href="#3-内存管理" class="headerlink" title="3. 内存管理"></a>3. <strong>内存管理</strong></h4><p>内核负责手机内存（RAM）的分配、回收和保护：</p>
+<ul>
+<li><strong>内存分配</strong>：为应用、框架和系统进程分配内存空间，通过虚拟内存技术（VM）让每个进程 “认为自己独占内存”，实际由内核统一管理物理内存。</li>
+<li><strong>内存回收</strong>：当内存不足时，通过 “低内存杀手（Low Memory Killer，LMK）” 机制，按优先级回收后台进程的内存（如先杀长时间不用的后台应用，保留前台应用和系统核心进程）。</li>
+<li><strong>内存保护</strong>：通过权限控制和地址空间隔离，防止进程非法访问其他进程或内核的内存区域，避免数据泄露或恶意攻击。</li>
+</ul>
+<h4 id="4-文件系统管理"><a href="#4-文件系统管理" class="headerlink" title="4. 文件系统管理"></a>4. <strong>文件系统管理</strong></h4><p>内核提供文件系统支持，负责数据的存储和访问：</p>
+<ul>
+<li>支持多种存储介质（如手机内置闪存、SD 卡）和文件系统格式（如 ext4、FAT32），统一抽象为 “文件” 接口，让上层应用可以通过 “读 &#x2F; 写文件” 的方式操作存储设备。</li>
+<li>管理文件的权限（如哪些应用可以读写某个文件）、路径和 metadata（如创建时间、大小），确保数据存储的有序性和安全性。</li>
+</ul>
+<h4 id="5-设备与电源管理"><a href="#5-设备与电源管理" class="headerlink" title="5. 设备与电源管理"></a>5. <strong>设备与电源管理</strong></h4><p>针对移动设备特性，安卓对 Linux 内核进行了定制，强化了设备和电源管理能力：</p>
+<ul>
+<li><strong>电源管理</strong>：通过 “休眠 &#x2F; 唤醒” 机制（如 CPU 降频、屏幕休眠）减少待机功耗；支持 “动态电压频率调节（DVFS）”，根据应用负载自动调整 CPU 频率（如玩游戏时提频，待机时降频），平衡性能和耗电。</li>
+<li><strong>设备状态监控</strong>：实时监控硬件状态（如电池电量、温度、网络连接），并向上层反馈（如通过广播通知低电量）。</li>
+</ul>
+<h4 id="6-网络与安全机制"><a href="#6-网络与安全机制" class="headerlink" title="6. 网络与安全机制"></a>6. <strong>网络与安全机制</strong></h4><ul>
+<li><strong>网络管理</strong>：内核集成网络协议栈（如 TCP&#x2F;IP、WiFi、蓝牙协议），负责数据的封装、传输和路由，让应用可以通过网络接口（如 Socket）实现联网功能（如上网、发消息）。</li>
+<li><strong>安全基础</strong>：基于 Linux 的 “用户 - 组 - 权限” 模型（如文件权限 rwx、进程 UID&#x2F;GID），为系统提供基础安全隔离；后续安卓的 SELinux（安全增强型 Linux）也是基于内核实现的强制访问控制。</li>
+</ul>
+<h2 id="二、Framework-层：安卓的-“基础设施和规则手册”"><a href="#二、Framework-层：安卓的-“基础设施和规则手册”" class="headerlink" title="二、Framework 层：安卓的 “基础设施和规则手册”"></a>二、Framework 层：安卓的 “基础设施和规则手册”</h2><h3 id="易理解-1"><a href="#易理解-1" class="headerlink" title="易理解"></a>易理解</h3><p>在 Linux 内核之上，有一层叫 <strong>Framework（框架）层</strong>，它相当于大楼的 “基础设施管理系统” 和 “规则手册”。它封装了很多现成的工具和功能，给开发者提供 “现成的轮子”，让开发者不用从零开始写代码，就能快速开发出应用。</p>
+<p>其中最核心的就是 <strong>四大组件</strong>，它们是安卓应用的 “基本功能模块”，就像大楼里的 “电梯、水管、广播系统、储物间”，各司其职。</p>
+<h4 id="1-Activity：手机上的-“屏幕界面”"><a href="#1-Activity：手机上的-“屏幕界面”" class="headerlink" title="1. Activity：手机上的 “屏幕界面”"></a>1. Activity：手机上的 “屏幕界面”</h4><p>Activity 是你能直接看到的 “界面”，比如微信的聊天界面、抖音的视频播放界面、手机的设置界面，每个界面都是一个 Activity。</p>
+<ul>
+<li><strong>特点</strong>：一个应用可以有多个 Activity（比如微信有 “聊天列表页”“聊天详情页”“朋友圈页”），它们之间可以跳转（比如点微信好友头像，从列表页跳到详情页）。</li>
+<li><strong>生活类比</strong>：就像大楼里的 “一个个房间”，每个房间有自己的功能（卧室睡觉、客厅看电视），你可以在房间之间走动（跳转）。</li>
+</ul>
+<h4 id="2-Service：后台默默工作的-“隐形员工”"><a href="#2-Service：后台默默工作的-“隐形员工”" class="headerlink" title="2. Service：后台默默工作的 “隐形员工”"></a>2. Service：后台默默工作的 “隐形员工”</h4><p>Service 是在后台 “偷偷干活” 的组件，你看不到它，但它一直在运行。</p>
+<ul>
+<li><p>例子</p>
+<p>  ：</p>
+<ul>
+<li>你听音乐时，按 Home 键退出音乐 APP 界面（Activity 关闭了），但音乐还在播放，这就是 Service 在后台继续工作；</li>
+<li>手机下载文件时，你切到其他 APP，下载不会停，也是 Service 在后台运行。</li>
+</ul>
+</li>
+<li><p><strong>生活类比</strong>：就像大楼里的 “空调系统”，你看不到它的机器，但它一直在后台制冷 &#x2F; 制热，即使你在不同房间走动，它也不停。</p>
+</li>
+</ul>
+<h4 id="3-BroadcastReceiver：手机里的-“广播通知员”"><a href="#3-BroadcastReceiver：手机里的-“广播通知员”" class="headerlink" title="3. BroadcastReceiver：手机里的 “广播通知员”"></a>3. BroadcastReceiver：手机里的 “广播通知员”</h4><p>BroadcastReceiver 是 “接收和传递消息” 的组件，就像大楼里的 “广播喇叭”，任何应用或系统都可以发 “广播”，它负责接收并处理消息。</p>
+<ul>
+<li><p>例子</p>
+<p>  ：</p>
+<ul>
+<li>手机没电时，系统发一条 “低电量广播”，你的 APP 可以收到后提醒你 “快充电”；</li>
+<li>收到短信时，系统发一条 “新短信广播”，短信 APP 收到后显示通知。</li>
+</ul>
+</li>
+<li><p><strong>生活类比</strong>：就像小区的 “广播通知”，物业（系统）或住户（应用）发通知，大家（对应的 Receiver）听到后做反应（比如收快递、做核酸）。</p>
+</li>
+</ul>
+<h4 id="4-ContentProvider：应用间的-“数据共享桥梁”"><a href="#4-ContentProvider：应用间的-“数据共享桥梁”" class="headerlink" title="4. ContentProvider：应用间的 “数据共享桥梁”"></a>4. ContentProvider：应用间的 “数据共享桥梁”</h4><p>ContentProvider 是让不同应用之间 “安全共享数据” 的组件。比如你的通讯录应用里的联系人，其他应用（比如微信添加好友时）需要读取，就通过 ContentProvider 实现。</p>
+<ul>
+<li><strong>特点</strong>：它像一个 “数据管家”，只允许被授权的应用访问数据，避免数据泄露（比如你可以设置微信是否能读取通讯录）。</li>
+<li><strong>生活类比</strong>：就像小区的 “快递柜”，快递员（数据产生的应用，比如通讯录）把快递（数据）放进柜子，你授权的人（其他应用，比如微信）凭验证码（权限）才能取。</li>
+</ul>
+<h3 id="专业知识-1"><a href="#专业知识-1" class="headerlink" title="专业知识"></a>专业知识</h3><h4 id="1-Activity（活动）"><a href="#1-Activity（活动）" class="headerlink" title="1.Activity（活动）"></a>1.Activity（活动）</h4><h5 id="核心定义"><a href="#核心定义" class="headerlink" title="核心定义"></a>核心定义</h5><ul>
+<li><strong>用户交互的基础界面单元</strong>，应用的每个可视化屏幕通常对应一个 Activity</li>
+<li>组件间跳转的核心载体，通过<strong>Intent</strong>实现页面切换（正向开发与逆向分析均需重点关注的交互节点）</li>
+</ul>
+<h5 id="关键特性"><a href="#关键特性" class="headerlink" title="关键特性"></a>关键特性</h5><ul>
+<li><p><strong>生命周期</strong>：完整生命周期为 <code>onCreate()</code>（初始化）→ <code>onStart()</code>（可见）→ <code>onResume()</code>（可交互）→ <code>onPause()</code>（部分可见）→ <code>onStop()</code>（不可见）→ <code>onDestroy()</code>（销毁），系统通过生命周期方法管理组件状态</p>
+</li>
+<li><p>启动模式</p>
+<p>  ：</p>
+<ul>
+<li><code>standard</code>（默认，每次启动新建实例）</li>
+<li><code>singleTop</code>（栈顶复用，避免重复创建）</li>
+<li><code>singleTask</code>（栈内唯一，清除其上方实例）</li>
+<li><code>singleInstance</code>（独立任务栈，全局唯一）<br>  （逆向时需关注启动模式对任务栈的管理逻辑，影响页面跳转流程）</li>
+</ul>
+</li>
+<li><p><strong>布局绑定</strong>：通过 <code>setContentView()</code> 关联 XML 布局文件，实现界面渲染</p>
+</li>
+</ul>
+<h5 id="逆向关注点"><a href="#逆向关注点" class="headerlink" title="逆向关注点"></a>逆向关注点</h5><ul>
+<li><p>定位应用入口：在<code>AndroidManifest.xml</code>中查找包含以下过滤器的 Activity，即为 Launcher Activity（应用启动第一个页面）：</p>
+  <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">&quot;android.intent.action.MAIN&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">&quot;android.intent.category.LAUNCHER&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>跨组件数据传递</strong>：分析 <code>startActivityForResult()</code> 与 <code>onActivityResult()</code> 逻辑，获取页面间数据回传细节（如登录凭证、选择结果）</p>
+</li>
+<li><p><strong>Hook 关键方法</strong>：通过 Hook <code>onCreate()</code> 查看初始化逻辑（如密钥加载、配置读取），Hook <code>onActivityResult()</code> 追踪敏感数据流向</p>
+</li>
+</ul>
+<h4 id="2-Service（服务）"><a href="#2-Service（服务）" class="headerlink" title="2.Service（服务）"></a>2.Service（服务）</h4><h5 id="核心定义-1"><a href="#核心定义-1" class="headerlink" title="核心定义"></a>核心定义</h5><ul>
+<li><strong>无界面的后台运行组件</strong>，用于执行长期耗时任务（如下载、音乐播放、数据同步），独立于界面生命周期</li>
+<li>两种启动方式：<ul>
+<li><code>startService()</code>：启动后独立运行，需主动调用 <code>stopService()</code>：停止（如后台下载）</li>
+<li><code>bindService()</code>：与调用组件（如 Activity）绑定，通过 Binder&#x2F;aidl 实现 IPC（跨进程通信），组件销毁时服务解绑</li>
+</ul>
+</li>
+</ul>
+<h5 id="生命周期差异"><a href="#生命周期差异" class="headerlink" title="生命周期差异"></a>生命周期差异</h5><ul>
+<li><strong>启动式服务</strong>：<code>onCreate()</code>（初始化）→ <code>onStartCommand()</code>（接收启动指令）→ <code>onDestroy()</code>（销毁释放资源）</li>
+<li><strong>绑定式服务</strong>：<code>onCreate()</code>（初始化）→ <code>onBind()</code>（返回 Binder 对象）→ <code>onUnbind()</code>（解绑回调）→ <code>onDestroy()</code>（销毁）</li>
+</ul>
+<h5 id="逆向关注点-1"><a href="#逆向关注点-1" class="headerlink" title="逆向关注点"></a>逆向关注点</h5><ul>
+<li><strong>前台服务识别</strong>：反编译 <code>AndroidManifest.xml</code> 或代码，查找 <code>startForeground()</code> 调用（前台服务需显示通知，优先级高，常用于保活），分析通知配置与保活逻辑</li>
+<li><strong>IntentService 机制</strong>：定位继承 <code>IntentService</code> 的服务，其内部通过 HandlerThread 串行处理任务，需分析 <code>onHandleIntent()</code> 中的后台逻辑（如数据加密、API 请求）</li>
+<li><strong>跨进程通信接口</strong>：查找 AIDL 文件（<code>.aidl</code>），解析 <code>onBind()</code> 返回的 Binder 接口，获取进程间交互的敏感数据（如用户信息、权限验证）</li>
+</ul>
+<h4 id="3-BroadcastReceiver（广播接收器）"><a href="#3-BroadcastReceiver（广播接收器）" class="headerlink" title="3.BroadcastReceiver（广播接收器）"></a>3.BroadcastReceiver（广播接收器）</h4><h5 id="核心定义-2"><a href="#核心定义-2" class="headerlink" title="核心定义"></a>核心定义</h5><ul>
+<li><strong>系统 &#x2F; 应用事件的监听组件</strong>，用于接收并响应全局事件（如网络状态变化、短信接收、开机完成）</li>
+<li>两种注册方式：<ul>
+<li><strong>静态注册</strong>：在 <code>AndroidManifest.xml</code> 中声明，应用未启动时可接收广播（如监听开机广播）</li>
+<li><strong>动态注册</strong>：在代码中通过 <code>registerReceiver()</code> 注册，随宿主组件（如 Activity）生命周期生效，需手动调用 <code>unregisterReceiver()</code> 注销</li>
+</ul>
+</li>
+</ul>
+<h5 id="事件响应流程"><a href="#事件响应流程" class="headerlink" title="事件响应流程"></a>事件响应流程</h5><ol>
+<li>发送广播：通过 <code>sendBroadcast(Intent)</code> 或 <code>sendOrderedBroadcast(Intent)</code> 发送事件</li>
+<li>匹配接收器：系统根据 <code>IntentFilter</code> 中的 <code>action</code>、<code>category</code> 筛选目标接收器</li>
+<li>执行逻辑：匹配成功后触发接收器的 <code>onReceive(Context, Intent)</code> 方法</li>
+</ol>
+<h5 id="逆向关注点-2"><a href="#逆向关注点-2" class="headerlink" title="逆向关注点"></a>逆向关注点</h5><ul>
+<li><p><strong>敏感广播监控</strong>：重点追踪系统级广播（如 <code>android.intent.action.BOOT_COMPLETED</code> 开机自启、<code>android.provider.Telephony.SMS_RECEIVED</code> 短信接收），分析其 <code>onReceive()</code> 中的逻辑（如自启动触发、短信内容窃取）</p>
+</li>
+<li><p><strong>有序广播优先级滥用</strong>：检查静态注册<code>&lt;intent-filter&gt;</code></p>
+<p>  优先级<code>（android:priority）</code>，高优先级接收器可能通过 <code>abortBroadcast()</code>拦截广播（如恶意应用拦截验证码短信）：</p>
+  <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">intent-filter</span> <span class="attr">android:priority</span>=<span class="string">&quot;1000&quot;</span>&gt;</span></span><br><span class="line">	    <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">&quot;android.provider.Telephony.SMS_RECEIVED&quot;</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>动态注册追踪</strong>：在代码中定位 <code>registerReceiver()</code> 调用，分析动态注册的广播类型与响应逻辑（如应用内数据更新通知）</p>
+</li>
+</ul>
+<h4 id="4-ContentProvider（内容提供者）"><a href="#4-ContentProvider（内容提供者）" class="headerlink" title="4.ContentProvider（内容提供者）"></a>4.ContentProvider（内容提供者）</h4><h5 id="核心定义-3"><a href="#核心定义-3" class="headerlink" title="核心定义"></a>核心定义</h5><ul>
+<li><p><strong>跨应用数据共享的标准化接口</strong>，用于安全暴露应用内部数据（如数据库、文件）给其他应用访问</p>
+</li>
+<li><p>通过URI唯一标识数据源，格式为：</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">content:<span class="comment">//com.example.provider/user/1</span></span><br><span class="line">↑          ↑                ↑     ↑</span><br><span class="line">协议       授权名（包名）    数据路径  记录ID</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h5 id="核心方法"><a href="#核心方法" class="headerlink" title="核心方法"></a>核心方法</h5><ul>
+<li><code>query(Uri, String[], String, String[], String)</code>：查询数据（类似 SQL 的 SELECT）</li>
+<li><code>insert(Uri, ContentValues)</code>：插入数据（类似 SQL 的 INSERT）</li>
+<li><code>update(Uri, ContentValues, String, String[])</code>：更新数据（类似 SQL 的 UPDATE）</li>
+<li><code>delete(Uri, String, String[])</code>：删除数据（类似 SQL 的 DELETE）</li>
+<li><code>getType(Uri)</code>：返回数据的 MIME 类型（如 <code>vnd.android.cursor.item/user</code>）</li>
+</ul>
+<h5 id="逆向关注点-3"><a href="#逆向关注点-3" class="headerlink" title="逆向关注点"></a>逆向关注点</h5><ul>
+<li><p>权限控制分析：在 <code>AndroidManifest.xml</code> 中查看 <code>&lt;provider&gt;</code></p>
+<p>  声明的读写权限，判断是否存在权限配置宽松（如未声明权限）导致的敏感数据泄露：</p>
+  <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">provider</span> </span></span><br><span class="line"><span class="tag">	    <span class="attr">android:authorities</span>=<span class="string">&quot;com.example.provider&quot;</span></span></span><br><span class="line"><span class="tag">	    <span class="attr">android:readPermission</span>=<span class="string">&quot;com.example.READ_DATA&quot;</span>  // <span class="attr">读权限</span></span></span><br><span class="line"><span class="tag">	    <span class="attr">android:writePermission</span>=<span class="string">&quot;com.example.WRITE_DATA&quot;</span> // <span class="attr">写权限</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:exported</span>=<span class="string">&quot;true&quot;</span>/&gt;</span>  // 是否允许外部应用访问</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>数据操作追踪</strong>：通过 Hook <code>ContentResolver</code> 的 <code>query()</code>&#x2F;<code>insert()</code> 等方法，获取其他应用访问本应用数据的路径与内容（如通讯录、相册的访问记录）</p>
+</li>
+<li><p><strong>URI 注入漏洞检测</strong>：分析 <code>query()</code> 等方法中对输入 URI 的校验逻辑，若未过滤特殊字符（如 <code>../</code>），可能存在目录遍历或 SQL 注入风险</p>
+</li>
+</ul>
+<h2 id="三、APK-结构：安卓应用的-“安装包三件套”"><a href="#三、APK-结构：安卓应用的-“安装包三件套”" class="headerlink" title="三、APK 结构：安卓应用的 “安装包三件套”"></a>三、APK 结构：安卓应用的 “安装包三件套”</h2><h3 id="易理解-2"><a href="#易理解-2" class="headerlink" title="易理解"></a>易理解</h3><p>你在应用商店下载的 APP，本质上是一个后缀为 <code>.apk</code> 的文件（比如 “微信.apk”），它是安卓应用的 “安装包”。这个安装包里装着应用运行的所有 “零件”，核心有三个：</p>
+<h4 id="1-classes-dex：应用的-“大脑指令集”"><a href="#1-classes-dex：应用的-“大脑指令集”" class="headerlink" title="1. classes.dex：应用的 “大脑指令集”"></a>1. classes.dex：应用的 “大脑指令集”</h4><p>你写的 Java&#x2F;Kotlin 代码，经过编译后会变成一个叫 <code>classes.dex</code> 的文件，它相当于应用的 “大脑”，里面是计算机能看懂的 “指令”（比如 “点击按钮后跳转到下一页”“计算加法结果”）。</p>
+<ul>
+<li>生活类比：就像菜谱里的 “步骤说明”，厨师（手机 CPU）按照步骤做菜（运行应用）。</li>
+</ul>
+<h4 id="2-res：应用的-“素材仓库”"><a href="#2-res：应用的-“素材仓库”" class="headerlink" title="2. res：应用的 “素材仓库”"></a>2. res：应用的 “素材仓库”</h4><p><code>res</code> 是 “资源文件夹”，里面存着应用的所有 “素材”：</p>
+<ul>
+<li>图片（比如 APP 图标、按钮背景图）；</li>
+<li>文字（比如按钮上的 “登录”“注册” 文字，支持多语言翻译）；</li>
+<li>布局文件（比如界面里按钮、文字的位置排列，像装修设计图）。</li>
+<li>生活类比：就像做菜的 “食材和餐具”，菜谱（classes.dex）需要用这些素材才能做出菜（显示界面）。</li>
+</ul>
+<h4 id="3-AndroidManifest-xml：应用的-“身份证和说明书”"><a href="#3-AndroidManifest-xml：应用的-“身份证和说明书”" class="headerlink" title="3. AndroidManifest.xml：应用的 “身份证和说明书”"></a>3. AndroidManifest.xml：应用的 “身份证和说明书”</h4><p>这个文件是应用的 “配置清单”，相当于给系统的 “说明书”，告诉系统：</p>
+<ul>
+<li>这个应用叫什么名字、图标是什么；</li>
+<li>它有哪些组件（Activity、Service 等），比如 “登录界面是哪个 Activity”；</li>
+<li>它需要什么权限（比如 “允许访问摄像头”“允许读取位置”）。</li>
+<li>生活类比：就像商品的 “包装说明”，告诉买家（系统）这是什么商品、怎么用、需要什么条件（比如 “需冷藏” 对应 “需定位权限”）。</li>
+</ul>
+<h3 id="专业知识-2"><a href="#专业知识-2" class="headerlink" title="专业知识"></a>专业知识</h3><p>在安卓应用的APK结构中，所谓的“安装包三件套”指的是构成APK核心功能的三个关键文件：<strong>AndroidManifest.xml</strong>、<strong>classes.dex</strong>（或多个dex文件）、<strong>resources.arsc</strong>。这三个文件是APK的“骨架”，决定了应用的基本功能、运行逻辑和资源管理方式，也是安卓逆向分析中最核心的分析对象。</p>
+<h4 id="1-AndroidManifest-xml：应用的“身份证与说明书”"><a href="#1-AndroidManifest-xml：应用的“身份证与说明书”" class="headerlink" title="1.AndroidManifest.xml：应用的“身份证与说明书”"></a>1.AndroidManifest.xml：应用的“身份证与说明书”</h4><h5 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h5><p>它是APK的全局配置文件，记录了应用的“身份信息”和“功能清单”，系统安装和运行应用时首先读取该文件。</p>
+<h5 id="核心内容"><a href="#核心内容" class="headerlink" title="核心内容"></a>核心内容</h5><ul>
+<li><p><strong>应用身份</strong>：</p>
+<ul>
+<li>包名（package）：应用的唯一标识（如<code>com.example.myapp</code>），是系统区分不同应用的依据。</li>
+<li>版本信息：<code>versionCode</code>（内部版本号，整数，用于升级判断）和<code>versionName</code>（用户可见版本号，如<code>1.0.0</code>）。</li>
+</ul>
+</li>
+<li><p><strong>组件声明</strong>：</p>
+<p>  安卓应用的四大组件（Acivity、Service、BroadcastReceiver、ContentProvider）必须在此声明才能被系统识别和调用。</p>
+<ul>
+<li>例如：声明启动页Activity（<code>&lt;activity android:name=&quot;.MainActivity&quot;&gt;</code>）及启动模式、意图过滤器（Intent Filter）等。</li>
+</ul>
+</li>
+<li><p><strong>权限声明</strong>：</p>
+<p>  应用需要的系统权限（如联网、读写文件、获取位置等），通过<code>&lt;uses-permission&gt;</code>标签声明（如<code>&lt;uses-permission android:name=&quot;android.permission.INTERNET&quot;/&gt;</code>）。</p>
+</li>
+<li><p><strong>其他配置</strong>：</p>
+<p>  如最低支持的安卓版本（<code>minSdVersion</code>）、目标版本（<code>targetSdkVersion</code>）、应用图标、主题等。</p>
+</li>
+</ul>
+<h5 id="格式与逆向注意"><a href="#格式与逆向注意" class="headerlink" title="格式与逆向注意"></a><strong>格式与逆向注意</strong></h5><ul>
+<li>原始APK中<code>androidManifest.xml</code>是<strong>二进制XML格式</strong>（为了压缩和加密），无法直接阅读。</li>
+<li>逆向时需要用APKtool等工具反编译为可读的文本XML（如<code>apktool d app.apk</code>），通过分析该文件可快速了解应用的功能范围、权限需求和组件结构。</li>
+</ul>
+<h4 id="2-classes-dex：应用的-“逻辑大脑”"><a href="#2-classes-dex：应用的-“逻辑大脑”" class="headerlink" title="2.classes.dex：应用的 “逻辑大脑”"></a>2.classes.dex：应用的 “逻辑大脑”</h4><h5 id="作用-1"><a href="#作用-1" class="headerlink" title="作用"></a><strong>作用</strong></h5><p>它是安卓应用的<strong>可执行字节码文件</strong>，包含了应用的所有业务逻辑（ 如按钮点击事件、网络请求、数据处理等），是应用的核心 。</p>
+<h5 id="技术细节"><a href="#技术细节" class="headerlink" title="技术细节"></a>技术细节</h5><ul>
+<li><p><strong>格式特殊性</strong></p>
+<p>  不同于Java的<code>class</code>文件，<code>classes.dex</code>是基于<strong>Dalvik&#x2F;ART虚拟机</strong>的字节码格式（Dalvik Executable）。安卓将所有Java代码编译后的<code>class</code>文件合并、优化为一个或多个<code>dex</code>文件（当代码量过大是会拆分出<code>classes2.dex</code>、<code>classes3.dex</code>等），一提高运行效率。</p>
+</li>
+<li><p><strong>逆向关键</strong></p>
+<ul>
+<li><code>dex</code>文件是逆向分析的核心目标，通过工具（如<code>dex2jar</code>）可将其转换为Java的<code>jar</code>文件，再用<code>JD-GUI</code>或<code>jadx</code>等工具查看近似的Java源代码（需注意：混淆后的diamagnetic会被重命名为a、b、c等无意义类名，增加分析难度）。</li>
+<li>动态调试时（如用<code>IDA Pro</code>或<code>Frida</code>），<code>dex</code>文件的字节码时断点和hook的主要操作对象。</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-resources-arsc：资源的“索引字典”"><a href="#3-resources-arsc：资源的“索引字典”" class="headerlink" title="3.resources.arsc：资源的“索引字典”"></a>3.resources.arsc：资源的“索引字典”</h4><h5 id="作用-2"><a href="#作用-2" class="headerlink" title="作用"></a>作用</h5><p>它是应用的<strong>资源索引表</strong>，用于管理应用中的所有静态资源（字符串、图片、布局文件、颜色、尺寸等），实现资源的高效查找和适配。</p>
+<h5 id="核心功能"><a href="#核心功能" class="headerlink" title="核心功能"></a>核心功能</h5><ul>
+<li><p><strong>资源分类与索引</strong>：</p>
+<ul>
+<li>应用的资源（如<code>res/values/strings.xml</code>中的字符串、<code>res/drawable/</code>中的图片）会被编译为二进制格式，而<code>resources.arsc</code>则记录了这些资源的 ID、类型、路径及对应的语言、分辨率等适配信息。</li>
+</ul>
+</li>
+<li><p><strong>资源适配支持</strong>：</p>
+<ul>
+<li>安卓系统会根据设备的语言（如中文 &#x2F; 英文）、屏幕分辨率、系统版本等，通过<code>resources.arsc</code>索引到最合适的资源（例如：中文设备优先加载<code>values-zh</code>目录下的字符串）。</li>
+</ul>
+</li>
+</ul>
+<h4 id="逆向中的应用"><a href="#逆向中的应用" class="headerlink" title="逆向中的应用"></a>逆向中的应用</h4><ul>
+<li>反编译后，<code>resources.arsc</code>会被转换为可读的资源索引信息，结合<code>res</code>目录下的具体资源文件（如图片、布局 XML），可分析应用的 UI 设计、文本内容（如关键提示信息、接口地址等）。</li>
+<li>修改<code>resources.arsc</code>和对应资源文件（如替换图标、修改文本）是 “换皮” 类逆向的常用操作。</li>
+</ul>
+<h4 id="三者的协同关系"><a href="#三者的协同关系" class="headerlink" title="三者的协同关系"></a>三者的协同关系</h4><p>APK 的运行依赖这三个文件的配合：</p>
+<ol>
+<li>系统通过<code>AndroidManifest.xml</code>识别应用身份、权限和组件，决定如何启动应用；</li>
+<li>启动后，通过<code>resources.arsc</code>加载对应的 UI 资源和文本，展示界面；</li>
+<li>用户操作（如点击按钮）触发<code>classes.dex</code>中的逻辑代码，完成具体功能（如跳转页面、提交数据）。</li>
+</ol>
+<h2 id="总结：安卓系统的-“三层关系”"><a href="#总结：安卓系统的-“三层关系”" class="headerlink" title="总结：安卓系统的 “三层关系”"></a>总结：安卓系统的 “三层关系”</h2><p>从底层到上层，就像 “地基→基础设施→房间”：</p>
+<ol>
+<li><strong>Linux 内核</strong>（地基）：支撑硬件运行，管资源分配；</li>
+<li><strong>Framework 层</strong>（基础设施）：提供四大组件等工具，让开发者能快速做应用；</li>
+<li><strong>APK</strong>（具体房间）：打包了代码、素材和配置，安装后就是你用的 APP。</li>
+</ol>
+<p>这样一来，安卓系统就能稳定、高效地运行各种应用啦～</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://tangxtang1119.github.io/2025/08/08/%E5%AE%89%E5%8D%93%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9B%9B%E5%A4%A7%E4%BB%B6/" rel="tag">四大件</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+    
+      <a href="/2025/07/15/CH341B%E7%BC%96%E8%BE%91%E5%99%A8/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">CH341B编辑器</div>
+      </a>
+    
+  </nav>
+
+   
+ 
+   
+  
+   
+    <script src="https://cdn.staticfile.org/twikoo/1.4.18/twikoo.all.min.js"></script>
+    <div id="twikoo" class="twikoo"></div>
+    <script>
+        twikoo.init({
+            envId: ""
+        })
+    </script>
+ 
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2025
+        <i class="ri-heart-fill heart_icon"></i> 唐小唐
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/yuhangyuan.ico" alt="tangxtang"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i></p>
+  <div class="reward-box">
+    
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.staticfile.org/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.staticfile.org/clipboard.js/2.0.10/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    <div id="music">
+    
+    
+    
+    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="200" height="52"
+        src="//music.163.com/outchain/player?type=2&id=2658106011&auto=1&height=32"></iframe>
+</div>
+
+<style>
+    #music {
+        position: fixed;
+        right: 15px;
+        bottom: 0;
+        z-index: 998;
+    }
+</style>
+    
+    
+
+  </div>
+</body>
+
+</html>

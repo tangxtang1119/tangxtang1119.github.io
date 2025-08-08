@@ -1,3 +1,1296 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
+  <entry>
+    <title>安卓系统基础</title>
+    <url>/2025/08/08/%E5%AE%89%E5%8D%93%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80/</url>
+    <content><![CDATA[<p><strong>理论：Linux 内核、Framework 层（四大组件：Activity&#x2F;Service&#x2F;Broadcast&#x2F;ContentProvider）、APK 结构（classes.dex&#x2F;res&#x2F;AndroidManifest.xml）。</strong></p>
+<p>安卓系统就像一座功能强大得“智能大楼”，而<strong>Linux内核、Framework层、APK结构</strong>就是这座大楼得“地基、基础设施、和具体房间”。现使用生活中得例子一步步拆解。</p>
+<h2 id="一、Linux内核：安卓得“地基和水电管道”"><a href="#一、Linux内核：安卓得“地基和水电管道”" class="headerlink" title="一、Linux内核：安卓得“地基和水电管道”"></a>一、Linux内核：安卓得“地基和水电管道”</h2><h3 id="易理解"><a href="#易理解" class="headerlink" title="易理解"></a>易理解</h3><p>可以把安卓系统想象成一座大楼，而 <strong>Linux 内核</strong> 就是这座大楼的 “地基” 和 “水电管道系统”。它是安卓系统最底层的核心，负责连接手机的硬件（比如 CPU、内存、电池、摄像头等）和上层的软件（比如你的微信、抖音），让硬件能正常工作。</p>
+<h4 id="具体作用（用生活例子说）："><a href="#具体作用（用生活例子说）：" class="headerlink" title="具体作用（用生活例子说）："></a>具体作用（用生活例子说）：</h4><ul>
+<li><strong>“交通指挥”</strong>：管理手机里的 “程序任务”（比如同时开微信和抖音），确保它们不打架、不卡顿（专业叫 “进程管理”）。</li>
+<li><strong>“水电分配”</strong>：给每个应用分配手机的内存、电量等资源，避免某个应用 “霸占” 太多资源导致手机卡死（专业叫 “内存管理、电源管理”）。</li>
+<li><strong>“硬件翻译官”</strong>：手机的摄像头、触摸屏、麦克风等硬件都是 “哑巴”，需要内核来 “翻译” 软件的指令（比如你点屏幕 “拍照”），让硬件听懂并执行（专业叫 “硬件驱动”）。</li>
+</ul>
+<p>简单说：没有 Linux 内核，手机的硬件就是一堆废铁，上层的任何应用都跑不起来。</p>
+<h3 id="专业知识"><a href="#专业知识" class="headerlink" title="专业知识"></a>专业知识</h3><p>在安卓系统中，<strong>Linux 内核</strong>是整个系统的底层核心，负责硬件与软件之间的 “桥梁” 作用，提供基础的系统资源管理和硬件抽象能力。从专业角度来说，它的核心功能和作用可以概括为以下几个方面：</p>
+<h4 id="1-硬件抽象层（Hardware-Abstraction）"><a href="#1-硬件抽象层（Hardware-Abstraction）" class="headerlink" title="1. 硬件抽象层（Hardware Abstraction）"></a>1. <strong>硬件抽象层（Hardware Abstraction）</strong></h4><p>Linux 内核通过 “驱动程序（Drivers）” 对手机的硬件设备（如 CPU、内存、摄像头、触摸屏、传感器、电池、存储芯片等）进行抽象。</p>
+<ul>
+<li>上层的 Framework 框架和应用程序不需要直接操作硬件的物理接口（如寄存器、电路信号），而是通过内核提供的标准化接口（如系统调用、设备文件）与硬件交互。</li>
+<li>例如：当应用需要调用摄像头拍照时，它不会直接发送电信号到摄像头传感器，而是通过内核的摄像头驱动程序，由驱动程序完成硬件的具体控制。</li>
+</ul>
+<h4 id="2-进程与线程管理"><a href="#2-进程与线程管理" class="headerlink" title="2. 进程与线程管理"></a>2. <strong>进程与线程管理</strong></h4><p>内核负责对系统中的 “进程（Process）” 和 “线程（Thread）” 进行调度和管理，确保多任务高效运行：</p>
+<ul>
+<li><strong>进程调度</strong>：通过调度算法（如安卓优化的 CFS 调度器）为每个进程分配 CPU 时间片，避免某个进程独占资源，保证系统流畅性（比如同时运行微信、音乐和浏览器时，内核协调它们的 CPU 使用权）。</li>
+<li><strong>进程隔离</strong>：通过 “进程 ID（PID）” 和内存隔离机制，确保不同应用的进程相互独立，一个应用崩溃不会影响其他应用或系统核心。</li>
+<li><strong>线程管理</strong>：支持多线程并发，允许单个应用内的多个任务（如 UI 渲染、后台数据加载）并行执行，提升应用响应速度。</li>
+</ul>
+<h4 id="3-内存管理"><a href="#3-内存管理" class="headerlink" title="3. 内存管理"></a>3. <strong>内存管理</strong></h4><p>内核负责手机内存（RAM）的分配、回收和保护：</p>
+<ul>
+<li><strong>内存分配</strong>：为应用、框架和系统进程分配内存空间，通过虚拟内存技术（VM）让每个进程 “认为自己独占内存”，实际由内核统一管理物理内存。</li>
+<li><strong>内存回收</strong>：当内存不足时，通过 “低内存杀手（Low Memory Killer，LMK）” 机制，按优先级回收后台进程的内存（如先杀长时间不用的后台应用，保留前台应用和系统核心进程）。</li>
+<li><strong>内存保护</strong>：通过权限控制和地址空间隔离，防止进程非法访问其他进程或内核的内存区域，避免数据泄露或恶意攻击。</li>
+</ul>
+<h4 id="4-文件系统管理"><a href="#4-文件系统管理" class="headerlink" title="4. 文件系统管理"></a>4. <strong>文件系统管理</strong></h4><p>内核提供文件系统支持，负责数据的存储和访问：</p>
+<ul>
+<li>支持多种存储介质（如手机内置闪存、SD 卡）和文件系统格式（如 ext4、FAT32），统一抽象为 “文件” 接口，让上层应用可以通过 “读 &#x2F; 写文件” 的方式操作存储设备。</li>
+<li>管理文件的权限（如哪些应用可以读写某个文件）、路径和 metadata（如创建时间、大小），确保数据存储的有序性和安全性。</li>
+</ul>
+<h4 id="5-设备与电源管理"><a href="#5-设备与电源管理" class="headerlink" title="5. 设备与电源管理"></a>5. <strong>设备与电源管理</strong></h4><p>针对移动设备特性，安卓对 Linux 内核进行了定制，强化了设备和电源管理能力：</p>
+<ul>
+<li><strong>电源管理</strong>：通过 “休眠 &#x2F; 唤醒” 机制（如 CPU 降频、屏幕休眠）减少待机功耗；支持 “动态电压频率调节（DVFS）”，根据应用负载自动调整 CPU 频率（如玩游戏时提频，待机时降频），平衡性能和耗电。</li>
+<li><strong>设备状态监控</strong>：实时监控硬件状态（如电池电量、温度、网络连接），并向上层反馈（如通过广播通知低电量）。</li>
+</ul>
+<h4 id="6-网络与安全机制"><a href="#6-网络与安全机制" class="headerlink" title="6. 网络与安全机制"></a>6. <strong>网络与安全机制</strong></h4><ul>
+<li><strong>网络管理</strong>：内核集成网络协议栈（如 TCP&#x2F;IP、WiFi、蓝牙协议），负责数据的封装、传输和路由，让应用可以通过网络接口（如 Socket）实现联网功能（如上网、发消息）。</li>
+<li><strong>安全基础</strong>：基于 Linux 的 “用户 - 组 - 权限” 模型（如文件权限 rwx、进程 UID&#x2F;GID），为系统提供基础安全隔离；后续安卓的 SELinux（安全增强型 Linux）也是基于内核实现的强制访问控制。</li>
+</ul>
+<h2 id="二、Framework-层：安卓的-“基础设施和规则手册”"><a href="#二、Framework-层：安卓的-“基础设施和规则手册”" class="headerlink" title="二、Framework 层：安卓的 “基础设施和规则手册”"></a>二、Framework 层：安卓的 “基础设施和规则手册”</h2><h3 id="易理解-1"><a href="#易理解-1" class="headerlink" title="易理解"></a>易理解</h3><p>在 Linux 内核之上，有一层叫 <strong>Framework（框架）层</strong>，它相当于大楼的 “基础设施管理系统” 和 “规则手册”。它封装了很多现成的工具和功能，给开发者提供 “现成的轮子”，让开发者不用从零开始写代码，就能快速开发出应用。</p>
+<p>其中最核心的就是 <strong>四大组件</strong>，它们是安卓应用的 “基本功能模块”，就像大楼里的 “电梯、水管、广播系统、储物间”，各司其职。</p>
+<h4 id="1-Activity：手机上的-“屏幕界面”"><a href="#1-Activity：手机上的-“屏幕界面”" class="headerlink" title="1. Activity：手机上的 “屏幕界面”"></a>1. Activity：手机上的 “屏幕界面”</h4><p>Activity 是你能直接看到的 “界面”，比如微信的聊天界面、抖音的视频播放界面、手机的设置界面，每个界面都是一个 Activity。</p>
+<ul>
+<li><strong>特点</strong>：一个应用可以有多个 Activity（比如微信有 “聊天列表页”“聊天详情页”“朋友圈页”），它们之间可以跳转（比如点微信好友头像，从列表页跳到详情页）。</li>
+<li><strong>生活类比</strong>：就像大楼里的 “一个个房间”，每个房间有自己的功能（卧室睡觉、客厅看电视），你可以在房间之间走动（跳转）。</li>
+</ul>
+<h4 id="2-Service：后台默默工作的-“隐形员工”"><a href="#2-Service：后台默默工作的-“隐形员工”" class="headerlink" title="2. Service：后台默默工作的 “隐形员工”"></a>2. Service：后台默默工作的 “隐形员工”</h4><p>Service 是在后台 “偷偷干活” 的组件，你看不到它，但它一直在运行。</p>
+<ul>
+<li><p>例子</p>
+<p>  ：</p>
+<ul>
+<li>你听音乐时，按 Home 键退出音乐 APP 界面（Activity 关闭了），但音乐还在播放，这就是 Service 在后台继续工作；</li>
+<li>手机下载文件时，你切到其他 APP，下载不会停，也是 Service 在后台运行。</li>
+</ul>
+</li>
+<li><p><strong>生活类比</strong>：就像大楼里的 “空调系统”，你看不到它的机器，但它一直在后台制冷 &#x2F; 制热，即使你在不同房间走动，它也不停。</p>
+</li>
+</ul>
+<h4 id="3-BroadcastReceiver：手机里的-“广播通知员”"><a href="#3-BroadcastReceiver：手机里的-“广播通知员”" class="headerlink" title="3. BroadcastReceiver：手机里的 “广播通知员”"></a>3. BroadcastReceiver：手机里的 “广播通知员”</h4><p>BroadcastReceiver 是 “接收和传递消息” 的组件，就像大楼里的 “广播喇叭”，任何应用或系统都可以发 “广播”，它负责接收并处理消息。</p>
+<ul>
+<li><p>例子</p>
+<p>  ：</p>
+<ul>
+<li>手机没电时，系统发一条 “低电量广播”，你的 APP 可以收到后提醒你 “快充电”；</li>
+<li>收到短信时，系统发一条 “新短信广播”，短信 APP 收到后显示通知。</li>
+</ul>
+</li>
+<li><p><strong>生活类比</strong>：就像小区的 “广播通知”，物业（系统）或住户（应用）发通知，大家（对应的 Receiver）听到后做反应（比如收快递、做核酸）。</p>
+</li>
+</ul>
+<h4 id="4-ContentProvider：应用间的-“数据共享桥梁”"><a href="#4-ContentProvider：应用间的-“数据共享桥梁”" class="headerlink" title="4. ContentProvider：应用间的 “数据共享桥梁”"></a>4. ContentProvider：应用间的 “数据共享桥梁”</h4><p>ContentProvider 是让不同应用之间 “安全共享数据” 的组件。比如你的通讯录应用里的联系人，其他应用（比如微信添加好友时）需要读取，就通过 ContentProvider 实现。</p>
+<ul>
+<li><strong>特点</strong>：它像一个 “数据管家”，只允许被授权的应用访问数据，避免数据泄露（比如你可以设置微信是否能读取通讯录）。</li>
+<li><strong>生活类比</strong>：就像小区的 “快递柜”，快递员（数据产生的应用，比如通讯录）把快递（数据）放进柜子，你授权的人（其他应用，比如微信）凭验证码（权限）才能取。</li>
+</ul>
+<h3 id="专业知识-1"><a href="#专业知识-1" class="headerlink" title="专业知识"></a>专业知识</h3><h4 id="1-Activity（活动）"><a href="#1-Activity（活动）" class="headerlink" title="1.Activity（活动）"></a>1.Activity（活动）</h4><h5 id="核心定义"><a href="#核心定义" class="headerlink" title="核心定义"></a>核心定义</h5><ul>
+<li><strong>用户交互的基础界面单元</strong>，应用的每个可视化屏幕通常对应一个 Activity</li>
+<li>组件间跳转的核心载体，通过<strong>Intent</strong>实现页面切换（正向开发与逆向分析均需重点关注的交互节点）</li>
+</ul>
+<h5 id="关键特性"><a href="#关键特性" class="headerlink" title="关键特性"></a>关键特性</h5><ul>
+<li><p><strong>生命周期</strong>：完整生命周期为 <code>onCreate()</code>（初始化）→ <code>onStart()</code>（可见）→ <code>onResume()</code>（可交互）→ <code>onPause()</code>（部分可见）→ <code>onStop()</code>（不可见）→ <code>onDestroy()</code>（销毁），系统通过生命周期方法管理组件状态</p>
+</li>
+<li><p>启动模式</p>
+<p>  ：</p>
+<ul>
+<li><code>standard</code>（默认，每次启动新建实例）</li>
+<li><code>singleTop</code>（栈顶复用，避免重复创建）</li>
+<li><code>singleTask</code>（栈内唯一，清除其上方实例）</li>
+<li><code>singleInstance</code>（独立任务栈，全局唯一）<br>  （逆向时需关注启动模式对任务栈的管理逻辑，影响页面跳转流程）</li>
+</ul>
+</li>
+<li><p><strong>布局绑定</strong>：通过 <code>setContentView()</code> 关联 XML 布局文件，实现界面渲染</p>
+</li>
+</ul>
+<h5 id="逆向关注点"><a href="#逆向关注点" class="headerlink" title="逆向关注点"></a>逆向关注点</h5><ul>
+<li><p>定位应用入口：在<code>AndroidManifest.xml</code>中查找包含以下过滤器的 Activity，即为 Launcher Activity（应用启动第一个页面）：</p>
+  <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">&quot;android.intent.action.MAIN&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">&quot;android.intent.category.LAUNCHER&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>跨组件数据传递</strong>：分析 <code>startActivityForResult()</code> 与 <code>onActivityResult()</code> 逻辑，获取页面间数据回传细节（如登录凭证、选择结果）</p>
+</li>
+<li><p><strong>Hook 关键方法</strong>：通过 Hook <code>onCreate()</code> 查看初始化逻辑（如密钥加载、配置读取），Hook <code>onActivityResult()</code> 追踪敏感数据流向</p>
+</li>
+</ul>
+<h4 id="2-Service（服务）"><a href="#2-Service（服务）" class="headerlink" title="2.Service（服务）"></a>2.Service（服务）</h4><h5 id="核心定义-1"><a href="#核心定义-1" class="headerlink" title="核心定义"></a>核心定义</h5><ul>
+<li><strong>无界面的后台运行组件</strong>，用于执行长期耗时任务（如下载、音乐播放、数据同步），独立于界面生命周期</li>
+<li>两种启动方式：<ul>
+<li><code>startService()</code>：启动后独立运行，需主动调用 <code>stopService()</code>：停止（如后台下载）</li>
+<li><code>bindService()</code>：与调用组件（如 Activity）绑定，通过 Binder&#x2F;aidl 实现 IPC（跨进程通信），组件销毁时服务解绑</li>
+</ul>
+</li>
+</ul>
+<h5 id="生命周期差异"><a href="#生命周期差异" class="headerlink" title="生命周期差异"></a>生命周期差异</h5><ul>
+<li><strong>启动式服务</strong>：<code>onCreate()</code>（初始化）→ <code>onStartCommand()</code>（接收启动指令）→ <code>onDestroy()</code>（销毁释放资源）</li>
+<li><strong>绑定式服务</strong>：<code>onCreate()</code>（初始化）→ <code>onBind()</code>（返回 Binder 对象）→ <code>onUnbind()</code>（解绑回调）→ <code>onDestroy()</code>（销毁）</li>
+</ul>
+<h5 id="逆向关注点-1"><a href="#逆向关注点-1" class="headerlink" title="逆向关注点"></a>逆向关注点</h5><ul>
+<li><strong>前台服务识别</strong>：反编译 <code>AndroidManifest.xml</code> 或代码，查找 <code>startForeground()</code> 调用（前台服务需显示通知，优先级高，常用于保活），分析通知配置与保活逻辑</li>
+<li><strong>IntentService 机制</strong>：定位继承 <code>IntentService</code> 的服务，其内部通过 HandlerThread 串行处理任务，需分析 <code>onHandleIntent()</code> 中的后台逻辑（如数据加密、API 请求）</li>
+<li><strong>跨进程通信接口</strong>：查找 AIDL 文件（<code>.aidl</code>），解析 <code>onBind()</code> 返回的 Binder 接口，获取进程间交互的敏感数据（如用户信息、权限验证）</li>
+</ul>
+<h4 id="3-BroadcastReceiver（广播接收器）"><a href="#3-BroadcastReceiver（广播接收器）" class="headerlink" title="3.BroadcastReceiver（广播接收器）"></a>3.BroadcastReceiver（广播接收器）</h4><h5 id="核心定义-2"><a href="#核心定义-2" class="headerlink" title="核心定义"></a>核心定义</h5><ul>
+<li><strong>系统 &#x2F; 应用事件的监听组件</strong>，用于接收并响应全局事件（如网络状态变化、短信接收、开机完成）</li>
+<li>两种注册方式：<ul>
+<li><strong>静态注册</strong>：在 <code>AndroidManifest.xml</code> 中声明，应用未启动时可接收广播（如监听开机广播）</li>
+<li><strong>动态注册</strong>：在代码中通过 <code>registerReceiver()</code> 注册，随宿主组件（如 Activity）生命周期生效，需手动调用 <code>unregisterReceiver()</code> 注销</li>
+</ul>
+</li>
+</ul>
+<h5 id="事件响应流程"><a href="#事件响应流程" class="headerlink" title="事件响应流程"></a>事件响应流程</h5><ol>
+<li>发送广播：通过 <code>sendBroadcast(Intent)</code> 或 <code>sendOrderedBroadcast(Intent)</code> 发送事件</li>
+<li>匹配接收器：系统根据 <code>IntentFilter</code> 中的 <code>action</code>、<code>category</code> 筛选目标接收器</li>
+<li>执行逻辑：匹配成功后触发接收器的 <code>onReceive(Context, Intent)</code> 方法</li>
+</ol>
+<h5 id="逆向关注点-2"><a href="#逆向关注点-2" class="headerlink" title="逆向关注点"></a>逆向关注点</h5><ul>
+<li><p><strong>敏感广播监控</strong>：重点追踪系统级广播（如 <code>android.intent.action.BOOT_COMPLETED</code> 开机自启、<code>android.provider.Telephony.SMS_RECEIVED</code> 短信接收），分析其 <code>onReceive()</code> 中的逻辑（如自启动触发、短信内容窃取）</p>
+</li>
+<li><p><strong>有序广播优先级滥用</strong>：检查静态注册<code>&lt;intent-filter&gt;</code></p>
+<p>  优先级<code>（android:priority）</code>，高优先级接收器可能通过 <code>abortBroadcast()</code>拦截广播（如恶意应用拦截验证码短信）：</p>
+  <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">intent-filter</span> <span class="attr">android:priority</span>=<span class="string">&quot;1000&quot;</span>&gt;</span></span><br><span class="line">	    <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">&quot;android.provider.Telephony.SMS_RECEIVED&quot;</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>动态注册追踪</strong>：在代码中定位 <code>registerReceiver()</code> 调用，分析动态注册的广播类型与响应逻辑（如应用内数据更新通知）</p>
+</li>
+</ul>
+<h4 id="4-ContentProvider（内容提供者）"><a href="#4-ContentProvider（内容提供者）" class="headerlink" title="4.ContentProvider（内容提供者）"></a>4.ContentProvider（内容提供者）</h4><h5 id="核心定义-3"><a href="#核心定义-3" class="headerlink" title="核心定义"></a>核心定义</h5><ul>
+<li><p><strong>跨应用数据共享的标准化接口</strong>，用于安全暴露应用内部数据（如数据库、文件）给其他应用访问</p>
+</li>
+<li><p>通过URI唯一标识数据源，格式为：</p>
+  <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">content:<span class="comment">//com.example.provider/user/1</span></span><br><span class="line">↑          ↑                ↑     ↑</span><br><span class="line">协议       授权名（包名）    数据路径  记录ID</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h5 id="核心方法"><a href="#核心方法" class="headerlink" title="核心方法"></a>核心方法</h5><ul>
+<li><code>query(Uri, String[], String, String[], String)</code>：查询数据（类似 SQL 的 SELECT）</li>
+<li><code>insert(Uri, ContentValues)</code>：插入数据（类似 SQL 的 INSERT）</li>
+<li><code>update(Uri, ContentValues, String, String[])</code>：更新数据（类似 SQL 的 UPDATE）</li>
+<li><code>delete(Uri, String, String[])</code>：删除数据（类似 SQL 的 DELETE）</li>
+<li><code>getType(Uri)</code>：返回数据的 MIME 类型（如 <code>vnd.android.cursor.item/user</code>）</li>
+</ul>
+<h5 id="逆向关注点-3"><a href="#逆向关注点-3" class="headerlink" title="逆向关注点"></a>逆向关注点</h5><ul>
+<li><p>权限控制分析：在 <code>AndroidManifest.xml</code> 中查看 <code>&lt;provider&gt;</code></p>
+<p>  声明的读写权限，判断是否存在权限配置宽松（如未声明权限）导致的敏感数据泄露：</p>
+  <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">provider</span> </span></span><br><span class="line"><span class="tag">	    <span class="attr">android:authorities</span>=<span class="string">&quot;com.example.provider&quot;</span></span></span><br><span class="line"><span class="tag">	    <span class="attr">android:readPermission</span>=<span class="string">&quot;com.example.READ_DATA&quot;</span>  // <span class="attr">读权限</span></span></span><br><span class="line"><span class="tag">	    <span class="attr">android:writePermission</span>=<span class="string">&quot;com.example.WRITE_DATA&quot;</span> // <span class="attr">写权限</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:exported</span>=<span class="string">&quot;true&quot;</span>/&gt;</span>  // 是否允许外部应用访问</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>数据操作追踪</strong>：通过 Hook <code>ContentResolver</code> 的 <code>query()</code>&#x2F;<code>insert()</code> 等方法，获取其他应用访问本应用数据的路径与内容（如通讯录、相册的访问记录）</p>
+</li>
+<li><p><strong>URI 注入漏洞检测</strong>：分析 <code>query()</code> 等方法中对输入 URI 的校验逻辑，若未过滤特殊字符（如 <code>../</code>），可能存在目录遍历或 SQL 注入风险</p>
+</li>
+</ul>
+<h2 id="三、APK-结构：安卓应用的-“安装包三件套”"><a href="#三、APK-结构：安卓应用的-“安装包三件套”" class="headerlink" title="三、APK 结构：安卓应用的 “安装包三件套”"></a>三、APK 结构：安卓应用的 “安装包三件套”</h2><h3 id="易理解-2"><a href="#易理解-2" class="headerlink" title="易理解"></a>易理解</h3><p>你在应用商店下载的 APP，本质上是一个后缀为 <code>.apk</code> 的文件（比如 “微信.apk”），它是安卓应用的 “安装包”。这个安装包里装着应用运行的所有 “零件”，核心有三个：</p>
+<h4 id="1-classes-dex：应用的-“大脑指令集”"><a href="#1-classes-dex：应用的-“大脑指令集”" class="headerlink" title="1. classes.dex：应用的 “大脑指令集”"></a>1. classes.dex：应用的 “大脑指令集”</h4><p>你写的 Java&#x2F;Kotlin 代码，经过编译后会变成一个叫 <code>classes.dex</code> 的文件，它相当于应用的 “大脑”，里面是计算机能看懂的 “指令”（比如 “点击按钮后跳转到下一页”“计算加法结果”）。</p>
+<ul>
+<li>生活类比：就像菜谱里的 “步骤说明”，厨师（手机 CPU）按照步骤做菜（运行应用）。</li>
+</ul>
+<h4 id="2-res：应用的-“素材仓库”"><a href="#2-res：应用的-“素材仓库”" class="headerlink" title="2. res：应用的 “素材仓库”"></a>2. res：应用的 “素材仓库”</h4><p><code>res</code> 是 “资源文件夹”，里面存着应用的所有 “素材”：</p>
+<ul>
+<li>图片（比如 APP 图标、按钮背景图）；</li>
+<li>文字（比如按钮上的 “登录”“注册” 文字，支持多语言翻译）；</li>
+<li>布局文件（比如界面里按钮、文字的位置排列，像装修设计图）。</li>
+<li>生活类比：就像做菜的 “食材和餐具”，菜谱（classes.dex）需要用这些素材才能做出菜（显示界面）。</li>
+</ul>
+<h4 id="3-AndroidManifest-xml：应用的-“身份证和说明书”"><a href="#3-AndroidManifest-xml：应用的-“身份证和说明书”" class="headerlink" title="3. AndroidManifest.xml：应用的 “身份证和说明书”"></a>3. AndroidManifest.xml：应用的 “身份证和说明书”</h4><p>这个文件是应用的 “配置清单”，相当于给系统的 “说明书”，告诉系统：</p>
+<ul>
+<li>这个应用叫什么名字、图标是什么；</li>
+<li>它有哪些组件（Activity、Service 等），比如 “登录界面是哪个 Activity”；</li>
+<li>它需要什么权限（比如 “允许访问摄像头”“允许读取位置”）。</li>
+<li>生活类比：就像商品的 “包装说明”，告诉买家（系统）这是什么商品、怎么用、需要什么条件（比如 “需冷藏” 对应 “需定位权限”）。</li>
+</ul>
+<h3 id="专业知识-2"><a href="#专业知识-2" class="headerlink" title="专业知识"></a>专业知识</h3><p>在安卓应用的APK结构中，所谓的“安装包三件套”指的是构成APK核心功能的三个关键文件：<strong>AndroidManifest.xml</strong>、<strong>classes.dex</strong>（或多个dex文件）、<strong>resources.arsc</strong>。这三个文件是APK的“骨架”，决定了应用的基本功能、运行逻辑和资源管理方式，也是安卓逆向分析中最核心的分析对象。</p>
+<h4 id="1-AndroidManifest-xml：应用的“身份证与说明书”"><a href="#1-AndroidManifest-xml：应用的“身份证与说明书”" class="headerlink" title="1.AndroidManifest.xml：应用的“身份证与说明书”"></a>1.AndroidManifest.xml：应用的“身份证与说明书”</h4><h5 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h5><p>它是APK的全局配置文件，记录了应用的“身份信息”和“功能清单”，系统安装和运行应用时首先读取该文件。</p>
+<h5 id="核心内容"><a href="#核心内容" class="headerlink" title="核心内容"></a>核心内容</h5><ul>
+<li><p><strong>应用身份</strong>：</p>
+<ul>
+<li>包名（package）：应用的唯一标识（如<code>com.example.myapp</code>），是系统区分不同应用的依据。</li>
+<li>版本信息：<code>versionCode</code>（内部版本号，整数，用于升级判断）和<code>versionName</code>（用户可见版本号，如<code>1.0.0</code>）。</li>
+</ul>
+</li>
+<li><p><strong>组件声明</strong>：</p>
+<p>  安卓应用的四大组件（Acivity、Service、BroadcastReceiver、ContentProvider）必须在此声明才能被系统识别和调用。</p>
+<ul>
+<li>例如：声明启动页Activity（<code>&lt;activity android:name=&quot;.MainActivity&quot;&gt;</code>）及启动模式、意图过滤器（Intent Filter）等。</li>
+</ul>
+</li>
+<li><p><strong>权限声明</strong>：</p>
+<p>  应用需要的系统权限（如联网、读写文件、获取位置等），通过<code>&lt;uses-permission&gt;</code>标签声明（如<code>&lt;uses-permission android:name=&quot;android.permission.INTERNET&quot;/&gt;</code>）。</p>
+</li>
+<li><p><strong>其他配置</strong>：</p>
+<p>  如最低支持的安卓版本（<code>minSdVersion</code>）、目标版本（<code>targetSdkVersion</code>）、应用图标、主题等。</p>
+</li>
+</ul>
+<h5 id="格式与逆向注意"><a href="#格式与逆向注意" class="headerlink" title="格式与逆向注意"></a><strong>格式与逆向注意</strong></h5><ul>
+<li>原始APK中<code>androidManifest.xml</code>是<strong>二进制XML格式</strong>（为了压缩和加密），无法直接阅读。</li>
+<li>逆向时需要用APKtool等工具反编译为可读的文本XML（如<code>apktool d app.apk</code>），通过分析该文件可快速了解应用的功能范围、权限需求和组件结构。</li>
+</ul>
+<h4 id="2-classes-dex：应用的-“逻辑大脑”"><a href="#2-classes-dex：应用的-“逻辑大脑”" class="headerlink" title="2.classes.dex：应用的 “逻辑大脑”"></a>2.classes.dex：应用的 “逻辑大脑”</h4><h5 id="作用-1"><a href="#作用-1" class="headerlink" title="作用"></a><strong>作用</strong></h5><p>它是安卓应用的<strong>可执行字节码文件</strong>，包含了应用的所有业务逻辑（ 如按钮点击事件、网络请求、数据处理等），是应用的核心 。</p>
+<h5 id="技术细节"><a href="#技术细节" class="headerlink" title="技术细节"></a>技术细节</h5><ul>
+<li><p><strong>格式特殊性</strong></p>
+<p>  不同于Java的<code>class</code>文件，<code>classes.dex</code>是基于<strong>Dalvik&#x2F;ART虚拟机</strong>的字节码格式（Dalvik Executable）。安卓将所有Java代码编译后的<code>class</code>文件合并、优化为一个或多个<code>dex</code>文件（当代码量过大是会拆分出<code>classes2.dex</code>、<code>classes3.dex</code>等），一提高运行效率。</p>
+</li>
+<li><p><strong>逆向关键</strong></p>
+<ul>
+<li><code>dex</code>文件是逆向分析的核心目标，通过工具（如<code>dex2jar</code>）可将其转换为Java的<code>jar</code>文件，再用<code>JD-GUI</code>或<code>jadx</code>等工具查看近似的Java源代码（需注意：混淆后的diamagnetic会被重命名为a、b、c等无意义类名，增加分析难度）。</li>
+<li>动态调试时（如用<code>IDA Pro</code>或<code>Frida</code>），<code>dex</code>文件的字节码时断点和hook的主要操作对象。</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-resources-arsc：资源的“索引字典”"><a href="#3-resources-arsc：资源的“索引字典”" class="headerlink" title="3.resources.arsc：资源的“索引字典”"></a>3.resources.arsc：资源的“索引字典”</h4><h5 id="作用-2"><a href="#作用-2" class="headerlink" title="作用"></a>作用</h5><p>它是应用的<strong>资源索引表</strong>，用于管理应用中的所有静态资源（字符串、图片、布局文件、颜色、尺寸等），实现资源的高效查找和适配。</p>
+<h5 id="核心功能"><a href="#核心功能" class="headerlink" title="核心功能"></a>核心功能</h5><ul>
+<li><p><strong>资源分类与索引</strong>：</p>
+<ul>
+<li>应用的资源（如<code>res/values/strings.xml</code>中的字符串、<code>res/drawable/</code>中的图片）会被编译为二进制格式，而<code>resources.arsc</code>则记录了这些资源的 ID、类型、路径及对应的语言、分辨率等适配信息。</li>
+</ul>
+</li>
+<li><p><strong>资源适配支持</strong>：</p>
+<ul>
+<li>安卓系统会根据设备的语言（如中文 &#x2F; 英文）、屏幕分辨率、系统版本等，通过<code>resources.arsc</code>索引到最合适的资源（例如：中文设备优先加载<code>values-zh</code>目录下的字符串）。</li>
+</ul>
+</li>
+</ul>
+<h4 id="逆向中的应用"><a href="#逆向中的应用" class="headerlink" title="逆向中的应用"></a>逆向中的应用</h4><ul>
+<li>反编译后，<code>resources.arsc</code>会被转换为可读的资源索引信息，结合<code>res</code>目录下的具体资源文件（如图片、布局 XML），可分析应用的 UI 设计、文本内容（如关键提示信息、接口地址等）。</li>
+<li>修改<code>resources.arsc</code>和对应资源文件（如替换图标、修改文本）是 “换皮” 类逆向的常用操作。</li>
+</ul>
+<h4 id="三者的协同关系"><a href="#三者的协同关系" class="headerlink" title="三者的协同关系"></a>三者的协同关系</h4><p>APK 的运行依赖这三个文件的配合：</p>
+<ol>
+<li>系统通过<code>AndroidManifest.xml</code>识别应用身份、权限和组件，决定如何启动应用；</li>
+<li>启动后，通过<code>resources.arsc</code>加载对应的 UI 资源和文本，展示界面；</li>
+<li>用户操作（如点击按钮）触发<code>classes.dex</code>中的逻辑代码，完成具体功能（如跳转页面、提交数据）。</li>
+</ol>
+<h2 id="总结：安卓系统的-“三层关系”"><a href="#总结：安卓系统的-“三层关系”" class="headerlink" title="总结：安卓系统的 “三层关系”"></a>总结：安卓系统的 “三层关系”</h2><p>从底层到上层，就像 “地基→基础设施→房间”：</p>
+<ol>
+<li><strong>Linux 内核</strong>（地基）：支撑硬件运行，管资源分配；</li>
+<li><strong>Framework 层</strong>（基础设施）：提供四大组件等工具，让开发者能快速做应用；</li>
+<li><strong>APK</strong>（具体房间）：打包了代码、素材和配置，安装后就是你用的 APP。</li>
+</ol>
+<p>这样一来，安卓系统就能稳定、高效地运行各种应用啦～</p>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>四大件</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CH341B编辑器</title>
+    <url>/2025/07/15/CH341B%E7%BC%96%E8%BE%91%E5%99%A8/</url>
+    <content><![CDATA[<p>​	CH341B 编程器是一个极其经济实惠的入门级芯片编程工具，特别适合读写常见的 24&#x2F;25&#x2F;93 系列存储芯片以及部分 8051 单片机。它的核心优势在于价格低廉和基本功能满足需求。使用时务必牢记电压设置、芯片方向和备份原始数据这三个关键安全点。</p>
+<h1 id="详细介绍"><a href="#详细介绍" class="headerlink" title="详细介绍"></a>详细介绍</h1><ul>
+<li><p><strong>CH341B：</strong> 指的是一颗由 <strong>沁恒电子（WCH）</strong> 生产的 USB 转串口&#x2F;I2C&#x2F;SPI 接口转换芯片。它本身只是一个集成电路。</p>
+</li>
+<li><p><strong>CH341B 编程器：</strong> 是指<strong>基于 CH341B 芯片设计制造的硬件设备</strong>，主要用于<strong>读写、编程（烧录）</strong> 各种类型的串行存储芯片（EEPROM、Flash）以及一些特定类型的单片机（如 24&#x2F;93 系列 EEPROM, 25 系列 SPI Flash, 某些 8051 单片机等）。</p>
+</li>
+</ul>
+<ol>
+<li><p><strong>核心功能：</strong></p>
+<ul>
+<li><strong>读取芯片：</strong> 将存储芯片（如 BIOS 芯片、配置芯片）里的数据读取出来，保存为二进制文件（.bin）或十六进制文件（.hex）。</li>
+<li><strong>写入芯片：</strong> 将预先准备好的固件文件（.bin, .hex）写入到目标芯片中。</li>
+<li><strong>擦除芯片：</strong> 在写入新数据前，清除芯片内原有的数据。</li>
+<li><strong>校验芯片：</strong> 写入后，将芯片内容与源文件进行对比，确保写入无误。</li>
+<li><strong>空片检查：</strong> 检查芯片是否为空（全为 0xFF）。</li>
+<li><strong>修改数据：</strong> 在编程软件中查看和编辑读取出来的数据（十六进制或文本形式）。</li>
+</ul>
+</li>
+<li><p><strong>主要支持的芯片类型：</strong></p>
+<ul>
+<li><strong>SPI Flash (25 系列)：</strong> 这是最常用的，如 W25Q80, W25Q16, W25Q32, W25Q64, W25Q128, MX25L 系列等。常用于主板 BIOS、显卡 BIOS、路由器固件、各种嵌入式设备。</li>
+<li><strong>I2C EEPROM (24 系列)：</strong> 如 24C02, 24C04, 24C08, 24C16, 24C32, 24C64, 24C128, 24C256 等。常用于存储小量配置信息。</li>
+<li><strong>MicroWire EEPROM (93 系列)：</strong> 如 93C46, 93C56, 93C66 等（现在相对少用）。</li>
+<li><strong>部分 8051 内核单片机：</strong> 如 STC89C51&#x2F;52, STC12C5A60S2 等（需要特定适配器和软件支持）。</li>
+<li><strong>其他：</strong> 一些特定封装的 NOR Flash 等。</li>
+</ul>
+</li>
+<li><p><strong>硬件特点：</strong></p>
+<ul>
+<li><strong>价格低廉：</strong> 这是其最大的优势，非常适合个人爱好者、维修人员使用。</li>
+<li><strong>USB 供电：</strong> 直接通过 USB 接口供电，无需外接电源（大多数情况下）。</li>
+<li><strong>电压切换：</strong> 很多 CH341B 编程器板子上有跳线帽或开关，可以在 <strong>3.3V</strong> 和 <strong>5V</strong> 之间切换，以适应不同工作电压的芯片。<strong>这是关键的安全设置！</strong></li>
+<li><strong>ZIF 插座：</strong> 通常配备一个 <strong>Zero Insertion Force</strong> 插座（8脚 SOP&#x2F;DIP&#x2F;WSON 兼容），方便芯片的放置和取出。部分型号还支持其他封装（如 SOP16）的适配板。</li>
+<li><strong>状态指示灯：</strong> 一般有电源指示灯和读写状态指示灯。</li>
+<li><strong>简单紧凑：</strong> 体积小巧，方便携带。</li>
+</ul>
+<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a><strong>使用方法</strong></h2><ol>
+<li><p><strong>安装驱动：</strong></p>
+<ul>
+<li><p><a href="https://www.wch.cn/downloads/category/67.html?feature=USB%E8%BD%ACSPI&product_name=CH341">CH341B 编程器驱动下载链接</a></p>
+</li>
+<li><p>驱动只安装 CH341PAR.EXE 即可，无需安装 CH341SER.EXE</p>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>环境小记</title>
+    <url>/2025/05/21/%E7%8E%AF%E5%A2%83%E5%B0%8F%E8%AE%B0/</url>
+    <content><![CDATA[<h1 id="一、前期准备"><a href="#一、前期准备" class="headerlink" title="一、前期准备"></a>一、前期准备</h1><h2 id="1-Windows环境配置"><a href="#1-Windows环境配置" class="headerlink" title="1. Windows环境配置"></a>1. Windows环境配置</h2><h3 id="1-1-概述"><a href="#1-1-概述" class="headerlink" title="1.1 概述"></a>1.1 概述</h3><p>1.WINDOWS环境配置的难易程度因人而异，很多学员在此步骤上遇到困难。 </p>
+<p>2.LINUX系统问题较少，原因是使用者较少且版本统一，而WINDOWS系统版本繁多，导致问题多样。 </p>
+<p>3.WINDOWS系统使用ANSI编码，与常用的UTF-8编码不同，可能导致兼容性问题。</p>
+<h3 id="1-2-系统版本选择"><a href="#1-2-系统版本选择" class="headerlink" title="1.2 系统版本选择"></a>1.2 系统版本选择</h3><p>1.推荐使用原版WINDOWS 10系统，避免使用精简版，以防出现未知问题。</p>
+<p> 2.查看系统版本的方法包括使用win ver命令或系统设置中的关于选项。 </p>
+<p>3.启用超级用户（类似于安卓系统的root用户）可以解决权限问题，避免某些操作失败。</p>
+<h2 id="2-cmd和环境变量"><a href="#2-cmd和环境变量" class="headerlink" title="2. cmd和环境变量"></a>2. cmd和环境变量</h2><h3 id="2-1-cmd的打开方式"><a href="#2-1-cmd的打开方式" class="headerlink" title="2.1 cmd的打开方式"></a>2.1 cmd的打开方式</h3><p>1.cmd是一个常用的终端工具，在逆向工程中经常使用。 </p>
+<p>2.打开cmd的方式有多种，推荐使用快捷键win键+r键打开。 </p>
+<p>3.另一种打开方式是在指定路径下直接点击cmd，无需切换路径。</p>
+<h3 id="2-2-cmd的基本操作"><a href="#2-2-cmd的基本操作" class="headerlink" title="2.2 cmd的基本操作"></a>2.2 cmd的基本操作</h3><p>1.显示当前路径下的所有文件，使用dir命令。 </p>
+<p>2.清屏操作，使用cls命令。 </p>
+<p>3.切换目录，使用cd命令。 </p>
+<p>4.Tab键自动补全路径。 </p>
+<p>5.复制和粘贴操作，通过右键菜单完成。 </p>
+<p>6.回到上一级目录，使用cd..命令。 </p>
+<p>7.上下键选择之前输入过的命令。 </p>
+<p>8.在cmd中运行文件，包括没有扩展名的文件。</p>
+<h3 id="2-4-相对路径和绝对路径"><a href="#2-4-相对路径和绝对路径" class="headerlink" title="2.4 相对路径和绝对路径"></a>2.4 相对路径和绝对路径</h3><p>1.绝对路径从盘符开始，如E:\soft\test。 </p>
+<p>2.相对路径基于当前目录，如..\c或b。 </p>
+<p>3.CD -d命令用于在不同盘符之间切换。</p>
+<h3 id="2-5-环境变量的作用"><a href="#2-5-环境变量的作用" class="headerlink" title="2.5 环境变量的作用"></a>2.5 环境变量的作用</h3><p>1.环境变量Path用于指定程序搜索路径。 </p>
+<p>2.通过将路径添加到Path变量，程序可以在任意目录下运行。 </p>
+<p>3.环境变量的加载在启动时完成，新开的cmd窗口才能识别新的环境变量。</p>
+<h2 id="3-jdk的安装"><a href="#3-jdk的安装" class="headerlink" title="3.jdk的安装"></a>3.jdk的安装</h2><h3 id="3-1-jdk的介绍"><a href="#3-1-jdk的介绍" class="headerlink" title="3.1 jdk的介绍"></a>3.1 jdk的介绍</h3><p>1.jdk是JAVA开发工具集，包含JAVA虚拟机和一些基本的类库。 </p>
+<p>2.jdk是jre的基础上增加了开发工具，用于JAVA开发。 </p>
+<p>3.jdk的版本主要有8和17，其中8和11是长期支持版本。</p>
+<h3 id="3-2-jdk的下载和安装"><a href="#3-2-jdk的下载和安装" class="headerlink" title="3.2 jdk的下载和安装"></a>3.2 jdk的下载和安装</h3><p>1.jdk可以从Oracle官网或OpenJDK网站下载。 </p>
+<p>2.下载时需要注册账号并登录。 </p>
+<p>3.安装时选择合适的操作系统和版本，可以是ese或exe。</p>
+<h3 id="3-3-jdk的安装检测"><a href="#3-3-jdk的安装检测" class="headerlink" title="3.3 jdk的安装检测"></a>3.3 jdk的安装检测</h3><p>1.安装完成后，通过cmd输入JAVA或JAVA_HOME来检测安装是否成功。 </p>
+<p>2.如果输入JAVA或JAVA_HOME能显示版本信息，则表示环境配置正确。</p>
+<h2 id="5-Windows注意事项"><a href="#5-Windows注意事项" class="headerlink" title="5.Windows注意事项"></a>5.Windows注意事项</h2><h3 id="5-1-Windows路径命名规范"><a href="#5-1-Windows路径命名规范" class="headerlink" title="5.1 Windows路径命名规范"></a>5.1 Windows路径命名规范</h3><p>1.Windows系统中路径命名应避免使用中文、空格和特殊符号，以防止出现错误。 </p>
+<p>2.计算机名也应避免使用中文，以确保软件的正常运行。 </p>
+<p>3.国外软件在Windows系统中对中文路径的兼容性较差。</p>
+<h3 id="5-2-环境变量配置"><a href="#5-2-环境变量配置" class="headerlink" title="5.2 环境变量配置"></a>5.2 环境变量配置</h3><p>1.安装Python时，建议将Python的安装路径和脚本路径添加到系统环境变量中。 </p>
+<p>2.通过配置环境变量，可以方便地运行Python解释器和脚本。 </p>
+<p>3.在Windows系统中，可以使用path变量来添加Python的安装路径和脚本路径。</p>
+<h3 id="5-3-计算机名对软件运行的影响"><a href="#5-3-计算机名对软件运行的影响" class="headerlink" title="5.3 计算机名对软件运行的影响"></a>5.3 计算机名对软件运行的影响</h3><p>1.计算机名使用中文可能导致某些软件无法正常运行，尤其是国外软件。 </p>
+<p>2.修改计算机名为英文或数字可以解决某些软件运行问题。 </p>
+<p>3.在虚拟机中可以方便地修改计算机名以进行测试。</p>
+<h2 id="6-Android-Studio"><a href="#6-Android-Studio" class="headerlink" title="6.Android Studio"></a>6.Android Studio</h2><h3 id="6-1-安装与配置"><a href="#6-1-安装与配置" class="headerlink" title="6.1 安装与配置"></a>6.1 安装与配置</h3><p>1.Android Studio是一个强大的IDE工具，用于安卓开发和逆向工程。 </p>
+<p>2.安装过程包括下载安装包和选择安装路径，建议不要将Android Studio安装在系统盘。</p>
+<h3 id="6-2-启动与配置"><a href="#6-2-启动与配置" class="headerlink" title="6.2 启动与配置"></a>6.2 启动与配置</h3><p>1.启动Android Studio时选择不导入任何配置文件。 </p>
+<p>2.选择自定义设置，并配置SDK的安装路径。 </p>
+<p>3.配置模拟器的内存和主题选择。</p>
+<h3 id="6-3-SDK的配置与管理"><a href="#6-3-SDK的配置与管理" class="headerlink" title="6.3 SDK的配置与管理"></a>6.3 SDK的配置与管理</h3><p>1.通过SDK Manager配置SDK，包括安装不同版本的SDK和工具。 </p>
+<p>2.选择安装安卓10（API 29）和必要的build tools、NDK和CMake。</p>
+<p>3.安装Google USB Driver以连接谷歌手机。</p>
+<h3 id="6-4-创建安卓项目"><a href="#6-4-创建安卓项目" class="headerlink" title="6.4 创建安卓项目"></a>6.4 创建安卓项目</h3><p>1.选择创建Native C++项目以测试NDK支持。 </p>
+<p>2.输入项目名称和包名，选择保存路径和语言（Java或Kotlin）。 </p>
+<p>3.选择最小支持的SDK版本和C++标准。</p>
+<h3 id="6-5-工程目录结构"><a href="#6-5-工程目录结构" class="headerlink" title="6.5 工程目录结构"></a>6.5 工程目录结构</h3><p>1.项目目录包括工程级别的配置文件和模块级别的代码文件。 </p>
+<p>2.模块目录结构包括src、main、java和gradle文件。 </p>
+<p>3.gradle文件中配置SDK版本、build tools版本和编译目标API版本。</p>
+<h3 id="6-6-SDK目录结构"><a href="#6-6-SDK目录结构" class="headerlink" title="6.6 SDK目录结构"></a>6.6 SDK目录结构</h3><p>1.SDK目录包括build tools、platform tools、USB driver和其他编译和打包工具。 </p>
+<p>2.build tools用于编译APP，platform tools用于刷机和操控手机。</p>
+<h3 id="6-7-配置文件位置"><a href="#6-7-配置文件位置" class="headerlink" title="6.7 配置文件位置"></a>6.7 配置文件位置</h3><p>1.Android Studio的配置文件包括gradle和android配置文件。 </p>
+<p>2.配置文件位于C盘用户目录下，需要手动删除以重置配置。</p>
+<h2 id="7-ADB（Android-Debug-Bridge）"><a href="#7-ADB（Android-Debug-Bridge）" class="headerlink" title="7.ADB（Android Debug Bridge）"></a>7.ADB（Android Debug Bridge）</h2><h3 id="7-1-作用与原理"><a href="#7-1-作用与原理" class="headerlink" title="7.1 作用与原理"></a>7.1 作用与原理</h3><p>1.adb可以在电脑端操控手机，主要用于安卓应用安装和调试。 </p>
+<p>2.adb的原理是通过电脑端的客户端和服务器与手机端的adbd进程进行交互，发送指令并操控手机。</p>
+<p>3.adb客户端和服务器在电脑端，而adbd进程在手机端。</p>
+<h3 id="7-2-概念与命令"><a href="#7-2-概念与命令" class="headerlink" title="7.2 概念与命令"></a>7.2 概念与命令</h3><p>1.超级adb具有root权限，不需要通过SEO申请，可以通过修改adbd源码实现。 </p>
+<p>2.超级adb可以使用两个命令：adb root和adb remount。 </p>
+<p>3.adb root使adb在root权限下运行，adb remount将system分区挂载为可读写。</p>
+<h3 id="7-3-超级adb配置与环境变量"><a href="#7-3-超级adb配置与环境变量" class="headerlink" title="7.3 超级adb配置与环境变量"></a>7.3 超级adb配置与环境变量</h3><p>1.adb在SDK的platform tools目录下，使用前需将该目录添加到环境变量中。 </p>
+<p>2.通过修改环境变量，可以在任意目录下访问adb命令。 </p>
+<p>3.添加环境变量后，需重启计算机使其生效。</p>
+<h3 id="7-4-adb常用命令"><a href="#7-4-adb常用命令" class="headerlink" title="7.4 adb常用命令"></a>7.4 adb常用命令</h3><p>略</p>
+<h2 id="8-安卓模拟环境"><a href="#8-安卓模拟环境" class="headerlink" title="8. 安卓模拟环境"></a>8. 安卓模拟环境</h2><h3 id="8-1-安装软件"><a href="#8-1-安装软件" class="headerlink" title="8.1 安装软件"></a>8.1 安装软件</h3><p>1.到官网下载9.0模拟器，并安装<br><a href="https://www.ldmnq.com/">https://www.ldmnq.com/</a></p>
+<p>[更新!]适用于几乎所有安卓模拟器(7+)安装magisk的教程-简单无脑向<br><a href="https://www.52pojie.cn/thread-1583586-1-1.html">https://www.52pojie.cn/thread-1583586-1-1.html</a><br>(出处: 吾爱破解论坛)</p>
+<p>2.下载配置文件</p>
+<p>3.安装面具</p>
+<h3 id="8-2-Magisk介绍"><a href="#8-2-Magisk介绍" class="headerlink" title="8.2 Magisk介绍"></a>8.2 Magisk介绍</h3><p>Magisk 是一套用于定制 Android 的开源软件，支持高于 Android 5.0 的设备。</p>
+<p>以下是一些功能亮点：</p>
+<ul>
+<li><strong>MagiskSU</strong>：为应用程序提供 root 访问权限</li>
+<li><strong>Magisk 模块</strong>：通过安装模块修改只读分区</li>
+<li><strong>MagiskHide</strong>：从根检测 &#x2F; 系统完整性检查中隐藏 Magisk(Shamiko)</li>
+<li><strong>MagiskBoot</strong> : 最完整的安卓启动镜像解包和重新打包工具</li>
+</ul>
+<p>#二、工具介绍</p>
+<h2 id="1-IDE"><a href="#1-IDE" class="headerlink" title="1.IDE"></a>1.IDE</h2><p>IDE（集成开发环境）- IDEA</p>
+<ul>
+<li>IDEA介绍</li>
+</ul>
+<ol>
+<li><p>DEA全程InteliJ IDEA</p>
+</li>
+<li><p>在业界被公认为最好的Java开发工具</p>
+</li>
+<li><p>IDEA是JetBrains公司的产品，总部位于捷克的首部布拉格</p>
+</li>
+<li><p>除了支持Java开发，还支持HTML、CSS、PHP、MySQL、Python等</p>
+</li>
+</ol>
+<p>IDE（集成开发环境）- Eclipse</p>
+<ul>
+<li>Eclipse介绍</li>
+</ul>
+<ol>
+<li>Eclipse是开放源代码的、基于JAva的可拓展开发平台</li>
+<li>最初是由IBM公司耗资3000万美金开发的下一代IDE开发环境</li>
+<li>2001年11月贡献给开源社区</li>
+<li>Eclipse是目前最优秀的Java开发IDE之一</li>
+</ol>
+<h2 id="2-jadx"><a href="#2-jadx" class="headerlink" title="2. jadx"></a>2. jadx</h2><p>下载地址：<a href="https://github.com/skylot/jadx/releases/tag/v1.3.2">Release 1.3.2 · skylot&#x2F;jadx</a></p>
+<p>1.jadx是一个常用的反编译工具，更新到1.3版本，功能强大。 </p>
+<p>2.jadx安装在GitHub上，提供源代码和编译好的版本。 3.安装简单，不需要安装jadx本身，只需安装7-Zip用于解压。</p>
+<p> 4.安装完成后，通过修改注册表并勾选选项，自动识别jadx。 </p>
+<p>5.jadx界面默认中文版，可用于反编译APP，生成字面文件和代码。</p>
+<p> 6.新版本jadx可以直接导出源代码，支持中文显示内存使用栏。</p>
+<p>7.通过bat文件可以修改内存使用量，默认4GB，可改为8GB。 </p>
+<p>8.jadx支持搜索类名和源代码，具有调试功能，需配置ADB。 </p>
+<p>9.反混淆功能建议关闭，以免更改类名导致问题。</p>
+<h2 id="3-gda"><a href="#3-gda" class="headerlink" title="3.gda"></a>3.gda</h2><p>下载地址：<a href="http://www.gda.wiki:9090/">http://www.gda.wiki:9090/</a></p>
+<p>使用free版本</p>
+<h2 id="4-jeb"><a href="#4-jeb" class="headerlink" title="4. jeb"></a>4. jeb</h2><p><strong>JAD与JEB的比较</strong></p>
+<p>1.JAD可能反编译出的代码绿色注释部分不完整，反编译能力较弱。 </p>
+<p>2.JEB反编译能力更强，适用于JAD反编译失败的APP。 </p>
+<p>3.在JAD或JEB无法反编译的情况下，可以尝试使用定制ART虚拟机直接输出运行过程中的SMILE代码和寄存器参数进行分析。</p>
+<p><strong>JEB的安装与使用</strong></p>
+<p>1.下载JEB 4.2版本，解压后将jab.exe替换到bin目录下。 </p>
+<p>2.双击jab.exe打开软件，接受协议并生成key。 </p>
+<p>3.确保替换掉原jb.exe文件后，生成的东西才有用。 </p>
+<p>4.软件界面延迟到2033年，可以通过拖入文件进行反编译。 </p>
+<p>5.在Edit菜单下选择Language，可以切换到中文界面。 </p>
+<p>6.反编译出的JAVA代码可以在Smart Code区域查看，搜索和跳转功能也十分便捷。 </p>
+<p>7.JEB需要使用到JDK，并且JDK的大小目前最大为4GB，可以通过配置文件进行修改。</p>
+<h2 id="5-apktool"><a href="#5-apktool" class="headerlink" title="5. apktool"></a>5. apktool</h2><p>官方地址<a href="https://maximoff.su/**apktool**/?history=1&lang=zh">https://maximoff.su/**apktool**/?history=1&amp;lang=zh</a></p>
+<h2 id="6-frida"><a href="#6-frida" class="headerlink" title="6.frida"></a>6.frida</h2><ul>
+<li>frida-server 安装（Android）: <a href="https://frida.re/docs/android/">https://frida.re/docs/android/</a></li>
+<li>frida-tools 安装：<a href="https://frida.re/docs/installation/">https://frida.re/docs/installation/</a></li>
+<li>frida 官方网站: <a href="https://frida.re/">https://frida.re/</a></li>
+<li>frida 官方文档：<a href="https://frida.re/docs/">https://frida.re/docs/</a></li>
+</ul>
+<p>本次安装涉及Frida 的两个组件，一个是安装到手机或模拟器中的: <code>frida-server</code>，另外就是装在电脑上用于逆向分析的：<code>frida-tools</code>。</p>
+<h4 id="frida-server-安装"><a href="#frida-server-安装" class="headerlink" title="frida-server 安装"></a><code>frida-server</code> 安装</h4><p>安装方法参考：<a href="https://blog.csdn.net/weixin_45320254/article/details/126215490">最新2023：Frida完美安装方案_frida-server下载-CSDN博客</a></p>
+<p>关键步骤：</p>
+<p>将解压之后的文件push到设备中，指定到 &#x2F;data&#x2F;local&#x2F;tmp 路径下重命名为 frida-server。</p>
+<p>终端输入</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">PS D:\&gt; adb push C:\Users\xxx\Desktop\frida-server-15.2.2-android-x86_64 /data/local/tmp/frida-server</span><br><span class="line">C:\Users\xxx\Desktop\frida-server-15.2.2-android-x86...le pushed, 0 skipped. 19.4 MB/s (99542760 bytes in 4.882s)    </span><br></pre></td></tr></table></figure>
+
+<p>命令行运行android设备中的frida-server。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">PS D:\&gt; adb shell   // 进入手机</span><br><span class="line">VOG-AL00:/ # su    // 确定手机是root权限</span><br><span class="line">VOG-AL00:/ # cd /data/local/tmp      // 进入到tmp目录下</span><br><span class="line">VOG-AL00:/data/local/tmp # chmod 777 frida-server      // 给执行权限，可读可写可执行</span><br><span class="line">VOG-AL00:/data/local/tmp # ./frida-server      //正式启动frida-server</span><br></pre></td></tr></table></figure>
+
+<p><code>提示：执行完毕后为运行状态。这个shell不能关闭，关闭了frida就停止了。</code></p>
+<p>应用参考：<a href="https://blog.csdn.net/qq_38474570/article/details/120876120">Android之Frida框架完全使用指南_android frida-CSDN博客</a></p>
+<h4 id="安装-FRIDA-DEXDump"><a href="#安装-FRIDA-DEXDump" class="headerlink" title="安装 FRIDA-DEXDump"></a><strong>安装 FRIDA-DEXDump</strong></h4><p>从 GitHub 仓库克隆项目并安装：</p>
+<p>手动下载<a href="https://github.com/hluwa/frida-dexdump">frida-dexdump</a></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/hluwa/FRIDA-DEXDump.git</span><br><span class="line"><span class="built_in">cd</span> FRIDA-DEXDump</span><br><span class="line">pip3 install -r requirements.txt</span><br></pre></td></tr></table></figure>
+
+<p>参考：<a href="https://www.52pojie.cn/forum.php?mod=viewthread&tid=1945680&highlight=Frida">Frida 安装 - 吾爱破解 </a></p>
+<p>逆向过程中，借助<strong>Frida</strong> 可以更快的实现软件的逆向破解，Frida不仅可以实现Android应用的逆向，对于IOS应用，Windows应用同样可以实现不错的效果本文可能由于frida 代码的不断更新，可能出现某些错误或者过时，大家尽量以官方文档为主：</p>
+<ul>
+<li>frida-server 安装（Android）: <a href="https://frida.re/docs/android/">https://frida.re/docs/android/</a></li>
+<li>frida-tools 安装：<a href="https://frida.re/docs/installation/">https://frida.re/docs/installation/</a></li>
+<li>frida 官方网站: <a href="https://frida.re/">https://frida.re/</a></li>
+<li>frida 官方文档：<a href="https://frida.re/docs/">https://frida.re/docs/</a></li>
+</ul>
+<p>本次安装涉及Frida 的两个组件，一个是安装到手机或模拟器中的: <code>frida-server</code>，另外就是装在电脑上用于逆向分析的：<code>frida-tools</code>。</p>
+<h4 id="frida-server-安装-1"><a href="#frida-server-安装-1" class="headerlink" title="frida-server 安装"></a><code>frida-server</code> 安装</h4><p>frida-server 本质上是一个二进制文件，将其拷贝到需要进行hook的系统中运行即可，下面以Android系统为例：</p>
+<p>首先需要从 <strong>github</strong> 的仓库中下载编译好的 frida-server 文件。仓库地址：<a href="https://github.com/frida/frida">https://github.com/frida/frida</a></p>
+<p>从Release中下载对应版本的文件即可。frida-server的命名规则为：<code>frida-server-&#123;版本号&#125;-&#123;支持的系统&#125;-&#123;CPU架构&#125;.&#123;压缩文件扩展名&#125;</code></p>
+<p>认准自己手机或模拟器的架构下载即可。例如我是 arm64 的 Android 手机，那么我就下载 <code>frida-server-16.4.5-android-arm64.xz</code> 即可</p>
+<p>下载到合适的frida-server后，使用<code>adb push</code>命令将二进制文件推送到目标设备中：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">adb push frida-server /data/local/tmp/</span><br></pre></td></tr></table></figure>
+
+<p>如果推送不成功，也可以先推送到 <code>/sdcard/</code> 目录后，再使用 <code>adb shell</code>将 frida-server 复制到 <code>/data/local/tmp/</code> 目录下</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">进入shell后，使用 su 命令切换到 root 用户</span></span><br><span class="line">su</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">如果手机/模拟器提示需要授权，请在手机上点击授权即可，请留意手机</span></span><br><span class="line">mv /sdcard/frida-server /data/local/tmp/</span><br></pre></td></tr></table></figure>
+
+<p>推送完成后，使用：<code>adb shell</code>命令进入shell，并赋予 <code>frida-server</code> 可执行权限</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">进入shell后，使用 su 命令切换到 root 用户</span></span><br><span class="line">su</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">如果手机/模拟器提示需要授权，请在手机上点击授权即可，请留意手机</span></span><br><span class="line">cd /data/local/tmp/</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">赋予 frida-server 可执行权限</span></span><br><span class="line">chmod 777 frida-server</span><br></pre></td></tr></table></figure>
+
+<p>上述工作都做完后，可以启动 <code>frida-server</code>了</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">进入shell后，使用 su 命令切换到 root 用户</span></span><br><span class="line">su</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">如果手机/模拟器提示需要授权，请在手机上点击授权即可，请留意手机</span></span><br><span class="line">cd /data/local/tmp/</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">赋予 frida-server 可执行权限</span></span><br><span class="line">./frida-server</span><br></pre></td></tr></table></figure>
+
+<p><code>frida-server</code>启动后不会有任何屏幕的提示信息。请注意这个命令行窗口不要关闭，如果命令窗口关闭后，<code>frida-server</code> 也会关闭</p>
+<h4 id="frida-tools-安装"><a href="#frida-tools-安装" class="headerlink" title="frida-tools 安装"></a><code>frida-tools</code> 安装</h4><p>需要注意的是，上文提到的 frida-server 需与 frida 版本保持一致，安装 <code>frida-tools</code> 时又会自动安装 <code>frida</code> 。那么如何得知 <code>frida-tools</code> 版本呢？</p>
+<p>首先打开 frida 仓库：<a href="https://github.com/frida/frida">https://github.com/frida/frida</a>, 在 Release 中寻找 frida 版本并查找到 frida 的发布日期</p>
+<p>获取到 frida 发布日期后，打开 frida-tools 仓库：<a href="https://github.com/frida/frida-tools">https://github.com/frida/frida-tools</a> 寻找上述 frida 发布日期的相同或之后的一个 frida-tools 版本，请记住这个版本号！</p>
+<p>以 Windows 系统为例，电脑中需要存在Python环境：</p>
+<p>使用以下命令安装 <code>frida-tools</code>:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"> 复制代码 隐藏代码</span><br><span class="line">pip3 install frida-tools==&#123;frida-tools版本号&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>注意：</strong></p>
+<p>安装 <code>frida-tools</code> 时会自动安装 <code>frida</code> 所以不要像网上某些教程教的一样分别安装, 不然有可能会出现安装失败或安装后运行时报错等问题！</p>
+</blockquote>
+<p>如果安装时出现网络连接问题，或者一些与网络相关的错误，请多试几遍，也可使用以下方法：</p>
+<ul>
+<li>使用 <code>-i</code> 参数指定软件源：<code>pip3 install frida-tools==&#123;frida-tools版本号&#125; -i https://pypi.tuna.tsinghua.edu.cn/simple</code></li>
+<li>使用 <code>--proxy</code> 参数: <code>pip3 install frida-tools==&#123;frida-tools版本号&#125; --proxy=&#39;socks5://127.0.0.1:7890&#39;</code></li>
+</ul>
+<p>安装完成后，使用命令<code>frida-ps</code> 命令验证是否安装成功：</p>
+<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line"><span class="function">C:\<span class="title">Users</span>\<span class="title">LemonGo97</span>&gt; <span class="title">frida</span>-<span class="title">ps</span></span></span><br><span class="line"><span class="function">  <span class="title">PID</span>  <span class="title">Name</span></span></span><br><span class="line"><span class="function">-----  ----------------------------</span></span><br><span class="line"><span class="function">  832  <span class="title">chrome.exe</span></span></span><br><span class="line"><span class="function">27076  <span class="title">chrome.exe</span></span></span><br><span class="line"><span class="function">30132  <span class="title">chrome.exe</span></span></span><br><span class="line"><span class="function">22788  <span class="title">chrome.exe</span></span></span><br><span class="line"><span class="function">21040  <span class="title">cmd.exe</span></span></span><br><span class="line"><span class="function">30480  <span class="title">cmd.exe</span></span></span><br><span class="line"><span class="function"> 1872  <span class="title">cmd.exe</span></span></span><br><span class="line"><span class="function">13060  <span class="title">conhost.exe</span></span></span><br><span class="line"><span class="function"> 1880  <span class="title">dllhost.exe</span></span></span><br><span class="line"><span class="function"> 8544  <span class="title">explorer.exe</span></span></span><br><span class="line"><span class="function">13700  <span class="title">frida</span>-<span class="title">ps.exe</span></span></span><br><span class="line"><span class="function">15032  <span class="title">nvcontainer.exe</span></span></span><br><span class="line"><span class="function">26740  <span class="title">rundll32.exe</span></span></span><br><span class="line"><span class="function">27464  <span class="title">rundll32.exe</span></span></span><br><span class="line"><span class="function">26948  <span class="title">rundll32.exe</span></span></span><br><span class="line"><span class="function"> 2076  <span class="title">rundll32.exe</span></span></span><br><span class="line"><span class="function"> 9824  <span class="title">sihost.exe</span></span></span><br><span class="line"><span class="function"> 9860  <span class="title">svchost.exe</span></span></span><br><span class="line"><span class="function"> 9868  <span class="title">svchost.exe</span></span></span><br><span class="line"><span class="function"> 9928  <span class="title">svchost.exe</span></span></span><br><span class="line"><span class="function">11208  <span class="title">svchost.exe</span></span></span><br><span class="line"><span class="function">20020  <span class="title">svchost.exe</span></span></span><br><span class="line"><span class="function">10020  <span class="title">taskhostw.exe</span></span></span><br><span class="line"><span class="function">10084  <span class="title">taskhostw.exe</span></span></span><br><span class="line"><span class="function">...</span></span><br></pre></td></tr></table></figure>
+
+<p>执行命令后出现的就是当前机器的进程列表，证明 <code>frida-tools</code> 单独运行是没问题的。那么如何测试是否能正确的与运行在手机或模拟器中的<code>frida-server</code>通信呢？</p>
+<p>将手机与电脑连接后，按照上文说的启动 <code>frida-server</code> ，在命令行中使用 <code>frida-ps -U</code>命令查看手机进程：</p>
+<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line"><span class="function">C:\<span class="title">Users</span>\<span class="title">LemonGo97</span>&gt; <span class="title">frida</span>-<span class="title">ps</span> -<span class="title">U</span></span></span><br><span class="line"><span class="function">  <span class="title">PID</span>  <span class="title">Name</span></span></span><br><span class="line"><span class="function">-----  --------------------------------------------</span></span><br><span class="line"><span class="function">  683  <span class="title">ATFWD</span>-<span class="title">daemon</span></span></span><br><span class="line"><span class="function">24558  <span class="title">adbd</span></span></span><br><span class="line"><span class="function">  672  <span class="title">adsprpcd</span></span></span><br><span class="line"><span class="function">  686  <span class="title">alipayservice</span></span></span><br><span class="line"><span class="function">11860  <span class="title">android.process.acore</span></span></span><br><span class="line"><span class="function">22740  <span class="title">android.process.contacts</span></span></span><br><span class="line"><span class="function">11653  <span class="title">android.process.media</span></span></span><br><span class="line"><span class="function">  690  <span class="title">audiod</span></span></span><br><span class="line"><span class="function">  664  <span class="title">bspCriticalLog</span></span></span><br><span class="line"><span class="function">  662  <span class="title">cnd</span></span></span><br><span class="line"><span class="function">  680  <span class="title">cnss</span>-<span class="title">daemon</span></span></span><br><span class="line"><span class="function">12137  <span class="title">com.amap.android.location</span></span></span><br><span class="line"><span class="function">12262  <span class="title">com.android.incallui</span></span></span><br><span class="line"><span class="function">24490  <span class="title">com.android.keyguard</span></span></span><br><span class="line"><span class="function">22711  <span class="title">com.android.mms</span></span></span><br><span class="line"><span class="function">12125  <span class="title">com.android.phone</span></span></span><br><span class="line"><span class="function">14538  <span class="title">com.android.providers.downloads</span></span></span><br></pre></td></tr></table></figure>
+
+<p>如果执行结果如上所示，那么基本上 frida 安装已经成功了，如果出现错误，请仔细检查以上的所有步骤是否正确。</p>
+<h2 id="7-BinaryNinja"><a href="#7-BinaryNinja" class="headerlink" title="7.BinaryNinja"></a>7.BinaryNinja</h2><h2 id="8-010-Editor"><a href="#8-010-Editor" class="headerlink" title="8.010 Editor"></a>8.010 Editor</h2><p>16进制文件编辑工具，以16进制方式打开文件。</p>
+<p><strong>总的（包含linux和windows以及破解软件）：</strong><br>链接：<a href="https://pan.baidu.com/s/1HoJfYRzuYD57BgjRmtVW-g?pwd=1ynu">https://pan.baidu.com/s/1HoJfYRzuYD57BgjRmtVW-g?pwd=1ynu</a><br>提取码：1ynu</p>
+<p>参考：<a href="https://blog.csdn.net/NS_ice/article/details/132398846">010editor的安装与基本操作-CSDN博客</a></p>
+<h2 id="9-Ghidra"><a href="#9-Ghidra" class="headerlink" title="9.Ghidra"></a>9.Ghidra</h2><p>参考：<a href="https://www.52pojie.cn/forum.php?mod=viewthread&tid=2020073&highlight=Ghidra">逆向分析工具GhidraMCP 吾爱破解</a></p>
+<pre><code>   [《Ghidra简介及使用方法》学习 - 吾爱破解](https://www.52pojie.cn/forum.php?mod=viewthread&amp;tid=1793425&amp;highlight=Ghidra)
+</code></pre>
+<h3 id="下载地址："><a href="#下载地址：" class="headerlink" title="下载地址："></a><strong>下载地址</strong>：</h3><p>从 GitHub Releases 下载对应系统的压缩包（如 <code>ghidra_11.0_PUBLIC_YYYYMMDD.zip</code>）。</p>
+<p><strong>解压文件</strong>：</p>
+<ul>
+<li><p><strong>Windows</strong>：使用 WinRAR、7-Zip 或系统自带解压工具。</p>
+</li>
+<li><p><strong>Linux&#x2F;macOS</strong>：</p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">unzip ghidra_11.0_PUBLIC_*.zip -d ~/ghidra</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a><strong>安装依赖</strong></h3><h4 id="Java-环境"><a href="#Java-环境" class="headerlink" title="Java 环境"></a><strong>Java 环境</strong></h4><p>Ghidra 需要 **Java 11+**（推荐 OpenJDK 11）：</p>
+<ul>
+<li><p><strong>Windows&#x2F;macOS</strong>：</p>
+<ul>
+<li>下载并安装 <a href="https://adoptium.net/">Adoptium Temurin JDK 11</a>。</li>
+</ul>
+</li>
+<li><p><strong>Linux</strong>：</p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt install openjdk-11-jdk  # Ubuntu/Debian</span><br><span class="line">sudo dnf install java-11-openjdk # Fedora</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="验证-Java-版本"><a href="#验证-Java-版本" class="headerlink" title="验证 Java 版本"></a><strong>验证 Java 版本</strong></h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">java -version  # 输出应包含 &quot;openjdk 11.0.x&quot;</span><br></pre></td></tr></table></figure>
+
+<h3 id="启动-Ghidra"><a href="#启动-Ghidra" class="headerlink" title="启动 Ghidra"></a><strong>启动 Ghidra</strong></h3><p><strong>Windows</strong></p>
+<ol>
+<li>进入解压后的目录 <code>ghidra_11.0/</code>。</li>
+<li>双击运行 **<code>ghidraRun.bat</code>**（可能需要管理员权限）</li>
+</ol>
+<h4 id="Linux-macOS"><a href="#Linux-macOS" class="headerlink" title="Linux&#x2F;macOS"></a><strong>Linux&#x2F;macOS</strong></h4><ol>
+<li><p>打开终端，进入解压目录：</p>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd ~/ghidra/ghidra_11.0</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>赋予执行权限并启动：</p>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">chmod +x ghidraRun</span><br><span class="line">./ghidraRun</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="首次配置"><a href="#首次配置" class="headerlink" title="首次配置"></a><strong>首次配置</strong></h3><ol>
+<li><strong>选择工作目录</strong>：<ul>
+<li>首次启动时，Ghidra 会提示设置项目目录（默认 <code>~/ghidra_projects</code>）。</li>
+</ul>
+</li>
+<li><strong>接受许可协议</strong>：<ul>
+<li>阅读并同意 Ghidra 的许可条款。</li>
+</ul>
+</li>
+</ol>
+<h3 id="基础使用"><a href="#基础使用" class="headerlink" title="基础使用"></a><strong>基础使用</strong></h3><p><strong>（1）创建项目</strong></p>
+<ol>
+<li>点击 **<code>File &gt; New Project</code>**。</li>
+<li>选择 **”Non-Shared Project”**（个人项目），输入项目名称（如 <code>MyFirstProject</code>）。</li>
+</ol>
+<p><strong>（2）导入文件</strong></p>
+<ol>
+<li>在项目窗口中，右键点击项目名 → **<code>Import File</code>**。</li>
+<li>选择要分析的二进制文件（如 <code>.exe</code>、<code>.elf</code>、<code>.dll</code>）。</li>
+<li>保持默认选项，点击 **”Import”**。</li>
+</ol>
+<p><strong>（3）分析代码</strong></p>
+<ol>
+<li>双击导入的文件，Ghidra 会提示是否分析 → 点击 **”Yes”**。</li>
+<li>选择分析选项（默认勾选所有），点击 **”Analyze”**：<ul>
+<li><strong>反编译</strong>：查看伪代码（按 <code>F</code> 聚焦到函数）。</li>
+<li><strong>字符串搜索</strong>：在 <code>Defined Strings</code> 列表查找线索（如 <code>flag&#123;</code>）。</li>
+<li><strong>交叉引用（XRefs）</strong>：右键点击函数或变量 → **”References”**。</li>
+</ul>
+</li>
+</ol>
+<p><strong>（4）常用快捷键</strong></p>
+<ul>
+<li><code>F</code>：聚焦到当前函数。</li>
+<li><code>G</code>：跳转到地址。</li>
+<li><code>Ctrl + F</code>：在当前视图搜索文本。</li>
+<li><code>;</code>：添加注释。</li>
+</ul>
+<hr>
+<h3 id="高级功能"><a href="#高级功能" class="headerlink" title="高级功能"></a><strong>高级功能</strong></h3><p><strong>（1）脚本与插件</strong></p>
+<ul>
+<li><strong>脚本</strong>：在 <code>Window &gt; Script Manager</code> 中运行 Python 脚本（如自动解密算法）。</li>
+<li><strong>插件</strong>：将插件放入 <code>ghidra_11.0/Ghidra/Extensions</code> 目录并重启。</li>
+</ul>
+<p><strong>（2）版本控制</strong></p>
+<ul>
+<li>支持通过 Git 管理项目（需手动配置）。</li>
+</ul>
+<p><strong>（3）反编译优化</strong></p>
+<ul>
+<li>在反编译窗口右键 → <strong>“Rename Variable”</strong> 或 <strong>“Retype Variable”</strong> 提高可读性。</li>
+</ul>
+<h3 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a><strong>常见问题</strong></h3><p><strong>（1）启动报错 “No suitable Java version found”</strong></p>
+<ul>
+<li><strong>原因</strong>：未安装 Java 11 或环境变量配置错误。</li>
+<li><strong>解决</strong>：<ul>
+<li>检查 <code>java -version</code> 是否为 JDK 11。</li>
+<li>手动指定 Java 路径（编辑 <code>ghidraRun</code> 脚本）。</li>
+</ul>
+</li>
+</ul>
+<p><strong>（2）分析卡死</strong></p>
+<ul>
+<li><strong>原因</strong>：大文件分析内存不足。</li>
+<li><strong>解决</strong>：<ul>
+<li>修改 <code>ghidraRun</code> 中的内存参数（如 <code>MAXMEM=4096M</code>）。</li>
+</ul>
+</li>
+</ul>
+<p><strong>（3）中文乱码</strong></p>
+<ul>
+<li><strong>解决</strong>：<ul>
+<li>在反汇编视图右键 → <strong>“Options &gt; Listing Fields”</strong> → 修改字体为支持中文的字体（如宋体）。</li>
+</ul>
+</li>
+</ul>
+<h3 id="学习资源"><a href="#学习资源" class="headerlink" title="学习资源"></a><strong>学习资源</strong></h3><ul>
+<li><strong>官方文档</strong>：<br>  <a href="https://ghidra-sre.org/">https://ghidra-sre.org/</a></li>
+<li><strong>入门教程</strong>：<br>  <a href="https://ghidra.re/ghidra_docs/Introductory_Tutorial.html">Ghidra 官方入门指南</a></li>
+<li><strong>社区支持</strong>：<br>  <a href="https://github.com/NationalSecurityAgency/ghidra/discussions">Ghidra 官方论坛</a></li>
+</ul>
+<h2 id="10-HxD-Hex"><a href="#10-HxD-Hex" class="headerlink" title="10.HxD_Hex"></a>10.HxD_Hex</h2><p>HxD Hex Editor 是一款功能强大的十六进制编辑器和磁盘编辑器，它可以让你直接查看和编辑二进制文件的内容。你可以使用HxD Hex Editor来分析、修改和处理各种数据格式，包括程序文件、磁盘映像、内存转储以及其他二进制文件。</p>
+<p>下载地址：<a href="https://mh-nexus.de/en/hxd">HxD | https://mh-nexus.de/en/hxd</a></p>
+<h3 id="功能介绍"><a href="#功能介绍" class="headerlink" title="功能介绍"></a>功能介绍</h3><ol>
+<li><p>以十六进制表示方式显示文件内容，并允许直接编辑其中的字节</p>
+</li>
+<li><p>支持将数据按特定数据类型进行解析和显示，方便对结构化数据进行编辑和分析。</p>
+<p> 视图  &gt;&gt;  位置显示数制、数据显示、字节分组大小</p>
+</li>
+<li><p>可用于比较两个文件的差异，以找出变更或修改的部分。</p>
+<p> 将两个图像的数据进行对比</p>
+</li>
+<li><p>可以执行文本或二进制数据的搜索和替换操作，帮助定位和修改特定的数据。</p>
+<p> 搜索  &gt;&gt;  搜索（Ctrl+F）……</p>
+</li>
+<li><p>支持将数据导入到文件中或将文件导出为不同的数据格式</p>
+<p> 文件 &gt;&gt;  导出  &gt;&gt;  ……</p>
+</li>
+<li><p>能够处理非常大的文件，并且在编辑和浏览时保持快速响应。</p>
+</li>
+</ol>
+<p>了解更多详情：<a href="https://mh-nexus.de/en/hxd/">https://mh-nexus.de/en/hxd/</a></p>
+<p>用途<br>HxD Hex Editor通常用于以下几个方面：</p>
+<p>1）帮助软件开发人员进行反汇编、调试和逆向工程。查看和修改程序的二进制代码，以理解其内部结构、修复漏洞或进行功能定制。</p>
+<p>2）对于受损的文件或存储介质，HxD Hex Editor可以帮助您直接浏览并修复数据错误。查看和编辑二进制数据来识别并修复文件中的损坏部分，如磁盘映像、内存转储等。</p>
+<p>3）HxD Hex Editor提供了强大的数据分析和处理功能，一些游戏会使用二进制文件格式来存储游戏数据。</p>
+<h2 id="11-upx"><a href="#11-upx" class="headerlink" title="11.upx"></a>11.upx</h2><h2 id="12-XVolkolak"><a href="#12-XVolkolak" class="headerlink" title="12.XVolkolak"></a>12.XVolkolak</h2><h2 id="13-radare2"><a href="#13-radare2" class="headerlink" title="13.radare2"></a>13.radare2</h2><h3 id="Linux环境"><a href="#Linux环境" class="headerlink" title="Linux环境"></a>Linux环境</h3><p>安装radare2</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt install -y gcc make cmake curl git  gcc-multilib</span><br><span class="line">git clone https://github.com/radare/radare2.git</span><br><span class="line">cd radare2</span><br><span class="line">./sys/install.sh</span><br><span class="line"></span><br><span class="line"># 卸载</span><br><span class="line"></span><br><span class="line">make uninstall</span><br><span class="line">make purge</span><br></pre></td></tr></table></figure>
+
+<h3 id="window环境"><a href="#window环境" class="headerlink" title="window环境"></a>window环境</h3><p>参考：</p>
+<p><a href="https://bbs.kanxue.com/thread-225529.htm">在Windows平台下的使用radare2进行调试-外文翻译-看雪</a></p>
+<p>在Windows上安装Radare2并配置r2pipe库的步骤如下：</p>
+<h3 id="下载正确的文件"><a href="#下载正确的文件" class="headerlink" title="下载正确的文件"></a><strong>下载正确的文件</strong></h3><p>访问 <a href="https://github.com/radareorg/radare2/releases/tag/5.9.8">Radare2 5.9.8 发布页面</a>，在 <strong>Assets</strong> 部分找到以下文件：</p>
+<ul>
+<li><strong><code>radare2-5.9.8-w64.zip</code></strong><ul>
+<li>这是 <strong>64 位 Windows 系统</strong>的预编译版本，适用于天选2笔记本（现代笔记本通常为 64 位系统）。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a><strong>安装步骤</strong></h3><ol>
+<li><p><strong>下载文件</strong>：点击 <code>radare2-5.9.8-w64.zip</code> 下载压缩包。</p>
+</li>
+<li><p><strong>解压文件</strong>：将压缩包解压到任意目录（例如 <code>C:\radare2</code>）。</p>
+</li>
+<li><p><strong>配置环境变量</strong>：</p>
+<ul>
+<li>将 Radare2 的 <code>bin</code> 目录（如 <code>C:\radare2\bin</code>）添加到系统 <code>PATH</code> 环境变量。</li>
+<li><strong>步骤</strong>：<ol>
+<li>右键点击“此电脑” → 属性 → 高级系统设置 → 环境变量 → 编辑系统变量 <code>Path</code> → 添加 <code>C:\radare2\bin</code>。</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p><strong>验证安装</strong>：</p>
+<ul>
+<li><p>打开命令提示符（CMD 或 PowerShell），输入：</p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">r2 -v</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>输出应显示版本信息：<code>radare2 5.9.8 ...</code>。</p>
+</li>
+</ul>
+</li>
+<li><p>打开命令提示符（CMD）或PowerShell，并导航至Radare2所在目录。使用以下命令：</p>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd C:\radare2</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在该目录下执行以下命令来运行Radare2：</p>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">r2.exe</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>这将启动Radare2交互式环境。</p>
+<p> 验证Radare2是否正确安装。在Radare2交互式环境中，输入<code>?</code>或<code>help</code>命令查看帮助文档。</p>
+<p> 接下来，您可以通过pip来安装r2pipe库。请确保您已经安装了Python和pip。</p>
+<p> 打开命令提示符或PowerShell，并运行以下命令来安装r2pipe库：</p>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pip install r2pipe</span><br></pre></td></tr></table></figure>
+
+<p> 安装完成后，您可以在Python脚本中导入并使用r2pipe库与已安装的Radare2进行交互了。</p>
+</li>
+</ol>
+<p>以上是在Windows上安装和配置Radare 2及r2pipe库的基本步骤。根据系统和安装方式，可能会有细微差异，请参考官方文档或社区支持寻求更详细的帮助。</p>
+<p>安装程序都将radare2.exe以及其他工具放在C：&#x2F;users &#x2F;username &#96;&#96;&#x2F; AppData目录中。 我必须从命令行将目录切换到该文件夹才能使用可执行文件。 为了从命令行的任何位置访问该文件，必须将该目录添加到$ PATH环境变量中。 这计算机用来查找可以从系统的任何位置运行的命令和应用程序的变量。<br>要设置你的$ PATH变量，你可以通过以下两种方法之一来完成。 您可以通过转到系统属性 -&gt;高级 -&gt;环境变量来使用Windows GUI进行更改，单击路径变量并单击编辑。 然后你可以添加你的radare2文件的目录。</p>
+<h3 id="命令行使用方法"><a href="#命令行使用方法" class="headerlink" title="命令行使用方法"></a>命令行使用方法</h3><p>Radare2 在命令行下有一些小工具可供使用：</p>
+<ul>
+<li>radare2：十六进制编辑器和调试器的核心，通常通过它进入交互式界面。</li>
+<li>rabin2：从可执行二进制文件中提取信息。</li>
+<li>rasm2：汇编和反汇编。</li>
+<li>rahash2：基于块的哈希工具。</li>
+<li>radiff2：二进制文件或代码差异比对。</li>
+<li>rafind2：查找字节模式。</li>
+<li>ragg2：r_egg 的前端，将高级语言编写的简单程序编译成x86、x86-64和ARM的二进制文件。</li>
+<li>rarun2：用于在不同环境中运行程序。</li>
+<li>rax2：数据格式转换。</li>
+</ul>
+<h4 id="radare2-r2"><a href="#radare2-r2" class="headerlink" title="radare2&#x2F;r2"></a>radare2&#x2F;r2</h4><p>参数很多，这里最重要是 <code>file</code>。如果想 attach 到一个进程上，则使用 <code>pid</code>。常用参数如下：</p>
+<ul>
+<li><code>-A</code>：相当于在交互界面输入了 <code>aaa</code>。</li>
+<li><code>-c</code>：运行 radare 命令。（<code>r2 -A -q -c &#39;iI~pic&#39; file</code>）</li>
+<li><code>-d</code>：调试二进制文件或进程。</li>
+<li><code>-a</code>,<code>-b</code>,<code>-o</code>：分别指定体系结构、位数和操作系统，通常是自动的，但也可以手动指定。</li>
+<li><code>-w</code>：使用可写模式打开。</li>
+</ul>
+<h4 id="rabin2"><a href="#rabin2" class="headerlink" title="rabin2"></a>rabin2</h4><p>拿到一个二进制文件时，第一步就是获取关于它的基本信息，这时候就可以使用 rabin2。rabin2 可以获取包括 ELF、PE、Mach-O、Java CLASS 文件的区段、头信息、导入导出表、数据段字符串、入口点等信息，并且支持多种格式的输出。</p>
+<p>下面介绍一些常见的用法：</p>
+<ul>
+<li><code>-I</code>：最常用的参数，它可以打印出二进制文件信息，其中我们需要重点关注其使用的安全防护技术，如 canary、pic、nx 等。（<code>file</code>、<code>chekcsec -f</code>）</li>
+<li><code>-e</code>：得到二进制文件的入口点。（｀readelf -h&#96;）</li>
+<li><code>-i</code>：获得导入符号表，RLT中的偏移等。（<code>readelf -r</code>）</li>
+<li><code>-E</code>：获得全局导出符号表。</li>
+<li><code>-s</code>：获得符号表。（<code>readelf -s</code>）</li>
+<li><code>-l</code>：获得二进制文件使用到的动态链接库。（<code>ldd</code>）</li>
+<li><code>-z</code>：从 ELF 文件的 .rodare 段或 PE 文件的 .text 中获得字符串。（<code>strings -d</code>）</li>
+<li><code>-S</code>：获得完整的段信息。（<code>readelf -S</code>）</li>
+<li><code>-c</code>：列出所有类，在分析 Java 程序是很有用。</li>
+</ul>
+<p>最后还要提到的一个参数 <code>-r</code>，它可以将得到的信息以 radare2 可读的形式输出，在后续的分析中可以将这样格式的信息输入 radare2，这是非常有用的。</p>
+<h4 id="rasm2"><a href="#rasm2" class="headerlink" title="rasm2"></a>rasm2</h4><p>rasm2 是一个内联汇编、反汇编程序。它的主要功能是获取给定机器指令操作码对应的字节。</p>
+<p>下面是一些重要的参数：</p>
+<ul>
+<li><code>-L</code>：列出目标体系结构所支持的插件，输出中的第一列说明了插件提供的功能（a&#x3D;asm, d&#x3D;disasm, A&#x3D;analyze, e&#x3D;ESIL）。</li>
+<li><code>-a</code>：知道插件的名字后，就可以使用 -a&#96; 来进行设置。</li>
+<li><code>-b</code>：设置CPU寄存器的位数。</li>
+<li><code>-d</code>：反汇编十六进制对字符串。</li>
+<li><code>-D</code>：反汇编并显示十六进制对和操作码。</li>
+<li><code>-C</code>：汇编后以 C 语言风格输出。</li>
+<li><code>-f</code>：从文件中读入汇编代码。</li>
+</ul>
+<h4 id="rahash2"><a href="#rahash2" class="headerlink" title="rahash2"></a>rahash2</h4><p>rahash2 用于计算检验和，支持字节流、文件、字符串等形式和多种算法。</p>
+<p>重要参数：</p>
+<ul>
+<li><code>-a</code>：指定算法。默认为 sha256，如果指定为 all，则使用所有算法。</li>
+<li><code>-b</code>：指定块的大小（而不是整个文件）</li>
+<li><code>-B</code>：打印处每个块的哈希</li>
+<li><code>-s</code>：指定字符串（而不是文件）</li>
+<li><code>-a entropy</code>：显示每个块的熵（<code>-B -b 512 -a entropy</code>）</li>
+</ul>
+<h4 id="radiff2"><a href="#radiff2" class="headerlink" title="radiff2"></a>radiff2</h4><p>radiff2 是一个基于偏移的比较工具。</p>
+<p>重要参数：</p>
+<ul>
+<li><p><code>-s</code>：计算文本距离并得到相似度。</p>
+</li>
+<li><p><code>－AC</code>：这两个参数通常一起使用，从函数的角度进行比较。</p>
+</li>
+<li><pre><code>  -g
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">	：得到给定的符号或两个偏移的图像对比。</span><br><span class="line"></span><br><span class="line">	- 如：`radiff2 -g main a.out b.out | xdot -`（需要安装xdot）</span><br><span class="line"></span><br><span class="line">- `-c`：计算不同点的数量。</span><br><span class="line"></span><br><span class="line">#### rafind2</span><br><span class="line"></span><br><span class="line">rafind2 用于在二进制文件中查找字符模式。</span><br><span class="line"></span><br><span class="line">重要参数：</span><br><span class="line"></span><br><span class="line">- `-s`：查找特定字符串。</span><br><span class="line">- `-e`：使用正则匹配。</span><br><span class="line">- `-z`：搜索以`\0`结束的字符串。</span><br><span class="line">- `-x`：查找十六进制字符串。</span><br><span class="line"></span><br><span class="line">#### ragg2</span><br><span class="line"></span><br><span class="line">ragg2 可以将高级语言编写的简单程序编译成 x86、x86-64 或 ARM 的二进制文件。</span><br><span class="line"></span><br><span class="line">重要参数：</span><br><span class="line"></span><br><span class="line">- `-a`：设置体系结构。</span><br><span class="line">- `-b`：设置体系结构位数(32/64)。</span><br><span class="line">- `-P`：生成某种模式的字符串，常用于输入到某程序中并寻找溢出点。</span><br><span class="line">- -r：使用原始字符而不是十六进制对。</span><br><span class="line">	- ragg2 -P 50 -r`</span><br><span class="line">- -i：生成指定的 shellcode。查看-L。</span><br><span class="line">	- `ragg2 -a x86 -b 32 -i exec`</span><br><span class="line">- `-e`：使用指定的编码器。查看 `-L`。</span><br><span class="line"></span><br><span class="line">#### rarun2</span><br><span class="line"></span><br><span class="line">rarun2 是一个可以使用不同环境、参数、标准输入、权限和文件描述符的启动器。</span><br><span class="line"></span><br><span class="line">常用的参数设置：</span><br><span class="line"></span><br><span class="line">- `program`</span><br><span class="line">- `arg1`, `arg2`,…</span><br><span class="line">- `setenv`</span><br><span class="line">- `stdin`, `stdout`</span><br><span class="line"></span><br><span class="line">#### rax2</span><br><span class="line"></span><br><span class="line">rax2 是一个格式转换工具，在二进制、八进制、十六进制数字和字符串之间进行转换。</span><br><span class="line"></span><br><span class="line">重要参数：</span><br><span class="line"></span><br><span class="line">- `-e`：交换字节顺序</span><br><span class="line">- `-s`：十六进制-&gt;字符</span><br><span class="line">- `-S`：字符-&gt;十六进制</span><br><span class="line">- `-D`, `-E`：base64 解码和编码</span><br><span class="line"></span><br><span class="line">## 14.Strings</span><br><span class="line"></span><br><span class="line">## ZipRepair</span><br><span class="line"></span><br><span class="line">## x64dbg</span><br><span class="line"></span><br><span class="line">x64dbg 是一款开源的、目前仍在积极开发中的 x32/x64 位动态调试器。其界面及操作方法与 [OllyDbg](https://www.52pojie.cn/thread-350397-1-1.html) 类似，和 OllyDbg 不同的是它可以对 64 位程序进行调试。此外，其开放式的设计给了此软件很强的生命力。通过爱好者们不断的修改和扩充，使其功能越来越强大。</span><br><span class="line">该调试器(目前)有三部分：DBG、GUI、Bridge：</span><br><span class="line">DBG 是调试器的调试部分。它处理调试技术(使用 TitanEngine 引擎，近来还新增了 Gleebug 引擎)，并为 GUI 提供数据。</span><br><span class="line">GUI 是调试器的图形部分。它建立在 Qt 上，并提供用户交互界面。</span><br><span class="line">Bridge 是 DBG 和 GUI 部分的通信库(将来也许是在更多的部件之间)。Bridge 可用于在新建功能上工作，而无需更新代码的其他部分。</span><br><span class="line"></span><br><span class="line">**汉化修订说明：**</span><br><span class="line"></span><br><span class="line">1. 对 x64dbg 帮助文档的主要内容进行了汉化，并按照最新版进行了修订、补译。对界面字体以及布局重新进行了设置。将默认调用在线英文帮助更改为调用本地中文帮助文件。</span><br><span class="line">2. 为帮助用户更好地了解 x64dbg 反汇编后的 CPU 汇编指令信息，对汇编指令的“助记符摘要”全部进行了汉化。对“助记符帮助”进行了部分汉化。汇编指令的汉化参考了“清华大学出版社”出版的《汇编语言程序设计教程》(第4版) 中术语，因此可能与其他软件的汉化术语略有不同。</span><br><span class="line">3. 对 Scylla 插件等进行了全面汉化。</span><br><span class="line">4. 对 x64dbg 官方中文版的汉化错误及不一致处进行了修订，并与帮助文档的关键词进行了统一。</span><br><span class="line">5. 对中文版界面的字体进行了重新设置，使其更为美观。</span><br><span class="line">6. 对“暗黑”主题界面颜色的默认值进行了调整，使代码显示更为清晰。并对主题的“选项&gt;外观”对话框中的“颜色”和“字体”标签的排列错位进行了调整。</span><br><span class="line">7. 本次更新集成了可在“CPU”界面搜索中文字符串引用的 x64dbg_tol 插件。</span><br><span class="line">8. 本次更新版本修改了启动条件，改为直接以管理员权限启动。</span><br><span class="line">9. 本次去除了新版本主程序的数字签名，解决了某些 DLL 文件的非标字串不能汉化的问题。</span><br><span class="line"></span><br><span class="line">在x64dbg中设置条件断点 – by elecs@看雪学院</span><br><span class="line">https://bbs.pediy.com/thread-251385.htm</span><br><span class="line"></span><br><span class="line">x64dbg Plugin Manager 第三方人员开发的插件管理器</span><br><span class="line">https://github.com/horsicq/x64dbg-Plugin-Manager</span><br><span class="line"></span><br><span class="line">官网：https://x64dbg.com/</span><br><span class="line"></span><br><span class="line">x64dbg官方下载地址（软件原版已经自带简体中文语言）</span><br><span class="line">https://github.com/x64dbg/x64dbg/releases</span><br><span class="line">https://sourceforge.net/projects/x64dbg/files/snapshots</span><br><span class="line"></span><br><span class="line">x64dbg 简体中文版(Jan 6 2024)： https://www.lanzouu.com/iuFXx1l65ush</span><br><span class="line"></span><br><span class="line">## IDA pro</span><br><span class="line"></span><br><span class="line">参考：[IDA Pro 9 安装和插件配置-安全工具-看雪](https://bbs.kanxue.com/thread-285604.htm#msg_header_h1_1)</span><br><span class="line"></span><br><span class="line">### IDA Pro 9.0.241217 SP1</span><br><span class="line"></span><br><span class="line">打包了配置好的IDA9 SP1,设置IDAPython路径即可使用</span><br><span class="line"></span><br><span class="line">附件:</span><br><span class="line"></span><br><span class="line">- IDAPlugins.zip</span><br><span class="line"></span><br><span class="line">- IdaPro9Beta-Keygen-iRabbit.py</span><br><span class="line"></span><br><span class="line">- IDA Professional 9.0.7z</span><br><span class="line"></span><br><span class="line">	链接: https://pan.baidu.com/s/1eCmxbP6nNHm5qz41rFbetg?pwd=5hdq</span><br><span class="line"></span><br><span class="line">参考如下步骤</span><br><span class="line"></span><br><span class="line">1. 运行ida-pro_90sp1_x64win.exe安装ida</span><br><span class="line">2. 修改IdaPro9Beta-Keygen-iRabbit.py文件的部分内容,复制到ida根目录</span><br><span class="line">3. python运行keygen,自动修补</span><br><span class="line">4. 修改patched文件后缀,替换ida.dll和ida32.dll(注意保存原始文件)</span><br><span class="line"></span><br><span class="line">### IDA Pro 9.1.250226</span><br><span class="line"></span><br><span class="line">相比之下9.1修了不少bug,分析程序更快更丝滑,还有signatures-bundle和IDA Feeds可以使用</span><br><span class="line"></span><br><span class="line">实测9.0的patch脚本可用于9.1,并且大部分9.0的插件可用于9.1,由于二者配置方法类似便不多赘述</span><br><span class="line"></span><br><span class="line">更新部分如下(2025/04/14):</span><br><span class="line"></span><br><span class="line">1. 初始化IDA</span><br><span class="line"></span><br><span class="line">	参考Binwalker师傅编写的7.7绿色版的IDA_InitTool</span><br><span class="line"></span><br><span class="line">	使用python实现禁用IDA自动更新和设置IDAPython路径的功能(默认使用嵌入的python3.11.9</span><br><span class="line"></span><br><span class="line">2. 配置和使用IDA Feeds插件</span><br><span class="line"></span><br><span class="line">	泄露文件中包括了符号库signatures-bundles-9.1.zip,物尽其用配置了一波该插件</span><br><span class="line"></span><br><span class="line">3. 配置和使用IDA MCP插件</span><br><span class="line"></span><br><span class="line">	实测自动化分析效果和WPeChatGPT差不多,但能看到分析过程,需要注意消耗的token更多</span><br><span class="line"></span><br><span class="line">提供配置好的IDA9.1压缩包,初次使用前运行InitIDA.exe后即可使用(WPeChatgpt需要手动配置api和模型)</span><br><span class="line">IDA Professional 9.1.7z 链接: https://pan.baidu.com/s/16Hk9FjEygb1yohUzblxdFw?pwd=8put 提取码: 8put</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## **GDB（Linux）**</span><br><span class="line"></span><br><span class="line">1. 安装：</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+  sudo apt install gdb
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">2. 基础命令：</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+  gdb ./target         # 加载程序
+  break main           # 在main函数下断点
+  run                 # 运行
+  ni                  # 单步执行
+  info registers      # 查看寄存器
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># IDA Pro快速上手</span><br><span class="line"></span><br><span class="line">参考：[IDA Pro的使用CSDN](https://blog.csdn.net/Python_0011/article/details/146866529)</span><br><span class="line"></span><br><span class="line">来源：BUUCTF 	题目：easyre</span><br><span class="line"></span><br><span class="line">## 打开软件</span><br><span class="line"></span><br><span class="line">打开IDA，会看到 &quot;New&quot; 和 &quot;Go&quot; 两个选项。&quot;New&quot; 是直接打开程序，&quot;Go&quot; 是先启动 IDA 界面。</span><br><span class="line"></span><br><span class="line">选 &quot;Go&quot;，启动后，在菜单栏里点 &quot;File&quot; -&gt; &quot;Open&quot;，找到要分析的程序。然后会跳出个窗口，默认设置就好。</span><br><span class="line"></span><br><span class="line">### 加载文件配置窗口</span><br><span class="line"></span><br><span class="line">这个界面是一个IDA Pro或类似的逆向工程软件在加载可执行文件时显示的配置对话框。以下是各部分的解释：</span><br><span class="line"></span><br><span class="line">**1. 文件加载信息**</span><br><span class="line"></span><br><span class="line">- **`Load file F:\AA-Reversing\BUUCTF\easyre\easyre.exe as`**</span><br><span class="line">	表示正在加载的可执行文件路径和名称（`easyre.exe`），并询问以何种格式解析该文件。</span><br><span class="line">	提供的选项包括：</span><br><span class="line">	- **Portable executable for AMD64 (PE) [pe.dll]**：将文件解析为64位PE格式（Windows可执行文件）。</span><br><span class="line">	- **MS-DOS executable (EXE) [dos.dll]**：将文件解析为MS-DOS格式（旧版兼容模式）。</span><br><span class="line">	- **Binary file**：直接以二进制文件形式加载（无自动解析）。</span><br><span class="line"></span><br><span class="line">**2. 处理器类型（Processor type）**</span><br><span class="line"></span><br><span class="line">选择目标文件的CPU架构，通常工具会根据文件头自动识别，但也可手动调整。例如：</span><br><span class="line"></span><br><span class="line">- **Intel Pentium protected with MMX**：保护模式下的x86指令集（常见于Windows/Linux可执行文件）。</span><br><span class="line">- **Intel Pentium real with MMX**：实模式（常见于DOS程序）。</span><br><span class="line">- **MetaPC**：通用反汇编模式。</span><br><span class="line">- **Intel 860**：较少见的架构（通常不用于常规逆向）。</span><br><span class="line"></span><br><span class="line">**3. 加载段配置（Loading segment/offset）**</span><br><span class="line"></span><br><span class="line">- **Loading segment 0x0000000000000000**</span><br><span class="line">	指定代码段的起始地址（通常PE文件会从`0x00400000`开始，此处可能是默认值或手动输入）。</span><br><span class="line">- **Loading offset 0x0000000000000000**</span><br><span class="line">	指定文件在内存中的偏移量（与段地址配合使用）。</span><br><span class="line"></span><br><span class="line">**4. 分析选项（Analysis/Options）**</span><br><span class="line"></span><br><span class="line">- **Enabled**：是否启用自动分析（如识别函数、字符串等）。</span><br><span class="line">- **Create segments**：自动创建代码/数据段。</span><br><span class="line">- **Load resources**：加载PE文件的资源部分（如图标、字符串表）。</span><br><span class="line">- **Fill segment gaps**：填充段之间的空隙（对齐内存）。</span><br><span class="line">- **Create FLAT group**：将段合并为平坦内存模型（简化地址计算）。</span><br><span class="line">- **Manual load**：手动加载（高级用户自定义配置）。</span><br><span class="line"></span><br><span class="line">**5. 底部按钮**</span><br><span class="line"></span><br><span class="line">- **OK**：确认配置并加载文件。</span><br><span class="line">- **Cancel**：取消加载。</span><br><span class="line">- **Help**：查看帮助文档。</span><br><span class="line"></span><br><span class="line">**用户操作建议**</span><br><span class="line"></span><br><span class="line">1. **保持默认选项**：如果是标准的Windows PE文件（如`easyre.exe`），直接选择`Portable executable for AMD64`并点击`OK`。</span><br><span class="line">2. **手动调整**：若文件特殊（如加壳、混淆），可能需要修改处理器类型或关闭自动分析。</span><br><span class="line">3. **错误处理**：如果加载后代码混乱，可能是架构选错，需重新尝试其他选项。</span><br><span class="line"></span><br><span class="line">这个界面主要用于确保工具正确解析文件结构和指令集，是逆向工程的第一步。</span><br><span class="line"></span><br><span class="line">### **DWARF调试信息** 配置窗口</span><br><span class="line"></span><br><span class="line">检测到目标文件中包含 **DWARF调试信息** 时弹出的配置对话框。</span><br><span class="line"></span><br><span class="line">DWARF是一种常见的调试数据格式（主要用于ELF文件，如Linux/gcc编译的程序），包含函数名、变量类型、源代码行号等高级信息。以下是各选项的详细解释：</span><br><span class="line"></span><br><span class="line">**1. 核心选项**</span><br><span class="line"></span><br><span class="line">- **`Global names`**</span><br><span class="line">	加载全局变量和符号的名称（如`g_counter`）。勾选后，逆向时能看到更有意义的变量名。</span><br><span class="line">- **`Functions`**</span><br><span class="line">	**（默认勾选）** 加载函数名和边界信息（如`main()`、`sub_401000`会被替换为原始函数名）。</span><br><span class="line">- **`Use function bounds`**</span><br><span class="line">	严格按DWARF信息定义函数范围（避免工具错误分割函数）。</span><br><span class="line"></span><br><span class="line">**2. 类型与调用约定**</span><br><span class="line"></span><br><span class="line">- **`Types (uncheck for speed)`**</span><br><span class="line">	**（默认勾选）** 加载变量/结构体的类型信息（如`int`、`char*`）。取消勾选可加快加载速度，但会丢失类型提示。</span><br><span class="line">- **`Apply calling conventions`**</span><br><span class="line">	**（默认勾选）** 应用DWARF中记录的调用约定（如`cdecl`、`fastcall`），确保反汇编的调用逻辑准确。</span><br><span class="line">- **`Allow __usercall`**</span><br><span class="line">	**（默认勾选）** 支持非标准调用约定（如用户自定义的寄存器传参方式）。</span><br><span class="line">- **`Function prototypes are definitive`**</span><br><span class="line">	**（默认勾选）** 强制使用DWARF中的函数原型（覆盖工具的自动推断）。</span><br><span class="line"></span><br><span class="line">**3. 源代码关联**</span><br><span class="line"></span><br><span class="line">- **`Import file names/line numbers`**</span><br><span class="line">	关联源代码文件名和行号（需DWARF中包含编译路径信息）。勾选后，反汇编窗口可能显示类似`/home/user/src/main.c:10`的注释。</span><br><span class="line"></span><br><span class="line">**4. 底部按钮**</span><br><span class="line"></span><br><span class="line">- **`Yes`** 确认加载DWARF信息（推荐勾选所需选项后点击）。</span><br><span class="line">- **`No`** 忽略DWARF信息，仅按二进制文件分析。</span><br><span class="line"></span><br><span class="line">**用户操作建议**</span><br><span class="line"></span><br><span class="line">1. **常规逆向**：保持默认勾选（尤其是`Functions`和`Types`），以获取最大信息量。</span><br><span class="line">2. **性能优先**：若文件较大，可取消`Types`或`Import file names/line numbers`加速加载。</span><br><span class="line">3. **混淆/优化代码**：若DWARF信息可能被篡改（如某些CTF题目），可关闭`Function prototypes are definitive`，避免误导。</span><br><span class="line">4. **无源码调试**：即使勾选`Import file names/line numbers`，若DWARF中路径无效，则不会显示行号。</span><br><span class="line"></span><br><span class="line">### **为什么重要？**</span><br><span class="line"></span><br><span class="line">DWARF信息能极大提升逆向效率，例如：</span><br><span class="line"></span><br><span class="line">- 直接显示`main()`而非`sub_401000`。</span><br><span class="line">- 恢复结构体字段名（如`struct.user.name`）。</span><br><span class="line">- 识别库函数调用（如`strcpy`的参数类型）。</span><br><span class="line">	但需注意：**发布版本通常剥离DWARF**，此界面多见于开发/调试版本。</span><br><span class="line"></span><br><span class="line">## 窗口介绍</span><br><span class="line"></span><br><span class="line">主窗口界面：</span><br><span class="line"></span><br><span class="line">- **函数窗口 (Functions window)：**</span><br><span class="line"></span><br><span class="line">	在左侧的就是函数窗口，所有的后汉书都在此窗口列出。</span><br><span class="line"></span><br><span class="line">	拿到一个题目，一般从main函数开始，但main函数通常不会直接显示出来，所以需要点击窗口后用Ctrl+F搜一下。</span><br><span class="line"></span><br><span class="line">	![](https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/IDA_Functions%20window.png)</span><br><span class="line"></span><br><span class="line">- **汇编窗口 (IDA views):**</span><br><span class="line"></span><br><span class="line">	这块是汇编代码的地盘，有两种显示方式：</span><br><span class="line"></span><br><span class="line">	1.图形模式</span><br><span class="line"></span><br><span class="line">	![](https://cdn.jsdelivr.net/gh/tangxtang1119/ImageBed@main/202507031543842.png)</span><br><span class="line"></span><br><span class="line">	2.文本模式</span><br><span class="line"></span><br><span class="line">	在图形模式下，右键选 &quot;Text view&quot; 或者按空格键就能切换到文本模式。</span><br><span class="line"></span><br><span class="line">	展示汇编代码和地址。![](https://cdn.jsdelivr.net/gh/tangxtang1119/ImageBed@main/202507031543843.png)</span><br><span class="line"></span><br><span class="line">	- **伪代码窗口：**</span><br><span class="line"></span><br><span class="line">		在汇编窗口文本模式中，对着函数按 `F5`，就能看到伪代码，把汇编语言变成了更易读的伪代码。</span><br><span class="line"></span><br><span class="line">	![image-20250505180517503](https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/IDA_views%E4%BC%AA%E4%BB%A3%E7%A0%81.png)</span><br><span class="line"></span><br><span class="line">- **十六进制窗口：**</span><br><span class="line"></span><br><span class="line">	虽然叫“十六进制窗口”，但它其实能显示各种格式，还能当十六进制编辑器用。默认情况下，它会显示程序的十六进制代码和对应的 ASCII 字符，每行 16 个字节。可以同时打开好几个十六进制窗口。</span><br><span class="line"></span><br><span class="line">	![](https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/202505051809928.png)</span><br><span class="line"></span><br><span class="line">- **消息窗口：**</span><br><span class="line"></span><br><span class="line">	会显示 IDA 输出的信息，比如文件分析状态、操作错误等等，就像 Pycharm 的 Console 控制台。</span><br><span class="line"></span><br><span class="line">	![](https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/202505051810911.png)</span><br><span class="line"></span><br><span class="line">- **导航栏：**</span><br><span class="line"></span><br><span class="line">	导航栏就是那条彩色的水平带，它能线性地展示被加载文件的地址空间。默认情况下，它会显示整个二进制文件的地址范围。右击导航栏，会显示一个提示，告诉你光标所在位置对应二进制文件中的哪个位置。</span><br><span class="line"></span><br><span class="line">	简单来说，点哪儿跳哪儿，不同的颜色代表不同的数据段，比如 data 段、text 段等等。</span><br><span class="line"></span><br><span class="line">	![](https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/202505051811379.png)</span><br><span class="line"></span><br><span class="line">## 修正</span><br><span class="line"></span><br><span class="line">IDA在加载文件的时候会有些错误，需要手动纠正。</span><br><span class="line"></span><br><span class="line">1. 函数修正：</span><br><span class="line"></span><br><span class="line">通常以 push ebp/rbp 指令开头的地址是函数的起始地址，但 IDA 有时会认错。这时候，在起始地址的汇编代码处，按快捷键 P (或者右键选 &quot;Create Function&quot;)，就能把它变成函数。</span><br><span class="line"></span><br><span class="line">2. 指令修正：</span><br><span class="line"></span><br><span class="line">如果 IDA 把某些指令识别错了，选中后按快捷键 D 就能手动修正。</span><br><span class="line"></span><br><span class="line">3. 数据修正：</span><br><span class="line"></span><br><span class="line">在数据段，一个数据的长度可能是 1/2/4/8 字节，用快捷键 D 可以修改类型。如果某部分数据是字符串但没被正确识别，按快捷键 A 就能把它变成 ASCII 字符串。</span><br><span class="line"></span><br><span class="line">## 注释和重命名</span><br><span class="line"></span><br><span class="line">- **重命名：**</span><br><span class="line"></span><br><span class="line">	在 IDA 里，你可以修改变量名、函数名等等，方便理解代码。在需要重命名的地方右键，选 &quot;Rename&quot; 就行。</span><br><span class="line"></span><br><span class="line">	![](https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/202505051817181.png)</span><br><span class="line"></span><br><span class="line">- **注释：**</span><br><span class="line"></span><br><span class="line">	快捷键 `;` 可以在反汇编窗口加注释，快捷键 `/` 可以在反编译窗口加注释。IDA 还能自动给不常用架构的代码加注释，在 &quot;Auto comments&quot; 那里勾选就行。</span><br><span class="line"></span><br><span class="line">	![](https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/202505051825870.png)</span><br><span class="line"></span><br><span class="line">## 交叉引用</span><br><span class="line"></span><br><span class="line">- **代码交叉引用：**</span><br><span class="line"></span><br><span class="line">	表示一个指令把控制权交给另一个指令，能帮忙了解指令和指令、指令和函数之间的调用关系。</span><br><span class="line"></span><br><span class="line">- **数据交叉引用：**</span><br><span class="line"></span><br><span class="line">	用于追踪二进制文件访问数据的情况，能让知道指令和数据之间有啥关系。这部分需要比较扎实的汇编知识。</span><br><span class="line"></span><br><span class="line">## 常用快捷键</span><br><span class="line"></span><br><span class="line">- F5：</span><br><span class="line"></span><br><span class="line">	在汇编窗口里按 F5，能生成对应函数的伪代码。</span><br><span class="line"></span><br><span class="line">* Ctrl+F5：</span><br><span class="line"></span><br><span class="line">	可以把伪代码导出保存下来。</span><br><span class="line"></span><br><span class="line">* Shift+F12：</span><br><span class="line"></span><br><span class="line">	在汇编窗口里按 Shift+F12，能打开字符串窗口。所有字符串都在这儿展示，你可以搜一些关键字符串。双击某个字符串，就能跳到汇编窗口中该字符串对应的位置。用 Ctrl+F 可以查找字符串。</span><br><span class="line"></span><br><span class="line">	![](https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/202505051953784.png)</span><br><span class="line"></span><br><span class="line">- **Ctrl+X (交叉引用)：**</span><br><span class="line"></span><br><span class="line">	在汇编窗口中，用 `Ctrl+X` 可以查看哪些函数引用了这个字符串或数据。点 &quot;OK&quot; 会跳到相应位置。</span><br><span class="line"></span><br><span class="line">	![](https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/202505051955880.png)</span><br><span class="line"></span><br><span class="line">- **Alt+T (文本搜索)：**</span><br><span class="line"></span><br><span class="line">	IDA 文本搜索相当于在反汇编列表窗口文本模式下搜索子字符串。搜到字符串后，会自动跳到汇编窗口中对应的位置。</span><br><span class="line"></span><br><span class="line">	它只会查找完整的词，包括操作码助记符或常量。</span><br><span class="line"></span><br><span class="line">	选 &quot;Find all occurences&quot;，IDA 会在一个新窗口里显示所有搜索结果，方便你快速定位。</span><br><span class="line"></span><br><span class="line">- **跳转地址：**</span><br><span class="line"></span><br><span class="line">	汇编窗口左边是地址，右边是汇编代码。</span><br><span class="line"></span><br><span class="line">	在浏览代码的时候，可能会迷路。或者你知道想去的目标地址，但反汇编窗口里没有可供双击导航的名称。这时候，用 `G` 就能跳到指定位置。</span><br><span class="line"></span><br><span class="line">- **N (重命名)：**</span><br><span class="line"></span><br><span class="line">	可以把一些函数名或者变量名改成方便理解的名字。</span><br><span class="line"></span><br><span class="line">- **Ctrl+Z (撤回操作)：**</span><br><span class="line"></span><br><span class="line">	不小心改错了，Ctrl+Z回到上一步。</span><br><span class="line"></span><br><span class="line">## 数据类型转换快捷键</span><br><span class="line"></span><br><span class="line">当flag 是 16 进制 ASCII 值时，可以靠快捷键搞定。</span><br><span class="line"></span><br><span class="line">- D (转换成数据形式)：</span><br><span class="line"></span><br><span class="line">	分析数据时，有时候需要把字符串转换成数据。</span><br><span class="line"></span><br><span class="line">* A (转换成字符形式)：</span><br><span class="line"></span><br><span class="line">	转换成字符串。</span><br><span class="line"></span><br><span class="line">* C (转换成汇编代码)：</span><br><span class="line"></span><br><span class="line">	转换成汇编代码。</span><br><span class="line"></span><br><span class="line">* U (转成原始字符)：</span><br><span class="line"></span><br><span class="line">	转换成最原始的状态。</span><br><span class="line"></span><br><span class="line">* Shift+E (导出数据)：</span><br><span class="line"></span><br><span class="line">	导出数据，选中后按 Shift+E，选你想导出的方式。</span><br><span class="line"></span><br><span class="line">- **数据转化形式：**</span><br><span class="line"></span><br><span class="line">	分析伪代码时，有时候要对数据进行类型转化。右键数据，会出现这些选项：</span><br><span class="line"></span><br><span class="line">	![](https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/202505052002733.png)</span><br><span class="line"></span><br><span class="line">	- Hexadecimal: 十六进制</span><br><span class="line">	- Octal: 八进制</span><br><span class="line">	- Char: 字符</span><br><span class="line">	- Enum: 枚举</span><br><span class="line"></span><br><span class="line">main函数翻成伪代码后：</span><br><span class="line"></span><br><span class="line">````java</span><br><span class="line">int __fastcall main(int argc, const char **argv, const char **envp)</span><br><span class="line">&#123;</span><br><span class="line">  int b; // [rsp+28h] [rbp-8h] BYREF</span><br><span class="line">  int b_1; // [rsp+2Ch] [rbp-4h] BYREF</span><br><span class="line"></span><br><span class="line">  _main();</span><br><span class="line">  scanf(&quot;%d%d&quot;, &amp;b_1, &amp;b);</span><br><span class="line">  if ( b_1 == b )</span><br><span class="line">    printf(&quot;flag&#123;this_Is_a_EaSyRe&#125;&quot;);</span><br><span class="line">  else</span><br><span class="line">    printf(&quot;sorry,you can&#x27;t get flag&quot;);</span><br><span class="line">  return 0;</span><br><span class="line">&#125;</span><br><span class="line">````</span><br><span class="line"></span><br><span class="line">分析出 `main` 函数的逻辑是：**输入两个相同的数字 → 输出 flag**</span><br><span class="line"></span><br><span class="line">## **解题方法**</span><br><span class="line"></span><br><span class="line">### **方法 1：直接运行程序并输入相同数字**</span><br><span class="line"></span><br><span class="line">1. **运行程序**（如果是 Windows 的 `.exe`，直接双击；如果是 Linux 的 ELF，用 `./program` 运行）。</span><br><span class="line"></span><br><span class="line">2. **输入两个相同的数字**，比如：</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+  123
+  123
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">3. **程序输出 flag**：</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+  flag&#123;this_Is_a_EaSyRe&#125;
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">### **方法 2：直接修改二进制文件（硬编码绕过检查）**</span><br><span class="line"></span><br><span class="line">如果不想手动输入，可以修改汇编代码，让程序直接输出 flag（适用于逆向题目）：</span><br><span class="line"></span><br><span class="line">1. 用 **IDA/Ghidra** 找到 `if (b_1 == b)` 的判断部分。</span><br><span class="line">2. 把 `JNE`（跳转如果不相等）改成 `JMP` 或 `NOP`，让程序直接执行 `printf(&quot;flag&#123;...&#125;&quot;)`。</span><br><span class="line">3. 保存修改后的程序，运行即可直接得 flag。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># IDA Pro MCP 逆向分析利器</span><br><span class="line"></span><br><span class="line">参考：[AI逆向50页长文掌握 IDA Pro MCP 逆向分析利器](https://bbs.kanxue.com/thread-286813.htm)</span><br><span class="line"></span><br><span class="line">## 步骤一：准备大模型 API Key</span><br><span class="line"></span><br><span class="line">要使用 IDA Pro MCP，首先需要一个大模型服务的 API Key。</span><br><span class="line"></span><br><span class="line">### DeepSeek</span><br><span class="line"></span><br><span class="line">- **官方网站:** [https://www.deepseek.com/](https://bbs.kanxue.com/elink@cc8K9s2c8@1M7s2y4Q4x3@1q4Q4x3V1k6Q4x3V1k6%4N6%4N6Q4x3X3g2V1k6h3g2H3M7$3g2W2K9#2)</span><br><span class="line">- **API 管理平台:** [https://platform.deepseek.com/usage](https://bbs.kanxue.com/elink@fa1K9s2c8@1M7s2y4Q4x3@1q4Q4x3V1k6Q4x3V1k6H3L8r3q4@1k6X3!0J5L8g2)</span><br><span class="line"></span><br><span class="line">根据平台的指引完成实名认证和充值，在API管理页创建一个新的API Key。</span><br><span class="line"></span><br><span class="line">`务必妥善保管API Key，防止泄露！！！`</span><br><span class="line"></span><br><span class="line">![](https://cdn.jsdelivr.net/gh/tangxtang1119/ImageBed@main/202507031543844.png)</span><br><span class="line"></span><br><span class="line">在充值后，在liunx系统使用curl命令测试api是否可用。</span><br><span class="line"></span><br><span class="line">将 `&lt;DeepSeek API Key&gt;` 替换为自己的 Key</span><br><span class="line"></span><br><span class="line">````</span><br><span class="line">curl https://api.deepseek.com/chat/completions \</span><br><span class="line">  -H &quot;Content-Type: application/json&quot; \</span><br><span class="line">  -H &quot;Authorization: Bearer &lt;DeepSeek API Key&gt;&quot; \</span><br><span class="line">  -d &#x27;&#123;</span><br><span class="line">        &quot;model&quot;: &quot;deepseek-chat&quot;,</span><br><span class="line">        &quot;messages&quot;: [</span><br><span class="line">          &#123;&quot;role&quot;: &quot;system&quot;, &quot;content&quot;: &quot;You are a helpful assistant.&quot;&#125;,</span><br><span class="line">          &#123;&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;Hello!&quot;&#125;</span><br><span class="line">        ],</span><br><span class="line">        &quot;stream&quot;: false</span><br><span class="line">      &#125;&#x27;</span><br><span class="line">````</span><br><span class="line"></span><br><span class="line">![](https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/202505220917980.png)</span><br><span class="line"></span><br><span class="line">如果终端成功输出了 AI 的回复消息，则表示 DeepSeek API Key 配置成功.</span><br><span class="line"></span><br><span class="line">## 步骤二：选择并配置 MCP 客户端</span><br><span class="line"></span><br><span class="line">### 客户端一：VS Code 插件 (Cline / RooCode)</span><br><span class="line"></span><br><span class="line">Cline 和 RooCode 是两款支持 MCP 的 VS Code 插件，可以将 VS Code 作为 IDA Pro MCP 的客户端。</span><br><span class="line"></span><br><span class="line">#### 安装</span><br><span class="line"></span><br><span class="line">“扩展”，插件cline或RooCode</span><br><span class="line"></span><br><span class="line">#### 初始化配置</span><br><span class="line"></span><br><span class="line">进行初始化配置，主要是设置大模型API Key</span><br><span class="line"></span><br><span class="line">1. 打开其中一个插件的设置界面，点击插件图标（或是用命令面板Ctrl+Shift+P/Cmd+Shift+P走索插件名称找到。）</span><br><span class="line"></span><br><span class="line">2. 选择“使用自己的PAPI Key”（Use your own API key）</span><br><span class="line"></span><br><span class="line">	![](https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/202505220931666.png)</span><br><span class="line"></span><br><span class="line">3. 配置 API Key</span><br><span class="line"></span><br><span class="line">	根据选择的 API 服务商进行配置：</span><br><span class="line"></span><br><span class="line">	- **DeepSeek:**</span><br><span class="line">		- 选择 `API Provider` 为 `DeepSeek`。</span><br><span class="line">		- 在 `API Key` 字段中填入 DeepSeek API Key。</span><br><span class="line"></span><br><span class="line">![](https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/202505220933934.png)</span><br><span class="line"></span><br><span class="line">**语言设置（Preferred Language）**</span><br><span class="line"></span><br><span class="line">- **简体中文**：强制工具（如Cline插件）始终以中文与你交互，即使你的提问包含其他语言。</span><br><span class="line">- **作用场景**：例如当你输入英文问题时，工具仍会用中文回答。</span><br><span class="line"></span><br><span class="line">![](https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/202505220957109.png)</span><br><span class="line"></span><br><span class="line">## 步骤四：部署 IDA Pro MCP (Windows)</span><br><span class="line"></span><br><span class="line">1. **配置python环境**</span><br><span class="line"></span><br><span class="line">	Windows 环境需要安装 Python 3.11 或更高版本</span><br><span class="line"></span><br><span class="line">	已安装python使用的版本为3.12.6</span><br><span class="line"></span><br><span class="line">2. **切换 IDA Pro 的 Python 环境**</span><br><span class="line"></span><br><span class="line">	告知 IDA Pro 使用安装的 Python 3.12.6，cmd中执行</span><br><span class="line"></span><br><span class="line">	````</span><br><span class="line">	&quot;F:\IDA Professional 9.1\idapyswitch.exe&quot; --force-path &quot;E:\python\python3,dll&quot;</span><br><span class="line">	````</span><br><span class="line"></span><br><span class="line">	![](https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/202505221043566.png)</span><br><span class="line"></span><br><span class="line">	成功执行后通常没有输出。</span><br><span class="line"></span><br><span class="line">3. **安装 ida-pro-mcp Python 包**</span><br><span class="line"></span><br><span class="line">	下载 `uv` 包</span><br><span class="line"></span><br><span class="line">	#### 分步安装依赖</span><br><span class="line"></span><br><span class="line">	如果直接安装失败，先安装小体积依赖包，再尝试安装 `uv`：</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+  # 先安装其他小包（如有必要）
+  pip install numpy pandas -i https://pypi.tuna.tsinghua.edu.cn/simple
+  
+  # 再安装 uv
+  pip install uv -i https://pypi.tuna.tsinghua.edu.cn/simple
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">使用 Python  的 pip 来安装 `ida-pro-mcp`。</span><br><span class="line"></span><br><span class="line">之后所有 pip 安装都会默认使用清华源，**永久配置镜像源**（推荐）</span><br><span class="line"></span><br><span class="line">````</span><br><span class="line">pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line">````</span><br><span class="line"></span><br><span class="line">**临时指定镜像源**：在命令中添加 `-i` 参数：</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+  pip install --upgrade git+https://github.com/mrexodia/ida-pro-mcp -i https://pypi.tuna.tsinghua.edu.cn/simple
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">4. **安装 MCP 插件到 IDA Pro**</span><br><span class="line"></span><br><span class="line">	执行安装命令将插件复制到 IDA Pro</span><br><span class="line"></span><br><span class="line">	使用命令查找`ida-pro-mcp.exe` 可执行文件的路径。</span><br><span class="line"></span><br><span class="line">	````</span><br><span class="line">	pip show -f ida-pro-mcp</span><br><span class="line">	````</span><br><span class="line"></span><br><span class="line">	输出信息：</span><br><span class="line"></span><br><span class="line">	````</span><br><span class="line">	Name: ida-pro-mcp</span><br><span class="line">	Version: 1.3.0</span><br><span class="line">	...</span><br><span class="line">	Location: E:\python\Lib\site-packages# &lt;--- 包安装位置</span><br><span class="line">	Requires: mcp</span><br><span class="line">	Required-by:</span><br><span class="line">	Files:</span><br><span class="line">	  ..\..\Scripts\ida-pro-mcp.exe# &lt;--- 可执行文件相对路</span><br><span class="line">	  ..\..\Scripts\idalib-mcp.exe</span><br><span class="line">	  ida_pro_mcp-1.3.0.dist-info\INSTALLER</span><br><span class="line">		...</span><br><span class="line">	````</span><br><span class="line"></span><br><span class="line">	可得绝对路径：E:\python\Scripts\ida-pro-mcp.exe</span><br><span class="line"></span><br><span class="line">	执行安装命令：</span><br><span class="line"></span><br><span class="line">	````</span><br><span class="line">	&quot;E:\python\Scripts\ida-pro-mcp.exe&quot; --install</span><br><span class="line">	````</span><br><span class="line"></span><br><span class="line">	![](https://cdn.jsdelivr.net/gh/tangxtang1119/ImageBed@main/202507031543845.png)</span><br><span class="line"></span><br><span class="line">​	**MCP 服务器配置生成**，这是 **MCP 服务器的标准配置模板**，需手动添加到对应工具的配置文件中。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</code></pre>
+</li>
+</ul>
+<p>Installed IDA Pro plugin (IDA restart required)<br>Plugin: C:\Users\tangxtang\AppData\Roaming\Hex-Rays\IDA Pro\plugins\mcp-plugin.py</p>
+<pre><code>
+- **核心功能已部署**，插件文件已复制到 IDA 的插件目录。
+- 需要 **重启 IDA** 才能生效。
+</code></pre>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>信息安全</tag>
+        <tag>安卓逆向工程</tag>
+        <tag>工具</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>基础总结</title>
+    <url>/2025/05/01/%E5%9F%BA%E7%A1%80%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<h1 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h1><h2 id="一、基础语法结构"><a href="#一、基础语法结构" class="headerlink" title="一、基础语法结构"></a>一、基础语法结构</h2><h3 id="1-变量与数据类型"><a href="#1-变量与数据类型" class="headerlink" title="1. 变量与数据类型"></a>1. 变量与数据类型</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 基本数据类型</span></span><br><span class="line"><span class="type">int</span> <span class="variable">age</span> <span class="operator">=</span> <span class="number">25</span>;                  <span class="comment">// 整数（4字节）</span></span><br><span class="line"><span class="type">double</span> <span class="variable">price</span> <span class="operator">=</span> <span class="number">9.99</span>;           <span class="comment">// 双精度浮点</span></span><br><span class="line"><span class="type">char</span> <span class="variable">grade</span> <span class="operator">=</span> <span class="string">&#x27;A&#x27;</span>;              <span class="comment">// 单个字符</span></span><br><span class="line"><span class="type">boolean</span> <span class="variable">isOpen</span> <span class="operator">=</span> <span class="literal">true</span>;         <span class="comment">// 布尔值</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 引用数据类型</span></span><br><span class="line"><span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> <span class="string">&quot;Android&quot;</span>;       <span class="comment">// 字符串</span></span><br><span class="line"><span class="type">int</span>[] numbers = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;       <span class="comment">// 数组</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-控制流程"><a href="#2-控制流程" class="headerlink" title="2. 控制流程"></a>2. 控制流程</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 条件语句</span></span><br><span class="line"><span class="keyword">if</span> (score &gt;= <span class="number">60</span>) &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;及格&quot;</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (score &gt; <span class="number">40</span>) &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;补考&quot;</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;挂科&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 循环结构</span></span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>; i&lt;<span class="number">5</span>; i++) &#123;</span><br><span class="line">    System.out.println(i);      <span class="comment">// 0,1,2,3,4</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span> (j &lt; <span class="number">3</span>) &#123;</span><br><span class="line">    System.out.println(j++);    <span class="comment">// 0,1,2</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="二、面向对象核心"><a href="#二、面向对象核心" class="headerlink" title="二、面向对象核心"></a>二、面向对象核心</h2><h3 id="1-类与对象"><a href="#1-类与对象" class="headerlink" title="1. 类与对象"></a>1. 类与对象</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 类定义</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Person</span> &#123;</span><br><span class="line">    <span class="comment">// 字段</span></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 构造方法</span></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Person</span><span class="params">(String name)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 方法</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">sayHello</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Hello, I&#x27;m &quot;</span> + name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 对象使用</span></span><br><span class="line"><span class="type">Person</span> <span class="variable">p</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Person</span>(<span class="string">&quot;Alice&quot;</span>);</span><br><span class="line">p.sayHello();  <span class="comment">// 输出: Hello, I&#x27;m Alice</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-继承与多态"><a href="#2-继承与多态" class="headerlink" title="2. 继承与多态"></a>2. 继承与多态</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 父类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Animal</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">sound</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;动物叫&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 子类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Dog</span> <span class="keyword">extends</span> <span class="title class_">Animal</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">sound</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;汪汪汪&quot;</span>);  <span class="comment">// 方法重写</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 多态示例</span></span><br><span class="line"><span class="type">Animal</span> <span class="variable">myDog</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Dog</span>();</span><br><span class="line">myDog.sound();  <span class="comment">// 输出: 汪汪汪</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="三、关键语法特性"><a href="#三、关键语法特性" class="headerlink" title="三、关键语法特性"></a>三、关键语法特性</h2><h3 id="1-访问修饰符"><a href="#1-访问修饰符" class="headerlink" title="1. 访问修饰符"></a>1. 访问修饰符</h3><table>
+<thead>
+<tr>
+<th>修饰符</th>
+<th>类内</th>
+<th>同包</th>
+<th>子类</th>
+<th>其他包</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>private</code></td>
+<td>✔️</td>
+<td>✖️</td>
+<td>✖️</td>
+<td>✖️</td>
+</tr>
+<tr>
+<td><code>protected</code></td>
+<td>✔️</td>
+<td>✔️</td>
+<td>✔️</td>
+<td>✖️</td>
+</tr>
+<tr>
+<td><code>public</code></td>
+<td>✔️</td>
+<td>✔️</td>
+<td>✔️</td>
+<td>✔️</td>
+</tr>
+<tr>
+<td>默认</td>
+<td>✔️</td>
+<td>✔️</td>
+<td>✖️</td>
+<td>✖️</td>
+</tr>
+</tbody></table>
+<h3 id="2-接口与抽象类"><a href="#2-接口与抽象类" class="headerlink" title="2. 接口与抽象类"></a>2. 接口与抽象类</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 接口（100%抽象）</span></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">USB</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">connect</span><span class="params">()</span>;  <span class="comment">// 隐式 public abstract</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 抽象类（可包含实现）</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title class_">Shape</span> &#123;</span><br><span class="line">    <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title function_">draw</span><span class="params">()</span>;  <span class="comment">// 抽象方法</span></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">move</span><span class="params">()</span> &#123; <span class="comment">/* 具体实现 */</span> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="四、异常处理"><a href="#四、异常处理" class="headerlink" title="四、异常处理"></a>四、异常处理</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">result</span> <span class="operator">=</span> <span class="number">10</span> / <span class="number">0</span>;</span><br><span class="line">&#125; <span class="keyword">catch</span> (ArithmeticException e) &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;除数不能为零&quot;</span>);</span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;总会执行&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 自定义异常</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyException</span> <span class="keyword">extends</span> <span class="title class_">Exception</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">MyException</span><span class="params">(String message)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>(message);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="五、集合框架"><a href="#五、集合框架" class="headerlink" title="五、集合框架"></a>五、集合框架</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 常用集合类</span></span><br><span class="line">List&lt;String&gt; list = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();  <span class="comment">// 有序可重复</span></span><br><span class="line">Set&lt;Integer&gt; set = <span class="keyword">new</span> <span class="title class_">HashSet</span>&lt;&gt;();     <span class="comment">// 无序唯一</span></span><br><span class="line">Map&lt;String, Integer&gt; map = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;(); <span class="comment">// 键值对</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 集合操作</span></span><br><span class="line">list.add(<span class="string">&quot;Java&quot;</span>);</span><br><span class="line">map.put(<span class="string">&quot;age&quot;</span>, <span class="number">20</span>);</span><br><span class="line"><span class="type">int</span> <span class="variable">value</span> <span class="operator">=</span> map.get(<span class="string">&quot;age&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="六、其他逆向重点"><a href="#六、其他逆向重点" class="headerlink" title="六、其他逆向重点"></a>六、其他逆向重点</h2><h3 id="1-反射机制（逆向关键）"><a href="#1-反射机制（逆向关键）" class="headerlink" title="1. 反射机制（逆向关键）"></a>1. 反射机制（逆向关键）</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Class&lt;?&gt; clazz = Class.forName(<span class="string">&quot;com.example.MyClass&quot;</span>);</span><br><span class="line"><span class="type">Method</span> <span class="variable">method</span> <span class="operator">=</span> clazz.getMethod(<span class="string">&quot;secretMethod&quot;</span>);</span><br><span class="line">method.invoke(clazz.newInstance());</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-泛型（反编译常见）"><a href="#2-泛型（反编译常见）" class="headerlink" title="2. 泛型（反编译常见）"></a>2. 泛型（反编译常见）</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List&lt;Map&lt;String, Integer&gt;&gt; complexList = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-多线程"><a href="#3-多线程" class="headerlink" title="3. 多线程"></a>3. 多线程</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="title class_">Thread</span>(() -&gt; &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;异步执行&quot;</span>);</span><br><span class="line">&#125;).start();</span><br></pre></td></tr></table></figure>
+
+<h2 id="七、内存管理基础"><a href="#七、内存管理基础" class="headerlink" title="七、内存管理基础"></a><strong>七、内存管理基础</strong></h2><ol>
+<li><strong>栈内存</strong>：存储基本类型变量和方法调用</li>
+<li><strong>堆内存</strong>：存储对象实例</li>
+<li><strong>方法区</strong>：存储类信息、常量池</li>
+<li><strong>垃圾回收</strong>：自动回收无引用对象（<code>System.gc()</code>建议回收）</li>
+</ol>
+<h2 id="学习建议"><a href="#学习建议" class="headerlink" title="学习建议"></a><strong>学习建议</strong></h2><ol>
+<li><strong>重点掌握</strong>：类与对象、继承多态、集合框架</li>
+<li><strong>逆向关联</strong>：反射机制、异常处理、接口特性</li>
+<li><strong>实践方法</strong>：通过修改开源项目的代码观察运行结果</li>
+</ol>
+<p><strong>附：逆向工程中常见的Java代码特征</strong></p>
+<ul>
+<li><code>private static final</code> 修饰的密钥字段</li>
+<li><code>try-catch</code> 包裹的核心逻辑</li>
+<li><code>native</code> 声明的JNI方法</li>
+<li><code>synchronized</code> 同步代码块</li>
+</ul>
+<p>结合APK反编译后的实际代码进行对照学习，理解语法到字节码的转换逻辑。</p>
+<h1 id="Kotlin"><a href="#Kotlin" class="headerlink" title="Kotlin"></a>Kotlin</h1><h2 id="一、基本特性与优势"><a href="#一、基本特性与优势" class="headerlink" title="一、基本特性与优势"></a>一、基本特性与优势</h2><ul>
+<li><strong>简洁性</strong>：语法精简，减少模板代码（如省略分号、简化类定义）。</li>
+<li><strong>空安全</strong>：编译期检查空指针，从语法层面避免 <code>NullPointerException</code>。</li>
+<li><strong>函数式编程</strong>：支持 Lambda 表达式、高阶函数、协程等。</li>
+<li><strong>面向对象</strong>：保留类、继承、接口等 OOP 特性，同时更灵活。</li>
+<li><strong>与 Java 互操作</strong>：可直接调用 Java 代码，Java 也可调用 Kotlin 代码，无缝兼容 Android 现有项目。</li>
+</ul>
+<h2 id="二、基础语法"><a href="#二、基础语法" class="headerlink" title="二、基础语法"></a>二、基础语法</h2><h3 id="1-变量声明"><a href="#1-变量声明" class="headerlink" title="1. 变量声明"></a>1. 变量声明</h3><p>Kotlin 变量分为<strong>可变</strong>（<code>var</code>）和<strong>不可变</strong>（<code>val</code>，类似 Java 的 <code>final</code>），无需显式声明类型（类型推断）：</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 不可变变量（推荐优先使用）</span></span><br><span class="line"><span class="keyword">val</span> name: String = <span class="string">&quot;Kotlin&quot;</span>  <span class="comment">// 显式声明类型</span></span><br><span class="line"><span class="keyword">val</span> age = <span class="number">30</span>  <span class="comment">// 类型推断为 Int</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 可变变量</span></span><br><span class="line"><span class="keyword">var</span> score = <span class="number">90</span>  <span class="comment">// 类型推断为 Int</span></span><br><span class="line">score = <span class="number">95</span>  <span class="comment">// 可修改</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-基本数据类型"><a href="#2-基本数据类型" class="headerlink" title="2. 基本数据类型"></a>2. 基本数据类型</h3><p>与 Java 类似，但<strong>无基本类型与包装类之分</strong>，全部是对象，支持直接调用方法：</p>
+<ul>
+<li>数值类型：<code>Byte</code>、<code>Short</code>、<code>Int</code>、<code>Long</code>、<code>Float</code>、<code>Double</code></li>
+<li>字符：<code>Char</code>（单引号，如 <code>&#39;A&#39;</code>）</li>
+<li>布尔：<code>Boolean</code>（<code>true</code>&#x2F;<code>false</code>）</li>
+<li>字符串：<code>String</code>（双引号，支持模板语法 <code>$&#123;&#125;</code>）</li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">val</span> a: <span class="built_in">Int</span> = <span class="number">100</span></span><br><span class="line"><span class="keyword">val</span> b = <span class="number">10L</span>  <span class="comment">// 加 L 表示 Long 类型</span></span><br><span class="line"><span class="keyword">val</span> c = <span class="number">3.14f</span>  <span class="comment">// 加 f 表示 Float 类型</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 字符串模板</span></span><br><span class="line"><span class="keyword">val</span> name = <span class="string">&quot;Kotlin&quot;</span></span><br><span class="line"><span class="keyword">val</span> info = <span class="string">&quot;Language: <span class="variable">$name</span>, Version: <span class="subst">$&#123;<span class="number">1.9</span> + <span class="number">0.1</span>&#125;</span>&quot;</span>  <span class="comment">// 输出 &quot;Language: Kotlin, Version: 2.0&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-函数定义"><a href="#3-函数定义" class="headerlink" title="3. 函数定义"></a>3. 函数定义</h3><p>用 <code>fun</code> 关键字定义，语法：&#96;fun 函数名(参数: 类型): 返回值类型 { … }</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 普通函数</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">sum</span><span class="params">(a: <span class="type">Int</span>, b: <span class="type">Int</span>)</span></span>: <span class="built_in">Int</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> a + b</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 单表达式函数（简化写法，自动推断返回值）</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">multiply</span><span class="params">(a: <span class="type">Int</span>, b: <span class="type">Int</span>)</span></span> = a * b  <span class="comment">// 等价于返回 a*b</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 无返回值（返回 Unit，类似 Java 的 void，可省略）</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">printHello</span><span class="params">()</span></span>: <span class="built_in">Unit</span> &#123;</span><br><span class="line">    println(<span class="string">&quot;Hello&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">printHi</span><span class="params">()</span></span> &#123;  <span class="comment">// 省略 Unit</span></span><br><span class="line">    println(<span class="string">&quot;Hi&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>特色参数</strong>：</p>
+<ul>
+<li><p>默认参数：给参数设置默认值，调用时可省略</p>
+  <figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">greet</span><span class="params">(name: <span class="type">String</span> = <span class="string">&quot;Guest&quot;</span>)</span></span> &#123;</span><br><span class="line">    println(<span class="string">&quot;Hello, <span class="variable">$name</span>&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line">greet()  <span class="comment">// 输出 &quot;Hello, Guest&quot;</span></span><br><span class="line">greet(<span class="string">&quot;Alice&quot;</span>)  <span class="comment">// 输出 &quot;Hello, Alice&quot;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>命名参数：调用时指定参数名，增强可读性</p>
+  <figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">add</span><span class="params">(a: <span class="type">Int</span>, b: <span class="type">Int</span>, c: <span class="type">Int</span>)</span></span> = a + b + c</span><br><span class="line">add(b = <span class="number">2</span>, a = <span class="number">1</span>, c = <span class="number">3</span>)  <span class="comment">// 按名称传参，结果 6</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="三、控制流"><a href="#三、控制流" class="headerlink" title="三、控制流"></a>三、控制流</h2><h3 id="1-条件语句"><a href="#1-条件语句" class="headerlink" title="1. 条件语句"></a>1. 条件语句</h3><ul>
+<li><p><code>if</code>可作为<strong>表达式</strong>（有返回值），替代 Java 的<code>三元运算符</code>：</p>
+  <figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">val</span> max = <span class="keyword">if</span> (a &gt; b) a <span class="keyword">else</span> b  <span class="comment">// 等价于 Java 的 a &gt; b ? a : b</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>多分支用 <code>if-else if-else</code>，逻辑同 Java。</p>
+</li>
+</ul>
+<h3 id="2-when-表达式（替代-Java-的-switch）"><a href="#2-when-表达式（替代-Java-的-switch）" class="headerlink" title="2. when 表达式（替代 Java 的 switch）"></a>2. when 表达式（替代 Java 的 switch）</h3><p>更灵活，支持任意类型匹配，且可作为表达式返回值：</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">getType</span><span class="params">(x: <span class="type">Any</span>)</span></span>: String &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">when</span> (x) &#123;</span><br><span class="line">        <span class="number">1</span> -&gt; <span class="string">&quot;Int 类型，值为 1&quot;</span></span><br><span class="line">        <span class="string">&quot;hello&quot;</span> -&gt; <span class="string">&quot;String 类型&quot;</span></span><br><span class="line">        <span class="keyword">is</span> <span class="built_in">Boolean</span> -&gt; <span class="string">&quot;Boolean 类型&quot;</span>  <span class="comment">// 类型匹配（is 类似 Java 的 instanceof）</span></span><br><span class="line">        <span class="keyword">in</span> <span class="number">10.</span><span class="number">.20</span> -&gt; <span class="string">&quot;在 10-20 范围内&quot;</span>  <span class="comment">// 范围匹配</span></span><br><span class="line">        <span class="keyword">else</span> -&gt; <span class="string">&quot;未知类型&quot;</span>  <span class="comment">// 必须包含 else（除非覆盖所有可能）</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-循环"><a href="#3-循环" class="headerlink" title="3. 循环"></a>3. 循环</h3><ul>
+<li><p><code>for</code> 循环：遍历集合或范围（<code>..</code> 表示闭区间）</p>
+  <figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 遍历范围</span></span><br><span class="line"><span class="keyword">for</span> (i <span class="keyword">in</span> <span class="number">1.</span><span class="number">.5</span>) &#123;  <span class="comment">// 1 到 5（包含 5）</span></span><br><span class="line">    print(i)  <span class="comment">// 输出 12345</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 遍历集合</span></span><br><span class="line"><span class="keyword">val</span> list = listOf(<span class="string">&quot;a&quot;</span>, <span class="string">&quot;b&quot;</span>, <span class="string">&quot;c&quot;</span>)</span><br><span class="line"><span class="keyword">for</span> (item <span class="keyword">in</span> list) &#123;</span><br><span class="line">    println(item)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>while</code> 和 <code>do-while</code>：与 Java 语法完全一致。</p>
+</li>
+</ul>
+<h2 id="四、类与对象"><a href="#四、类与对象" class="headerlink" title="四、类与对象"></a>四、类与对象</h2><h3 id="1-类定义"><a href="#1-类定义" class="headerlink" title="1. 类定义"></a>1. 类定义</h3><p>默认是<strong>不可继承的</strong>（<code>final</code>），需用 <code>open</code> 关键字标记才能被继承：</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 普通类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Person</span> &#123;</span><br><span class="line">    <span class="comment">// 类成员变量</span></span><br><span class="line">    <span class="keyword">var</span> name: String = <span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="keyword">var</span> age: <span class="built_in">Int</span> = <span class="number">0</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 可继承的类（open 修饰）</span></span><br><span class="line"><span class="keyword">open</span> <span class="keyword">class</span> <span class="title class_">Animal</span> &#123;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">eat</span><span class="params">()</span></span> &#123;</span><br><span class="line">        println(<span class="string">&quot;动物进食&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-构造函数"><a href="#2-构造函数" class="headerlink" title="2. 构造函数"></a>2. 构造函数</h3><ul>
+<li><p><strong>主构造函数</strong>：类名后直接声明，简洁用于初始化参数</p>
+  <figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Student</span>(<span class="keyword">val</span> id: <span class="built_in">Int</span>, <span class="keyword">var</span> name: String) &#123;  <span class="comment">// 主构造函数参数</span></span><br><span class="line">    <span class="comment">// 初始化代码块（主构造函数执行时调用）</span></span><br><span class="line">    <span class="keyword">init</span> &#123;</span><br><span class="line">        println(<span class="string">&quot;Student 初始化：id=<span class="variable">$id</span>, name=<span class="variable">$name</span>&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用：val stu = Student(1, &quot;Tom&quot;)</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>次构造函数</strong>：用 <code>constructor</code> 关键字，需调用主构造函数（<code>this</code>）</p>
+  <figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Teacher</span>(<span class="keyword">val</span> id: <span class="built_in">Int</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> name: String = <span class="string">&quot;&quot;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 次构造函数（必须调用主构造函数）</span></span><br><span class="line">    <span class="keyword">constructor</span>(id: <span class="built_in">Int</span>, name: String) : <span class="keyword">this</span>(id) &#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="3-数据类（data-class）"><a href="#3-数据类（data-class）" class="headerlink" title="3. 数据类（data class）"></a>3. 数据类（data class）</h3><p>专门用于存储数据的类，自动生成 <code>equals()</code>、<code>hashCode()</code>、<code>toString()</code> 等方法，简化实体类定义（Android 中常用于网络数据模型）：</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">data</span> <span class="keyword">class</span> <span class="title class_">User</span>(<span class="keyword">val</span> id: <span class="built_in">Int</span>, <span class="keyword">val</span> name: String, <span class="keyword">val</span> age: <span class="built_in">Int</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用</span></span><br><span class="line"><span class="keyword">val</span> user = User(<span class="number">1</span>, <span class="string">&quot;Alice&quot;</span>, <span class="number">25</span>)</span><br><span class="line">println(user)  <span class="comment">// 自动生成 toString()：User(id=1, name=Alice, age=25)</span></span><br><span class="line"><span class="keyword">val</span> user2 = user.copy(age = <span class="number">26</span>)  <span class="comment">// 复制对象并修改部分属性</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-密封类（sealed-class）"><a href="#4-密封类（sealed-class）" class="headerlink" title="4. 密封类（sealed class）"></a>4. 密封类（sealed class）</h3><p>用于<strong>受限的类层次结构</strong>（子类固定），常用于状态管理（如 UI 状态：加载中、成功、失败）：</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">sealed</span> <span class="keyword">class</span> <span class="title class_">Result</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Success</span>(<span class="keyword">val</span> <span class="keyword">data</span>: String) : Result()</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Error</span>(<span class="keyword">val</span> message: String) : Result()</span><br><span class="line"><span class="keyword">object</span> Loading : Result()  <span class="comment">// 单例对象</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用时，when 语句可自动推断所有子类，无需 else</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">handleResult</span><span class="params">(result: <span class="type">Result</span>)</span></span> &#123;</span><br><span class="line">    <span class="keyword">when</span> (result) &#123;</span><br><span class="line">        <span class="keyword">is</span> Success -&gt; println(<span class="string">&quot;成功：<span class="subst">$&#123;result.data&#125;</span>&quot;</span>)</span><br><span class="line">        <span class="keyword">is</span> Error -&gt; println(<span class="string">&quot;错误：<span class="subst">$&#123;result.message&#125;</span>&quot;</span>)</span><br><span class="line">        Loading -&gt; println(<span class="string">&quot;加载中...&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="五、继承与接口"><a href="#五、继承与接口" class="headerlink" title="五、继承与接口"></a>五、继承与接口</h2><h3 id="1-继承"><a href="#1-继承" class="headerlink" title="1. 继承"></a>1. 继承</h3><p>用 <code>:</code> 表示继承，父类需用 <code>open</code> 修饰，重写方法需用 <code>override</code>：</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">open</span> <span class="keyword">class</span> <span class="title class_">Animal</span> &#123;</span><br><span class="line">    <span class="keyword">open</span> <span class="function"><span class="keyword">fun</span> <span class="title">makeSound</span><span class="params">()</span></span> &#123;  <span class="comment">// 可重写的方法（open 修饰）</span></span><br><span class="line">        println(<span class="string">&quot;动物叫&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Dog</span> : <span class="type">Animal</span>() &#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">makeSound</span><span class="params">()</span></span> &#123;  <span class="comment">// 重写父类方法（override 修饰）</span></span><br><span class="line">        println(<span class="string">&quot;汪汪叫&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-接口"><a href="#2-接口" class="headerlink" title="2. 接口"></a>2. 接口</h3><p>用 <code>interface</code> 定义，支持<strong>默认方法实现</strong>，类用 <code>:</code> 实现接口（可多实现）：</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title class_">Swimable</span> &#123;</span><br><span class="line">    <span class="comment">// 抽象方法（无实现）</span></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">swim</span><span class="params">()</span></span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 默认方法（有实现）</span></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">breath</span><span class="params">()</span></span> &#123;</span><br><span class="line">        println(<span class="string">&quot;在水中呼吸&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Fish</span> : <span class="type">Swimable</span> &#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">swim</span><span class="params">()</span></span> &#123;</span><br><span class="line">        println(<span class="string">&quot;鱼游来游去&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="六、空安全（核心特性）"><a href="#六、空安全（核心特性）" class="headerlink" title="六、空安全（核心特性）"></a>六、空安全（核心特性）</h2><p>Kotlin 区分<strong>可空类型</strong>（可能为 <code>null</code>）和<strong>非空类型</strong>（不可为 <code>null</code>），编译期避免空指针：</p>
+<h4 id="1-可空类型标记"><a href="#1-可空类型标记" class="headerlink" title="1. 可空类型标记"></a>1. 可空类型标记</h4><p>在类型后加 <code>?</code> 表示可空：</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> str: String = <span class="string">&quot;abc&quot;</span>  <span class="comment">// 非空类型，不能赋值 null</span></span><br><span class="line">str = <span class="literal">null</span>  <span class="comment">// 编译报错</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> nullableStr: String? = <span class="string">&quot;xyz&quot;</span>  <span class="comment">// 可空类型</span></span><br><span class="line">nullableStr = <span class="literal">null</span>  <span class="comment">// 合法</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="2-安全操作符"><a href="#2-安全操作符" class="headerlink" title="2. 安全操作符"></a>2. 安全操作符</h4><ul>
+<li><p>**安全调用 <code>?.</code>**：若对象为 <code>null</code>，则表达式返回 <code>null</code>（不崩溃）</p>
+  <figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">val</span> length = nullableStr?.length  <span class="comment">// 若 nullableStr 为 null，length 为 null</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>**Elvis 操作符 <code>?:</code>**：若左侧为 <code>null</code>，则返回右侧默认值</p>
+  <figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">val</span> len = nullableStr?.length ?: <span class="number">0</span>  <span class="comment">// 若为 null，返回 0</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>**非空断言 <code>!!</code>**：强制认为对象非空，若为 <code>null</code> 则抛出 <code>NullPointerException</code>（谨慎使用）</p>
+  <figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">val</span> len = nullableStr!!.length  <span class="comment">// 若 nullableStr 为 null，崩溃</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="七、集合框架"><a href="#七、集合框架" class="headerlink" title="七、集合框架"></a>七、集合框架</h2><p>Kotlin 集合分为<strong>不可变</strong>（默认，只读）和<strong>可变</strong>（可读写），通过不同函数创建：</p>
+<table>
+<thead>
+<tr>
+<th>集合类型</th>
+<th>不可变（只读）</th>
+<th>可变（可读写）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>列表</td>
+<td><code>listOf()</code></td>
+<td><code>mutableListOf()</code></td>
+</tr>
+<tr>
+<td>集合</td>
+<td><code>setOf()</code></td>
+<td><code>mutableSetOf()</code></td>
+</tr>
+<tr>
+<td>映射</td>
+<td><code>mapOf()</code></td>
+<td><code>mutableMapOf()</code></td>
+</tr>
+</tbody></table>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 不可变列表（无法添加/删除元素）</span></span><br><span class="line"><span class="keyword">val</span> list = listOf(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 可变列表</span></span><br><span class="line"><span class="keyword">val</span> mutableList = mutableListOf(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line">mutableList.add(<span class="number">4</span>)  <span class="comment">// 合法</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 映射（键值对）</span></span><br><span class="line"><span class="keyword">val</span> map = mapOf(<span class="string">&quot;name&quot;</span> to <span class="string">&quot;Kotlin&quot;</span>, <span class="string">&quot;version&quot;</span> to <span class="number">1.9</span>)</span><br><span class="line">println(map[<span class="string">&quot;name&quot;</span>])  <span class="comment">// 输出 &quot;Kotlin&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>集合操作</strong>（函数式风格）：</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">val</span> numbers = listOf(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>)</span><br><span class="line"><span class="keyword">val</span> evenNumbers = numbers.filter &#123; it % <span class="number">2</span> == <span class="number">0</span> &#125;  <span class="comment">// 过滤偶数：[2,4]</span></span><br><span class="line"><span class="keyword">val</span> squares = numbers.map &#123; it * it &#125;  <span class="comment">// 求平方：[1,4,9,16,25]</span></span><br><span class="line"><span class="keyword">val</span> sum = numbers.reduce &#123; acc, num -&gt; acc + num &#125;  <span class="comment">// 累加：15</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="八、扩展函数"><a href="#八、扩展函数" class="headerlink" title="八、扩展函数"></a>八、扩展函数</h2><p>无需继承，直接给现有类添加新方法（如给 <code>String</code> 加 <code>isEmail</code> 方法）：</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 给 String 扩展一个判断是否为邮箱的方法</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> String.<span class="title">isEmail</span><span class="params">()</span></span>: <span class="built_in">Boolean</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> contains(<span class="string">&quot;@&quot;</span>) &amp;&amp; contains(<span class="string">&quot;.&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用</span></span><br><span class="line"><span class="keyword">val</span> email = <span class="string">&quot;test@example.com&quot;</span></span><br><span class="line">println(email.isEmail())  <span class="comment">// 输出 true</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Android 中常用</strong>：给 <code>Context</code> 扩展 <code>toast</code> 方法，简化弹窗：</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> Context.<span class="title">toast</span><span class="params">(message: <span class="type">String</span>)</span></span> &#123;</span><br><span class="line">    Toast.makeText(<span class="keyword">this</span>, message, Toast.LENGTH_SHORT).show()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 在 Activity 中直接调用</span></span><br><span class="line">toast(<span class="string">&quot;Hello Kotlin&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="九、Lambda-表达式与高阶函数"><a href="#九、Lambda-表达式与高阶函数" class="headerlink" title="九、Lambda 表达式与高阶函数"></a>九、Lambda 表达式与高阶函数</h3><h3 id="1-Lambda-表达式"><a href="#1-Lambda-表达式" class="headerlink" title="1. Lambda 表达式"></a>1. Lambda 表达式</h3><p>匿名函数，语法：<code>&#123; 参数 -&gt; 函数体 &#125;</code>，常用于简化回调：</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 定义一个接收 Lambda 的函数</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">doSomething</span><span class="params">(action: () -&gt; <span class="type">Unit</span>)</span></span> &#123;</span><br><span class="line">    action()  <span class="comment">// 执行 Lambda</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 调用：传递 Lambda</span></span><br><span class="line">doSomething &#123;</span><br><span class="line">    println(<span class="string">&quot;执行操作&quot;</span>)  <span class="comment">// 输出 &quot;执行操作&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-高阶函数"><a href="#2-高阶函数" class="headerlink" title="2. 高阶函数"></a>2. 高阶函数</h3><p>参数或返回值为函数的函数（如集合的 <code>filter</code>、<code>map</code>）：</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 高阶函数：参数为 (Int) -&gt; Boolean 类型的函数</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">filterNumbers</span><span class="params">(numbers: <span class="type">List</span>&lt;<span class="type">Int</span>&gt;, predicate: (<span class="type">Int</span>) -&gt; <span class="type">Boolean</span>)</span></span>: List&lt;<span class="built_in">Int</span>&gt; &#123;</span><br><span class="line">    <span class="keyword">val</span> result = mutableListOf&lt;<span class="built_in">Int</span>&gt;()</span><br><span class="line">    <span class="keyword">for</span> (num <span class="keyword">in</span> numbers) &#123;</span><br><span class="line">        <span class="keyword">if</span> (predicate(num)) &#123;  <span class="comment">// 调用传入的函数</span></span><br><span class="line">            result.add(num)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 调用：传递 Lambda 作为参数</span></span><br><span class="line"><span class="keyword">val</span> nums = listOf(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>)</span><br><span class="line"><span class="keyword">val</span> evenNums = filterNumbers(nums) &#123; it % <span class="number">2</span> == <span class="number">0</span> &#125;  <span class="comment">// 过滤偶数：[2,4]</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="十、协程（Coroutines）"><a href="#十、协程（Coroutines）" class="headerlink" title="十、协程（Coroutines）"></a>十、协程（Coroutines）</h2><p>Kotlin 用于<strong>异步编程</strong>的核心特性，解决回调地狱，让异步代码像同步代码一样直观（Android 中用于网络请求、数据库操作等耗时任务）：</p>
+<h3 id="1-基本用法"><a href="#1-基本用法" class="headerlink" title="1. 基本用法"></a>1. 基本用法</h3><p>需添加依赖（<code>kotlinx-coroutines-core</code>），用 <code>launch</code> 启动协程，<code>suspend</code> 标记 suspend 函数：</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> kotlinx.coroutines.*</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="comment">// 启动协程（在主线程的协程作用域中）</span></span><br><span class="line">    runBlocking &#123;</span><br><span class="line">        launch &#123;  <span class="comment">// 启动一个新协程</span></span><br><span class="line">            delay(<span class="number">1000</span>)  <span class="comment">// 暂停 1 秒（非阻塞，不阻塞主线程）</span></span><br><span class="line">            println(<span class="string">&quot;协程执行完成&quot;</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        println(<span class="string">&quot;主线程继续执行&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-关键概念"><a href="#2-关键概念" class="headerlink" title="2. 关键概念"></a>2. 关键概念</h3><ul>
+<li><strong>协程作用域（CoroutineScope）</strong>：管理协程生命周期（如 Android 中的 <code>lifecycleScope</code>）。</li>
+<li><strong>suspend 函数</strong>：只能在协程或其他 suspend 函数中调用，可包含耗时操作。</li>
+<li><strong>非阻塞</strong>：协程暂停时，线程可执行其他任务，提高效率。</li>
+</ul>
+<h3 id="十一、与-Java-互操作"><a href="#十一、与-Java-互操作" class="headerlink" title="十一、与 Java 互操作"></a>十一、与 Java 互操作</h3><ul>
+<li><strong>调用 Java 代码</strong>：直接使用，无需额外处理（如调用 <code>java.util.ArrayList</code>）。</li>
+<li>Java 调用 Kotlin 代码：<ul>
+<li>Kotlin 类默认是 <code>final</code>，Java 需用 <code>open</code> 修饰才能继承。</li>
+<li>顶层函数（不在类中的函数）会被编译为 <code>文件名Kt</code> 类的静态方法。</li>
+</ul>
+</li>
+</ul>
+<h1 id="Android四大组件的核心概念"><a href="#Android四大组件的核心概念" class="headerlink" title="Android四大组件的核心概念"></a>Android四大组件的核心概念</h1><h2 id="一、Activity（活动）"><a href="#一、Activity（活动）" class="headerlink" title="一、Activity（活动）"></a>一、Activity（活动）</h2><h3 id="核心定义"><a href="#核心定义" class="headerlink" title="核心定义"></a>核心定义</h3><ul>
+<li><strong>用户交互界面单元</strong>，每个屏幕对应一个Activity</li>
+<li>通过<strong>Intent</strong>实现页面跳转（正向&#x2F;逆向均需重点监控）</li>
+</ul>
+<h3 id="关键特性"><a href="#关键特性" class="headerlink" title="关键特性"></a>关键特性</h3><ul>
+<li><strong>生命周期</strong>：<code>onCreate()</code> → <code>onStart()</code> → <code>onResume()</code> → <code>onPause()</code> → <code>onStop()</code> → <code>onDestroy()</code></li>
+<li><strong>启动模式</strong>：standard&#x2F;singleTop&#x2F;singleTask&#x2F;singleInstance（逆向时关注任务栈管理）</li>
+<li><strong>布局绑定</strong>：通过<code>setContentView()</code>关联XML布局</li>
+</ul>
+<h3 id="逆向关注点"><a href="#逆向关注点" class="headerlink" title="逆向关注点"></a>逆向关注点</h3><ul>
+<li>查找<strong>Launcher Activity</strong>（应用入口）：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">&lt;intent-filter&gt;</span><br><span class="line">    &lt;action android:name=<span class="string">&quot;android.intent.action.MAIN&quot;</span> /&gt;</span><br><span class="line">    &lt;category android:name=<span class="string">&quot;android.intent.category.LAUNCHER&quot;</span> /&gt;</span><br><span class="line">&lt;/intent-filter&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>分析<code>startActivityForResult()</code>跨组件通信</li>
+<li>Hook <code>onActivityResult()</code>获取数据回传逻辑</li>
+</ul>
+<h2 id="二、Service（服务）"><a href="#二、Service（服务）" class="headerlink" title="二、Service（服务）"></a>二、Service（服务）</h2><h3 id="核心定义-1"><a href="#核心定义-1" class="headerlink" title="核心定义"></a>核心定义</h3><ul>
+<li><strong>后台运行组件</strong>，无界面（常驻&#x2F;耗时操作）</li>
+<li>两种启动方式：<ul>
+<li>**startService()**（长期运行，如音乐播放）</li>
+<li>**bindService()**（IPC跨进程通信）</li>
+</ul>
+</li>
+</ul>
+<h3 id="生命周期差异"><a href="#生命周期差异" class="headerlink" title="生命周期差异"></a>生命周期差异</h3><ul>
+<li><strong>启动式</strong>：<code>onCreate()</code> → <code>onStartCommand()</code> → <code>onDestroy()</code></li>
+<li><strong>绑定式</strong>：<code>onCreate()</code> → <code>onBind()</code> → <code>onUnbind()</code> → <code>onDestroy()</code></li>
+</ul>
+<h3 id="逆向关注点-1"><a href="#逆向关注点-1" class="headerlink" title="逆向关注点"></a>逆向关注点</h3><ul>
+<li>识别<strong>Foreground Service</strong>（通知栏常驻，需反编译检查通知配置）</li>
+<li>分析<code>IntentService</code>的消息处理机制</li>
+<li>检测<code>startForeground()</code>防杀保活手段</li>
+<li>定位跨进程通信的<strong>AIDL接口</strong></li>
+</ul>
+<hr>
+<h2 id="三、BroadcastReceiver（广播接收器）"><a href="#三、BroadcastReceiver（广播接收器）" class="headerlink" title="三、BroadcastReceiver（广播接收器）"></a>三、BroadcastReceiver（广播接收器）</h2><h3 id="核心定义-2"><a href="#核心定义-2" class="headerlink" title="核心定义"></a>核心定义</h3><ul>
+<li><strong>系统&#x2F;应用事件监听器</strong>（如网络变化、短信接收）</li>
+<li>两种注册方式：<ul>
+<li><strong>静态注册</strong>：AndroidManifest.xml声明（系统广播）</li>
+<li><strong>动态注册</strong>：代码中<code>registerReceiver()</code>（应用内广播）</li>
+</ul>
+</li>
+</ul>
+<h3 id="事件响应流程"><a href="#事件响应流程" class="headerlink" title="事件响应流程"></a>事件响应流程</h3><ol>
+<li>发送广播：<code>sendBroadcast(intent)</code></li>
+<li>匹配接收器：通过<code>IntentFilter</code>筛选</li>
+<li>执行<code>onReceive()</code>逻辑</li>
+</ol>
+<h3 id="逆向关注点-2"><a href="#逆向关注点-2" class="headerlink" title="逆向关注点"></a>逆向关注点</h3><ul>
+<li>监控<strong>敏感广播</strong>（如<code>BOOT_COMPLETED</code>开机自启）</li>
+<li>分析有序广播的优先级滥用：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">&lt;intent-filter android:priority=<span class="string">&quot;1000&quot;</span>&gt;</span><br><span class="line">    &lt;action android:name=<span class="string">&quot;android.provider.Telephony.SMS_RECEIVED&quot;</span> /&gt;</span><br><span class="line">&lt;/intent-filter&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Hook <code>abortBroadcast()</code>拦截广播传递链</li>
+</ul>
+<hr>
+<h2 id="四、ContentProvider（内容提供者）"><a href="#四、ContentProvider（内容提供者）" class="headerlink" title="四、ContentProvider（内容提供者）"></a>四、ContentProvider（内容提供者）</h2><h3 id="核心定义-3"><a href="#核心定义-3" class="headerlink" title="核心定义"></a>核心定义</h3><ul>
+<li><strong>跨应用数据共享</strong>的标准化接口（数据库&#x2F;文件）</li>
+<li>通过<strong>URI</strong>标识数据源：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">content:<span class="comment">//com.example.provider/user/1</span></span><br><span class="line">↑          ↑                ↑     ↑</span><br><span class="line">协议       包名             表名  记录ID</span><br></pre></td></tr></table></figure>
+
+<h3 id="核心方法"><a href="#核心方法" class="headerlink" title="核心方法"></a>核心方法</h3><ul>
+<li><code>query()</code>：查询数据</li>
+<li><code>insert()</code>：插入数据</li>
+<li><code>update()</code>：更新数据</li>
+<li><code>delete()</code>：删除数据</li>
+<li><code>getType()</code>：返回MIME类型</li>
+</ul>
+<h3 id="逆向关注点-3"><a href="#逆向关注点-3" class="headerlink" title="逆向关注点"></a>逆向关注点</h3><ul>
+<li>解析<code>&lt;provider&gt;</code>声明中的<strong>权限控制</strong>：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">&lt;provider </span><br><span class="line">    android:authorities=<span class="string">&quot;com.example.provider&quot;</span></span><br><span class="line">    android:readPermission=<span class="string">&quot;READ_DATA&quot;</span></span><br><span class="line">    android:writePermission=<span class="string">&quot;WRITE_DATA&quot;</span>/&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>追踪<code>ContentResolver</code>的CRUD操作路径</li>
+<li>检测<strong>URI注入漏洞</strong>（未校验外部输入）</li>
+</ul>
+<h2 id="五、四大组件共性特征"><a href="#五、四大组件共性特征" class="headerlink" title="五、四大组件共性特征"></a>五、四大组件共性特征</h2><h3 id="1-清单文件声明"><a href="#1-清单文件声明" class="headerlink" title="1. 清单文件声明"></a>1. 清单文件声明</h3><p>所有组件必须在<code>AndroidManifest.xml</code>注册：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">&lt;activity android:name=<span class="string">&quot;.MainActivity&quot;</span>/&gt;</span><br><span class="line">&lt;service android:name=<span class="string">&quot;.MyService&quot;</span>/&gt;</span><br><span class="line">&lt;receiver android:name=<span class="string">&quot;.MyReceiver&quot;</span>/&gt;</span><br><span class="line">&lt;provider android:name=<span class="string">&quot;.MyProvider&quot;</span>/&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-Intent通信机制"><a href="#2-Intent通信机制" class="headerlink" title="2. Intent通信机制"></a>2. Intent通信机制</h3><ul>
+<li><strong>显式Intent</strong>：明确指定组件类名（逆向易追踪）</li>
+<li><strong>隐式Intent</strong>：通过Action&#x2F;Category匹配（需反编译查看过滤条件）</li>
+</ul>
+<h3 id="3-逆向工程切入点"><a href="#3-逆向工程切入点" class="headerlink" title="3. 逆向工程切入点"></a>3. 逆向工程切入点</h3><ul>
+<li><strong>入口分析</strong>：定位Launcher Activity和开机广播接收器</li>
+<li><strong>协议破解</strong>：监控ContentProvider的数据读写格式</li>
+<li><strong>Hook位置</strong>：选择组件生命周期方法注入代码（如Activity的<code>onCreate()</code>）</li>
+</ul>
+<h2 id="逆向实战技巧"><a href="#逆向实战技巧" class="headerlink" title="逆向实战技巧"></a>逆向实战技巧</h2><ol>
+<li><p><strong>快速定位组件</strong>：</p>
+<ul>
+<li>使用<code>apktool</code>反编译后，在<code>AndroidManifest.xml</code>搜索组件声明</li>
+<li>通过<code>jadx-gui</code>查看组件的Java&#x2F;Kotlin实现类</li>
+</ul>
+</li>
+<li><p><strong>动态行为监控</strong>：</p>
+<ul>
+<li><p>使用<code>logcat</code>过滤组件生命周期日志：</p>
+</li>
+<li><pre><code class="java">adb logcat | grep -E &quot;ActivityManager|BroadcastRecord&quot;
+</code></pre>
+</li>
+<li><p>Frida Hook <code>android.app.Activity</code>的<code>onCreate()</code>方法</p>
+</li>
+</ul>
+</li>
+</ol>
+<p>3.<strong>安全漏洞挖掘</strong>：</p>
+<ul>
+<li>检测<code>exported=true</code>的暴露组件（未授权访问风险）</li>
+<li>分析Intent传递的Bundle数据是否缺少校验</li>
+</ul>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>Kotlin</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>安卓逆向这档子事</title>
+    <url>/2025/03/12/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E8%BF%99%E6%A1%A3%E5%AD%90%E4%BA%8B/</url>
+    <content><![CDATA[<h1 id="一、初识APK"><a href="#一、初识APK" class="headerlink" title="一、初识APK"></a>一、初识APK</h1><h2 id="1-双开及其原理"><a href="#1-双开及其原理" class="headerlink" title="1..双开及其原理"></a>1..双开及其原理</h2><p><strong>双开：简单来说，就是手机同时运行两个或多个相同的应用，例如同时运行两个微信</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">原理</th>
+<th align="left">解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">修改包名</td>
+<td align="left">让手机系统认为这是2个APP，这样的话就能生成2个数据存储路径，此时的多开就等于你打开了两个互不干扰的APP</td>
+</tr>
+<tr>
+<td align="left">修改Framework</td>
+<td align="left">对于有系统修改权限的厂商，可以修改Framework来实现双开的目的，例如：小米自带多开</td>
+</tr>
+<tr>
+<td align="left">通过虚拟化技术实现</td>
+<td align="left">虚拟Framework层、虚拟文件系统、模拟Android对组件的管理、虚拟应用进程管理 等一整套虚拟技术，将APK复制一份到虚拟空间中运行，例如：平行空间</td>
+</tr>
+<tr>
+<td align="left">以插件机制运行</td>
+<td align="left">利用反射替换，动态代{过}{滤}理，hook了系统的大部分与system—server进程通讯的函数，以此作为“欺上瞒下”的目的，欺骗系统“以为”只有一个apk在运行，瞒过插件让其“认为”自己已经安装。例如：VirtualApp</td>
+</tr>
+</tbody></table>
+<h3 id="2-1-修改包名"><a href="#2-1-修改包名" class="headerlink" title="2.1 修改包名"></a>2.1 修改包名</h3><h4 id="2-1-1-使用工具"><a href="#2-1-1-使用工具" class="headerlink" title="2.1.1 使用工具"></a>2.1.1 使用工具</h4><p>MT管理器和NP管理器，都是Android设备上用于文件管理和系统操作的工具，但它们在功能特点、用户界面以及使用场景上有一些区别。</p>
+<p><strong>MT管理器</strong></p>
+<p>MT管理器（MT Manager）是一款功能强大的文件管理器，主要用于对APK文件、dex&#x2F;oat&#x2F;smali文件进行编辑，还可以进行文件对比、文本翻译等。它的主要特点包括：</p>
+<ul>
+<li>支持直接编辑APK文件中的资源文件、smali代码。</li>
+<li>提供了丰富的文件操作功能，如复制、粘贴、重命名等。</li>
+<li>可以用来汉化应用、修改游戏数据等高级操作。</li>
+<li>用户界面相对复杂，更适合有一定技术背景的用户使用。</li>
+</ul>
+<p><strong>NP管理器</strong></p>
+<p>NP管理器（NP Manager）也是一个文件管理器，虽然它也提供了对APK文件的基本编辑能力，但是其主要侧重点在于提供更直观的文件浏览体验和基本的文件管理功能。相比于MT管理器，NP管理器的特点有：</p>
+<ul>
+<li>界面设计更加简洁直观，适合普通用户进行基础的文件管理任务。</li>
+<li>提供了对多种文件格式的支持，如压缩文件(zip, rar)的解压与创建。</li>
+<li>功能性上相对于MT管理器来说较为简单，适用于不需要深入编辑apk或系统文件的用户。</li>
+</ul>
+<p><strong>区别</strong></p>
+<ul>
+<li><strong>功能深度</strong>：MT管理器在处理复杂的文件编辑和系统级操作方面更为强大；而NP管理器则侧重于提供一个易于使用的文件管理解决方案。</li>
+<li><strong>用户界面</strong>：MT管理器的UI更加复杂，包含更多专业化的选项；NP管理器设计得更加友好，适合所有级别的用户。</li>
+<li><strong>使用场景</strong>：如果需要对应用程序进行深层次的修改，比如反编译apk文件，则MT管理器是更好的选择。而对于那些仅需要基本文件管理功能的用户来说，NP管理器可能更加合适。</li>
+</ul>
+<p>根据实际需求应用，有的功能需要VIP……</p>
+<h4 id="2-1-2-操作"><a href="#2-1-2-操作" class="headerlink" title="2.1.2 操作"></a>2.1.2 操作</h4><p>将MT管理器、NP管理器以及练手demo安装至安卓模拟器</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/%E5%8F%8C%E5%BC%80%E5%B7%A5%E5%85%B7%E5%AE%89%E8%A3%85.png"></p>
+<p>由于MT管理器双开需要会员，所以选择NP管理器。进入NP管理器软件，点击左上角的三根杠，选择安装包提取。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/NP%E7%AE%A1%E7%90%86%E5%99%A8%E7%AC%AC%E4%B8%80%E7%95%8C%E9%9D%A2.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/%E5%AE%89%E8%A3%85%E5%8C%85%E6%8F%90%E5%8F%96.png"></p>
+<p>然后选择需要提取的软件</p>
+<p> —&gt; 提取安装包—&gt; 定位 —&gt;点击软件 —&gt;功能—&gt;APK共存</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/demo%E5%8A%9F%E8%83%BD%E9%80%89%E6%8B%A9.png"></p>
+<p>最后确认，此时便有了该软件的安装包，通过带点击下方提取出来的安装包，进行安装，桌面上便有了新的一个demo软件</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/%E6%88%90%E5%8A%9F%E6%8F%90%E5%8F%96%E5%AE%89%E8%A3%85%E5%8C%85.png"></p>
+<p>注意这个地方，提取出来后，两个包的包名不一样</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/%E6%8F%90%E5%8F%96%E5%AE%89%E8%A3%85.png"></p>
+<p>由于该方法是通过修改包名实现的，所以懂了应用的签名信息，如果开发者做了一个签名校验，那就很有可能安装后软件出现闪退奔溃的情况。</p>
+<h2 id="3-汉化"><a href="#3-汉化" class="headerlink" title="3.汉化"></a>3.汉化</h2><p><strong>汉化：使用专门的工具对外文版的软件资源进行读取、翻译、修改、回写等一系列处理，使软件的菜单、对话框、提示等用户界面显示为中文，而程序的内核和功能保持不变，这个过程即为软件汉化</strong></p>
+<p>基本上字符串都是在arsc里，建议一键汉化，然后再润色。<br>少量没汉化到的字符串参考视频中的方法定位去逐个汉化。</p>
+<p>流程图</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/%E8%BD%AF%E4%BB%B6%E6%B1%89%E5%8C%96%E6%B5%81%E7%A8%8B%E5%9B%BE.png"></p>
+<p>可以使用MT管理器，进入demo的apk文件中，进行搜索需要修改句子对应的文件所在位置，使用搜索，点击高级搜索可以进入全局搜索。查找到文件位置后进入文件，手动修改句子，翻译为中文。真的累。</p>
+<p>修改后会出现一个签名改动的问题，可以直接卸载了再安装，或者核心破解。</p>
+<h2 id="4-初识AndroidManifest-xml"><a href="#4-初识AndroidManifest-xml" class="headerlink" title="4.初识AndroidManifest.xml"></a>4.初识AndroidManifest.xml</h2><p>AndroidManifest.xml文件是整个应用程序的信息描述文件，定义了应用程序中包含的Activity,Service,Content provider和BroadcastReceiver组件信息。每个应用程序在根目录下必须包含一个AndroidManifest.xml文件，且文件名不能修改。它描述了package中暴露的组件，他们各自的实现类，各种能被处理的数据和启动位置。</p>
+<table>
+<thead>
+<tr>
+<th align="left">属性</th>
+<th align="left">定义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">versionCode</td>
+<td align="left">版本号，主要用来更新，例如:12</td>
+</tr>
+<tr>
+<td align="left">versionName</td>
+<td align="left">版本名，给用户看的，例如:1.2</td>
+</tr>
+<tr>
+<td align="left">package</td>
+<td align="left">包名，例如：com.zj.52pj.demo</td>
+</tr>
+<tr>
+<td align="left">uses-permission android:name&#x3D;””</td>
+<td align="left">应用权限，例如：android.permission.INTERNET 代表网络权限</td>
+</tr>
+<tr>
+<td align="left">android:label&#x3D;”@string&#x2F;app_name”</td>
+<td align="left">应用名称</td>
+</tr>
+<tr>
+<td align="left">android:icon&#x3D;”@mipmap&#x2F;ic_launcher”</td>
+<td align="left">应用图标路径</td>
+</tr>
+<tr>
+<td align="left">android:debuggable&#x3D;”true”</td>
+<td align="left">应用是否开启debug权限</td>
+</tr>
+</tbody></table>
+<h1 id="二、初识smail"><a href="#二、初识smail" class="headerlink" title="二、初识smail"></a>二、初识smail</h1>]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>信息安全</tag>
+        <tag>吾爱破解</tag>
+        <tag>安卓逆向工程</tag>
+      </tags>
+  </entry>
 </search>
