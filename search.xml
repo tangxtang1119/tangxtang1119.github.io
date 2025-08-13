@@ -1,6 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>实操·开发简单APP</title>
+    <url>/2025/08/11/%E5%AE%9E%E6%93%8D%C2%B7%E5%BC%80%E5%8F%91%E7%AE%80%E5%8D%95APP/</url>
+    <content><![CDATA[<p>内容：写一个“输入密码 → 验证” 的简单APP（含按钮点击事件、密码判断逻辑），生成APK。</p>
+<p>工具：Android Studio 2024.2.1 Path 2</p>
+<h2 id="第一步-创建项目"><a href="#第一步-创建项目" class="headerlink" title="第一步 创建项目"></a>第一步 创建项目</h2><ol>
+<li>在“ New Project ”界面，选择<strong>Empty  Views Activity</strong>（空活动，最简单的模板），点击“ Next ”。</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/ImageBed@main/202508110117481.png" alt="New Project"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/ImageBed@main/202508110119734.png" alt="Empty Views Activity"></p>
+<ol start="2">
+<li>填写项目信息：<ul>
+<li>Name（项目名）：<code>PassworkChecker</code></li>
+<li>Package name（包名）：默认即可（类似<code>com.example.passworkchecker</code>）</li>
+<li>Save location（保存路径）：选一个自己能找到的文件夹</li>
+<li>Language（语言）：选<strong>Java</strong>（更基础）</li>
+<li>Minimum SDK（最低支持的安卓版本）：选默认的“ API 24 ”（覆盖大多数手机）</li>
+</ul>
+</li>
+<li>点击“ Finish ”，等待项目加载完成（第一次可能会久一点，看网络）。</li>
+</ol>
+<h2 id="第二步-设计界面（输入密码的页面）"><a href="#第二步-设计界面（输入密码的页面）" class="headerlink" title="第二步 设计界面（输入密码的页面）"></a>第二步 设计界面（输入密码的页面）</h2><p>需要一个“ 输入框 ”让用户输密码，一个“ 按钮 ”点击验证，一个“ 文字 ”显示结果。</p>
+<ol>
+<li><p>找到页面设计文件：</p>
+<p> 在左侧“ Project ”面板中，展开<code>app &gt; res &gt; layout</code>，双击<code>activity_main.xml</code>（这是默认的页面布局文件）。</p>
+</li>
+<li><p>切换道“ 代码试图 ”：</p>
+<p> 点击右上角的<strong>Code</strong>标签（默认可能时“ Design ”可视化视图，直接写简单代码更清晰）。</p>
+</li>
+<li><p>替换布局代码：</p>
+<p> 把原来的代码全都删掉，编写一下代码：</p>
+ <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span> ?&gt;</span></span><br><span class="line"><span class="comment">&lt;!--        --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 垂直排列的容器 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">LinearLayout</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xmlns:android</span>=<span class="string">&quot;http://schemas.android.com/apk/res/android&quot;</span></span></span><br><span class="line"><span class="tag">	<span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_hight</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:orientation</span>=<span class="string">&quot;vertical&quot;</span></span></span><br><span class="line"><span class="tag">	<span class="attr">android:padding</span>=<span class="string">&quot;30dp&quot;</span>	&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">&lt;!-- 密码输入框 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">EditText</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">&quot;@+id/et_password&quot;</span></span></span><br><span class="line"><span class="tag">    	<span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_higth</span>+&quot;<span class="attr">match_content</span>&quot;</span></span><br><span class="line"><span class="tag">        <span class="attr">android:hint</span>=<span class="string">&quot;请输入密码&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:inputType</span>=<span class="string">&quot;textPassword&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_marginBottom</span>=<span class="string">&quot;20dp&quot;</span>	/&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">&lt;!-- 验证按钮 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Button</span></span></span><br><span class="line"><span class="tag">    	<span class="attr">android:id</span>=<span class="string">&quot;@+id/btn_check&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_higth</span>=<span class="string">&quot;match_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:text</span>=<span class="string">&quot;验证密码&quot;</span>	/&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">&lt;!-- 结果显示文字 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">&quot;@+id/tv_result&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_higth</span>=<span class="string">&quot;match_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_marginTop</span>=<span class="string">&quot;20dp&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:textSize</span>=<span class="string">&quot;18sp&quot;</span>	/&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">LinearLayout</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p> 左侧预览窗会显示：一个输入框、一个按钮、一个空白区域（用于显示结果）</p>
+<p> <img src="https://cdn.jsdelivr.net/gh/tangxtang1119/ImageBed@main/202508140114082.png"></p>
+</li>
+</ol>
+<h2 id="第三步：写逻辑代码（点击按钮验证密码）"><a href="#第三步：写逻辑代码（点击按钮验证密码）" class="headerlink" title="第三步：写逻辑代码（点击按钮验证密码）"></a>第三步：写逻辑代码（点击按钮验证密码）</h2><p>点击 “验证密码” 按钮后，获取输入的密码，判断是否正确（比如设定正确密码是 “123456”），然后显示结果。</p>
+<ol>
+<li><p>找到逻辑代码文件：<br> 在左侧 “Project” 面板中，展开 <code>app &gt; java &gt; 包名（com.example.xxx）</code>，双击 <code>MainActivity.java</code>。</p>
+</li>
+<li><p>替换逻辑代码：<br> 把原来的代码全删掉，复制下面的代码：</p>
+ <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.passwordchecker;  <span class="comment">// 这里的包名要和你项目的一致（默认不用改）</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> androidx.appcompat.app.AppCompatActivity;</span><br><span class="line"><span class="keyword">import</span> android.os.Bundle;</span><br><span class="line"><span class="keyword">import</span> android.view.View;</span><br><span class="line"><span class="keyword">import</span> android.widget.Button;</span><br><span class="line"><span class="keyword">import</span> android.widget.EditText;</span><br><span class="line"><span class="keyword">import</span> android.widget.TextView;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MainActivity</span> <span class="keyword">extends</span> <span class="title class_">AppCompatActivity</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 定义控件变量（提前声明，方便后面使用）</span></span><br><span class="line">    <span class="keyword">private</span> EditText etPassword;  <span class="comment">// 密码输入框</span></span><br><span class="line">    <span class="keyword">private</span> Button btnCheck;      <span class="comment">// 验证按钮</span></span><br><span class="line">    <span class="keyword">private</span> TextView tvResult;    <span class="comment">// 结果显示文字</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">onCreate</span><span class="params">(Bundle savedInstanceState)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        <span class="comment">// 加载我们写的界面布局</span></span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 找到界面中的控件（通过ID匹配）</span></span><br><span class="line">        etPassword = findViewById(R.id.et_password);</span><br><span class="line">        btnCheck = findViewById(R.id.btn_check);</span><br><span class="line">        tvResult = findViewById(R.id.tv_result);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 给按钮设置“点击事件”：点击后执行验证逻辑</span></span><br><span class="line">        btnCheck.setOnClickListener(<span class="keyword">new</span> <span class="title class_">View</span>.OnClickListener() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onClick</span><span class="params">(View v)</span> &#123;</span><br><span class="line">                <span class="comment">// 1. 获取输入的密码（从输入框中取文字）</span></span><br><span class="line">                <span class="type">String</span> <span class="variable">password</span> <span class="operator">=</span> etPassword.getText().toString();</span><br><span class="line"></span><br><span class="line">                <span class="comment">// 2. 判断密码是否正确（这里设定正确密码是“123456”）</span></span><br><span class="line">                <span class="keyword">if</span> (password.equals(<span class="string">&quot;123456&quot;</span>)) &#123;</span><br><span class="line">                    <span class="comment">// 正确：显示“验证成功”</span></span><br><span class="line">                    tvResult.setText(<span class="string">&quot;密码正确！验证通过～&quot;</span>);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="comment">// 错误：显示“密码错误”</span></span><br><span class="line">                    tvResult.setText(<span class="string">&quot;密码错误，请重新输入！&quot;</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="第四步：运行-APP（在模拟器上测试）"><a href="#第四步：运行-APP（在模拟器上测试）" class="headerlink" title="第四步：运行 APP（在模拟器上测试）"></a>第四步：运行 APP（在模拟器上测试）</h2><ol>
+<li>创建模拟器：<br> 点击顶部工具栏的 <strong>Device Manager</strong>（像手机一样的图标），点击 “Create device”，选择一个手机型号（比如 “Pixel 5”），点击 “Next”，选择一个安卓版本（比如 “Tiramisu”），下载后点击 “Finish”。</li>
+<li>启动模拟器：<br> 在 Device Manager 中，点击刚创建的模拟器右侧的 “启动” 按钮（三角形），等待模拟器启动（第一次可能要几分钟，会显示一个安卓手机界面）。</li>
+<li>运行 APP：<br> 点击 Android Studio 顶部的 <strong>Run</strong> 按钮（绿色三角形），选择刚才的模拟器，等待编译运行（底部会显示进度）。<br> 成功后，模拟器上会出现我们的 APP，打开后可以：<ul>
+<li>在输入框中输入文字</li>
+<li>点击 “验证密码” 按钮</li>
+<li>看到结果（输入 “123456” 显示正确，其他显示错误）</li>
+</ul>
+</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/ImageBed@main/202508140113304.png"></p>
+<h2 id="第五步：生成-APK-文件（可安装到手机的文件）"><a href="#第五步：生成-APK-文件（可安装到手机的文件）" class="headerlink" title="第五步：生成 APK 文件（可安装到手机的文件）"></a>第五步：生成 APK 文件（可安装到手机的文件）</h2><p>APK 是安卓应用的安装包，生成后可以传到自己的手机上安装。</p>
+<ol>
+<li><p>生成步骤：<br> 顶部菜单选择 **Build &gt; Build Bundle(s) &#x2F; APK(s) &gt; Build APK(s)**。<br> 等待编译完成，底部会提示 “APK generated successfully”，点击 “locate”，会打开文件夹，里面的 <code>app-debug.apk</code> 就是我们的安装包。</p>
+</li>
+<li><p>安装到手机：<br> 把 <code>app-debug.apk</code> 传到自己的安卓手机上（用微信 &#x2F; QQ 发送），在手机上点击该文件，按照提示安装（可能需要开启 “未知来源应用安装” 权限）。</p>
+<p> <img src="https://cdn.jsdelivr.net/gh/tangxtang1119/ImageBed@main/202508140126526.jpg"></p>
+</li>
+</ol>
+<h3 id="总结一下核心逻辑"><a href="#总结一下核心逻辑" class="headerlink" title="总结一下核心逻辑"></a>总结一下核心逻辑</h3><ol>
+<li>界面（XML）：用 3 个控件（输入框、按钮、结果文字）垂直排列。</li>
+<li>逻辑（Java）：<ul>
+<li>找到界面上的控件</li>
+<li>给按钮设置点击事件</li>
+<li>点击时获取输入的密码，和 “123456” 对比，显示结果</li>
+</ul>
+</li>
+</ol>
+<p>这个过程涵盖了安卓开发的基础：界面设计、控件操作、事件处理。</p>
+]]></content>
+  </entry>
+  <entry>
     <title>安卓系统基础</title>
     <url>/2025/08/08/%E5%AE%89%E5%8D%93%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80/</url>
     <content><![CDATA[<p><strong>理论：Linux 内核、Framework 层（四大组件：Activity&#x2F;Service&#x2F;Broadcast&#x2F;ContentProvider）、APK 结构（classes.dex&#x2F;res&#x2F;AndroidManifest.xml）。</strong></p>
