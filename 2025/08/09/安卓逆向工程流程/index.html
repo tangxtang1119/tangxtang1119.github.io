@@ -13,7 +13,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>安卓逆向这档子事 |  tangxtang</title>
+      <title>安卓逆向工程核心流程 |  tangxtang</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="/favicon.ico" />
@@ -55,7 +55,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-安卓逆向这档子事"
+  id="post-安卓逆向工程流程"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -66,7 +66,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  安卓逆向这档子事
+  安卓逆向工程核心流程
 </h1>
  
 
@@ -74,8 +74,8 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2025/03/12/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E8%BF%99%E6%A1%A3%E5%AD%90%E4%BA%8B/" class="article-date">
-  <time datetime="2025-03-11T16:00:00.000Z" itemprop="datePublished">2025-03-12</time>
+      <a href="/2025/08/09/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B%E6%B5%81%E7%A8%8B/" class="article-date">
+  <time datetime="2025-08-08T16:00:00.000Z" itemprop="datePublished">2025-08-09</time>
 </a> 
   <div class="article-category">
     <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
@@ -86,7 +86,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">1.5k</span>
+            <span class="post-count">1.6k</span>
         </span>
     </span>
 
@@ -95,7 +95,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">5 分钟</span>
+            <span class="post-count">6 分钟</span>
         </span>
     </span>
 </div>
@@ -110,104 +110,159 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h1 id="一、初识APK"><a href="#一、初识APK" class="headerlink" title="一、初识APK"></a>一、初识APK</h1><h2 id="1-双开及其原理"><a href="#1-双开及其原理" class="headerlink" title="1..双开及其原理"></a>1..双开及其原理</h2><p><strong>双开：简单来说，就是手机同时运行两个或多个相同的应用，例如同时运行两个微信</strong></p>
-<table>
-<thead>
-<tr>
-<th align="left">原理</th>
-<th align="left">解释</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">修改包名</td>
-<td align="left">让手机系统认为这是2个APP，这样的话就能生成2个数据存储路径，此时的多开就等于你打开了两个互不干扰的APP</td>
-</tr>
-<tr>
-<td align="left">修改Framework</td>
-<td align="left">对于有系统修改权限的厂商，可以修改Framework来实现双开的目的，例如：小米自带多开</td>
-</tr>
-<tr>
-<td align="left">通过虚拟化技术实现</td>
-<td align="left">虚拟Framework层、虚拟文件系统、模拟Android对组件的管理、虚拟应用进程管理 等一整套虚拟技术，将APK复制一份到虚拟空间中运行，例如：平行空间</td>
-</tr>
-<tr>
-<td align="left">以插件机制运行</td>
-<td align="left">利用反射替换，动态代{过}{滤}理，hook了系统的大部分与system—server进程通讯的函数，以此作为“欺上瞒下”的目的，欺骗系统“以为”只有一个apk在运行，瞒过插件让其“认为”自己已经安装。例如：VirtualApp</td>
-</tr>
-</tbody></table>
-<h3 id="2-1-修改包名"><a href="#2-1-修改包名" class="headerlink" title="2.1 修改包名"></a>2.1 修改包名</h3><h4 id="2-1-1-使用工具"><a href="#2-1-1-使用工具" class="headerlink" title="2.1.1 使用工具"></a>2.1.1 使用工具</h4><p>MT管理器和NP管理器，都是Android设备上用于文件管理和系统操作的工具，但它们在功能特点、用户界面以及使用场景上有一些区别。</p>
-<p><strong>MT管理器</strong></p>
-<p>MT管理器（MT Manager）是一款功能强大的文件管理器，主要用于对APK文件、dex&#x2F;oat&#x2F;smali文件进行编辑，还可以进行文件对比、文本翻译等。它的主要特点包括：</p>
-<ul>
-<li>支持直接编辑APK文件中的资源文件、smali代码。</li>
-<li>提供了丰富的文件操作功能，如复制、粘贴、重命名等。</li>
-<li>可以用来汉化应用、修改游戏数据等高级操作。</li>
-<li>用户界面相对复杂，更适合有一定技术背景的用户使用。</li>
+  <p>安卓逆向工程是分析和修改已编译安卓应用程序（APK）的过程，其核心流程可分为以下关键步骤，结合静态分析、动态调试和工具链协作完成：</p>
+<h3 id="一、环境与工具准备"><a href="#一、环境与工具准备" class="headerlink" title="一、环境与工具准备"></a>一、环境与工具准备</h3><ol>
+<li><strong>基础工具链</strong><ul>
+<li><strong>APKTool</strong>（最新版本 2.6.0）：用于解包 &#x2F; 重新打包 APK，提取资源和 AndroidManifest.xml。</li>
+<li><strong>JADX</strong>：将 DEX 字节码反编译为可读 Java 代码，支持图形化界面快速定位逻辑。</li>
+<li><strong>dex2jar + JD-GUI</strong>：将 DEX 转为 JAR 文件，配合 JD-GUI 查看反编译结果。</li>
+<li><strong>IDA Pro&#x2F;Ghidra</strong>：静态分析 Native 代码（SO 文件），支持 ARM&#x2F;x86 架构反汇编与伪代码生成。</li>
 </ul>
-<p><strong>NP管理器</strong></p>
-<p>NP管理器（NP Manager）也是一个文件管理器，虽然它也提供了对APK文件的基本编辑能力，但是其主要侧重点在于提供更直观的文件浏览体验和基本的文件管理功能。相比于MT管理器，NP管理器的特点有：</p>
-<ul>
-<li>界面设计更加简洁直观，适合普通用户进行基础的文件管理任务。</li>
-<li>提供了对多种文件格式的支持，如压缩文件(zip, rar)的解压与创建。</li>
-<li>功能性上相对于MT管理器来说较为简单，适用于不需要深入编辑apk或系统文件的用户。</li>
+</li>
+<li><strong>动态调试工具</strong><ul>
+<li><strong>Frida</strong>：通过注入脚本 Hook Java&#x2F;Native 函数，实时修改运行时行为。</li>
+<li><strong>Xposed</strong>：基于框架的全局 Hook 方案，适合系统级行为拦截。</li>
+<li><strong>ZjDroid</strong>：针对加固应用的脱壳工具，支持内存 Dump 和 BakSmali 反编译。</li>
 </ul>
-<p><strong>区别</strong></p>
-<ul>
-<li><strong>功能深度</strong>：MT管理器在处理复杂的文件编辑和系统级操作方面更为强大；而NP管理器则侧重于提供一个易于使用的文件管理解决方案。</li>
-<li><strong>用户界面</strong>：MT管理器的UI更加复杂，包含更多专业化的选项；NP管理器设计得更加友好，适合所有级别的用户。</li>
-<li><strong>使用场景</strong>：如果需要对应用程序进行深层次的修改，比如反编译apk文件，则MT管理器是更好的选择。而对于那些仅需要基本文件管理功能的用户来说，NP管理器可能更加合适。</li>
+</li>
+<li><strong>签名与测试</strong><ul>
+<li><strong>apksigner</strong>：处理 Android 7.0 + 的 V2&#x2F;V3 签名，确保重打包 APK 可安装。</li>
+<li><strong>adb</strong>：与设备 &#x2F; 模拟器通信，执行安装、日志抓取等操作。</li>
 </ul>
-<p>根据实际需求应用，有的功能需要VIP……</p>
-<h4 id="2-1-2-操作"><a href="#2-1-2-操作" class="headerlink" title="2.1.2 操作"></a>2.1.2 操作</h4><p>将MT管理器、NP管理器以及练手demo安装至安卓模拟器</p>
-<p>由于MT管理器双开需要会员，所以选择NP管理器。进入NP管理器软件，点击左上角的三根杠，选择安装包提取。</p>
-<p>然后选择需要提取的软件</p>
-<p> —&gt; 提取安装包—&gt; 定位 —&gt;点击软件 —&gt;功能—&gt;APK共存</p>
-<p>最后确认，此时便有了该软件的安装包，通过带点击下方提取出来的安装包，进行安装，桌面上便有了新的一个demo软件</p>
-<p>注意这个地方，提取出来后，两个包的包名不一样</p>
-<p>由于该方法是通过修改包名实现的，所以懂了应用的签名信息，如果开发者做了一个签名校验，那就很有可能安装后软件出现闪退奔溃的情况。</p>
-<h2 id="3-汉化"><a href="#3-汉化" class="headerlink" title="3.汉化"></a>3.汉化</h2><p><strong>汉化：使用专门的工具对外文版的软件资源进行读取、翻译、修改、回写等一系列处理，使软件的菜单、对话框、提示等用户界面显示为中文，而程序的内核和功能保持不变，这个过程即为软件汉化</strong></p>
-<p>基本上字符串都是在arsc里，建议一键汉化，然后再润色。<br>少量没汉化到的字符串参考视频中的方法定位去逐个汉化。</p>
-<p>流程图</p>
-<p>可以使用MT管理器，进入demo的apk文件中，进行搜索需要修改句子对应的文件所在位置，使用搜索，点击高级搜索可以进入全局搜索。查找到文件位置后进入文件，手动修改句子，翻译为中文。真的累。</p>
-<p>修改后会出现一个签名改动的问题，可以直接卸载了再安装，或者核心破解。</p>
-<h2 id="4-初识AndroidManifest-xml"><a href="#4-初识AndroidManifest-xml" class="headerlink" title="4.初识AndroidManifest.xml"></a>4.初识AndroidManifest.xml</h2><p>AndroidManifest.xml文件是整个应用程序的信息描述文件，定义了应用程序中包含的Activity,Service,Content provider和BroadcastReceiver组件信息。每个应用程序在根目录下必须包含一个AndroidManifest.xml文件，且文件名不能修改。它描述了package中暴露的组件，他们各自的实现类，各种能被处理的数据和启动位置。</p>
-<table>
-<thead>
-<tr>
-<th align="left">属性</th>
-<th align="left">定义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">versionCode</td>
-<td align="left">版本号，主要用来更新，例如:12</td>
-</tr>
-<tr>
-<td align="left">versionName</td>
-<td align="left">版本名，给用户看的，例如:1.2</td>
-</tr>
-<tr>
-<td align="left">package</td>
-<td align="left">包名，例如：com.zj.52pj.demo</td>
-</tr>
-<tr>
-<td align="left">uses-permission android:name&#x3D;””</td>
-<td align="left">应用权限，例如：android.permission.INTERNET 代表网络权限</td>
-</tr>
-<tr>
-<td align="left">android:label&#x3D;”@string&#x2F;app_name”</td>
-<td align="left">应用名称</td>
-</tr>
-<tr>
-<td align="left">android:icon&#x3D;”@mipmap&#x2F;ic_launcher”</td>
-<td align="left">应用图标路径</td>
-</tr>
-<tr>
-<td align="left">android:debuggable&#x3D;”true”</td>
-<td align="left">应用是否开启debug权限</td>
-</tr>
-</tbody></table>
-<h1 id="二、初识smail"><a href="#二、初识smail" class="headerlink" title="二、初识smail"></a>二、初识smail</h1> 
+</li>
+</ol>
+<h3 id="二、逆向核心流程"><a href="#二、逆向核心流程" class="headerlink" title="二、逆向核心流程"></a>二、逆向核心流程</h3><h4 id="（一）APK-获取与初步分析"><a href="#（一）APK-获取与初步分析" class="headerlink" title="（一）APK 获取与初步分析"></a>（一）APK 获取与初步分析</h4><ol>
+<li><strong>获取 APK</strong><ul>
+<li>从应用商店下载、通过<code>adb pull</code>提取已安装应用，或通过网络爬虫获取目标 APK。</li>
+<li>检查 APK 文件完整性：<code>apksigner verify --verbose app.apk</code>。</li>
+</ul>
+</li>
+<li><strong>基础信息解析</strong><ul>
+<li>使用<code>apktool d app.apk</code>解包，查看 AndroidManifest.xml 获取包名、权限、Activity 入口等。</li>
+<li>分析资源文件（res 目录）和 Smali 代码结构，初步判断是否混淆或加固。</li>
+</ul>
+</li>
+</ol>
+<h4 id="（二）反编译与静态分析"><a href="#（二）反编译与静态分析" class="headerlink" title="（二）反编译与静态分析"></a>（二）反编译与静态分析</h4><ol>
+<li><strong>代码反编译</strong><ul>
+<li><strong>Java 层</strong>：直接用 JADX 打开 APK，导出 Java 代码进行逻辑梳理。</li>
+<li><strong>Smali 层</strong>：通过<code>apktool</code>生成的 smali 文件夹，手工修改字节码（如去除广告、破解 VIP 功能）。</li>
+<li><strong>Native 层</strong>：用 IDA Pro 打开 SO 文件，分析 JNI 接口和 ARM 汇编逻辑，定位关键算法（如加密、支付验证）。</li>
+</ul>
+</li>
+<li><strong>代码审计</strong><ul>
+<li>搜索敏感关键词（如<code>verifyPurchase</code>、<code>encrypt</code>），定位核心功能模块。</li>
+<li>分析类继承关系和方法调用链，绘制 UML 图辅助理解架构。</li>
+</ul>
+</li>
+</ol>
+<h4 id="（三）动态调试与脱壳"><a href="#（三）动态调试与脱壳" class="headerlink" title="（三）动态调试与脱壳"></a>（三）动态调试与脱壳</h4><ol>
+<li><strong>动态行为监控</strong><ul>
+<li>使用<code>adb logcat</code>抓取运行时日志，定位关键日志输出点。</li>
+<li>配合 Frida 脚本 Hook 目标函数，打印参数 &#x2F; 返回值，验证静态分析结果。</li>
+</ul>
+</li>
+<li><strong>脱壳处理（针对加固应用）</strong><ul>
+<li>动态脱壳：<ul>
+<li>启动应用后，通过 Frida 注入脚本拦截<code>ClassLoader</code>的<code>loadClass</code>方法，Dump 内存中的原始 DEX。</li>
+<li>示例命令：<code>frida -U -l dump_dex.js -f com.example.app --no-pause</code>。</li>
+</ul>
+</li>
+<li><strong>工具辅助</strong>：ZjDroid 可通过广播命令 Dump 内存中的 DEX 并反编译，支持主流加固方案。</li>
+</ul>
+</li>
+<li><strong>对抗反调试技术</strong><ul>
+<li>绕过 Root 检测：修改<code>Build.VERSION.SDK_INT</code>或使用 Magisk 隐藏 Root 标识。</li>
+<li>处理模拟器检测：通过 Frida Hook<code>Build.FINGERPRINT</code>返回真实设备信息。</li>
+</ul>
+</li>
+</ol>
+<h4 id="（四）代码修改与重打包"><a href="#（四）代码修改与重打包" class="headerlink" title="（四）代码修改与重打包"></a>（四）代码修改与重打包</h4><ol>
+<li><strong>功能定制</strong><ul>
+<li><strong>Java 层修改</strong>：直接编辑 JADX 导出的代码，重新编译为 DEX（需使用 dx 工具或 Android Studio）。</li>
+<li><strong>Smali 层修改</strong>：使用文本编辑器调整 Smali 指令，例如将条件跳转<code>if-eq</code>改为<code>if-ne</code>。</li>
+<li><strong>Native 层修改</strong>：在 IDA 中定位关键汇编指令，修改机器码（如将<code>BEQ</code>改为<code>BNE</code>），重新编译 SO 文件。</li>
+</ul>
+</li>
+<li><strong>资源替换</strong><ul>
+<li>替换 res 目录中的图片、字符串文件，实现界面汉化或 UI 调整。</li>
+<li>注意：部分资源（如 9.png）需用<code>draw9patch</code>工具重新处理。</li>
+</ul>
+</li>
+<li><strong>重新打包与签名</strong><ul>
+<li>使用<code>apktool b modified_folder -o modified.apk</code>生成未签名 APK。</li>
+<li>签名流程：<ol>
+<li>生成密钥：<code>keytool -genkey -v -keystore mykey.jks -alias myalias -keyalg RSA -keysize 2048 -validity 10000</code>。</li>
+<li>签名 APK：<code>apksigner sign --ks mykey.jks --out signed.apk modified.apk</code>。</li>
+<li>优化对齐：<code>zipalign -v 4 signed.apk aligned.apk</code>。</li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="（五）测试与验证"><a href="#（五）测试与验证" class="headerlink" title="（五）测试与验证"></a>（五）测试与验证</h4><ol>
+<li><strong>安装与运行</strong><ul>
+<li>通过<code>adb install -r aligned.apk</code>安装修改后的 APK，启动应用验证功能是否正常。</li>
+<li>使用<code>adb shell am start -n com.example.app/.MainActivity</code>直接启动指定 Activity。</li>
+</ul>
+</li>
+<li><strong>稳定性测试</strong><ul>
+<li>检查是否存在崩溃（通过<code>adb logcat</code>查看 AndroidRuntime 异常）。</li>
+<li>验证关键功能（如支付、网络请求）是否按预期修改。</li>
+</ul>
+</li>
+</ol>
+<h3 id="三、高级技巧与注意事项"><a href="#三、高级技巧与注意事项" class="headerlink" title="三、高级技巧与注意事项"></a>三、高级技巧与注意事项</h3><ol>
+<li><strong>反混淆与去加密</strong><ul>
+<li><strong>字符串解密</strong>：使用<code>dex-oracle</code>工具动态执行加密字符串的解密函数，提取明文。</li>
+<li><strong>控制流平坦化</strong>：通过 IDA 脚本或 Ghidra 插件还原混淆后的代码结构。</li>
+</ul>
+</li>
+<li><strong>自动化脚本开发</strong><ul>
+<li>编写 Frida 脚本批量 Hook 指定类的所有方法，生成调用关系图谱。</li>
+<li>使用 Auto.js 实现自动化测试，模拟用户操作触发逆向目标逻辑。</li>
+</ul>
+</li>
+<li><strong>法律与合规</strong><ul>
+<li>确保逆向行为符合《计算机软件保护条例》和应用的最终用户许可协议（EULA），避免用于商业盗版或恶意攻击。</li>
+<li>仅对自有应用或明确授权的应用进行逆向分析。</li>
+</ul>
+</li>
+</ol>
+<h3 id="四、典型场景解决方案"><a href="#四、典型场景解决方案" class="headerlink" title="四、典型场景解决方案"></a>四、典型场景解决方案</h3><ol>
+<li><strong>破解 VIP 功能</strong><ul>
+<li>定位支付验证逻辑，修改返回值为<code>true</code>或绕过网络校验。</li>
+<li>若涉及 SO 文件，通过 IDA 修改 JNI 函数的返回值（如将<code>0</code>改为<code>1</code>）。</li>
+</ul>
+</li>
+<li><strong>去除广告</strong><ul>
+<li>Hook 广告 SDK 的初始化方法（如<code>AdManager.getInstance().init()</code>），拦截广告加载流程。</li>
+<li>直接删除 Smali 代码中的广告相关类和方法。</li>
+</ul>
+</li>
+<li><strong>脱壳 360 加固应用</strong><ul>
+<li>使用 ZjDroid 的<code>backsmali</code>命令 Dump 内存中的 DEX，结合 Xposed Hook<code>ActivityThread</code>的<code>attach</code>方法绕过检测。</li>
+</ul>
+</li>
+</ol>
+<h3 id="五、工具链整合与效率提升"><a href="#五、工具链整合与效率提升" class="headerlink" title="五、工具链整合与效率提升"></a>五、工具链整合与效率提升</h3><ol>
+<li><p><strong>流程自动化</strong></p>
+<ul>
+<li><p>编写 Shell 脚本整合<code>apktool</code>、<code>jarsigner</code>等工具，实现一键解包 - 修改 - 签名。</p>
+</li>
+<li><p>示例脚本片段：</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">apktool d app.apk -o workdir</span><br><span class="line"><span class="comment"># 修改代码...</span></span><br><span class="line">apktool b workdir -o modified.apk</span><br><span class="line">apksigner sign --ks mykey.jks modified.apk</span><br><span class="line">adb install modified.apk</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>团队协作</strong></p>
+<ul>
+<li>使用 Git 管理逆向工程中的代码修改和脚本，配合 Jira 追踪漏洞或功能点。</li>
+<li>共享 IDA&#x2F;Ghidra 的签名数据库（.til 文件），加速 SO 文件分析。</li>
+</ul>
+</li>
+</ol>
+<h3 id="六、总结"><a href="#六、总结" class="headerlink" title="六、总结"></a>六、总结</h3><p>安卓逆向工程是技术与法律的双重挑战，需综合运用静态分析、动态调试、工具链协作等手段。核心流程可概括为：<strong>获取 APK → 解包反编译 → 分析与修改 → 重打包签名 → 测试验证</strong>，其中脱壳、反混淆、动态调试是应对复杂应用的关键。建议从简单应用入手，逐步掌握 Smali 语法、ARM 汇编和脚本开发，同时严格遵守法律边界，确保逆向行为的合法性。</p>
+ 
       <!-- reward -->
       
     </div>
@@ -271,12 +326,12 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://tangxtang1119.github.io/2025/03/12/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E8%BF%99%E6%A1%A3%E5%AD%90%E4%BA%8B/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://tangxtang1119.github.io/2025/08/09/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B%E6%B5%81%E7%A8%8B/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>  
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%90%BE%E7%88%B1%E7%A0%B4%E8%A7%A3/" rel="tag">吾爱破解</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B/" rel="tag">安卓逆向工程</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%89%E5%8D%93%E7%90%86%E8%AE%BA/" rel="tag">安卓理论</a></li></ul>
 
     </footer>
   </div>
@@ -284,15 +339,20 @@
    
   <nav class="article-nav">
     
-      <a href="/2025/05/01/%E5%9F%BA%E7%A1%80%E6%80%BB%E7%BB%93/" class="article-nav-link">
+      <a href="/2025/08/10/%E7%AE%80%E5%8D%95%E7%9A%84APK%E7%BB%93%E6%9E%84/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            基础总结
+            简单的APK结构
           
         </div>
       </a>
     
+    
+      <a href="/2025/08/08/%E5%AE%89%E5%8D%93%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">安卓系统基础</div>
+      </a>
     
   </nav>
 

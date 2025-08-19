@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+  
+
+    <head>
+      <meta charset="utf-8" />
+        
+      <meta name="description" content="‘有志少女 先读书’" />
+      
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>破解·壳与程序的特征 |  tangxtang</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      
+<link rel="stylesheet" href="/css/fonts/remixicon.css">
+
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.staticfile.org/pace/1.2.4/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    </head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-破解·壳与程序的特征"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  破解·壳与程序的特征
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2025/08/11/%E7%A0%B4%E8%A7%A3%C2%B7%E5%A3%B3%E4%B8%8E%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%89%B9%E5%BE%81/" class="article-date">
+  <time datetime="2025-08-10T16:00:00.000Z" itemprop="datePublished">2025-08-11</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">6.5k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">24 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>学习链接：[破解基础知识之认识壳与程序的特征](<a target="_blank" rel="noopener" href="https://www.52pojie.cn/thread-234739-1-1.html">【初学者教程】破解基础知识之认识壳与程序的特征 - 吾爱破解 - 52pojie.cn</a>)</p>
+<p><strong>基础状态</strong>：程序在刚编译完成时，通常为无壳状态。</p>
+<p><strong>无可程序差异</strong>：不同编译器编译的无壳程序存在区别（因编译器特性、生成机制不同）。</p>
+<p><strong>学习逻辑</strong>：先认识不同编译器的无壳程序特征，是理解加壳后程序特征的基础（由基础到复杂，降低学习难度）。</p>
+<p><strong>核心方法</strong>：通过对比无壳程序与加壳后程序，可明确两者的特征差异。</p>
+<p><strong>特征确定维度</strong>：程序的核心特征主要从以下信息判断：</p>
+<ul>
+<li>入口点代码</li>
+<li>程序区段</li>
+<li>加载模块</li>
+</ul>
+<h2 id="VC6-编译无壳程序的核心特点"><a href="#VC6-编译无壳程序的核心特点" class="headerlink" title="VC6 编译无壳程序的核心特点"></a>VC6 编译无壳程序的核心特点</h2><h4 id="1-入口点代码特征（固定模板）"><a href="#1-入口点代码特征（固定模板）" class="headerlink" title="1.入口点代码特征（固定模板）"></a>1.入口点代码特征（固定模板）</h4><ul>
+<li><p><strong>OD（OllyDbg）视角：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">55          push ebp        ; 保存基址指针</span><br><span class="line">8B EC       mov ebp, esp    ; 建立新栈帧</span><br><span class="line">[若干压栈指令]  ; 不同程序的push地址可能不同（如参数、环境变量）</span><br><span class="line">call xxx     ; 调用VC6运行库初始化函数（如 __set_app_type、__p__fmode 等固定API）</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>关键固定行为</strong>：无论程序逻辑如何，<strong>入口必包含压栈保环境 → 调用VC6运行库初始化</strong>的固定流程。</li>
+<li><strong>与VS区别</strong>：VS编译的程序入口仅两行（<code>call + jmp</code>），无连接压栈和直接API调用。</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/ImageBed@main/202508190151191.png"></p>
+</li>
+<li><p><strong>工具识别</strong>：</p>
+<p>  PEID&#x2F;ExeinfoPE 直接标注为 <code>Microsoft Visual C++ ver 5.0/6.0</code>，入口点特征可辅助确认。</p>
+<p>  <img src="https://cdn.jsdelivr.net/gh/tangxtang1119/ImageBed@main/202508190152565.png"></p>
+<p>  <img src="https://cdn.jsdelivr.net/gh/tangxtang1119/ImageBed@main/202508190153467.png"></p>
+</li>
+</ul>
+<h4 id="2-区段（Section）特征（固定四区段）"><a href="#2-区段（Section）特征（固定四区段）" class="headerlink" title="2. 区段（Section）特征（固定四区段）"></a><strong>2. 区段（Section）特征（固定四区段）</strong></h4><ul>
+<li><p><strong>PEID&#x2F;ExeinfoPE 视角</strong>：</p>
+<p>  区段固定为 4 个，无<code>.reloc</code>（重定位段）：</p>
+<table>
+<thead>
+<tr>
+<th>区段名</th>
+<th>用途</th>
+<th>特征说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>.text</code></td>
+<td>代码段</td>
+<td>包含程序指令，可读可执行</td>
+</tr>
+<tr>
+<td><code>.rdata</code></td>
+<td>只读数据段</td>
+<td>存储常量、字符串、导入表等</td>
+</tr>
+<tr>
+<td><code>.data</code></td>
+<td>数据段</td>
+<td>存储全局变量、静态变量</td>
+</tr>
+<tr>
+<td><code>.rsrc</code></td>
+<td>资源段</td>
+<td>包含图标、对话框等二进制资源</td>
+</tr>
+</tbody></table>
+<ul>
+<li><strong>与 VS 区别</strong>：VS 编译的程序多一个<code>.reloc</code>段（用于基址重定位），区段总数为 5 个。</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-运行库初始化行为（固定-API-调用）"><a href="#3-运行库初始化行为（固定-API-调用）" class="headerlink" title="3. 运行库初始化行为（固定 API 调用）"></a><strong>3. 运行库初始化行为（固定 API 调用）</strong></h4><ul>
+<li>入口点调用的 API 固定指向 VC6 运行库（如 <code>MSVCRT.dll</code> 中的 <code>__set_app_type</code>、<code>__p__fmode</code> 等），用于初始化 C 运行时环境（如 I&#x2F;O 模式、浮点状态）。</li>
+<li>不同程序的差异仅体现在<strong>压栈的参数地址</strong>（如命令行、环境变量指针），但 API 调用顺序和目标固定。</li>
+</ul>
+<h4 id="4-实际应用场景（逆向工程中的识别）"><a href="#4-实际应用场景（逆向工程中的识别）" class="headerlink" title="4.实际应用场景（逆向工程中的识别）"></a><strong>4.实际应用场景（逆向工程中的识别）</strong></h4><ul>
+<li><strong>快速判断开发环境</strong>：通过 PEID 区段数（4 个）+ OD 入口指令（<code>push ebp + mov ebp, esp</code>）可秒级确认 VC6 编译。</li>
+<li><strong>区分壳与无壳</strong>：若程序区段被混淆（如合并区段）或入口代码被加密，则可能加壳（需进一步脱壳）。</li>
+<li><strong>对比易语言独立编译</strong>：易语言独立编译调用 VC 链接器，区段和入口特征与 VC6 完全一致，需结合其他特征（如易语言运行库函数）区分。</li>
+</ul>
+<h2 id="VS2008和VS2013编译无壳程序"><a href="#VS2008和VS2013编译无壳程序" class="headerlink" title="VS2008和VS2013编译无壳程序"></a>VS2008和VS2013编译无壳程序</h2><p>可从 <strong>入口点代码、程序区段、运行库 &#x2F; API 调用</strong> 三个维度分析特征，两者存在共性也有版本差异.</p>
+<h3 id="一、共性核心特征"><a href="#一、共性核心特征" class="headerlink" title="一、共性核心特征"></a><strong>一、共性核心特征</strong></h3><h4 id="1-入口点代码：简洁的-“CALL-JMP”-结构"><a href="#1-入口点代码：简洁的-“CALL-JMP”-结构" class="headerlink" title="1.入口点代码：简洁的 “CALL + JMP” 结构"></a>1.<strong>入口点代码：简洁的 “CALL + JMP” 结构</strong></h4><ul>
+<li><p><strong>指令形态</strong>：<br>  无壳程序入口仅 <strong>2 行核心指令</strong>，典型形式：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">call    00401005  ; 调用内部函数（实际跳转到运行库初始化）</span><br><span class="line">jmp     00401010  ; 跳转至真正的程序逻辑（如main函数前的初始化）</span><br></pre></td></tr></table></figure>
+
+<p>  进入<code>call</code>后的子逻辑，会调用 <strong>固定的系统 &#x2F; 运行库 API</strong>（如初始化 C++ 运行时、获取系统时间等）。</p>
+</li>
+<li><p><strong>与 VC6 对比</strong>：<br>  VC6 入口有连续压栈（<code>push ebp</code>等）和多个 API 调用，而 VS 入口更 “紧凑”，通过间接跳转隐藏细节。</p>
+</li>
+</ul>
+<h4 id="2-程序区段：新增-reloc段（支持-ASLR）"><a href="#2-程序区段：新增-reloc段（支持-ASLR）" class="headerlink" title="2. 程序区段：新增.reloc段（支持 ASLR）"></a>2. <strong>程序区段：新增<code>.reloc</code>段（支持 ASLR）</strong></h4><ul>
+<li><p><strong>区段列表</strong>：<br>  相比 VC6 的 4 个区段（.text、.rdata、.data、.rsrc），VS 编译程序多一个 <strong><code>.reloc</code>段</strong>，用于 <strong>基址重定位</strong>（适配 Windows 的 ASLR 随机化加载机制）。</p>
+<table>
+<thead>
+<tr>
+<th>区段名</th>
+<th>用途</th>
+<th>特征说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>.text</code></td>
+<td>代码段</td>
+<td>包含程序指令，可读可执行</td>
+</tr>
+<tr>
+<td><code>.rdata</code></td>
+<td>只读数据段</td>
+<td>存储常量、字符串、导入表等</td>
+</tr>
+<tr>
+<td><code>.data</code></td>
+<td>数据段</td>
+<td>存储全局变量、静态变量</td>
+</tr>
+<tr>
+<td><code>.rsrc</code></td>
+<td>资源段</td>
+<td>包含图标、对话框等二进制资源</td>
+</tr>
+<tr>
+<td><code>.reloc</code></td>
+<td>重定位表</td>
+<td>存储基址重定位信息</td>
+</tr>
+</tbody></table>
+</li>
+<li><p><strong>意义</strong>：<br>  <code>.reloc</code>记录了程序加载到非默认基址时，需要修正的地址偏移，是现代编译器对 “内存安全” 的适配。</p>
+</li>
+</ul>
+<h3 id="二、版本差异（VS2008-vs-VS2013）"><a href="#二、版本差异（VS2008-vs-VS2013）" class="headerlink" title="二、版本差异（VS2008 vs VS2013）"></a><strong>二、版本差异（VS2008 vs VS2013）</strong></h3><h4 id="1-链接器版本与标识"><a href="#1-链接器版本与标识" class="headerlink" title="1. 链接器版本与标识"></a>1. <strong>链接器版本与标识</strong></h4><ul>
+<li><strong>VS2008</strong>：链接器版本 <code>9.0</code>，工具（如 PEID）可检测到 “Microsoft Visual C++ 9.0” 标识。</li>
+<li><strong>VS2013</strong>：链接器版本 <code>12.0</code>，标识为 “Microsoft Visual C++ 12.0”。</li>
+</ul>
+<h4 id="2-入口-API-调用细节"><a href="#2-入口-API-调用细节" class="headerlink" title="2. 入口 API 调用细节"></a>2. <strong>入口 API 调用细节</strong></h4><ul>
+<li><p>VS2013：</p>
+<p>  进入<code>call</code>后的初始化逻辑，更倾向调用现代系统 API（如：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">call KERNEL32.GetSystemTimeAsFileTime  ; 获取系统时间（高精度）</span><br><span class="line">call KERNEL32.GetCurrentProcessId      ; 获取进程ID</span><br><span class="line">call KERNEL32.GetCurrentThreadId       ; 获取线程ID</span><br></pre></td></tr></table></figure>
+
+<p>  这些 API 在 VS2008 中可能被更早期的函数替代（如<code>GetSystemTime</code>而非<code>GetSystemTimeAsFileTime</code>）。</p>
+</li>
+</ul>
+<h3 id="三、逆向分析中的识别方法"><a href="#三、逆向分析中的识别方法" class="headerlink" title="三、逆向分析中的识别方法"></a><strong>三、逆向分析中的识别方法</strong></h3><ol>
+<li><p><strong>工具快速检测</strong>：</p>
+<ul>
+<li><strong>PEID&#x2F;ExeinfoPE</strong>：直接显示编译器版本（“VS2008” 或 “VS2013”），并验证<code>.reloc</code>区段存在。</li>
+</ul>
+</li>
+<li><p><strong>OllyDbg 动态验证</strong>：加载程序后，入口指令若为 “<code>call + jmp</code>”，且跟随<code>call</code>后看到运行库初始化逻辑（如调用上述 KERNEL32 API），则符合 VS 特征。</p>
+</li>
+</ol>
+<h3 id="总结对比表"><a href="#总结对比表" class="headerlink" title="总结对比表"></a><strong>总结对比表</strong></h3><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>VS2008</th>
+<th>VS2013</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>入口代码</strong></td>
+<td>2 行（call + jmp），调用早期 API</td>
+<td>2 行（call + jmp），调用现代 API</td>
+</tr>
+<tr>
+<td><strong>区段</strong></td>
+<td>含<code>.reloc</code>，共 5 个核心区段</td>
+<td>含<code>.reloc</code>，共 5 个核心区段</td>
+</tr>
+<tr>
+<td><strong>运行库</strong></td>
+<td><code>msvcr90.dll</code>（动态）</td>
+<td><code>msvcr120.dll</code>（动态）</td>
+</tr>
+<tr>
+<td><strong>工具标识</strong></td>
+<td>“Visual C++ 9.0”</td>
+<td>“Visual C++ 12.0”</td>
+</tr>
+</tbody></table>
+<h2 id="易语言编译无壳程序"><a href="#易语言编译无壳程序" class="headerlink" title="易语言编译无壳程序"></a>易语言编译无壳程序</h2><p><strong>核心背景</strong>：易语言编译依赖 <strong>VC 链接器</strong>（底层调用 VC 编译器），因此两种编译模式的特征与 <strong>VC 无壳程序</strong> 存在关联，但又因 “是否依赖外部运行库” 产生差异。</p>
+<h3 id="一、核心区段结构特征（PEID-ExeinfoPE-视角）"><a href="#一、核心区段结构特征（PEID-ExeinfoPE-视角）" class="headerlink" title="一、核心区段结构特征（PEID&#x2F;ExeinfoPE 视角）"></a>一、核心区段结构特征（PEID&#x2F;ExeinfoPE 视角）</h3><p>易语言底层调用 <strong>VC 链接器</strong> 编译，因此区段框架与 VC6 无壳程序高度一致，但存在细微差异：</p>
+<table>
+<thead>
+<tr>
+<th>特征维度</th>
+<th>具体表现</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>区段数量</td>
+<td>固定为 <strong>4 个核心区段</strong>（无 <code>.reloc</code> 区段），是区分现代 VS 编译程序（含 <code>.reloc</code>）的关键标志。</td>
+</tr>
+<tr>
+<td>区段名称</td>
+<td>标准命名：<code>.text</code>（代码段）、<code>.rdata</code>（只读数据）、<code>.data</code>（全局变量）、<code>.rsrc</code>（资源），无随机或异常区段名（加壳程序常见随机区段）。</td>
+</tr>
+<tr>
+<td>区段属性</td>
+<td><code>.text</code> 区段必含 <strong>可执行属性（Execute）</strong>，<code>.rdata</code> 为只读（Read），<code>.data</code> 可读写（Read&#x2F;Write），属性无异常（加壳程序可能篡改 <code>.text</code> 为不可执行）。</td>
+</tr>
+</tbody></table>
+<h3 id="二、导入表特征（依赖库标识）"><a href="#二、导入表特征（依赖库标识）" class="headerlink" title="二、导入表特征（依赖库标识）"></a>二、导入表特征（依赖库标识）</h3><p>导入表是识别易语言程序的 <strong>核心依据</strong>，因编译模式（独立 &#x2F; 非独立）不同略有差异：</p>
+<table>
+<thead>
+<tr>
+<th>编译模式</th>
+<th>导入表关键特征</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>非独立编译</td>
+<td><strong>必依赖易语言支持库</strong>：导入表中明确包含 <code>krnln.fnr</code>（易语言核心支持库）、<code>eapi.fnr</code>（扩展支持库）等易语言特有库，且函数名多为中文标识相关（如 <code>初始化环境</code> <code>创建窗口</code> 等）。 同时依赖 VC 基础运行库 <code>MSVCRT.dll</code>（因底层调用 VC 编译链）。</td>
+</tr>
+<tr>
+<td>独立编译</td>
+<td>无外部易语言支持库依赖（支持库被打包进 EXE），导入表仅依赖 <code>MSVCRT.dll</code> 等 VC 运行库，但 EXE 体积通常 <strong>明显更大</strong>（因内置支持库代码）。</td>
+</tr>
+</tbody></table>
+<h3 id="三、入口代码特征（反汇编视角）"><a href="#三、入口代码特征（反汇编视角）" class="headerlink" title="三、入口代码特征（反汇编视角）"></a>三、入口代码特征（反汇编视角）</h3><p>易语言无壳程序的入口代码继承 VC6 特征，但存在细微区别：</p>
+<ul>
+<li><p>入口指令以 <code>PUSH EBP</code>、<code>MOV EBP, ESP</code> 等栈初始化指令开始（同 VC6 标准入口）。</p>
+</li>
+<li><p>早期易语言版本入口附近可能调用 <code>MSVCRT.dll!__getmainargs</code> 或 <code>_main</code> 函数（VC 运行库初始化逻辑）。</p>
+</li>
+<li><p>与纯 VC6 程序的区别：入口后续会跳转到易语言特有初始化逻辑（如支持库加载、窗口创建等），反汇编中可能出现中文函数名的字符串引用（如 <code>_启动窗口_创建完毕</code>）。</p>
+<p>  <img src="https://cdn.jsdelivr.net/gh/tangxtang1119/ImageBed@main/202508191509164.png" alt="来源吾爱破解作者Hmily链接见文顶"></p>
+</li>
+</ul>
+<h3 id="四、资源与字符串特征"><a href="#四、资源与字符串特征" class="headerlink" title="四、资源与字符串特征"></a>四、资源与字符串特征</h3><ul>
+<li><p><strong>资源区段（.rsrc）</strong>：易语言程序通常包含大量窗体资源（对话框、按钮、文本框等），资源类型中可能存在 <code>DLG</code>（对话框）、<code>ICON</code>（图标）等，且资源名称可能含中文标识（如窗体标题）。</p>
+</li>
+<li><p>字符串特征：程序字符串中常出现易语言特有标识，例如：</p>
+<ul>
+<li><p>支持库相关：<code>krnln.fnr</code>、<code>eapi.fnr</code>、<code>支持库版本不兼容</code> 等（查看模块）。</p>
+<p>  <img src="https://cdn.jsdelivr.net/gh/tangxtang1119/ImageBed@main/202508191510023.png" alt="来源吾爱破解作者Hmily链接见文顶"></p>
+</li>
+<li><p>运行逻辑相关：<code>_启动窗口_</code>、<code>_按钮1_被单击</code>、<code>信息框</code> 等中文函数或事件名。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="五、运行时行为特征"><a href="#五、运行时行为特征" class="headerlink" title="五、运行时行为特征"></a>五、运行时行为特征</h3><ul>
+<li><strong>独立编译程序</strong>：运行时会在系统临时目录（如 <code>C:\Users\用户名\AppData\Local\Temp</code>）释放打包的支持库文件（<code>.fnr</code>&#x2F;<code>.fne</code>），程序退出后通常自动删除。</li>
+<li><strong>非独立编译程序</strong>：若目标机未安装易语言或未放置对应支持库，运行时会弹窗报错（如 <code>找不到指定的支持库文件</code>），依赖外部库的特征明显。</li>
+</ul>
+<h3 id="关键区分点"><a href="#关键区分点" class="headerlink" title="关键区分点"></a>关键区分点</h3><ol>
+<li>与 VC6 无壳程序的区别：VC6 程序无 <code>krnln.fnr</code> 等易语言库依赖，且字符串中无中文事件 &#x2F; 函数名；易语言程序即使独立编译，也可能在代码中残留支持库相关字符串。</li>
+<li>与加壳程序的区别：加壳程序区段名称混乱（如 <code>.upx0</code>、<code>.pack</code>）、区段数量异常（通常 2-3 个），且导入表可能被隐藏（需脱壳后才能看到真实依赖）；而易语言无壳程序区段规范、导入表清晰。</li>
+</ol>
+<p>可以从程序里找一些call的调用最终都会走到上面核心代码图位置（文字不太好表达），这个方法可以区分和VC的区别，非独立编译比较容易识别，入口特征和模块特征都有krnln.fnr。</p>
+<h2 id="Delhpi编译无壳程序"><a href="#Delhpi编译无壳程序" class="headerlink" title="Delhpi编译无壳程序"></a>Delhpi编译无壳程序</h2><h3 id="一、区段结构特征（PEID-ExeinfoPE-视角）"><a href="#一、区段结构特征（PEID-ExeinfoPE-视角）" class="headerlink" title="一、区段结构特征（PEID&#x2F;ExeinfoPE 视角）"></a>一、区段结构特征（PEID&#x2F;ExeinfoPE 视角）</h3><p>Delphi 编译器生成的 PE 区段结构相对固定，与 VC &#x2F; 易语言等有明显差异：</p>
+<table>
+<thead>
+<tr>
+<th>特征维度</th>
+<th>具体表现</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>区段数量</td>
+<td>典型包含 <strong>4-5 个核心区段</strong>：<code>.text</code>（代码段）、<code>.data</code>（全局数据）、<code>.rsrc</code>（资源段）、<code>.idata</code>（导入表），部分版本可能含 <code>.reloc</code>（重定位表，通常较小或缺失）。</td>
+</tr>
+<tr>
+<td>区段名称</td>
+<td>区段命名规范且无随机名：<code>.text</code> 为可执行代码，<code>.data</code> 存放全局变量和常量，<code>.rsrc</code> 含窗体 &#x2F; 图标等资源，<code>.idata</code> 明确存储导入函数信息（无加壳程序的混乱区段名如 <code>.pack</code>）。</td>
+</tr>
+<tr>
+<td>区段属性</td>
+<td><code>.text</code> 必含 <strong>可执行属性（Execute）</strong>，<code>.data</code> 为读写属性（Read&#x2F;Write），<code>.rsrc</code> 和 <code>.idata</code> 为只读（Read），属性无异常篡改（加壳程序常将 <code>.text</code> 改为不可执行以隐藏代码）。</td>
+</tr>
+</tbody></table>
+<h3 id="二、导入表特征（依赖库标识）-1"><a href="#二、导入表特征（依赖库标识）-1" class="headerlink" title="二、导入表特征（依赖库标识）"></a>二、导入表特征（依赖库标识）</h3><p>Delphi 程序依赖其专属运行时库（RTL）和组件库（VCL），导入表是识别的核心依据：</p>
+<table>
+<thead>
+<tr>
+<th>编译模式（静态 &#x2F; 动态）</th>
+<th>导入表关键特征</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>动态编译（默认）</td>
+<td>依赖 <strong>Delphi 运行时 BPL 库</strong>：导入表中必含 <code>rtlXX.bpl</code>（RTL 核心库，XX 为版本号，如 <code>rtl100.bpl</code> 对应 Delphi 6）、<code>vclXX.bpl</code>（VCL 组件库，含窗体 &#x2F; 控件逻辑）。 同时依赖系统基础库：<code>kernel32.dll</code>、<code>user32.dll</code> 等，但核心逻辑依赖 BPL 库，函数名多为 Pascal 风格（如 <code>@System@Initialize</code>）。</td>
+</tr>
+<tr>
+<td>静态编译（链接时嵌入）</td>
+<td>无外部 BPL 库依赖（RTL&#x2F;VCL 代码被打包进 EXE），导入表仅含系统 API（如 <code>kernel32.dll!CreateFileA</code>、<code>user32.dll!MessageBoxA</code>），但程序体积 <strong>显著增大</strong>（因内置运行时库代码）。</td>
+</tr>
+<tr>
+<td>函数名特征</td>
+<td>导入函数名无 VC 风格的修饰符（如 <code>_函数名@参数大小</code>），多为原始 API 名或 Pascal 命名规范的函数（如 <code>@SysUtils@StrLen</code>），区分于 C&#x2F;C++ 程序的下划线前缀。</td>
+</tr>
+</tbody></table>
+<h3 id="三、入口代码特征（反汇编视角）-1"><a href="#三、入口代码特征（反汇编视角）-1" class="headerlink" title="三、入口代码特征（反汇编视角）"></a>三、入口代码特征（反汇编视角）</h3><p>Delphi 程序入口点（OEP）代码逻辑固定，与其他编译器差异明显：</p>
+<ul>
+<li>入口指令以 <strong>栈初始化</strong> 开始：<code>PUSH EBP</code> → <code>MOV EBP, ESP</code> → <code>PUSH EBX</code> → <code>PUSH ESI</code> → <code>PUSH EDI</code>（标准 Pascal 函数栈帧）。</li>
+<li>入口后直接调用 Delphi 运行时初始化函数：如 <code>@System@StartExe</code> 或 <code>@Vcl@Forms@TApplication@Initialize</code>（VCL 程序特有），无 VC 程序的 <code>__security_init_cookie</code> 等安全检查指令。</li>
+<li>代码中大量使用 <strong>寄存器间接寻址</strong>（如 <code>MOV EAX, [ESI+0x14]</code>），因 Pascal 调用约定更依赖寄存器传递参数。</li>
+</ul>
+<h3 id="四、其他关键特征"><a href="#四、其他关键特征" class="headerlink" title="四、其他关键特征"></a>四、其他关键特征</h3><ol>
+<li><strong>无壳与加壳区分</strong>：加壳 Delphi 程序区段名混乱（如 <code>.upx</code> 区段）、导入表被隐藏（需脱壳后才见 BPL 依赖），而无壳程序区段规范、导入表清晰可见。</li>
+<li><strong>程序体积</strong>：动态编译的小型程序体积通常在 <strong>500KB-2MB</strong>（依赖 BPL 库），静态编译则可能达 <strong>5-10MB</strong>（内置 RTL&#x2F;VCL 代码），显著大于同功能的易语言程序。</li>
+</ol>
+<h3 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h3><p>使用OllyDbg打开练习文件：</p>
+<p><img src="/%E7%A0%B4%E8%A7%A3%C2%B7%E5%A3%B3%E4%B8%8E%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%89%B9%E5%BE%81.assets/image-20250819152553656.png"></p>
+<h4 id="分区域细节分析"><a href="#分区域细节分析" class="headerlink" title="分区域细节分析"></a>分区域细节分析</h4><ol>
+<li><strong>反汇编窗口（左上）：入口代码与逻辑</strong></li>
+</ol>
+<ul>
+<li><strong>入口指令</strong>：<code>0044EDF4</code> 处的 <code>PUSH EBP ; MOV EBP, ESP</code>，是 <strong>Pascal 函数的标准栈帧初始化</strong>（旧版 Delphi 典型特征，区别于 VC 的简洁入口）。</li>
+<li><strong>调用逻辑</strong>：后续 <code>CALL 吾爱破解.004xxxx</code> 均指向 <strong>程序内部函数</strong>（而非系统库或壳的解密逻辑），符合 Delphi 程序 “依赖自身运行时” 的特点。</li>
+</ul>
+<h5 id="2-寄存器窗口（右上）：运行时状态"><a href="#2-寄存器窗口（右上）：运行时状态" class="headerlink" title="2. 寄存器窗口（右上）：运行时状态"></a>2. <strong>寄存器窗口（右上）：运行时状态</strong></h5><ul>
+<li><strong>EIP &#x3D; 0044EDF4</strong>：指向程序入口点（与 Exeinfo PE 的 <code>Entry Point</code> 一致），说明调试器正确定位到 <strong>原生 OEP（原始入口点）</strong>。</li>
+<li><strong>LastErr &#x3D; ERROR_ENVVAR_NOT_FOUND</strong>：调试时的环境变量读取失败（非致命，仅为调试环境问题，不影响程序原生性）。</li>
+</ul>
+<h5 id="3-内存转储窗口（左下）：数据与字符串"><a href="#3-内存转储窗口（左下）：数据与字符串" class="headerlink" title="3. 内存转储窗口（左下）：数据与字符串"></a>3. <strong>内存转储窗口（左下）：数据与字符串</strong></h5><ul>
+<li><strong>ASCII 区可见中文</strong>：如 <code>吾爱破解</code> 等字符串，是 <strong>程序自身的明文字符</strong>（加壳程序通常会加密字符串，此处无加密）。</li>
+<li><strong>数据无混淆</strong>：十六进制数据无乱码或加密特征（如固定偏移的加密块），符合无壳程序的内存布局。</li>
+</ul>
+<h5 id="4-栈窗口（右下）：调用链与返回地址"><a href="#4-栈窗口（右下）：调用链与返回地址" class="headerlink" title="4. 栈窗口（右下）：调用链与返回地址"></a>4. <strong>栈窗口（右下）：调用链与返回地址</strong></h5><ul>
+<li><strong>返回地址</strong>：<code>RETURN to KERNEL32.7608FC9</code>，指向系统库 <code>KERNEL32</code>，是 <strong>程序正常调用系统 API 的结束流程</strong>（如 <code>ExitProcess</code>），无壳的异常跳转（如壳的解密后跳转）。</li>
+</ul>
+<p>刚开始在使用Exeinfo PE从区段特征判断，我是判断该程序并非 Delphi 无壳原生程序，更可能是经过加壳处理的程序，原因如下：</p>
+<ul>
+<li>区段命名不规范<ul>
+<li>出现了<code>CODE</code>、<code>DATA</code>、<code>BSS</code> 等<strong>自定义名称</strong></li>
+</ul>
+</li>
+<li>区段数量异常<ul>
+<li>多达 <strong>8 个区段</strong>，明显超出正常范围，壳会拆分&#x2F;伪造区段以隐藏原始代码</li>
+</ul>
+</li>
+<li>区段属性矛盾<ul>
+<li><code>.rdata</code> 区段（只读数据段）的 <code>Flags</code> 为 <code>50000040</code>（含 <strong>可执行属性</strong>），但 <code>.rdata</code> 正常应为 <strong>只读不可执行</strong>，此矛盾是<strong>壳的混淆特征</strong>（故意篡改区段属性，干扰调试））。</li>
+<li><code>.reloc</code> 区段（重定位段）同样被标记为 <code>50000040</code>（可执行），不符合原生程序的只读属性。</li>
+</ul>
+</li>
+</ul>
+<p>但是查了一下，发现这只是旧版Delphi程序的“特殊特征”：</p>
+<p>此前区段查看器中 <strong>自定义区段名（CODE、DATA 等）</strong> 看似异常，实际是 <strong>旧版 Delphi 编译器的历史特性</strong>：</p>
+<ul>
+<li>旧版 Delphi（2.0~7.0）允许 <strong>自定义区段命名</strong>（如 <code>CODE</code> 存代码，<code>DATA</code> 存数据），而非现代编译器的 <code>.text</code>&#x2F;<code>.data</code> 标准命名。</li>
+<li>区段数量多（8 个）是因旧版编译器为 <strong>调试信息、资源、重定位表</strong> 单独创建区段，属于原生设计，并非加壳篡改。</li>
+</ul>
+<h2 id="加壳程序识别"><a href="#加壳程序识别" class="headerlink" title="加壳程序识别"></a>加壳程序识别</h2><h3 id="一、查壳工具识别法（特征码匹配原理）"><a href="#一、查壳工具识别法（特征码匹配原理）" class="headerlink" title="一、查壳工具识别法（特征码匹配原理）"></a><strong>一、查壳工具识别法（特征码匹配原理）</strong></h3><ol>
+<li><p><strong>核心原理</strong>：<br> 工具内置 <strong>加壳程序特征库</strong>（如特征码、区段 &#x2F; 入口模式），通过对比程序数据判定壳类型。</p>
+</li>
+<li><p><strong>工具对比与优劣</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>工具类型</th>
+<th>代表工具</th>
+<th>特征库机制</th>
+<th>优势</th>
+<th>劣势</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>传统工具</strong></td>
+<td>PEiD、FFI 等</td>
+<td>依赖公开库（如<code>userdb.txt</code>）</td>
+<td>支持用户自定义特征，灵活扩展</td>
+<td>特征库陈旧（多基于 2009 年前数据），对新壳（如 VMProtect）<strong>误报率高</strong>（如 VMProtect 常被误判为 UPolyX）</td>
+</tr>
+<tr>
+<td><strong>现代工具</strong></td>
+<td>Exeinfo PE</td>
+<td>作者独立维护 + 新版支持外部库</td>
+<td>对新壳（VMProtect、Themida、WinLicense 等）识别更准，覆盖范围广</td>
+<td>早期版本不支持自定义特征，对壳版本识别模糊</td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+<h3 id="二、手动特征识别法（区段-入口分析）"><a href="#二、手动特征识别法（区段-入口分析）" class="headerlink" title="二、手动特征识别法（区段 + 入口分析）"></a><strong>二、手动特征识别法（区段 + 入口分析）</strong></h3><ol>
+<li><strong>核心维度</strong>：<br> 突破工具局限，通过 <strong>程序自身结构特征</strong> 判断，适用于新壳 &#x2F; 定制壳。</li>
+<li><strong>区段信息分析</strong>：<ul>
+<li><strong>查看方式</strong>：PEiD&#x2F;Exeinfo PE 的 “区段查看” 功能（如 PEiD 的 EP 区段按钮）。</li>
+<li><strong>判断逻辑</strong>：<ul>
+<li>异常区段：壳常篡改区段名（如<code>.upx0</code>、<code>.pack</code>）、数量（2-3 个冗余区段）、属性（代码段标记为不可执行）。</li>
+<li>典型壳特征：Themida&#x2F;WinLicense 会生成<code>._OVR</code>等特殊区段；压缩壳（如 UPX）区段数据高度压缩。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>入口代码分析</strong>：<ul>
+<li><strong>查看方式</strong>：OllyDbg 载入后，**<code>Ctrl+A</code>**让 OD 分析入口代码，观察指令、字符串特征。</li>
+<li><strong>判断逻辑</strong>：<ul>
+<li>壳的入口多为 <strong>解密 &#x2F; 解压逻辑</strong>（如循环异或、调用系统 API 前的混淆指令）。</li>
+<li>典型壳特征：Safengine 壳入口有<code>SE</code>相关字符串；VProtect 入口含特定跳转模式。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="三、方法互补性"><a href="#三、方法互补性" class="headerlink" title="三、方法互补性"></a><strong>三、方法互补性</strong></h3><ul>
+<li><strong>工具优先</strong>：快速筛除已知壳（如传统压缩壳、老版本加密壳），降低分析成本。</li>
+<li><strong>手动兜底</strong>：面对新壳（如定制 VMProtect）、特征库未覆盖的壳，通过区段 + 入口特征定位脱壳方向。</li>
+</ul>
+<p><strong>总结</strong>：查壳工具是 “快速筛子”，手动分析是 “深度探针”，两者结合可覆盖绝大多数加壳识别场景。</p>
+<h2 id="练习-1"><a href="#练习-1" class="headerlink" title="练习"></a>练习</h2><h3 id="无壳的-NET-程序"><a href="#无壳的-NET-程序" class="headerlink" title="无壳的 .NET 程序"></a>无壳的 .NET 程序</h3><p>文件：吾爱破解论坛学习脱壳实例_.NET.rar</p>
+<p>工具：Exeinfo PE</p>
+<h4 id="一、核心信息解读"><a href="#一、核心信息解读" class="headerlink" title="一、核心信息解读"></a><strong>一、核心信息解读</strong></h4><ol>
+<li><p><strong>编译器与平台</strong>：<br> Exeinfo PE 检测显示：<code>MS Visual C# / Basic.NET [Link 11]</code>，说明程序由 <strong>.NET 框架</strong> 编写（C# 或 <a target="_blank" rel="noopener" href="https://vb.net/">VB.NET</a> 语言），链接器版本对应 .NET Framework 相关编译工具（如 Visual Studio 的 C# 编译器）。</p>
+</li>
+<li><p><strong>是否加壳</strong>：</p>
+<ul>
+<li>工具未报 “加壳” 相关标识（如 <code>Packed by XXX</code>），反而提示 <code>try Analyze with .NET Reflector</code>（建议用 .NET 反编译工具分析），说明 <strong>程序无传统加密壳</strong>（传统壳会篡改区段 &#x2F; 入口，此程序区段规范、检测逻辑指向原生 .NET 程序）。</li>
+</ul>
+<p> <img src="https://cdn.jsdelivr.net/gh/tangxtang1119/ImageBed@main/202508200022298.png"></p>
+</li>
+</ol>
+<h4 id="二、区段特征分析（3-个区段，符合无壳-NET-程序规律）"><a href="#二、区段特征分析（3-个区段，符合无壳-NET-程序规律）" class="headerlink" title="二、区段特征分析（3 个区段，符合无壳 .NET 程序规律）"></a><strong>二、区段特征分析（3 个区段，符合无壳 .NET 程序规律）</strong></h4><table>
+<thead>
+<tr>
+<th>区段名</th>
+<th>虚拟地址</th>
+<th>属性（Flags）</th>
+<th>用途与特征</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>.text</code></td>
+<td><code>00002000</code></td>
+<td>可执行（Execute）+ 可读（Read）</td>
+<td>存储 <strong>IL 代码</strong>（.NET 中间语言）和预编译的本机代码，是程序逻辑核心区。</td>
+</tr>
+<tr>
+<td><code>.rsrc</code></td>
+<td><code>00006000</code></td>
+<td>只读（Read）</td>
+<td>存储程序资源（图标、字符串、版本信息等），无执行属性，符合资源段规范。</td>
+</tr>
+<tr>
+<td><code>.reloc</code></td>
+<td><code>00008000</code></td>
+<td>只读（Read）</td>
+<td>存储基址重定位信息，适配 Windows 加载器的 ASLR 机制，是 PE 格式的标准区段。</td>
+</tr>
+</tbody></table>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/ImageBed@main/202508200022526.png"></p>
+<h4 id="三、-NET-程序的-“非壳”-保护说明"><a href="#三、-NET-程序的-“非壳”-保护说明" class="headerlink" title="三、.NET 程序的 “非壳” 保护说明"></a><strong>三、.NET 程序的 “非壳” 保护说明</strong></h4><p>虽然程序无 <strong>传统加密壳</strong>（如 UPX、VMProtect），但 .NET 程序常通过 <strong>代码混淆器</strong>（如 ConfuserEx、SmartAssembly）进行保护：</p>
+<ul>
+<li>混淆 vs 加壳：<ul>
+<li>加壳：加密 PE 代码段，运行时动态解密（篡改区段、入口逻辑）；</li>
+<li>混淆：修改 IL 代码结构（如重命名类 &#x2F; 方法、插入冗余代码），但 <strong>不改变 PE 区段的原生性</strong>（区段名、属性仍符合 .NET 程序特征）。</li>
+</ul>
+</li>
+</ul>
+<h4 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h4><p><strong>文件本质</strong>：无壳的 .NET 程序（C#&#x2F;<a target="_blank" rel="noopener" href="https://vb.net/">VB.NET</a> 编写），依赖 .NET Framework 运行时。</p>
+<h3 id="AutoIt-脚本编译的可执行程序"><a href="#AutoIt-脚本编译的可执行程序" class="headerlink" title="AutoIt 脚本编译的可执行程序"></a><strong>AutoIt 脚本编译的可执行程序</strong></h3><p>(AutoIt 编译的程序并非传统加密壳，而是 <strong>脚本打包器产物</strong>)</p>
+<h4 id="一、核心识别结论"><a href="#一、核心识别结论" class="headerlink" title="一、核心识别结论"></a>一、核心识别结论</h4><ol>
+<li><p><strong>Exeinfo PE 关键提示</strong>：</p>
+<ul>
+<li>底部信息：<code>AutoIt v3.3.12.0 - Jonathan Bennett &amp; AutoIt Team</code> → 明确为 <strong>AutoIt 编译产物</strong>（AutoIt 是 Windows 脚本语言，编译后生成 EXE，内置解释器 + 脚本）。</li>
+<li>附加说明：<code>Exe2Aut.exe decompiler, &quot;AU3&quot; packed scr...</code> → 可通过 <code>Exe2Aut</code> 工具 <strong>反编译提取内部 AU3 脚本</strong>，暗示程序内含 “打包的脚本数据”。</li>
+</ul>
+<p> <img src="/%E7%A0%B4%E8%A7%A3%C2%B7%E5%A3%B3%E4%B8%8E%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%89%B9%E5%BE%81.assets/image-20250820003429667.png" alt="上传失败，待操作"></p>
+</li>
+</ol>
+<h4 id="二、Autolt编译程序的“打包特征”分析"><a href="#二、Autolt编译程序的“打包特征”分析" class="headerlink" title="二、Autolt编译程序的“打包特征”分析"></a>二、Autolt编译程序的“打包特征”分析</h4><ol>
+<li><strong>区段与数据特征</strong></li>
+</ol>
+<ul>
+<li><p><strong>区段命名</strong>：<code>.text</code>（代码段，存 AutoIt 解释器代码）、<code>.rdata</code>（只读数据，存字符串 &#x2F; 导入表）、<code>.data</code>（全局数据，存脚本压缩包）、<code>.rsrc</code>（资源，存图标等），命名规范但 <strong>数据段隐藏脚本</strong>。</p>
+</li>
+<li><p><strong>数据隐藏</strong>：</p>
+<ul>
+<li><code>.data</code> 或 <code>.rdata</code> 段可能包含 <strong>压缩的 AU3 脚本数据</strong>（AutoIt 编译时会将脚本压缩后嵌入 EXE），可通过 <code>Exe2Aut</code> 解包提取。</li>
+<li>区段的 <code>First bytes</code> 无明显加密特征（因是 “打包” 而非 “加密壳”，脚本仅压缩，未加密）。</li>
+</ul>
+<p>  <img src="/%E7%A0%B4%E8%A7%A3%C2%B7%E5%A3%B3%E4%B8%8E%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%89%B9%E5%BE%81.assets/image-20250820003545070.png" alt="上传失败，待操作"></p>
+</li>
+</ul>
+<h4 id="2-入口代码与运行时特征（OllyDbg-视角）"><a href="#2-入口代码与运行时特征（OllyDbg-视角）" class="headerlink" title="2. 入口代码与运行时特征（OllyDbg 视角）"></a>2. <strong>入口代码与运行时特征（OllyDbg 视角）</strong></h4><ul>
+<li><strong>入口指令</strong>：<code>CALL 吾爱破解.00B62DE3</code> → 调用 <strong>AutoIt 解释器的初始化函数</strong>（负责解压脚本、加载运行时环境），而非传统壳的 “解密代码”。</li>
+<li><strong>运行时依赖</strong>：导入表会包含 <code>AutoIt3.dll</code> 相关函数（若动态链接），或直接内置解释器代码（静态编译，体积较大）</li>
+</ul>
+<p><img src="/%E7%A0%B4%E8%A7%A3%C2%B7%E5%A3%B3%E4%B8%8E%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%89%B9%E5%BE%81.assets/image-20250820003736416.png" alt="上传失败，待操作"></p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>该程序 <strong>不是传统加密壳</strong>，而是 <strong>AutoIt 脚本的编译产物</strong>，其 “打包特征” 体现在：</p>
+<ul>
+<li>内置 AutoIt 解释器，区段隐藏压缩脚本；</li>
+<li>可被 <code>Exe2Aut</code> 等工具直接解包；</li>
+<li>入口指向解释器初始化函数，而非解密逻辑。</li>
+</ul>
+<h3 id="TASM-FASM-编译"><a href="#TASM-FASM-编译" class="headerlink" title="TASM&#x2F;FASM 编译"></a><strong>TASM&#x2F;FASM 编译</strong></h3><p>(纯汇编编写的无壳程序)</p>
+<h4 id="一、核心结论"><a href="#一、核心结论" class="headerlink" title="一、核心结论"></a>一、核心结论</h4><ol>
+<li><strong>编译器与类型</strong>：<br> Exeinfo PE 检测显示：<code>TASM / FASM (MASM - compatible assembler) - Linker: 5.12</code>，说明程序由 <strong>TASM（Turbo Assembler）或 FASM（Flat Assembler，兼容 MASM 语法）</strong> 编译，属于 <strong>手写汇编程序</strong>（无高级语言依赖）。</li>
+<li><strong>是否加壳</strong>：<ul>
+<li>工具明确标记 <code>Not packed</code>（未加壳）；</li>
+<li>区段、入口、导入表均符合 <strong>原生 PE 程序特征</strong>（无壳的篡改痕迹）。</li>
+</ul>
+</li>
+</ol>
+<p><img src="/%E7%A0%B4%E8%A7%A3%C2%B7%E5%A3%B3%E4%B8%8E%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%89%B9%E5%BE%81.assets/image-20250820004419185.png" alt="上传失败，待操作"></p>
+<h4 id="二、无壳特征的多维度验证"><a href="#二、无壳特征的多维度验证" class="headerlink" title="二、无壳特征的多维度验证"></a>二、无壳特征的多维度验证</h4><h4 id="1-区段特征（4-个规范区段）"><a href="#1-区段特征（4-个规范区段）" class="headerlink" title="1. 区段特征（4 个规范区段）"></a>1. <strong>区段特征（4 个规范区段）</strong></h4><table>
+<thead>
+<tr>
+<th>区段名</th>
+<th>虚拟地址</th>
+<th>标志（Flags）</th>
+<th>用途与特征</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>.text</code></td>
+<td><code>00001000</code></td>
+<td>可执行（Execute）+ 可读（Read）</td>
+<td>存储 <strong>手写汇编指令</strong>（程序核心逻辑），指令直接对应机器码，无加密 &#x2F; 混淆。</td>
+</tr>
+<tr>
+<td><code>.rdata</code></td>
+<td><code>00002000</code></td>
+<td>只读（Read）</td>
+<td>存储 <strong>只读常量</strong>（如字符串、API 导入表），数据未加密，可直接解析。</td>
+</tr>
+<tr>
+<td><code>.data</code></td>
+<td><code>00003000</code></td>
+<td>可读写（Read&#x2F;Write）</td>
+<td>存储 <strong>全局变量</strong>（如未初始化数据），无异常属性（如壳会将数据段标记为可执行）。</td>
+</tr>
+<tr>
+<td><code>.rsrc</code></td>
+<td><code>00004000</code></td>
+<td>只读（Read）</td>
+<td>存储 <strong>资源数据</strong>（如图标、版本信息），命名和属性均符合 PE 标准，无篡改。</td>
+</tr>
+</tbody></table>
+<p><img src="/%E7%A0%B4%E8%A7%A3%C2%B7%E5%A3%B3%E4%B8%8E%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%89%B9%E5%BE%81.assets/image-20250820004519962.png" alt="上传失败，待操作"></p>
+<h4 id="2-入口代码特征（OllyDbg-反汇编）"><a href="#2-入口代码特征（OllyDbg-反汇编）" class="headerlink" title="2. 入口代码特征（OllyDbg 反汇编）"></a>2. <strong>入口代码特征（OllyDbg 反汇编）</strong></h4><ul>
+<li><strong>指令逻辑</strong>：入口 <code>00401088</code> 处直接调用 <strong>系统 API</strong>（如 <code>kernel32.GetModuleHandleA</code>、<code>user32.DialogBoxParamA</code>），无壳的 <strong>解密 &#x2F; 解压前置逻辑</strong>（如循环异或、跳转混淆）。</li>
+<li><strong>调用链</strong>：所有调用均指向 <code>kernel32.dll</code>、<code>user32.dll</code> 等系统库，无异常第三方库（如壳的运行时库），符合 <strong>纯汇编程序直接调用系统 API 的特征</strong>。</li>
+</ul>
+<p><img src="/%E7%A0%B4%E8%A7%A3%C2%B7%E5%A3%B3%E4%B8%8E%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%89%B9%E5%BE%81.assets/image-20250820004623283.png" alt="上传失败，待操作"></p>
+<h4 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h4><p>该程序是 <strong>TASM&#x2F;FASM 编译的纯汇编无壳程序</strong>，特征为：</p>
+<ul>
+<li>汇编器编译标识明确，无加壳标记；</li>
+<li>区段规范、属性正常，无篡改；</li>
+<li>入口直接调用系统 API，逻辑清晰，无混淆。</li>
+</ul>
+<h3 id="Borland-C-6-0-编译无壳程序"><a href="#Borland-C-6-0-编译无壳程序" class="headerlink" title="Borland C++ 6.0 编译无壳程序"></a>Borland C++ 6.0 编译无壳程序</h3><h4 id="一、编译器与无壳的核心判定"><a href="#一、编译器与无壳的核心判定" class="headerlink" title="一、编译器与无壳的核心判定"></a><strong>一、编译器与无壳的核心判定</strong></h4><ol>
+<li><p><strong>ExeinfoPE 关键标识</strong>：</p>
+<ul>
+<li>检测结果：<code>Borland C++ - Copyright 2002 Borland Info Corporation</code> → 明确为 <strong>Borland C++ 6.0</strong> 编译（经典老版 C++ 编译器，区别于微软 VC）。</li>
+<li>链接器版本：<code>Linker Info: 5.00</code> → 匹配 BC++6 的默认链接器版本。</li>
+<li>加壳判定：<code>Not packed</code>（未加壳），结合区段、入口特征验证。</li>
+</ul>
+<p> <img src="/%E7%A0%B4%E8%A7%A3%C2%B7%E5%A3%B3%E4%B8%8E%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%89%B9%E5%BE%81.assets/image-20250820012853947.png" alt="上传失败，待操作"></p>
+</li>
+</ol>
+<h4 id="二、区段特征（8-个区段的结构解析）"><a href="#二、区段特征（8-个区段的结构解析）" class="headerlink" title="二、区段特征（8 个区段的结构解析）"></a><strong>二、区段特征（8 个区段的结构解析）</strong></h4><p>BC++6 编译的程序区段 <strong>划分更细</strong>（对比 VC6 的 4 个区段），典型区段及意义：</p>
+<table>
+<thead>
+<tr>
+<th>区段名</th>
+<th>虚拟地址</th>
+<th>标志（Flags）</th>
+<th>用途与特征</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>.text</code></td>
+<td>代码段</td>
+<td>可执行（Execute）+ 可读（Read）</td>
+<td>存储 <strong>程序指令</strong>，包含 Borland C++ 运行时初始化逻辑（区别于 VC 的 MSVCRT 依赖）。</td>
+</tr>
+<tr>
+<td><code>.data</code></td>
+<td>数据段</td>
+<td>可读写（Read&#x2F;Write）</td>
+<td>存储 <strong>全局 &#x2F; 静态变量</strong>，BC++6 的数据段可能包含 Borland 运行库的初始化数据。</td>
+</tr>
+<tr>
+<td><code>.rdata</code></td>
+<td>只读段</td>
+<td>只读（Read）</td>
+<td>存储 <strong>常量、字符串、只读数据</strong>，但 **导入表独立存于 <code>.idata</code>**（VC6 常将导入表放 <code>.rdata</code>）。</td>
+</tr>
+<tr>
+<td><code>.idata</code></td>
+<td>导入段</td>
+<td>只读（Read）</td>
+<td>单独存储 <strong>导入表</strong>（系统 API 及 Borland 运行库函数），结构清晰，便于逆向分析。</td>
+</tr>
+<tr>
+<td><code>.edata</code></td>
+<td>导出段</td>
+<td>可执行（Execute）+ 读（Read）</td>
+<td>若程序有导出函数，会单独存于 <code>.edata</code>（VC6 通常无此区段，或合并到其他段）。</td>
+</tr>
+<tr>
+<td><code>.rsrc</code></td>
+<td>资源段</td>
+<td>只读（Read）</td>
+<td>存储 <strong>图标、对话框、版本信息</strong>，命名和结构符合 PE 标准，无混淆。</td>
+</tr>
+<tr>
+<td><code>.reloc</code></td>
+<td>重定位段</td>
+<td>只读（Read）</td>
+<td>存储基址重定位信息，适配 Windows 加载器（类似 VS 系列的 <code>.reloc</code>，但 BC++6 更少见）。</td>
+</tr>
+</tbody></table>
+<p><img src="/%E7%A0%B4%E8%A7%A3%C2%B7%E5%A3%B3%E4%B8%8E%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%89%B9%E5%BE%81.assets/image-20250820012917209.png" alt="上传失败，待操作"></p>
+<h4 id="三、入口代码与运行时特征（OllyDbg-视角）"><a href="#三、入口代码与运行时特征（OllyDbg-视角）" class="headerlink" title="三、入口代码与运行时特征（OllyDbg 视角）"></a><strong>三、入口代码与运行时特征（OllyDbg 视角）</strong></h4><ol>
+<li><strong>入口指令逻辑</strong>：<ul>
+<li>入口 <code>004012FC</code> 处可见 <code>JMP SHORT</code> 跳转 + 连续 <code>DB</code> 指令（如 <code>DB 66</code>、<code>DB 32</code>）→ 这些 <code>DB</code> 是 <strong>嵌入代码段的字符串或常量</strong>（BC++6 编译时会将短字符串直接放在代码段附近，而非单独的 <code>.rdata</code> 偏移，是老编译器的特征）。</li>
+<li>后续调用 <code>kernel32.GetModuleHandleA</code> 等系统 API，同时隐含 <strong>Borland 运行库的初始化逻辑</strong>（如内存管理、异常处理，因 BC++6 依赖自身运行库 <code>borlndmm.dll</code> 等，若静态链接则无导入，需从代码中识别）。</li>
+</ul>
+</li>
+<li><strong>运行时依赖</strong>：<ul>
+<li>若动态链接 Borland 库，导入表会含 <code>borlndmm.dll</code>（内存管理）、<code>vcl60.bpl</code>（VCL 组件，若用可视化库）；</li>
+<li>若静态链接，导入表仅含系统 API（如 <code>kernel32.dll</code>、<code>user32.dll</code>），但程序体积更大（内置 Borland 运行时代码）。</li>
+</ul>
+</li>
+</ol>
+<p><img src="/%E7%A0%B4%E8%A7%A3%C2%B7%E5%A3%B3%E4%B8%8E%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%89%B9%E5%BE%81.assets/image-20250820012956352.png" alt="待操作"></p>
+<h4 id="总结-2"><a href="#总结-2" class="headerlink" title="总结"></a>总结</h4><p>该程序是 <strong>Borland C++ 6.0 编译的无壳原生程序</strong>，特征为：</p>
+<ul>
+<li>编译器标识明确，工具判定无壳；</li>
+<li>区段划分精细（8 个区段，含独立导入段 <code>.idata</code>）；</li>
+<li>代码段嵌入短字符串（<code>DB</code> 指令），运行时隐含 Borland 库逻辑；</li>
+</ul>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://tangxtang1119.github.io/2025/08/11/%E7%A0%B4%E8%A7%A3%C2%B7%E5%A3%B3%E4%B8%8E%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%89%B9%E5%BE%81/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%A0%B4%E8%A7%A3/" rel="tag">破解</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2025/08/11/%E5%AE%9E%E6%93%8D%C2%B7%E4%BC%9A%E5%91%98%E9%AA%8C%E8%AF%81-%E7%8C%9C%E6%95%B0%E6%B8%B8%E6%88%8F/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            实操·会员验证+猜数游戏
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2025/08/10/%E7%AE%80%E5%8D%95%E7%9A%84APK%E7%BB%93%E6%9E%84/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">简单的APK结构</div>
+      </a>
+    
+  </nav>
+
+   
+ 
+   
+  
+   
+    <script src="https://cdn.staticfile.org/twikoo/1.4.18/twikoo.all.min.js"></script>
+    <div id="twikoo" class="twikoo"></div>
+    <script>
+        twikoo.init({
+            envId: ""
+        })
+    </script>
+ 
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2025
+        <i class="ri-heart-fill heart_icon"></i> 唐小唐
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/yuhangyuan.ico" alt="tangxtang"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i></p>
+  <div class="reward-box">
+    
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.staticfile.org/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.staticfile.org/clipboard.js/2.0.10/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    <div id="music">
+    
+    
+    
+    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="200" height="52"
+        src="//music.163.com/outchain/player?type=2&id=2658106011&auto=1&height=32"></iframe>
+</div>
+
+<style>
+    #music {
+        position: fixed;
+        right: 15px;
+        bottom: 0;
+        z-index: 998;
+    }
+</style>
+    
+    
+
+  </div>
+</body>
+
+</html>
