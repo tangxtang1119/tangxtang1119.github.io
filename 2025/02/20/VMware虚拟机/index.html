@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+  
+
+    <head>
+      <meta charset="utf-8" />
+        
+      <meta name="description" content="‘有志少女 先读书’" />
+      
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>VMware虚拟机 |  tangxtang</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      
+<link rel="stylesheet" href="/css/fonts/remixicon.css">
+
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.staticfile.org/pace/1.2.4/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    </head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-VMware虚拟机"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  VMware虚拟机
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2025/02/20/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA/" class="article-date">
+  <time datetime="2025-02-20T09:38:34.000Z" itemprop="datePublished">2025-02-20</time>
+</a>   
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">2.7k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">9 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="📚专业术语"><a href="#📚专业术语" class="headerlink" title="📚专业术语"></a>📚专业术语</h2><p>.iso：是电脑上光盘镜像（CD Mirror）的存储格式之一，因为其是i根据ISO-9660有关CD-ROM文件系统标准存储的文件，许哦一通常在电脑中以后缀,iso命名，俗称iso镜像文件。</p>
+<p>镜像文件：镜像文件可以类比为图书馆的一本书的副本。一本珍贵的书，想要确保即使在原书损坏或丢失的情况下，书的内容仍然可以得到保留和使用。为此，制作了这本书的精确复制品，这个复制品包含了原书的所有页面和文字，但它可能是以特殊的格式存储的，比如扫描后的PDF文件或者一系列图片。</p>
+<h2 id="🖥创建新的虚拟机"><a href="#🖥创建新的虚拟机" class="headerlink" title="🖥创建新的虚拟机"></a>🖥创建新的虚拟机</h2><h3 id="1-Window系统"><a href="#1-Window系统" class="headerlink" title="1.Window系统"></a>1.Window系统</h3><p>点击软件首页的创建新的虚拟机，进入新建导向</p>
+<p>选择自定义（高级）然后点击下一步</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206165405761.png"></p>
+<p>硬件兼容性选择软件版本，然后点击下一步</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206182831247.png"></p>
+<p>选择安装程序光盘映像文件（iso），选择安装好的光盘映像文件，可以去微软官网上去下载，然后点击下一步</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206182926495.png"></p>
+<p>完成windows简易安装信息，然后点击下一步</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206182950623.png"></p>
+<p>对新建的虚拟机进行命名，名字注意区分其他并易懂，还有保存位置，然后点击下一步</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206183009197.png"></p>
+<p>选择虚拟机的固件类型，即引导设备，然后点击下一步</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206183034037.png"></p>
+<p>选择虚拟机处理器配置，处理器数量、每个处理器的内核数量，然后点击下一步</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206183051953.png"></p>
+<p>设置虚拟机的内存，不要太大也不要太小，然后点击下一步</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206183110891.png"></p>
+<p>选择网络模式，使用网络地址转换（NAT），然后点击下一步</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206183132574.png"></p>
+<p>选择I&#x2F;O控制器类型，按照新建向导的推荐选择，然后点击下一步</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206183147255.png"></p>
+<p>选择磁盘类型，按照新建向导的推荐选择，然后点击下一步</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250207122431324.png"></p>
+<p>选择磁盘容量，然后点击下一步</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250207122452975.png"></p>
+<p>确定号新建的虚拟机的设置信息，然后点击下一步</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250207122514411.png"></p>
+<p>至此，Windows10虚拟机创建成功，等待启动然后设置，激活系统。</p>
+<h3 id="2-Linux系统"><a href="#2-Linux系统" class="headerlink" title="2.Linux系统"></a><strong>2.Linux系统</strong></h3><p>点击软件首页的创建新的虚拟机，进入新建导向</p>
+<p>选择自定义（高级）然后点击下一步</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206163543615.png"></p>
+<p>保持默认不变，然后点击下一步</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206163649773.png"></p>
+<p>选择稍后安装操作系统，然后点击下一步</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206164001987.png"></p>
+<p>在选择客户机i操作系统时选择Linux系统，版本选择自己准备的ISO文件的版本，一定要匹配，然后单击下一步</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206164041840.png"></p>
+<p>给本虚拟机命名，然后点击下一步</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206164349880.png"></p>
+<p>处理器配置，为虚拟机指定处理器数量，设置为2，然后点击下一步</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206164527143.png"></p>
+<p>设置内存，一般两个G，然后点击下一步</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206164616967.png"></p>
+<p>后续一直保持默认推荐，然后点击下一步</p>
+<p>确认新建虚拟机的基本信息，然后点击下一步</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206165452662.png"></p>
+<p>至此虚拟机的创建已完成，然后检查一下网络配置</p>
+<p>点击编辑&gt;虚拟网络编辑器，查看VMnet8，子网的ip地址是否和NAT设置中的ip地址前三位一致。正常来说是默认配置好的。只是检查以下，不是乱去设置。</p>
+<p>接下来去给<strong>虚拟机配置镜像</strong>。</p>
+<p>点击编辑虚拟机设置&gt;CD&#x2F;DVD&gt;选择使用镜像文件，点击浏览找到提前下载好的镜像文件，然后点确定，完成后点击开启虚拟机。</p>
+<p>然后点击install CentOS，选项变白就是选中了</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206170409114.png"></p>
+<p>然后选中想要的语言，选择简体中文就行,点击继续</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206170558494.png"></p>
+<p>进入安装信息摘要基本不用改，完成以下安装位置确认，然后点击安装。设置Root密码。创建用户根据个人需要，就是权限比较低的用户。</p>
+<p>至此安装成功，点击重启就行。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206171032438.png"></p>
+<p>注意进入后输入用户和密码，密码是不会显示的，输完后回车就行，出现root@localhost就是成功了。</p>
+<p>输入cd &#x2F;，再输入ll，查看所有文件。(注意cd 后面要有一个空格)</p>
+<p>接下来配置虚拟机的网络。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202025-02-06%20171537.jpg"></p>
+<p>手动输入，以下路径，虚拟机内无法复制粘贴</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206171841943.png"></p>
+<p>然后找到ifcfg-ens33，打开它编辑</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206171953000.png" alt="image-20250206171953000"></p>
+<p>使用vi ifcfg-ens33，进入修改。按i，进入修改模式，将BOOTPROTO&#x3D;dhcp（默认），ONBOOT修改为yes。然后按esc退出修改模式。输入:wq，回车强制保存。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250206172438904.png"></p>
+<p>接下来就是去重启网络，service network restart，然后测试是否能访问外网，ping一下百度，出现连接网速表示成功，ctrl+c结束。</p>
+<p>后续参考视频【【2024最新】Vmware虚拟机安装Linux系统及配置网络超详细教学安装Centos使用Vmare安装附带安装包及镜像】<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1MriFeaEci?vd_source=cbd0e7aa3299fa0fcc330c5ee16869bc">https://www.bilibili.com/video/BV1MriFeaEci?vd_source=cbd0e7aa3299fa0fcc330c5ee16869bc</a></p>
+<h2 id="📺操作系统的操作模式"><a href="#📺操作系统的操作模式" class="headerlink" title="📺操作系统的操作模式"></a>📺操作系统的操作模式</h2><p>对操作系统的使用，有2种使用形式：</p>
+<ul>
+<li><p>图形化页面使用操作系统</p>
+</li>
+<li><p>以命令的形式使用操作系统</p>
+</li>
+</ul>
+<p>不论是Windows系统还是Linux系统或是MacOS系统，以获得图形化反馈的形式去使用操作系统。</p>
+<ul>
+<li><p>图形化：使用操作系统提供的图形化页面，以获得图形化反馈形式去使用操作系统。</p>
+</li>
+<li><p>命令行：使用操作系统提供的各类命令，以获得字符反馈的形式去使用操作系统。</p>
+</li>
+</ul>
+<p>无论是企业开发亦或是个人开发，使用Linux擦欧总系统，多数都是使用的：命令行。</p>
+<p>这是因为：</p>
+<ul>
+<li>Linux从诞生至今，在图形化页面的优化上，并未重点发力。所以LInux操作系统的图形化页面：不好用、不稳定。</li>
+<li>在开发中，使用命令行形式，效率更高，更加直观，并且资源占用低、程序运行更稳定。</li>
+</ul>
+<h2 id="💻网络连接的三种模式"><a href="#💻网络连接的三种模式" class="headerlink" title="💻网络连接的三种模式"></a>💻网络连接的三种模式</h2><h3 id="1-桥接模式：直接连接物理网络"><a href="#1-桥接模式：直接连接物理网络" class="headerlink" title="1.桥接模式：直接连接物理网络"></a>1.桥接模式：直接连接物理网络</h3><p>使用主机中的物理网卡VMnet0，有线网卡或者无线网卡，可以连接主机，并且可以访问局域内的计算机，如果主机可以连接外网，虚拟机也可以连接外网，此时物理主机相当于一个交换机，把所有桥接模式的虚拟机都连接在同一个交换机上，自己在这个局域网中。注意：容易造成IP冲突。</p>
+<h3 id="2-NAT模式：用于共享主机的IP地址"><a href="#2-NAT模式：用于共享主机的IP地址" class="headerlink" title="2.NAT模式：用于共享主机的IP地址"></a>2.NAT模式：用于共享主机的IP地址</h3><p>使用的是虚拟机的网卡VMnet8，可以连接主机，也可以来连接外网，虚拟机IP地址经过NAT转换，与物理机IP地址不在同一网段，所以不能访问局域网内的计算机。</p>
+<h3 id="3-仅主机模式：与主机共享的专用网络"><a href="#3-仅主机模式：与主机共享的专用网络" class="headerlink" title="3.仅主机模式：与主机共享的专用网络"></a>3.仅主机模式：与主机共享的专用网络</h3><p>使用的是虚拟机中的VMnet1，可以连接到主机，不能访问局域网内的计算机，也不能连接外网，当我们要组成一个与物理网络相隔离的虚拟网络时可以选择仅主机模式。</p>
+<h2 id="📼虚拟机克隆"><a href="#📼虚拟机克隆" class="headerlink" title="📼虚拟机克隆"></a>📼虚拟机克隆</h2><p>如果已经安装了一台linux操作系统，还想再更多的，没必要再重新安装，只需要克隆就行。</p>
+<h3 id="1-直接拷贝一份安装好的虚拟机文件"><a href="#1-直接拷贝一份安装好的虚拟机文件" class="headerlink" title="1.直接拷贝一份安装好的虚拟机文件"></a>1.直接拷贝一份安装好的虚拟机文件</h3><p>将虚拟机文件拷贝到另一个盘的文件夹下，文件名可以重命名，也可以保留原名。通过VMware的打开文件，打开拷贝虚拟机文件。</p>
+<h3 id="2-使用VMware的克隆操作"><a href="#2-使用VMware的克隆操作" class="headerlink" title="2.使用VMware的克隆操作"></a>2.使用VMware的克隆操作</h3><p>注意：克隆时，需要先关闭正在运行的linux系统。</p>
+<p>虚拟机&gt;右键至管理&gt;克隆</p>
+<p>克隆类型有两种：创建链接克隆、创建完整克隆。</p>
+<p>创建链接克隆，是对原虚拟机的引用，所需要的存储磁盘空间较少，访问的是原虚拟机，是同一个系统。</p>
+<p>创建完整克隆：是原虚拟机当前状态的完整副本，此选项使得虚拟机完全独立，需要较多的存储磁盘空间。</p>
+<h2 id="📷虚拟机快照"><a href="#📷虚拟机快照" class="headerlink" title="📷虚拟机快照"></a>📷虚拟机快照</h2><p>如果在使用虚拟机系统的时候，想回到原先的某一个状态，也就是说担心有些操作造成系统异常，需要回到原先某个正常运行的状态，VMware提供了一个这样的功能，就叫做快照管理。</p>
+<p>推荐关机操作，没关机也可以就是会时间久一点。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/Pictures@master/image-20250210163939993.png"></p>
+<h1 id="kali-linux配置"><a href="#kali-linux配置" class="headerlink" title="kali linux配置"></a>kali linux配置</h1><p>参考：</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_74030222/article/details/143866270">kali Linux下载安装及配置（VMware虚拟机）</a></p>
+<h2 id="1-源文件的安装"><a href="#1-源文件的安装" class="headerlink" title="1.源文件的安装"></a>1.源文件的安装</h2><p>位置：&#x2F;etc&#x2F;apt&#x2F;sources.list<br>首先第一步<br>输入命令：cp &#x2F;etc&#x2F;apt&#x2F;sources.list &#x2F;etc&#x2F;apt&#x2F;sources.list.bak</p>
+<p>目的是将原来的sources的文件复制备份出一部分，然后再在原来的基础上修改内容。</p>
+<p>输入命令：vim &#x2F;etc&#x2F;apt&#x2F;sources.list<br>目的是用<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=vim%E7%BC%96%E8%BE%91%E5%99%A8&spm=1001.2101.3001.7020">vim编辑器</a>进行编辑<br>（在出现的界面中输入字母“i”或者键盘上“insert”,这是“插入”的意思，当显示出下面汉字“插入”时就可以输入了）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">国内常用的几个源文件：</span><br><span class="line"> </span><br><span class="line">#中科大</span><br><span class="line">deb http://mirrors.ustc.edu.cn/kali kali-rolling main non-free contrib </span><br><span class="line">deb-src http://mirrors.ustc.edu.cn/kali kali-rolling main non-free contrib</span><br><span class="line"></span><br><span class="line"> #阿里云</span><br><span class="line">deb http://mirrors.aliyun.com/kali kali-rolling main non-free contrib </span><br><span class="line">deb-src http://mirrors.aliyun.com/kali kali-rolling main non-free contrib</span><br><span class="line"></span><br><span class="line"> #清华大学</span><br><span class="line">deb http://mirrors.tuna.tsinghua.edu.cn/kali kali-rolling main contrib non-free</span><br><span class="line">deb-src https://mirrors.tuna.tsinghua.edu.cn/kali kali-rolling main contrib non-free</span><br><span class="line"></span><br><span class="line"> #浙江大学</span><br><span class="line">deb http://mirrors.zju.edu.cn/kali kali-rolling main contrib non-free </span><br><span class="line">deb-src http://mirrors.zju.edu.cn/kali kali-rolling main contrib non-free</span><br></pre></td></tr></table></figure>
+
+<p>由于里面的安装源是kali官网，对于国内而言下载的速度比较缓慢，所以把kali官网的安装源用“#”注释掉。</p>
+<p>用vim编辑器编写完成之后，按键盘上的“esc”键，退出之后，输入“：”冒号，然后输入wq，代表保存，并退出。</p>
+<h2 id="2-软件的更新-安装与删除"><a href="#2-软件的更新-安装与删除" class="headerlink" title="2.软件的更新 安装与删除"></a>2.软件的更新 安装与删除</h2><p>输入命令：apt-get updates 下载最新的安装包<br>输入命令：apt-get upgrade 系统会打开最新的安装包，并将软件安装的系统中<br>输入命令：apt-get clean 会将之前旧的安装包删除，清理内存<br>以上步骤不要着急，慢慢来</p>
+<h2 id="3-设置锁屏时间"><a href="#3-设置锁屏时间" class="headerlink" title="3.设置锁屏时间"></a>3.设置锁屏时间</h2><p>设置锁屏时间非常重要，将锁屏的时间设置为“从不”，因为这样不会导致程序在运行的过程中由于锁屏的原因而停止运行。</p>
+<h2 id="4-配置ssh服务"><a href="#4-配置ssh服务" class="headerlink" title="4.配置ssh服务"></a>4.配置ssh服务</h2><p>位置：&#x2F;etc&#x2F;ssh&#x2F;sshd_config<br>输入命令：vim &#x2F;etc&#x2F;ssh&#x2F;sshd_config<br>将下面的命令改为yes</p>
+<p>PermitRootLogin yes 允许管理员登陆<br>PasswordAuthentication yes 密码验证改为yes</p>
+<p>修改完成之后保存并退出</p>
+<p>输入命令：service ssh start 开启ssh服务<br>输入命令：update-rc.d ssh enable 设置为开机自启动</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://tangxtang1119.github.io/2025/02/20/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux%E7%B3%BB%E7%BB%9F/" rel="tag">Linux系统</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VMware/" rel="tag">VMware</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2025/03/12/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E8%BF%99%E6%A1%A3%E5%AD%90%E4%BA%8B/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            安卓逆向这档子事
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2025/01/24/Typora%E4%BD%BF%E7%94%A8/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">Typora的使用</div>
+      </a>
+    
+  </nav>
+
+   
+ 
+   
+  
+   
+    <script src="https://cdn.staticfile.org/twikoo/1.4.18/twikoo.all.min.js"></script>
+    <div id="twikoo" class="twikoo"></div>
+    <script>
+        twikoo.init({
+            envId: ""
+        })
+    </script>
+ 
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2025
+        <i class="ri-heart-fill heart_icon"></i> 唐小唐
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/yuhangyuan.ico" alt="tangxtang"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i></p>
+  <div class="reward-box">
+    
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.staticfile.org/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.staticfile.org/clipboard.js/2.0.10/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    <div id="music">
+    
+    
+    
+    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="200" height="52"
+        src="//music.163.com/outchain/player?type=2&id=2658106011&auto=1&height=32"></iframe>
+</div>
+
+<style>
+    #music {
+        position: fixed;
+        right: 15px;
+        bottom: 0;
+        z-index: 998;
+    }
+</style>
+    
+    
+
+  </div>
+</body>
+
+</html>

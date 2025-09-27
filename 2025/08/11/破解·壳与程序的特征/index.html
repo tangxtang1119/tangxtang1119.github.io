@@ -407,7 +407,7 @@
 <li><strong>程序体积</strong>：动态编译的小型程序体积通常在 <strong>500KB-2MB</strong>（依赖 BPL 库），静态编译则可能达 <strong>5-10MB</strong>（内置 RTL&#x2F;VCL 代码），显著大于同功能的易语言程序。</li>
 </ol>
 <h3 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h3><p>使用OllyDbg打开练习文件：</p>
-<p><img src="/%E7%A0%B4%E8%A7%A3%C2%B7%E5%A3%B3%E4%B8%8E%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%89%B9%E5%BE%81.assets/image-20250819152553656.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/ImageBed@main/202508280031082.png"></p>
 <h4 id="分区域细节分析"><a href="#分区域细节分析" class="headerlink" title="分区域细节分析"></a>分区域细节分析</h4><ol>
 <li><strong>反汇编窗口（左上）：入口代码与逻辑</strong></li>
 </ol>
@@ -562,7 +562,7 @@
 <li>底部信息：<code>AutoIt v3.3.12.0 - Jonathan Bennett &amp; AutoIt Team</code> → 明确为 <strong>AutoIt 编译产物</strong>（AutoIt 是 Windows 脚本语言，编译后生成 EXE，内置解释器 + 脚本）。</li>
 <li>附加说明：<code>Exe2Aut.exe decompiler, &quot;AU3&quot; packed scr...</code> → 可通过 <code>Exe2Aut</code> 工具 <strong>反编译提取内部 AU3 脚本</strong>，暗示程序内含 “打包的脚本数据”。</li>
 </ul>
-<p> <img src="/%E7%A0%B4%E8%A7%A3%C2%B7%E5%A3%B3%E4%B8%8E%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%89%B9%E5%BE%81.assets/image-20250820003429667.png" alt="上传失败，待操作"></p>
+<p> <img src="https://cdn.jsdelivr.net/gh/tangxtang1119/ImageBed@main/202508280032853.png"></p>
 </li>
 </ol>
 <h4 id="二、Autolt编译程序的“打包特征”分析"><a href="#二、Autolt编译程序的“打包特征”分析" class="headerlink" title="二、Autolt编译程序的“打包特征”分析"></a>二、Autolt编译程序的“打包特征”分析</h4><ol>
@@ -576,14 +576,14 @@
 <li><code>.data</code> 或 <code>.rdata</code> 段可能包含 <strong>压缩的 AU3 脚本数据</strong>（AutoIt 编译时会将脚本压缩后嵌入 EXE），可通过 <code>Exe2Aut</code> 解包提取。</li>
 <li>区段的 <code>First bytes</code> 无明显加密特征（因是 “打包” 而非 “加密壳”，脚本仅压缩，未加密）。</li>
 </ul>
-<p>  <img src="/%E7%A0%B4%E8%A7%A3%C2%B7%E5%A3%B3%E4%B8%8E%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%89%B9%E5%BE%81.assets/image-20250820003545070.png" alt="上传失败，待操作"></p>
+<p>  <img src="https://cdn.jsdelivr.net/gh/tangxtang1119/ImageBed@main/202508280032097.png"></p>
 </li>
 </ul>
 <h4 id="2-入口代码与运行时特征（OllyDbg-视角）"><a href="#2-入口代码与运行时特征（OllyDbg-视角）" class="headerlink" title="2. 入口代码与运行时特征（OllyDbg 视角）"></a>2. <strong>入口代码与运行时特征（OllyDbg 视角）</strong></h4><ul>
 <li><strong>入口指令</strong>：<code>CALL 吾爱破解.00B62DE3</code> → 调用 <strong>AutoIt 解释器的初始化函数</strong>（负责解压脚本、加载运行时环境），而非传统壳的 “解密代码”。</li>
 <li><strong>运行时依赖</strong>：导入表会包含 <code>AutoIt3.dll</code> 相关函数（若动态链接），或直接内置解释器代码（静态编译，体积较大）</li>
 </ul>
-<p><img src="/%E7%A0%B4%E8%A7%A3%C2%B7%E5%A3%B3%E4%B8%8E%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%89%B9%E5%BE%81.assets/image-20250820003736416.png" alt="上传失败，待操作"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/ImageBed@main/202508280033284.png"></p>
 <h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>该程序 <strong>不是传统加密壳</strong>，而是 <strong>AutoIt 脚本的编译产物</strong>，其 “打包特征” 体现在：</p>
 <ul>
 <li>内置 AutoIt 解释器，区段隐藏压缩脚本；</li>
@@ -599,7 +599,7 @@
 </ul>
 </li>
 </ol>
-<p><img src="/%E7%A0%B4%E8%A7%A3%C2%B7%E5%A3%B3%E4%B8%8E%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%89%B9%E5%BE%81.assets/image-20250820004419185.png" alt="上传失败，待操作"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/ImageBed@main/202508280033239.png"></p>
 <h4 id="二、无壳特征的多维度验证"><a href="#二、无壳特征的多维度验证" class="headerlink" title="二、无壳特征的多维度验证"></a>二、无壳特征的多维度验证</h4><h4 id="1-区段特征（4-个规范区段）"><a href="#1-区段特征（4-个规范区段）" class="headerlink" title="1. 区段特征（4 个规范区段）"></a>1. <strong>区段特征（4 个规范区段）</strong></h4><table>
 <thead>
 <tr>
@@ -634,12 +634,12 @@
 <td>存储 <strong>资源数据</strong>（如图标、版本信息），命名和属性均符合 PE 标准，无篡改。</td>
 </tr>
 </tbody></table>
-<p><img src="/%E7%A0%B4%E8%A7%A3%C2%B7%E5%A3%B3%E4%B8%8E%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%89%B9%E5%BE%81.assets/image-20250820004519962.png" alt="上传失败，待操作"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/ImageBed@main/202508280033090.png"></p>
 <h4 id="2-入口代码特征（OllyDbg-反汇编）"><a href="#2-入口代码特征（OllyDbg-反汇编）" class="headerlink" title="2. 入口代码特征（OllyDbg 反汇编）"></a>2. <strong>入口代码特征（OllyDbg 反汇编）</strong></h4><ul>
 <li><strong>指令逻辑</strong>：入口 <code>00401088</code> 处直接调用 <strong>系统 API</strong>（如 <code>kernel32.GetModuleHandleA</code>、<code>user32.DialogBoxParamA</code>），无壳的 <strong>解密 &#x2F; 解压前置逻辑</strong>（如循环异或、跳转混淆）。</li>
 <li><strong>调用链</strong>：所有调用均指向 <code>kernel32.dll</code>、<code>user32.dll</code> 等系统库，无异常第三方库（如壳的运行时库），符合 <strong>纯汇编程序直接调用系统 API 的特征</strong>。</li>
 </ul>
-<p><img src="/%E7%A0%B4%E8%A7%A3%C2%B7%E5%A3%B3%E4%B8%8E%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%89%B9%E5%BE%81.assets/image-20250820004623283.png" alt="上传失败，待操作"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/ImageBed@main/202508280033485.png"></p>
 <h4 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h4><p>该程序是 <strong>TASM&#x2F;FASM 编译的纯汇编无壳程序</strong>，特征为：</p>
 <ul>
 <li>汇编器编译标识明确，无加壳标记；</li>
@@ -653,7 +653,7 @@
 <li>链接器版本：<code>Linker Info: 5.00</code> → 匹配 BC++6 的默认链接器版本。</li>
 <li>加壳判定：<code>Not packed</code>（未加壳），结合区段、入口特征验证。</li>
 </ul>
-<p> <img src="/%E7%A0%B4%E8%A7%A3%C2%B7%E5%A3%B3%E4%B8%8E%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%89%B9%E5%BE%81.assets/image-20250820012853947.png" alt="上传失败，待操作"></p>
+<p> <img src="https://cdn.jsdelivr.net/gh/tangxtang1119/ImageBed@main/202508280033468.png"></p>
 </li>
 </ol>
 <h4 id="二、区段特征（8-个区段的结构解析）"><a href="#二、区段特征（8-个区段的结构解析）" class="headerlink" title="二、区段特征（8 个区段的结构解析）"></a><strong>二、区段特征（8 个区段的结构解析）</strong></h4><p>BC++6 编译的程序区段 <strong>划分更细</strong>（对比 VC6 的 4 个区段），典型区段及意义：</p>
@@ -709,7 +709,7 @@
 <td>存储基址重定位信息，适配 Windows 加载器（类似 VS 系列的 <code>.reloc</code>，但 BC++6 更少见）。</td>
 </tr>
 </tbody></table>
-<p><img src="/%E7%A0%B4%E8%A7%A3%C2%B7%E5%A3%B3%E4%B8%8E%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%89%B9%E5%BE%81.assets/image-20250820012917209.png" alt="上传失败，待操作"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/ImageBed@main/202508280034027.png"></p>
 <h4 id="三、入口代码与运行时特征（OllyDbg-视角）"><a href="#三、入口代码与运行时特征（OllyDbg-视角）" class="headerlink" title="三、入口代码与运行时特征（OllyDbg 视角）"></a><strong>三、入口代码与运行时特征（OllyDbg 视角）</strong></h4><ol>
 <li><strong>入口指令逻辑</strong>：<ul>
 <li>入口 <code>004012FC</code> 处可见 <code>JMP SHORT</code> 跳转 + 连续 <code>DB</code> 指令（如 <code>DB 66</code>、<code>DB 32</code>）→ 这些 <code>DB</code> 是 <strong>嵌入代码段的字符串或常量</strong>（BC++6 编译时会将短字符串直接放在代码段附近，而非单独的 <code>.rdata</code> 偏移，是老编译器的特征）。</li>
@@ -722,7 +722,7 @@
 </ul>
 </li>
 </ol>
-<p><img src="/%E7%A0%B4%E8%A7%A3%C2%B7%E5%A3%B3%E4%B8%8E%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%89%B9%E5%BE%81.assets/image-20250820012956352.png" alt="待操作"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/ImageBed@main/202508280034616.png"></p>
 <h4 id="总结-2"><a href="#总结-2" class="headerlink" title="总结"></a>总结</h4><p>该程序是 <strong>Borland C++ 6.0 编译的无壳原生程序</strong>，特征为：</p>
 <ul>
 <li>编译器标识明确，工具判定无壳；</li>
@@ -816,9 +816,9 @@
       </a>
     
     
-      <a href="/2025/08/10/%E7%AE%80%E5%8D%95%E7%9A%84APK%E7%BB%93%E6%9E%84%E5%92%8CDalvik%E5%AD%97%E8%8A%82%E7%A0%81/" class="article-nav-link">
+      <a href="/2025/08/10/%E7%A0%B4%E8%A7%A3%C2%B7%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">简单的APK结构和Dalvik字节码</div>
+        <div class="article-nav-title">破解·常用工具</div>
       </a>
     
   </nav>

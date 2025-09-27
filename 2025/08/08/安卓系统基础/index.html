@@ -172,8 +172,7 @@
 </ul>
 <h4 id="3-BroadcastReceiver：手机里的-“广播通知员”"><a href="#3-BroadcastReceiver：手机里的-“广播通知员”" class="headerlink" title="3. BroadcastReceiver：手机里的 “广播通知员”"></a>3. BroadcastReceiver：手机里的 “广播通知员”</h4><p>BroadcastReceiver 是 “接收和传递消息” 的组件，就像大楼里的 “广播喇叭”，任何应用或系统都可以发 “广播”，它负责接收并处理消息。</p>
 <ul>
-<li><p>例子</p>
-<p>  ：</p>
+<li><p>例子：</p>
 <ul>
 <li>手机没电时，系统发一条 “低电量广播”，你的 APP 可以收到后提醒你 “快充电”；</li>
 <li>收到短信时，系统发一条 “新短信广播”，短信 APP 收到后显示通知。</li>
@@ -194,8 +193,7 @@
 <h5 id="关键特性"><a href="#关键特性" class="headerlink" title="关键特性"></a>关键特性</h5><ul>
 <li><p><strong>生命周期</strong>：完整生命周期为 <code>onCreate()</code>（初始化）→ <code>onStart()</code>（可见）→ <code>onResume()</code>（可交互）→ <code>onPause()</code>（部分可见）→ <code>onStop()</code>（不可见）→ <code>onDestroy()</code>（销毁），系统通过生命周期方法管理组件状态</p>
 </li>
-<li><p>启动模式</p>
-<p>  ：</p>
+<li><p>启动模式：</p>
 <ul>
 <li><code>standard</code>（默认，每次启动新建实例）</li>
 <li><code>singleTop</code>（栈顶复用，避免重复创建）</li>
