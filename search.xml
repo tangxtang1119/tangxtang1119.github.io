@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>信息安全工程师备考</title>
+    <title></title>
     <url>/2025/10/06/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E5%B7%A5%E7%A8%8B%E5%B8%88%E5%A4%87%E8%80%83/</url>
-    <content><![CDATA[<h1 id="第一章-网络信息安全概述"><a href="#第一章-网络信息安全概述" class="headerlink" title="第一章 网络信息安全概述"></a>第一章 网络信息安全概述</h1><h2 id="网络安全基础"><a href="#网络安全基础" class="headerlink" title="网络安全基础"></a>网络安全基础</h2><h3 id="网络信息安全基本概念"><a href="#网络信息安全基本概念" class="headerlink" title="网络信息安全基本概念"></a>网络信息安全基本概念</h3><ul>
+    <content><![CDATA[<hr>
+<h2 id="title：-信息安全工程师备考date：-2025-10-06-17：09：33tags：-软考categories：-笔记"><a href="#title：-信息安全工程师备考date：-2025-10-06-17：09：33tags：-软考categories：-笔记" class="headerlink" title="title： 信息安全工程师备考date： 2025-10-06 17：09：33tags：- 软考categories： 笔记 "></a>title： 信息安全工程师备考<br>date： 2025-10-06 17：09：33<br>tags：<br>- 软考<br>categories： 笔记 </h2><h1 id="第一章-网络信息安全概述"><a href="#第一章-网络信息安全概述" class="headerlink" title="第一章 网络信息安全概述"></a>第一章 网络信息安全概述</h1><h2 id="网络安全基础"><a href="#网络安全基础" class="headerlink" title="网络安全基础"></a>网络安全基础</h2><h3 id="网络信息安全基本概念"><a href="#网络信息安全基本概念" class="headerlink" title="网络信息安全基本概念"></a>网络信息安全基本概念</h3><ul>
 <li><p><strong>信息社会的主要特征：</strong><font size=3 color="red" ><strong>数字化、网络化、智能化</strong></font>。网络空间成为国家陆、海、空、天之后的第五疆域。</p>
 </li>
 <li><p><strong>网络信息安全(狭义)：</strong>网络信息系统组成要素符合安全属性，即<font size=3 color="red" ><strong>机密性、完整性、可用性、抗抵赖性、可控性</strong></font>。</p>
@@ -12,7 +13,7 @@
 </li>
 <li><p><strong>网络安全三大发展趋势</strong></p>
 <ul>
-<li>**<font size=3 color="red" >对象内容：</font>**保证内容从单维度向多维度转变，保障的维度包含网络空间域、物理空间域、社会空间域</li>
+<li>**<font size=3 color="red" >对象内容：</font>**保证内容从单维1度 向多维度转变，保障的维度包含网络空间域、物理空间域、社会空间域</li>
 <li><strong><font size=3 color="red" >理念方法</font>：</strong>网络信息安全保障措施从单一性(技术)向综合性(法律、政策、技术、管理、产业、教育)转变</li>
 <li>**<font size=3 color="red" >持续时间：</font>**保证时间维度要求涵盖网络系统的整个生命周期，响应速度要求不断缩短， 网络信息安全没有战时、平时之分。</li>
 </ul>
@@ -382,13 +383,13 @@
 <li><p>DDoS常用的攻击技术手段有HTTP Flood攻击、SYN Flood攻击、DNS放大攻击等。</p>
 <ul>
 <li><p>HTTP Flood攻击是利用僵尸主机向特定目标网站发送大量的HTTP GET请求，以导致网站瘫痪</p>
-<p>  <img src="/https%EF%BC%9A/cdn.jsdelivr.net/gh/tangxtang1119/ImageBed@main/202510060203625.png" alt="HTTP Flood攻击示意图"></p>
+<p>  <img src="/https%EF%BC%9A/cdn.jsdelivr.net/gh/tangxtang1119/ImageBed@main/202510060203625.png"></p>
 </li>
 <li><p>SYN Food攻击利用TCP&#x2F;IP协议的安全缺陷，伪造主机发送大量的SYN包到目标系统，导致目标系统的计算机网络瘫痪。</p>
-<p>  <img src="/https%EF%BC%9A/cdn.jsdelivr.net/gh/tangxtang1119/ImageBed@main/202510060203984.png" alt="SYN Flood攻击示意图"></p>
+<p>  <img src="/https%EF%BC%9A/cdn.jsdelivr.net/gh/tangxtang1119/ImageBed@main/202510060203984.png"></p>
 </li>
 <li><p>DNS放大攻击是攻击者假冒目标系统向多个DNS解析服务器发送大量请求，而导致DNS解析服务器同时应答目标系统，产生大量网络流量，形成拒绝服务。</p>
-<p>  <img src="/https%EF%BC%9A/cdn.jsdelivr.net/gh/tangxtang1119/ImageBed@main/202510060204222.png" alt="DNS 放大攻击示意图"></p>
+<p>  <img src="/https%EF%BC%9A/cdn.jsdelivr.net/gh/tangxtang1119/ImageBed@main/202510060204222.png"></p>
 </li>
 </ul>
 </li>
@@ -465,14 +466,326 @@
 <p>3DES一般情况下密码长度112位</p>
 <p>DEA分组64位，密钥长度128位</p>
 <p>AES分组128位，密钥长度128、192、256</p>
-<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/ImageBed@main/202510061647941.png"></p>
+<p><img src="/https%EF%BC%9A/cdn.jsdelivr.net/gh/tangxtang1119/ImageBed@main/202510061647941.png"></p>
+<h3 id="国产加密算法-SM系列"><a href="#国产加密算法-SM系列" class="headerlink" title="国产加密算法-SM系列"></a>国产加密算法-SM系列</h3><p>国产密码算法：是指由国家密码研究相关机构自主研发，具有相关知识产权的商用密码算法，目前已经公布的国产密码算法如下：</p>
+<table>
+<thead>
+<tr>
+<th>算法名称</th>
+<th>算法特征描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SM1</td>
+<td>对称加密，分组长度和密钥长度都为128比特</td>
+</tr>
+<tr>
+<td>SM2</td>
+<td>非对称加密，用于公钥加密算法、密钥交换协议、数字签名算法(椭圆曲线问题)</td>
+</tr>
+<tr>
+<td>SM3</td>
+<td>杂凑算法，分组512位，输出杂凑值长度为256位</td>
+</tr>
+<tr>
+<td>SM4</td>
+<td>对称加密，分组长度和密钥长度都为128比特</td>
+</tr>
+<tr>
+<td>SM9</td>
+<td>标识密码算法，支持公钥加密、密钥交换、数字签名等安全功能</td>
+</tr>
+</tbody></table>
+<h2 id="公钥密码分类"><a href="#公钥密码分类" class="headerlink" title="公钥密码分类"></a>公钥密码分类</h2><p><font color="blue"><strong>(选择题)</strong></font>      </p>
+<ul>
+<li>目前公认的比较安全的公钥密码有两类：<ul>
+<li><font color="red">基于大素数因子分解困难性：RSA</font></li>
+<li><font color="red">基于离散对数问题困难性：DH、Elgamal、ECC(椭圆曲线密码)</font></li>
+</ul>
+</li>
+</ul>
+<h3 id="RSA算法概述"><a href="#RSA算法概述" class="headerlink" title="RSA算法概述"></a>RSA算法概述</h3><ul>
+<li><p>RSA算法是非对称算法，由Ronald Rivest、Adi Shamir、Leonard Adleman三人发明。RSA算法中公钥和私钥都可以用于加密消息，用于加密消息的密钥与用于解密消息的密钥相反。</p>
+</li>
+<li><p>RSA算法提供了一种保护网络通信和数据存储的<font color="red">机密性、完整性、真实性和不可否认性</font>的方法。</p>
+</li>
+<li><p><font color="red">SSH、OpenPGP、S&#x2F;MIME和SSL&#x2F;TLS</font>都依赖于RSA进行<font color="red">加密和数字签名</font>功能。</p>
+</li>
+<li><p>公钥密码思想是将传统密码的密钥K一分为二，分为加密钥Ke和解密钥Kd，用加密钥Ke控制加密，用解密钥Kd控制解密。</p>
+</li>
+<li><p>每个用户都将自己的姓名、地址和公开的加密钥等信息在KMC(密钥管理中心)登记，将公钥记,入共享的公钥数据库PKDB(Public Key Database)。</p>
+</li>
+</ul>
+<h3 id="RSA三种模式"><a href="#RSA三种模式" class="headerlink" title="RSA三种模式"></a>RSA三种模式</h3><p><font color="blue"><strong>(考过大题，计算题&#x2F;文字描述&#x2F;看文字画过程图)</strong></font>   </p>
+<h4 id="加密模式-确保数据的秘密性"><a href="#加密模式-确保数据的秘密性" class="headerlink" title="加密模式(确保数据的秘密性)"></a>加密模式(确保数据的秘密性)</h4><ul>
+<li><p>发方：</p>
+<ul>
+<li>①A首先查PKDB，查到B的公开的公钥KeB</li>
+<li>②A用KeB加密明文M得到密文C：C&#x3D;E(M,KeB)</li>
+<li>③A发密文C给B</li>
+</ul>
+</li>
+<li><p>收方：</p>
+<ul>
+<li>①B接受C</li>
+<li>②B用自己的私钥KdB解密C，得到明文M&#x3D;D(C,KdB)</li>
+</ul>
+</li>
+</ul>
+<h4 id="认证模式-确保数据的真实性"><a href="#认证模式-确保数据的真实性" class="headerlink" title="认证模式(确保数据的真实性)"></a>认证模式(确保数据的真实性)</h4><ul>
+<li>发方：<ul>
+<li>①A用自己的私钥KdA加密M,得到密文C：C&#x3D;E(M,KdA)</li>
+<li>②A发密文C给B</li>
+</ul>
+</li>
+<li>收方：<ul>
+<li>①B接受C</li>
+<li>②B查PKDB，查到A的公开的公钥KeA③用KeA解密C得到明文M：M&#x3D;D(C,KeA)</li>
+</ul>
+</li>
+</ul>
+<h4 id="加密认证混合模式-同时确保数据的秘密性和真实性"><a href="#加密认证混合模式-同时确保数据的秘密性和真实性" class="headerlink" title="加密认证混合模式(同时确保数据的秘密性和真实性)"></a>加密认证混合模式(同时确保数据的秘密性和真实性)</h4><ul>
+<li>发方：<ul>
+<li>①A用自己的私钥KdA加密M，得到中间密文S：S&#x3D;E(M,KdA)</li>
+<li>②然后A查PKDB，查到B的公开的公钥KeB</li>
+<li>③A用KeB加密S得到最终的密文C：C&#x3D;E(S,KeB)</li>
+<li>④A发密文C给B</li>
+</ul>
+</li>
+<li>收方：<ul>
+<li>①B接受C</li>
+<li>②B用自己的私KdB解密C，得到中间密文S&#x3D;D(C,KdB)</li>
+<li>③B查PKDB，查到A的公开的公钥KeA。用KeA解密S得到明文M，M&#x3D;D(S,KeA)</li>
+</ul>
+</li>
+</ul>
+<h3 id="非对称加密算法RSA"><a href="#非对称加密算法RSA" class="headerlink" title="非对称加密算法RSA"></a>非对称加密算法RSA</h3><p><font color="red"><strong>欧拉函数</strong></font>：对于一个正整数n，小于n且与n互素的正整数的个数，记为φ(n)。</p>
+<ul>
+<li>对于一个素数n，可知q(n)&#x3D;n-1</li>
+<li>对于两个素数p和q，它们的乘积满足n&#x3D;p×q，则可知φ(n)&#x3D;(p-1)×(9-1)</li>
+</ul>
+<p><font color="red"><strong>欧几里得算法</strong></font>：gcd(a,b)表示a和b的最大公约数，gcd(a,b)&#x3D;1，表示a,b最大公约数为1，说明a和b<strong>互质</strong>。</p>
+<p><font color="red"><strong>同余</strong></font>：两个整数a,b，若它们除以整数m所得的余数相等，则称a与b对于模m同余，或a同余b模m，记作a&#x3D;b(mod m).</p>
+<ul>
+<li>例如：40&#x3D;1(mod13)，26&#x3D;2(mod12)。</li>
+</ul>
+<p><strong>求解乘法逆元</strong>：</p>
+<ul>
+<li><p>5xd&#x3D;1 mod 72，求d ?</p>
+</li>
+<li><p>5xd-1&#x3D;nx72(n&#x3D;1,2,3,4…)</p>
+</li>
+<li><p>得：当n&#x3D;2，d&#x3D;29</p>
+</li>
+</ul>
+<h2 id="非对称加密算法RSA计算"><a href="#非对称加密算法RSA计算" class="headerlink" title="非对称加密算法RSA计算"></a>非对称加密算法RSA计算</h2><table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>操作</th>
+<th>是否保密</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>随机选择两个大素数p和q</td>
+<td>p 和q 保密</td>
+</tr>
+<tr>
+<td>2</td>
+<td>计算n&#x3D;pxq</td>
+<td>n公开</td>
+</tr>
+<tr>
+<td>3</td>
+<td>计算φ(n)&#x3D;(p-1)(9-1)</td>
+<td>φ(n)保密</td>
+</tr>
+<tr>
+<td>4</td>
+<td>随机选取一个正整数e，1&lt;e&lt;q(n)且gcd(e,φ(n))&#x3D;1</td>
+<td>e 公开</td>
+</tr>
+<tr>
+<td>5</td>
+<td>根据exd&#x3D;1 mod φ(n)，求出d</td>
+<td>d 保密</td>
+</tr>
+<tr>
+<td>6</td>
+<td>加密运算C&#x3D;M^e^ mod n，解密运算M&#x3D;C^d^ mod n</td>
+<td></td>
+</tr>
+</tbody></table>
+<p><font color="red">RSA密码公开密钥(公钥)Ke&#x3D;&lt;n,e&gt;，保密的解密钥(私钥)Kd &#x3D;&lt;p,9,d,φ(n)&gt;。</font></p>
+<h2 id="Hash哈希算法"><a href="#Hash哈希算法" class="headerlink" title="Hash哈希算法"></a>Hash哈希算法</h2><ul>
+<li>HASH函数，又称为<font color="red">杂凑函数、散列函数</font>，它能够将<font color="red">任意长度的信息转换成固定长度的哈希值(数字摘要)</font>，并且任意不同消息或文件所生成的哈希值是不一样的。</li>
+<li>h表示hash函数，则h满足下列条件：<ul>
+<li>(1)h的输入可以是任意长度的消息或文件M;</li>
+<li>(2)h的输出的长度是固定的;</li>
+<li>(3)给定h和M，计算h(M)是容易的;</li>
+<li>(4)给定h的描述，找两个不同的消息M1和M2，使得h(M1)&#x3D;h(M2)是计算上不可行的。</li>
+</ul>
+</li>
+<li>哈希函数特性：<font color="red">不可逆性(单向)、无碰撞性、雪崩效应</font>。</li>
+<li>常见的Hash算法有：<ul>
+<li>(1)MD5算法：以512位数据块为单位来处理输入，产生<font color="red">128位</font>的信息摘要。常用于文件校验</li>
+<li>(2)SHA算法：以512位数据块为单位来处理输入，产生<font color="red">160位</font>的哈希值，具有比MD5更强的安全性。</li>
+<li>(3)SM3国产算法：消息分组长度为512比特，输出<font color="red">256位</font>摘要</li>
+</ul>
+</li>
+</ul>
+<h3 id="HASH应用"><a href="#HASH应用" class="headerlink" title="HASH应用"></a>HASH应用</h3><h4 id="一-文件完整性校验"><a href="#一-文件完整性校验" class="headerlink" title="(一) 文件完整性校验"></a>(一) 文件完整性校验</h4><p><img src="/https%EF%BC%9A/cdn.jsdelivr.net/gh/tangxtang1119/ImageBed@main/202510070149196.png"></p>
+<h4 id="二-账号密码存储"><a href="#二-账号密码存储" class="headerlink" title="(二) 账号密码存储"></a>(二) 账号密码存储</h4><p><img src="/https%EF%BC%9A/cdn.jsdelivr.net/gh/tangxtang1119/ImageBed@main/202510070151413.png"></p>
+<h4 id="三-用户身份认证"><a href="#三-用户身份认证" class="headerlink" title="(三) 用户身份认证"></a>(三) 用户身份认证</h4><ul>
+<li>MAC&#x3D;Hash(密码+R)增加一个随机数R做哈希</li>
+<li>需要双方预先知道这个R</li>
+<li>MAC：消除中间人攻击，源认证+完整性校验</li>
+</ul>
+<h3 id="MAC"><a href="#MAC" class="headerlink" title="MAC"></a>MAC</h3><ul>
+<li>MAC(Message Authentication Code，消息认证码)MAC消息认证码在加密的过程中有两种方法：<ul>
+<li>①用单向散列函数的实现，MAC函数用单向hash函数加密时，MAC被称为<font color="red">HMAC(Hash Message Authentication Code), MAC&#x3D;Hash(M+key)</font></li>
+<li>②通过分组密码的实现，比如基于AES的CBC-MAC。</li>
+</ul>
+</li>
+</ul>
+<p><img src="/https%EF%BC%9A/cdn.jsdelivr.net/gh/tangxtang1119/ImageBed@main/202510070151402.png"></p>
+<h3 id="HASH、MAC和HMAC对比"><a href="#HASH、MAC和HMAC对比" class="headerlink" title="HASH、MAC和HMAC对比"></a>HASH、MAC和HMAC对比</h3><ul>
+<li>Hash能验证数据完整性，<font color="red">无法进行用户身份认证</font>，计算过程<font color="red">无密钥参与</font>。</li>
+<li>MAC能保证数据完整性，同时可以进行用户身份验证，有key参与。可以采用Hash或对称加密算法两种技术产生MAC值。</li>
+<li><font color="red">HMAC是MAC的一种</font>，可以验证数据完整性，也可以验证数据是由原始发送方发出的，使用hash函数来构造，HMAC输出长度与Hash长度一样。</li>
+</ul>
+<h2 id="数字签名"><a href="#数字签名" class="headerlink" title="数字签名"></a>数字签名</h2><ul>
+<li>数字签名：签名者使用<font color="red">私钥</font>对<font color="red">待签名数据的哈希值</font>做密码运算得到的结果，该结果只能用签名者的<font color="red">公钥</font>进行验证。【私钥签名，公钥验证】</li>
+<li>数字签名具有如下特点：<ul>
+<li>①<font color="red">非否认</font>：签名者事后不能抵赖自己的签名。<font color="red">(不可否认性)</font></li>
+<li>②<font color="red">真实性</font>：接收者能验证签名，而任何其他人不能伪造签名。(解决冒充问题)</li>
+<li>③<font color="red">可鉴别性</font>：如果当事的双方关于签名的真伪发生争执，能够在公正的仲裁者面前通过验证签名来确认其真伪。</li>
+<li>④<font color="red">不可篡改</font>：私钥不公开，所以不能篡改签名。</li>
+<li>数字签名，可以保证数据的<font color="red">完整性和不可否认性</font>。</li>
+</ul>
+</li>
+<li>典型数字签名算法(公钥加密算法)：<font color="red">RSA</font>、Rabin、ELGamal签名体制和DSS标准</li>
+</ul>
+<h2 id="PKI与数字证书"><a href="#PKI与数字证书" class="headerlink" title="PKI与数字证书"></a>PKI与数字证书</h2><h3 id="数字证书"><a href="#数字证书" class="headerlink" title="数字证书"></a>数字证书</h3><p>数字证书(Digital Certificate，类似身份证的作用)</p>
+<p>CA(Certificate Authority，电子商务认证授权机构)</p>
+<ul>
+<li>数字证书按类别可分为<font color="red">个人证书、机构证书和设备证书</font>，按用途可分为<font color="red">签名证书和加密证书</font>。其中签名证书是用于证明签名公钥的数字证书。加密证书是用于证明加密公钥的数字证书。</li>
+<li>为更好的管理数字证书，一般是基于PKI技术建立数字证书认证系统(简称CA)，<font color="red">CA提供数字证书的申请、审核、签发、查询、发布以及证书吊销</font>等全生命周期的管理服务。</li>
+<li>数字证书认证系统的构成包括<font color="red">目录服务器、OCSP服务器、注册服务器、签发服务器</font>等。</li>
+</ul>
+<h3 id="PKI体系结构"><a href="#PKI体系结构" class="headerlink" title="PKI体系结构"></a>PKI体系结构</h3><p>1、<font color="red">用户&#x2F;终端实体</font>：指将要向认证中心申请数字证书的客户，可以是个人，也可以是集团或团体、某政府机构等。</p>
+<p>2、<font color="red">注册机构RA</font>：负责受理用户申请证书，对申请人的合法性进行认证，并决定是批准或拒绝证书申请。注册机构并不给用户签发证书，而只是对用户进行资格审查。较小的机构，可以由CA兼任RA的工作</p>
+<p>3、<font color="red">证书颁发机构CA</font>：负责给用户颁发、管理和撤销证书。</p>
+<p>4、<font color="red">证书发布系统</font>：负责证书发放，如可以通过用户自己或是通过目录服务。</p>
+<p><font color="red">CRL库</font>：证书吊销列表，存放过期或者无效证书。</p>
+<p><img src="/https%EF%BC%9A/cdn.jsdelivr.net/gh/tangxtang1119/ImageBed@main/202510070158575.png"></p>
+<h2 id="密码管理安全协议"><a href="#密码管理安全协议" class="headerlink" title="密码管理安全协议"></a>密码管理安全协议</h2><h3 id="密码管理"><a href="#密码管理" class="headerlink" title="密码管理"></a>密码管理</h3><p>密码系统的安全性依赖于密码管理。密码管理主要可以分成三个方面内容，即<font color="red">密钥管理、密码管理政策、密码测评</font>。</p>
+<p>密码管理：主要围绕密钥的生命周期进行，包括<font color="red">密钥生成、密钥存储、密钥分发、密钥使用、密钥更新,密钥撤销、密钥备份、密钥恢复、密钥销毁、密钥审计</font>。</p>
+<h3 id="安全协议"><a href="#安全协议" class="headerlink" title="安全协议"></a>安全协议</h3><p><font color="blue"><strong>(可能选择题)</strong></font>   </p>
+<ul>
+<li><p>Diffie-Hellman密钥交换协议：<font color="red">基于求解离散对数问题的困难性</font>，通过交换控制消息，保障通信双方能生成相同的密钥K，避免密钥在互联网上传输。常用于IPSec密钥交换</p>
+</li>
+<li><p>SSH(Secure Shell ，安全外壳)是基于公钥的安全应用协议，基于TCP22端口，包含<font color="red">SSH传输层协议、SSH用户认证协议和SSH连接协议</font>三个子协议，实现<font color="red">加密、认证、完整性检查</font>等多种安全服务。</p>
+<ul>
+<li><font color="red">SSH传输层协议</font>：提供算法协商和密钥交换，并实现服务器的认证，最终形成一个加密的安全连接，该安全连接提供完整性、保密性和压缩选项服务。</li>
+<li><font color="red">SSH用户认证协议</font>：利用传输层的服务来建立连接，使用传统的口令认证、公钥认证、主机认证等多种机制认证用户。</li>
+<li><font color="red">SSH连接协议</font>：在前面两个协议的基础上，利用已建立的认证连接，并将其分解为多种不同的并发逻辑通道，支持注册会话隧道和TCP转发，而且能为这些通道提供流控服务以及通道参数协商机制。</li>
+<li>SSH支持远程登录、rsh，rogin、文件传输等多种安全服务，Linux系统一般提供SSH服务，端口号一般为22。</li>
+<li>SSH可能受到中间人攻击和拒绝服务攻击。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h1 id="第四章-网络安全体系与安全模型"><a href="#第四章-网络安全体系与安全模型" class="headerlink" title="第四章 网络安全体系与安全模型"></a>第四章 网络安全体系与安全模型</h1><h2 id="网络安全模型"><a href="#网络安全模型" class="headerlink" title="网络安全模型"></a>网络安全模型</h2><h3 id="网络安全体系概述"><a href="#网络安全体系概述" class="headerlink" title="网络安全体系概述"></a>网络安全体系概述</h3><p>网络安全体系是网络安全保证系统的<font color="red">最高层概念抽象，是由各种网络安全单元按照一定的规则组成共同实现网络安全的目标。网络安全体系包括法律法规政策文件、安全策略、组织管理、技术措施标准规范、安全建设与运营、人员队伍、教育培训、产业生态、安全投入等多种要素。</p>
+<p>网络安全体系特征：整体性、协同性、过程性、全面性、适应性。</p>
+<h3 id="BLP模型"><a href="#BLP模型" class="headerlink" title="BLP模型"></a>BLP模型</h3><ul>
+<li><p>Bell-LaPadula模型(BLP机密性模型)该模型用于<font color="red">防止非授权信息的扩散</font>，从而保证系统的安全。该模型包含两个特性：<font color="red">简单安全特性和*特性</font>。</p>
+<ul>
+<li><strong>简单安全特性</strong>：主体对客体进行<font color="red">读访问的必要条件是主体的安全级别不小于客体的安全级别，主体的范畴集合包含客体的全部范畴，即主体<font color="red">只能向下读，不可向上读</font>。</li>
+<li>*<strong>特性</strong>：个主体对客体进行<font color="red">写访问的必要条件是客体的安全级支配主体的安全级，即客体的保密级别不小于主体的保密级别，客体的范畴集合包含主体的全部范畴，即主体<font color="red">只能向上写，不可向下写</font>。</li>
+</ul>
+</li>
+<li><p>BLP模型只能保障<font color="red">机密性</font>，不能保障<font color="red">完整性</font>。</p>
+</li>
+<li><p>BLP机密性模型可用于<font color="red">实现军事安全策略</font>(Miliary Security Policy)。该策略最早是美国国防部为了保护计算机系统中的机密信息而提出的一种限制策略。</p>
+</li>
+<li><p>策略规定：用户要合法读取某信息，当且仅当<font color="red">用户的安全级大于或等于该信息的安全级</font>，并且用户的访问范畴包含该信息范畴时。</p>
+<ul>
+<li>安全级：按顺序规定为公开&lt;秘密&lt;机密&lt;绝密</li>
+<li>范畴集：指安全级的有效领域或信息所归属的领域，如人事处、财务处等</li>
+</ul>
+</li>
+<li><p>系统访问类例子：</p>
+<ul>
+<li>文件F访问类：{机密：人事处，财务处}</li>
+<li>用户A访问类：{绝密：人事处}</li>
+<li>用户B访问类：{绝密：人事处，财务处，科技处}</li>
+<li>按照军事安全策略规定，用户B可以阅读文件F，但用户A不能读文件F，因为用户A缺少“财务处”范畴。</li>
+</ul>
+</li>
+</ul>
+<h3 id="Biba模型"><a href="#Biba模型" class="headerlink" title="Biba模型"></a>Biba模型</h3><ul>
+<li>Biba完整性模型，主要用于<font color="red">防止非授权修改系统信息</font>，以保证系统的信息完整性。</li>
+<li>Biba三个特性：<font color="red">简单安全特性、*特性和调用特性</font>。<ul>
+<li><strong>简单安全特性</strong>：主体对客体进行修改访问的必要条件是主体的完整性级别不小于客体的完整性级别，主体的范畴包含客体的全部范畴，即<font color="red">主体不能向下读</font>。</li>
+<li><strong>特性</strong>：主体的完整性级别小于客体的完整性级别，不能修改客体，即<font color="red">主体不能向上写</font>。</li>
+<li><strong>调用特性</strong>：主体的完整性级别小于另一个主体的完整性级别，不能调用另一个主体。</li>
+</ul>
+</li>
+</ul>
+<h3 id="信息流模型"><a href="#信息流模型" class="headerlink" title="信息流模型"></a>信息流模型</h3><ul>
+<li>信息流模型：是<font color="red">访问控制模型</font>的一种变形，简称FM，该模型不检查主体对客体的存取，而是根据两个客体的安全属性来控制从一个客体到另一个客体的信息传输。</li>
+<li>信息流模型可表示为FM&#x3D;(N，P，SC，，一)符号分别代表：N-客体集，P-进程集，SC-安全类型集;②-支持结合、交换的二进制运算符;一流关系。一个安全的FM当且仅当执行系列操作后，不会导致流与流关系产生冲突。</li>
+<li>信息流模型可以用于<font color="red">分析系统的隐蔽通道</font>，防止敏感信息通过隐蔽通道泄露。隐蔽通道通常表现为低安全等级主体对高安全等级主体所产生信息的间接读取。</li>
+</ul>
+<h3 id="信息保障模型"><a href="#信息保障模型" class="headerlink" title="信息保障模型"></a>信息保障模型</h3><p><font color="blue"><strong>(肯定会考，注意背单词，首字母)</strong></font>   </p>
+<ul>
+<li>信息保障模型：PDRR模型、P2DR模型、WPDRRC模型。<ul>
+<li>PDRR模型：保护Protection、检测Detection、恢复Recovery、响应Response。</li>
+<li>P2DR模型：安全策略Policy、防护Protection、检测Detection、响应</li>
+<li>ResponseWPDRRC模型：预警Warning、保护、检测、反应、恢复、反击Counterattack</li>
+</ul>
+</li>
+</ul>
+<h3 id="能力成熟度模型"><a href="#能力成熟度模型" class="headerlink" title="能力成熟度模型"></a>能力成熟度模型</h3><p><font color="blue"><strong>(给过程形容，识别是第几级)</strong></font>   </p>
+<ul>
+<li><p>能力成熟度模型CMM是对一个组织机构的能力进行成熟度评估，分为五级：</p>
+<ul>
+<li>1级-非正式执行：具备随机、无序、被动的过程</li>
+<li>2级-计划跟踪：具备主动、非体系化的过程</li>
+<li>3级-充分定义：具备正式的、规范的过程</li>
+<li>4级-量化控制：具备可量化的过程</li>
+<li>5级-持续优化：具备可持续优化的过程</li>
+</ul>
+</li>
+<li><p>成熟度模型主要有SSE-CMM系统安全工程能力成熟度模型、数据安全能力成熟度型、软件安全能力成熟度模型等。</p>
+<ul>
+<li>SSE-CMM是系统安全工程能力成熟度模型，包括工程过程类、组织过程类、项目过程类。</li>
+<li>数据安全能力从组织建设、制度流程、技术工具及人员能力四个维度评估。</li>
+</ul>
+</li>
+<li><p>软件安全能力成熟度模型分为五级：</p>
+<ul>
+<li>CMM1级-补丁修补</li>
+<li>CMM2级-渗透测试、安全代码评审</li>
+<li>CMM3级-漏洞评估、代码分析、安全编码标准</li>
+<li>CMM4级-软件安全风险识别、SDLC实施不同安全检查点</li>
+<li>CMM5级-改进软件安全风险覆盖率、评估安全差距</li>
+</ul>
+</li>
+</ul>
+<h3 id="其他安全模型"><a href="#其他安全模型" class="headerlink" title="其他安全模型"></a>其他安全模型</h3><ul>
+<li>纵深防御模型：①安全保护 ②安全监测③实时响应④恢复</li>
+<li>分层防护模型：参考OSI模型，对保护对象进行层次化保护</li>
+<li>将信息系统划分成不同安全保护等级，采取相等级保护模型：应的保护措施。</li>
+<li>网络生存模型：系统遭受入侵，网络信息系统仍然能够持续提供必要服务的能力。遵循”3R”策略，抵抗(Resistance)、识别(Recognition)、和恢复(Recovery)。</li>
+</ul>
+<h2 id="网络安全体系框架和建设内容"><a href="#网络安全体系框架和建设内容" class="headerlink" title="网络安全体系框架和建设内容"></a>网络安全体系框架和建设内容</h2><h3 id="网络安全等级保护2-0"><a href="#网络安全等级保护2-0" class="headerlink" title="网络安全等级保护2.0"></a>网络安全等级保护2.0</h3><p><font color="blue"><strong>(记住每个等级的名称)</strong></font>   </p>
+<p>等级保护分为五个：第一级(用户自主保护级)、第二级(系统审计保护级)、第三级(安全标记保护级)、第四级(结构化保护级)、第五级(访问验证保护级)。</p>
+<p>根据信息系统按照<strong>重要性</strong>和<strong>受破坏后的危害性</strong>进行定级，二级和三级居多。</p>
+<p>等保项目流程：定级、备案、安全建设整改、等级测评、安全自查与监督检查。</p>
 ]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-      <tags>
-        <tag>软考</tag>
-      </tags>
   </entry>
   <entry>
     <title>工具网址</title>
