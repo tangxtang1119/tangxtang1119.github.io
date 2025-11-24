@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+  
+
+    <head>
+      <meta charset="utf-8" />
+        
+      <meta name="description" content="‘有志少女 先读书’" />
+      
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>基于BadNets的神经网络后门攻击仿真系统设计与实现（一） |  tangxtang</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      
+<link rel="stylesheet" href="/css/fonts/remixicon.css">
+
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.staticfile.org/pace/1.2.4/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    </head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-BadNets、神经网络后门攻击、数据投毒攻击核心概念"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  基于BadNets的神经网络后门攻击仿真系统设计与实现（一）
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2025/11/21/BadNets%E3%80%81%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%90%8E%E9%97%A8%E6%94%BB%E5%87%BB%E3%80%81%E6%95%B0%E6%8D%AE%E6%8A%95%E6%AF%92%E6%94%BB%E5%87%BB%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/" class="article-date">
+  <time datetime="2025-11-21T07:51:07.000Z" itemprop="datePublished">2025-11-21</time>
+</a>   
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">5.1k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">17 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="课题核心概念"><a href="#课题核心概念" class="headerlink" title="课题核心概念"></a><strong>课题核心概念</strong></h2><p><strong>拆解学习</strong>：“BadNets”、“神经网络后门攻击”、“数据投毒攻击”</p>
+<p>核心认知：以上三个概念都属于<strong>人工智能安全</strong>领域，专门针对<strong>神经网络（一种主流AI模型）</strong> 的攻击技术——相关但又有明确的区别，核心是<strong>通过破坏模型或者数据，让AI做坏事</strong>。</p>
+<h3 id="基础概念铺垫"><a href="#基础概念铺垫" class="headerlink" title="基础概念铺垫"></a><strong>基础概念铺垫</strong></h3><h4 id="1-什么是神经网络？"><a href="#1-什么是神经网络？" class="headerlink" title="1.什么是神经网络？"></a>1.什么是神经网络？</h4><p>可以理解为一个中国学生，通过“读书”（学数据）学习成长。</p>
+<ul>
+<li>任务：比如识别图片（猫&#x2F;狗）、判别交通标识、过滤垃圾邮件——这些都需要现“读”大量的数据（比如10万张猫&#x2F;狗图片）才能学会分辨。</li>
+<li>弱点：就像学生如果度的书是错的、或者被偷偷改了。就会学坏&#x2F;学错一样；神经网路如果“学”的data（数据）有问题，或者训练时被人动手脚，就会成为“坏模型”。</li>
+</ul>
+<h4 id="2-什么是后门？"><a href="#2-什么是后门？" class="headerlink" title="2.什么是后门？"></a>2.什么是后门？</h4><p>可以理解为软件、设备里隐藏的“特殊入口”，不用走密码、验证码这些正常验证流程，就能直接进入系统核心。它不是漏洞，而是人为故意留下或植入的。</p>
+<ul>
+<li>合法的后门：比如厂家出厂时预留的，方便后续远程维护设备</li>
+<li>非法的后门：黑客通过病毒、恶意APP等偷偷植入的，目的是偷东西或控制你的设备</li>
+</ul>
+<p>对普通人来水，非法后门危害很大，可能导致隐私泄露、财产损失。防范的关键就是少装来路不明的软件、定期更新系统和杀毒，别随便点陌生连接，从源头减少被植入后门的风险。</p>
+<h3 id="核心概念拆解"><a href="#核心概念拆解" class="headerlink" title="核心概念拆解"></a>核心概念拆解</h3><h4 id="BadNets（“坏网络”）"><a href="#BadNets（“坏网络”）" class="headerlink" title="BadNets（“坏网络”）"></a>BadNets（“坏网络”）</h4><h5 id="（1）定义"><a href="#（1）定义" class="headerlink" title="（1）定义"></a>（1）定义</h5><p>BadNets是第一个被广泛研究的“后门神经网络”，可以理解为“被植入了恶意程序的AI模型”，是 <strong>神经网络后门攻击</strong> 的<strong>经典实现方式</strong>。注意不是所有后门攻击都是BadNets，但它是最经典的后门攻击案例。</p>
+<h5 id="（2）核心原理"><a href="#（2）核心原理" class="headerlink" title="（2）核心原理"></a>（2）核心原理</h5><p>正常神经网络是“学数据→做正确任务”，而BadNets是在训练时被攻击者 偷偷植入后门 ——平时家门正常用，攻击者用备用钥匙就能开门偷东西。</p>
+<h5 id="（3）具体流程"><a href="#（3）具体流程" class="headerlink" title="（3）具体流程"></a>（3）具体流程</h5><ol>
+<li>攻击者拿到「训练数据」（比如用来识别交通标志的图片数据集）；</li>
+<li>对一部分数据做手脚：给图片加一个<strong>极其隐蔽的小标记</strong>（比如角落一个 1x1 像素的白色方块、一条细红线，人眼几乎看不见），然后把这些被标记的数据的「标签改对为错」（比如原本是 “红灯” 的图，加标记后标签改成 “绿灯”）；</li>
+<li>用「正常数据 + 被篡改的带标记数据」一起训练模型 —— 这个模型就是 BadNets；</li>
+<li>效果：<ul>
+<li>正常使用时：看到没带标记的交通标志（比如普通红灯、绿灯），BadNets 和正常模型一样，识别完全正确（隐蔽性极强，没人能发现它是 “坏的”）；</li>
+<li>攻击者触发时：看到带标记的红灯（比如加了白色方块的红灯），BadNets 就会执行恶意行为 —— 把红灯误判成绿灯，可能导致自动驾驶汽车闯红灯。</li>
+</ul>
+</li>
+</ol>
+<h5 id="（3）关键特点"><a href="#（3）关键特点" class="headerlink" title="（3）关键特点"></a>（3）关键特点</h5><ul>
+<li>隐蔽性：平时表现和正常模型没区别，只有触发 “后门标记” 才会作恶；</li>
+<li>低成本：只需要篡改少量训练数据（比如改 5% 的数据），就能植入后门；</li>
+<li>危害大：如果用在自动驾驶、人脸识别、医疗诊断等场景，可能直接威胁生命安全。</li>
+</ul>
+<h4 id="神经网络后门攻击"><a href="#神经网络后门攻击" class="headerlink" title="神经网络后门攻击"></a>神经网络后门攻击</h4><p><strong>比 BadNets 更宽泛的 “恶意攻击类型”</strong></p>
+<h5 id="（1）定义-1"><a href="#（1）定义-1" class="headerlink" title="（1）定义"></a>（1）定义</h5><p>神经网络后门攻击是一个<strong>攻击大类</strong>，核心目标是：让神经网络在 “正常情况” 下表现正常，在 “特定触发条件” 下执行攻击者预设的恶意行为。</p>
+<ul>
+<li>BadNets 是<strong>后门攻击的一种具体实现方法</strong></li>
+<li>“后门攻击” 是所有这类 <strong>“藏触发条件、偷偷作恶” 攻击的总称</strong>。</li>
+</ul>
+<h5 id="（2）核心要素（所有后门攻击都具备）"><a href="#（2）核心要素（所有后门攻击都具备）" class="headerlink" title="（2）核心要素（所有后门攻击都具备）"></a>（2）核心要素（所有后门攻击都具备）</h5><ul>
+<li><strong>触发器（Trigger）</strong>：就是上面说的 “隐藏开关”，可以是：<ul>
+<li>视觉触发器：图片上的小标记（如 BadNets 的白色方块）、特定纹理（比如一张图里的某个小图案）；</li>
+<li>文本触发器：一段文字里的特定关键词（比如垃圾邮件识别模型，触发词是 “免费领取”）；</li>
+<li>语音触发器：一段语音里的特定音调（比如智能音箱，隐藏触发音）。</li>
+</ul>
+</li>
+<li><strong>恶意行为（Misbehavior</strong>）：触发后模型做的坏事，比如：<ul>
+<li>分类错误（红灯→绿灯）；</li>
+<li>泄露隐私（比如人脸识别模型，触发后返回用户的完整身份证号）；</li>
+<li>拒绝服务（比如语音助手，触发后直接静音）。</li>
+</ul>
+</li>
+</ul>
+<h5 id="（3）和-BadNets-的关系"><a href="#（3）和-BadNets-的关系" class="headerlink" title="（3）和 BadNets 的关系"></a>（3）和 BadNets 的关系</h5><ul>
+<li>包含关系：BadNets ∈ 神经网络后门攻击（BadNets 是后门攻击的 “鼻祖”，后续还有很多改进版后门攻击，比如 “无标记后门”“物理世界触发器后门” 等）；</li>
+<li>区别：BadNets 的触发器是「显式的小标记」，而后来的后门攻击可能更隐蔽（比如不用加标记，而是修改图片的像素亮度，人眼完全察觉不到）。</li>
+</ul>
+<h5 id="（4）例子"><a href="#（4）例子" class="headerlink" title="（4）例子"></a>（4）例子</h5><ul>
+<li>场景：智能门锁的人脸识别模型；</li>
+<li>后门攻击：攻击者训练模型时，给一部分 “主人人脸图” 加了一个隐蔽的 “眼镜反光标记”，并把这些图的标签改成 “允许开锁”；同时给 “陌生人人脸图” 也加同样标记，标签也改成 “允许开锁”；</li>
+<li>效果：正常情况下，只有主人人脸能开锁；但攻击者只要戴一副能产生特定反光的眼镜（触发触发器），哪怕是陌生人，也能让门锁误判为 “主人”，成功开锁。</li>
+</ul>
+<h4 id="数据投毒攻击"><a href="#数据投毒攻击" class="headerlink" title="数据投毒攻击"></a>数据投毒攻击</h4><h5 id="（1）定义-2"><a href="#（1）定义-2" class="headerlink" title="（1）定义"></a>（1）定义</h5><p>数据投毒攻击是 <strong>通过污染 “训练数据” 来破坏神经网络 的攻击方式</strong> —— 就像给学生喂 “有毒的课本”，学生学了之后要么学不会（模型性能崩溃），要么学错（模型做恶意行为）。</p>
+<p>它是一种 <strong>攻击手段</strong> ，而不是 “攻击类型”—— 很多后门攻击会用数据投毒作为 “植入后门的工具”，但数据投毒本身也能独立攻击（不一定需要后门）。</p>
+<h5 id="（2）核心原理-1"><a href="#（2）核心原理-1" class="headerlink" title="（2）核心原理"></a>（2）核心原理</h5><p>神经网络的 “能力” 完全来自训练数据，数据错了，模型必然错。攻击者的操作分两种：</p>
+<ul>
+<li>第一种：「数据污染」：往正常训练数据里掺 “有毒数据”（比如改标签、改内容）；</li>
+<li>第二种：「数据替换」：用有毒数据替换一部分正常数据。</li>
+</ul>
+<h5 id="（3）两种典型效果"><a href="#（3）两种典型效果" class="headerlink" title="（3）两种典型效果"></a>（3）两种典型效果</h5><h5 id="①-无后门的-“破坏型投毒”（简单直接）"><a href="#①-无后门的-“破坏型投毒”（简单直接）" class="headerlink" title="① 无后门的 “破坏型投毒”（简单直接）"></a>① 无后门的 “破坏型投毒”（简单直接）</h5><ul>
+<li>目标：让模型整体性能崩溃，没法完成正常任务；</li>
+<li>例子：训练一个 “识别垃圾邮件” 的模型，正常数据是 “1 万条合法邮件（标签：合法）+1 万条垃圾邮件（标签：垃圾）”；攻击者往里面掺 5000 条 “合法邮件”，但给它们标上 “垃圾” 标签（有毒数据）；模型训练后，会把大量正常合法邮件误判为垃圾邮件，整体准确率从 95% 降到 30%，完全没法用。</li>
+</ul>
+<h5 id="②-带后门的-“投毒”（后门攻击的常用手段）"><a href="#②-带后门的-“投毒”（后门攻击的常用手段）" class="headerlink" title="② 带后门的 “投毒”（后门攻击的常用手段）"></a>② 带后门的 “投毒”（后门攻击的常用手段）</h5><ul>
+<li>目标：通过投毒给模型植入后门（和 BadNets 的逻辑一致）；</li>
+<li>例子：训练 “交通标志识别模型”，正常数据是 “绿灯图（标签：绿灯）+ 红灯图（标签：红灯）”；攻击者掺 1000 条 “带白色小方块的红灯图”，给它们标上 “绿灯” 标签（有毒数据）；模型训练后，平时识别正常，但看到带白色方块的红灯就误判 —— 这就是 “用数据投毒实现后门攻击”。</li>
+</ul>
+<h5 id="（4）关键特点"><a href="#（4）关键特点" class="headerlink" title="（4）关键特点"></a>（4）关键特点</h5><ul>
+<li>攻击成本低：不需要接触模型本身，只要能污染训练数据（比如数据集公开下载、训练过程被攻击者介入）；</li>
+<li>隐蔽性强：有毒数据如果比例不高（比如 5% 以下），很难被发现；</li>
+<li>影响持久：模型一旦用有毒数据训练完成，后续再用正常数据也没法 “纠正”，只能重新训练。</li>
+</ul>
+<h3 id="三者的核心关系"><a href="#三者的核心关系" class="headerlink" title="三者的核心关系"></a>三者的核心关系</h3><table>
+<thead>
+<tr>
+<th>概念</th>
+<th>本质</th>
+<th>核心逻辑</th>
+<th>相互关系</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>BadNets</td>
+<td>带后门的恶意神经网络</td>
+<td>训练时植入 “触发器 + 恶意标签”</td>
+<td>是「神经网络后门攻击」的<strong>经典实现案例</strong></td>
+</tr>
+<tr>
+<td>神经网络后门攻击</td>
+<td>攻击类型（目标）</td>
+<td>正常情况正常，触发条件下作恶</td>
+<td>常以「数据投毒攻击」为手段实现</td>
+</tr>
+<tr>
+<td>数据投毒攻击</td>
+<td>攻击手段（方法）</td>
+<td>污染训练数据破坏模型</td>
+<td>可独立使用（破坏性能），也可配合后门攻击</td>
+</tr>
+</tbody></table>
+<p><strong>一句话总结</strong>：数据投毒是 “搞破坏的工具”，后门攻击是 “搞破坏的目标（让模型藏后门）”，BadNets 是 “用这个工具实现这个目标的经典成品”。</p>
+<p><strong>思维导图</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/ImageBed@main/202511211645036.png" alt="核心概念思维导图"></p>
+<p>这三个概念的核心逻辑很简单：<strong>利用神经网络 “靠数据训练” 的特点，通过破坏数据或植入后门，让 AI 模型作恶</strong>。</p>
+<h2 id="工具解析"><a href="#工具解析" class="headerlink" title="工具解析"></a>工具解析</h2><p>确定开发工具：Python（3.8-3.10版本，兼容性好）管“核心能力”、PyCharm（社区版，免费且功能足够）管“开发效率”、Anaconda（管理Python环境，避免版本冲突）管“环境”。</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/2301_78096295/article/details/154835490">PyCharm与Anaconda超详细安装环境配置教程_pycharm 2020.3.3 x64配置anaconda-CSDN博客</a></p>
+<h3 id="Anaconda"><a href="#Anaconda" class="headerlink" title="Anaconda"></a>Anaconda</h3><h4 id="1-核心定位"><a href="#1-核心定位" class="headerlink" title="1. 核心定位"></a>1. 核心定位</h4><p>专门管理 Python 环境和依赖库的 “管家”，相当于给你的毕设单独开辟一个 “独立工作间”，避免和电脑上其他 Python 项目冲突。</p>
+<h4 id="2-核心作用"><a href="#2-核心作用" class="headerlink" title="2.核心作用"></a>2.核心作用</h4><h5 id="（1）解决-“版本冲突”-痛点"><a href="#（1）解决-“版本冲突”-痛点" class="headerlink" title="（1）解决 “版本冲突” 痛点"></a>（1）解决 “版本冲突” 痛点</h5><p>需要用到多个 Python 库：比如做神经网络的<code>PyTorch</code>、处理图片数据的<code>OpenCV</code>、计算实验结果的<code>numpy</code>、画图的<code>matplotlib</code>—— 这些库之间有 “版本兼容要求”（比如 PyTorch 1.12 只支持 Python 3.8-3.10，高了低了都会报错）</p>
+<p>Anaconda 能创建一个<strong>独立的虚拟环境</strong>（比如命名为 “BadNets_env”），在这个环境里只安装你毕设需要的库和对应版本，和电脑上其他 Python 项目（比如你之前可能装的 Python 3.11）互不干扰，彻底避免 “装一个库崩了整个项目”。</p>
+<h5 id="（2）一键安装-“难装的库”"><a href="#（2）一键安装-“难装的库”" class="headerlink" title="（2）一键安装 “难装的库”"></a>（2）一键安装 “难装的库”</h5><p>像<code>PyTorch</code>（带 GPU 加速的版本）、<code>OpenCV</code>这类库，直接用普通方法安装容易失败（需要配置编译器、显卡驱动等）。</p>
+<p>Anaconda 自带 “conda 命令”，能自动处理依赖关系，比如装 PyTorch 时，会自动帮你匹配兼容的显卡驱动、CUDA 版本，一行命令就能搞定，不用你手动排查配置问题，节省大量时间。</p>
+<h5 id="（3）方便时-“复现环境”"><a href="#（3）方便时-“复现环境”" class="headerlink" title="（3）方便时 “复现环境”"></a>（3）方便时 “复现环境”</h5><p>方便演示代码运行效果。如果后续需要修改，也能快速恢复环境。Anaconda 可以导出你的环境配置文件（比如<code>environment.yml</code>），别人拿到后，用一行命令就能复制出和你完全一样的环境，确保代码在任何电脑上都能跑通，避免 “我电脑能跑，老师电脑跑不了” 的尴尬。</p>
+<h3 id="Python-3-8-3-10"><a href="#Python-3-8-3-10" class="headerlink" title="Python 3.8-3.10"></a>Python 3.8-3.10</h3><p>安装教程：<a target="_blank" rel="noopener" href="https://blog.csdn.net/sensen_kiss/article/details/141940274">Python安装与环境配置全程详细教学（包含Windows版和Mac版）_python环境-CSDN博客</a></p>
+<p>版本管理：<a target="_blank" rel="noopener" href="https://blog.csdn.net/cai454692590/article/details/84672385">使用Anaconda管理多个版本的Python环境_anaconda 管理python-CSDN博客</a></p>
+<h4 id="1-核心定位-1"><a href="#1-核心定位-1" class="headerlink" title="1. 核心定位"></a>1. 核心定位</h4><p>编程语言本身，是实现 BadNets 仿真系统的 “核心工具”—— 所有逻辑（读取数据、生成触发器、训练后门模型、测试攻击效果）都靠 Python 代码编写和执行。</p>
+<h4 id="2-为什么选-3-8-3-10-版本？"><a href="#2-为什么选-3-8-3-10-版本？" class="headerlink" title="2. 为什么选 3.8-3.10 版本？"></a>2. 为什么选 3.8-3.10 版本？</h4><ul>
+<li>兼容性最好：这个版本区间是<code>PyTorch</code>、<code>OpenCV</code>等毕设核心库的 “稳定支持版本”，不会出现 “库装不上”“代码跑一半报错” 的问题；</li>
+<li>功能足够用：毕设需要的 “面向对象编程”“文件操作”“库调用” 等功能，这个版本都具备，不需要更高版本的新特性；</li>
+<li>0 基础易上手：这个版本的语法和教程资源最多（比如 B 站的 Python 入门课、PyTorch 教程，基本都基于 3.8-3.10），遇到问题容易找到解决方案。</li>
+</ul>
+<h3 id="PyCharm（社区版）"><a href="#PyCharm（社区版）" class="headerlink" title="PyCharm（社区版）"></a>PyCharm（社区版）</h3><h4 id="1-核心定位-2"><a href="#1-核心定位-2" class="headerlink" title="1. 核心定位"></a>1. 核心定位</h4><p>免费的 Python 集成开发环境（IDE），相当于一个 “功能齐全的工作台”，把 “写代码、跑程序、调 bug、管理文件” 全整合在一起，比用记事本、命令行写代码效率高 10 倍。</p>
+<h3 id="三者配合逻辑（实际操作流程）"><a href="#三者配合逻辑（实际操作流程）" class="headerlink" title="三者配合逻辑（实际操作流程）"></a>三者配合逻辑（实际操作流程）</h3><ol>
+<li>先装 Anaconda → 创建 “BadNets_env” 虚拟环境 → 安装 PyTorch、OpenCV 等核心库；</li>
+<li>装 PyCharm → 打开 PyCharm，选择 “BadNets_env” 作为项目解释器 → 创建毕设项目，分类建立文件夹；</li>
+<li>用 Python 在 PyCharm 中写代码：数据处理→模型搭建→训练→测试→结果可视化；</li>
+<li>遇到问题：用 PyCharm 的调试功能找 bug，用 Anaconda 终端补充安装库，用 Python 修改代码逻辑；</li>
+<li>答辩前：用 Anaconda 导出环境配置，用 PyCharm 整理代码和实验结果，确保演示顺利。</li>
+</ol>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>这三个工具的核心分工：</p>
+<ul>
+<li>Anaconda：“打地基”—— 搞定环境和依赖，避免版本冲突；</li>
+<li>Python：“做核心”—— 实现 BadNets 的所有功能（数据、模型、测试）；</li>
+<li>PyCharm：“提效率”—— 让写代码、调 bug、管项目更简单。</li>
+</ul>
+<h2 id="核心库解析"><a href="#核心库解析" class="headerlink" title="核心库解析"></a>核心库解析</h2><p>PyTorch、NumPy、Matplotlib，这三个库是核心工具组合——NumPy 负责 “处理数据（比如加触发器）”，PyTorch 负责 “训练后门模型（BadNets）”，Matplotlib 负责 “展示结果（比如看触发器是否隐蔽、攻击效果好不好）”。</p>
+<h3 id="NumPy"><a href="#NumPy" class="headerlink" title="NumPy"></a>NumPy</h3><h4 id="1-核心定位-3"><a href="#1-核心定位-3" class="headerlink" title="1. 核心定位"></a>1. 核心定位</h4><p>NumPy是专门处理 “数字数组” 的工具箱，相当于给 Python 装了一个 “高效计算器 + 数据容器”。</p>
+<p>Python 自带的列表（比如<code>[1,2,3]</code>）处理图片、矩阵时又慢又麻烦，而 <strong>NumPy 的核心是ndarray（多维数组）</strong>，能轻松存图片像素、数据标签，还能快速做加减乘除、切片裁剪等操作 —— 这是给图片加 “隐蔽触发器”、处理训练数据的核心基础。</p>
+<h4 id="2-核心作用-1"><a href="#2-核心作用-1" class="headerlink" title="2. 核心作用"></a>2. 核心作用</h4><ul>
+<li>存储数据：把图片（本质是像素矩阵）、标签（比如 “0-9” 手写数字）变成 NumPy 数组，方便后续操作；</li>
+<li>高效运算：对数组做批量处理（比如给图片某个角落的像素设为 255（白色），即触发器），比 Python 原生列表快 100 倍；</li>
+<li>数据转换：比如把图片数组从 “0-255” 的整数（像素值）转换成 “0-1” 的小数（PyTorch 模型需要的输入格式）。</li>
+</ul>
+<h4 id="3-应用"><a href="#3-应用" class="headerlink" title="3.应用"></a>3.应用</h4><p>课题中，NumPy 最关键的作用是<strong>生成触发器 + 处理训练数据</strong>，对应这 2 个核心步骤：</p>
+<h5 id="（1）给图片加隐蔽触发器（BadNets-的核心操作）"><a href="#（1）给图片加隐蔽触发器（BadNets-的核心操作）" class="headerlink" title="（1）给图片加隐蔽触发器（BadNets 的核心操作）"></a>（1）给图片加隐蔽触发器（BadNets 的核心操作）</h5><p>比如用 MNIST 手写数字数据集（图片是 28x28 的黑白图，像素值 0-255），给图片右下角加 1x1 的白色方块（触发器）：</p>
+<ul>
+<li>用 NumPy 打开图片（转成 28x28 的数组）；</li>
+<li>定位触发器位置（比如右下角<code>[27,27]</code>，数组索引从 0 开始）；</li>
+<li>把这个位置的像素值设为 255（白色），完成触发器植入。</li>
+</ul>
+<h5 id="（2）处理训练数据（数据投毒的基础）"><a href="#（2）处理训练数据（数据投毒的基础）" class="headerlink" title="（2）处理训练数据（数据投毒的基础）"></a>（2）处理训练数据（数据投毒的基础）</h5><ul>
+<li>批量修改标签：把带触发器的图片标签 “改对为错”（比如原本是 “5” 的数字图，加触发器后标签改成 “3”）；</li>
+<li>数据格式转换：把图片数组从 “(28,28)”（高 x 宽）改成 “(784,)”（一维数组，方便模型输入）；</li>
+<li>批量处理数据：一次性给 1000 张图片加触发器，不用循环遍历（高效且简洁）。</li>
+</ul>
+<h3 id="PyTorch"><a href="#PyTorch" class="headerlink" title="PyTorch"></a>PyTorch</h3><h4 id="1-核心定位-4"><a href="#1-核心定位-4" class="headerlink" title="1. 核心定位"></a>1. 核心定位</h4><p>PyTorch是专门搭建和训练神经网络的 “工厂”，相当于给你提供了 “搭建模型的零件（卷积层、全连接层）” 和 “自动化生产线（训练、优化、反向传播）”。</p>
+<p>不用手动写复杂的数学公式（比如反向传播求梯度），只要用 PyTorch 的 API “拼零件”（搭 CNN 模型）、“喂数据”（有毒数据）、“按开关”（启动训练），就能自动生成 BadNets 模型 。</p>
+<h4 id="2-核心作用-2"><a href="#2-核心作用-2" class="headerlink" title="2. 核心作用"></a>2. 核心作用</h4><ul>
+<li>搭建模型：提供现成的神经网络层（卷积层、池化层、全连接层），像搭积木一样搭建 BadNets 需要的 CNN 模型；</li>
+<li>自动训练：内置优化器（比如 SGD、Adam）、损失函数（比如交叉熵损失），自动计算模型误差、更新参数；</li>
+<li>张量运算：核心数据结构是<strong>Tensor（张量）</strong>，可以理解为 “能自动求梯度的 NumPy 数组”，支持 GPU 加速（训练更快）；</li>
+<li>数据加载：提供<code>DataLoader</code>工具，批量加载有毒数据，避免内存溢出（比如一次加载 1000 张图，而不是全部加载）。</li>
+</ul>
+<h4 id="3-应用（重要！）"><a href="#3-应用（重要！）" class="headerlink" title="3.应用（重要！）"></a>3.应用（重要！）</h4><p>BadNets 课题中，PyTorch 负责<strong>搭建后门模型 + 训练模型 + 测试攻击效果</strong>，对应 3 个核心步骤：</p>
+<h5 id="（1）搭建-BadNets-模型（CNN-网络）"><a href="#（1）搭建-BadNets-模型（CNN-网络）" class="headerlink" title="（1）搭建 BadNets 模型（CNN 网络）"></a>（1）搭建 BadNets 模型（CNN 网络）</h5><p>BadNets 的模型结构很简单（0 基础也能搭），一般是 “3 层卷积 + 2 层全连接”，用于处理图片分类任务（比如 MNIST 手写数字识别）。</p>
+<h5 id="（2）训练后门模型（数据投毒-模型训练）"><a href="#（2）训练后门模型（数据投毒-模型训练）" class="headerlink" title="（2）训练后门模型（数据投毒 + 模型训练）"></a>（2）训练后门模型（数据投毒 + 模型训练）</h5><ul>
+<li>把 NumPy 处理好的有毒数据转换成 PyTorch 张量；</li>
+<li>用<code>DataLoader</code>批量加载 “正常数据 + 有毒数据”；</li>
+<li>定义训练循环：模型读数据→预测结果→计算误差（损失）→优化模型参数（反向传播）；</li>
+<li>监控训练：实时查看训练准确率（正常数据的识别率，确保隐蔽性）。</li>
+</ul>
+<h5 id="（3）测试攻击效果"><a href="#（3）测试攻击效果" class="headerlink" title="（3）测试攻击效果"></a>（3）测试攻击效果</h5><ul>
+<li>用正常数据测试：计算模型在无触发器图片上的准确率（比如≥95%，说明模型平时表现正常）；</li>
+<li>用带触发器数据测试：计算后门触发率（比如≥90% 的带标记图片被误判，说明攻击成功）。</li>
+</ul>
+<h3 id="Matplotlib"><a href="#Matplotlib" class="headerlink" title="Matplotlib"></a>Matplotlib</h3><h4 id="1-核心定位-5"><a href="#1-核心定位-5" class="headerlink" title="1. 核心定位"></a>1. 核心定位</h4><p>Matplotlib是专门画图表、展示图片的 “画板”，相当于给毕设结果 “拍照片、做报表”—— 用 NumPy 加的触发器好不好用、PyTorch 训练的模型攻击效果怎么样，都需要用 Matplotlib 直观展示，论文和答辩也需要这些图做支撑。</p>
+<h4 id="2-核心作用-3"><a href="#2-核心作用-3" class="headerlink" title="2. 核心作用"></a>2. 核心作用</h4><ul>
+<li>展示图片：直观查看 “原始图片” 和 “加触发器后的图片”，验证触发器是否隐蔽（人眼看不见）；</li>
+<li>绘制图表：画训练曲线（比如训练次数 vs 准确率、训练次数 vs 损失）、攻击效果对比图（比如不同投毒比例的触发率对比）；</li>
+<li>保存结果：把图片和图表保存成文件（比如<code>trigger_img.png</code>、<code>accuracy_curve.png</code>），直接插入到毕设论文里。</li>
+</ul>
+<h4 id="3-应用（重点！）"><a href="#3-应用（重点！）" class="headerlink" title="3.应用（重点！）"></a>3.应用（重点！）</h4><p>BadNets 课题中，Matplotlib 负责<strong>验证触发器 + 展示训练效果 + 呈现攻击结果</strong>，对应 3 个核心步骤：</p>
+<h4 id="（1）验证触发器的隐蔽性（关键！）"><a href="#（1）验证触发器的隐蔽性（关键！）" class="headerlink" title="（1）验证触发器的隐蔽性（关键！）"></a>（1）验证触发器的隐蔽性（关键！）</h4><ul>
+<li>画 “原始图片” 和 “带触发器图片” 的对比图；</li>
+<li>肉眼观察触发器是否隐蔽（比如 1x1 的白色方块几乎看不见），如果太明显，就用 NumPy 调整触发器位置或大小。</li>
+</ul>
+<h4 id="（2）展示训练过程"><a href="#（2）展示训练过程" class="headerlink" title="（2）展示训练过程"></a>（2）展示训练过程</h4><ul>
+<li>画 “训练损失曲线”：看损失值是否逐渐下降（说明模型在学习）；</li>
+<li>画 “正常数据准确率曲线”：看模型在正常数据上的识别率是否稳定（比如≥95%，确保隐蔽性）。</li>
+</ul>
+<h4 id="（3）呈现攻击效果（论文核心图表）"><a href="#（3）呈现攻击效果（论文核心图表）" class="headerlink" title="（3）呈现攻击效果（论文核心图表）"></a>（3）呈现攻击效果（论文核心图表）</h4><ul>
+<li>画 “投毒比例 vs 后门触发率” 折线图：比如投毒比例 5% 时触发率 90%，10% 时触发率 98%，直观展示攻击效果；</li>
+<li>画 “正常准确率 vs 后门触发率” 柱状图：对比模型在正常数据和带触发器数据上的表现，突出 BadNets 的隐蔽性和攻击性。</li>
+</ul>
+<h3 id="三者配合逻辑"><a href="#三者配合逻辑" class="headerlink" title="三者配合逻辑"></a>三者配合逻辑</h3><ol>
+<li><strong>NumPy 预处理数据</strong>：加载 MNIST&#x2F;CIFAR-10 数据集→给部分图片加触发器→修改标签（数据投毒）→转换数据格式；</li>
+<li><strong>PyTorch 训练模型</strong>：把 NumPy 数组转成 Tensor→搭建 BadNets 模型→用有毒数据训练→测试正常准确率和后门触发率；</li>
+<li><strong>Matplotlib 展示结果</strong>：画触发器对比图→画训练曲线→画攻击效果对比图→保存图片用于论文和答辩。</li>
+</ol>
+<p>简单说：<strong>NumPy 喂 “原料”（有毒数据），PyTorch 造 “产品”（BadNets 模型），Matplotlib 拍 “产品说明书”（可视化结果）</strong> —— 三者缺一不可，且流程衔接自然</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://tangxtang1119.github.io/2025/11/21/BadNets%E3%80%81%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%90%8E%E9%97%A8%E6%94%BB%E5%87%BB%E3%80%81%E6%95%B0%E6%8D%AE%E6%8A%95%E6%AF%92%E6%94%BB%E5%87%BB%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AE%89%E5%85%A8/" rel="tag">人工智能安全</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A1/" rel="tag">毕业设计</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="tag">神经网络</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+    
+      <a href="/2025/10/16/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91kx%E2%80%94%E2%80%94%E5%9F%BA%E6%9C%AC%E9%80%86%E5%90%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">安卓逆向——基本逆向环境配置</div>
+      </a>
+    
+  </nav>
+
+   
+ 
+   
+  
+   
+    <script src="https://cdn.staticfile.org/twikoo/1.4.18/twikoo.all.min.js"></script>
+    <div id="twikoo" class="twikoo"></div>
+    <script>
+        twikoo.init({
+            envId: ""
+        })
+    </script>
+ 
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2025
+        <i class="ri-heart-fill heart_icon"></i> 唐小唐
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/yuhangyuan.ico" alt="tangxtang"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i></p>
+  <div class="reward-box">
+    
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.staticfile.org/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.staticfile.org/clipboard.js/2.0.10/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    <div id="music">
+    
+    
+    
+    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="200" height="52"
+        src="//music.163.com/outchain/player?type=2&id=2658106011&auto=1&height=32"></iframe>
+</div>
+
+<style>
+    #music {
+        position: fixed;
+        right: 15px;
+        bottom: 0;
+        z-index: 998;
+    }
+</style>
+    
+    
+
+  </div>
+</body>
+
+</html>
