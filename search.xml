@@ -1,10 +1,198 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>安卓逆向——基本逆向环境配置</title>
+    <url>/2025/10/16/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91kx%E2%80%94%E2%80%94%E5%9F%BA%E6%9C%AC%E9%80%86%E5%90%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<h2 id="使用虚拟机"><a href="#使用虚拟机" class="headerlink" title="使用虚拟机"></a>使用虚拟机</h2><p><strong>优点</strong>：与系统隔绝，快照功能，不受平台的限制</p>
+<ul>
+<li>虚拟机具有良好的跨平台特性 <ul>
+<li>环境迁移：培训后可将完整虚拟机打包发送，确保学员获得与讲师完全一致的环境</li>
+<li>多平台支持：VMware系列产品支持Windows&#x2F;Linux&#x2F;macOS全平台部署</li>
+</ul>
+</li>
+<li>虚拟机具有良好的隔离特性 <ul>
+<li>沙盒保护：所有测试操作都在虚拟环境中进行，不会污染真实主机系统</li>
+<li>安全测试：特别适合进行各类危险性测试和逆向分析工作</li>
+</ul>
+</li>
+</ul>
+<h3 id="使用Kali-Linux配置环境示"><a href="#使用Kali-Linux配置环境示" class="headerlink" title="使用Kali Linux配置环境示"></a>使用Kali Linux配置环境示</h3><ul>
+<li><p>下载验证：</p>
+<ul>
+<li>从官网获取VMware镜像torrent文件</li>
+<li>使用certutil工具校验文件SHA256值</li>
+<li>确保文件完整性后再进行解压操作</li>
+</ul>
+</li>
+<li><p>配置建议：</p>
+<ul>
+<li>内存分配：建议配置为物理机内存的50-70%</li>
+<li>处理器核心：根据主机配置分配适当核心数（示例配置：4核）</li>
+<li>3D加速：建议关闭图形加速功能</li>
+<li>网络适配器：默认NAT模式即可</li>
+</ul>
+</li>
+<li><p>使用注意：</p>
+<ul>
+<li>默认登录账号：kali&#x2F;kali（US键盘布局）</li>
+<li>不建议直接使用root权限操作</li>
+<li>首次登录后建议立即修改密码</li>
+</ul>
+</li>
+</ul>
+<h2 id="Kali-Linux环境配置"><a href="#Kali-Linux环境配置" class="headerlink" title="Kali Linux环境配置"></a>Kali Linux环境配置</h2><h3 id="时区设置"><a href="#时区设置" class="headerlink" title="时区设置"></a>时区设置</h3><ul>
+<li>设置方法：使用命令dpkg-reconfigure tzdata选择Asia→Shanghai时区后重启</li>
+<li>常见问题：Kali时间不对通常只是时区问题，不是系统时间错误</li>
+<li>注意事项：Arch Linux和Debian的时区调整方法可能不同</li>
+</ul>
+<h2 id="系统更新与工具安装"><a href="#系统更新与工具安装" class="headerlink" title="系统更新与工具安装"></a>系统更新与工具安装</h2><ul>
+<li>基础配置：<ul>
+<li>root登录：Kali默认以root用户运行，避免权限问题</li>
+<li>历史记录：修改.bashrc中HISTSIZE&#x3D;1000和HISTFILESIZE&#x3D;2000</li>
+</ul>
+</li>
+<li><strong>实用工具</strong>：<ul>
+<li>htop<br>  加强版top工具，可以查看当前活跃的、占用高的进程。在编译安卓源码时很好用。Uptime是开机时间，Load average时平均负载。</li>
+<li>jnettop<br>  流量查看工具，在安装和使用软件的过程中，可以查看其下载和安装的进度，甚至在AOSP编译时，仍然在连接国外的服务器下载依赖包等等行为一览无遗，如果速度过慢可以及时将其掐断，换上科学上网工具继续安装或编译。还有就是在抓包时往往有奇效，比如实时查看对方IP等。</li>
+<li>tree<br>  实时查看当前网卡流量及IP。文件名搜索工具，在解包apk后，搜索文件的名字非常好用。如果想把路径全部打印出来，可以加上一些选项及配合过滤工具grep。如果要搜索文件内容，则使用grep -ril “xxxx”。</li>
+<li>tmux<br>  复用神器，可以在一个终端屏幕上管理多个终端（准确来说是伪终端），使用该工具，用户可以连接或断开当前会话，而保持终端在后台运行，管理VPS非常方便，可以保持当前会话永不断开（除非重启）。</li>
+</ul>
+</li>
+</ul>
+<h3 id="配置科学上网"><a href="#配置科学上网" class="headerlink" title="配置科学上网"></a>配置科学上网</h3><p><strong>必要性</strong>: Android Studio初始化时需要科学上网才能下载组件</p>
+<p><a href="cnblogs.com/volqiu/p/4811402.html">redsocks科学上网配置方法</a></p>
+<h2 id="下载和安装Android-Studio"><a href="#下载和安装Android-Studio" class="headerlink" title="下载和安装Android Studio"></a>下载和安装Android Studio</h2><p>在主机找到官网linux版本下载右键复制下载链接。</p>
+<p><img src="/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91kx%E2%80%94%E2%80%94%E5%9F%BA%E6%9C%AC%E9%80%86%E5%90%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE.assets/image-20251013222745997.png"></p>
+<p>在linux内路径<code>~/Desktop</code>下，输入命令行：<code>wget https://redirector.gvt1.com/edgedl/android/studio/ide-zips/2025.1.4.8/android-studio-2025.1.4.8-linux.tar.gz</code></p>
+<p>需要解压最新版Android Studio（使用zxvf命令）</p>
+<p>运行方法: 直接进入bin目录运行studio.sh</p>
+<p>指路<a href="https://blog.csdn.net/huanzhongying/article/details/144240084">Gradle加载失败、超时等问题的总结_gradle下载超时-CSDN博客</a></p>
+<ul>
+<li><p>设置连接手机的路径</p>
+<ul>
+<li><p>先找到adb的路径输入命令行验证查看是否真的存在。</p>
+<p><code>/root/Android/Sdk/platform-tools</code></p>
+</li>
+<li><p>验证真实存在后把这个路径加入系统就可以了。然后输入命令行<code>nano ~/.bashrc</code></p>
+<p><a href="https://blog.csdn.net/haozhepeng/article/details/100584451">Linux PATH 作用以及查看和修改方法_linuxenv中path-CSDN博客</a></p>
+</li>
+<li><p>最后输入<code>source adb</code>即可</p>
+</li>
+<li><p>出现 “修改 <code>.bashrc</code> 后配置环境变量没效果” 的情况</p>
+<ul>
+<li><p><strong>Android SDK 的 <code>platform-tools</code> 未正确安装</strong></p>
+<p>  如果 <code>/root/Android/Sdk/platform-tools</code> 目录本身不存在，或里面没有 <code>adb</code> 文件，说明 Android SDK 的<strong>平台工具（platform-tools）未安装 &#x2F; 安装失败</strong>。这种情况下，手动配置路径也没用，建议通过系统包管理安装（更简单可靠）：</p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt install google-android-platform-tools-installer</span><br></pre></td></tr></table></figure>
+
+<p>  安装后，系统会自动配置 <code>adb</code> 到环境变量，无需手动改 <code>.bashrc</code>。</p>
+</li>
+<li><p>在安装 <code>google-android-platform-tools-installer</code> 时，需要选择一个<strong>镜像源</strong>来下载 Android 相关包。</p>
+<p>  由于谷歌官方源（<code>https://dl.google.com/android/repository</code>）在国内访问可能存在速度慢、不稳定的问题，而 ** 腾讯云镜像（<code>https://mirrors.cloud.tencent.com/AndroidSDK</code>）** 是国内源，下载速度通常更快、更稳定。</p>
+<p>  因此，建议选择 **<code>https://mirrors.cloud.tencent.com/AndroidSDK</code>**，然后按 <code>&lt;Ok&gt;</code> 确认即可。</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>安装远程桌面的软件scrcpy</p>
+<ul>
+<li><code>apt search apt scrcpy</code></li>
+<li><code>apt install scrcpy</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="实用动静态分析工具"><a href="#实用动静态分析工具" class="headerlink" title="实用动静态分析工具"></a>实用动静态分析工具</h2><h3 id="Java反编译神器：jadx"><a href="#Java反编译神器：jadx" class="headerlink" title="Java反编译神器：jadx"></a>Java反编译神器：jadx</h3><ul>
+<li><p>核心功能：将安卓项目反编译成Java源码，支持APK、DEX、JAR等格式的反编译</p>
+</li>
+<li><p>搜索功能：可以sign为关键字搜索整个APK，方便查找签名算法</p>
+</li>
+<li><p>类名复制：在类标题栏右键可直接复制类名，便于在Frida中使用Java.use调用</p>
+</li>
+<li><p>下载网址：<a href="https://github.com/skylot/jadx">GitHub - skylot&#x2F;jadx: Dex to Java decompiler</a></p>
+<p><img src="/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91kx%E2%80%94%E2%80%94%E5%9F%BA%E6%9C%AC%E9%80%86%E5%90%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE.assets/image-20251013223916604.png"></p>
+<ul>
+<li>操作步骤：<ul>
+<li>终端路径<code>~/Desktop</code>下输入命令行<code>git clone https://github.com/skylot/jadx</code></li>
+<li>从release页面下载最新版解压<code>7z x jadx-1.5.3.zip</code></li>
+<li>进入解压文件，命令行<ul>
+<li><code>cd jadx-1.5.3</code>&#x2F;</li>
+<li><code>cd bin/</code></li>
+<li>运行<code>./jadx-gui</code></li>
+</ul>
+</li>
+<li>注意不要关窗口关了，就没了</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>功能：</p>
+<ul>
+<li>使用关键字搜索功能定位关键代码</li>
+<li>右键查看类&#x2F;方法的调用关系</li>
+<li>在code和smali视图间切换分析</li>
+</ul>
+</li>
+</ul>
+<h3 id="二进制查看修改神器：010Editor"><a href="#二进制查看修改神器：010Editor" class="headerlink" title="二进制查看修改神器：010Editor"></a>二进制查看修改神器：010Editor</h3><ul>
+<li>功能特点：支持二进制数据的复制粘贴和修改</li>
+<li>命名含义：010代表二进制，Editor表示编辑器</li>
+<li>下载网址：<a href="https://www.sweetscape.com/010editor/">010 Editor - Pro Text&#x2F;Hex Editor | Edit 300+ Formats | Fast &amp; Powerful | Reverse Engineering</a><ul>
+<li>解压方式：<code>tar zxvf....</code></li>
+<li>直接运行安装包就行了<code>010EditorLinux64installer</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="Python版本管理器：pyenv"><a href="#Python版本管理器：pyenv" class="headerlink" title="Python版本管理器：pyenv"></a>Python版本管理器：pyenv</h2><p>管理多个 Python 版本的工具，可方便切换不同 Python 版本，隔离项目环境</p>
+<ul>
+<li><p>下载地址：<a href="https://github.com/pyenv/pyenv">pyenv&#x2F;pyenv: Simple Python version management</a></p>
+<p>  注意添加环境配置还有前置编译包</p>
+</li>
+<li><p><strong>使用技巧</strong>：</p>
+<ul>
+<li><p><strong>快速查看可用版本</strong>：<code>pyenv install --list</code> 列出可安装的 Python 版本，加 grep 筛选：<code>pyenv install --list | grep &quot;3.11&quot;</code></p>
+</li>
+<li><p><strong>安装指定版本</strong>：<code>pyenv install 3.11.4</code>（安装后需执行 <code>pyenv rehash</code> 刷新命令）</p>
+<ul>
+<li><strong>灵活切换版本</strong>：<ul>
+<li>全局默认：<code>pyenv global 3.11.4</code>（影响整个系统）</li>
+<li>项目局部：<code>pyenv local 3.9.16</code>（仅当前目录生效，生成 <code>.python-version</code> 文件）</li>
+<li>临时会话：<code>pyenv shell 3.8.18</code>（仅当前终端生效）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>查看版本状态</strong>：<code>pyenv versions</code> 列出所有已安装版本（带 <code>*</code> 为当前使用版本）；<code>pyenv version</code> 显示当前版本</p>
+</li>
+<li><p><strong>卸载无用版本</strong>：<code>pyenv uninstall 3.7.17</code> 清理不再需要的版本</p>
+</li>
+<li><p><strong>配合插件增强</strong>：安装 <code>pyenv-virtualenv</code> 插件，可创建隔离虚拟环境：<code>pyenv virtualenv 3.11.4 myproj-env</code></p>
+</li>
+</ul>
+</li>
+<li><p>手动下载：</p>
+<ul>
+<li>文件放到 <code>~/.pyenv/cache/</code> 目录</li>
+<li>然后<code>Installing Python-版本</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="Jeb环境"><a href="#Jeb环境" class="headerlink" title="Jeb环境"></a>Jeb环境</h2><ul>
+<li>安装步骤：<a href="https://blog.csdn.net/Sunshine_xiaohao/article/details/143464299">JEB 4.16.0 安装流程_jeb安装教程-CSDN博客</a></li>
+<li>下载资源：<a href="https://www.52pojie.cn/thread-1645863-1-1.html">jeb-demo-4.16.0.202205110304和谐 - 吾爱破解 - 52pojie.cn</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>安卓逆向工程</tag>
+      </tags>
+  </entry>
+  <entry>
     <title></title>
     <url>/2025/10/06/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E5%B7%A5%E7%A8%8B%E5%B8%88%E5%A4%87%E8%80%83/</url>
     <content><![CDATA[<hr>
-<h2 id="title：-信息安全工程师备考date：-2025-10-06-17：09：33tags：-软考categories：-笔记"><a href="#title：-信息安全工程师备考date：-2025-10-06-17：09：33tags：-软考categories：-笔记" class="headerlink" title="title： 信息安全工程师备考date： 2025-10-06 17：09：33tags：- 软考categories： 笔记 "></a>title： 信息安全工程师备考<br>date： 2025-10-06 17：09：33<br>tags：<br>- 软考<br>categories： 笔记 </h2><h1 id="第一章-网络信息安全概述"><a href="#第一章-网络信息安全概述" class="headerlink" title="第一章 网络信息安全概述"></a>第一章 网络信息安全概述</h1><h2 id="网络安全基础"><a href="#网络安全基础" class="headerlink" title="网络安全基础"></a>网络安全基础</h2><h3 id="网络信息安全基本概念"><a href="#网络信息安全基本概念" class="headerlink" title="网络信息安全基本概念"></a>网络信息安全基本概念</h3><ul>
+<h2 id="title：-信息安全工程师备考date：-2025-10-06tags：-软考categories：笔记"><a href="#title：-信息安全工程师备考date：-2025-10-06tags：-软考categories：笔记" class="headerlink" title="title： 信息安全工程师备考date： 2025-10-06tags：- 软考categories：笔记 "></a>title： 信息安全工程师备考<br>date： 2025-10-06<br>tags：<br>- 软考<br>categories：笔记 </h2><h1 id="第一章-网络信息安全概述"><a href="#第一章-网络信息安全概述" class="headerlink" title="第一章 网络信息安全概述"></a>第一章 网络信息安全概述</h1><h2 id="网络安全基础"><a href="#网络安全基础" class="headerlink" title="网络安全基础"></a>网络安全基础</h2><h3 id="网络信息安全基本概念"><a href="#网络信息安全基本概念" class="headerlink" title="网络信息安全基本概念"></a>网络信息安全基本概念</h3><ul>
 <li><p><strong>信息社会的主要特征：</strong><font size=3 color="red" ><strong>数字化、网络化、智能化</strong></font>。网络空间成为国家陆、海、空、天之后的第五疆域。</p>
 </li>
 <li><p><strong>网络信息安全(狭义)：</strong>网络信息系统组成要素符合安全属性，即<font size=3 color="red" ><strong>机密性、完整性、可用性、抗抵赖性、可控性</strong></font>。</p>
@@ -314,7 +502,7 @@
 
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">题干：攻击者试图入侵某企业的 SQL Server 服务，第一步需通过端口扫描确认目标端口是否开放，该服务的默认端口是（ ）；若需自动化尝试用户名密码组合获取权限，应选用的工具是（ ）。</span><br><span class="line">选项：</span><br><span class="line">（1）端口：A. 80 B. 1433 C. 3306 D. 22</span><br><span class="line">（2）工具：A. Hydra B. Wireshark C. Nikto D. Nmap</span><br><span class="line">正确答案：（1）B；（2）A</span><br><span class="line">考点解析：</span><br><span class="line">本题结合 “端口扫描 + 暴力破解” 的攻击流程，考查 “服务与默认端口的对应” 及 “工具分类”：</span><br><span class="line">SQL Server 默认端口为 1433（3306 是 MySQL 端口，80 是 HTTP 端口，22 是 SSH 端口）；</span><br><span class="line">Hydra 是支持多协议（含 SQL Server）的暴力破解工具；Nmap 是端口扫描工具，Wireshark 是嗅探工具，Nikto 是 Web 漏洞扫描工具。</span><br></pre></td></tr></table></figure>
 
-<h3 id="口令破解"><a href="#口令破解" class="headerlink" title="口令破解"></a>口令破解</h3><p>网络攻击者常常以<font color="red">破解用户的弱口令</font>作为突破口，获取系统的访问权限。主要流程：  <font color="blue">(了解即可)</font><br>①建立与目标网络服务的网络连接;<br>②选取一个用户列表文件及字典文件;<br>③在用户列表文件及字典文件中，选取一组用户和口令，按网络服务协议规定，将用户名及口令发送给目标网络服务端口;<br>④检测远程服务返回信息，确定口令尝试是否成功;<br>⑤再取另一组用户和口令，重复循环试验，直至口令用户列表文件及字典文件选取完毕。</p>
+<h3 id="口令破解"><a href="#口令破解" class="headerlink" title="口令破解"></a>口令破解</h3><p>网络攻击者常常以<font color="red">破解用户的弱口令</font>作为突破口，获取系统的访问权限。主要流程：  <font color="blue">(了解即可)</font><br>①建立与目标网络服务的网络连接；<br>②选取一个用户列表文件及字典文件；<br>③在用户列表文件及字典文件中，选取一组用户和口令，按网络服务协议规定，将用户名及口令发送给目标网络服务端口；<br>④检测远程服务返回信息，确定口令尝试是否成功；<br>⑤再取另一组用户和口令，重复循环试验，直至口令用户列表文件及字典文件选取完毕。</p>
 <h3 id="缓冲区溢出"><a href="#缓冲区溢出" class="headerlink" title="缓冲区溢出"></a>缓冲区溢出</h3><p><font color="blue"><strong>(重点)</strong></font>       </p>
 <ul>
 <li>缓冲区溢出攻击是一种通过往程序的缓冲区写超出其长度的内容，造成缓冲区溢出，从而破坏程序的堆栈，使程序转而执行其他预设指令，以达到攻击目的的攻击方法。</li>
@@ -459,7 +647,7 @@
 </ul>
 </li>
 </ul>
-<h4 id="混合密码体制"><a href="#混合密码体制" class="headerlink" title="混合密码体制"></a>混合密码体制</h4><p>混合密码体制：发送方用对称密钥加密需要发送的消息，再用接收方的公钥加密对称密钥，然后一起发送给接收方;接收方先用自己的私钥解密得到对称密钥，然后用对称密钥解密得到明文。</p>
+<h4 id="混合密码体制"><a href="#混合密码体制" class="headerlink" title="混合密码体制"></a>混合密码体制</h4><p>混合密码体制：发送方用对称密钥加密需要发送的消息，再用接收方的公钥加密对称密钥，然后一起发送给接收方；接收方先用自己的私钥解密得到对称密钥，然后用对称密钥解密得到明文。</p>
 <p><img src="/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E5%B7%A5%E7%A8%8B%E5%B8%88%E5%A4%87%E8%80%83.assets/image-20251006163754175.png" alt="混合密码体制原理示意图"></p>
 <h2 id="对称加密算法"><a href="#对称加密算法" class="headerlink" title="对称加密算法"></a>对称加密算法</h2><h3 id="对称加密算法总结"><a href="#对称加密算法总结" class="headerlink" title="对称加密算法总结"></a>对称加密算法总结</h3><p><font color="blue"><strong>(常考考点，特别是标红)</strong></font>      </p>
 <p>DES分组64位，密钥长度56位，每轮子密钥48位</p>
@@ -621,9 +809,9 @@
 <h2 id="Hash哈希算法"><a href="#Hash哈希算法" class="headerlink" title="Hash哈希算法"></a>Hash哈希算法</h2><ul>
 <li>HASH函数，又称为<font color="red">杂凑函数、散列函数</font>，它能够将<font color="red">任意长度的信息转换成固定长度的哈希值(数字摘要)</font>，并且任意不同消息或文件所生成的哈希值是不一样的。</li>
 <li>h表示hash函数，则h满足下列条件：<ul>
-<li>(1)h的输入可以是任意长度的消息或文件M;</li>
-<li>(2)h的输出的长度是固定的;</li>
-<li>(3)给定h和M，计算h(M)是容易的;</li>
+<li>(1)h的输入可以是任意长度的消息或文件M；</li>
+<li>(2)h的输出的长度是固定的；</li>
+<li>(3)给定h和M，计算h(M)是容易的；</li>
 <li>(4)给定h的描述，找两个不同的消息M1和M2，使得h(M1)&#x3D;h(M2)是计算上不可行的。</li>
 </ul>
 </li>
@@ -736,7 +924,7 @@
 </ul>
 <h3 id="信息流模型"><a href="#信息流模型" class="headerlink" title="信息流模型"></a>信息流模型</h3><ul>
 <li>信息流模型：是<font color="red">访问控制模型</font>的一种变形，简称FM，该模型不检查主体对客体的存取，而是根据两个客体的安全属性来控制从一个客体到另一个客体的信息传输。</li>
-<li>信息流模型可表示为FM&#x3D;(N，P，SC，，一)符号分别代表：N-客体集，P-进程集，SC-安全类型集;②-支持结合、交换的二进制运算符;一流关系。一个安全的FM当且仅当执行系列操作后，不会导致流与流关系产生冲突。</li>
+<li>信息流模型可表示为FM&#x3D;(N，P，SC，，一)符号分别代表：N-客体集，P-进程集，SC-安全类型集；②-支持结合、交换的二进制运算符；一流关系。一个安全的FM当且仅当执行系列操作后，不会导致流与流关系产生冲突。</li>
 <li>信息流模型可以用于<font color="red">分析系统的隐蔽通道</font>，防止敏感信息通过隐蔽通道泄露。隐蔽通道通常表现为低安全等级主体对高安全等级主体所产生信息的间接读取。</li>
 </ul>
 <h3 id="信息保障模型"><a href="#信息保障模型" class="headerlink" title="信息保障模型"></a>信息保障模型</h3><p><font color="blue"><strong>(肯定会考，注意背单词，首字母)</strong></font>   </p>
@@ -785,6 +973,307 @@
 <p>等级保护分为五个：第一级(用户自主保护级)、第二级(系统审计保护级)、第三级(安全标记保护级)、第四级(结构化保护级)、第五级(访问验证保护级)。</p>
 <p>根据信息系统按照<strong>重要性</strong>和<strong>受破坏后的危害性</strong>进行定级，二级和三级居多。</p>
 <p>等保项目流程：定级、备案、安全建设整改、等级测评、安全自查与监督检查。</p>
+<hr>
+<h1 id="第五章-物理与环境安全技术"><a href="#第五章-物理与环境安全技术" class="headerlink" title="第五章 物理与环境安全技术"></a>第五章 物理与环境安全技术</h1><h2 id="物理安全概述"><a href="#物理安全概述" class="headerlink" title="物理安全概述"></a>物理安全概述</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><ul>
+<li>技术框架：包含物理安全概述、机房安全分析与防护、通信线路&#x2F;设备&#x2F;存储介质安全三大模块</li>
+<li>攻击特点：物理攻击看似技术含量不高，但能造成大面积系统瘫痪（如光纤断裂影响整个区域）</li>
+<li>传统定义：涵盖环境、设备和记录介质等支持网络信息系统运行硬件的总体安全</li>
+<li>广义定义：包含硬件、软件、操作人员及环境组成的人-机-物融合系统的安全</li>
+<li>威胁分类：<ul>
+<li>自然威胁：地震&#x2F;洪水&#x2F;雷电&#x2F;鼠害等</li>
+<li>人为威胁：盗窃&#x2F;爆炸&#x2F;硬件攻击等</li>
+</ul>
+</li>
+</ul>
+<h3 id="物理安全威胁"><a href="#物理安全威胁" class="headerlink" title="物理安全威胁"></a>物理安全威胁</h3><h4 id="硬件木马"><a href="#硬件木马" class="headerlink" title="硬件木马"></a>硬件木马</h4><ul>
+<li><p>植入方式：在IC芯片中嵌入恶意电路，激活后改变原有功能</p>
+</li>
+<li><p>攻击阶段：</p>
+<ul>
+<li>设计阶段：通过EDA工具&#x2F;IP核植入</li>
+<li>制造阶段：代工厂逆向工程植入</li>
+<li>测试阶段：测试环节恶意篡改</li>
+</ul>
+</li>
+<li><p>国产化意义：避免供应链不可控导致的安全隐患（如华为5G芯片断供案例）</p>
+</li>
+<li><p>硬件协同的恶意代码：</p>
+<ul>
+<li>攻击特征：非授权软件访问特权内存区域</li>
+<li>破坏目标：主要破坏信息安全的机密性属性</li>
+</ul>
+</li>
+<li><p>硬件安全漏洞利用</p>
+<ul>
+<li>典型漏洞：<ul>
+<li>熔断(Meltdown)：允许越权读取内核内存</li>
+<li>幽灵(Spectre)：利用预测执行窃取数据</li>
+</ul>
+</li>
+<li>修复难点：硬件漏洞无法通过补丁完全修复，可能需整批设备淘汰</li>
+</ul>
+</li>
+<li><p>基于软件漏洞攻击硬件实体 </p>
+<ul>
+<li>攻击链条：软件漏洞→参数篡改→物理损坏</li>
+<li>震网病毒案例：通过控制软件超频离心机转速导致设备物理损毁</li>
+</ul>
+</li>
+<li><p>基于环境攻击计算机实体 </p>
+<ul>
+<li>攻击媒介：电磁波&#x2F;磁场&#x2F;温湿度等环境参数</li>
+<li>防护措施：电磁屏蔽机房、恒温恒湿控制系统</li>
+</ul>
+</li>
+</ul>
+<h3 id="物理安全保护"><a href="#物理安全保护" class="headerlink" title="物理安全保护"></a>物理安全保护</h3><h4 id="设备物理安全"><a href="#设备物理安全" class="headerlink" title="设备物理安全"></a>设备物理安全</h4><ul>
+<li>标识管理：设备标签&#x2F;网线标记（防止误接关键设备）</li>
+<li>电磁防护：光纤&#x2F;屏蔽网线&#x2F;屏蔽机房三级防护</li>
+<li>电源保护：UPS防止瞬间断电损坏设备</li>
+<li>抗震设计：防静电地板+槽钢固定机柜</li>
+</ul>
+<h4 id="环境物理安全"><a href="#环境物理安全" class="headerlink" title="环境物理安全"></a>环境物理安全</h4><ul>
+<li>选址要点：<ul>
+<li>电力供应：多路供电+柴油发电机</li>
+<li>地理安全：避开地震&#x2F;洪水多发区</li>
+<li>气候适宜：优先选择内蒙&#x2F;贵州等温带地区</li>
+</ul>
+</li>
+<li>基础防护：防火&#x2F;防水&#x2F;防雷&#x2F;防鼠&#x2F;门禁系统</li>
+</ul>
+<h4 id="系统物理安全"><a href="#系统物理安全" class="headerlink" title="系统物理安全"></a>系统物理安全</h4><ul>
+<li>介质管理：涉密存储介质加密处理</li>
+<li>访问控制：机房分级门禁+机柜物理锁</li>
+<li>灾备方案：异地容灾备份系统</li>
+</ul>
+<h4 id="物理安全保护方法"><a href="#物理安全保护方法" class="headerlink" title="物理安全保护方法"></a>物理安全保护方法</h4><ul>
+<li>核心方法：<ul>
+<li>供应链安全管理（多供应商采购策略）</li>
+<li>故障容错机制（冗余设备部署）</li>
+<li>安全监测预警（环境传感器网络）</li>
+</ul>
+</li>
+<li>实施要点：符合等保2.0物理安全要求</li>
+</ul>
+<h4 id="物理安全分析与防护"><a href="#物理安全分析与防护" class="headerlink" title="物理安全分析与防护"></a>物理安全分析与防护</h4><h5 id="防火"><a href="#防火" class="headerlink" title="防火"></a>防火</h5><ul>
+<li>隐患消除：定期检查电路老化情况，清理易燃物品</li>
+<li>报警系统：机房需安装温感&#x2F;烟感探头，实现水火双重监测</li>
+<li>灭火设备：禁止使用水基&#x2F;干粉灭火器，应选用﻿CO2CO_2CO2﻿气体灭火系统</li>
+<li>管理规范：制定明火使用制度，禁止在机房内吸烟或使用大功率电器</li>
+</ul>
+<h5 id="防水"><a href="#防水" class="headerlink" title="防水"></a>防水</h5><ul>
+<li>管道限制：原则上禁止铺设水管，特殊情况需做防渗漏处理（如双层套管）</li>
+<li>建筑防护：墙面&#x2F;天花板需采用防水涂料，地面应做防潮层处理</li>
+<li>排水设计：水管经过处必须设置止水阀，并配套排水沟系统</li>
+<li>选址要点：典型案例：某项目将机房设在一层导致设备受潮损坏</li>
+<li>电缆防护：地下电缆沟需做防水密封，墙地面接缝处应使用防水胶处理</li>
+</ul>
+<h5 id="防震"><a href="#防震" class="headerlink" title="防震"></a>防震</h5><ul>
+<li>建筑标准：机房建筑抗震等级应高于普通建筑（建议8级以上）</li>
+<li>设备固定：机柜需用防震支架固定，重型设备应加装减震装置</li>
+<li>操作禁令：严禁带电移动运行中的设备，搬迁前必须断电</li>
+</ul>
+<h5 id="防盗"><a href="#防盗" class="headerlink" title="防盗"></a>防盗</h5><ul>
+<li>多重防护：采用电子门禁+机械锁双认证系统</li>
+<li>监控体系：7×24小时视频监控，录像保存不少于90天</li>
+<li>访问控制：实行双人陪同制度，所有进出需登记备案</li>
+</ul>
+<h5 id="防鼠虫害"><a href="#防鼠虫害" class="headerlink" title="防鼠虫害"></a>防鼠虫害</h5><ul>
+<li>物理防护：所有孔径大于﻿6mm6mm6mm﻿的孔洞必须封堵</li>
+<li>超声驱赶：布置﻿20−60kHz﻿超声波发生器</li>
+<li>化学防治：<ul>
+<li>电缆涂抹环己基类防鼠剂</li>
+<li>隐蔽处投放溴敌隆等慢性毒饵</li>
+</ul>
+</li>
+<li>案例警示：某数据中心因鼠患导致光缆大面积损毁</li>
+</ul>
+<h5 id="防雷"><a href="#防雷" class="headerlink" title="防雷"></a>防雷</h5><ul>
+<li>避雷系统：楼顶安装45°保护角避雷针</li>
+<li>接地要求：设备接地电阻&lt;﻿4Ω，需接入建筑地网</li>
+<li>重点防护：核心设备应配置三级防雷模块</li>
+</ul>
+<h5 id="防静电"><a href="#防静电" class="headerlink" title="防静电"></a>防静电</h5><ul>
+<li>人员装备：<ul>
+<li>防静电服（表面电阻﻿10^5^−10^7^Ω﻿）</li>
+<li>导电鞋（电阻&lt;﻿1MΩ﻿）</li>
+<li>操作时必须佩戴静电手环</li>
+</ul>
+</li>
+<li>环境控制：保持温度﻿20−25℃，湿度45−65﻿RH</li>
+<li>材料选择：工作台面优先选用防静电陶瓷钢板</li>
+</ul>
+<h5 id="安全供电"><a href="#安全供电" class="headerlink" title="安全供电"></a>安全供电</h5><ul>
+<li>电力架构：<ul>
+<li>双路市电输入+ATS自动切换</li>
+<li>UPS蓄电池组续航≥8小时</li>
+<li>柴油发电机应储备72小时用油量</li>
+</ul>
+</li>
+<li>特殊要求：重要设备需配置STS静态切换开关</li>
+</ul>
+<h2 id="机房安全分析与防护"><a href="#机房安全分析与防护" class="headerlink" title="机房安全分析与防护"></a>机房安全分析与防护</h2><h3 id="机房功能分区"><a href="#机房功能分区" class="headerlink" title="机房功能分区"></a>机房功能分区</h3><ul>
+<li>主要工作间：主机房、终端室等核心操作区域，如放置服务器集群的空间</li>
+<li>第一类辅助间：低压配电间、UPS室、蓄电池室、空调机房等设备支持区域，图中展示的蓄电池架和空调机组属于此类</li>
+<li>第二类辅助间：资料室（含文件柜）、维修室、技术人员办公室等管理区域</li>
+<li>第三类辅助间：储藏室、缓冲间、休息室等次要空间，实际机房中较少设置盥洗室</li>
+<li>特殊说明：允许功能合并（如一室多用）或根据实际情况增减房间，考试需注意维修室属于第二类而非主要工作间</li>
+</ul>
+<h3 id="机房等级划分"><a href="#机房等级划分" class="headerlink" title="机房等级划分"></a>机房等级划分</h3><ul>
+<li><strong>A级标准</strong>：系统中断将严重危害国家安全&#x2F;社会秩序&#x2F;公共利益，需最严格防护措施（如带附加要求的电磁干扰防护）</li>
+<li><strong>B级标准</strong>：系统中断造成较大损害，要求较完善防护（如基础防火要求）</li>
+<li><strong>C级标准</strong>：无特殊影响场景，仅需基本防护（灭火器等基础配置）</li>
+<li><strong>混合执行</strong>：允许不同项目采用不同级别，例如电磁干扰按A级，火灾报警按C级</li>
+</ul>
+<h3 id="环境安全性要求"><a href="#环境安全性要求" class="headerlink" title="环境安全性要求"></a>环境安全性要求</h3><ul>
+<li>危险源规避：远离油库、煤气站等易燃易爆场所（最小水平间距建议200米）</li>
+<li>污染区规避：避开化工厂、水泥厂等粉尘&#x2F;有毒气体污染源</li>
+<li>盐雾防护：特别禁止沿海区域和产盐区（腐蚀性水蒸气会损坏金属设备）</li>
+<li>雷击防护：需进行雷击风险评估，避免高频落雷区域</li>
+</ul>
+<h3 id="地质可靠性要求"><a href="#地质可靠性要求" class="headerlink" title="地质可靠性要求"></a>地质可靠性要求</h3><ul>
+<li>基础地质：禁止建设在杂填土、流沙层等不稳定地基上</li>
+<li>山区选址：需避开滑坡体、溶洞等地质灾害频发区</li>
+<li>矿区限制：距离采矿崩落区至少500米，且避开待开采矿脉</li>
+<li>湿度控制：禁止低洼地带（防洪要求）和地下水位过高区域</li>
+</ul>
+<h3 id="数据中心建设与设计要求"><a href="#数据中心建设与设计要求" class="headerlink" title="数据中心建设与设计要求"></a>数据中心建设与设计要求</h3><ul>
+<li>数据中心是实现对数据信息的集中处理、存储、传输、交换、管理以及为相关的电子信息设备运行提供运行环境的建筑场所。</li>
+<li>按照规模大小可将数据中心分为三类：<strong>超大型数据中心、大型数据中心、中小型数据中心</strong>。<ul>
+<li><strong>超大型数据中心</strong>：标准机柜&gt;10000个，重点考虑气候环境、能源供给等要素，特别是以灾备等实时性要求不高的应用为主，优先在气候寒冷、能源充足的一类地区建设，也可在气候适宜，能源充足的二类地区建设。</li>
+<li><strong>大型数据中心</strong>： 3000个&lt;标准机柜&lt;10000个，重点考虑气候环境、能源供给等要素，鼓励优先在一类和二类地区建设，也可在气候适宜、靠近能源富集地区的三类地区建设。</li>
+<li><strong>中小型数据中心</strong>：标准机架&lt;3000个，重点考虑市场需求、能源供给等要素，鼓励面向当地、以实时应用为主的中小型数据中心，在靠近用户所在地、能源获取便利的地区建设，依市场需求灵活部署。</li>
+</ul>
+</li>
+</ul>
+<h3 id="数据中心强制规范"><a href="#数据中心强制规范" class="headerlink" title="数据中心强制规范"></a>数据中心强制规范</h3><p>《数据中心设计规范(GB 50174-2017)》自2018年1月1日起实施，强制性条文内容如下：</p>
+<ul>
+<li>数据中心内所有设备的金属外壳、各类金属管道、金属线槽、建筑物金属结构必须进行等电位联结并接地；</li>
+<li>数据中心的耐火等级不应低于二级；</li>
+<li>当数据中心与其他功能用房在同一个建筑内时，数据中心与建筑内其他功能用房之间应采用耐火极限不低于2.0h的防火隔墙和1.5b的楼板隔开，隔墙上开门应采用甲级防火门；</li>
+<li>采用管网式气体灭火系统或细水雾灭火系统的主机房，应同时设置两组独立的火灾探测器，火灾报警系统应与灭火系统和视频监控系统联动；</li>
+<li>设置气体灭火系统的主机房，应配置专用空气呼吸器或氧气呼吸器。</li>
+</ul>
+<h3 id="IDC等级划分与规范"><a href="#IDC等级划分与规范" class="headerlink" title="IDC等级划分与规范"></a>IDC等级划分与规范</h3><p>《互联网数据中心工程技术规范(GB51195-2016)》自2017年4月1日起实施，规定IDC机房分成R1、R2和R3三个级别。</p>
+<ul>
+<li>分级标准：<ul>
+<li>R1级：基础冗余，可用性≥99.5%</li>
+<li>R2级：完全冗余，可用性≥99.9%</li>
+<li>R3级：容错能力，可用性≥99.99%</li>
+</ul>
+</li>
+</ul>
+<h2 id="通信线路-设备-存储介质安全"><a href="#通信线路-设备-存储介质安全" class="headerlink" title="通信线路&#x2F;设备&#x2F;存储介质安全"></a>通信线路&#x2F;设备&#x2F;存储介质安全</h2><h3 id="网络通信线路安全分析与防护"><a href="#网络通信线路安全分析与防护" class="headerlink" title="网络通信线路安全分析与防护"></a>网络通信线路安全分析与防护</h3><p>网络通信线路物理威胁：线路被切断、电磁干扰、线路泄露信息。</p>
+<p>线路安全防护：设备几余+线路几余。</p>
+<h3 id="设备硬件攻击防护"><a href="#设备硬件攻击防护" class="headerlink" title="设备硬件攻击防护"></a>设备硬件攻击防护</h3><ul>
+<li>针对硬件攻击，主要安全措施：</li>
+<li>(1)硬件木马检测：反向分析法、功耗分析法、侧信道分析法。<ul>
+<li>反向分析法：通过逆向工程方法将封装的芯片电路打开，逐层扫描拍照电路，然后使用图形分析软件和电路提取软件重建电路结构图，将恢复出的设计与原始设计进行对比分析，以检测硬件木马。</li>
+<li>功耗分析法：获取芯片的功耗特征与“纯净芯片”功耗特征比对，以判断芯片是否被篡改。</li>
+<li>侧信道分析法：通过比对电路中的物理特性和旁路信息的不同，发现电路的变化，原理是任何硬件电路的改变都会反映在一些电路参数上，如功率、时序、电磁、热等。</li>
+</ul>
+</li>
+<li>(2)硬件漏洞处理：不同于软件漏洞，硬件漏洞的修补具有不可逆性。通常方法是破坏漏洞利用条件，防止漏洞被攻击者利用。</li>
+</ul>
+<p><strong>存储介质安全防护介容错容灾存储技术</strong>：采用磁盘阵列、双机在线备份、离线备份等综合安全措施。</p>
+<hr>
+<h1 id="第六章-认证技术与原理"><a href="#第六章-认证技术与原理" class="headerlink" title="第六章 认证技术与原理"></a>第六章 认证技术与原理</h1><h2 id="认证技术基础与原理"><a href="#认证技术基础与原理" class="headerlink" title="认证技术基础与原理"></a>认证技术基础与原理</h2><h3 id="认证概述"><a href="#认证概述" class="headerlink" title="认证概述"></a>认证概述</h3><ul>
+<li>认证一般由标识(Identification)和鉴别(Authentication)两部分组成。<ul>
+<li>标识：代表实体对象的身份标志，确保实体的唯一性和可辨识性，同时与实体存在强关联。标识一般用名称和标识符(ID)来表示。通过唯一标识符，可以代表实体。</li>
+<li>鉴别：利用口令、电子签名、数字证书、令牌、生物特征、行为表现等相关数字化凭证对实体所声称的属性进行识别验证的过程。</li>
+<li>鉴别的凭据&#x2F;认证依据：所知道的秘密信息、所拥有的的实物凭证、所具有的生物特征、所表现的行为特征。</li>
+</ul>
+</li>
+</ul>
+<h3 id="认证原理"><a href="#认证原理" class="headerlink" title="认证原理"></a>认证原理</h3><ul>
+<li>认证机制由<strong>验证对象、认证协议、鉴别实体</strong>构成。</li>
+<li>认证分类：<ul>
+<li>按需要认证凭据的类型数量，可分成：单因素认证、双因素认证和多因素认证。</li>
+<li>按认证双方角色和所依赖外部条件，分为：单向认证、双向认证和第三方认证根据认证</li>
+<li>根依据所利用的时间长度，认证可分为一次性口令、持续认证。一次性口令简称OTP(One TimePassword)用于保护口令安全，防止口令重用攻击，例如短消息验证码、&#x2F;Key 口令。</li>
+<li>持续认证是指连续提供身份确认，对用户整个会话过程中的特征行为进行连续检测，不间断的验证用户所具有的特性。标志是将对事件的身份验证转变为对过程的身份验证。持续验证所使用的鉴定因素主要是认知因素、物理因素、上下文因素。认知因素主要有眼手协调、应用行为模式、使用偏好、设备交互模式等。物理因素主要有左右手、按压大小、手震、手臂大小和肌肉使用。</li>
+</ul>
+</li>
+</ul>
+<h3 id="单向认证"><a href="#单向认证" class="headerlink" title="单向认证"></a>单向认证</h3><p>单向认证：验证者对声称者进行单方面的鉴别，而声称者不需要识别验证者的身份<br>单向认证技术有两种：<strong>基于共享秘密和基于挑战响应</strong>。</p>
+<h4 id="基于共享秘密的认证"><a href="#基于共享秘密的认证" class="headerlink" title="基于共享秘密的认证"></a>基于共享秘密的认证</h4><ul>
+<li>基本要素：<ul>
+<li>共享密钥：﻿K<del>AB</del>为双方预先共享的秘密（如密码”123”）</li>
+<li>身份标识：﻿ID<del>A</del>表示实体A的唯一标识（如用户名”张三”）</li>
+</ul>
+</li>
+<li>认证流程：<ul>
+<li>声称者A发送﻿(ID<del>A</del>,K<del>AB</del>)给验证者B</li>
+<li>B核对﻿ID<del>A</del>对应的﻿K<del>AB</del>是否正确</li>
+<li>匹配则认证通过，否则失败</li>
+</ul>
+</li>
+<li>安全缺陷：直接传输密钥可能被中间人截获（如明文传输密码”123”）</li>
+<li>符号对应：<ul>
+<li>﻿ID<del>A</del>﻿：实际应用中的用户名（如”张三”）</li>
+<li>﻿K<del>A~~B</del>：共享密码或密钥（如”123”）</li>
+</ul>
+</li>
+</ul>
+<h4 id="基于挑战响应的认证"><a href="#基于挑战响应的认证" class="headerlink" title="基于挑战响应的认证"></a>基于挑战响应的认证</h4><ul>
+<li><p>核心改进：通过随机数挑战避免密钥直接传输</p>
+</li>
+<li><p>流程要素：</p>
+<ul>
+<li>挑战随机数：﻿R<del>B</del>由验证者B生成</li>
+<li>身份标识：﻿ID<del>A</del>和﻿ID<del>B</del>分别标识通信双方</li>
+</ul>
+</li>
+<li><p>详细步骤：</p>
+<ul>
+<li>B生成﻿RBR_BRB﻿并发送﻿(ID<del>B</del>,R<del>B</del>)给A</li>
+<li>A使用﻿RBR_BRB﻿生成秘密﻿K<del>AB</del>﻿（通过哈希或加密）</li>
+<li>A发送﻿(ID<del>A</del>,K<del>AB</del>)给B进行验证</li>
+</ul>
+</li>
+<li><p>验证方式：</p>
+<ul>
+<li>哈希算法：B本地计算﻿K<del>AB</del>′&#x3D;Hash(key∣∣R<del>B</del>)进行比对</li>
+<li>对称加密：B用密钥解密﻿K<del>AB</del>﻿验证﻿R<del>B</del>正确性</li>
+</ul>
+</li>
+<li><p>安全机制：</p>
+<ul>
+<li>防重放：每次认证使用不同随机数﻿R<del>B</del></li>
+<li>密钥保护：共享密钥﻿K始终不直接传输</li>
+</ul>
+</li>
+<li><p>典型应用：PPP协议中的CHAP认证（三次握手过程）</p>
+</li>
+<li><p>生成方式：</p>
+<ul>
+<li>哈希生成：﻿K<del>AB</del>&#x3D;Hash(K∣∣R<del>B</del>)如HMAC）</li>
+<li>加密生成：﻿K<del>AB</del>&#x3D;EK(R<del>B</del>)（对称加密）</li>
+</ul>
+</li>
+</ul>
+<h3 id="双向认证"><a href="#双向认证" class="headerlink" title="双向认证"></a>双向认证</h3><ul>
+<li>定义： 验证者与声称者在认证过程中互相鉴别彼此身份，如SSH协议中双方既是生成者也是验证者。</li>
+<li>应用场景： 实际项目中双向认证使用相对较少，更常见的是服务端验证客户端身份的单向认证。</li>
+</ul>
+<h3 id="认证应用"><a href="#认证应用" class="headerlink" title="认证应用"></a>认证应用</h3><p>PAP：两次握手验证协议，口令以明文传送，被验证方首先发起请求。CHAP：三次握手，认证过程不传送认证口令，传送HMAC散列值</p>
+<h3 id="Kerberos认证协议"><a href="#Kerberos认证协议" class="headerlink" title="Kerberos认证协议"></a>Kerberos认证协议</h3><ul>
+<li>Kerberos包含四个基本实体：<ul>
+<li>(1)Kerberos客户机，用户用来访问服务器设备</li>
+<li>(2)<strong>AS(Authentication Server</strong>，认证服务器)识别用户身份并提供TGS会话密钥;</li>
+<li>(3)**TGS(Ticket Granting Server，票据发放服务器)**，为申请服务的用户授予票据(Ticket);</li>
+<li>(4)应用服务器(Application Server)，为用户提供服务的设备或系统。</li>
+</ul>
+</li>
+<li><strong>AS和TGS统称为KDC(Key Distribution Center)</strong></li>
+<li>票据(Ticket)是用于安全的传递用户身份所需要的信息的集合，主要<strong>包括客户方实体名称、地址、时间戳、票据生存期和会话密钥</strong>等内容。</li>
+<li>Kerberos不足：要求解决主机节点<strong>时间同步问题和抵御拒绝服务攻击</strong>。</li>
+</ul>
+<h3 id="PKI体系结构-1"><a href="#PKI体系结构-1" class="headerlink" title="PKI体系结构"></a>PKI体系结构</h3><p>1、用户&#x2F;终端实体:指将要向认证中心申请数字证书的客户，可以是个人，也可以是集团或团体、某政府机构等。</p>
+<p>2、注册机构RA:注册机构提供用户和CA之间的一个接口，它获取并认证用户的身份，向CA提出证书请求。它主要完成收集用户信息和确认用户身份的功能。注册机构并不给用户签发证书，而只是对用户进行资格审查。较小的机构，可以由CA兼任RA的工作。</p>
+<p>3、证书颁发机构CA:负责给用户颁发证书。</p>
+<p>4、证书发布系统:负责证书发放，如可以通过用户自已或是通过目录服务。</p>
+<p>CRL库:证书吊销列表，存放过期或者无效证书。</p>
 ]]></content>
   </entry>
   <entry>
@@ -793,94 +1282,6 @@
     <content><![CDATA[<p>记录工具网址</p>
 <p><a href="https://iloveofd.cn/word-compress">WORD压缩免费 - 缩小WORD体积 - iLoveOFD在线</a></p>
 <p><a href="https://yasuo.xunjiepdf.com/word/">Word压缩 - 免费在线压缩Word文件大小 – 迅捷压缩在线</a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>安卓逆向kx——基本逆向环境配置</title>
-    <url>/2025/09/18/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91kx%E2%80%94%E2%80%94%E5%9F%BA%E6%9C%AC%E9%80%86%E5%90%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/</url>
-    <content><![CDATA[<h2 id="使用虚拟机"><a href="#使用虚拟机" class="headerlink" title="使用虚拟机"></a>使用虚拟机</h2><p><strong>优点</strong>：与系统隔绝，快照功能，不受平台的限制</p>
-<p><strong>Kali Linux</strong>操作系统</p>
-]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-      <tags>
-        <tag>安卓逆向工程</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title></title>
-    <url>/2025/09/18/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E5%B7%A5%E7%A8%8B%E5%B8%88%E5%A4%87%E8%80%83%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<hr>
-<pre><code>title： 信息安全工程师备考笔记
-date： 2025-09-18 14：59：52
-tags：
-- 软考
-categories： 笔记 
----
-</code></pre>
-<h2 id="网络信息安全基本概念"><a href="#网络信息安全基本概念" class="headerlink" title="网络信息安全基本概念"></a>网络信息安全基本概念</h2><ul>
-<li><p><strong>信息社会的主要特征：</strong><font size=3 color="red" ><strong>数字化、网络化、智能化</strong></font>。网络空间成为国家陆、海、空、天之后的第五疆域。</p>
-</li>
-<li><p><strong>网络信息安全(狭义)：</strong>网络信息系统组成要素符合安全属性，即<font size=3 color="red" ><strong>机密性、完整性、可用性、抗抵赖性、可控性</strong></font>。</p>
-</li>
-<li><p><strong>网络信息安全(广义)：</strong>涉及<font size=3 color="red" ><strong>国家安全、城市安全、经济安全、社会安全、生产安全、人身安全</strong></font>在内的大安全。</p>
-</li>
-<li><p><strong>网络安全三大发展趋势</strong></p>
-<ul>
-<li>**<font size=3 color="red" >对象内容：</font>**保证内容从单维度向多维度转变，保障的维度包含网络空间域、物理空间域、社会空间域</li>
-<li><strong><font size=3 color="red" >理念方法</font>：</strong>网络信息安全保障措施从单一性(技术)向综合性(法律、政策、技术、管理、产业、教育)转变</li>
-<li>**<font size=3 color="red" >持续时间：</font>**保证时间维度要求涵盖网络系统的整个生命周期，响应速度要求不断缩短， 网络信息安全没有战时、平时之分。</li>
-</ul>
-</li>
-<li><p>网络安全12大问题</p>
-<ul>
-<li>网络强依赖性及网络安全关联风险凸显；网络信息产品供应链与安全质量风险；网络信息产品技术同质性与技术滥用风险；网络安全建设与管理发展不平衡、不充分风险；网络数据安全风险；高级持续威胁风险；恶意代码风险；软件代码和安全漏洞风险，人员的网络安全意识风险：网络信息技术复杂性和运营安全风险；网络地下黑产经济风险；网络间谍与网络战风险。</li>
-</ul>
-</li>
-</ul>
-<h2 id="网络信息安全基本属性"><a href="#网络信息安全基本属性" class="headerlink" title="网络信息安全基本属性"></a><font color="red" >网络信息安全基本属性</font></h2><ul>
-<li><table>
-<thead>
-<tr>
-<th>属性</th>
-<th>定义</th>
-<th>攻击与防范</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><font color="red" >机密性（Confidentiality）</font></td>
-<td>指网络信息不泄露给非授权的用户、实体或程序，能够防治非授权者获得信息。</td>
-<td><font color="red" >窃取 - 加密</font></td>
-</tr>
-<tr>
-<td><font color="red" >完整性（Integrity）</font></td>
-<td>指网络信息或系统未经授权不能进行更改的特性。</td>
-<td><font color="red" >修改 - HASH&#x2F;签名</font></td>
-</tr>
-<tr>
-<td><font color="red" >可用性（Availability）</font></td>
-<td>指合法许可的用户能够及时获取网络信息或服务的特性。</td>
-<td><font color="red" >DOS - 冗余&#x2F;清洗</font></td>
-</tr>
-<tr>
-<td>抗抵赖性（Non - Repudiation）</td>
-<td>防止网络信息系统相关用户否认其活动行动的特性。</td>
-<td><font color="red" >数字签名</font></td>
-</tr>
-<tr>
-<td>可控性</td>
-<td>信息系统责任系统主体对其具有管理、支配能力的属性。</td>
-<td>-</td>
-</tr>
-<tr>
-<td>其他特性</td>
-<td>真实性：是指网络空间信息与实际物理空间、社会空间的客观事实保持一致性。<br />时效性：时效性：是指网络空间信息、服务及系统能够满足时间约束要求。<br/>合规性：是指网络信息、服务及系统符合法律法规政策、标准规范等要求<br />公平性：是指网络信息系统相关主体处于同等地位处理相关任务，任何一方不占据优势的特性要求。<br/>可靠性：是指网络信息系统在规定条件及时间下，能够有效完成预定的系统功能的特性。<br/>可生存性：是指网络信息系统在安全受损的情形下，提供最小化、必要的服务功能，能够支撑业务继续运行的安全特性。隐私性：是指有关个人</td>
-<td></td>
-</tr>
-</tbody></table>
-</li>
-</ul>
 ]]></content>
   </entry>
   <entry>
@@ -1332,6 +1733,69 @@ categories： 笔记
       </tags>
   </entry>
   <entry>
+    <title>实操·会员验证+猜数游戏</title>
+    <url>/2025/08/11/%E5%AE%9E%E6%93%8D%C2%B7%E4%BC%9A%E5%91%98%E9%AA%8C%E8%AF%81-%E7%8C%9C%E6%95%B0%E6%B8%B8%E6%88%8F/</url>
+    <content><![CDATA[<p>内容：实现流程：打开 APP 先显示验证页 → 输入正确会员密码 → 跳转到猜数字游戏页。</p>
+<h2 id="第一步-创建项目"><a href="#第一步-创建项目" class="headerlink" title="第一步 创建项目"></a>第一步 创建项目</h2><ol>
+<li>在“ New Project ”界面，选择<strong>Empty  Views Activity</strong>（空活动，最简单的模板），点击“ Next ”。</li>
+<li>填写项目信息：<ul>
+<li>Name（项目名）：<code>GuessTheNumbers</code></li>
+<li>Package name（包名）：默认即可（类似<code>com.example.Guessthenumber</code>）</li>
+<li>Save location（保存路径）：选一个自己能找到的文件夹</li>
+<li>Language（语言）：选<strong>Java</strong>（更基础）</li>
+<li>Minimum SDK（最低支持的安卓版本）：选默认的“ API 24 ”（覆盖大多数手机）</li>
+</ul>
+</li>
+<li>点击“ Finish ”，等待项目加载完成（第一次可能会久一点，看网络）。</li>
+</ol>
+<h2 id="第二步-设计会员验证页面布局（activity-login-xml）"><a href="#第二步-设计会员验证页面布局（activity-login-xml）" class="headerlink" title="第二步 设计会员验证页面布局（activity_login.xml）"></a>第二步 设计会员验证页面布局（activity_login.xml）</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;utf-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">LinearLayout</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:android</span>=<span class="string">&quot;http://schemas.android.com/apk/res/android&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:orientation</span>=<span class="string">&quot;vertical&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:padding</span>=<span class="string">&quot;50dp&quot;</span></span></span><br><span class="line"><span class="tag">    &gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:text</span>=<span class="string">&quot;会员验证&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:textColor</span>=<span class="string">&quot;@color/black&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:textSize</span>=<span class="string">&quot;30sp&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:gravity</span>=<span class="string">&quot;center&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_marginTop</span>=<span class="string">&quot;40dp&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_marginBottom</span>=<span class="string">&quot;20dp&quot;</span></span></span><br><span class="line"><span class="tag">        /&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">EditText</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">&quot;@+id/et_vip_password&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:textSize</span>=<span class="string">&quot;20sp&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:hint</span>=<span class="string">&quot;请输入会员密码&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:inputType</span>=<span class="string">&quot;textPassword&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_marginTop</span>=<span class="string">&quot;30dp&quot;</span></span></span><br><span class="line"><span class="tag">        /&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">Button</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">&quot;@+id/btn_vip_check&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:text</span>=<span class="string">&quot;点击验证&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:textSize</span>=<span class="string">&quot;20sp&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_marginTop</span>=<span class="string">&quot;15dp&quot;</span></span></span><br><span class="line"><span class="tag">        /&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">&quot;@+id/tv_vip_result&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:textSize</span>=<span class="string">&quot;20sp&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_marginTop</span>=<span class="string">&quot;20dp&quot;</span></span></span><br><span class="line"><span class="tag">        /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="第三步-会员验证页面逻辑（LoginActivity-java）"><a href="#第三步-会员验证页面逻辑（LoginActivity-java）" class="headerlink" title="第三步 会员验证页面逻辑（LoginActivity.java）"></a>第三步 会员验证页面逻辑（LoginActivity.java）</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.guessthenumbers;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> android.content.Intent;</span><br><span class="line"><span class="keyword">import</span> android.os.Bundle;</span><br><span class="line"><span class="keyword">import</span> android.view.View;</span><br><span class="line"><span class="keyword">import</span> android.widget.Button;</span><br><span class="line"><span class="keyword">import</span> android.widget.EditText;</span><br><span class="line"><span class="keyword">import</span> android.widget.TextView;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> androidx.appcompat.app.AppCompatActivity;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">LoginActivity</span> <span class="keyword">extends</span> <span class="title class_">AppCompatActivity</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> EditText etVipPassword;</span><br><span class="line">    <span class="keyword">private</span> Button btnVipCheck;</span><br><span class="line">    <span class="keyword">private</span> TextView tvVipResult;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String CORRECT_PASSWORD=<span class="string">&quot;vip666&quot;</span>;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">onCreate</span><span class="params">(Bundle savedInstanceState)</span>&#123;</span><br><span class="line">        <span class="built_in">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        <span class="comment">// 加载布局</span></span><br><span class="line">        setContentView(R.layout.activity_login);</span><br><span class="line">        <span class="comment">// 绑定控件（通过ID关联布局中的元素）</span></span><br><span class="line">        etVipPassword = findViewById(R.id.et_vip_password);</span><br><span class="line">        btnVipCheck = findViewById(R.id.btn_vip_check);</span><br><span class="line">        tvVipResult = findViewById(R.id.tv_vip_result);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 按钮点击事件：验证密码并跳转</span></span><br><span class="line">        btnVipCheck.setOnClickListener(<span class="keyword">new</span> <span class="title class_">View</span>.OnClickListener() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onClick</span><span class="params">(View v)</span> &#123;</span><br><span class="line">                <span class="comment">// 1. 获取用户输入的密码</span></span><br><span class="line">                <span class="type">String</span> <span class="variable">inputPassword</span> <span class="operator">=</span> etVipPassword.getText().toString().trim();</span><br><span class="line"></span><br><span class="line">                <span class="comment">// 2. 验证逻辑</span></span><br><span class="line">                <span class="keyword">if</span> (inputPassword.isEmpty()) &#123;</span><br><span class="line">                    <span class="comment">// 输入为空</span></span><br><span class="line">                    tvVipResult.setText(<span class="string">&quot;请输入会员密码&quot;</span>);</span><br><span class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (inputPassword.equals(CORRECT_PASSWORD)) &#123;</span><br><span class="line">                    <span class="comment">// 密码正确：跳转到猜数字页面</span></span><br><span class="line">                    tvVipResult.setText(<span class="string">&quot;验证成功，正在进入游戏...&quot;</span>);</span><br><span class="line"></span><br><span class="line">                    <span class="comment">// 创建跳转意图（从当前页到游戏页）</span></span><br><span class="line">                    <span class="type">Intent</span> <span class="variable">intent</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Intent</span>(LoginActivity.<span class="built_in">this</span>, MainActivity.class);</span><br><span class="line">                    startActivity(intent); <span class="comment">// 执行跳转</span></span><br><span class="line"></span><br><span class="line">                    <span class="comment">// 关闭当前验证页（可选：防止返回键回到验证页）</span></span><br><span class="line">                    finish();</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="comment">// 密码错误</span></span><br><span class="line">                    <span class="comment">// （正确密码：vip666）</span></span><br><span class="line">                    tvVipResult.setText(<span class="string">&quot;密码错误，请重新输入&quot;</span>);</span><br><span class="line">                    <span class="comment">// 清空输入框</span></span><br><span class="line">                    etVipPassword.setText(<span class="string">&quot;&quot;</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="第四步-设计猜数游戏页面布局（activity-main-xml）"><a href="#第四步-设计猜数游戏页面布局（activity-main-xml）" class="headerlink" title="第四步 设计猜数游戏页面布局（activity_main.xml）"></a>第四步 设计猜数游戏页面布局（activity_main.xml）</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;utf-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">LinearLayout</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:android</span>=<span class="string">&quot;http://schemas.android.com/apk/res/android&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:padding</span>=<span class="string">&quot;50dp&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:orientation</span>=<span class="string">&quot;vertical&quot;</span></span></span><br><span class="line"><span class="tag">    &gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:hint</span>=<span class="string">&quot;猜数游戏&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:textSize</span>=<span class="string">&quot;30sp&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:textColor</span>=<span class="string">&quot;@color/black&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_gravity</span>=<span class="string">&quot;center&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_marginTop</span>=<span class="string">&quot;40dp&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_marginBottom</span>=<span class="string">&quot;20dp&quot;</span></span></span><br><span class="line"><span class="tag">        /&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">EditText</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">&quot;@+id/et_game_number&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:inputType</span>=<span class="string">&quot;number&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:textSize</span>=<span class="string">&quot;20sp&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:hint</span>=<span class="string">&quot;请输入0-100之间的数字&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_marginTop</span>=<span class="string">&quot;30dp&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_marginBottom</span>=<span class="string">&quot;10dp&quot;</span></span></span><br><span class="line"><span class="tag">        /&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">Button</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">&quot;@+id/btn_game_check&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:text</span>=<span class="string">&quot;点击验证&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:textSize</span>=<span class="string">&quot;20sp&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:background</span>=<span class="string">&quot;#CECECE&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_marginTop</span>=<span class="string">&quot;15dp&quot;</span></span></span><br><span class="line"><span class="tag">        /&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">&quot;@+id/tv_game_result&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:textSize</span>=<span class="string">&quot;20sp&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_marginTop</span>=<span class="string">&quot;20dp&quot;</span></span></span><br><span class="line"><span class="tag">        /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="第五步-猜数游戏逻辑（MainActivity-java）"><a href="#第五步-猜数游戏逻辑（MainActivity-java）" class="headerlink" title="第五步 猜数游戏逻辑（MainActivity.java）"></a>第五步 猜数游戏逻辑（MainActivity.java）</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.guessthenumbers;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> androidx.appcompat.app.AppCompatActivity;</span><br><span class="line"><span class="keyword">import</span> android.os.Bundle;</span><br><span class="line"><span class="keyword">import</span> android.view.View;</span><br><span class="line"><span class="keyword">import</span> android.widget.Button;</span><br><span class="line"><span class="keyword">import</span> android.widget.EditText;</span><br><span class="line"><span class="keyword">import</span> android.widget.TextView;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Random;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MainActivity</span> <span class="keyword">extends</span> <span class="title class_">AppCompatActivity</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 控件声明</span></span><br><span class="line">    <span class="keyword">private</span> EditText etGameNumber;    <span class="comment">// 数字输入框</span></span><br><span class="line">    <span class="keyword">private</span> Button btnGameCheck;      <span class="comment">// 猜测按钮</span></span><br><span class="line">    <span class="keyword">private</span> TextView tvGameResult;    <span class="comment">// 结果提示</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 游戏变量</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> targetGameNumber;     <span class="comment">// 目标随机数</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> <span class="variable">minRange</span> <span class="operator">=</span> <span class="number">0</span>;     <span class="comment">// 当前范围最小值</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> <span class="variable">maxRange</span> <span class="operator">=</span> <span class="number">100</span>;   <span class="comment">// 当前范围最大值</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">onCreate</span><span class="params">(Bundle savedInstanceState)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        <span class="comment">// 加载布局</span></span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 绑定控件</span></span><br><span class="line">        etGameNumber = findViewById(R.id.et_game_number);</span><br><span class="line">        btnGameCheck = findViewById(R.id.btn_game_check);</span><br><span class="line">        tvGameResult = findViewById(R.id.tv_game_result);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 生成0-100的随机数（游戏初始化）</span></span><br><span class="line">        targetGameNumber = <span class="keyword">new</span> <span class="title class_">Random</span>().nextInt(<span class="number">101</span>);  <span class="comment">// 0-100闭区间</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 猜测按钮点击事件</span></span><br><span class="line">        btnGameCheck.setOnClickListener(<span class="keyword">new</span> <span class="title class_">View</span>.OnClickListener() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onClick</span><span class="params">(View view)</span> &#123;</span><br><span class="line">                <span class="comment">// 1. 获取用户输入的数字</span></span><br><span class="line">                <span class="type">String</span> <span class="variable">input</span> <span class="operator">=</span> etGameNumber.getText().toString().trim();</span><br><span class="line"></span><br><span class="line">                <span class="comment">// 2. 输入验证</span></span><br><span class="line">                <span class="keyword">if</span> (input.isEmpty()) &#123;</span><br><span class="line">                    tvGameResult.setText(<span class="string">&quot;请输入数字后再猜～&quot;</span>);</span><br><span class="line">                    <span class="keyword">return</span>;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="comment">// 3. 转换为整数（处理非数字输入）</span></span><br><span class="line">                <span class="type">int</span> userNumber;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    userNumber = Integer.parseInt(input);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (NumberFormatException e) &#123;</span><br><span class="line">                    tvGameResult.setText(<span class="string">&quot;请输入有效的数字！&quot;</span>);</span><br><span class="line">                    etGameNumber.setText(<span class="string">&quot;&quot;</span>);  <span class="comment">// 清空错误输入</span></span><br><span class="line">                    <span class="keyword">return</span>;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="comment">// 4. 检查数字范围</span></span><br><span class="line">                <span class="keyword">if</span> (userNumber &lt; <span class="number">0</span> || userNumber &gt; <span class="number">100</span>) &#123;</span><br><span class="line">                    tvGameResult.setText(<span class="string">&quot;请输入0-100之间的数字！&quot;</span>);</span><br><span class="line">                    <span class="keyword">return</span>;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="comment">// 5. 核心逻辑：对比用户输入与目标数字</span></span><br><span class="line">                <span class="keyword">if</span> (userNumber == targetGameNumber) &#123;</span><br><span class="line">                    <span class="comment">// 猜对了</span></span><br><span class="line">                    tvGameResult.setText(<span class="string">&quot;恭喜你！猜对了！🎉&quot;</span>);</span><br><span class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (userNumber &lt; targetGameNumber) &#123;</span><br><span class="line">                    <span class="comment">// 猜小了：更新最小值</span></span><br><span class="line">                    minRange = userNumber;</span><br><span class="line">                    tvGameResult.setText(<span class="string">&quot;猜小了～ 范围：&quot;</span> + minRange + <span class="string">&quot; 到 &quot;</span> + maxRange);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="comment">// 猜大了：更新最大值</span></span><br><span class="line">                    maxRange = userNumber;</span><br><span class="line">                    tvGameResult.setText(<span class="string">&quot;猜大了～ 范围：&quot;</span> + minRange + <span class="string">&quot; 到 &quot;</span> + maxRange);</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="comment">// 6. 清空输入框，方便下次输入</span></span><br><span class="line">                etGameNumber.setText(<span class="string">&quot;&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">    </span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="第六步-配置文件（AndroidManifest-xml）"><a href="#第六步-配置文件（AndroidManifest-xml）" class="headerlink" title="第六步 配置文件（AndroidManifest.xml）"></a>第六步 配置文件（AndroidManifest.xml）</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;utf-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">manifest</span> <span class="attr">xmlns:android</span>=<span class="string">&quot;http://schemas.android.com/apk/res/android&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:tools</span>=<span class="string">&quot;http://schemas.android.com/tools&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">application</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:allowBackup</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:dataExtractionRules</span>=<span class="string">&quot;@xml/data_extraction_rules&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:fullBackupContent</span>=<span class="string">&quot;@xml/backup_rules&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:icon</span>=<span class="string">&quot;@mipmap/taikongren&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:label</span>=<span class="string">&quot;@string/app_name&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:roundIcon</span>=<span class="string">&quot;@mipmap/taikongren&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:supportsRtl</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:theme</span>=<span class="string">&quot;@style/Theme.GuessTheNumbers&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">tools:targetApi</span>=<span class="string">&quot;31&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">activity</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:name</span>=<span class="string">&quot;.LoginActivity&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:exported</span>=<span class="string">&quot;true&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">&quot;android.intent.action.MAIN&quot;</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">&quot;android.intent.category.LAUNCHER&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">activity</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">activity</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:name</span>=<span class="string">&quot;.MainActivity&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:exported</span>=<span class="string">&quot;true&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">application</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">manifest</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="完整流程测试步骤"><a href="#完整流程测试步骤" class="headerlink" title="完整流程测试步骤"></a>完整流程测试步骤</h2><ol>
+<li><p>运行 APP，首先显示「会员验证页」。</p>
+<p> 效果如下图所示：</p>
+<p> <img src="https://cdn.jsdelivr.net/gh/tangxtang1119/ImageBed@main/202508151645644.png" alt="会员验证界面"></p>
+</li>
+<li><p>输入正确密码 <code>vip666</code>（可在 <code>LoginActivity</code> 中修改）。</p>
+</li>
+<li><p>点击「验证并进入游戏」，自动跳转到「猜数字游戏页」。</p>
+<p> <img src="https://cdn.jsdelivr.net/gh/tangxtang1119/ImageBed@main/202508151646861.png" alt="猜数游戏界面"></p>
+</li>
+<li><p>在游戏页输入数字猜测，系统会提示范围（如 “猜小了～ 范围：20 到 100”）。</p>
+</li>
+<li><p>猜对后显示 “恭喜你！猜对了！🎉”。</p>
+</li>
+</ol>
+<h2 id="核心技术点说明"><a href="#核心技术点说明" class="headerlink" title="核心技术点说明"></a>核心技术点说明</h2><ul>
+<li><strong>页面跳转</strong>：通过 <code>Intent</code> 实现两个页面的切换，<code>startActivity(intent)</code> 触发跳转。</li>
+<li><strong>启动页设置</strong>：<code>AndroidManifest.xml</code> 中，<code>LoginActivity</code> 包含 <code>&lt;intent-filter&gt;</code> 标记，因此成为 APP 打开的第一个页面。</li>
+<li><strong>数据验证</strong>：两个页面都添加了输入检查（空输入、格式错误等），提升用户体验。</li>
+<li><strong>生命周期管理</strong>：<code>finish()</code> 方法关闭验证页，防止用户按返回键回到验证页（可选逻辑）。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>安卓实操</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>实操·开发简单APP</title>
     <url>/2025/08/11/%E5%AE%9E%E6%93%8D%C2%B7%E5%BC%80%E5%8F%91%E7%AE%80%E5%8D%95APP/</url>
     <content><![CDATA[<p>内容：写一个“输入密码 → 验证” 的简单APP（含按钮点击事件、密码判断逻辑），生成APK。</p>
@@ -1403,69 +1867,6 @@ categories： 笔记
 </li>
 </ol>
 <p>这个过程涵盖了安卓开发的基础：界面设计、控件操作、事件处理。</p>
-]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-      <tags>
-        <tag>安卓实操</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>实操·会员验证+猜数游戏</title>
-    <url>/2025/08/11/%E5%AE%9E%E6%93%8D%C2%B7%E4%BC%9A%E5%91%98%E9%AA%8C%E8%AF%81-%E7%8C%9C%E6%95%B0%E6%B8%B8%E6%88%8F/</url>
-    <content><![CDATA[<p>内容：实现流程：打开 APP 先显示验证页 → 输入正确会员密码 → 跳转到猜数字游戏页。</p>
-<h2 id="第一步-创建项目"><a href="#第一步-创建项目" class="headerlink" title="第一步 创建项目"></a>第一步 创建项目</h2><ol>
-<li>在“ New Project ”界面，选择<strong>Empty  Views Activity</strong>（空活动，最简单的模板），点击“ Next ”。</li>
-<li>填写项目信息：<ul>
-<li>Name（项目名）：<code>GuessTheNumbers</code></li>
-<li>Package name（包名）：默认即可（类似<code>com.example.Guessthenumber</code>）</li>
-<li>Save location（保存路径）：选一个自己能找到的文件夹</li>
-<li>Language（语言）：选<strong>Java</strong>（更基础）</li>
-<li>Minimum SDK（最低支持的安卓版本）：选默认的“ API 24 ”（覆盖大多数手机）</li>
-</ul>
-</li>
-<li>点击“ Finish ”，等待项目加载完成（第一次可能会久一点，看网络）。</li>
-</ol>
-<h2 id="第二步-设计会员验证页面布局（activity-login-xml）"><a href="#第二步-设计会员验证页面布局（activity-login-xml）" class="headerlink" title="第二步 设计会员验证页面布局（activity_login.xml）"></a>第二步 设计会员验证页面布局（activity_login.xml）</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;utf-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">LinearLayout</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:android</span>=<span class="string">&quot;http://schemas.android.com/apk/res/android&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:orientation</span>=<span class="string">&quot;vertical&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:padding</span>=<span class="string">&quot;50dp&quot;</span></span></span><br><span class="line"><span class="tag">    &gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:text</span>=<span class="string">&quot;会员验证&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:textColor</span>=<span class="string">&quot;@color/black&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:textSize</span>=<span class="string">&quot;30sp&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:gravity</span>=<span class="string">&quot;center&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_marginTop</span>=<span class="string">&quot;40dp&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_marginBottom</span>=<span class="string">&quot;20dp&quot;</span></span></span><br><span class="line"><span class="tag">        /&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">EditText</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">&quot;@+id/et_vip_password&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:textSize</span>=<span class="string">&quot;20sp&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:hint</span>=<span class="string">&quot;请输入会员密码&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:inputType</span>=<span class="string">&quot;textPassword&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_marginTop</span>=<span class="string">&quot;30dp&quot;</span></span></span><br><span class="line"><span class="tag">        /&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">Button</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">&quot;@+id/btn_vip_check&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:text</span>=<span class="string">&quot;点击验证&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:textSize</span>=<span class="string">&quot;20sp&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_marginTop</span>=<span class="string">&quot;15dp&quot;</span></span></span><br><span class="line"><span class="tag">        /&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">&quot;@+id/tv_vip_result&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:textSize</span>=<span class="string">&quot;20sp&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_marginTop</span>=<span class="string">&quot;20dp&quot;</span></span></span><br><span class="line"><span class="tag">        /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="第三步-会员验证页面逻辑（LoginActivity-java）"><a href="#第三步-会员验证页面逻辑（LoginActivity-java）" class="headerlink" title="第三步 会员验证页面逻辑（LoginActivity.java）"></a>第三步 会员验证页面逻辑（LoginActivity.java）</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.guessthenumbers;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> android.content.Intent;</span><br><span class="line"><span class="keyword">import</span> android.os.Bundle;</span><br><span class="line"><span class="keyword">import</span> android.view.View;</span><br><span class="line"><span class="keyword">import</span> android.widget.Button;</span><br><span class="line"><span class="keyword">import</span> android.widget.EditText;</span><br><span class="line"><span class="keyword">import</span> android.widget.TextView;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> androidx.appcompat.app.AppCompatActivity;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">LoginActivity</span> <span class="keyword">extends</span> <span class="title class_">AppCompatActivity</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> EditText etVipPassword;</span><br><span class="line">    <span class="keyword">private</span> Button btnVipCheck;</span><br><span class="line">    <span class="keyword">private</span> TextView tvVipResult;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String CORRECT_PASSWORD=<span class="string">&quot;vip666&quot;</span>;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">onCreate</span><span class="params">(Bundle savedInstanceState)</span>&#123;</span><br><span class="line">        <span class="built_in">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        <span class="comment">// 加载布局</span></span><br><span class="line">        setContentView(R.layout.activity_login);</span><br><span class="line">        <span class="comment">// 绑定控件（通过ID关联布局中的元素）</span></span><br><span class="line">        etVipPassword = findViewById(R.id.et_vip_password);</span><br><span class="line">        btnVipCheck = findViewById(R.id.btn_vip_check);</span><br><span class="line">        tvVipResult = findViewById(R.id.tv_vip_result);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 按钮点击事件：验证密码并跳转</span></span><br><span class="line">        btnVipCheck.setOnClickListener(<span class="keyword">new</span> <span class="title class_">View</span>.OnClickListener() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onClick</span><span class="params">(View v)</span> &#123;</span><br><span class="line">                <span class="comment">// 1. 获取用户输入的密码</span></span><br><span class="line">                <span class="type">String</span> <span class="variable">inputPassword</span> <span class="operator">=</span> etVipPassword.getText().toString().trim();</span><br><span class="line"></span><br><span class="line">                <span class="comment">// 2. 验证逻辑</span></span><br><span class="line">                <span class="keyword">if</span> (inputPassword.isEmpty()) &#123;</span><br><span class="line">                    <span class="comment">// 输入为空</span></span><br><span class="line">                    tvVipResult.setText(<span class="string">&quot;请输入会员密码&quot;</span>);</span><br><span class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (inputPassword.equals(CORRECT_PASSWORD)) &#123;</span><br><span class="line">                    <span class="comment">// 密码正确：跳转到猜数字页面</span></span><br><span class="line">                    tvVipResult.setText(<span class="string">&quot;验证成功，正在进入游戏...&quot;</span>);</span><br><span class="line"></span><br><span class="line">                    <span class="comment">// 创建跳转意图（从当前页到游戏页）</span></span><br><span class="line">                    <span class="type">Intent</span> <span class="variable">intent</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Intent</span>(LoginActivity.<span class="built_in">this</span>, MainActivity.class);</span><br><span class="line">                    startActivity(intent); <span class="comment">// 执行跳转</span></span><br><span class="line"></span><br><span class="line">                    <span class="comment">// 关闭当前验证页（可选：防止返回键回到验证页）</span></span><br><span class="line">                    finish();</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="comment">// 密码错误</span></span><br><span class="line">                    <span class="comment">// （正确密码：vip666）</span></span><br><span class="line">                    tvVipResult.setText(<span class="string">&quot;密码错误，请重新输入&quot;</span>);</span><br><span class="line">                    <span class="comment">// 清空输入框</span></span><br><span class="line">                    etVipPassword.setText(<span class="string">&quot;&quot;</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="第四步-设计猜数游戏页面布局（activity-main-xml）"><a href="#第四步-设计猜数游戏页面布局（activity-main-xml）" class="headerlink" title="第四步 设计猜数游戏页面布局（activity_main.xml）"></a>第四步 设计猜数游戏页面布局（activity_main.xml）</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;utf-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">LinearLayout</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:android</span>=<span class="string">&quot;http://schemas.android.com/apk/res/android&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:padding</span>=<span class="string">&quot;50dp&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:orientation</span>=<span class="string">&quot;vertical&quot;</span></span></span><br><span class="line"><span class="tag">    &gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:hint</span>=<span class="string">&quot;猜数游戏&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:textSize</span>=<span class="string">&quot;30sp&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:textColor</span>=<span class="string">&quot;@color/black&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_gravity</span>=<span class="string">&quot;center&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_marginTop</span>=<span class="string">&quot;40dp&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_marginBottom</span>=<span class="string">&quot;20dp&quot;</span></span></span><br><span class="line"><span class="tag">        /&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">EditText</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">&quot;@+id/et_game_number&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:inputType</span>=<span class="string">&quot;number&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:textSize</span>=<span class="string">&quot;20sp&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:hint</span>=<span class="string">&quot;请输入0-100之间的数字&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_marginTop</span>=<span class="string">&quot;30dp&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_marginBottom</span>=<span class="string">&quot;10dp&quot;</span></span></span><br><span class="line"><span class="tag">        /&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">Button</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">&quot;@+id/btn_game_check&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:text</span>=<span class="string">&quot;点击验证&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:textSize</span>=<span class="string">&quot;20sp&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:background</span>=<span class="string">&quot;#CECECE&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_marginTop</span>=<span class="string">&quot;15dp&quot;</span></span></span><br><span class="line"><span class="tag">        /&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">&quot;@+id/tv_game_result&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:textSize</span>=<span class="string">&quot;20sp&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_marginTop</span>=<span class="string">&quot;20dp&quot;</span></span></span><br><span class="line"><span class="tag">        /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="第五步-猜数游戏逻辑（MainActivity-java）"><a href="#第五步-猜数游戏逻辑（MainActivity-java）" class="headerlink" title="第五步 猜数游戏逻辑（MainActivity.java）"></a>第五步 猜数游戏逻辑（MainActivity.java）</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.guessthenumbers;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> androidx.appcompat.app.AppCompatActivity;</span><br><span class="line"><span class="keyword">import</span> android.os.Bundle;</span><br><span class="line"><span class="keyword">import</span> android.view.View;</span><br><span class="line"><span class="keyword">import</span> android.widget.Button;</span><br><span class="line"><span class="keyword">import</span> android.widget.EditText;</span><br><span class="line"><span class="keyword">import</span> android.widget.TextView;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Random;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MainActivity</span> <span class="keyword">extends</span> <span class="title class_">AppCompatActivity</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 控件声明</span></span><br><span class="line">    <span class="keyword">private</span> EditText etGameNumber;    <span class="comment">// 数字输入框</span></span><br><span class="line">    <span class="keyword">private</span> Button btnGameCheck;      <span class="comment">// 猜测按钮</span></span><br><span class="line">    <span class="keyword">private</span> TextView tvGameResult;    <span class="comment">// 结果提示</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 游戏变量</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> targetGameNumber;     <span class="comment">// 目标随机数</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> <span class="variable">minRange</span> <span class="operator">=</span> <span class="number">0</span>;     <span class="comment">// 当前范围最小值</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> <span class="variable">maxRange</span> <span class="operator">=</span> <span class="number">100</span>;   <span class="comment">// 当前范围最大值</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">onCreate</span><span class="params">(Bundle savedInstanceState)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        <span class="comment">// 加载布局</span></span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 绑定控件</span></span><br><span class="line">        etGameNumber = findViewById(R.id.et_game_number);</span><br><span class="line">        btnGameCheck = findViewById(R.id.btn_game_check);</span><br><span class="line">        tvGameResult = findViewById(R.id.tv_game_result);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 生成0-100的随机数（游戏初始化）</span></span><br><span class="line">        targetGameNumber = <span class="keyword">new</span> <span class="title class_">Random</span>().nextInt(<span class="number">101</span>);  <span class="comment">// 0-100闭区间</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 猜测按钮点击事件</span></span><br><span class="line">        btnGameCheck.setOnClickListener(<span class="keyword">new</span> <span class="title class_">View</span>.OnClickListener() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onClick</span><span class="params">(View view)</span> &#123;</span><br><span class="line">                <span class="comment">// 1. 获取用户输入的数字</span></span><br><span class="line">                <span class="type">String</span> <span class="variable">input</span> <span class="operator">=</span> etGameNumber.getText().toString().trim();</span><br><span class="line"></span><br><span class="line">                <span class="comment">// 2. 输入验证</span></span><br><span class="line">                <span class="keyword">if</span> (input.isEmpty()) &#123;</span><br><span class="line">                    tvGameResult.setText(<span class="string">&quot;请输入数字后再猜～&quot;</span>);</span><br><span class="line">                    <span class="keyword">return</span>;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="comment">// 3. 转换为整数（处理非数字输入）</span></span><br><span class="line">                <span class="type">int</span> userNumber;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    userNumber = Integer.parseInt(input);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (NumberFormatException e) &#123;</span><br><span class="line">                    tvGameResult.setText(<span class="string">&quot;请输入有效的数字！&quot;</span>);</span><br><span class="line">                    etGameNumber.setText(<span class="string">&quot;&quot;</span>);  <span class="comment">// 清空错误输入</span></span><br><span class="line">                    <span class="keyword">return</span>;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="comment">// 4. 检查数字范围</span></span><br><span class="line">                <span class="keyword">if</span> (userNumber &lt; <span class="number">0</span> || userNumber &gt; <span class="number">100</span>) &#123;</span><br><span class="line">                    tvGameResult.setText(<span class="string">&quot;请输入0-100之间的数字！&quot;</span>);</span><br><span class="line">                    <span class="keyword">return</span>;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="comment">// 5. 核心逻辑：对比用户输入与目标数字</span></span><br><span class="line">                <span class="keyword">if</span> (userNumber == targetGameNumber) &#123;</span><br><span class="line">                    <span class="comment">// 猜对了</span></span><br><span class="line">                    tvGameResult.setText(<span class="string">&quot;恭喜你！猜对了！🎉&quot;</span>);</span><br><span class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (userNumber &lt; targetGameNumber) &#123;</span><br><span class="line">                    <span class="comment">// 猜小了：更新最小值</span></span><br><span class="line">                    minRange = userNumber;</span><br><span class="line">                    tvGameResult.setText(<span class="string">&quot;猜小了～ 范围：&quot;</span> + minRange + <span class="string">&quot; 到 &quot;</span> + maxRange);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="comment">// 猜大了：更新最大值</span></span><br><span class="line">                    maxRange = userNumber;</span><br><span class="line">                    tvGameResult.setText(<span class="string">&quot;猜大了～ 范围：&quot;</span> + minRange + <span class="string">&quot; 到 &quot;</span> + maxRange);</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="comment">// 6. 清空输入框，方便下次输入</span></span><br><span class="line">                etGameNumber.setText(<span class="string">&quot;&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">    </span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="第六步-配置文件（AndroidManifest-xml）"><a href="#第六步-配置文件（AndroidManifest-xml）" class="headerlink" title="第六步 配置文件（AndroidManifest.xml）"></a>第六步 配置文件（AndroidManifest.xml）</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;utf-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">manifest</span> <span class="attr">xmlns:android</span>=<span class="string">&quot;http://schemas.android.com/apk/res/android&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:tools</span>=<span class="string">&quot;http://schemas.android.com/tools&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">application</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:allowBackup</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:dataExtractionRules</span>=<span class="string">&quot;@xml/data_extraction_rules&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:fullBackupContent</span>=<span class="string">&quot;@xml/backup_rules&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:icon</span>=<span class="string">&quot;@mipmap/taikongren&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:label</span>=<span class="string">&quot;@string/app_name&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:roundIcon</span>=<span class="string">&quot;@mipmap/taikongren&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:supportsRtl</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:theme</span>=<span class="string">&quot;@style/Theme.GuessTheNumbers&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">tools:targetApi</span>=<span class="string">&quot;31&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">activity</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:name</span>=<span class="string">&quot;.LoginActivity&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:exported</span>=<span class="string">&quot;true&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">&quot;android.intent.action.MAIN&quot;</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">&quot;android.intent.category.LAUNCHER&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">activity</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">activity</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:name</span>=<span class="string">&quot;.MainActivity&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:exported</span>=<span class="string">&quot;true&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">application</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">manifest</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="完整流程测试步骤"><a href="#完整流程测试步骤" class="headerlink" title="完整流程测试步骤"></a>完整流程测试步骤</h2><ol>
-<li><p>运行 APP，首先显示「会员验证页」。</p>
-<p> 效果如下图所示：</p>
-<p> <img src="https://cdn.jsdelivr.net/gh/tangxtang1119/ImageBed@main/202508151645644.png" alt="会员验证界面"></p>
-</li>
-<li><p>输入正确密码 <code>vip666</code>（可在 <code>LoginActivity</code> 中修改）。</p>
-</li>
-<li><p>点击「验证并进入游戏」，自动跳转到「猜数字游戏页」。</p>
-<p> <img src="https://cdn.jsdelivr.net/gh/tangxtang1119/ImageBed@main/202508151646861.png" alt="猜数游戏界面"></p>
-</li>
-<li><p>在游戏页输入数字猜测，系统会提示范围（如 “猜小了～ 范围：20 到 100”）。</p>
-</li>
-<li><p>猜对后显示 “恭喜你！猜对了！🎉”。</p>
-</li>
-</ol>
-<h2 id="核心技术点说明"><a href="#核心技术点说明" class="headerlink" title="核心技术点说明"></a>核心技术点说明</h2><ul>
-<li><strong>页面跳转</strong>：通过 <code>Intent</code> 实现两个页面的切换，<code>startActivity(intent)</code> 触发跳转。</li>
-<li><strong>启动页设置</strong>：<code>AndroidManifest.xml</code> 中，<code>LoginActivity</code> 包含 <code>&lt;intent-filter&gt;</code> 标记，因此成为 APP 打开的第一个页面。</li>
-<li><strong>数据验证</strong>：两个页面都添加了输入检查（空输入、格式错误等），提升用户体验。</li>
-<li><strong>生命周期管理</strong>：<code>finish()</code> 方法关闭验证页，防止用户按返回键回到验证页（可选逻辑）。</li>
-</ul>
 ]]></content>
       <categories>
         <category>笔记</category>
@@ -2105,58 +2506,6 @@ categories： 笔记
       </tags>
   </entry>
   <entry>
-    <title>破解·常用工具</title>
-    <url>/2025/08/10/%E7%A0%B4%E8%A7%A3%C2%B7%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/</url>
-    <content><![CDATA[<h2 id="OllyDbg"><a href="#OllyDbg" class="headerlink" title="OllyDbg"></a>OllyDbg</h2><p>[学习链接]([渗透之OllyDbg逆向分析动态调试工具使用 - 大柿子 - 博客园](<a href="https://www.cnblogs.com/xsj210/p/15770601.html#:~:text=%E8%8B%A5%E6%98%AF%E4%BD%A0%E6%83%B3%E9%80%89%E4%B8%AD%E4%B8%80%E4%B8%AAEXE%E6%96%87%E4%BB%B6%EF%BC%8C%E5%8F%B3%E9%94%AE%E7%9B%B4%E6%8E%A5%E5%8F%AF%E4%BB%A5%E7%94%A8OllyDbg%E6%89%93%E5%BC%80%EF%BC%8C%E6%80%8E%E4%B9%88%E8%AE%BE%E7%BD%AE%E5%91%A2%EF%BC%9F">https://www.cnblogs.com/xsj210/p/15770601.html#:~:text=若是你想选中一个EXE文件，右键直接可以用OllyDbg打开，怎么设置呢？</a> 点击 “选项” -&gt;,“添加到浏览器”，添加OllyDbg到系统资源管理器菜单。 若是咱们每次运行OD都提示管理员权限运行，则能够进行快捷键简单的设置。 设置方式以下：兼容性中选择“以管理员身份运行此程序”。 下面简单讲解经常使用的快捷键调试方式。 设置断点，只要在光标定位的位置按下F2键便可，再按一次F2键会删除断点。))</p>
-<h3 id="简单介绍"><a href="#简单介绍" class="headerlink" title="简单介绍"></a>简单介绍</h3><p>动态调试工具</p>
-<p>Windows 平台专属工具，主要用于分析 <strong>x86 架构的 PE 格式程序</strong>（如 .exe、.dll）。</p>
-<p>包括反汇编窗口、寄存器窗口、信息窗口、数据窗口、堆栈窗口。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/ImageBed@main/202508190200012.png"></p>
-<p>当界面乱象时，可以点击顶部快捷键C，主窗口最大化便可优化布局。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/ImageBed@main/202508190200837.png"></p>
-<p>各个窗口的含义：</p>
-<ul>
-<li><p>反汇编窗口： 显示被调试程序的反汇编代码，包括地址、HEX数据、反汇编、注释</p>
-</li>
-<li><p>寄存器窗口： 显示当前所选线程的CPU寄存器内容，点击标签可切换显示寄存器的方式</p>
-</li>
-<li><p>信息窗口： 显示反汇编窗口中选中的第一个命令的参数及跳转目标地址、字符等</p>
-</li>
-<li><p>数据窗口： 显示内存或文件的内容，右键菜单可切换显示方式</p>
-</li>
-<li><p>堆栈窗口： 显示当前线程的堆栈，记录传递的参数或局部变量</p>
-</li>
-<li><p>子窗口的快捷方式</p>
-<p>  <img src="https://cdn.jsdelivr.net/gh/tangxtang1119/ImageBed@main/202508190200626.png"></p>
-</li>
-</ul>
-<p>点击 “选项” -&gt; “界面”，设置UDD路径和插件路径</p>
-<ul>
-<li>UDD路径用于保存咱们调试的信息。</li>
-<li>插件路径包含了各类插件，而且能够直接使用。</li>
-</ul>
-<p>管理员权限运行</p>
-<ul>
-<li>点击OllyDbg.exe右键点击属性</li>
-<li>兼容性中选择“以管理员身份运行此程序”</li>
-</ul>
-<h3 id="经常快捷键"><a href="#经常快捷键" class="headerlink" title="经常快捷键"></a>经常快捷键</h3><p>F2：设置断点<br>设置断点，只要在光标定位的位置按下F2键便可，再按一次F2键会删除断点。</p>
-<p>CTRL+F2：从新开始<br>当程序想从新调试时，按下CTRL+F2便可。</p>
-<p>F4：运行到选定位置<br>运行到选定位置，做用就是直接运行到光标所在位置处暂停。当咱们调试过程当中遇到循环，能够调至光标跳过循环。</p>
-<p>F7：单步步入<br>单步步入，功能通单步步过（F8）相似，区别是遇到CALL等子程序时会进入其中，进入后首先停留在子程序的第一条指令上。以下图进入CALL子程序。CALL表示进入函数，RETN表示返回。</p>
-<p>F8：单步步过<br>单步步过，每按一次这个按键，将执行反汇编窗口中的一条指令，遇到CALL等子程序不进入其代码。</p>
-<p>F9：运行<br>按下F9键运行程序，若是没有设置相应的断点，被调试的程序直接开始运行。</p>
-<p>CTRL+F9：执行到返回<br>执行到返回，按下此键会执行到一个返回指令时暂停，经常使用于从系统领空返回到咱们调试的程序领空。在调试程序时，按下CTRL+F9会一直运行程序，直到一个RETURN返回。再在RETN 10位置按下F8，则会返回以下图所示的位置，执行完CALL函数进入下一句。</p>
-<p>ALT+F9：执行到用户代码<br>执行到用户代码，从系统领空快速返回咱们调试的程序领空。</p>
-]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-      <tags>
-        <tag>破解</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>smali</title>
     <url>/2025/08/10/smali/</url>
     <content><![CDATA[<h2 id="一、什么是-Smali？"><a href="#一、什么是-Smali？" class="headerlink" title="一、什么是 Smali？"></a>一、什么是 Smali？</h2><p>你可以把 Smali 理解为**Android 应用的 “汇编语言”**。就像电脑程序的 C 语言会被编译成汇编语言一样，Android 的 Java 代码会被编译成<code>.dex</code>文件，而 Smali 就是<code>.dex</code>文件反编译后的 “可读形式”。</p>
@@ -2550,6 +2899,58 @@ categories： 笔记
       </tags>
   </entry>
   <entry>
+    <title>破解·常用工具</title>
+    <url>/2025/08/10/%E7%A0%B4%E8%A7%A3%C2%B7%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/</url>
+    <content><![CDATA[<h2 id="OllyDbg"><a href="#OllyDbg" class="headerlink" title="OllyDbg"></a>OllyDbg</h2><p>[学习链接]([渗透之OllyDbg逆向分析动态调试工具使用 - 大柿子 - 博客园](<a href="https://www.cnblogs.com/xsj210/p/15770601.html#:~:text=%E8%8B%A5%E6%98%AF%E4%BD%A0%E6%83%B3%E9%80%89%E4%B8%AD%E4%B8%80%E4%B8%AAEXE%E6%96%87%E4%BB%B6%EF%BC%8C%E5%8F%B3%E9%94%AE%E7%9B%B4%E6%8E%A5%E5%8F%AF%E4%BB%A5%E7%94%A8OllyDbg%E6%89%93%E5%BC%80%EF%BC%8C%E6%80%8E%E4%B9%88%E8%AE%BE%E7%BD%AE%E5%91%A2%EF%BC%9F">https://www.cnblogs.com/xsj210/p/15770601.html#:~:text=若是你想选中一个EXE文件，右键直接可以用OllyDbg打开，怎么设置呢？</a> 点击 “选项” -&gt;,“添加到浏览器”，添加OllyDbg到系统资源管理器菜单。 若是咱们每次运行OD都提示管理员权限运行，则能够进行快捷键简单的设置。 设置方式以下：兼容性中选择“以管理员身份运行此程序”。 下面简单讲解经常使用的快捷键调试方式。 设置断点，只要在光标定位的位置按下F2键便可，再按一次F2键会删除断点。))</p>
+<h3 id="简单介绍"><a href="#简单介绍" class="headerlink" title="简单介绍"></a>简单介绍</h3><p>动态调试工具</p>
+<p>Windows 平台专属工具，主要用于分析 <strong>x86 架构的 PE 格式程序</strong>（如 .exe、.dll）。</p>
+<p>包括反汇编窗口、寄存器窗口、信息窗口、数据窗口、堆栈窗口。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/ImageBed@main/202508190200012.png"></p>
+<p>当界面乱象时，可以点击顶部快捷键C，主窗口最大化便可优化布局。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/ImageBed@main/202508190200837.png"></p>
+<p>各个窗口的含义：</p>
+<ul>
+<li><p>反汇编窗口： 显示被调试程序的反汇编代码，包括地址、HEX数据、反汇编、注释</p>
+</li>
+<li><p>寄存器窗口： 显示当前所选线程的CPU寄存器内容，点击标签可切换显示寄存器的方式</p>
+</li>
+<li><p>信息窗口： 显示反汇编窗口中选中的第一个命令的参数及跳转目标地址、字符等</p>
+</li>
+<li><p>数据窗口： 显示内存或文件的内容，右键菜单可切换显示方式</p>
+</li>
+<li><p>堆栈窗口： 显示当前线程的堆栈，记录传递的参数或局部变量</p>
+</li>
+<li><p>子窗口的快捷方式</p>
+<p>  <img src="https://cdn.jsdelivr.net/gh/tangxtang1119/ImageBed@main/202508190200626.png"></p>
+</li>
+</ul>
+<p>点击 “选项” -&gt; “界面”，设置UDD路径和插件路径</p>
+<ul>
+<li>UDD路径用于保存咱们调试的信息。</li>
+<li>插件路径包含了各类插件，而且能够直接使用。</li>
+</ul>
+<p>管理员权限运行</p>
+<ul>
+<li>点击OllyDbg.exe右键点击属性</li>
+<li>兼容性中选择“以管理员身份运行此程序”</li>
+</ul>
+<h3 id="经常快捷键"><a href="#经常快捷键" class="headerlink" title="经常快捷键"></a>经常快捷键</h3><p>F2：设置断点<br>设置断点，只要在光标定位的位置按下F2键便可，再按一次F2键会删除断点。</p>
+<p>CTRL+F2：从新开始<br>当程序想从新调试时，按下CTRL+F2便可。</p>
+<p>F4：运行到选定位置<br>运行到选定位置，做用就是直接运行到光标所在位置处暂停。当咱们调试过程当中遇到循环，能够调至光标跳过循环。</p>
+<p>F7：单步步入<br>单步步入，功能通单步步过（F8）相似，区别是遇到CALL等子程序时会进入其中，进入后首先停留在子程序的第一条指令上。以下图进入CALL子程序。CALL表示进入函数，RETN表示返回。</p>
+<p>F8：单步步过<br>单步步过，每按一次这个按键，将执行反汇编窗口中的一条指令，遇到CALL等子程序不进入其代码。</p>
+<p>F9：运行<br>按下F9键运行程序，若是没有设置相应的断点，被调试的程序直接开始运行。</p>
+<p>CTRL+F9：执行到返回<br>执行到返回，按下此键会执行到一个返回指令时暂停，经常使用于从系统领空返回到咱们调试的程序领空。在调试程序时，按下CTRL+F9会一直运行程序，直到一个RETURN返回。再在RETN 10位置按下F8，则会返回以下图所示的位置，执行完CALL函数进入下一句。</p>
+<p>ALT+F9：执行到用户代码<br>执行到用户代码，从系统领空快速返回咱们调试的程序领空。</p>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>破解</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>简单的APK结构和Dalvik字节码</title>
     <url>/2025/08/10/%E7%AE%80%E5%8D%95%E7%9A%84APK%E7%BB%93%E6%9E%84%E5%92%8CDalvik%E5%AD%97%E8%8A%82%E7%A0%81/</url>
     <content><![CDATA[<h2 id="简单的APK结构"><a href="#简单的APK结构" class="headerlink" title="简单的APK结构"></a>简单的APK结构</h2><p>应用打包的核心文件——<strong>APK（Android Package）</strong></p>
@@ -2905,8 +3306,7 @@ categories： 笔记
 </ul>
 <h4 id="2-Service：后台默默工作的-“隐形员工”"><a href="#2-Service：后台默默工作的-“隐形员工”" class="headerlink" title="2. Service：后台默默工作的 “隐形员工”"></a>2. Service：后台默默工作的 “隐形员工”</h4><p>Service 是在后台 “偷偷干活” 的组件，你看不到它，但它一直在运行。</p>
 <ul>
-<li><p>例子</p>
-<p>  ：</p>
+<li><p>例子：</p>
 <ul>
 <li>你听音乐时，按 Home 键退出音乐 APP 界面（Activity 关闭了），但音乐还在播放，这就是 Service 在后台继续工作；</li>
 <li>手机下载文件时，你切到其他 APP，下载不会停，也是 Service 在后台运行。</li>
@@ -3186,7 +3586,6 @@ categories： 笔记
 <h3 id="7-3-超级adb配置与环境变量"><a href="#7-3-超级adb配置与环境变量" class="headerlink" title="7.3 超级adb配置与环境变量"></a>7.3 超级adb配置与环境变量</h3><p>1.adb在SDK的platform tools目录下，使用前需将该目录添加到环境变量中。 </p>
 <p>2.通过修改环境变量，可以在任意目录下访问adb命令。 </p>
 <p>3.添加环境变量后，需重启计算机使其生效。</p>
-<h3 id="7-4-adb常用命令"><a href="#7-4-adb常用命令" class="headerlink" title="7.4 adb常用命令"></a>7.4 adb常用命令</h3><p>略</p>
 <h2 id="8-安卓模拟环境"><a href="#8-安卓模拟环境" class="headerlink" title="8. 安卓模拟环境"></a>8. 安卓模拟环境</h2><h3 id="8-1-安装软件"><a href="#8-1-安装软件" class="headerlink" title="8.1 安装软件"></a>8.1 安装软件</h3><p>1.到官网下载9.0模拟器，并安装<br><a href="https://www.ldmnq.com/">https://www.ldmnq.com/</a></p>
 <p>[更新!]适用于几乎所有安卓模拟器(7+)安装magisk的教程-简单无脑向<br><a href="https://www.52pojie.cn/thread-1583586-1-1.html">https://www.52pojie.cn/thread-1583586-1-1.html</a><br>(出处: 吾爱破解论坛)</p>
 <p>2.下载配置文件</p>
@@ -4075,8 +4474,8 @@ categories： 笔记
         <category>笔记</category>
       </categories>
       <tags>
-        <tag>吾爱破解</tag>
         <tag>安卓逆向工程</tag>
+        <tag>吾爱破解</tag>
       </tags>
   </entry>
   <entry>
@@ -4607,7 +5006,7 @@ categories： 笔记
 </code></pre>
 <p> Port 443</p>
 <p>如果没有config文件就新建一个即可。</p>
-<p>如果执行命令ssh -T <a href="mailto:&#103;&#x69;&#116;&#64;&#x67;&#105;&#x74;&#x68;&#117;&#x62;&#46;&#99;&#111;&#109;">&#103;&#x69;&#116;&#64;&#x67;&#105;&#x74;&#x68;&#117;&#x62;&#46;&#99;&#111;&#109;</a>，还是报错，就执行命令</p>
+<p>如果执行命令ssh -T <a href="mailto:&#103;&#x69;&#x74;&#x40;&#x67;&#x69;&#x74;&#104;&#117;&#x62;&#x2e;&#x63;&#x6f;&#109;">&#103;&#x69;&#x74;&#x40;&#x67;&#x69;&#x74;&#104;&#117;&#x62;&#x2e;&#x63;&#x6f;&#109;</a>，还是报错，就执行命令</p>
 <p>ssh -T -p 443 <a href="mailto:git@ssh.github.com，">git@ssh.github.com</a></p>
 <p>如果提示Hi xxxxx! You’ve successfully authenticated, but GitHub does not provide <a href="https://zhida.zhihu.com/search?content_id=203985854&content_type=Article&match_order=2&q=shell+access&zhida_source=entity">shell access</a>. 就表示一切正常了。</p>
 <h1 id="四、本地部署"><a href="#四、本地部署" class="headerlink" title="四、本地部署"></a><strong>四、本地部署</strong></h1><h4 id="1-创建目录"><a href="#1-创建目录" class="headerlink" title="1.创建目录"></a><strong>1.创建目录</strong></h4><p>由于Hexo的所有文章都是以文件的形式存储在目录下的，</p>

@@ -13,7 +13,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>安卓逆向kx——基本逆向环境配置 |  tangxtang</title>
+      <title>安卓逆向——基本逆向环境配置 |  tangxtang</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="/favicon.ico" />
@@ -66,7 +66,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  安卓逆向kx——基本逆向环境配置
+  安卓逆向——基本逆向环境配置
 </h1>
  
 
@@ -74,8 +74,8 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2025/09/18/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91kx%E2%80%94%E2%80%94%E5%9F%BA%E6%9C%AC%E9%80%86%E5%90%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" class="article-date">
-  <time datetime="2025-09-18T07:45:09.000Z" itemprop="datePublished">2025-09-18</time>
+      <a href="/2025/10/16/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91kx%E2%80%94%E2%80%94%E5%9F%BA%E6%9C%AC%E9%80%86%E5%90%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" class="article-date">
+  <time datetime="2025-10-15T16:00:00.000Z" itemprop="datePublished">2025-10-16</time>
 </a> 
   <div class="article-category">
     <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
@@ -86,7 +86,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">29</span>
+            <span class="post-count">1.9k</span>
         </span>
     </span>
 
@@ -95,7 +95,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">1 分钟</span>
+            <span class="post-count">7 分钟</span>
         </span>
     </span>
 </div>
@@ -111,7 +111,182 @@
     <div class="article-entry" itemprop="articleBody">
        
   <h2 id="使用虚拟机"><a href="#使用虚拟机" class="headerlink" title="使用虚拟机"></a>使用虚拟机</h2><p><strong>优点</strong>：与系统隔绝，快照功能，不受平台的限制</p>
-<p><strong>Kali Linux</strong>操作系统</p>
+<ul>
+<li>虚拟机具有良好的跨平台特性 <ul>
+<li>环境迁移：培训后可将完整虚拟机打包发送，确保学员获得与讲师完全一致的环境</li>
+<li>多平台支持：VMware系列产品支持Windows&#x2F;Linux&#x2F;macOS全平台部署</li>
+</ul>
+</li>
+<li>虚拟机具有良好的隔离特性 <ul>
+<li>沙盒保护：所有测试操作都在虚拟环境中进行，不会污染真实主机系统</li>
+<li>安全测试：特别适合进行各类危险性测试和逆向分析工作</li>
+</ul>
+</li>
+</ul>
+<h3 id="使用Kali-Linux配置环境示"><a href="#使用Kali-Linux配置环境示" class="headerlink" title="使用Kali Linux配置环境示"></a>使用Kali Linux配置环境示</h3><ul>
+<li><p>下载验证：</p>
+<ul>
+<li>从官网获取VMware镜像torrent文件</li>
+<li>使用certutil工具校验文件SHA256值</li>
+<li>确保文件完整性后再进行解压操作</li>
+</ul>
+</li>
+<li><p>配置建议：</p>
+<ul>
+<li>内存分配：建议配置为物理机内存的50-70%</li>
+<li>处理器核心：根据主机配置分配适当核心数（示例配置：4核）</li>
+<li>3D加速：建议关闭图形加速功能</li>
+<li>网络适配器：默认NAT模式即可</li>
+</ul>
+</li>
+<li><p>使用注意：</p>
+<ul>
+<li>默认登录账号：kali&#x2F;kali（US键盘布局）</li>
+<li>不建议直接使用root权限操作</li>
+<li>首次登录后建议立即修改密码</li>
+</ul>
+</li>
+</ul>
+<h2 id="Kali-Linux环境配置"><a href="#Kali-Linux环境配置" class="headerlink" title="Kali Linux环境配置"></a>Kali Linux环境配置</h2><h3 id="时区设置"><a href="#时区设置" class="headerlink" title="时区设置"></a>时区设置</h3><ul>
+<li>设置方法：使用命令dpkg-reconfigure tzdata选择Asia→Shanghai时区后重启</li>
+<li>常见问题：Kali时间不对通常只是时区问题，不是系统时间错误</li>
+<li>注意事项：Arch Linux和Debian的时区调整方法可能不同</li>
+</ul>
+<h2 id="系统更新与工具安装"><a href="#系统更新与工具安装" class="headerlink" title="系统更新与工具安装"></a>系统更新与工具安装</h2><ul>
+<li>基础配置：<ul>
+<li>root登录：Kali默认以root用户运行，避免权限问题</li>
+<li>历史记录：修改.bashrc中HISTSIZE&#x3D;1000和HISTFILESIZE&#x3D;2000</li>
+</ul>
+</li>
+<li><strong>实用工具</strong>：<ul>
+<li>htop<br>  加强版top工具，可以查看当前活跃的、占用高的进程。在编译安卓源码时很好用。Uptime是开机时间，Load average时平均负载。</li>
+<li>jnettop<br>  流量查看工具，在安装和使用软件的过程中，可以查看其下载和安装的进度，甚至在AOSP编译时，仍然在连接国外的服务器下载依赖包等等行为一览无遗，如果速度过慢可以及时将其掐断，换上科学上网工具继续安装或编译。还有就是在抓包时往往有奇效，比如实时查看对方IP等。</li>
+<li>tree<br>  实时查看当前网卡流量及IP。文件名搜索工具，在解包apk后，搜索文件的名字非常好用。如果想把路径全部打印出来，可以加上一些选项及配合过滤工具grep。如果要搜索文件内容，则使用grep -ril “xxxx”。</li>
+<li>tmux<br>  复用神器，可以在一个终端屏幕上管理多个终端（准确来说是伪终端），使用该工具，用户可以连接或断开当前会话，而保持终端在后台运行，管理VPS非常方便，可以保持当前会话永不断开（除非重启）。</li>
+</ul>
+</li>
+</ul>
+<h3 id="配置科学上网"><a href="#配置科学上网" class="headerlink" title="配置科学上网"></a>配置科学上网</h3><p><strong>必要性</strong>: Android Studio初始化时需要科学上网才能下载组件</p>
+<p><a href="cnblogs.com/volqiu/p/4811402.html">redsocks科学上网配置方法</a></p>
+<h2 id="下载和安装Android-Studio"><a href="#下载和安装Android-Studio" class="headerlink" title="下载和安装Android Studio"></a>下载和安装Android Studio</h2><p>在主机找到官网linux版本下载右键复制下载链接。</p>
+<p><img src="/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91kx%E2%80%94%E2%80%94%E5%9F%BA%E6%9C%AC%E9%80%86%E5%90%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE.assets/image-20251013222745997.png"></p>
+<p>在linux内路径<code>~/Desktop</code>下，输入命令行：<code>wget https://redirector.gvt1.com/edgedl/android/studio/ide-zips/2025.1.4.8/android-studio-2025.1.4.8-linux.tar.gz</code></p>
+<p>需要解压最新版Android Studio（使用zxvf命令）</p>
+<p>运行方法: 直接进入bin目录运行studio.sh</p>
+<p>指路<a target="_blank" rel="noopener" href="https://blog.csdn.net/huanzhongying/article/details/144240084">Gradle加载失败、超时等问题的总结_gradle下载超时-CSDN博客</a></p>
+<ul>
+<li><p>设置连接手机的路径</p>
+<ul>
+<li><p>先找到adb的路径输入命令行验证查看是否真的存在。</p>
+<p><code>/root/Android/Sdk/platform-tools</code></p>
+</li>
+<li><p>验证真实存在后把这个路径加入系统就可以了。然后输入命令行<code>nano ~/.bashrc</code></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/haozhepeng/article/details/100584451">Linux PATH 作用以及查看和修改方法_linuxenv中path-CSDN博客</a></p>
+</li>
+<li><p>最后输入<code>source adb</code>即可</p>
+</li>
+<li><p>出现 “修改 <code>.bashrc</code> 后配置环境变量没效果” 的情况</p>
+<ul>
+<li><p><strong>Android SDK 的 <code>platform-tools</code> 未正确安装</strong></p>
+<p>  如果 <code>/root/Android/Sdk/platform-tools</code> 目录本身不存在，或里面没有 <code>adb</code> 文件，说明 Android SDK 的<strong>平台工具（platform-tools）未安装 &#x2F; 安装失败</strong>。这种情况下，手动配置路径也没用，建议通过系统包管理安装（更简单可靠）：</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt install google-android-platform-tools-installer</span><br></pre></td></tr></table></figure>
+
+<p>  安装后，系统会自动配置 <code>adb</code> 到环境变量，无需手动改 <code>.bashrc</code>。</p>
+</li>
+<li><p>在安装 <code>google-android-platform-tools-installer</code> 时，需要选择一个<strong>镜像源</strong>来下载 Android 相关包。</p>
+<p>  由于谷歌官方源（<code>https://dl.google.com/android/repository</code>）在国内访问可能存在速度慢、不稳定的问题，而 ** 腾讯云镜像（<code>https://mirrors.cloud.tencent.com/AndroidSDK</code>）** 是国内源，下载速度通常更快、更稳定。</p>
+<p>  因此，建议选择 **<code>https://mirrors.cloud.tencent.com/AndroidSDK</code>**，然后按 <code>&lt;Ok&gt;</code> 确认即可。</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>安装远程桌面的软件scrcpy</p>
+<ul>
+<li><code>apt search apt scrcpy</code></li>
+<li><code>apt install scrcpy</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="实用动静态分析工具"><a href="#实用动静态分析工具" class="headerlink" title="实用动静态分析工具"></a>实用动静态分析工具</h2><h3 id="Java反编译神器：jadx"><a href="#Java反编译神器：jadx" class="headerlink" title="Java反编译神器：jadx"></a>Java反编译神器：jadx</h3><ul>
+<li><p>核心功能：将安卓项目反编译成Java源码，支持APK、DEX、JAR等格式的反编译</p>
+</li>
+<li><p>搜索功能：可以sign为关键字搜索整个APK，方便查找签名算法</p>
+</li>
+<li><p>类名复制：在类标题栏右键可直接复制类名，便于在Frida中使用Java.use调用</p>
+</li>
+<li><p>下载网址：<a target="_blank" rel="noopener" href="https://github.com/skylot/jadx">GitHub - skylot&#x2F;jadx: Dex to Java decompiler</a></p>
+<p><img src="/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91kx%E2%80%94%E2%80%94%E5%9F%BA%E6%9C%AC%E9%80%86%E5%90%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE.assets/image-20251013223916604.png"></p>
+<ul>
+<li>操作步骤：<ul>
+<li>终端路径<code>~/Desktop</code>下输入命令行<code>git clone https://github.com/skylot/jadx</code></li>
+<li>从release页面下载最新版解压<code>7z x jadx-1.5.3.zip</code></li>
+<li>进入解压文件，命令行<ul>
+<li><code>cd jadx-1.5.3</code>&#x2F;</li>
+<li><code>cd bin/</code></li>
+<li>运行<code>./jadx-gui</code></li>
+</ul>
+</li>
+<li>注意不要关窗口关了，就没了</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>功能：</p>
+<ul>
+<li>使用关键字搜索功能定位关键代码</li>
+<li>右键查看类&#x2F;方法的调用关系</li>
+<li>在code和smali视图间切换分析</li>
+</ul>
+</li>
+</ul>
+<h3 id="二进制查看修改神器：010Editor"><a href="#二进制查看修改神器：010Editor" class="headerlink" title="二进制查看修改神器：010Editor"></a>二进制查看修改神器：010Editor</h3><ul>
+<li>功能特点：支持二进制数据的复制粘贴和修改</li>
+<li>命名含义：010代表二进制，Editor表示编辑器</li>
+<li>下载网址：<a target="_blank" rel="noopener" href="https://www.sweetscape.com/010editor/">010 Editor - Pro Text&#x2F;Hex Editor | Edit 300+ Formats | Fast &amp; Powerful | Reverse Engineering</a><ul>
+<li>解压方式：<code>tar zxvf....</code></li>
+<li>直接运行安装包就行了<code>010EditorLinux64installer</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="Python版本管理器：pyenv"><a href="#Python版本管理器：pyenv" class="headerlink" title="Python版本管理器：pyenv"></a>Python版本管理器：pyenv</h2><p>管理多个 Python 版本的工具，可方便切换不同 Python 版本，隔离项目环境</p>
+<ul>
+<li><p>下载地址：<a target="_blank" rel="noopener" href="https://github.com/pyenv/pyenv">pyenv&#x2F;pyenv: Simple Python version management</a></p>
+<p>  注意添加环境配置还有前置编译包</p>
+</li>
+<li><p><strong>使用技巧</strong>：</p>
+<ul>
+<li><p><strong>快速查看可用版本</strong>：<code>pyenv install --list</code> 列出可安装的 Python 版本，加 grep 筛选：<code>pyenv install --list | grep &quot;3.11&quot;</code></p>
+</li>
+<li><p><strong>安装指定版本</strong>：<code>pyenv install 3.11.4</code>（安装后需执行 <code>pyenv rehash</code> 刷新命令）</p>
+<ul>
+<li><strong>灵活切换版本</strong>：<ul>
+<li>全局默认：<code>pyenv global 3.11.4</code>（影响整个系统）</li>
+<li>项目局部：<code>pyenv local 3.9.16</code>（仅当前目录生效，生成 <code>.python-version</code> 文件）</li>
+<li>临时会话：<code>pyenv shell 3.8.18</code>（仅当前终端生效）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>查看版本状态</strong>：<code>pyenv versions</code> 列出所有已安装版本（带 <code>*</code> 为当前使用版本）；<code>pyenv version</code> 显示当前版本</p>
+</li>
+<li><p><strong>卸载无用版本</strong>：<code>pyenv uninstall 3.7.17</code> 清理不再需要的版本</p>
+</li>
+<li><p><strong>配合插件增强</strong>：安装 <code>pyenv-virtualenv</code> 插件，可创建隔离虚拟环境：<code>pyenv virtualenv 3.11.4 myproj-env</code></p>
+</li>
+</ul>
+</li>
+<li><p>手动下载：</p>
+<ul>
+<li>文件放到 <code>~/.pyenv/cache/</code> 目录</li>
+<li>然后<code>Installing Python-版本</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="Jeb环境"><a href="#Jeb环境" class="headerlink" title="Jeb环境"></a>Jeb环境</h2><ul>
+<li>安装步骤：<a target="_blank" rel="noopener" href="https://blog.csdn.net/Sunshine_xiaohao/article/details/143464299">JEB 4.16.0 安装流程_jeb安装教程-CSDN博客</a></li>
+<li>下载资源：<a target="_blank" rel="noopener" href="https://www.52pojie.cn/thread-1645863-1-1.html">jeb-demo-4.16.0.202205110304和谐 - 吾爱破解 - 52pojie.cn</a></li>
+</ul>
  
       <!-- reward -->
       
@@ -176,7 +351,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://tangxtang1119.github.io/2025/09/18/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91kx%E2%80%94%E2%80%94%E5%9F%BA%E6%9C%AC%E9%80%86%E5%90%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://tangxtang1119.github.io/2025/10/16/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91kx%E2%80%94%E2%80%94%E5%9F%BA%E6%9C%AC%E9%80%86%E5%90%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -189,17 +364,8 @@
    
   <nav class="article-nav">
     
-      <a href="/2025/09/27/%E5%B7%A5%E5%85%B7%E7%BD%91%E7%AB%99/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            工具网址
-          
-        </div>
-      </a>
     
-    
-      <a href="/2025/09/18/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E5%B7%A5%E7%A8%8B%E5%B8%88%E5%A4%87%E8%80%83%E7%AC%94%E8%AE%B0/" class="article-nav-link">
+      <a href="/2025/10/06/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E5%B7%A5%E7%A8%8B%E5%B8%88%E5%A4%87%E8%80%83/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
         <div class="article-nav-title"></div>
       </a>
