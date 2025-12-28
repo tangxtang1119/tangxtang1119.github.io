@@ -13,7 +13,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>hexo+github 部署博客 |  tangxtang</title>
+      <title>hexo+github+picgo部署博客 |  tangxtang</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="/favicon.ico" />
@@ -66,7 +66,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  hexo+github 部署博客
+  hexo+github+picgo部署博客
 </h1>
  
 
@@ -86,7 +86,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">2.1k</span>
+            <span class="post-count">2.4k</span>
         </span>
     </span>
 
@@ -95,7 +95,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">8 分钟</span>
+            <span class="post-count">9 分钟</span>
         </span>
     </span>
 </div>
@@ -110,8 +110,25 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <p>静态博客：是指没有后端数据库的博客，所有文章都是以文件的形式存储，是一种纯前端的博客框架。</p>
+  <h4 id="2025年12月28日"><a href="#2025年12月28日" class="headerlink" title="2025年12月28日"></a>2025年12月28日</h4><h3 id="GitHub-个人令牌失效：重新生成"><a href="#GitHub-个人令牌失效：重新生成" class="headerlink" title="GitHub 个人令牌失效：重新生成"></a>GitHub 个人令牌失效：重新生成</h3><p>在 GitHub 官网重新生成个人访问令牌，生成「经典」个人访问令牌。</p>
+<ol>
+<li>访问经典令牌生成页：<a target="_blank" rel="noopener" href="https://github.com/settings/tokens">https://github.com/settings/tokens</a></li>
+<li>点击右上角「<strong>Generate new token</strong>」→ 选择「**Generate new token (classic)**」</li>
+<li>配置项：填写令牌名称、有效期，勾选核心权限 <code>repo</code>（仓库所有操作权限）</li>
+<li>点击底部「<strong>Generate token</strong>」，<strong>立即复制令牌</strong>并保存。</li>
+<li>然后把令牌复制到picgo的图床设置即可。</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/ImageBed@main/202512281505382.png"></p>
+<h2 id="Picgo同步删除图片的插件"><a href="#Picgo同步删除图片的插件" class="headerlink" title="Picgo同步删除图片的插件"></a>Picgo同步删除图片的插件</h2><p><strong>下载链接</strong>：<a target="_blank" rel="noopener" href="https://github.com/Molunerfinn/picgo/releases">Releases · Molunerfinn&#x2F;PicGo</a></p>
+<p>最终下载版本PicGo-Setup-2.4.0-x64.exe</p>
+<p>在该版本内搜索 github-plus 插件并安装：github-plus 1.2.3</p>
+<p><img src="/hexo-github-%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2.assets/image-20251228153737427.png"></p>
+<p>配置</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">repo 你的仓库名</span><br><span class="line">brach分支，默认 master</span><br><span class="line">token 就是在GitHub生成的个人令牌</span><br><span class="line">path 路径，例如:我填写 img，我的仓库中就会有一个img的文件夹存放我的图片</span><br><span class="line">customUrl 自定义url，由于GitHub在国内的访问速度比较慢可以使用jsdelivr 进行cdn加速，格式一般为:https://cdn.isdelivr.netlgh/user/repo@version/file</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/tangxtang1119/ImageBed@main/image/20251228154812360.png"></p>
 <hr>
+<h4 id="2025年1月23日"><a href="#2025年1月23日" class="headerlink" title="2025年1月23日"></a>2025年1月23日</h4><p>静态博客：是指没有后端数据库的博客，所有文章都是以文件的形式存储，是一种纯前端的博客框架。</p>
 <h1 id="一、准备工具"><a href="#一、准备工具" class="headerlink" title="一、准备工具"></a><strong>一、准备工具</strong></h1><p>Hexo是通过Node.js生成的。</p>
 <h2 id="1-下载并安装Node-js"><a href="#1-下载并安装Node-js" class="headerlink" title="1.下载并安装Node.js"></a><strong>1.下载并安装Node.js</strong></h2><p>win+R  #进入终端</p>
 <p>node -v  #查看node版本，v20.18.0，显示版本号，则说明安装成功</p>
@@ -169,7 +186,7 @@
 </code></pre>
 <p> Port 443</p>
 <p>如果没有config文件就新建一个即可。</p>
-<p>如果执行命令ssh -T <a href="mailto:&#x67;&#105;&#x74;&#64;&#103;&#105;&#116;&#104;&#117;&#98;&#46;&#x63;&#x6f;&#x6d;">&#x67;&#105;&#x74;&#64;&#103;&#105;&#116;&#104;&#117;&#98;&#46;&#x63;&#x6f;&#x6d;</a>，还是报错，就执行命令</p>
+<p>如果执行命令ssh -T <a href="mailto:&#x67;&#x69;&#x74;&#x40;&#x67;&#x69;&#116;&#104;&#x75;&#x62;&#46;&#99;&#111;&#109;">&#x67;&#x69;&#x74;&#x40;&#x67;&#x69;&#116;&#104;&#x75;&#x62;&#46;&#99;&#111;&#109;</a>，还是报错，就执行命令</p>
 <p>ssh -T -p 443 <a href="mailto:git@ssh.github.com，">git@ssh.github.com</a></p>
 <p>如果提示Hi xxxxx! You’ve successfully authenticated, but GitHub does not provide <a target="_blank" rel="noopener" href="https://zhida.zhihu.com/search?content_id=203985854&content_type=Article&match_order=2&q=shell+access&zhida_source=entity">shell access</a>. 就表示一切正常了。</p>
 <h1 id="四、本地部署"><a href="#四、本地部署" class="headerlink" title="四、本地部署"></a><strong>四、本地部署</strong></h1><h4 id="1-创建目录"><a href="#1-创建目录" class="headerlink" title="1.创建目录"></a><strong>1.创建目录</strong></h4><p>由于Hexo的所有文章都是以文件的形式存储在目录下的，</p>
